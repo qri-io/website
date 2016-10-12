@@ -1,0 +1,33 @@
+baseurl = "https://blog.qri.io/"
+builddrafts = false
+canonifyurls = true
+contentdir = "content"
+languageCode = "en-US"
+layoutdir = "layouts"
+publishdir = "public"
+author = "Qri.io"
+title = "Qri.io"
+pygmentsuseclasses = true
+# disqusShortname = "cocoaexamplesite" # Comment out to disable Disqus.
+pluralizelisttitles = false
+theme="cocoa"
+
+[permalinks]
+blog = ":slug/"
+
+[params]
+Author = "Qri.io"
+CacheBuster = true
+DateForm = "Jan 2, 2006"
+DateFormFull = "Mon Jan 2 2006 15:04:05 MST"
+Description = "Stop, open data time."
+Email = "info@qri.io"
+FaviconFile = "img/leaf.ico"
+# GATracker = "XYZ"
+GitHub = "//github.com/qri-io"
+HighlightJS = true
+# Initials = "ad" # Displayed on single post page; DEPRECATED in v0.3.0.
+# Lang = "en"
+# LinkedIn = "//linkedin.com/in/you"
+Twitter = "//twitter.com/qri_io"
+# ExtraCssFiles = [ "/css/override.css" ] # In your `static/css`, add/remove files as necessary.
