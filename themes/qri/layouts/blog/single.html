@@ -1,0 +1,18 @@
+{{ partial "header.html" . }}
+<div class="single">
+	{{ partial "page-heading.html" . }}
+	<section class="container">
+	    <div class="row">
+	      <div class="markdown col-md-8 offset-md-2">
+	          {{ .Content }}
+	      </div>
+	    </div>
+	    <div class="row">
+	    	<div class="col-md-8 offset-md-2">
+	    		<a href="/">Back to Blog</a>
+	    	</div>
+	    </div>
+	</section>
+</div>
+
+{{ partial "footer.html" . }}

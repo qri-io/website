@@ -8,22 +8,23 @@ publishdir = "public"
 author = "Qri.io"
 title = "Qri.io"
 pygmentsuseclasses = true
-# disqusShortname = "cocoaexamplesite" # Comment out to disable Disqus.
 pluralizelisttitles = false
-theme="cocoa"
+theme="qri"
 
 [permalinks]
 blog = ":slug/"
 
 [params]
-Author = "Qri.io"
+IsDev = true
+Author = "Qri"
 CacheBuster = true
 DateForm = "Jan 2, 2006"
 DateFormFull = "Mon Jan 2 2006 15:04:05 MST"
-Description = "Stop, open data time."
+Description = "Community-Based Data"
 Email = "info@qri.io"
 FaviconFile = "img/leaf.ico"
 # GATracker = "XYZ"
+# SegmentTracker= "b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju"
 GitHub = "//github.com/qri-io"
 HighlightJS = true
 # Initials = "ad" # Displayed on single post page; DEPRECATED in v0.3.0.

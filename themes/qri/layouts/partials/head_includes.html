@@ -1,0 +1,54 @@
+<!-- HTTPS -->
+
+<script type="text/javascript">
+    var baseURL = '{{ .Site.BaseURL }}';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+<!-- CSS -->
+
+{{ if .Site.Params.HighlightJS }}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
+{{ end }}
+
+
+{{ if eq true .Site.Params.CacheBuster }}
+
+<link rel="stylesheet" href="/css/pygments.css">
+<link rel="stylesheet" href="/css/style.css">
+
+{{range .Site.Params.ExtraCssFiles}}
+    <link rel="stylesheet" href="{{.}}">
+{{end}}
+
+{{ else }}
+
+<link rel="stylesheet" href="/css/pygments.css?{{ .Now.Unix }}">
+<link rel="stylesheet" href="/css/style.css?{{ .Now.Unix }}">
+
+{{range .Site.Params.ExtraCssFiles}}
+    <link rel="stylesheet" href="{{.}}?{{ .Now.Unix }}">
+{{end}}
+
+{{ end }}
+
+<!-- Icon -->
+<link rel="shortcut icon"
+{{ if .Site.Params.FaviconFile }}
+    href="/{{ .Site.Params.FaviconFile }}"
+{{ else }}
+    href="/img/favicon.ico"
+{{ end }}
+>
+
+<!-- RSS -->
+{{ if .RSSlink }}
+  <link href="{{ .RSSlink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+{{ end }}
+
+<!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->

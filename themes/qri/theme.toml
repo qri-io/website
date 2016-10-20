@@ -1,0 +1,12 @@
+name = "Qri"
+license = "MIT"
+licenselink = "https://github.com/qri-io/docs/blob/master/LICENSE.md"
+description = "Theme for qri-io docs"
+homepage = "https://github.com/docs"
+tags = ["open-sans", "minimal", "clean", "ionicons", "comments"]
+min_version = 0.15
+private = true
+
+[author]
+  name = "Qri.io"
+  homepage = "https://github.com/qri-io"
