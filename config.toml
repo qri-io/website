@@ -15,7 +15,7 @@ theme="qri"
 blog = ":slug/"
 
 [params]
-IsDev = true
+IsDev = false
 Author = "Qri"
 CacheBuster = true
 DateForm = "Jan 2, 2006"
@@ -24,7 +24,7 @@ Description = "Community-Based Data"
 Email = "info@qri.io"
 FaviconFile = "img/leaf.ico"
 # GATracker = "XYZ"
-# SegmentTracker= "b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju"
+SegmentTracker= "b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju"
 GitHub = "//github.com/qri-io"
 HighlightJS = true
 # Initials = "ad" # Displayed on single post page; DEPRECATED in v0.3.0.

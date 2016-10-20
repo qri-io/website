@@ -7,12 +7,8 @@ authorLink="http://qri.io/b5"
 
 +++
 
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo. Curabitur blandit tempus porttitor. Nulla vitae elit libero, a pharetra augue.
+#### We can do more together than apart. Right now an awful lot of data gets collected, organized, and analyzed, apart.
 
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo. Curabitur blandit tempus porttitor. Nulla vitae elit libero, a pharetra augue.
+I want to take part in a community that organizes all of the world's open data, together. [Qri](http://www.qri.io) is my contribution to that end.
 
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo. Curabitur blandit tempus porttitor. Nulla vitae elit libero, a pharetra augue.
-
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+Have a look, [signup for the beta](http://www.qri.io/signup), and let's do stuff.
