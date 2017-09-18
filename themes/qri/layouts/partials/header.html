@@ -5,10 +5,10 @@
 
 <body lang="{{ .Site.Params.Lang }}">
 
-<section class="navbar"> 
+<section class="navbar topLine"> 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 offset-md-2 topLine">
+            <div class="col-md-12">
                 <a href="http://www.qri.io">{{ .Site.Params.Author }}</a>
             </div>
         </div>
@@ -52,12 +52,6 @@
         {{ if .Site.Params.Email }}
             <a href="mailto:{{ .Site.Params.Email }}">
                 <i class="icon ion-ios-email larger"></i>
-            </a>
-        {{ end }}
-
-        {{ if .Site.RSSLink }}
-            <a href="{{ .Site.RSSLink }}">
-                <i class="icon ion-social-rss larger"></i>
             </a>
         {{ end }}
         </div>

@@ -1,0 +1,28 @@
+.home {
+  background: 50px 65% url('/svg/paint_dots_maroon.svg') $dark-blue-slate; 
+  background-size: 100%;
+  padding-bottom: 10em;
+
+  #header {
+    padding-top: 15em;
+    margin-bottom: 15em;
+    width: 500px;
+    .title {
+      text-transform: uppercase;
+    }
+  }
+
+  .box {
+    background: rgba(14,38,48,0.55);
+    padding: 40px 20px;
+
+    border-radius: 3px;
+    width: 33%;
+    float: left;
+  }
+
+  #blurb {
+    float: right;
+    width: 50%;
+  }
+}
