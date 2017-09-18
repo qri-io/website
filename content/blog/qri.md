@@ -1,6 +1,12 @@
+---
+title: "Qri"
+date: 2017-07-24T23:00:29-04:00
+draft: false
+---
+
 # QRI
 
-QRI, PBC. (pronounced "query") is a business built around reducing the barriers to data. I believe the various approaches to working with data will benefit from an alternative view that aims to equally address all barriers to data access, instead of prioritizing one over the other.
+Qri (pronounced "query") is built around reducing the barriers to data. I believe the various approaches to working with data will benefit from an alternative view that aims to equally address all barriers to data access, instead of prioritizing one over the other.
 
 Before starting, it's worth noting that when I mention of "data", I'm actually referring to *structured data*. Almost all digital information has at least some degree of structure. Structure ranges from being a stream of random, unidentifiable binary, all the way up to a database that dictates exactly what data it can contain. At a general level I'm only talkinb about the structured half of this spectrum, data that could at bare minimum be shown on an excel spreadsheet. There are some exceptions to this, but it's a good starting point.
 

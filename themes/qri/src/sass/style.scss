@@ -5,6 +5,7 @@
 @import "normalize";
 @import "print";
 
+@import "pages/home";
 @import "reboot";
 // @import "alert";
 @import "fonts";
@@ -22,7 +23,7 @@ html, body, #root {
 
 body {
   background: $dark-blue-slate;
-  color: $light-blue-slate;
+  color: white;
 }
 
 #content-wrapper, #root {
@@ -49,7 +50,7 @@ body {
 
 .navbar {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
   min-height: 3.0rem;
@@ -59,6 +60,10 @@ body {
     color: $hawt-pink;
     font-size: 22px;
   }
+}
+
+.clear {
+  clear: both;
 }
 
 .topLine {

@@ -1,18 +1,7 @@
 {{ partial "header.html" . }}
-<section class="index">
+<div id="wrap" class="home">
   <div class="container">
-  	<div class="row title">
-  		<div class="col-md-8 offset-md-2 bottomLine">
-  			<h5>Hey Look It's a Blog about <a href="http://qri.io">Qri</a></h5>
-  			<p></p>
-  		</div>
-  	</div>
-    {{ range .Data.Pages.ByPublishDate }}
-        {{ if eq .Section "blog" }}
-            {{ partial "blog-item.html" . }}
-        {{ end }}
-    {{ end }}
+    {{ .Content }}
   </div>
-</section>
+</div>
 {{ partial "footer.html" . }}
-
