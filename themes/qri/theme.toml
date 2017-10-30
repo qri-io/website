@@ -1,4 +1,4 @@
-name = "Qri"
+name = "qri"
 license = "MIT"
 licenselink = "https://github.com/qri-io/docs/blob/master/LICENSE.md"
 description = "Theme for qri-io docs"
