@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Community-Based Data">
+
+<base href="https://blog.qri.io/">
+<title>
+
+
+     Qri 
+
+</title>
+<link rel="canonical" href="https://blog.qri.io/qri/">
+
+
+<script type="text/javascript">
+    var baseURL = 'https:\/\/blog.qri.io\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://blog.qri.io/css/pygments.css">
+<link rel="stylesheet" href="https://blog.qri.io/css/style.css">
+
+
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://blog.qri.io/img/leaf.ico"
+
+>
+
+
+
+</head>
+
+
+<body lang="">
+
+<section class="navbar topLine"> 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="http://www.qri.io">Qri</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/qri-io" target="_blank">
+                <i class="icon ion-social-github"></i>
+            </a>
+        
+        
+        
+            <a href="//twitter.com/qri_io" target="_blank">
+                <i class="icon ion-social-twitter"></i>
+            </a>
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:info@qri.io">
+                <i class="icon ion-ios-email larger"></i>
+            </a>
+        
+        </div>
+    </div>
+</section>
+
+<div class="single">
+	<header>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 offset-md-2">
+				
+				  <h1 class="title">Qri</h1>
+				
+
+				
+			</div>
+		</div>
+	</div>
+</header>
+
+	<section class="container">
+	    <div class="row">
+	      <div class="markdown col-md-8 offset-md-2">
+	          
+
+<h1 id="qri">QRI</h1>
+
+<p>Qri (pronounced &ldquo;query&rdquo;) is built around reducing the barriers to data. I believe the various approaches to working with data will benefit from an alternative view that aims to equally address all barriers to data access, instead of prioritizing one over the other.</p>
+
+<p>Before starting, it&rsquo;s worth noting that when I mention of &ldquo;data&rdquo;, I&rsquo;m actually referring to <em>structured data</em>. Almost all digital information has at least some degree of structure. Structure ranges from being a stream of random, unidentifiable binary, all the way up to a database that dictates exactly what data it can contain. At a general level I&rsquo;m only talkinb about the structured half of this spectrum, data that could at bare minimum be shown on an excel spreadsheet. There are some exceptions to this, but it&rsquo;s a good starting point.</p>
+
+<h2 id="data-barriers">Data Barriers:</h2>
+
+<p>A Barrier to data can come in many forms, but for the sake of analysis they can be generalized into four categories:</p>
+
+<ol>
+<li>Availability (Data that is hard to find, or access to data is limited)</li>
+<li>Connectivity (Data that stored in conflicting formats, or not connected to other needed data)</li>
+<li>Legibility (Data that isn&rsquo;t documented properly, isn&rsquo;t presented in a clear way, or contains formatting errors)</li>
+<li>Authenticity (Data that cannot be trusted, contains false or unverifiable information)</li>
+</ol>
+
+<p>Our current tools do very little to accomodate these issues because the areas of expertise cross technical, business, and social boundaries, obscuring the financial incentives for doing so. It&rsquo;s easier to see how these barriers arise, as using groups emphasize each problem to the exclusion of the others:</p>
+
+<h4 id="software-engineers-companies-high-availability">Software Engineers &amp; Companies: High-Availability</h4>
+
+<p>A Software engineer is concerned with access to data being <em>fast</em>, to the exclusion of almost all other properties. A slow database is useless. An inefficent database is uesless. This has lead much of the R&amp;D in database technology to ignore the other barriers.</p>
+
+<p>To solve the deprioritized, connectivity problem, many companies rich with engineering talent will release an API, which seems like it assists the connectivity problem. Unfortunately this leads to the problem of having to constantly write integrations between these API&rsquo;s, which instantly eliminates connectivity beyond a 1-to-1, broker-to-consumer relationship.</p>
+
+<h4 id="academics-ngo-s-high-legibility">Academics &amp; NGO&rsquo;s: High-Legibility</h4>
+
+<p>Academics &amp; NGO&rsquo;s that advocate for Open Data are primarily concerned with availability &amp; legibility. A scientist working working with data needs to know without doubt what a piece of data is, how it was collected, and how it can be compared to other data. Undocumented data is useless to a scientist. Academics are also</p>
+
+<p>To a NGO, success is defined as publishing data in static files, and then generating reports form those files. A static file is highly legible, and hosting it on an official domain will help it&rsquo;s authenticity, but once that file is downloaded, the authenticity becomes harder to maintain.</p>
+
+<h4 id="governments-high-authenticity">Governments: High-Authenticity</h4>
+
+<p>Governments have the highest degree of authenticity when it comes to data. Census data is a perfect example, and there are many others. Governments, however, suffer under the weight of their own authenticity standards. Changes to official policies can reduce legibility by imposing constraints on the way data is collected &amp; reported.</p>
+
+<h4 id="search-engines-high-connectivity">Search Engines: High-Connectivity</h4>
+
+<p>Search Engines are the single greatest resource for connecting people to information the world has ever seen. They accomplish this by ignoring the other three barriers. A search engine cannot compare two web pages, because it makes no requirements about the <em>structure</em> of the data it&rsquo;s presenting. It can only match a search phrase with results that contain derivatives of that phrase.</p>
+
+<p>At this point it&rsquo;s natural to ask the question &ldquo;won&rsquo;t machine learning eliminate all of these barriers automatically?&rdquo;. The short answer is, &ldquo;well, maybe&rdquo;. What I can say for sure is this: Machine learning is developed by feeding massive amounts of structured data to training models. This project will make massive amounts of structured data available.</p>
+
+<h2 id="a-new-approach">A New Approach:</h2>
+
+<p>I believe value can be derived from re-approaching the question of data with all of these barriers in mind. The challenge of this approach is it requires a bit of reinventing the wheel. The challenge is to design a product that is equal parts Available, Legible, Verifiable, Connected. From each category I want to sacrifice the qualities that over-prioritization gives in order to make general gains.</p>
+
+<h4 id="availability">Availability</h4>
+
+<p>By accepting slowdowns, it&rsquo;s possible dramatically increase the number of formats &amp; sources the database can work with. By building a database that can operate on <em>many</em> kinds of structured data, availability goes down, but connectivity goes up <em>without sacrificing structure</em>.</p>
+
+<h3 id="business-applications">Business Applications:</h3>
+
+<p>At it&rsquo;s core, this project is a concerted effort to address this problem:</p>
+
+<h5 id="people-who-work-with-data-spend-more-time-munging-than-they-do-analyzing">People who work with data spend more time <em>munging</em> than they do <em>analyzing</em></h5>
+
+<p>Finding, acquiring, cleaning, organizing and validating data is not fun. There are lots of databases out there that&rsquo;ll make short work of billion-row datasets. Those are pretty useless if they have the wrong data, or aren&rsquo;t accessible, or refuse to talk with external data.</p>
+
+	      </div>
+	    </div>
+	    <div class="row">
+	    	<div class="col-md-8 offset-md-2">
+	    		<a href="https://blog.qri.io/">Back to Blog</a>
+	    	</div>
+	    </div>
+	</section>
+</div>
+
+
+
+	
+
+	
+		<script type="text/javascript">
+		 !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+		  analytics.load("b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju");
+		  analytics.page()
+		}}();
+		</script>
+	
+
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+</body>
+</html>
+
