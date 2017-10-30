@@ -3,28 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://qri.getforge.io/</loc>
+    <loc>http://qri.getforge.io/</loc>
     <lastmod>2017-10-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://qri.getforge.io/qri/</loc>
+    <loc>http://qri.getforge.io/qri/</loc>
     <lastmod>2017-07-24T23:00:29-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://qri.getforge.io/blog/</loc>
+    <loc>http://qri.getforge.io/blog/</loc>
     <lastmod>2017-07-24T23:00:29-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://qri.getforge.io/categories/</loc>
+    <loc>http://qri.getforge.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://qri.getforge.io/tags/</loc>
+    <loc>http://qri.getforge.io/tags/</loc>
     <priority>0</priority>
   </url>
   

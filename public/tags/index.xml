@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Qri.io</title>
-    <link>https://qri.getforge.io/tags/</link>
+    <link>http://qri.getforge.io/tags/</link>
     <description>Recent content in Tags on Qri.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     
-	<atom:link href="https://qri.getforge.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://qri.getforge.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
