@@ -46,7 +46,6 @@ $other-dark-blue-slate: #2D3A40;
 $med-blue-slate: #40515D;
 $light-blue-slate: #A1B2BC;
 
-// brand colors
 $hawt-pink: #FA009B;
 
 // accent colors
@@ -63,14 +62,7 @@ $gray-light:                #818a91 !default;
 $gray-lighter:              #eceeef !default;
 $gray-lightest:             #f7f7f9 !default;
 
-// $brand-primary:             #0275d8 !default;
-// $brand-success:             #5cb85c !default;
-// $brand-info:                #5bc0de !default;
-// $brand-warning:             #f0ad4e !default;
-// $brand-danger:              #d9534f !default;
-// $brand-inverse:             $gray-dark !default;
-
-$brand-primary:             #F05631 !default;
+$brand-primary:             $orange !default;
 $brand-success:             #5cb85c !default;
 $brand-info:                #5bc0de !default;
 $brand-warning:             #f0ad4e !default;

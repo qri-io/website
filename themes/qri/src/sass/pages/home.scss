@@ -1,5 +1,6 @@
 .home {
-  background: 50px 65% url('/svg/paint_dots_maroon.svg') $dark-blue-slate; 
+  // background: 50px 65% url('/svg/paint_dots_maroon.svg') $dark-blue-slate; 
+  background: $dark-blue-slate; 
   background-size: 100%;
   padding-bottom: 10em;
 

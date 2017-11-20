@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://qri.getforge.io/papers/deterministic_querying/</loc>
+    <lastmod>2017-11-20T19:20:04-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://qri.getforge.io/</loc>
     <lastmod>2017-10-30T00:00:00-04:00</lastmod>
   </url>
@@ -20,6 +25,12 @@
   
   <url>
     <loc>http://qri.getforge.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://qri.getforge.io/papers/</loc>
+    <lastmod>2017-11-20T19:20:04-07:00</lastmod>
     <priority>0</priority>
   </url>
   

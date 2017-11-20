@@ -4,12 +4,13 @@ date: 2017-10-30T00:00:00-04:00
 ---
 
 <div id="header">
-  <h1 class="title">The Distributed Web as a Database</h1>
+  <h1 class="title">Distributed Open Data</h1>
   <p>qri (“query”) animates data stored on the distributed web to work like a database.</p>
-  <button class="btn btn-primary">Read The White Paper</button>
+  <a href="/papers/deterministic_querying"><button class="btn btn-primary">Read The White Paper</button></a>
+  <a href="https://github.com/qri-io"><button class="btn btn-primary">Peep our Github</button></a>
 </div>
 
-<div id="box_1" class="box">
+<!-- <div id="box_1" class="box">
   <h2 class="title">distributed</h2>
   <p>Qri’s discovery and search tools are built on the distributed web, the world’s next great global network.</p>
 </div>
@@ -31,4 +32,4 @@ date: 2017-10-30T00:00:00-04:00
   The world needs new tools for answering its questions.</strong></p>
   <p>Qri is building open source capabilities to allow indexing, searching (querying) and linking massive datasests on the distributed web.</p>
   <p>We work at the intersection of open source software development, data sharing via distributed networks, and environmental stewardship.</p>
-</div>
+</div> -->
