@@ -47,7 +47,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; }
   </style>
   
 </head>
-<p><body>
+<body>
 <article class="markdown-body">
 <h1 align="center">
 Deterministic Querying for the Distributed Web
@@ -125,12 +125,12 @@ November 2017<br/>
 <p>If it were possible to short-circuit some of the steps in the architectural pattern above, it could be made more efficient, at least for certain use cases. For example, what if the decoding steps could be removed? For that matter, what if the databases could be removed too, and the network itself somehow could be the database for both storage and querying? Then the process diagram would look like this:</p>
 <pre><code>  Network -&gt; Process -&gt; Network</code></pre>
 <p>The idea that the network itself could be “queried for data” as if it were a database may seem ludicrous at first. The rest of this white paper describes how this <em>can</em> be achieved, using a combination of technologies and architectural patterns. Renewed attention to distributed, content-addressed networks with a robust linked-data structure provides the foundation necessary for achieving this. What follows is a plan for a suite of tools that collectively provide the necessary components to be able to query a network, with the explicit design goal of facilitating <em>accumulation of composable results</em> through data that is held on the network.</p>
-&lt;!&ndash;
-maybe add more about linked data:</p>
+<!--
+maybe add more about linked data:
 
-<p>Linked Data is explicitly oriented towards providing data as a service: URIs need to get resolved, data sources get queried, data is retrieved, and (usually) data needs to be translated.  These methods of querying and accessing Linked Data currently involve database access and retrieval.</p>
+Linked Data is explicitly oriented towards providing data as a service: URIs need to get resolved, data sources get queried, data is retrieved, and (usually) data needs to be translated.  These methods of querying and accessing Linked Data currently involve database access and retrieval.
 
-<p>maybe also compare this to &ldquo;network is the database&rdquo; &ndash;&gt;
+maybe also compare this to "network is the database" -->
 <h1 id="data-data-structures-hashes-and-queries"><span class="header-section-number">2</span> Data, data structures, hashes, and queries</h1>
 <p><em>Deterministic querying</em> is designed for content-addressed network systems. In content-based addressing, data is stored and retrieved not by its location (as is done in the current Web via HTTP), but rather by a function computed over its content—specifically, a hash function that uniquely identifies the content <span class="citation">[Aurora <a href="#ref-aurora2007code">2007</a>]</span>. This <em>content address</em> can be computed independently by anyone for any content simply by running the hash function; they do not require a centralized authority to coordinate the assignment of labels or addresses. This decentralized approach is the foundation of an emerging, modern, reliable data commons that deterministic querying aims to support.</p>
 <p>Content-based addressing, also known as compare-by-hash <span class="citation">[Aurora <a href="#ref-aurora2007code">2007</a>]</span>, was first used for networked file systems in the early 2000’s <span class="citation">[Muthitacharoen et al. <a href="#ref-muthitacharoen2001low">2001</a>; Tolia et al. <a href="#ref-tolia2003opportunistic">2003</a>]</span>, and is a staple of peer-to-peer systems today. In this work, we specifically target IPFS (the InterPlanetary File System), an open-source, distributed, content-addressed, peer-to-peer, versioned file system and protocol <span class="citation">[Benet <a href="#ref-benet2014ipfs">2014</a>; Protocol Labs <a href="#ref-ipfs2017">2017</a><a href="#ref-ipfs2017">a</a>]</span>. IPFS distributes content over a network using a secure distributed hash table <span class="citation">[Baumgart and Mies <a href="#ref-baumgart2007s">2007</a>; Freedman et al. <a href="#ref-freedman2004democratizing">2004</a>; Maymounkov and Mazieres <a href="#ref-maymounkov2002kademlia">2002</a>]</span>. The basic premise of IPFS and other content-addressed file systems is that identical content will produce identical hash values, and thus be identified uniquely.</p>
@@ -147,7 +147,7 @@ This section could be called "schemas" or even "resources"; we avoid these terms
 <pre><code>lat,lng,precip_amt,date,note
 60.00,-50.049303,0,2017-02-14,no precip to report
 60.00,-50.049303,1014,2017-02-15,two storm cells observed
-&hellip;</code></pre>
+...</code></pre>
 <p>A <code>Data</code> object in a content-addressed file system will be a static object identified by a hash value (henceforth, to be called simply its <em>hash</em>). Assume that this data file resolves to the following base58-encoded <span class="citation">[Gagern et al. <a href="#ref-vonGagern2017base58">2017</a>]</span> hash on the network:</p>
 <pre><code>QmNk2XkDpn8vBantgpHt6B52kcyfHcQVJUF4QzDqjiGu52</code></pre>
 <p>As discussed above, this hash will be unique: any file whose computed hash matches the one above <em>will contain the same content</em>, no matter how or where it was created (assuming we use the same conventions for line endings, spaces and some other details), or where it’s physically located in the content-addressed file system. Queries to this data file will always run against the same set of bytes because the hash is <em>deterministic</em>.</p>
@@ -159,7 +159,7 @@ This section could be called "schemas" or even "resources"; we avoid these terms
     <span class="dt">&quot;delimiter&quot;</span><span class="fu">:</span> <span class="st">&quot;,&quot;</span><span class="fu">,</span>
     <span class="dt">&quot;doubleQuote&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span>
     <span class="dt">&quot;lineTerminator&quot;</span><span class="fu">:</span> <span class="st">&quot;</span><span class="ch">\r\n</span><span class="st">&quot;</span><span class="fu">,</span>
-    <span class="dt">&quot;quoteChar&quot;</span><span class="fu">:</span> <span class="st">&quot;</span><span class="ch">&amp;quot;</span><span class="st">&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;quoteChar&quot;</span><span class="fu">:</span> <span class="st">&quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span><span class="fu">,</span>
     <span class="dt">&quot;skipInitialSpace&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span>
     <span class="dt">&quot;header&quot;</span><span class="fu">:</span> <span class="kw">true</span>
   <span class="fu">},</span>
@@ -169,7 +169,7 @@ This section could be called "schemas" or even "resources"; we avoid these terms
     <span class="dt">&quot;fields&quot;</span> <span class="fu">:</span> <span class="ot">[</span>
       <span class="fu">{</span> <span class="dt">&quot;title&quot;</span> <span class="fu">:</span> <span class="st">&quot;lat&quot;</span><span class="fu">,</span> <span class="dt">&quot;type&quot;</span> <span class="fu">:</span> <span class="st">&quot;float&quot;</span><span class="fu">,</span> <span class="dt">&quot;default&quot;</span> <span class="fu">:</span> <span class="dv">0</span> <span class="fu">}</span><span class="ot">,</span>
       <span class="fu">{</span> <span class="dt">&quot;title&quot;</span> <span class="fu">:</span> <span class="st">&quot;lng&quot;</span><span class="fu">,</span> <span class="dt">&quot;type&quot;</span> <span class="fu">:</span> <span class="st">&quot;float&quot;</span><span class="fu">,</span> <span class="dt">&quot;default&quot;</span> <span class="fu">:</span> <span class="dv">0</span> <span class="fu">}</span><span class="ot">,</span>
-      <span class="fu">{</span> <span class="dt">&quot;title&quot;</span> <span class="fu">:</span> <span class="st">&quot;precip<em>amt&quot;</span><span class="fu">,</span> <span class="dt">&quot;type&quot;</span> <span class="fu">:</span> <span class="st">&quot;integer&quot;</span><span class="fu">,</span> <span class="dt">&quot;default&quot;</span> <span class="fu">:</span> <span class="dv">0</span> <span class="fu">}</span><span class="ot">,</span>
+      <span class="fu">{</span> <span class="dt">&quot;title&quot;</span> <span class="fu">:</span> <span class="st">&quot;precip_amt&quot;</span><span class="fu">,</span> <span class="dt">&quot;type&quot;</span> <span class="fu">:</span> <span class="st">&quot;integer&quot;</span><span class="fu">,</span> <span class="dt">&quot;default&quot;</span> <span class="fu">:</span> <span class="dv">0</span> <span class="fu">}</span><span class="ot">,</span>
       <span class="fu">{</span> <span class="dt">&quot;title&quot;</span> <span class="fu">:</span> <span class="st">&quot;datestamp&quot;</span><span class="fu">,</span> <span class="dt">&quot;type&quot;</span> <span class="fu">:</span> <span class="st">&quot;datestamp&quot;</span><span class="fu">,</span> <span class="dt">&quot;default&quot;</span> <span class="fu">:</span> <span class="dv">0</span> <span class="fu">}</span><span class="ot">,</span>
       <span class="fu">{</span> <span class="dt">&quot;title&quot;</span> <span class="fu">:</span> <span class="st">&quot;note&quot;</span><span class="fu">,</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;string&quot;</span><span class="fu">,</span> <span class="dt">&quot;default&quot;</span><span class="fu">:</span> <span class="st">&quot;&quot;</span> <span class="fu">}</span>
     <span class="ot">]</span>
@@ -177,8 +177,8 @@ This section could be called "schemas" or even "resources"; we avoid these terms
 <span class="fu">}</span></code></pre></div>
 <p>The detailed specification of <code>Structure</code> is given elsewhere, but as the example above illustrates, a <code>Structure</code> contains information that enables software and users to read the content of a <code>Data</code> object. For example, <code>format</code> specifies how the data is stored; the field value is a MIME type value (e.g., <code>&quot;text/csv&quot;</code> for CSV <span class="citation">[Shafranovich <a href="#ref-shafranovich2005common">2005</a>]</span>). The related field <code>formatConfig</code> removes as much ambiguity as possible about how to interpret the specified <code>format</code> because some formats have a number of dialects, and variants need to be identified exactly.</p>
 <p>The field <code>schema</code> merits some additional explanation. Many formats such as CSV do not internally define the data types of values and provide no standard way of communicating this information, which forces the requirement to define an approach for externalizing it outside of a <code>Data</code> file. It turns out, however, that describing the format explicitly in a generalized way also makes it possible to store and reuse those descriptions independently: they become another object in the content-addressed storage space, hashed and stored like everything else. The structure of <code>schema</code> is intended to be as interoperable as possible with the frictionless data specification <span class="citation">[Frictionless Data <a href="#ref-frictionlessdata2017">2017</a>]</span>, which has made great inroads in this area.</p>
-<p><code>Structure</code> is designed in such a way that it contains nothing about the <em>meaning</em> of the data. This has the benefit that if the values of a <code>Data</code> file change, the <code>Structure</code> can remain the same; if multiple <code>Data</code> objects anywhere on an IPFS network all have the same structure, the <code>Structure</code> object can remain the same. This is true even if the <code>Data</code> objects are about entirely different things</em>. As will become more clear below, this is part of the fundamental insight that makes deterministic querying possible.</p>
-<p>While we focus on the CSV data format, these concepts apply just as easily to other data formats, and the structure specification is designed to accommodate this interoperability. JSON, XML, Microsoft Excel&trade; Spreadsheets, sqlite files, are all examples of formats that <code>Structure</code> should be able to normalize by using the same general approach.</p>
+<p><code>Structure</code> is designed in such a way that it contains nothing about the <em>meaning</em> of the data. This has the benefit that if the values of a <code>Data</code> file change, the <code>Structure</code> can remain the same; if multiple <code>Data</code> objects anywhere on an IPFS network all have the same structure, the <code>Structure</code> object can remain the same. This is true even if the <code>Data</code> objects are about entirely different things_. As will become more clear below, this is part of the fundamental insight that makes deterministic querying possible.</p>
+<p>While we focus on the CSV data format, these concepts apply just as easily to other data formats, and the structure specification is designed to accommodate this interoperability. JSON, XML, Microsoft Excel(TM) Spreadsheets, sqlite files, are all examples of formats that <code>Structure</code> should be able to normalize by using the same general approach.</p>
 <h2 id="dataset"><span class="header-section-number">2.2</span> <code>Dataset</code></h2>
 <p>A <code>Structure</code> describes the form of a <code>Data</code> object. The two are connected together, along with metadata about the <code>Data</code>, in a <code>Dataset</code> object.</p>
 <p align="center">
@@ -230,7 +230,7 @@ This section could be called "schemas" or even "resources"; we avoid these terms
 <ol style="list-style-type: decimal">
 <li><p>The result of processing a query will be a <code>Dataset</code> object, so query processing begins with a blank <code>Dataset</code>. The query processing engine records the original, concrete query expression in the field <code>queryString</code>. The data referenced by the query are recorded as in the field <code>resources</code> as a set of other <code>Dataset</code> objects.</p></li>
 <li><p>The original query is parsed to produce internal Abstract Syntax Tree (AST) representation (a standard approach for parsing and manipulating structured languages).</p></li>
-<li><p>The query engine rewrites the AST. First, it examines the different parts of the query AST and processes any aliasing statements (e.g., an expression such as <code>SELECT foo AS bar &hellip;</code> in SQL) or other modifications. The engine rewrites the AST to produce the abstract query. It then records the mappings between entities such as tables and columns in <code>Data</code> objects; this is done for both the inputs and outputs of the query expression. Finally, it rewrites the AST to convert data resource references into abstract resource references. In our example above, this is the step that converts query references like <code>a.datestamp</code> into <code>a.col_0</code>. This is written in the field <code>statement</code> in the <code>Dataset</code> object.</p></li>
+<li><p>The query engine rewrites the AST. First, it examines the different parts of the query AST and processes any aliasing statements (e.g., an expression such as <code>SELECT foo AS bar ...</code> in SQL) or other modifications. The engine rewrites the AST to produce the abstract query. It then records the mappings between entities such as tables and columns in <code>Data</code> objects; this is done for both the inputs and outputs of the query expression. Finally, it rewrites the AST to convert data resource references into abstract resource references. In our example above, this is the step that converts query references like <code>a.datestamp</code> into <code>a.col_0</code>. This is written in the field <code>statement</code> in the <code>Dataset</code> object.</p></li>
 <li><p>Next, the engine executes the query, producing the resulting concrete <code>Data</code> .</p></li>
 <li><p>The query engine writes the results to IPFS as a <code>Dataset</code> object, writing the <code>Data</code>, <code>Query</code> and <code>Structure</code> hash references into the <code>Dataset</code>, and saving the output <code>Data</code> too.</p></li>
 </ol>
@@ -303,7 +303,7 @@ This section could be called "schemas" or even "resources"; we avoid these terms
   <span class="dt">&quot;length&quot;</span><span class="fu">:</span> <span class="dv">2341472</span><span class="fu">,</span>
   <span class="dt">&quot;timestamp&quot;</span><span class="fu">:</span> <span class="st">&quot;2017-08-27T13:14:10.479631674-04:00&quot;</span><span class="fu">,</span>
   <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;Normalized Precipitation&quot;</span>
-  <span class="er">&hellip;</span>
+  <span class="er">...</span>
 <span class="fu">}</span></code></pre></div>
 <p>This brings all of the elements together: the fields for the concrete <code>queryString</code> and the <code>resources</code> it referenced, the <code>query</code> field holding the <code>Query</code> object, and the <code>structure</code> and <code>data</code> that indicate the results of running the query, with a <code>length</code> field to inform readers of the size of the data referenced by <code>data</code>. Note how the original query statement in <code>queryString</code> references a specific table name, <code>&quot;precip&quot;</code>; this is linked to a resource by the corresponding value inside the <code>resources</code> field. Along with structure we have included the full <code>abstractStructure</code> counterpart here as well.</p>
 <p>A <code>Dataset</code> contains numerous additional metadata fields that provide context and useful information about the nature of what the query is about. A timestamp and title round out the example above, but other metadata fields exist.</p>
@@ -321,7 +321,7 @@ This section could be called "schemas" or even "resources"; we avoid these terms
   <span class="dt">&quot;length&quot;</span><span class="fu">:</span> <span class="dv">2341472</span><span class="fu">,</span>
   <span class="dt">&quot;timestamp&quot;</span><span class="fu">:</span> <span class="st">&quot;2017-08-27T13:14:10.479631674-04:00&quot;</span><span class="fu">,</span>
   <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;Normalized Precipitation&quot;</span>
-  <span class="er">&hellip;</span>
+  <span class="er">...</span>
 <span class="fu">}</span></code></pre></div>
 <p>Instead of storing the abstract structures itself in the dataset, we store the <em>reference to its hash</em>.</p>
 <p>Sometime later, we come upon another dataset whose abstract structure is the same. When true, the hash of the abstract structure will <em>collide</em> with the previous hash. Once stored on the network, we can determine that these two datasets are machine-interoperable through simple string comparison of the field references. These datasets may in fact not be directly relatable due to practical differences in data collection methods or other conventions (which will hopefully be annotated in the concrete dataset structure definitions, which will carry a much higher degree of variance), but through this process we gain the crucial knowledge that these two datasets are interoperable at the machine level.</p>
@@ -383,22 +383,18 @@ This section could be called "schemas" or even "resources"; we avoid these terms
 <p>Building open data systems that can behave more like open-source code systems requires rethinking some assumptions. New content-addressed distributed networks being introduced today present an opportunity to question the assumptions that underlie a large number of today’s databased-backed open data systems. The goal of deterministic querying is to replace a set of common architectural patterns in use today with a more efficient and beneficial pattern that can take advantage of content-addressed file systems such as IPFS. If successful, we believe this can form the basis of an open data commons that naturally increases its capacity through use, for the benefit of all who use it, while still providing room for an evolving ecosystem of tools.</p>
 <p>The intent of deterministic querying is not to eliminate database technologies in all situations. Rather, the goal is to reduce the need for large numbers of users to recreate identical accesses and encode/decode steps on the same data. Assuming that most data continue to be held in databases, database accesses will still be needed for novel queries; the gains in reduced computation and network accesses will be realized when multiple distributed users or processes repeat the same queries. The reality today is that queries to content-addressed networks are likely to be slower than queries to local databases, but those losses are expected to be offset by deduplication of data as well as resource use reduction in the aggregate. This form of deterministic querying deliberately accepts a number of performance tradeoffs for the sake of repeatability and interoperability.</p>
 <p>The approach described here will be best suited to certain use cases. The efficacy of this technique is inversely correlated to how frequently the underlying data changes; data that is not mutated after initial insertion is ideal for this approach. Thankfully, many datasets fall into this category, including scientific research data, government data, industrial data, and more. We contend that the development of deterministic querying offers a way to build an open data commons to provide greater opportunity for the collective, accumulative advancement of open data.</p>
-&lt;!&ndash;</p>
 
-<p>Deterministic querying promises new capabilities and powers, but it is in its early stages of development; IPFS itself is also still young.  There will surely be more challenges ahead, but</p>
-
-<p>&ndash;&gt;
 <!-- Refs are added automatically by Pandoc after this next section -->
 <h1 id="references" class="unnumbered">References</h1>
 <div id="refs" class="references">
 <div id="ref-auer2014linked">
-<p><span style="font-variant: small-caps;">Auer, S., Bryl, V., and Tramp, S.</span> 2014. <em>Linked open data–Creating knowledge out of interlinked data: Results of the lOD2 project</em>. Springer. <a href="https://doi.org/10.1007/978-3-319-09846-3" class="uri"><a href="https://doi.org/10.1007/978-3-319-09846-3">https://doi.org/10.1007/978-3-319-09846-3</a></a>.</p>
+<p><span style="font-variant: small-caps;">Auer, S., Bryl, V., and Tramp, S.</span> 2014. <em>Linked open data–Creating knowledge out of interlinked data: Results of the lOD2 project</em>. Springer. <a href="https://doi.org/10.1007/978-3-319-09846-3" class="uri">https://doi.org/10.1007/978-3-319-09846-3</a>.</p>
 </div>
 <div id="ref-aurora2007code">
 <p><span style="font-variant: small-caps;">Aurora, V.</span> 2007. The code monkey’s guide to cryptographic hashes for content-based addressing. <em>LinuxWorld</em>.</p>
 </div>
 <div id="ref-baack2015datafication">
-<p><span style="font-variant: small-caps;">Baack, S.</span> 2015. Datafication and empowerment: How the open data movement re-articulates notions of democracy, participation, and journalism. <em>Big Data &amp; Society</em> <em>2</em>, 2. <a href="https://doi.org/10.1177/2053951715594634" class="uri"><a href="https://doi.org/10.1177/2053951715594634">https://doi.org/10.1177/2053951715594634</a></a>.</p>
+<p><span style="font-variant: small-caps;">Baack, S.</span> 2015. Datafication and empowerment: How the open data movement re-articulates notions of democracy, participation, and journalism. <em>Big Data &amp; Society</em> <em>2</em>, 2. <a href="https://doi.org/10.1177/2053951715594634" class="uri">https://doi.org/10.1177/2053951715594634</a>.</p>
 </div>
 <div id="ref-baumgart2007s">
 <p><span style="font-variant: small-caps;">Baumgart, I. and Mies, S.</span> 2007. S/Kademlia: A practicable approach towards secure key-based routing. <em>International conference on parallel and distributed systems</em>, 1–8.</p>
@@ -407,58 +403,58 @@ This section could be called "schemas" or even "resources"; we avoid these terms
 <p><span style="font-variant: small-caps;">Benet, J.</span> 2014. IPFS – content addressed, versioned, P2P file system. <em>Computing Resources Repository</em> <em>arXiv:1407.3561</em>.</p>
 </div>
 <div id="ref-bergquist2001power">
-<p><span style="font-variant: small-caps;">Bergquist, M. and Ljungberg, J.</span> 2001. The power of gifts: Organizing social relationships in open source communities. <em>Information Systems Journal</em> <em>11</em>, 4, 305–320. <a href="https://doi.org/10.1046/j.1365-2575.2001.00111.x" class="uri"><a href="https://doi.org/10.1046/j.1365-2575.2001.00111.x">https://doi.org/10.1046/j.1365-2575.2001.00111.x</a></a>.</p>
+<p><span style="font-variant: small-caps;">Bergquist, M. and Ljungberg, J.</span> 2001. The power of gifts: Organizing social relationships in open source communities. <em>Information Systems Journal</em> <em>11</em>, 4, 305–320. <a href="https://doi.org/10.1046/j.1365-2575.2001.00111.x" class="uri">https://doi.org/10.1046/j.1365-2575.2001.00111.x</a>.</p>
 </div>
 <div id="ref-vandenbosch2016estimating">
-<p><span style="font-variant: small-caps;">Bosch, A. van den, Bogers, T., and Kunder, M. de</span>. 2016. Estimating search engine index size variability: A 9-year longitudinal study. <em>Scientometrics</em> <em>107</em>, 839–856. <a href="https://doi.org/10.1007/s11192-016-1863-z" class="uri"><a href="https://doi.org/10.1007/s11192-016-1863-z">https://doi.org/10.1007/s11192-016-1863-z</a></a>.</p>
+<p><span style="font-variant: small-caps;">Bosch, A. van den, Bogers, T., and Kunder, M. de</span>. 2016. Estimating search engine index size variability: A 9-year longitudinal study. <em>Scientometrics</em> <em>107</em>, 839–856. <a href="https://doi.org/10.1007/s11192-016-1863-z" class="uri">https://doi.org/10.1007/s11192-016-1863-z</a>.</p>
 </div>
 <div id="ref-chamberlin2009sql">
-<p><span style="font-variant: small-caps;">Chamberlin, D.</span> 2009. SQL. In: <em>Encyclopedia of database systems</em>. Springer, 2753–2760. <a href="https://doi.org/10.1007/978-0-387-39940-9_1091" class="uri"><a href="https://doi.org/10.1007/978-0-387-39940-9_1091">https://doi.org/10.1007/978-0-387-39940-9_1091</a></a>.</p>
+<p><span style="font-variant: small-caps;">Chamberlin, D.</span> 2009. SQL. In: <em>Encyclopedia of database systems</em>. Springer, 2753–2760. <a href="https://doi.org/10.1007/978-0-387-39940-9_1091" class="uri">https://doi.org/10.1007/978-0-387-39940-9_1091</a>.</p>
 </div>
 <div id="ref-cisco2017zettabyte">
-<p><span style="font-variant: small-caps;">Cisco</span>. 2017. <em>The zettabyte era: Trends and analysis</em>. Available on the World Wide Web at <a href="https://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/vni-hyperconnectivity-wp.html" class="uri"><a href="https://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/vni-hyperconnectivity-wp.html">https://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/vni-hyperconnectivity-wp.html</a></a>.</p>
+<p><span style="font-variant: small-caps;">Cisco</span>. 2017. <em>The zettabyte era: Trends and analysis</em>. Available on the World Wide Web at <a href="https://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/vni-hyperconnectivity-wp.html" class="uri">https://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/vni-hyperconnectivity-wp.html</a>.</p>
 </div>
 <div id="ref-ckan2017">
-<p><span style="font-variant: small-caps;">CKAN Association</span>. 2017. <em>CKAN</em>. Available on the World Wide Web at <a href="https://ckan.org" class="uri"><a href="https://ckan.org">https://ckan.org</a></a>.</p>
+<p><span style="font-variant: small-caps;">CKAN Association</span>. 2017. <em>CKAN</em>. Available on the World Wide Web at <a href="https://ckan.org" class="uri">https://ckan.org</a>.</p>
 </div>
 <div id="ref-crosas2011dataverse">
-<p><span style="font-variant: small-caps;">Crosas, M.</span> 2011. The dataverse network: An open-source application for sharing, discovering and preserving data. <em>D-Lib Magazine</em> <em>17</em>, <sup>1</sup>&frasl;<sub>2</sub>. <a href="https://doi.org/10.1045/january2011-crosas" class="uri"><a href="https://doi.org/10.1045/january2011-crosas">https://doi.org/10.1045/january2011-crosas</a></a>.</p>
+<p><span style="font-variant: small-caps;">Crosas, M.</span> 2011. The dataverse network: An open-source application for sharing, discovering and preserving data. <em>D-Lib Magazine</em> <em>17</em>, 1/2. <a href="https://doi.org/10.1045/january2011-crosas" class="uri">https://doi.org/10.1045/january2011-crosas</a>.</p>
 </div>
 <div id="ref-crowston2008free">
-<p><span style="font-variant: small-caps;">Crowston, K., Wei, K., Howison, J., and Wiggins, A.</span> 2008. Free/Libre open-source software development: What we know and what we do not know. <em>ACM Comput. Surv.</em> <em>44</em>, 2, 7:1–7:35. <a href="https://doi.org/10.1145/2089125.2089127" class="uri"><a href="https://doi.org/10.1145/2089125.2089127">https://doi.org/10.1145/2089125.2089127</a></a>.</p>
+<p><span style="font-variant: small-caps;">Crowston, K., Wei, K., Howison, J., and Wiggins, A.</span> 2008. Free/Libre open-source software development: What we know and what we do not know. <em>ACM Comput. Surv.</em> <em>44</em>, 2, 7:1–7:35. <a href="https://doi.org/10.1145/2089125.2089127" class="uri">https://doi.org/10.1145/2089125.2089127</a>.</p>
 </div>
 <div id="ref-pod2017resources">
-<p><span style="font-variant: small-caps;">Data, P.O.</span> 2017. <em>Metadata resources for schema v1.1</em>. Available on the World Wide Web at <a href="https://project-open-data.cio.gov/v1.1/metadata-resources/" class="uri"><a href="https://project-open-data.cio.gov/v1.1/metadata-resources/">https://project-open-data.cio.gov/v1.1/metadata-resources/</a></a>.</p>
+<p><span style="font-variant: small-caps;">Data, P.O.</span> 2017. <em>Metadata resources for schema v1.1</em>. Available on the World Wide Web at <a href="https://project-open-data.cio.gov/v1.1/metadata-resources/" class="uri">https://project-open-data.cio.gov/v1.1/metadata-resources/</a>.</p>
 </div>
 <div id="ref-elghandour2012restore">
-<p><span style="font-variant: small-caps;">Elghandour, I. and Aboulnaga, A.</span> 2012. ReStore: Reusing results of mapReduce jobs. <em>Proceedings of the VLDB Endowment</em> <em>5</em>, 6, 586–597. <a href="https://doi.org/10.14778/2168651.2168659" class="uri"><a href="https://doi.org/10.14778/2168651.2168659">https://doi.org/10.14778/2168651.2168659</a></a>.</p>
+<p><span style="font-variant: small-caps;">Elghandour, I. and Aboulnaga, A.</span> 2012. ReStore: Reusing results of mapReduce jobs. <em>Proceedings of the VLDB Endowment</em> <em>5</em>, 6, 586–597. <a href="https://doi.org/10.14778/2168651.2168659" class="uri">https://doi.org/10.14778/2168651.2168659</a>.</p>
 </div>
 <div id="ref-ferguson2014big">
-<p><span style="font-variant: small-caps;">Ferguson, A.R., Nielson, J.L., Cragin, M.H., Bandrowski, A.E., and Martone, M.E.</span> 2014. Big data from small data: Data-sharing in the ’long tail’ of neuroscience. <em>Nature Neuroscience</em> <em>17</em>, 11, 1442–1447. <a href="https://doi.org/10.1038/nn.3838" class="uri"><a href="https://doi.org/10.1038/nn.3838">https://doi.org/10.1038/nn.3838</a></a>.</p>
+<p><span style="font-variant: small-caps;">Ferguson, A.R., Nielson, J.L., Cragin, M.H., Bandrowski, A.E., and Martone, M.E.</span> 2014. Big data from small data: Data-sharing in the ’long tail’ of neuroscience. <em>Nature Neuroscience</em> <em>17</em>, 11, 1442–1447. <a href="https://doi.org/10.1038/nn.3838" class="uri">https://doi.org/10.1038/nn.3838</a>.</p>
 </div>
 <div id="ref-freed2013media">
-<p><span style="font-variant: small-caps;">Freed, N., Klensin, J., and Hansen, T.</span> 2013. <em>Media type specifications and registration procedures</em>. Available on the World Wide Web at <a href="https://tools.ietf.org/html/rfc6838" class="uri"><a href="https://tools.ietf.org/html/rfc6838">https://tools.ietf.org/html/rfc6838</a></a>; Internet Engineering Task Force (IETF).</p>
+<p><span style="font-variant: small-caps;">Freed, N., Klensin, J., and Hansen, T.</span> 2013. <em>Media type specifications and registration procedures</em>. Available on the World Wide Web at <a href="https://tools.ietf.org/html/rfc6838" class="uri">https://tools.ietf.org/html/rfc6838</a>; Internet Engineering Task Force (IETF).</p>
 </div>
 <div id="ref-freedman2004democratizing">
 <p><span style="font-variant: small-caps;">Freedman, M.J., Freudenthal, E., and Mazières, D.</span> 2004. Democratizing content publication with Coral. <em>Proceedings of the 1st conference on symposium on networked systems design and implementation</em>, USENIX Association, 18–18.</p>
 </div>
 <div id="ref-frictionlessdata2017">
-<p><span style="font-variant: small-caps;">Frictionless Data</span>. 2017. <em>Data packages</em>. Available on the World Wide Web at <a href="http://frictionlessdata.io/data-packages/" class="uri"><a href="http://frictionlessdata.io/data-packages/">http://frictionlessdata.io/data-packages/</a></a>.</p>
+<p><span style="font-variant: small-caps;">Frictionless Data</span>. 2017. <em>Data packages</em>. Available on the World Wide Web at <a href="http://frictionlessdata.io/data-packages/" class="uri">http://frictionlessdata.io/data-packages/</a>.</p>
 </div>
 <div id="ref-vonGagern2017base58">
-<p><span style="font-variant: small-caps;">Gagern, M. von, Roose, S., Cary, D., Danford, J., and Dingley, A.</span> 2017. <em>Base58</em>. Available on the World Wide Web at <a href="https://en.wikipedia.org/wiki/Base58" class="uri"><a href="https://en.wikipedia.org/wiki/Base58">https://en.wikipedia.org/wiki/Base58</a></a>; Wikipedia.</p>
+<p><span style="font-variant: small-caps;">Gagern, M. von, Roose, S., Cary, D., Danford, J., and Dingley, A.</span> 2017. <em>Base58</em>. Available on the World Wide Web at <a href="https://en.wikipedia.org/wiki/Base58" class="uri">https://en.wikipedia.org/wiki/Base58</a>; Wikipedia.</p>
 </div>
 <div id="ref-Garcia2016-gv">
-<p><span style="font-variant: small-caps;">García, S., Ramírez-Gallego, S., Luengo, J., Benítez, J.M., and Herrera, F.</span> 2016. Big data preprocessing: Methods and prospects. <em>Big Data Analytics</em> <em>1</em>, 1, 9. <a href="https://doi.org/10.1186/s41044-016-0014-0" class="uri"><a href="https://doi.org/10.1186/s41044-016-0014-0">https://doi.org/10.1186/s41044-016-0014-0</a></a>.</p>
+<p><span style="font-variant: small-caps;">García, S., Ramírez-Gallego, S., Luengo, J., Benítez, J.M., and Herrera, F.</span> 2016. Big data preprocessing: Methods and prospects. <em>Big Data Analytics</em> <em>1</em>, 1, 9. <a href="https://doi.org/10.1186/s41044-016-0014-0" class="uri">https://doi.org/10.1186/s41044-016-0014-0</a>.</p>
 </div>
 <div id="ref-gewin2016data">
-<p><span style="font-variant: small-caps;">Gewin, V.</span> 2016. Data sharing: An open mind on open data. <em>Nature</em> <em>529</em>, 7584, 117–119. <a href="https://doi.org/10.1038/nj7584-117a" class="uri"><a href="https://doi.org/10.1038/nj7584-117a">https://doi.org/10.1038/nj7584-117a</a></a>.</p>
+<p><span style="font-variant: small-caps;">Gewin, V.</span> 2016. Data sharing: An open mind on open data. <em>Nature</em> <em>529</em>, 7584, 117–119. <a href="https://doi.org/10.1038/nj7584-117a" class="uri">https://doi.org/10.1038/nj7584-117a</a>.</p>
 </div>
 <div id="ref-guha2016schema">
-<p><span style="font-variant: small-caps;">Guha, R.V., Brickley, D., and Macbeth, S.</span> 2016. Schema.org: Evolution of structured data on the web. <em>Communications of the ACM</em> <em>59</em>, 2, 44–51. <a href="https://doi.org/10.1145/2857274.2857276" class="uri"><a href="https://doi.org/10.1145/2857274.2857276">https://doi.org/10.1145/2857274.2857276</a></a>.</p>
+<p><span style="font-variant: small-caps;">Guha, R.V., Brickley, D., and Macbeth, S.</span> 2016. Schema.org: Evolution of structured data on the web. <em>Communications of the ACM</em> <em>59</em>, 2, 44–51. <a href="https://doi.org/10.1145/2857274.2857276" class="uri">https://doi.org/10.1145/2857274.2857276</a>.</p>
 </div>
 <div id="ref-haefliger2008code">
-<p><span style="font-variant: small-caps;">Haefliger, S., Krogh, G. von, and Spaeth, S.</span> 2008. Code reuse in open source software. <em>Management Science</em> <em>54</em>, 1, 180–193. <a href="https://doi.org/10.1287/mnsc.1070.0748" class="uri"><a href="https://doi.org/10.1287/mnsc.1070.0748">https://doi.org/10.1287/mnsc.1070.0748</a></a>.</p>
+<p><span style="font-variant: small-caps;">Haefliger, S., Krogh, G. von, and Spaeth, S.</span> 2008. Code reuse in open source software. <em>Management Science</em> <em>54</em>, 1, 180–193. <a href="https://doi.org/10.1287/mnsc.1070.0748" class="uri">https://doi.org/10.1287/mnsc.1070.0748</a>.</p>
 </div>
 <div id="ref-heath2011linked">
 <p><span style="font-variant: small-caps;">Heath, T. and Bizer, C.</span> 2011. <em>Linked data: Evolving the web into a global data space</em>. Morgan &amp; Claypool.</p>
@@ -467,91 +463,107 @@ This section could be called "schemas" or even "resources"; we avoid these terms
 <p><span style="font-variant: small-caps;"><span>ISO</span>/IEC JTC 1/SC 32</span>. 2016. <em>Information technology — database languages — SQL — part 1: Framework (SQL/Framework)</em>. International Organization for Standardization.</p>
 </div>
 <div id="ref-kansakar2016review">
-<p><span style="font-variant: small-caps;">Kansakar, P. and Hossain, F.</span> 2016. A review of applications of satellite earth observation data for global societal benefit and stewardship of planet earth. <em>Space Policy</em> <em>36</em>, 46–54. <a href="https://doi.org/10.1016/j.spacepol.2016.05.005" class="uri"><a href="https://doi.org/10.1016/j.spacepol.2016.05.005">https://doi.org/10.1016/j.spacepol.2016.05.005</a></a>.</p>
+<p><span style="font-variant: small-caps;">Kansakar, P. and Hossain, F.</span> 2016. A review of applications of satellite earth observation data for global societal benefit and stewardship of planet earth. <em>Space Policy</em> <em>36</em>, 46–54. <a href="https://doi.org/10.1016/j.spacepol.2016.05.005" class="uri">https://doi.org/10.1016/j.spacepol.2016.05.005</a>.</p>
 </div>
 <div id="ref-king2007introduction">
 <p><span style="font-variant: small-caps;">King, G.</span> 2007. An introduction to the dataverse network as an infrastructure for data sharing. <em>Sociological Methods &amp; Research</em> <em>36</em>, 2, 173–199.</p>
 </div>
 <div id="ref-klimek2016linkedpipes">
-<p><span style="font-variant: small-caps;">Klímek, J., Helmich, J., and Nečaský, M.</span> 2016. LinkedPipes visualization: Simple useful linked data visualization use cases. <em>International semantic web conference</em>, 112–117. <a href="https://doi.org/10.1007/978-3-319-47602-5_23" class="uri"><a href="https://doi.org/10.1007/978-3-319-47602-5_23">https://doi.org/10.1007/978-3-319-47602-5_23</a></a>.</p>
+<p><span style="font-variant: small-caps;">Klímek, J., Helmich, J., and Nečaský, M.</span> 2016. LinkedPipes visualization: Simple useful linked data visualization use cases. <em>International semantic web conference</em>, 112–117. <a href="https://doi.org/10.1007/978-3-319-47602-5_23" class="uri">https://doi.org/10.1007/978-3-319-47602-5_23</a>.</p>
 </div>
 <div id="ref-Lohr2014-aq">
-<p><span style="font-variant: small-caps;">Lohr, S.</span> 2014. For Big-Data scientists, “janitor work” is key hurdle to insights. <em>The New York Times</em>. <a href="https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html" class="uri"><a href="https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html">https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html</a></a>.</p>
+<p><span style="font-variant: small-caps;">Lohr, S.</span> 2014. For Big-Data scientists, “janitor work” is key hurdle to insights. <em>The New York Times</em>. <a href="https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html" class="uri">https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html</a>.</p>
 </div>
 <div id="ref-lowndes2017our">
-<p><span style="font-variant: small-caps;">Lowndes, J.S.S., Best, B.D., Scarborough, C., Afflerbach, J.C., Frazier, M.R., OHara, C.C., Jiang, N., and Halpern, B.S.</span> 2017. Our path to better science in less time using open data science tools. <em>Nature Ecology &amp; Evolution</em> <em>1</em>, 6, s41559–017–0160. <a href="https://doi.org/doi:10.1038/s41559-017-0160" class="uri"><a href="https://doi.org/doi:10.1038/s41559-017-0160">https://doi.org/doi:10.1038/s41559-017-0160</a></a>.</p>
+<p><span style="font-variant: small-caps;">Lowndes, J.S.S., Best, B.D., Scarborough, C., Afflerbach, J.C., Frazier, M.R., OHara, C.C., Jiang, N., and Halpern, B.S.</span> 2017. Our path to better science in less time using open data science tools. <em>Nature Ecology &amp; Evolution</em> <em>1</em>, 6, s41559–017–0160. <a href="https://doi.org/doi:10.1038/s41559-017-0160" class="uri">https://doi.org/doi:10.1038/s41559-017-0160</a>.</p>
 </div>
 <div id="ref-maali2012publishing">
-<p><span style="font-variant: small-caps;">Maali, F., Cyganiak, R., and Peristeras, V.</span> 2012. A publishing pipeline for linked government data. <em>The semantic web: Research and applications</em>, 778–792. <a href="https://doi.org/10.1007/978-3-642-30284-8_59" class="uri"><a href="https://doi.org/10.1007/978-3-642-30284-8_59">https://doi.org/10.1007/978-3-642-30284-8_59</a></a>.</p>
+<p><span style="font-variant: small-caps;">Maali, F., Cyganiak, R., and Peristeras, V.</span> 2012. A publishing pipeline for linked government data. <em>The semantic web: Research and applications</em>, 778–792. <a href="https://doi.org/10.1007/978-3-642-30284-8_59" class="uri">https://doi.org/10.1007/978-3-642-30284-8_59</a>.</p>
 </div>
 <div id="ref-madan2017advances">
-<p><span style="font-variant: small-caps;">Madan, C.R.</span> 2017. Advances in studying brain morphology: The benefits of open-access data. <em>PeerJ Preprints</em>. <a href="https://doi.org/10.7287/peerj.preprints.3010v2" class="uri"><a href="https://doi.org/10.7287/peerj.preprints.3010v2">https://doi.org/10.7287/peerj.preprints.3010v2</a></a>.</p>
+<p><span style="font-variant: small-caps;">Madan, C.R.</span> 2017. Advances in studying brain morphology: The benefits of open-access data. <em>PeerJ Preprints</em>. <a href="https://doi.org/10.7287/peerj.preprints.3010v2" class="uri">https://doi.org/10.7287/peerj.preprints.3010v2</a>.</p>
 </div>
 <div id="ref-martin2017opening">
-<p><span style="font-variant: small-caps;">Martin, E.G. and Begany, G.M.</span> 2017. Opening government health data to the public: Benefits, challenges, and lessons learned from early innovators. <em>Journal of the American Medical Informatics Association</em> <em>24</em>, 2, 345–351. <a href="https://doi.org/10.1093/jamia/ocw076" class="uri"><a href="https://doi.org/10.1093/jamia/ocw076">https://doi.org/10.1093/jamia/ocw076</a></a>.</p>
+<p><span style="font-variant: small-caps;">Martin, E.G. and Begany, G.M.</span> 2017. Opening government health data to the public: Benefits, challenges, and lessons learned from early innovators. <em>Journal of the American Medical Informatics Association</em> <em>24</em>, 2, 345–351. <a href="https://doi.org/10.1093/jamia/ocw076" class="uri">https://doi.org/10.1093/jamia/ocw076</a>.</p>
 </div>
 <div id="ref-maymounkov2002kademlia">
-<p><span style="font-variant: small-caps;">Maymounkov, P. and Mazieres, D.</span> 2002. Kademlia: A peer-to-peer information system based on the XOR metric. <em>International workshop on peer-to-peer systems</em>, Available on the World Wide Web at <a href="https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf" class="uri"><a href="https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf">https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf</a></a>, 53–65.</p>
+<p><span style="font-variant: small-caps;">Maymounkov, P. and Mazieres, D.</span> 2002. Kademlia: A peer-to-peer information system based on the XOR metric. <em>International workshop on peer-to-peer systems</em>, Available on the World Wide Web at <a href="https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf" class="uri">https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf</a>, 53–65.</p>
 </div>
 <div id="ref-mckiernan2016open">
-<p><span style="font-variant: small-caps;">McKiernan, E.C., Bourne, P.E., Brown, C.T., Buck, S., Kenall, A., Lin, J., McDougall, D., Nosek, B.A., Ram, K., and Soderberg, C.K.</span> 2016. How open science helps researchers succeed. <em>eLife</em> <em>5</em>. <a href="https://doi.org/10.7554/eLife.16800" class="uri"><a href="https://doi.org/10.7554/eLife.16800">https://doi.org/10.7554/eLife.16800</a></a>.</p>
+<p><span style="font-variant: small-caps;">McKiernan, E.C., Bourne, P.E., Brown, C.T., Buck, S., Kenall, A., Lin, J., McDougall, D., Nosek, B.A., Ram, K., and Soderberg, C.K.</span> 2016. How open science helps researchers succeed. <em>eLife</em> <em>5</em>. <a href="https://doi.org/10.7554/eLife.16800" class="uri">https://doi.org/10.7554/eLife.16800</a>.</p>
 </div>
 <div id="ref-miguel2014promoting">
-<p><span style="font-variant: small-caps;">Miguel, E., Camerer, C., Casey, K., Cohen, J., Esterling, K.M., Gerber, A., Glennerster, R., Green, D.P., Humphreys, M., and Imbens, G.</span> 2014. Promoting transparency in social science research. <em>Science</em> <em>343</em>, 6166, 30–31. <a href="https://doi.org/10.1126/science.1245317" class="uri"><a href="https://doi.org/10.1126/science.1245317">https://doi.org/10.1126/science.1245317</a></a>.</p>
+<p><span style="font-variant: small-caps;">Miguel, E., Camerer, C., Casey, K., Cohen, J., Esterling, K.M., Gerber, A., Glennerster, R., Green, D.P., Humphreys, M., and Imbens, G.</span> 2014. Promoting transparency in social science research. <em>Science</em> <em>343</em>, 6166, 30–31. <a href="https://doi.org/10.1126/science.1245317" class="uri">https://doi.org/10.1126/science.1245317</a>.</p>
 </div>
 <div id="ref-muir2016real">
-<p><span style="font-variant: small-caps;">Muir, P., Li, S., Lou, S., Wang, D., Spakowicz, D.J., Salichos, L., Zhang, J., Weinstock, G.M., Isaacs, F., Rozowsky, J., and Gerstein, M.</span> 2016. The real cost of sequencing: Scaling computation to keep pace with data generation. <em>Genome Biology</em> <em>17</em>, 53. <a href="https://doi.org/10.1186/s13059-016-0917-0" class="uri"><a href="https://doi.org/10.1186/s13059-016-0917-0">https://doi.org/10.1186/s13059-016-0917-0</a></a>.</p>
+<p><span style="font-variant: small-caps;">Muir, P., Li, S., Lou, S., Wang, D., Spakowicz, D.J., Salichos, L., Zhang, J., Weinstock, G.M., Isaacs, F., Rozowsky, J., and Gerstein, M.</span> 2016. The real cost of sequencing: Scaling computation to keep pace with data generation. <em>Genome Biology</em> <em>17</em>, 53. <a href="https://doi.org/10.1186/s13059-016-0917-0" class="uri">https://doi.org/10.1186/s13059-016-0917-0</a>.</p>
 </div>
 <div id="ref-murray2008open">
-<p><span style="font-variant: small-caps;">Murray-Rust, P.</span> 2008. Open data in science. <em>Serials Review</em> <em>34</em>, 1, 52–64. <a href="https://doi.org/10.1080/00987913.2008.10765152" class="uri"><a href="https://doi.org/10.1080/00987913.2008.10765152">https://doi.org/10.1080/00987913.2008.10765152</a></a>.</p>
+<p><span style="font-variant: small-caps;">Murray-Rust, P.</span> 2008. Open data in science. <em>Serials Review</em> <em>34</em>, 1, 52–64. <a href="https://doi.org/10.1080/00987913.2008.10765152" class="uri">https://doi.org/10.1080/00987913.2008.10765152</a>.</p>
 </div>
 <div id="ref-muthitacharoen2001low">
-<p><span style="font-variant: small-caps;">Muthitacharoen, A., Chen, B., and Mazieres, D.</span> 2001. A low-bandwidth network file system. <em>Proceedings of the 18th symposium on operating systems principles</em>, Available on the World Wide Web at <a href="http://www.sosp.org/2001/papers/mazieres.pdf" class="uri"><a href="http://www.sosp.org/2001/papers/mazieres.pdf">http://www.sosp.org/2001/papers/mazieres.pdf</a></a>, 174–187.</p>
+<p><span style="font-variant: small-caps;">Muthitacharoen, A., Chen, B., and Mazieres, D.</span> 2001. A low-bandwidth network file system. <em>Proceedings of the 18th symposium on operating systems principles</em>, Available on the World Wide Web at <a href="http://www.sosp.org/2001/papers/mazieres.pdf" class="uri">http://www.sosp.org/2001/papers/mazieres.pdf</a>, 174–187.</p>
 </div>
 <div id="ref-pesce2015setting">
-<p><span style="font-variant: small-caps;">Pesce, V., Maru, A., Archer, P., Malapela, T., and Keizer, J.</span> 2015. Setting up a global linked data catalog of datasets for agriculture. <em>Research conference on metadata and semantics research</em>, 357–368. <a href="https://doi.org/10.1007/978-3-319-24129-6_31" class="uri"><a href="https://doi.org/10.1007/978-3-319-24129-6_31">https://doi.org/10.1007/978-3-319-24129-6_31</a></a>.</p>
+<p><span style="font-variant: small-caps;">Pesce, V., Maru, A., Archer, P., Malapela, T., and Keizer, J.</span> 2015. Setting up a global linked data catalog of datasets for agriculture. <em>Research conference on metadata and semantics research</em>, 357–368. <a href="https://doi.org/10.1007/978-3-319-24129-6_31" class="uri">https://doi.org/10.1007/978-3-319-24129-6_31</a>.</p>
 </div>
 <div id="ref-piwowar2013data">
-<p><span style="font-variant: small-caps;">Piwowar, H.A. and Vision, T.J.</span> 2013. Data reuse and the open data citation advantage. <em>PeerJ</em> <em>1</em>, e175. <a href="https://doi.org/10.7717/peerj.175" class="uri"><a href="https://doi.org/10.7717/peerj.175">https://doi.org/10.7717/peerj.175</a></a>.</p>
+<p><span style="font-variant: small-caps;">Piwowar, H.A. and Vision, T.J.</span> 2013. Data reuse and the open data citation advantage. <em>PeerJ</em> <em>1</em>, e175. <a href="https://doi.org/10.7717/peerj.175" class="uri">https://doi.org/10.7717/peerj.175</a>.</p>
 </div>
 <div id="ref-ipfs2017">
-<p><span style="font-variant: small-caps;">Protocol Labs</span>. 2017a. IPFS home page. <a href="https://ipfs.io" class="uri"><a href="https://ipfs.io">https://ipfs.io</a></a>.</p>
+<p><span style="font-variant: small-caps;">Protocol Labs</span>. 2017a. IPFS home page. <a href="https://ipfs.io" class="uri">https://ipfs.io</a>.</p>
 </div>
 <div id="ref-ipld2017">
-<p><span style="font-variant: small-caps;">Protocol Labs</span>. 2017b. IPLD home page. <a href="https://ipld.io" class="uri"><a href="https://ipld.io">https://ipld.io</a></a>.</p>
+<p><span style="font-variant: small-caps;">Protocol Labs</span>. 2017b. IPLD home page. <a href="https://ipld.io" class="uri">https://ipld.io</a>.</p>
 </div>
 <div id="ref-Rogers2013-hx">
 <p><span style="font-variant: small-caps;">Rogers, S.</span> 2013. <em>Facts are sacred: The power of data</em>. Faber &amp; Faber.</p>
 </div>
 <div id="ref-sanderson2012history">
-<p><span style="font-variant: small-caps;">Sanderson, M. and Croft, W.B.</span> 2012. The history of information retrieval research. <em>Proceedings of the IEEE</em> <em>100</em>, 1444–1451. <a href="https://doi.org/10.1109/jproc.2012.2189916" class="uri"><a href="https://doi.org/10.1109/jproc.2012.2189916">https://doi.org/10.1109/jproc.2012.2189916</a></a>.</p>
+<p><span style="font-variant: small-caps;">Sanderson, M. and Croft, W.B.</span> 2012. The history of information retrieval research. <em>Proceedings of the IEEE</em> <em>100</em>, 1444–1451. <a href="https://doi.org/10.1109/jproc.2012.2189916" class="uri">https://doi.org/10.1109/jproc.2012.2189916</a>.</p>
 </div>
 <div id="ref-schema_org_2012">
-<p><span style="font-variant: small-caps;">Schema.org</span>. 2012. <em>Schema.org</em>. Available on the World Wide Web at <a href="http://schema.org/" class="uri"><a href="http://schema.org/">http://schema.org/</a></a>.</p>
+<p><span style="font-variant: small-caps;">Schema.org</span>. 2012. <em>Schema.org</em>. Available on the World Wide Web at <a href="http://schema.org/" class="uri">http://schema.org/</a>.</p>
 </div>
 <div id="ref-shafranovich2005common">
-<p><span style="font-variant: small-caps;">Shafranovich, Y.</span> 2005. <em>Common format and MIME type for comma-separated values (CSV) files</em>. Available on the World Wide Web at <a href="https://tools.ietf.org/html/rfc4180" class="uri"><a href="https://tools.ietf.org/html/rfc4180">https://tools.ietf.org/html/rfc4180</a></a>; IETF.</p>
+<p><span style="font-variant: small-caps;">Shafranovich, Y.</span> 2005. <em>Common format and MIME type for comma-separated values (CSV) files</em>. Available on the World Wide Web at <a href="https://tools.ietf.org/html/rfc4180" class="uri">https://tools.ietf.org/html/rfc4180</a>; IETF.</p>
 </div>
 <div id="ref-shafranovich2013application">
-<p><span style="font-variant: small-caps;">Shafranovich, Y.</span> 2013. <em>The application/sql media type</em>. Available on the World Wide Web at <a href="https://tools.ietf.org/rfc/rfc6922.txt" class="uri"><a href="https://tools.ietf.org/rfc/rfc6922.txt">https://tools.ietf.org/rfc/rfc6922.txt</a></a>; Internet Engineering Task Force (IETF).</p>
+<p><span style="font-variant: small-caps;">Shafranovich, Y.</span> 2013. <em>The application/sql media type</em>. Available on the World Wide Web at <a href="https://tools.ietf.org/rfc/rfc6922.txt" class="uri">https://tools.ietf.org/rfc/rfc6922.txt</a>; Internet Engineering Task Force (IETF).</p>
 </div>
 <div id="ref-sojer2010code">
 <p><span style="font-variant: small-caps;">Sojer, M. and Henkel, J.</span> 2010. Code reuse in open source software development: Quantitative evidence, drivers, and impediments. <em>Journal of the Association for Information Systems</em> <em>11</em>, 12, 868–901.</p>
 </div>
 <div id="ref-tolia2003opportunistic">
-<p><span style="font-variant: small-caps;">Tolia, N., Kozuch, M., Satyanarayanan, M., Karp, B., Bressoud, T., and Perrig, A.</span> 2003. Opportunistic use of content addressable storage for distributed file systems. <em>USENIX annual technical conference, general track</em>, Available on the World Wide Web at <a href="https://www.usenix.org/legacy/publications/library/proceedings/usenix03/tech/full_papers/tolia/tolia_html/usenix03.html" class="uri"><a href="https://www.usenix.org/legacy/publications/library/proceedings/usenix03/tech/full_papers/tolia/tolia_html/usenix03.html">https://www.usenix.org/legacy/publications/library/proceedings/usenix03/tech/full_papers/tolia/tolia_html/usenix03.html</a></a>, 127–140.</p>
+<p><span style="font-variant: small-caps;">Tolia, N., Kozuch, M., Satyanarayanan, M., Karp, B., Bressoud, T., and Perrig, A.</span> 2003. Opportunistic use of content addressable storage for distributed file systems. <em>USENIX annual technical conference, general track</em>, Available on the World Wide Web at <a href="https://www.usenix.org/legacy/publications/library/proceedings/usenix03/tech/full_papers/tolia/tolia_html/usenix03.html" class="uri">https://www.usenix.org/legacy/publications/library/proceedings/usenix03/tech/full_papers/tolia/tolia_html/usenix03.html</a>, 127–140.</p>
 </div>
 <div id="ref-uhlir2007open">
-<p><span style="font-variant: small-caps;">Uhlir, P.F. and Schröder, P.</span> 2007. Open data for global science. <em>Data Science Journal</em> <em>6</em>, OD36–OD53. <a href="https://doi.org/10.2481/dsj.6.OD36" class="uri"><a href="https://doi.org/10.2481/dsj.6.OD36">https://doi.org/10.2481/dsj.6.OD36</a></a>.</p>
+<p><span style="font-variant: small-caps;">Uhlir, P.F. and Schröder, P.</span> 2007. Open data for global science. <em>Data Science Journal</em> <em>6</em>, OD36–OD53. <a href="https://doi.org/10.2481/dsj.6.OD36" class="uri">https://doi.org/10.2481/dsj.6.OD36</a>.</p>
 </div>
 <div id="ref-dcat2014">
-<p><span style="font-variant: small-caps;">W3C</span>. 2014. Data catalog vocabulary. <a href="https://www.w3.org/TR/vocab-dcat/" class="uri"><a href="https://www.w3.org/TR/vocab-dcat/">https://www.w3.org/TR/vocab-dcat/</a></a>.</p>
+<p><span style="font-variant: small-caps;">W3C</span>. 2014. Data catalog vocabulary. <a href="https://www.w3.org/TR/vocab-dcat/" class="uri">https://www.w3.org/TR/vocab-dcat/</a>.</p>
 </div>
 <div id="ref-west2014open">
-<p><span style="font-variant: small-caps;">West, J., Salter, A., Vanhaverbeke, W., and Chesbrough, H.</span> 2014. Open innovation: The next decade. <em>Research Policy</em> <em>43</em>, 5, 805–811. <a href="https://doi.org/10.1016/j.respol.2014.03.001" class="uri"><a href="https://doi.org/10.1016/j.respol.2014.03.001">https://doi.org/10.1016/j.respol.2014.03.001</a></a>.</p>
+<p><span style="font-variant: small-caps;">West, J., Salter, A., Vanhaverbeke, W., and Chesbrough, H.</span> 2014. Open innovation: The next decade. <em>Research Policy</em> <em>43</em>, 5, 805–811. <a href="https://doi.org/10.1016/j.respol.2014.03.001" class="uri">https://doi.org/10.1016/j.respol.2014.03.001</a>.</p>
 </div>
 </div>
 </article>
-</body></p>
 
+
+
+	
+
+	
+		<script type="text/javascript">
+		 !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+		  analytics.load("b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju");
+		  analytics.page()
+		}}();
+		</script>
+	
+
+
+
+
+</body>
 </html>
