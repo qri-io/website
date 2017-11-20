@@ -6,7 +6,7 @@ date: 2017-10-30T00:00:00-04:00
 <div id="header">
   <h1 class="title">Distributed Open Data</h1>
   <p>qri (“query”) animates data stored on the distributed web to work like a database.</p>
-  <a href="/papers/deterministic_querying"><button class="btn btn-primary">Read The White Paper</button></a>
+  <a href="/papers/deterministic_querying/"><button class="btn btn-primary">Read The White Paper</button></a>
   <a href="https://github.com/qri-io"><button class="btn btn-primary">Peep our Github</button></a>
 </div>
 

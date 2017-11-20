@@ -1,4 +1,4 @@
-baseurl = "http://qri.getforge.io/"
+baseurl = "http://qri.io/"
 builddrafts = false
 canonifyurls = true
 contentdir = "content"

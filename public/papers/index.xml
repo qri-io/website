@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Papers on Qri.io</title>
-    <link>http://qri.getforge.io/papers/</link>
+    <link>http://qri.io/papers/</link>
     <description>Recent content in Papers on Qri.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Mon, 20 Nov 2017 00:00:00 -0400</lastBuildDate>
     
-	<atom:link href="http://qri.getforge.io/papers/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://qri.io/papers/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Deterministic Querying</title>
-      <link>http://qri.getforge.io/papers/deterministic_querying/</link>
+      <link>http://qri.io/papers/deterministic_querying/</link>
       <pubDate>Mon, 20 Nov 2017 00:00:00 -0400</pubDate>
       
-      <guid>http://qri.getforge.io/papers/deterministic_querying/</guid>
+      <guid>http://qri.io/papers/deterministic_querying/</guid>
       <description>Deterministic Querying for the Distributed Web  Brendan O’Brien
 Michael Hucka November 2017 Abstract The current infrastructure that underlies the distribution and processing of data over the Internet has enabled dramatic advances in a wide variety of human activities. Recent trends promoting open data promise even greater benefits as the number and variety of networked datasets grow. However, while current technologies and architectures obviously do work, they also show signs of systemic inefficiencies that impede effective large-scale discovery, distribution, preservation and reuse of datasets.</description>
     </item>
