@@ -6,7 +6,7 @@
     <description>Recent content in Papers on Qri.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 20 Nov 2017 19:20:04 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 20 Nov 2017 00:00:00 -0400</lastBuildDate>
     
 	<atom:link href="http://qri.getforge.io/papers/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Deterministic Querying</title>
       <link>http://qri.getforge.io/papers/deterministic_querying/</link>
-      <pubDate>Mon, 20 Nov 2017 19:20:04 -0700</pubDate>
+      <pubDate>Mon, 20 Nov 2017 00:00:00 -0400</pubDate>
       
       <guid>http://qri.getforge.io/papers/deterministic_querying/</guid>
       <description>Deterministic Querying for the Distributed Web  Brendan O’Brien

@@ -1,6 +1,6 @@
 +++
 title = "Deterministic Querying"
-date = "2017-11-20T19:20:04-07:00"
+date = "2017-11-20T00:00:00-04:00"
 description = "The current infrastructure that underlies the distribution and processing of data over the Internet has enabled dramatic advances in a wide variety of human activities. Recent trends promoting open data promise even greater benefits as the number and variety of networked datasets grow. However, while current technologies and architectures obviously do work, they also show signs of systemic inefficiencies that impede effective large-scale discovery, distribution, preservation and reuse of datasets. An important source of inefficiency is rooted in the database-centric architecture that underlies much of data processing on the Internet today. The transition to a content-addressed permanent web offers an opportunity to replace certain software architecture patterns with alternatives that are more efficient and scale more effectively. We introduce one such new pattern, <em>deterministic querying</em>, that combines formalized query definitions, formalized data descriptions, linked metadata, hashing, and a content-addressed file system. The result supports database-free reuse of data and data processing results—and can do so on the scale of the global Internet."
 type = "paper"
 +++
