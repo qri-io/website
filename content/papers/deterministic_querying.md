@@ -5,7 +5,6 @@ description = "The current infrastructure that underlies the distribution and pr
 type = "paper"
 +++
 
-<body>
 <article class="markdown-body">
 <h1 align="center">
 Deterministic Querying for the Distributed Web
@@ -510,4 +509,3 @@ Deterministic querying promises new capabilities and powers, but it is in its ea
 </div>
 </div>
 </article>
-</body>
