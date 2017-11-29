@@ -1,4 +1,4 @@
-baseurl = "http://qri.io/"
+baseurl = "//qri.io/"
 builddrafts = false
 canonifyurls = true
 contentdir = "content"
