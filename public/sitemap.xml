@@ -3,70 +3,38 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://qri.io/docs/concepts/</loc>
-    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://qri.io/docs/dataset/</loc>
-    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://qri.io/docs/getting_started/</loc>
-    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://qri.io/papers/deterministic_querying/</loc>
+    <loc>https://qri.io/papers/deterministic_querying/</loc>
     <lastmod>2017-11-20T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://qri.io/</loc>
+    <loc>https://qri.io/</loc>
     <lastmod>2017-10-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://qri.io/questions/</loc>
+    <loc>https://qri.io/questions/</loc>
     <lastmod>2017-10-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://qri.io/y_tho/</loc>
+    <loc>https://qri.io/y_tho/</loc>
     <lastmod>2017-10-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://qri.io/qri/</loc>
-    <lastmod>2017-07-24T23:00:29-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://qri.io/blog/</loc>
-    <lastmod>2017-07-24T23:00:29-04:00</lastmod>
+    <loc>https://qri.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://qri.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://qri.io/docs/</loc>
-    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://qri.io/papers/</loc>
+    <loc>https://qri.io/papers/</loc>
     <lastmod>2017-11-20T00:00:00-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://qri.io/tags/</loc>
+    <loc>https://qri.io/tags/</loc>
     <priority>0</priority>
   </url>
   

@@ -137,7 +137,7 @@ maybe also compare this to "network is the database" -->
 <p>A fundamental goal of deterministic querying is to <em>maximize hash collisions</em> in content-addressed networks, because hash collisions are what enable discovery and reuse of existing results. The techniques described below are designed to ensure that datasets with identical characteristics, as well as semantically-equivalent queries for datasets, each resolve to the same hash even if the datasets and queries are created by different parties in different locations at different times. These shared characteristics form a common lexicon that peers in a distributed network can use to compare datasets—and do that on an Internet-scale graph.</p>
 <p>To maximize these hash collisions, the process of describing datasets and queries must be made precise and consistent. To the greatest extent possible, content and queries that are the same must produce the same hash value; thus, definitions of data resources and queries must follow carefully-defined conventions, and alternative forms must be limited. We compensate for this rigidity by storing nonessential data separately, then connecting that to datasets and queries using separate mechanisms for linking and discovery. This leads to the four building blocks of deterministic querying: <code>Data</code>, <code>Dataset</code>, <code>Structure</code>, and <code>Query</code>.</p>
 <p align="center">
-<img width="500pt" src="http://qri.io/graphics/data-dataset-structure-query.svg">
+<img width="500pt" src="https://qri.io/graphics/data-dataset-structure-query.svg">
 </p>
 <h2 id="data-and-structure"><span class="header-section-number">2.1</span> <code>Data</code> and <code>Structure</code></h2>
 <!--
@@ -182,7 +182,7 @@ This section could be called "schemas" or even "resources"; we avoid these terms
 <h2 id="dataset"><span class="header-section-number">2.2</span> <code>Dataset</code></h2>
 <p>A <code>Structure</code> describes the form of a <code>Data</code> object. The two are connected together, along with metadata about the <code>Data</code>, in a <code>Dataset</code> object.</p>
 <p align="center">
-<img width="150pt" src="http://qri.io/graphics/dataset.svg">
+<img width="150pt" src="https://qri.io/graphics/dataset.svg">
 </p>
 <p>As illustrated above, a <code>Dataset</code> references one <code>Data</code> and one <code>Structure</code> object, and it also adds additional descriptive metadata. A <code>Dataset</code> must resolve to one and only one <code>Data</code> entity; this is accomplished by using the unique hashes of the associated <code>Data</code> and <code>Structure</code> objects. This separation of concerns achieves two important goals:</p>
 <ol style="list-style-type: decimal">
@@ -191,15 +191,15 @@ This section could be called "schemas" or even "resources"; we avoid these terms
 </ol>
 <p>To retain a trail of changes, <code>Dataset</code> contains a field called <code>previous</code> that references the hash of another <code>Dataset</code> object. This establishes a directed, acyclic graph (DAG) of changes to any component of a dataset, whether this is the metadata, or the <code>Data</code>, or the <code>Structure</code>. For example, when changes are made to metadata without changing the <code>Data</code> or its <code>Structure</code>, only the <code>Dataset</code> object needs to change:</p>
 <p align="center">
-<img width="400pt" src="http://qri.io/graphics/metadata-changes.svg">
+<img width="400pt" src="https://qri.io/graphics/metadata-changes.svg">
 </p>
 <p>Conversely, if the <code>Data</code> changes but the <code>Structure</code> does not, the new <code>Dataset</code> object will reference the hash of a new <code>Data</code> object but point to the same <code>Structure</code>:</p>
 <p align="center">
-<img width="400pt" src="http://qri.io/graphics/data-changes.svg">
+<img width="400pt" src="https://qri.io/graphics/data-changes.svg">
 </p>
 <p>Finally, if the <code>Structure</code> changes, the <code>Data</code> <em>may</em> need to change as well, if the structural change affects how the data is read or written. When the <code>Structure</code> change <em>does</em> require a <code>Data</code> change, it is a schema <em>migration</em>. A new <code>Dataset</code> object is created and it points to two new <code>Structure</code> and <code>Data</code> objects. This indicates that the underlying dataset has changed in such a way—either in structure or in values—that its hash signature is no longer the same.</p>
 <p align="center">
-<img width="400pt" src="http://qri.io/graphics/structure-changes.svg">
+<img width="400pt" src="https://qri.io/graphics/structure-changes.svg">
 </p>
 <p>In each case above, the <code>Dataset</code> identifies the unique <code>Structure</code> object that defines the format of the data in the <code>Data</code> object(s), and the value of the <code>previous</code> has points to any previous <code>Dataset</code> definition that may have come before.</p>
 <p>There are additional fields in <code>Dataset</code>; these are discussed further below.</p>
@@ -212,7 +212,7 @@ This section could be called "schemas" or even "resources"; we avoid these terms
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> a.col_3, a.col_0, a.col_1, a.col_2 <span class="kw">FROM</span> a <span class="kw">WHERE</span> a.col_2 &gt; <span class="dv">1000</span></code></pre></div>
 <p>Now further suppose that we define the shape of table <code>a</code> by writing an abstracted form of the <code>Structure</code> object, described above. This defines precisely the types of data values expected for each column in the query, as well as other properties of the data. And naturally, we can do the same for the <em>result</em> of the query: use another <code>Structure</code> object to describe the form of the data that the query will produce.</p>
 <p align="center">
-<img width="500pt" src="http://qri.io/graphics/query.svg">
+<img width="500pt" src="https://qri.io/graphics/query.svg">
 </p>
 <p>This query is now independent of the semantics of the data: it operates on the form of the data and can be applied to any data that matches the description in the <code>Structure</code> of the input. What’s more, assuming that we define clear rules for writing these queries in a standard, consistent form, the same query will <em>always have the same hash value</em> even if it is regenerated by different processes at different times in different locations. And of course, the <code>Structure</code> objects for both the input and output are defined by their hashes.</p>
 <div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
@@ -235,7 +235,7 @@ This section could be called "schemas" or even "resources"; we avoid these terms
 <li><p>The query engine writes the results to IPFS as a <code>Dataset</code> object, writing the <code>Data</code>, <code>Query</code> and <code>Structure</code> hash references into the <code>Dataset</code>, and saving the output <code>Data</code> too.</p></li>
 </ol>
 <p align="center">
-<img width="500pt" src="http://qri.io/graphics/query-processing.svg">
+<img width="500pt" src="https://qri.io/graphics/query-processing.svg">
 </p>
 <h2 id="query-output"><span class="header-section-number">2.5</span> Query output</h2>
 <p>The result of a query is another <code>Dataset</code> object and potentially a new <code>Data</code> object referenced by it. This form of <code>Dataset</code> makes use of a few additional fields. The example below illustrates a complete, mostly-dereferenced result (<code>resources.precip</code> dataset and <code>data</code> have been left as references for brevity).</p>
@@ -326,12 +326,12 @@ This section could be called "schemas" or even "resources"; we avoid these terms
 <p>Instead of storing the abstract structures itself in the dataset, we store the <em>reference to its hash</em>.</p>
 <p>Sometime later, we come upon another dataset whose abstract structure is the same. When true, the hash of the abstract structure will <em>collide</em> with the previous hash. Once stored on the network, we can determine that these two datasets are machine-interoperable through simple string comparison of the field references. These datasets may in fact not be directly relatable due to practical differences in data collection methods or other conventions (which will hopefully be annotated in the concrete dataset structure definitions, which will carry a much higher degree of variance), but through this process we gain the crucial knowledge that these two datasets are interoperable at the machine level.</p>
 <p align="center">
-<img width="500pt" src="http://qri.io/graphics/population-eg-datasets.svg">
+<img width="500pt" src="https://qri.io/graphics/population-eg-datasets.svg">
 </p>
 <p>This collision property creates a naturally-occurring traversable graph if data interchangeability. Given any collection of datasets, it is possible to “discover” if any of datasets are interchangeable through comparison of their abstract structures. This represents a step forward in getting data “stacking” to work.</p>
 <p>We take this concept one step further by having queries store references to abstract structures, and storing queries themselves as hash-references. If the first dataset is used in a query we know with confidence that we can run the second dataset through the same query.</p>
 <p align="center">
-<img width="500pt" src="http://qri.io/graphics/population-eg-query.svg">
+<img width="500pt" src="https://qri.io/graphics/population-eg-query.svg">
 </p>
 <p>In this form, queries become reusable by any dataset whose abstract structures match. Anyone who has written a nontrivial SQL query can attest to the desire to maximize the value of this labour. While this “query reuse” will be nonsensical in many forms, knowing that a query <em>can</em> be reused means that User interfaces can suggest “template” queries that may help reduce repeated work. This form of abstraction also opens up the possibilities of chaining multiple queries together to form data pipelines, flowing new datasets through a cascade of queries, producing a number of resulting datasets.</p>
 <h2 id="structure-and-query-analysis"><span class="header-section-number">2.7</span> Structure and Query Analysis</h2>
@@ -357,12 +357,12 @@ This section could be called "schemas" or even "resources"; we avoid these terms
 <h2 id="leveraging-the-properties-of-ipfs"><span class="header-section-number">5.1</span> Leveraging the properties of IPFS</h2>
 <p>IPFS partially solves this problem for us. An IPFS file store is actually a content-addressed store of file blocks—files are broken into a set of fixed-size blocks that are each content-addressed by hashes. A file is in reality a collection of references to hashed blocks:</p>
 <p align="center">
-<img width="500pt" src="http://qri.io/graphics/merkle.svg">
+<img width="500pt" src="https://qri.io/graphics/merkle.svg">
 </p>
 <p>Crucially, file blocks <em>can be shared</em>: after all, if two content blocks hash to the same hash value, their content is identical, which means a given IPFS file store can simply point to the common blocks instead of storing separate copies. Moreover, as with everything else in IPFS, the hashes are unique across the entire IPFS address space, and so file blocks—parts of files—can be spread across the network.</p>
 <p>This can be leveraged further in a deterministic querying system. In particular, we can take advantage of this feature to avoid duplication of data between slightly-altered files. Two files that have a similar-enough composition will be automatically deduplicated upon addition through hash collision. In a simplified example, adding data to the end of a raw file will result in only a one-block addition, instead of fully duplicating the entire file. This is yet another benefit of using content addressing and the underlying IPFS technology.</p>
 <p align="center">
-<img width="250pt" src="http://qri.io/graphics/deduplicating.svg">
+<img width="250pt" src="https://qri.io/graphics/deduplicating.svg">
 </p>
 <h2 id="implementing-efficient-file-decomposition-strategies"><span class="header-section-number">5.2</span> Implementing efficient file decomposition strategies</h2>
 <p>An implementation of deterministic querying can be smarter about file storage, and additional steps can be taken to improve the rate of deduplication. Using IPLD adapters for common file formats, CSV, JSON, and other files stored with “rows” of entries can be broken into blocks along breaks between rows. By breaking down these blocks into logical parts, we increase the chance of deduplication between files. This can achieve much smaller storage overhead for similar dataset data.</p>

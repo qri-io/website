@@ -2,61 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Qri.io on qri.io</title>
-    <link>http://qri.io/</link>
+    <link>https://qri.io/</link>
     <description>Recent content in Qri.io on qri.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Mon, 30 Oct 2017 00:00:00 -0400</lastBuildDate>
     
-	<atom:link href="http://qri.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://qri.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>concepts</title>
-      <link>http://qri.io/docs/concepts/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>http://qri.io/docs/concepts/</guid>
-      <description>Concepts Dataset Structure Metadata Peers Dataset Names It’s possible to refer to a dataset in a number of ways. It’s easiest to look at the full definition of a dataset reference, and then show what the “defaults” are to make sense of things. The full definition of a dataset reference is as follows:
-dataset_reference = peer_name/dataset_name@/network/hash  an example of that looks like this:
-b5/comics@QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b5 ****is the name of a peer, who has a dataset named comics, and it’s hash at a point in time was QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y</description>
-    </item>
-    
-    <item>
-      <title>dataset</title>
-      <link>http://qri.io/docs/dataset/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>http://qri.io/docs/dataset/</guid>
-      <description> What&amp;rsquo;s a Dataset?  </description>
-    </item>
-    
-    <item>
-      <title>getting started</title>
-      <link>http://qri.io/docs/getting_started/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>http://qri.io/docs/getting_started/</guid>
-      <description>To install qri on your machine, follow our installation instructions on github
- $ cd ~/my_datasets # before we can use qri, it needs to be set up. # qri setup will create qri and IPFS repositories # on your hard drive if they don&#39;t exist. $ qri setup --username=b5 # this will save your profile info to a JSON file # which will be rather empty, fill out that file # with any info you&#39;d like and hit save.</description>
-    </item>
     
     <item>
       <title>Deterministic Querying</title>
-      <link>http://qri.io/papers/deterministic_querying/</link>
+      <link>https://qri.io/papers/deterministic_querying/</link>
       <pubDate>Mon, 20 Nov 2017 00:00:00 -0400</pubDate>
       
-      <guid>http://qri.io/papers/deterministic_querying/</guid>
+      <guid>https://qri.io/papers/deterministic_querying/</guid>
       <description>Deterministic Querying for the Distributed Web  Brendan O’Brien
 Michael Hucka November 2017 Abstract The current infrastructure that underlies the distribution and processing of data over the Internet has enabled dramatic advances in a wide variety of human activities. Recent trends promoting open data promise even greater benefits as the number and variety of networked datasets grow. However, while current technologies and architectures obviously do work, they also show signs of systemic inefficiencies that impede effective large-scale discovery, distribution, preservation and reuse of datasets.</description>
     </item>
     
     <item>
       <title>Questions</title>
-      <link>http://qri.io/questions/</link>
+      <link>https://qri.io/questions/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
       
-      <guid>http://qri.io/questions/</guid>
+      <guid>https://qri.io/questions/</guid>
       <description>Questions What’s a dataset? Datasets are a data structure that is broken up in a way that allows us to link changes between parts of that data structure on a content addressed file system, preserving links in certain ways. With a dataset we have the underlying data, it’s structure which contains the structure &amp;amp; schema of the data.
 All datasets have three parts:
  Data - eg: a csv file Metadata - human-oriented description of the data, eg: title, author, date created, category Structure - machine-oriented description of the data, eg: “the third column in this table is a date”  What does Version Control Mean?</description>
@@ -64,21 +34,11 @@ All datasets have three parts:
     
     <item>
       <title>y tho?</title>
-      <link>http://qri.io/y_tho/</link>
+      <link>https://qri.io/y_tho/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
       
-      <guid>http://qri.io/y_tho/</guid>
+      <guid>https://qri.io/y_tho/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Qri</title>
-      <link>http://qri.io/qri/</link>
-      <pubDate>Mon, 24 Jul 2017 23:00:29 -0400</pubDate>
-      
-      <guid>http://qri.io/qri/</guid>
-      <description>QRI Qri (pronounced &amp;ldquo;query&amp;rdquo;) is built around reducing the barriers to data. I believe the various approaches to working with data will benefit from an alternative view that aims to equally address all barriers to data access, instead of prioritizing one over the other.
-Before starting, it&amp;rsquo;s worth noting that when I mention of &amp;ldquo;data&amp;rdquo;, I&amp;rsquo;m actually referring to structured data. Almost all digital information has at least some degree of structure.</description>
     </item>
     
   </channel>
