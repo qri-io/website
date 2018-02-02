@@ -45,6 +45,7 @@ $dark-blue-slate: #0E2630;
 $other-dark-blue-slate: #2D3A40;
 $med-blue-slate: #40515D;
 $light-blue-slate: #A1B2BC;
+$bg-gray: #c5c4c5;
 
 $hawt-pink: #FA009B;
 
@@ -55,6 +56,7 @@ $teal: #49C3C7;
 $purple: #B04BD8;
 $orange: #E2542E;
 $tope: #DFE2CE;
+$blue: #0E2630;
 
 $gray-dark:                 #373a3c !default;
 $gray:                      #55595c !default;
@@ -62,7 +64,7 @@ $gray-light:                #818a91 !default;
 $gray-lighter:              #eceeef !default;
 $gray-lightest:             #f7f7f9 !default;
 
-$brand-primary:             $orange !default;
+$brand-primary:             $blue !default;
 $brand-success:             #5cb85c !default;
 $brand-info:                #5bc0de !default;
 $brand-warning:             #f0ad4e !default;
@@ -177,8 +179,8 @@ $grid-gutter-width: 30px !default;
 
 $font-family-sans-serif: "Avenir Next", "Avenir", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif !default;
 $font-family-serif:      Georgia, "Times New Roman", Times, serif !default;
-$font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
-$font-family-base:       $font-family-sans-serif !default;
+$font-family-monospace:  Menlo, Monaco, Consolas, "source code pro", "Liberation Mono", "Courier New", monospace !default;
+$font-family-base:       $font-family-monospace !default;
 
 // Pixel value used to responsively scale all typography. Applied to the `<html>` element.
 $font-size-root: 16px !default;
@@ -208,8 +210,9 @@ $display3-weight: 300 !default;
 $display4-weight: 300 !default;
 
 $headings-margin-bottom: ($spacer / 2) !default;
-$headings-font-family:   'IsidoraSans-Black', Helvetica, sans-serif !default;
-$headings-font-weight:   500 !default;
+// $headings-font-family:   'IsidoraSans-Black', Helvetica, sans-serif !default;
+$headings-font-family: $font-family-monospace;
+$headings-font-weight:   bold !default;
 $headings-line-height:   1.1 !default;
 $headings-color:         inherit !default;
 

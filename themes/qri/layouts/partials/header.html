@@ -7,10 +7,8 @@
 
 <section class="navbar topLine"> 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <a href="http://www.qri.io">{{ .Site.Params.Author }}</a>
-            </div>
+        <div class="col-md-12">
+            <a href="http://www.qri.io">{{ .Site.Params.Author }}</a>
         </div>
     </div>
 </section>
@@ -18,7 +16,6 @@
 <section class="icons">
     <div class="container">
         <div class="content">
-
         {{ if .Site.Params.GitHub }}
             <a href="{{ .Site.Params.GitHub }}" target="_blank">
                 <i class="icon ion-social-github"></i>

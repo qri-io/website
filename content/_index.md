@@ -3,33 +3,16 @@ title: "Qri.io"
 date: 2017-10-30T00:00:00-04:00
 ---
 
-<div id="header">
-  <h1 class="title">Distributed Open Data</h1>
-  <p>qri (“query”) animates data stored on the distributed web to work like a database.</p>
-  <a href="/papers/deterministic_querying/"><button class="btn btn-primary">Read The White Paper</button></a>
-  <a href="https://github.com/qri-io"><button class="btn btn-primary">Peep our Github</button></a>
-</div>
+<div id="header"></div>
 
-<!-- <div id="box_1" class="box">
-  <h2 class="title">distributed</h2>
-  <p>Qri’s discovery and search tools are built on the distributed web, the world’s next great global network.</p>
-</div>
+# a home for datasets
+If you’ve ever “tracked changes” in a text editor, you’ve used a *version control system*. Programmers have been using version control systems for decades to coordinate and collaborate on software projects of all sizes. Go to github.com and you’ll see millions of people using version control to enhance & build upon each other’s work. Github’s underlying technology – git – popularized some magic sauce that has inspired an entire generation of programmers.
 
-<div id="box_2" class="box">
-  <h2 class="title">open</h2>
-  <p>Open source code and data allow researchers to build on each other’s work and expand the universe of discoverable answers to big questions.</p>
-</div>
+Even if you’re not a programmer, there’s a good chance you’ve used a spreadsheet, which can be a kind of dataset. Have you ever had trouble synchronizing a spreadsheet? How about getting two spreadsheets to talk to each other? Have you ever made a spreadsheet you’re actually kinda proud of, only to forget about it because, well, it’s a spreadsheet?
 
-<div id="box_3" class="box">
-  <h2 class="title">frictionless</h2>
-  <p>We believe the experience of discovering, retrieving and organizing data should be simple and frictionless.</p>
-</div>
+**qri is a version control system just for datasets.** Bringing the same coordination & collaboration tools programmers have enjoyed for decades. qri starts with strong technical foundations, but is aimed at providing understandable tools to allow people who do and don’t program to collaborate, bridging the gap between spreadsheets and databases.
 
-<div class="clear"></div>
+​The world is producing more data every day. We believe this data deserves a proper home, a place where data is open, discoverable, vettable, and frictionless. We hope you’ll join us.
 
-<div id="blurb" class="paragraph">
-  <p><strong>The world is generating data at a rate that will soon outpace our current means of storing and using it effectively. Without a dramatic shift, we will lose out on the incredible discoveries and insights that lie deep within the information we generate.  
-  The world needs new tools for answering its questions.</strong></p>
-  <p>Qri is building open source capabilities to allow indexing, searching (querying) and linking massive datasests on the distributed web.</p>
-  <p>We work at the intersection of open source software development, data sharing via distributed networks, and environmental stewardship.</p>
-</div> -->
+<a href="https://github.com/qri-io/qri/releases"><button class="btn btn-primary">Install qri CLI</button></a>
+<a href="https://github.com/qri-io/qri"><button class="btn btn-primary">Star qri on Github</button></a>

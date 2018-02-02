@@ -1,13 +1,10 @@
-
 @import "variables";
 @import "mixins";
 
 @import "normalize";
 @import "print";
-
-@import "pages/home";
 @import "reboot";
-// @import "alert";
+
 @import "fonts";
 @import "type";
 @import "tables";
@@ -15,15 +12,21 @@
 @import "buttons";
 @import "grid";
 
-// @import "datatypes";
+@import "pages/home";
 
 html, body, #root {
   min-height: 100%;
 }
 
 body {
-  background: $dark-blue-slate;
+  background: $bg-gray;
   color: white;
+}
+
+pre {
+  background: rgba(0,0,0,0.2);
+  border-radius: 3px;
+  padding: 5px;
 }
 
 #content-wrapper, #root {
@@ -56,10 +59,16 @@ body {
   min-height: 3.0rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  z-index: 1;
   a {
-    color: $green;
+    color: $blue;
     font-size: 22px;
+    font-weight: medium;
   }
+}
+
+.single {
+  margin-top: 15em;
 }
 
 .clear {
@@ -67,12 +76,12 @@ body {
 }
 
 .topLine {
-  border-top: 1px solid $green;
+  border-top: 1px solid $blue;
   padding-top: 0.5rem;
 }
 
 .bottomLine {
-  border-bottom: 1px solid $green;
+  border-bottom: 1px solid $blue;
   padding-bottom: 0.5rem; 
 }
 
