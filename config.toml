@@ -1,12 +1,12 @@
-baseurl = "https://qri.io/"
+baseurl = "http://qri.io/"
 builddrafts = false
 canonifyurls = true
 contentdir = "content"
 languageCode = "en-US"
 layoutdir = "layouts"
 publishdir = "public"
-author = "Qri.io"
-title = "Qri.io"
+author = "qri.io"
+title = "qri.io"
 pluralizelisttitles = false
 theme="qri"
 
@@ -15,7 +15,7 @@ blog = ":slug/"
 
 [params]
 IsDev = false
-Author = "Qri"
+Author = "qri"
 CacheBuster = true
 DateForm = "Jan 2, 2006"
 DateFormFull = "Mon Jan 2 2006 15:04:05 MST"

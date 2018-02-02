@@ -1,8 +1,8 @@
 {{ partial "header.html" . }}
-{{ partial "sidebar.html" . }}
-<section class="main">
+<section class="main single">
     <div class="container">
-        <div class="content">
+        {{ partial "sidebar.html" . }}
+        <div class="content col-md-8">
             {{ .Content }}
         </div>
     </div>
