@@ -1,6 +1,6 @@
 ---
 title: "concepts"
-date: 2018-1-30T00:00:00-04:00
+date: 2018-01-30T00:00:00-04:00
 ---
 
 # Concepts
@@ -28,7 +28,7 @@ We need peer names so lots of people can name datasets the same thing, and in th
 
 Now, you don’t need to type that every time. My peername happens to be `b5`, so I could just type:
 
-    comics
+    me/comics
 
 In a sentence:
 the latest version of my dataset named comics.

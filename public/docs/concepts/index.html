@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Community-Based Data">
+
+  <base href="http://qri.io/">
+  <title>
+  
+  
+       concepts 
+  
+  </title>
+  <link rel="canonical" href="http://qri.io/docs/concepts/">
+  
+
+<script type="text/javascript">
+    var baseURL = 'http:\/\/qri.io\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+
+
+    <link rel="stylesheet" href="http://qri.io/css/style.css">
+    
+
+
+
+<link rel="shortcut icon"
+
+    href="http://qri.io/img/leaf.ico"
+
+>
+
+
+
+
+  <link rel="stylesheet" href="http://qri.io/css/styles/atelier-cave-dark.css">
+  <script src="http://qri.io/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+
+<body lang="">
+
+<section class="navbar topLine"> 
+    <div class="container">
+        <div class="col-md-12">
+            <a href="http://www.qri.io">qri</a>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+        
+            <a href="//github.com/qri-io" target="_blank">
+                <i class="icon ion-social-github"></i>
+            </a>
+        
+        
+        
+            <a href="//twitter.com/qri_io" target="_blank">
+                <i class="icon ion-social-twitter"></i>
+            </a>
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:info@qri.io">
+                <i class="icon ion-ios-email larger"></i>
+            </a>
+        
+        </div>
+    </div>
+</section>
+
+<section class="main single">
+    <div class="container">
+        <div class="col-md-3">
+  <div class="content">
+    <ul>
+      
+    </ul>
+  </div>
+</div>
+        <div class="content col-md-8">
+            
+
+<h1 id="concepts">Concepts</h1>
+
+<h2 id="dataset">Dataset</h2>
+
+<h2 id="structure">Structure</h2>
+
+<h2 id="metadata">Metadata</h2>
+
+<h2 id="peers">Peers</h2>
+
+<h2 id="dataset-names">Dataset Names</h2>
+
+<p>It’s possible to refer to a dataset in a number of ways. It’s easiest to look at the full definition of a dataset reference, and then show what the “defaults” are to make sense of things. The full definition of a dataset reference is as follows:</p>
+
+<pre><code>dataset_reference = peer_name/dataset_name@/network/hash
+</code></pre>
+
+<p>an example of that looks like this:</p>
+
+<pre><code>b5/comics@QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y
+</code></pre>
+
+<p>In a sentence:
+<code>b5</code> ****is the name of a <em>peer,</em> who has a dataset <em>named</em>  <code>comics</code>, and it’s <em>hash</em> at a point in time was <code>QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y</code></p>
+
+<p>We need peer names so lots of people can name datasets the same thing, and in this instance that giant hash thing (more on that here) is used to refer to a dataset at a specific version of a dataset, from an exact point in time.</p>
+
+<p>Now, you don’t need to type that every time. My peername happens to be <code>b5</code>, so I could just type:</p>
+
+<pre><code>me/comics
+</code></pre>
+
+<p>In a sentence:
+the latest version of my dataset named comics.</p>
+
+<p>Under the hood, we’re adding defaults to the reference:</p>
+
+<ul>
+<li>the default peername is <em>your</em> peername</li>
+<li>the default hash is the <em>latest version</em></li>
+</ul>
+
+<p>It’s also worth noting that on standard qri installations, it’s also possible to use just the hash. This is a perfectly valid dataset reference:</p>
+
+<pre><code>QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y
+</code></pre>
+
+<ul>
+<li><strong>peername/name</strong><em>:</em>  <code>qri info b5/comics</code></li>
+<li><strong>hash</strong> :  **<code>qri info QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y</code></li>
+<li><strong>peername/name@hash</strong>:  <code>qri info b5/comics@QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y</code></li>
+</ul>
+
+        </div>
+    </div>
+</section>
+
+
+	
+
+	
+		<script type="text/javascript">
+		 !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+		  analytics.load("b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju");
+		  analytics.page()
+		}}();
+		</script>
+	
+
+
+
+
+</body>
+</html>
+

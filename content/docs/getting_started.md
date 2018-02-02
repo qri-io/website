@@ -1,6 +1,6 @@
 ---
 title: "getting started"
-date: 2018-1-30T00:00:00-04:00
+date: 2018-01-30T00:00:00-04:00
 ---
 
 To install qri on your machine, follow our installation instructions on github
