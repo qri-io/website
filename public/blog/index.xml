@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog on qri.io</title>
-    <link>http://qri.io/blog/</link>
-    <description>Recent content in Blog on qri.io</description>
+    <title>Blog on qri</title>
+    <link>https://qri.io/blog/</link>
+    <description>Recent content in Blog on qri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Mon, 24 Jul 2017 23:00:29 -0400</lastBuildDate>
     
-	<atom:link href="http://qri.io/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://qri.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Qri</title>
-      <link>http://qri.io/qri/</link>
+      <link>https://qri.io/qri/</link>
       <pubDate>Mon, 24 Jul 2017 23:00:29 -0400</pubDate>
       
-      <guid>http://qri.io/qri/</guid>
+      <guid>https://qri.io/qri/</guid>
       <description>QRI Qri (pronounced &amp;ldquo;query&amp;rdquo;) is built around reducing the barriers to data. I believe the various approaches to working with data will benefit from an alternative view that aims to equally address all barriers to data access, instead of prioritizing one over the other.
 Before starting, it&amp;rsquo;s worth noting that when I mention of &amp;ldquo;data&amp;rdquo;, I&amp;rsquo;m actually referring to structured data. Almost all digital information has at least some degree of structure.</description>
     </item>

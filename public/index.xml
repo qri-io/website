@@ -1,15 +1,121 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Qri.io on qri.io</title>
+    <title>qri</title>
     <link>https://qri.io/</link>
-    <description>Recent content in Qri.io on qri.io</description>
+    <description>Recent content on qri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Mon, 30 Oct 2017 00:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://qri.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>dataset</title>
+      <link>https://qri.io/docs/datasets/overview/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/datasets/overview/</guid>
+      <description>The word dataset is vague, but it does have a &amp;ldquo;natural&amp;rdquo; meaning to most people. When I think of a &amp;ldquo;dataset&amp;rdquo;, I generally picture a spreadsheet. Spreadsheets are organized into cells, which are an example of a way to structure data. Not all datasets are spreadsheets, but all spreadsheets are datasets.
+In contrast, I don&amp;rsquo;t think of a text document as a dataset. But a text document is organized, right?</description>
+    </item>
+    
+    <item>
+      <title>quickstart</title>
+      <link>https://qri.io/docs/getting_started/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/getting_started/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>commit</title>
+      <link>https://qri.io/docs/datasets/commit/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/datasets/commit/</guid>
+      <description> Technical Definition Commit encapsulates information about changes to a dataset in relation to other entries in a given history. Commit is intended to be directly analogous to the concept of a Commit Message in git.  </description>
+    </item>
+    
+    <item>
+      <title>company</title>
+      <link>https://qri.io/company/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/company/</guid>
+      <description>qri is a 4 person startup who&amp;rsquo;s been lucky enough to work with a wonderful community of friends. We do work in Brooklyn.
+One day we&amp;rsquo;ll get around to writing a proper company description, but if you want to get a hold of us, feel free to email sparkle_pony_200 at-cymbal qri.io</description>
+    </item>
+    
+    <item>
+      <title>data</title>
+      <link>https://qri.io/docs/datasets/data/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/datasets/data/</guid>
+      <description>data info coming soon, promise.</description>
+    </item>
+    
+    <item>
+      <title>faq</title>
+      <link>https://qri.io/faq/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/faq/</guid>
+      <description>Is qri a blockchain? No.
+What’s a dataset? Datasets are a data structure that is broken up in a way that allows us to link changes between parts of that data structure on a content addressed file system, preserving links in certain ways. With a dataset we have the underlying data, it’s structure which contains the structure &amp;amp; schema of the data.
+All datasets have three parts:
+ Data - eg: a csv file Metadata - human-oriented description of the data, eg: title, author, date created, category Structure - machine-oriented description of the data, eg: “the third column in this table is a date”  What does Version Control Mean?</description>
+    </item>
+    
+    <item>
+      <title>metadata</title>
+      <link>https://qri.io/docs/datasets/metadata/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/datasets/metadata/</guid>
+      <description> Technical Definition Meta contains human-readable metadata about a dataset  </description>
+    </item>
+    
+    <item>
+      <title>names</title>
+      <link>https://qri.io/docs/names/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/names/</guid>
+      <description>It’s possible to refer to a dataset in a number of ways. It’s easiest to look at the full definition of a dataset reference, and then show what the “defaults” are to make sense of things. The full definition of a dataset reference is as follows:
+dataset_reference = peer_name/dataset_name@/network/hash  an example of that looks like this:
+b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b5 is the name of a peer, who has a dataset named comics, and it’s hash on the ipfs network at a point in time was QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y</description>
+    </item>
+    
+    <item>
+      <title>structure</title>
+      <link>https://qri.io/docs/datasets/structure/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/datasets/structure/</guid>
+      <description>Technical Definition: Structure designates a deterministic definition for working with a dataset. Structure is a concrete handle that provides precise details about how to interpret a given piece of data (the reference to the data itself is provided elsewhere, specifically in the dataset struct ) These techniques provide mechanisms for joining &amp;amp; traversing multiple structures. This example is shown in a human-readable form, for storage on the network the actual output would be in a condensed, non-indented form, with keys sorted by lexographic order.</description>
+    </item>
+    
+    <item>
+      <title>transformations</title>
+      <link>https://qri.io/docs/datasets/transform/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/datasets/transform/</guid>
+      <description> Technical Definition Transform is a record of executing a transformation on data. Transforms could be anything from an SQL query, a jupyter notebook, the state of an ETL pipeline, etc, so long as the input is one or more datasets, and the output is a single dataset. Transform should contain all the machine-necessary bits to deterministicly execute the process referenced in &amp;quot;Data&amp;quot;. Consumers of Transforms may be able to produce abstract versions of transformations, a decision left to implementations  </description>
+    </item>
+    
+    <item>
+      <title>visconfig</title>
+      <link>https://qri.io/docs/datasets/viz_config/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/datasets/viz_config/</guid>
+      <description> Technical Definition: VisConfig stores configuration data related to representing a dataset as a visualization  </description>
+    </item>
     
     <item>
       <title>Deterministic Querying</title>
@@ -19,26 +125,6 @@
       <guid>https://qri.io/papers/deterministic_querying/</guid>
       <description>Deterministic Querying for the Distributed Web  Brendan O’Brien
 Michael Hucka November 2017 Abstract The current infrastructure that underlies the distribution and processing of data over the Internet has enabled dramatic advances in a wide variety of human activities. Recent trends promoting open data promise even greater benefits as the number and variety of networked datasets grow. However, while current technologies and architectures obviously do work, they also show signs of systemic inefficiencies that impede effective large-scale discovery, distribution, preservation and reuse of datasets.</description>
-    </item>
-    
-    <item>
-      <title>Questions</title>
-      <link>https://qri.io/questions/</link>
-      <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/questions/</guid>
-      <description>Questions What’s a dataset? Datasets are a data structure that is broken up in a way that allows us to link changes between parts of that data structure on a content addressed file system, preserving links in certain ways. With a dataset we have the underlying data, it’s structure which contains the structure &amp;amp; schema of the data.
-All datasets have three parts:
- Data - eg: a csv file Metadata - human-oriented description of the data, eg: title, author, date created, category Structure - machine-oriented description of the data, eg: “the third column in this table is a date”  What does Version Control Mean?</description>
-    </item>
-    
-    <item>
-      <title>y tho?</title>
-      <link>https://qri.io/y_tho/</link>
-      <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/y_tho/</guid>
-      <description></description>
     </item>
     
   </channel>

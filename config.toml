@@ -1,14 +1,28 @@
 baseurl = "https://qri.io/"
-builddrafts = false
-canonifyurls = true
+relativeURLs = true
+# builddrafts = false
+# canonifyurls = true
 contentdir = "content"
 languageCode = "en-US"
 layoutdir = "layouts"
 publishdir = "public"
 author = "qri.io"
-title = "qri.io"
+title = "qri"
 pluralizelisttitles = false
-theme="qri"
+theme="kube"
+
+[[menu.main]]
+    name = "Docs"
+    weight = -100
+    url = "/docs/"
+# [[menu.main]]
+#     name = "Blog"
+#     weight = -100
+#     url = "/blog/"
+# [[menu.main]]
+#     name = "Faq"
+#     weight = -100
+#     url = "/faq/"
 
 [permalinks]
 blog = ":slug/"
@@ -16,16 +30,14 @@ blog = ":slug/"
 [params]
 IsDev = false
 Author = "qri"
-CacheBuster = true
+# CacheBuster = true
 DateForm = "Jan 2, 2006"
 DateFormFull = "Mon Jan 2 2006 15:04:05 MST"
-Description = "Community-Based Data"
+Description = "a home for datasets"
 Email = "info@qri.io"
 FaviconFile = "img/leaf.ico"
-# GATracker = "XYZ"
 SegmentTracker= "b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju"
-GitHub = "//github.com/qri-io"
+GitHub = "qri-io"
 # Lang = "en"
 # LinkedIn = "//linkedin.com/in/you"
-Twitter = "//twitter.com/qri_io"
-# ExtraCssFiles = [ "/css/override.css" ] # In your `static/css`, add/remove files as necessary.
+Twitter = "qri_io"

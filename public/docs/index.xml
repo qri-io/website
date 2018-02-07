@@ -1,44 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docs on qri.io</title>
-    <link>http://qri.io/docs/</link>
-    <description>Recent content in Docs on qri.io</description>
+    <title>docs on qri</title>
+    <link>https://qri.io/docs/</link>
+    <description>Recent content in docs on qri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 30 Jan 2018 00:00:00 -0400</lastBuildDate>
     
-	<atom:link href="http://qri.io/docs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://qri.io/docs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>concepts</title>
-      <link>http://qri.io/docs/concepts/</link>
+      <title>quickstart</title>
+      <link>https://qri.io/docs/getting_started/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
-      <guid>http://qri.io/docs/concepts/</guid>
-      <description>Concepts Dataset Structure Metadata Peers Dataset Names It’s possible to refer to a dataset in a number of ways. It’s easiest to look at the full definition of a dataset reference, and then show what the “defaults” are to make sense of things. The full definition of a dataset reference is as follows:
+      <guid>https://qri.io/docs/getting_started/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>names</title>
+      <link>https://qri.io/docs/names/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/names/</guid>
+      <description>It’s possible to refer to a dataset in a number of ways. It’s easiest to look at the full definition of a dataset reference, and then show what the “defaults” are to make sense of things. The full definition of a dataset reference is as follows:
 dataset_reference = peer_name/dataset_name@/network/hash  an example of that looks like this:
-b5/comics@QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b5 ****is the name of a peer, who has a dataset named comics, and it’s hash at a point in time was QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y</description>
-    </item>
-    
-    <item>
-      <title>dataset</title>
-      <link>http://qri.io/docs/dataset/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>http://qri.io/docs/dataset/</guid>
-      <description> What&amp;rsquo;s a Dataset?  </description>
-    </item>
-    
-    <item>
-      <title>getting started</title>
-      <link>http://qri.io/docs/getting_started/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>http://qri.io/docs/getting_started/</guid>
-      <description>To install qri on your machine, follow our installation instructions on github
- $ cd ~/my_datasets # before we can use qri, it needs to be set up. # qri setup will create qri and IPFS repositories # on your hard drive if they don&#39;t exist. $ qri setup --username=b5 # this will save your profile info to a JSON file # which will be rather empty, fill out that file # with any info you&#39;d like and hit save.</description>
+b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b5 is the name of a peer, who has a dataset named comics, and it’s hash on the ipfs network at a point in time was QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y</description>
     </item>
     
   </channel>
