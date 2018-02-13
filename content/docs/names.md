@@ -22,7 +22,7 @@ We need peer names so lots of people can name datasets the same thing, and in th
 
 ## default to latest on ipfs
 
-Now, having to type `b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y` every time you wanted a dataset would be irritating. So we have two defaults. The default network is `ipfs`, and the default hash is _the lastest known version_ of a dataset. We say latest _known_ because sometimes things can fall out of sync. If you'r only working with your own local datasets, this won't be an issue.
+Now, having to type `b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y` every time you wanted a dataset would be irritating. So we have two defaults. The default network is `ipfs`, and the default hash is _the lastest known version_ of a dataset. We say latest _known_ because sometimes things can fall out of sync. If you're only working with your own local datasets, this won't be an issue.
 
 Anyway, that means we can cut down on the typing if we just want the latest version of `b5`'s `comics` dataset, we can just type:
 ```
