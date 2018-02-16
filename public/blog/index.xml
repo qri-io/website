@@ -5,20 +5,20 @@
     <link>https://qri.io/blog/</link>
     <description>Recent content in Blog on qri</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
-    <lastBuildDate>Mon, 24 Jul 2017 23:00:29 -0400</lastBuildDate>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Oct 2017 00:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://qri.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Qri</title>
-      <link>https://qri.io/qri/</link>
-      <pubDate>Mon, 24 Jul 2017 23:00:29 -0400</pubDate>
+      <title>Datasets Are Books, Not Houses</title>
+      <link>https://qri.io/blog/datasets_are_books/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/qri/</guid>
-      <description>QRI Qri (pronounced &amp;ldquo;query&amp;rdquo;) is built around reducing the barriers to data. I believe the various approaches to working with data will benefit from an alternative view that aims to equally address all barriers to data access, instead of prioritizing one over the other.
-Before starting, it&amp;rsquo;s worth noting that when I mention of &amp;ldquo;data&amp;rdquo;, I&amp;rsquo;m actually referring to structured data. Almost all digital information has at least some degree of structure.</description>
+      <guid>https://qri.io/blog/datasets_are_books/</guid>
+      <description>The world of linked data is built on shaky foundations that prevent a true data commons from emerging. The problem isn’t with the data, but with the way data is linked. Specifically, the way links are addressed.
+An address is a uniform, shorthand way of referring to things. Geographic addresses are an obvious example. 1600 Pennsylvania Ave. is the address of the White House. 268 Elizabeth St. is the address of my childhood home.</description>
     </item>
     
   </channel>

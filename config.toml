@@ -1,31 +1,36 @@
 baseurl = "https://qri.io/"
 relativeURLs = true
+languageCode = "en-us"
+title = "qri"
+author = "qri.io"
+theme="kube"
+pluralizelisttitles = false
+# theme = "datatogether"
 # builddrafts = false
 # canonifyurls = true
-contentdir = "content"
-languageCode = "en-US"
-layoutdir = "layouts"
-publishdir = "public"
-author = "qri.io"
-title = "qri"
-pluralizelisttitles = false
-theme="kube"
+# contentdir = "content"
+# layoutdir = "layouts"
+# publishdir = "public"
 
+[[menu.main]]
+    name = "Blog"
+    weight = -100
+    url = "/blog/"
 [[menu.main]]
     name = "Docs"
     weight = -100
     url = "/docs/"
-# [[menu.main]]
-#     name = "Blog"
-#     weight = -100
-#     url = "/blog/"
+[[menu.main]]
+    name = "Papers"
+    weight = -100
+    url = "/papers/"
+
 # [[menu.main]]
 #     name = "Faq"
 #     weight = -100
 #     url = "/faq/"
-
-[permalinks]
-blog = ":slug/"
+# [permalinks]
+#   blog = ":slug/"
 
 [params]
 IsDev = false
@@ -38,6 +43,6 @@ Email = "info@qri.io"
 FaviconFile = "img/leaf.ico"
 SegmentTracker= "b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju"
 GitHub = "qri-io"
-# Lang = "en"
+# Lang = "en" 
 # LinkedIn = "//linkedin.com/in/you"
 Twitter = "qri_io"

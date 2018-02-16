@@ -73,8 +73,19 @@
   </url>
   
   <url>
+    <loc>https://qri.io/blog/datasets_are_books/</loc>
+    <lastmod>2017-10-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://qri.io/</loc>
     <lastmod>2017-10-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/blog/</loc>
+    <lastmod>2017-10-30T00:00:00-04:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>

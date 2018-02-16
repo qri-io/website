@@ -43,3 +43,13 @@ body > header {
   background-repeat: no-repeat;
   background-position: right top;
 }
+
+
+/* blog page */
+.blog {
+  background: white;
+}
+
+.blog h2 {
+  color: #666;
+}

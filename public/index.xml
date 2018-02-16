@@ -5,7 +5,7 @@
     <link>https://qri.io/</link>
     <description>Recent content on qri</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
+    <language>en-us</language>
     <lastBuildDate>Mon, 30 Oct 2017 00:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://qri.io/index.xml" rel="self" type="application/rss+xml" />
@@ -46,7 +46,7 @@ In contrast, I don&amp;rsquo;t think of a text document as a dataset. But a text
       
       <guid>https://qri.io/company/</guid>
       <description>qri is a 4 person startup who&amp;rsquo;s been lucky enough to work with a wonderful community of friends. We do work in Brooklyn.
-One day we&amp;rsquo;ll get around to writing a proper company description, but if you want to get a hold of us, feel free to email sparkle_pony_200 at-cymbal qri.io</description>
+One day we&amp;rsquo;ll get around to writing a proper company description, but if you want to get a hold of us, feel free to email sparkle_pony_2000 at-cymbal qri.io</description>
     </item>
     
     <item>
@@ -55,7 +55,9 @@ One day we&amp;rsquo;ll get around to writing a proper company description, but 
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/datasets/data/</guid>
-      <description>data info coming soon, promise.</description>
+      <description> Data stored on qri has a few opinions about datasets: * a dataset is a single file * the root of a dataset is an array * when possible, don&amp;rsquo;t transform or alter data * invalid data is fine, ill-formatted data is not
+A Dataset is a single file This restriction might seem silly at first if you&amp;rsquo;re coming from a world of databases.
+The root of a Dataset is an Array When possible, don&amp;rsquo;t transform or alter data Invalid data is fine, ill-formated data is not </description>
     </item>
     
     <item>
@@ -96,7 +98,9 @@ b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/datasets/structure/</guid>
-      <description>Technical Definition: Structure designates a deterministic definition for working with a dataset. Structure is a concrete handle that provides precise details about how to interpret a given piece of data (the reference to the data itself is provided elsewhere, specifically in the dataset struct ) These techniques provide mechanisms for joining &amp;amp; traversing multiple structures. This example is shown in a human-readable form, for storage on the network the actual output would be in a condensed, non-indented form, with keys sorted by lexographic order.</description>
+      <description>If you&amp;rsquo;re looking for tools to keep your data clean, well described, and interoperable with other datasets, structure is where that happens.
+Datsaet structure stores everything a computer will need to interpret the data in a dataset. Structure brings expressive tools for making datasets interoperable by storing all necessary details for interpreting data.
+Structure is automatically inferred by qri based on the data you provide, making it possible to use qri without having to think about structure until you need to.</description>
     </item>
     
     <item>
@@ -125,6 +129,16 @@ b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b
       <guid>https://qri.io/papers/deterministic_querying/</guid>
       <description>Deterministic Querying for the Distributed Web  Brendan O’Brien
 Michael Hucka November 2017 Abstract The current infrastructure that underlies the distribution and processing of data over the Internet has enabled dramatic advances in a wide variety of human activities. Recent trends promoting open data promise even greater benefits as the number and variety of networked datasets grow. However, while current technologies and architectures obviously do work, they also show signs of systemic inefficiencies that impede effective large-scale discovery, distribution, preservation and reuse of datasets.</description>
+    </item>
+    
+    <item>
+      <title>Datasets Are Books, Not Houses</title>
+      <link>https://qri.io/blog/datasets_are_books/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/blog/datasets_are_books/</guid>
+      <description>The world of linked data is built on shaky foundations that prevent a true data commons from emerging. The problem isn’t with the data, but with the way data is linked. Specifically, the way links are addressed.
+An address is a uniform, shorthand way of referring to things. Geographic addresses are an obvious example. 1600 Pennsylvania Ave. is the address of the White House. 268 Elizabeth St. is the address of my childhood home.</description>
     </item>
     
   </channel>
