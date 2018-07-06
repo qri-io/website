@@ -5,25 +5,15 @@ title = "qri"
 author = "qri.io"
 theme="qri"
 pluralizelisttitles = false
-# theme = "datatogether"
-# builddrafts = false
-# canonifyurls = true
-# contentdir = "content"
-# layoutdir = "layouts"
-# publishdir = "public"
 
-[[menu.main]]
-    name = "Blog"
-    weight = -100
-    url = "/blog/"
 [[menu.main]]
     name = "Docs"
     weight = -100
     url = "/docs/"
 [[menu.main]]
-    name = "Papers"
+    name = "Download"
     weight = -100
-    url = "/papers/"
+    url = "/download/"
 
 # [[menu.main]]
 #     name = "Faq"

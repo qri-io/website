@@ -8,12 +8,12 @@ bodyClass: index
 <div id="main" class="index">
   <header id="hero">
     <div class="wrap">
+      <div id="blob_trio"></div>
       <div class="text_block">
         <h1>You're Invited to a Data Party</h1>
         <p>qri (“query”) is a free data bonanza<br />for everyone</p>
-        <a id="download_button" class="button">Party</a>
+        <a href="/download" id="download_button" class="button">Party</a>
       </div>
-      <div id="blob_trio"></div>
     </div>
   </header>
 
@@ -50,9 +50,17 @@ bodyClass: index
 
   <section id="app_and_cli">
     <div class="wrap">
-      <h2>Works for Both <br />Mouse and Keyboard</h2>
+      <h2>Works With Both <br />Mouse and Keyboard</h2>
       <div id="app_screenshot"></div>
-      <div id="terminal_window"></div>
+      <div id="terminal_window">
+        <div id="window_chrome">
+          <div class="red circle"></div>
+          <div class="yellow circle"></div>
+          <div class="green circle"></div>
+        </div>
+        <pre><span class="white">$ qri add --file=dataset.yaml me/data</span><span class="green">dataset created!</span><br /><span class="white">$ qri connect</span><span class="gray">connecting to IPFS and qri P2P… <br />peername: b5 <br />JSON API port: 2503 <br />Webapp port: 2505</span>
+        </pre>
+      </div>
       <div class="text_block">
         <p>Qri has a desktop app and command line tools. Both are free and open source.<br /><a href="download">Download</a></p>
       </div>
@@ -88,8 +96,8 @@ bodyClass: index
         </div>
       </div>
       <div class="action_buttons">
-        <a class="button outline big" href="https://github.com/qri-io/qri/releases" onclick="_gaq.push(['_trackEvent', 'qri', 'download']);">Download</a>
-        <a class="button outline big" href="https://github.com/qri-io/qri" onclick="_gaq.push(['_trackEvent', 'qri', 'github']);">Star on Github</a>
+        <!-- <a class="button outline big" href="/docs" onclick="_gaq.push(['_trackEvent', 'qri', 'download']);">Docs</a> -->
+        <a class="button outline big" href="https://github.com/qri-io" onclick="_gaq.push(['_trackEvent', 'qri', 'github']);">Gimmie Github</a>
       </div>
     </div>
   </section>
