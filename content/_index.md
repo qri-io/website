@@ -3,19 +3,104 @@ title: "qri"
 description: ("query")
 date: 2017-10-30T00:00:00-04:00
 bodyClass: index
-backgroundImage: ../graphics/metablobs/1.jpg
 ---
 
-<div id="header"></div>
+<div id="main" class="index">
+  <header id="hero">
+    <div class="wrap">
+      <div class="text_block">
+        <h1>You're Invited to a Data Party</h1>
+        <p>qri (“query”) is a free data bonanza<br />for everyone</p>
+        <a id="download_button" class="button">Party</a>
+      </div>
+      <div id="blob_trio"></div>
+    </div>
+  </header>
 
-# a home for datasets
-If you’ve ever “tracked changes” in a text editor, you’ve used a *version control system*. For decades programmers have been using version control systems to coordinate and collaborate on software projects of all sizes. Go to github.com and you’ll see millions of people using version control to enhance & build on each other’s work. Github’s underlying technology – git – popularized some magic sauce that has inspired an entire generation of programmers.
+  <section id="feature_descriptions">
+    <div class="wrap">
+      <div id="web_of_datasets" class="feature_description">
+        <h2>Qri is a Web of Datasets</h2>
+        <p>qri is built around datasets. Bigger than a spreadsheet, smaller than a database, datasets are all around us. qri is a big dataset bonanza, where people of all stripes can mix together all their sweet sweet data.</p>
+      </div>
+      <div id="open_source" class="feature_description">
+        <h2>This Party is Free and Open Source</h2>
+        <p>Data is better when we work together. Qri costs nothing to use, and is built as an open source project under a GPL license.</p>
+      </div>
+      <div id="datasets_you_can_use" class="feature_description">
+        <h2>Datasets You Can Actually Use</h2>
+        <p>Every dataset change is tracked & attributed to an author, so you can audit whether the data you’re looking at meets your standards, and track changes as they happen.</p>
+      </div>
+      <div id="any_skill_level" class="feature_description">
+        <h2>Tools for Any Skill Level</h2>
+        <p>Whether your a data scientist, or have only ever touched excel, we have tools for you.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="distributed_web">
+    <div class="wrap">
+      <div class="text_block">
+        <h3>Built on the Distributed Web</h3>
+        <p>Qri is built from the ground up as a distribted network on top of IPFS. We chose IPFS because it’s both global and content-addressed — perfect for datasets.</p>
+        <p>Data you’ve downloaded stays local. Content-addressing lets data be stored anywhere without sacrificing security. All this adds up to a web of datasets that is faster, more secure, and free.</p>
+      </div>
+    </div>
+  </section>
 
-​Even if you’re not a programmer, there’s a good chance you’ve used a spreadsheet, which can be a kind of dataset. If you’ve ever had trouble keeping a spreadsheet synchronized (with new data or with changes), or getting two spreadsheets to talk to each other (share information), you understand the problem qri will solve. 
+  <section id="app_and_cli">
+    <div class="wrap">
+      <h2>Works for Both <br />Mouse and Keyboard</h2>
+      <div id="app_screenshot"></div>
+      <div id="terminal_window"></div>
+      <div class="text_block">
+        <p>Qri has a desktop app and command line tools. Both are free and open source.<br /><a href="download">Download</a></p>
+      </div>
+    </div>
+  </section>
 
-​**qri is a version control system just for datasets.** Bringing the same coordination & collaboration tools programmers have enjoyed for decades. qri starts with strong technical foundations, but is aimed at providing understandable tools to allow people who do and don’t program to collaborate, bridging the gap between spreadsheets and databases.
+  <section id="tech_features">
+    <div class="wrap">
+      <div class="features_list">
+        <div id="existing_specs" class="feature_description">
+          <h3>Qri Uses Existing Specs</h3>
+          <p>Wherever possible, we aim to use specifications & technologies that already exist. The end result is a natural set of integration points that makes qri less about being a “data platform” and more a series of integrations between platforms.</p>
+        </div>
+        <div id="git_style" class="feature_description">
+          <h3>Git-style version control</h3>
+          <p>qri’s dataset versioning system is  inspired by git, and signs each commit with your identifying keypair. Because qri is only about datasets, qri generates commit messages for you.</p>
+        </div>
+        <div id="data_formats" class="feature_description">
+          <h3>Native support for JSON, CSV, CBOR data formats</h3>
+          <p>Mix & match any format as you need, import from and export to any format.</p>
+        </div>
+        <div id="meta_specs" class="feature_description">
+          <h3>Metadata based on library science</h3>
+          <p>Librarians are better at metadata than developers, so we based our metadata spec on DCAT & Project Open Data,  for cleaner integration with existing data catlogs</p>
+        </div>
+        <div id="json_schemas" class="feature_description">
+          <h3>JSON-Schema’s for validation & OpenAPIs</h3>
+          <p>dataset schemas are defined with the same spec that drives OpenAPIs. Datasets automatically generate a JSON API & accompanying OpenAPI documentation</p>
+        </div>
+        <div id="transformations" class="feature_description">
+          <h3>Automate data munging with Python’s cousin: Skylark</h3>
+          <p>Write configurable, repeatable transformations that can build on remote sources and other qri datasets, in a syntax that feels like Python.</p>
+        </div>
+      </div>
+      <div class="action_buttons">
+        <a class="button outline big" href="https://github.com/qri-io/qri/releases" onclick="_gaq.push(['_trackEvent', 'qri', 'download']);">Download</a>
+        <a class="button outline big" href="https://github.com/qri-io/qri" onclick="_gaq.push(['_trackEvent', 'qri', 'github']);">Star on Github</a>
+      </div>
+    </div>
+  </section>
 
-​The world is producing more data every day. We believe this data deserves a proper home, a place where data is open, discoverable, vettable, and frictionless.
 
-<a class="button primary outline big" href="/docs">Read The Docs</a>
+  <section id="work_together">
+    <div class="wrap">
+      <div class="text_block">
+        <h1>Data is Better When We Work Together</h1>
+      </div>
+    </div>
+  </section>
+</div>
 
