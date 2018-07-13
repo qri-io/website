@@ -1,7 +1,7 @@
 ---
 title: "content-addressing"
 date: 2018-01-30T00:00:00-04:00
-draft: true
+draft: false
 ---
 
 <!-- ![foo](https://en.wikipedia.org/wiki/File:MagrittePipe.jpg)

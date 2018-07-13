@@ -22,6 +22,11 @@ pluralizelisttitles = false
 # [permalinks]
 #   blog = ":slug/"
 
+[[menu.docs]]
+    name = "Download"
+    weight = -100
+    url = "/download/"
+
 [params]
 IsDev = false
 Author = "qri"
