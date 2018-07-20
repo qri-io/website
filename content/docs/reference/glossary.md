@@ -2,6 +2,7 @@
 title: "glossary"
 date: 2018-01-30T00:00:00-04:00
 section: reference
+draft: true
 ---
 
 Qri is filled with all sorts of weird words and terrible acronyms. This page is to make them less terrible.

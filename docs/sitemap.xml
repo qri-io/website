@@ -48,11 +48,6 @@
   </url>
   
   <url>
-    <loc>https://qri.io/docs/reference/glossary/</loc>
-    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://qri.io/docs/reference/html_templates/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
@@ -74,6 +69,11 @@
   
   <url>
     <loc>https://qri.io/docs/concepts/registries/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/reference/sylark_functions/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   

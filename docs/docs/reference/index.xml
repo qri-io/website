@@ -21,18 +21,6 @@
     </item>
     
     <item>
-      <title>glossary</title>
-      <link>https://qri.io/docs/reference/glossary/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/reference/glossary/</guid>
-      <description>Qri is filled with all sorts of weird words and terrible acronyms. This page is to make them less terrible.
-the Distributed Web Ugh, ok this is a biggie.
-Dataset IPFS IPFS stands for the inteplanatary file system, which is a distributed web protocol. IPFS is the default network qri uses to store &amp;amp; publish datasets.
-qri I know, I&amp;rsquo;m so sorry for doing this to the world, but I&amp;rsquo;m hoping we can all learn to see &amp;ldquo;qri&amp;rdquo; and say &amp;ldquo;query&amp;rdquo;.</description>
-    </item>
-    
-    <item>
       <title>html templates</title>
       <link>https://qri.io/docs/reference/html_templates/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
@@ -42,7 +30,16 @@ qri I know, I&amp;rsquo;m so sorry for doing this to the world, but I&amp;rsquo;
     </item>
     
     <item>
-      <title>skylark transformations</title>
+      <title>skylark function reference</title>
+      <link>https://qri.io/docs/reference/sylark_functions/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/reference/sylark_functions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>skylark syntax</title>
       <link>https://qri.io/docs/reference/skylark_syntax/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       

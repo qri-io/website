@@ -33,8 +33,8 @@ menu:
   reference:
     - name: Dataset
       url: /docs/reference/dataset
-    - name: Glossary
-      url: /docs/reference/glossary
+    # - name: Glossary
+    #   url: /docs/reference/glossary
     - name: Viz Templates
       url: /docs/reference/html_templates
     - name: Skylark Syntax

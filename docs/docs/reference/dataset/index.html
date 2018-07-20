@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.44" />
+  <meta name="generator" content="Hugo 0.37-DEV" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -105,8 +105,6 @@
         
           <li><a href="../../../docs/reference/dataset">Dataset</a></li>
         
-          <li><a href="../../../docs/reference/glossary">Glossary</a></li>
-        
           <li><a href="../../../docs/reference/skylark_syntax">Skylark Syntax</a></li>
         
           <li><a href="../../../docs/reference/html_templates">Viz Templates</a></li>
@@ -130,123 +128,438 @@
 
 <h1 id="dataset">Dataset</h1>
 
-<p>A Dataset is a document for describing &amp; storing structured data. Dataset documents are designed to satisfy the FAIR principle of being
-Findable, Accessible, Interoperable, and Reproducible, in relation to other dataset documents, and related-but-separate technologies such as data catalogs, HTTP API&rsquo;s, and data package formats Datasets are designed to be stored and distributed on content-addressed
+<p>A Dataset is a document for describing &amp; storing structured data. Dataset documents are designed to satisfy the <strong>FAIR</strong> principle of being
+<em>Findable, Accessible, Interoperable, and Reproducible</em>, in relation to other dataset documents, and related-but-separate technologies such as data catalogs, HTTP API&rsquo;s, and data package formats Datasets are designed to be stored and distributed on content-addressed
 (identify-by-hash) systems The dataset document definition is built from a research-first principle, valuing direct interoperability with existing standards over novel definitions or specifications.</p>
+
+<p><em>The main implementation of dataset is avialable at <a href="https://github.com/qri-io/dataset">https://github.com/qri-io/dataset</a>. If you have any concerns or questions, We&rsquo;d be delighted if you filed an <a href="https://github.com/qri-io/dataset/issues">issue</a>.</em></p>
 
 <hr />
 
-<h2 id="dataset-sections">Dataset Sections:</h2>
+<h3 id="dataset-components">Dataset Components:</h3>
 
-<p>Datasets are broken into sections. Each section has a different purpose:</p>
+<p>A Dataset is broken into several components. Each component has a different purpose:</p>
 
-<h3 id="body">Body</h3>
+<table>
+<thead>
+<tr>
+<th>component</th>
+<th>purpose</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>body</code></td>
+<td>location of dataset data. The <em>subject</em> all other componets are about</td>
+</tr>
+
+<tr>
+<td><code>commit</code></td>
+<td>versioning information for this dataset at a specific point in time</td>
+</tr>
+
+<tr>
+<td><code>meta</code></td>
+<td>descriptive metadata</td>
+</tr>
+
+<tr>
+<td><code>structure</code></td>
+<td>machine-oriented metadata for interpreting body</td>
+</tr>
+
+<tr>
+<td><code>transform</code></td>
+<td>description of an executed script that resulted in this dataset</td>
+</tr>
+
+<tr>
+<td><code>viz</code></td>
+<td>template details for visually representing this dataset</td>
+</tr>
+</tbody>
+</table>
+
+<p>Each component is described in detail below.</p>
+
+<hr />
+
+<h3 id="body"><code>body</code></h3>
 
 <p>Body is the principle content of a dataset. A dataset body is the subject which all other fields describe and qualify.</p>
 
 <p>Supported Data Formats:</p>
 
 <ul>
-<li>CSV</li>
-<li>JSON</li>
-<li>CBOR</li>
+<li><code>csv</code> - <em>comma-separated values</em></li>
+<li><code>json</code> - <em>javascript object notation</em></li>
+<li><code>cbor</code> - <em>concise binary object representation</em></li>
 </ul>
+
+<p>The structure of the data stored is arbitrary, with one important exception: <em>the top level of body must be either an object or an array</em>. scalar types like int, bool, float, or strings are not valid types. Keep in mind that it&rsquo;s perfectly valid to wrap a scalar type (for example, a string) in an array to obtain a valid body.</p>
 
 <hr />
 
-<h3 id="commit">Commit</h3>
+<h3 id="commit"><code>commit</code></h3>
 
 <p>Commit encapsulates information about changes to a dataset in relation to other entries in a given history. Commit is directly analogous to the concept of a Commit Message in the git version control system. A full commit defines the administrative metadata of a dataset, answering <em>&ldquo;who made this dataset, when, and why&rdquo;</em>.</p>
 
-<p><em>Fields:</em></p>
+<p><em>commit fields:</em></p>
 
-<ul>
-<li><code>author</code>: <em>Author of this commit</em></li>
-<li><code>message</code>: <em>Message is an optional</em></li>
-<li><code>qri</code>: <em>Qri is this commit&rsquo;s qri kind</em></li>
-<li><code>signature</code>: <em>Signature is a base58 encoded privateKey signing of Title</em></li>
-<li><code>timestamp</code>: <em>Time this dataset was created. Required.</em></li>
-<li><code>title</code>: <em>Title of the commit. Required.</em></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>author</code></td>
+<td><code>User</code></td>
+<td>author of this commit</td>
+</tr>
+
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>an optional message that provides detail about changes made</td>
+</tr>
+
+<tr>
+<td><code>qri</code></td>
+<td><code>string</code></td>
+<td>this commit&rsquo;s qri kind, value should always be <code>cm:0</code></td>
+</tr>
+
+<tr>
+<td><code>signature</code></td>
+<td><code>string</code></td>
+<td>base58-encoded bytes of body checksum</td>
+</tr>
+
+<tr>
+<td><code>timestamp</code></td>
+<td><code>string</code></td>
+<td>time this dataset was created with timezone offset</td>
+</tr>
+
+<tr>
+<td><code>title</code></td>
+<td><code>string</code></td>
+<td>title of the commit. should be a short description of</td>
+</tr>
+</tbody>
+</table>
+
+<p><em>additional data types:</em></p>
+
+<p>User:</p>
+
+<p><em>example</em></p>
+
+<pre><code class="language-json">  {
+    &quot;id&quot;: &quot;user_id_12340584&quot;,
+    &quot;fullname&quot;: &quot;sean carter&quot;,
+    &quot;email&quot;: &quot;hova@jayz.com&quot;
+  }
+</code></pre>
 
 <hr />
 
-<h3 id="meta">Meta</h3>
+<h3 id="meta"><code>meta</code></h3>
 
 <p>Meta contains human-readable descriptive metadata that qualifies and distinguishes a dataset.
 Well-defined Meta should aid in making datasets Findable by describing a dataset in generalizable taxonomies that can aggregate across other dataset documents. Because dataset documents are intended to interoperate with many other data storage and cataloging systems, meta fields and conventions are derived from existing metadata formats whenever possible.</p>
 
-<p>All of the meta fields below must be well-formed valid values. However: <strong>The Meta section of a dataset supports arbitrary metadata</strong>,</p>
+<p>All of the meta fields below must be well-formed valid values. However: <em>The Meta section of a dataset supports arbitrary metadata</em>. This means you can place additional values not listed here &amp; qri will store them as-is, without any additional validation.</p>
 
-<p><em>Fields:</em></p>
+<p>Another important note here: <em>qri software doesn&rsquo;t leverage things like identifier, downloadPath, homePath, etc.</em>. Qri considers all fields here <em>descriptive</em> metadata, as opposted to <em>structural</em> metadata. In practice this means qri User interfaces may leverage the meta component for the purposes of <em>correlation</em> and <em>display</em>. Information stored in the meta section is <em>not</em> intended for use by machines to interpret the dataset. For example, setting the <code>identifier</code> is of no significance to qri, it&rsquo;s included here for interoperability with other specifications like <a href="https://www.w3.org/TR/vocab-dcat/#Property:dataset_identifier">DCAT</a></p>
 
-<ul>
-<li>AccessPath:</li>
-<li>AccrualPeriodicity:</li>
-<li>Citations:</li>
-<li>Contributors:</li>
-<li>Description:</li>
-<li>DownloadPath:</li>
-<li>HomePath:</li>
-<li>Identifier:</li>
-<li>Keywords:</li>
-<li>Language:</li>
-<li>License:</li>
-<li>ReadmePath:</li>
-<li>Title:</li>
-<li>Theme:</li>
-<li>Version:</li>
-</ul>
+<p><em>meta fields:</em></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>accessPath</code></td>
+<td><code>string</code></td>
+<td>url or location to access this dataset.</td>
+</tr>
+
+<tr>
+<td><code>accrualPeriodicity</code></td>
+<td><code>string</code></td>
+<td>frequency with which dataset changes. Must be an <a href="https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals">ISO 8601</a> repeating duration</td>
+</tr>
+
+<tr>
+<td><code>citations</code></td>
+<td><code>[]Citation</code></td>
+<td>array of assets used to build this dataset</td>
+</tr>
+
+<tr>
+<td><code>contributors</code></td>
+<td><code>[]User</code></td>
+<td>description</td>
+</tr>
+
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>roughly a paragraph of human-readable text that provides context for the dataset</td>
+</tr>
+
+<tr>
+<td><code>downloadPath</code></td>
+<td><code>string</code></td>
+<td>URL or other path string to where to download this dataset</td>
+</tr>
+
+<tr>
+<td><code>homePath</code></td>
+<td><code>string</code></td>
+<td>URL or other path string to a &ldquo;landing page&rdquo; resource that explains the dataset</td>
+</tr>
+
+<tr>
+<td><code>identifier</code></td>
+<td><code>string</code></td>
+<td>identifer for the dataset</td>
+</tr>
+
+<tr>
+<td><code>keywords</code></td>
+<td><code>[]string</code></td>
+<td>string of &ldquo;tags&rdquo; to connect this dataset with other datasets that carry similar keywords</td>
+</tr>
+
+<tr>
+<td><code>language</code></td>
+<td><code>[]string</code></td>
+<td>array of languages this dataset is written, in <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> format, ordered by most-to-least dominant</td>
+</tr>
+
+<tr>
+<td><code>license</code></td>
+<td><code>License</code></td>
+<td>the legal licensing agreement this dataset is released under</td>
+</tr>
+
+<tr>
+<td><code>title</code></td>
+<td><code>string</code></td>
+<td>title of the dataset</td>
+</tr>
+
+<tr>
+<td><code>theme</code></td>
+<td><code>[]string</code></td>
+<td>&ldquo;categories&rdquo; this dataset should be filed under. Keywords should draw out specific keywords, theme entires should speak to the broader family of datasets this dataset is part of</td>
+</tr>
+
+<tr>
+<td><code>version</code></td>
+<td><code>string</code></td>
+<td>version identifier string</td>
+</tr>
+</tbody>
+</table>
+
+<p><em>additional data types:</em></p>
+
+<h4 id="citation">Citation:</h4>
+
+<p><em>example:</em></p>
+
+<pre><code class="language-json">  { 
+    &quot;name&quot; : &quot;sean carter&quot;,
+    &quot;url&quot; : &quot;https://jayz.com&quot;,
+    &quot;email&quot; : &quot;hova@jayz.com&quot;
+  }
+</code></pre>
+
+<h4 id="license">License:</h4>
+
+<p><em>example:</em></p>
+
+<pre><code class="language-json">  {
+    &quot;type&quot; : &quot;CC-BY-2&quot;,
+    &quot;url&quot; : &quot;https://creativecommons.org/licenses/by/2.0/&quot;
+  }
+</code></pre>
 
 <hr />
 
-<h3 id="structure">Structure</h3>
+<h3 id="structure"><code>structure</code></h3>
 
 <p>Structure defines the characteristics of a dataset document necessary for a machine to interpret the dataset body.
 Structure fields are things like the encoding data format (JSON,CSV,etc.), length of the dataset body in bytes, stored in a rigid form intended for machine use. A well defined structure &amp; accompanying software should allow the end user to spend more time focusing on the data itself.</p>
 
 <p>Two dataset documents that both have a defined structure will have some degree of natural interoperability, depending first on the amount of detail provided in a dataset&rsquo;s structure, and then by the natural comparibilty of the datasets.</p>
 
-<p><em>Fields:</em></p>
+<p><em>structure fields:</em></p>
 
-<ul>
-<li>Checksum:</li>
-<li>Compression</li>
-<li>Encoding</li>
-<li>ErrCount</li>
-<li>Entries</li>
-<li>Format</li>
-<li>FormatConfig</li>
-<li>Length</li>
-<li>Schema</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>checksum</code></td>
+<td><code>string</code></td>
+<td>bas58-encoded multihash checksum of the entire data file. this structure points to. This is different from IPFS hashes, which are calculated after breaking the file into blocks</td>
+</tr>
+
+<tr>
+<td><code>compression</code></td>
+<td><code>string</code></td>
+<td>specifies any compression on the source data, if empty assume no compression. <em><strong>warning:</strong> not yet implemented in qri</em></td>
+</tr>
+
+<tr>
+<td><code>encoding</code></td>
+<td><code>string</code></td>
+<td>specifics character encoding, assumes utf-8 if not specified</td>
+</tr>
+
+<tr>
+<td><code>errCount</code></td>
+<td><code>int</code></td>
+<td>the number of errors returned by validating data against schema.</td>
+</tr>
+
+<tr>
+<td><code>entries</code></td>
+<td><code>int</code></td>
+<td>number of top-level entries in the dataset. analogous to the number of rows in a table</td>
+</tr>
+
+<tr>
+<td><code>format</code></td>
+<td><code>string</code></td>
+<td>specifies the format of the raw data type by file extension. Must be one of: <code>json</code></td>
+</tr>
+
+<tr>
+<td><code>formatConfig</code></td>
+<td><code>object</code></td>
+<td>removes as much ambiguity as possible about how to interpret the speficied format. Properties of this object depend on the <code>format</code> field</td>
+</tr>
+
+<tr>
+<td><code>length</code></td>
+<td><code>int</code></td>
+<td>length of the data object in bytes</td>
+</tr>
+
+<tr>
+<td><code>schema</code></td>
+<td><code>jsonSchema</code></td>
+<td>the schema definition for the dataset body, schemas are defined using the IETF json-schema specification. for more info on json-schema see: <a href="https://json-schema.org">https://json-schema.org</a></td>
+</tr>
+</tbody>
+</table>
 
 <hr />
 
-<h3 id="transform">Transform</h3>
+<h3 id="transform"><code>transform</code></h3>
 
 <p>Transform is a record of executing a transformation on data. Transforms can theoretically be anything from an SQL query, a jupyter
 notebook, the state of an ETL pipeline, etc, so long as the input is zero or more datasets, and the output is a single dataset
 Ideally, transforms should contain all the machine-necessary bits to deterministicly execute the algorithm referenced in &ldquo;ScriptPath&rdquo;.</p>
 
-<p><em>Fields:</em></p>
+<p><em>transform fields:</em></p>
 
-<ul>
-<li>ScriptPath:</li>
-<li>Syntax:</li>
-<li>SyntaxVersion:</li>
-<li>Structure:</li>
-<li>Config:</li>
-<li>Resources:</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>scriptPath</code></td>
+<td><code>string</code></td>
+<td>the path to the script that produced this transformation</td>
+</tr>
+
+<tr>
+<td><code>syntax</code></td>
+<td><code>string</code></td>
+<td>langauge this transform is written in. Only &ldquo;skylark&rdquo; is currently supported</td>
+</tr>
+
+<tr>
+<td><code>syntaxVersion</code></td>
+<td><code>string</code></td>
+<td>an identifier for the application and version number that produced the result</td>
+</tr>
+
+<tr>
+<td><code>config</code></td>
+<td><code>object</code></td>
+<td>any configuration that would affect the resulting hash. transformations may use values present in config to perform their operations</td>
+</tr>
+
+<tr>
+<td><code>resources</code></td>
+<td><code>object</code></td>
+<td>map of all datasets transform depends on with both name and commit paths</td>
+</tr>
+</tbody>
+</table>
 
 <hr />
 
-<h3 id="viz">Viz</h3>
+<h3 id="viz"><code>viz</code></h3>
 
 <p>Viz stores configuration data related to representing a dataset as a visualization</p>
 
-<p><strong>Viz Fields</strong></p>
+<p><em>viz fields:</em></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>format</code></td>
+<td><code>string</code></td>
+<td>designates the visualization configuration syntax, currently only <code>html</code> is accepted</td>
+</tr>
+
+<tr>
+<td><code>scriptPath</code></td>
+<td><code>string</code></td>
+<td>location of script that generates the vizualization</td>
+</tr>
+</tbody>
+</table>
 
 <hr />
 

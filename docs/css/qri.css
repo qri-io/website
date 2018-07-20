@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+h1 { font-size: 32px; }
+h2 { font-size: 28px; }
+h3 { font-size: 24px; }
+h4 { font-size: 20px; }
+
 body {
   margin: 0;
   padding: 0;
@@ -17,6 +22,20 @@ a {
 hr {
   border: 0.5px solid rgba(0,0,0,0.05);
   margin: 25px auto;
+}
+
+th {
+  text-align: left;
+  font-weight: 500;
+  padding: 5px;
+}
+
+td {
+  padding: 5px;
+}
+
+tr:nth-child(odd) {
+  background: #eee;
 }
 
 #main.index {
