@@ -3,15 +3,6 @@ title: "Skylark Transformations"
 description: ""
 date: 2018-01-30T00:00:00-04:00
 section: tutorials
-sections:
-  - title: CLI quickstart
-    path: /docs/tutorials/cli_quickstart
-  - title: Glossary
-    path: /docs/tutorials/glossary
-  - title: Viz Templates
-    path: /docs/tutorials/html_templates
-  - title: Skylark Transformations
-    path: /docs/tutorials/skylark_transformations
 ---
 
 # Skylark Transformations

@@ -2,17 +2,7 @@
 title: "dataset"
 description: "dataset definition"
 date: 2018-01-30T00:00:00-04:00
-draft: false
 section: reference
-sections:
-  - title: Dataset
-    path: /docs/reference/dataset
-  - title: Glossary
-    path: /docs/reference/glossary
-  - title: Viz Templates
-    path: /docs/reference/html_templates
-  - title: Skylark Syntax
-    path: /docs/reference/skylark_syntax
 ---
 
 # Dataset
@@ -20,12 +10,19 @@ A Dataset is a document for describing & storing structured data. Dataset docume
 Findable, Accessible, Interoperable, and Reproducible, in relation to other dataset documents, and related-but-separate technologies such as data catalogs, HTTP API's, and data package formats Datasets are designed to be stored and distributed on content-addressed
 (identify-by-hash) systems The dataset document definition is built from a research-first principle, valuing direct interoperability with existing standards over novel definitions or specifications.
 
+** **
 
 ## Dataset Sections:
 Datasets are broken into sections. Each section has a different purpose:
 
 ### Body
 Body is the principle content of a dataset. A dataset body is the subject which all other fields describe and qualify.
+
+Supported Data Formats:
+
+* CSV
+* JSON
+* CBOR
 
 ** ** 
 
@@ -111,4 +108,3 @@ Viz stores configuration data related to representing a dataset as a visualizati
 **Viz Fields**
 
 ** ** 
-

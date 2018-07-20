@@ -2,14 +2,14 @@
 title: The Source Cascade
 date: 2018-01-30T00:00:00-04:00
 type: tutorial
-draft: true
+sections: concepts
 ---
 
 A good dataset is as complete and accruate as possible. Good datasets have metadata with a concise yet descriptive title, a description that elaborates, a schema with descriptive details, and so on. When it comes to datasets more detail is better, so long as it's accurate. Because of this, qri provides _lots_ of places to set values. We call those "places that might set values" _sources_. There are 4 sources of values in qri:
 
 * **User-Specified** - users can provide values
-* **Previous Version** - values can already be set by the previous version of a dataset
 * **Scripts** - transforms can set dataset values
+* **Previous Version** - values can already be set by the previous version of a dataset
 * **Inference** - values qri fills in based on input
 
 Having multiple sources of values creates a problem: 

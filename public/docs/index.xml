@@ -11,25 +11,5 @@
 	<atom:link href="https://qri.io/docs/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title>quickstart</title>
-      <link>https://qri.io/docs/getting_started/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/getting_started/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>names</title>
-      <link>https://qri.io/docs/names/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/names/</guid>
-      <description>It’s possible to refer to a dataset in a number of ways. It’s easiest to look at the full definition of a dataset reference, and then show what the “defaults” are to make sense of things. The full definition of a dataset reference is as follows:
-dataset_reference = peer_name/dataset_name@/network/hash  an example of that looks like this:
-b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b5 is the name of a peer, who has a dataset named comics, and it’s hash on the ipfs network at a point in time was QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y</description>
-    </item>
-    
   </channel>
 </rss>

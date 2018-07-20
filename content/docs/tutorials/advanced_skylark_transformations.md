@@ -1,7 +1,7 @@
 ---
 title: "Skylark Transformations"
 date: 2018-01-30T00:00:00-04:00
-type: tutorial
+section: tutorials
 draft: true
 ---
 
