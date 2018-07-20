@@ -5,6 +5,7 @@ title: "qri"
 author: "qri.io"
 theme: "qri"
 pluralizelisttitles: false
+publishDir: docs
 menu:
   main:
     - name: "Docs"
