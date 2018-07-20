@@ -12,31 +12,30 @@
     
     
     <item>
-      <title>dataset</title>
-      <link>https://qri.io/docs/datasets/overview/</link>
+      <title>CLI quickstart</title>
+      <link>https://qri.io/docs/tutorials/cli_quickstart/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/docs/datasets/overview/</guid>
-      <description>The word dataset is vague, but it does have a &amp;ldquo;natural&amp;rdquo; meaning to most people. When I think of a &amp;ldquo;dataset&amp;rdquo;, I generally picture a spreadsheet. Spreadsheets are organized into cells, which are an example of a way to structure data. Not all datasets are spreadsheets, but all spreadsheets are datasets.
-In contrast, I don&amp;rsquo;t think of a text document as a dataset. But a text document is organized, right?</description>
-    </item>
-    
-    <item>
-      <title>quickstart</title>
-      <link>https://qri.io/docs/getting_started/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/getting_started/</guid>
+      <guid>https://qri.io/docs/tutorials/cli_quickstart/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>commit</title>
-      <link>https://qri.io/docs/datasets/commit/</link>
+      <title>Skylark Transformations</title>
+      <link>https://qri.io/docs/tutorials/skylark_transformations/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/docs/datasets/commit/</guid>
-      <description> Technical Definition Commit encapsulates information about changes to a dataset in relation to other entries in a given history. Commit is intended to be directly analogous to the concept of a Commit Message in git.  </description>
+      <guid>https://qri.io/docs/tutorials/skylark_transformations/</guid>
+      <description>Skylark Transformations Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. A transformation is a repeatable script for generating a dataset. Skylark is a scripting langauge from Google that feels a lot like python. This package implements skylark as a transformation syntax. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
+    </item>
+    
+    <item>
+      <title>The Source Cascade</title>
+      <link>https://qri.io/docs/concepts/set_value_cascade/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/set_value_cascade/</guid>
+      <description>A good dataset is as complete and accruate as possible. Good datasets have metadata with a concise yet descriptive title, a description that elaborates, a schema with descriptive details, and so on. When it comes to datasets more detail is better, so long as it&amp;rsquo;s accurate. Because of this, qri provides lots of places to set values. We call those &amp;ldquo;places that might set values&amp;rdquo; sources. There are 4 sources of values in qri:</description>
     </item>
     
     <item>
@@ -50,14 +49,22 @@ One day we&amp;rsquo;ll get around to writing a proper company description, but 
     </item>
     
     <item>
-      <title>data</title>
-      <link>https://qri.io/docs/datasets/data/</link>
+      <title>content-addressing</title>
+      <link>https://qri.io/docs/concepts/content-addressing/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/docs/datasets/data/</guid>
-      <description> Data stored on qri has a few opinions about datasets: * a dataset is a single file * the root of a dataset is an array * when possible, don&amp;rsquo;t transform or alter data * invalid data is fine, ill-formatted data is not
-A Dataset is a single file This restriction might seem silly at first if you&amp;rsquo;re coming from a world of databases.
-The root of a Dataset is an Array When possible, don&amp;rsquo;t transform or alter data Invalid data is fine, ill-formated data is not </description>
+      <guid>https://qri.io/docs/concepts/content-addressing/</guid>
+      <description>An address is a uniform, shorthand way of referring to things. Geographic addresses are an obvious example. 1600 Pennsylvania Ave. is the address of the White House. 268 Elizabeth St. is the address of my childhood home. These houses are different in size and function, but they are both locations with addresses that adhere to a (relatively) consistent system. Addresses make it easier to refer to places.
+The internet today is location addressed.</description>
+    </item>
+    
+    <item>
+      <title>dataset</title>
+      <link>https://qri.io/docs/reference/dataset/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/reference/dataset/</guid>
+      <description>Dataset A Dataset is a document for describing &amp;amp; storing structured data. Dataset documents are designed to satisfy the FAIR principle of being Findable, Accessible, Interoperable, and Reproducible, in relation to other dataset documents, and related-but-separate technologies such as data catalogs, HTTP API&amp;rsquo;s, and data package formats Datasets are designed to be stored and distributed on content-addressed (identify-by-hash) systems The dataset document definition is built from a research-first principle, valuing direct interoperability with existing standards over novel definitions or specifications.</description>
     </item>
     
     <item>
@@ -73,52 +80,72 @@ All datasets have three parts:
     </item>
     
     <item>
-      <title>metadata</title>
-      <link>https://qri.io/docs/datasets/metadata/</link>
+      <title>glossary</title>
+      <link>https://qri.io/docs/reference/glossary/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/docs/datasets/metadata/</guid>
-      <description> Technical Definition Meta contains human-readable metadata about a dataset  </description>
+      <guid>https://qri.io/docs/reference/glossary/</guid>
+      <description>Qri is filled with all sorts of weird words and terrible acronyms. This page is to make them less terrible.
+the Distributed Web Ugh, ok this is a biggie.
+Dataset IPFS IPFS stands for the inteplanatary file system, which is a distributed web protocol. IPFS is the default network qri uses to store &amp;amp; publish datasets.
+qri I know, I&amp;rsquo;m so sorry for doing this to the world, but I&amp;rsquo;m hoping we can all learn to see &amp;ldquo;qri&amp;rdquo; and say &amp;ldquo;query&amp;rdquo;.</description>
+    </item>
+    
+    <item>
+      <title>html templates</title>
+      <link>https://qri.io/docs/reference/html_templates/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/reference/html_templates/</guid>
+      <description> HTML Templates </description>
     </item>
     
     <item>
       <title>names</title>
-      <link>https://qri.io/docs/names/</link>
+      <link>https://qri.io/docs/concepts/names/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/docs/names/</guid>
+      <guid>https://qri.io/docs/concepts/names/</guid>
       <description>It’s possible to refer to a dataset in a number of ways. It’s easiest to look at the full definition of a dataset reference, and then show what the “defaults” are to make sense of things. The full definition of a dataset reference is as follows:
 dataset_reference = peer_name/dataset_name@/network/hash  an example of that looks like this:
 b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b5 is the name of a peer, who has a dataset named comics, and it’s hash on the ipfs network at a point in time was QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y</description>
     </item>
     
     <item>
-      <title>structure</title>
-      <link>https://qri.io/docs/datasets/structure/</link>
+      <title>overview</title>
+      <link>https://qri.io/docs/concepts/overview/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/docs/datasets/structure/</guid>
-      <description>If you&amp;rsquo;re looking for tools to keep your data clean, well described, and interoperable with other datasets, structure is where that happens.
-Datsaet structure stores everything a computer will need to interpret the data in a dataset. Structure brings expressive tools for making datasets interoperable by storing all necessary details for interpreting data.
-Structure is automatically inferred by qri based on the data you provide, making it possible to use qri without having to think about structure until you need to.</description>
+      <guid>https://qri.io/docs/concepts/overview/</guid>
+      <description>What is Qri (&amp;ldquo;query&amp;rdquo;)? Qri is a distributed dataset version control system built with peer-2-peer data exchange. Peers create datasets, which are stored in versions. Qri peers form a distributed network to exchange information about their datasets, which they transmit between each other over the distributed web.
+Datasets are recorded structured data according to a specification that dictates the purpose of each component piece of a dataset. By design, qri can only store datasets.</description>
     </item>
     
     <item>
-      <title>transformations</title>
-      <link>https://qri.io/docs/datasets/transform/</link>
+      <title>registries</title>
+      <link>https://qri.io/docs/concepts/registries/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/docs/datasets/transform/</guid>
-      <description> Technical Definition Transform is a record of executing a transformation on data. Transforms could be anything from an SQL query, a jupyter notebook, the state of an ETL pipeline, etc, so long as the input is one or more datasets, and the output is a single dataset. Transform should contain all the machine-necessary bits to deterministicly execute the process referenced in &amp;quot;Data&amp;quot;. Consumers of Transforms may be able to produce abstract versions of transformations, a decision left to implementations  </description>
+      <guid>https://qri.io/docs/concepts/registries/</guid>
+      <description></description>
     </item>
     
     <item>
-      <title>visconfig</title>
-      <link>https://qri.io/docs/datasets/viz_config/</link>
+      <title>skylark transformations</title>
+      <link>https://qri.io/docs/reference/skylark_syntax/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/docs/datasets/viz_config/</guid>
-      <description> Technical Definition: VisConfig stores configuration data related to representing a dataset as a visualization  </description>
+      <guid>https://qri.io/docs/reference/skylark_syntax/</guid>
+      <description>Skylark Syntax Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. Transformions are repeatable scripts for generating a dataset. Skylark is a scripting langauge from Google that feels a lot like python. This package implements skylark as a transformation syntax. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
+    </item>
+    
+    <item>
+      <title>version control</title>
+      <link>https://qri.io/docs/concepts/version_control/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/version_control/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -139,6 +166,18 @@ Michael Hucka November 2017 Abstract The current infrastructure that underlies t
       <guid>https://qri.io/blog/datasets_are_books/</guid>
       <description>The world of linked data is built on shaky foundations that prevent a true data commons from emerging. The problem isn’t with the data, but with the way data is linked. Specifically, the way links are addressed.
 An address is a uniform, shorthand way of referring to things. Geographic addresses are an obvious example. 1600 Pennsylvania Ave. is the address of the White House. 268 Elizabeth St. is the address of my childhood home.</description>
+    </item>
+    
+    <item>
+      <title>download</title>
+      <link>https://qri.io/download/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/download/</guid>
+      <description>Download Qri qri comes in two flavors, an app and a command-line client. If you&#39;re alredy comfortable with the command line, it&#39;s worth checking out the CLI, otherwise, check out the app!
+   Qri Desktop Desktop app for interacting with qri datasets on the distributed web.
+Currently only available for Mac OS X.
+If you&#39;d like to track the status of other installations, check out our progress on github</description>
     </item>
     
   </channel>

@@ -3,22 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://qri.io/docs/datasets/overview/</loc>
+    <loc>https://qri.io/docs/tutorials/cli_quickstart/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://qri.io/docs/datasets/</loc>
-    <lastmod>2017-10-30T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/docs/getting_started/</loc>
+    <loc>https://qri.io/docs/tutorials/skylark_transformations/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://qri.io/docs/datasets/commit/</loc>
+    <loc>https://qri.io/docs/concepts/set_value_cascade/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
@@ -28,7 +23,17 @@
   </url>
   
   <url>
-    <loc>https://qri.io/docs/datasets/data/</loc>
+    <loc>https://qri.io/docs/concepts/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/concepts/content-addressing/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/reference/dataset/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
@@ -43,27 +48,47 @@
   </url>
   
   <url>
-    <loc>https://qri.io/docs/datasets/metadata/</loc>
+    <loc>https://qri.io/docs/reference/glossary/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://qri.io/docs/names/</loc>
+    <loc>https://qri.io/docs/reference/html_templates/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://qri.io/docs/datasets/structure/</loc>
+    <loc>https://qri.io/docs/concepts/names/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://qri.io/docs/datasets/transform/</loc>
+    <loc>https://qri.io/docs/concepts/overview/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://qri.io/docs/datasets/viz_config/</loc>
+    <loc>https://qri.io/docs/reference/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/concepts/registries/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/reference/skylark_syntax/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/tutorials/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/concepts/version_control/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
@@ -74,6 +99,11 @@
   
   <url>
     <loc>https://qri.io/blog/datasets_are_books/</loc>
+    <lastmod>2017-10-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/download/</loc>
     <lastmod>2017-10-30T00:00:00-04:00</lastmod>
   </url>
   

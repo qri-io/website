@@ -1,0 +1,59 @@
+baseurl: "https://qri.io/"
+relativeURLs: true
+languageCode:  "en-us"
+title: "qri"
+author: "qri.io"
+theme: "qri"
+pluralizelisttitles: false
+menu:
+  main:
+    - name: "Docs"
+      weight: -100
+      url: "/docs/"
+    - name: "Download"
+      weight: -100
+      url: "/download/"
+  docs:
+    - name: concepts
+      url: /docs/concepts/
+    - name: tutorials
+      url: /docs/tutorials/
+    - name: reference
+      url: /docs/reference/
+  concepts:
+    - name: overview
+      url: /docs/concepts/overview
+    - name: content addressing
+      url: /docs/concepts/content-addressing
+    - name: dataset names
+      url: /docs/concepts/names
+    - name: value cascade
+      url: /docs/concepts/set_value_cascade
+  reference:
+    - name: Dataset
+      url: /docs/reference/dataset
+    - name: Glossary
+      url: /docs/reference/glossary
+    - name: Viz Templates
+      url: /docs/reference/html_templates
+    - name: Skylark Syntax
+      url: /docs/reference/skylark_syntax
+  tutorials:
+    - name: CLI quickstart
+      url: /docs/tutorials/cli_quickstart
+    - name: Skylark Transformations
+      url: /docs/tutorials/skylark_transformations
+params:
+  IsDev: false
+  Author: "qri"
+  # CacheBuster = true
+  DateForm: "Jan 2, 2006"
+  DateFormFull: "Mon Jan 2 2006 15:04:05 MST"
+  Description: "a home for datasets"
+  Email: "info@qri.io"
+  FaviconFile: "img/leaf.ico"
+  SegmentTracker: "b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju"
+  GitHub: "qri-io"
+  # Lang = "en" 
+  # LinkedIn = "//linkedin.com/in/you"
+  Twitter: "qri_io"

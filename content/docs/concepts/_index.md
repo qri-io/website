@@ -1,0 +1,10 @@
+---
+title: "concepts"
+description: ""
+date: 2018-01-30T00:00:00-04:00
+section: concepts
+---
+
+# Qri Concepts
+
+This section of the docs attempts to artiulate qri through the ideas that drive it. If the reference is the dictionary-style strict definition of qri, this section approaches understanding qri from the other side of the equation.
