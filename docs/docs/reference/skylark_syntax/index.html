@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.37-DEV" />
+  <meta name="generator" content="Hugo 0.44" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -167,16 +167,88 @@
 
 <h3 id="transform-functions">Transform Functions</h3>
 
-<p>So far there are two predefined transform functions, with more planned for future use:</p>
+<p>So far there are two predefined data functions, with more planned for future use:</p>
 
 <ul>
 <li>download</li>
 <li>transform</li>
 </ul>
 
-<h4 id="download">Download</h4>
+<h4 id="def-download-qri">def download(qri):</h4>
 
-<p>Download is the only moment</p>
+<p>Download is the only function in which you can make an http request or get an http response, aka the only place in a transform where you can download data form a website or server. You must then manipulate the response to get some structured data, which can be returned.</p>
+
+<p>The download function is always run before the transform function.</p>
+
+<p>The Transform function will recieve data returned from the download function from the <code>qri</code> object, specifically the <code>qri.download</code> field.</p>
+
+<p>When in the download function, you have access to these packages with specific methods:</p>
+
+<h5 id="qri">qri</h5>
+
+<p><em>you can access these methods from the <code>qri</code> object, eg <code>qri.get_body()</code></em></p>
+
+<ul>
+<li><a href="#get_body">get_body</a></li>
+<li><a href="#get_config">get_config</a></li>
+<li><a href="#get_secret">get_secret</a></li>
+<li><a href="#set_meta">set_meta</a></li>
+<li><a href="#set_schema">set_schema</a></li>
+</ul>
+
+<h5 id="html">html</h5>
+
+<p><em>you can access these methods is you have an html object <code>doc</code>, eg <code>doc.children()</code></em></p>
+
+<ul>
+<li><a href="#attr">attr</a></li>
+<li><a href="#children">children</a></li>
+<li><a href="#children_filtered">children_filtered</a></li>
+<li><a href="#contents">contents</a></li>
+<li><a href="#eq">eq</a></li>
+<li><a href="#find">find</a></li>
+<li><a href="#first">first</a></li>
+<li><a href="#filter">filter</a></li>
+<li><a href="#get">get</a></li>
+<li><a href="#has">has</a></li>
+<li><a href="#last">last</a></li>
+<li><a href="#len">len</a></li>
+<li><a href="#parent">parent</a></li>
+<li><a href="#parents_until">parents_until</a></li>
+<li><a href="#siblings">siblings</a></li>
+<li><a href="#html_text">text</a></li>
+</ul>
+
+<h5 id="http">http</h5>
+
+<p><em>you can access these methods from the <code>qri.http</code> object,eg <code>qri.http.get()</code></em></p>
+
+<ul>
+<li><a href="#delete">http.delete</a></li>
+<li><a href="#http.get">http.get</a></li>
+<li><a href="#options">http.options</a></li>
+<li><a href="#patch">http.patch</a></li>
+<li><a href="#post">http.post</a></li>
+<li><a href="#put">http.put</a></li>
+</ul>
+
+<h5 id="response">response</h5>
+
+<p><em>you can call these methods on a response object, in this list we are going to call the response object <code>r</code>, eg <code>r.content()</code></em></p>
+
+<ul>
+<li><a href="#content">content</a></li>
+<li><a href="#encoding">encoding</a></li>
+<li><a href="#headers">headers</a></li>
+<li><a href="#json">json</a></li>
+<li><a href="#status_code">status_code</a></li>
+<li><a href="#text">text</a></li>
+<li><a href="#url">url</a></li>
+</ul>
+
+<h4 id="def-transform-qri">def transform(qri):</h4>
+
+<p>The transform function can pull from a body file and config file, as well as set the metadata or schema of a dataset. It can also pull any data returned in the <code>download</code> function through the <code>qri</code> object at <code>qri.download</code>.</p>
 
 <hr />
 
@@ -185,6 +257,163 @@
 <hr />
 
 <h3 id="transform-secrets">Transform Secrets</h3>
+
+<hr />
+
+<h3 id="function-definitions">Function Definitions</h3>
+
+<h4 id="get_body">get_body</h4>
+
+<p><code>qri.get_body()</code> - returns the body from the data from the body file</p>
+
+<h4 id="get_config">get_config</h4>
+
+<p><code>qri.get_config()</code> - returns the config as a json object</p>
+
+<h4 id="get_secret">get_secret</h4>
+
+<p><code>qri.get_secret()</code> - returns the secret from the config</p>
+
+<h4 id="set_meta">set_meta</h4>
+
+<p><code>qri.set_meta(field, value)</code> - Sets the meta at specific field to the value</p>
+
+<h4 id="set_schema">set_schema</h4>
+
+<p><code>qri.set_schema(value)</code> - Sets the schema to the object found at value</p>
+
+<h4 id="attr">attr</h4>
+
+<p><code>selection.attr(attribute)</code> - Returns a string of the given attribute for that selection in the document. For example:</p>
+
+<pre><code class="language-python">  example_html = '&lt;div class=&quot;example_class_name&quot;&gt;&lt;p&gt;test&lt;/p&gt;&lt;/div&gt;'
+  doc = qri.html(example_html)
+  doc.attr(&quot;class&quot;) # is equal to 'example_class_name'
+</code></pre>
+
+<h4 id="children">children</h4>
+
+<p><code>selection.children()</code> - Children gets the child elements of each element in the Selection. It returns a new Selection object containing these elements</p>
+
+<pre><code>  example_html = '&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;'
+  doc = qri.html(example_html)
+  doc.children()
+  # returns a selection with the &lt;p class=&quot;A&quot;&gt; node and &lt;p class=&quot;B&quot;&gt; node
+</code></pre>
+
+<h4 id="children_filtered">children_filtered</h4>
+
+<p><code>selection.children_filtered(filter)</code> - ChildrenFiltered gets the child elements of each element in the Selection, filtered by the specified selector. It returns a new Selection object containing these elements</p>
+
+<pre><code>  example_html = '&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;'
+  doc = qri.html(example_html)
+  doc.children_filtered(&quot;.B&quot;)
+  # returns a selection with the &lt;p class=&quot;B&quot;&gt; node
+</code></pre>
+
+<h4 id="contents">contents</h4>
+
+<p><code>selection.contents()</code> - Contents gets the children of each element in the Selection, including text and comment nodes. It returns a new Selection object containing these elements</p>
+
+<h4 id="eq">eq</h4>
+
+<p><code>selection.eq(index)</code> - Eq returns node i as a new selection</p>
+
+<h4 id="find">find</h4>
+
+<p><code>selection.find(selector)</code> - Find gets the descendants of each element in the current set of matched elements, filtered by a given selector string. It returns a new Selection containing these matched elements.</p>
+
+<h4 id="first">first</h4>
+
+<p><code>selection.first()</code> - First returns the first element of the selection as a new selection</p>
+
+<h4 id="filter">filter</h4>
+
+<p><code>selection.filter(selector)</code> - Filter reduces the set of matched elements to those that match the selector string. It returns a new Selection object for this subset of matching elements</p>
+
+<h4 id="get">get</h4>
+
+<p><code>selection.get(index)</code> - Get retrieves the underlying node at the specified index. Get without parameter is not implemented, since the node array is available on the Selection object</p>
+
+<h4 id="has">has</h4>
+
+<p><code>selection.has()</code> - Has reduces the set of matched elements to those that have a descendant that matches the selector. It returns a new Selection object with the matching elements</p>
+
+<h4 id="last">last</h4>
+
+<p><code>selection.last()</code> - Last returns the last element of the selection as a new selection</p>
+
+<h4 id="len">len</h4>
+
+<p><code>selection.len()</code> - Len returns the length of the nodes in the selection as an integer</p>
+
+<h4 id="parent">parent</h4>
+
+<p><code>selection.parent()</code> - Parent gets the parent of each element in the Selection. It returns a new Selection object containing the matched elements</p>
+
+<h4 id="parents_until">parents_until</h4>
+
+<p><code>selection.parents_until(selector)</code> - ParentsUntil gets the ancestors of each element in the Selection, up to but not including the element matched by the selector. It returns a new Selection object containing the matched elements</p>
+
+<h4 id="siblings">siblings</h4>
+
+<p><code>selection,siblings()</code> - Siblings gets the siblings of each element in the Selection. It returns a new Selection object containing the matched elements</p>
+
+<h4 id="html_text">text</h4>
+
+<p><code>text()</code> - Text gets the combined text contents of each element in the set of matched elements, including their descendants</p>
+
+<h4 id="delete">http.delete</h4>
+
+<p><code>http.delete(url)</code> - Sends a DELETE request to the given url. Returns a response.</p>
+
+<h4 id="http.get">http.get</h4>
+
+<p><code>http.get(url)</code> - Sends a GET request to the given url. Returns a response.</p>
+
+<h4 id="options">http.options</h4>
+
+<p><code>http.options(url)</code> - Sends an OPTIONS request to the given url. Returns a response.</p>
+
+<h4 id="patch">http.patch</h4>
+
+<p><code>http.patch(url)</code> - Sends a PATCH request to the given url. Returns a response.</p>
+
+<h4 id="post">http.post</h4>
+
+<p><code>http.post(url)</code> - Sends a POST request to the given url. Returns a response.</p>
+
+<h4 id="put">http.put</h4>
+
+<p><code>http.put(url)</code> - Sends a PUT request to the given url. Returns a response.</p>
+
+<h4 id="content">content</h4>
+
+<p><code>response.content()</code> - Content returns the raw data as a string. This string can be passed to <code>qri.html(content_string)</code> to return a document that can be parsed by the <code>html</code> functions.</p>
+
+<h4 id="encoding">encoding</h4>
+
+<p><code>response.encoding()</code> - Encoding returns a string with the different forms of encoding used in the response.</p>
+
+<h4 id="headers">headers</h4>
+
+<p><code>response.headers()</code> - Headers returns a dictionary of the response headers.</p>
+
+<h4 id="json">json</h4>
+
+<p><code>response.json()</code> - Json attempts the response body as json.</p>
+
+<h4 id="status_code">status_code</h4>
+
+<p><code>response.status_code</code> - Status_code returns the status code of the response.</p>
+
+<h4 id="text">text</h4>
+
+<p><code>response.text()</code> - Text returns the raw data as a string. This string can be passed to <code>qri.html(text)</code> to return a document that can be parsed by the <code>html</code> functions.</p>
+
+<h4 id="url">url</h4>
+
+<p><code>response.url</code> -  returns a string representation of the url</p>
 
     </div>
   </section>
