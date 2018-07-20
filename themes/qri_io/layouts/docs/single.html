@@ -1,0 +1,12 @@
+{{ define "title"}} {{ .Title}} {{end}}
+
+{{ define "main"}}
+<div id="docs_page" class="docs">
+  {{ partial "docs/sidebar" .}}
+  <section id="main">
+    <div class="content">
+      {{ .Content}}
+    </div>
+  </section>
+</div>
+{{ end }}

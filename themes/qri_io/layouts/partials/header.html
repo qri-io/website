@@ -1,0 +1,21 @@
+<div class="show_sm">
+  <div id="nav_toggle_box">
+    <div id="nav_toggle_brand">
+      <a href="/">{{ .Site.Title }}</a>
+    </div><a data-component="toggleme" data-target="#top" href="#" id="nav-toggle"><i class="kube-menu"></i></a>
+  </div>
+</div>
+
+<div id="main_nav" class="hide_sm">
+  <div class="wrap">
+    <div class="logotype">
+      <a href="/" title="home">{{ .Site.Title }}</a>
+    </div>
+    <nav class="menu" >
+       {{ $currentPage := . }}
+       {{ range .Site.Menus.main }}
+    <a href="{{ .URL }}" {{if  $currentPage.IsMenuCurrent "main" . }} class="active"{{end}}>{{ .Name }}</a>
+    {{end}}
+    </nav>
+  </div>
+</div>

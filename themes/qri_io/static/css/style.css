@@ -1,0 +1,83 @@
+/* global */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "avenir next", "avenir", helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #555;
+}
+/* /global */
+
+/* layout */
+#wrap {
+  display: flex;
+  flex-direction: horizontal;
+}
+
+#sidebar {
+  flex: 0 1 260px;
+  padding: 30px 10px 30px 20px;
+  position: relative;
+}
+
+#main {
+  flex: 2 2;
+  padding: 30px 10px;
+}
+/* /layout */
+
+
+/* sidebar styling */
+#sidebar .content {
+  position: fixed;
+  max-width: 260px;
+  padding: 0;
+  overflow-y: auto;
+}
+
+#sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#sidebar li {
+  margin-bottom: 4px;
+}
+
+#sidebar .chapter {
+  font-weight: bold;
+}
+
+#sidebar .sections {
+  padding-left: 5px;
+}
+
+#sidebar .section {
+  font-weight: normal;
+}
+/* /sidebar styling */
+
+/* main styling */
+#main .content {
+  max-width: 750px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.6em;
+  margin-bottom: 120px;
+}
+
+#main .chapter_title,
+#main section {
+  margin-bottom: 40px;
+}
+
+#main .hljs {
+  background: #eee;
+  border-radius: 3px;
+}
+/* /main styling */

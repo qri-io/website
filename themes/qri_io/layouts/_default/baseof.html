@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+<head>
+  {{ .Hugo.Generator }}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ block "title" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+
+  {{ with .Description }}
+  <meta name="description" content="{{ . }}"> {{ end }}
+  <!-- noindex meta -->
+  {{ $default_noindex_kinds := slice "section" "taxonomy" "taxonomyTerm" }}
+  {{ $noindex_kinds := .Site.Params.noindex_kinds | default $default_noindex_kinds }}
+  {{ $is_noindex_true := and (isset .Params "noindex") .Params.noindex }}
+  {{ if or (in $noindex_kinds .Kind) ($is_noindex_true) }}
+  <meta name="robots" content="noindex">
+  {{ end }}
+
+  {{ partial "meta/name-author" . }}
+  {{ template "_internal/opengraph.html" . }}
+  {{ partial "meta/ogimage" . }}
+  <!-- Site verification -->
+  {{ if .IsHome }} {{ partial "site-verification" . }} {{ end }}
+  <!-- add googleAnalytics in config.toml -->
+  {{ template "_internal/google_analytics_async.html" . }}
+  {{ if .RSSLink }}
+  <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" /> {{ end }}
+
+  <link rel="canonical" href="{{ .Permalink }}"> {{ if (isset .Params "prev") }}
+  <link rel="prev" href="{{ .Params.prev }}"> {{ end }} {{ if (isset .Params "next") }}
+  <link rel="next" href="{{ .Params.next }}"> {{ end }}
+
+  {{ partial "favicon" . }}
+
+  <link href="{{ "/css/font.css" | relURL }}" rel="stylesheet" type="text/css">
+  <link href="{{ "/css/qri.css" | relURL }}" rel="stylesheet" type="text/css">
+  <!-- <link href="{{ "/css/kube.legenda.css" | relURL }}" rel="stylesheet" type="text/css">
+  <link href="{{ "/css/highlight.css" | relURL }}" rel="stylesheet" type="text/css">
+  <link href="{{ "/css/master.css" | relURL }}" rel="stylesheet" type="text/css"> -->
+<!-- js vendor -->
+  <script src="{{ "/js/jquery-2.1.4.min.js" | relURL }}" type="text/javascript"></script>
+  <link rel="stylesheet" href="{{ "/css/highlight.default.min.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "/css/highlight.theme.tomorrow.css" | relURL }}">
+  <script src="{{ "/js/highlight.pack.js" | relURL }}"></script>
+  <script>
+    window.onload = function(e) {
+      let elements = document.querySelectorAll('.highlight pre')
+      Array.from(elements).forEach((block, i) => {
+        hljs.highlightBlock(block)
+      })
+    }
+  </script>
+
+  <script type="text/javascript" src="{{ "/js/tocbot.min.js" | relURL }}"></script>
+
+  {{ if .Site.Params.SegmentTracker }}
+    <script type="text/javascript">
+     !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+      analytics.load("{{ .Site.Params.SegmentTracker }}");
+      analytics.page()
+    }}();
+    </script>
+  {{ end }}
+</head>
+
+
+<body class="page-kube {{ .Type }} {{ .Params.bodyClass }}" {{ if .Params.backgroundImage }} style="background-image: url('{{ .Params.backgroundImage }}')"{{ end }}>
+  <header>{{ block "header" . }}{{ end }}</header>
+  <main>{{ block "main" . }}{{ end }}</main>
+  <footer>{{ block "footer" . }}{{ end }}</footer>
+
+
+  <script src="{{ "/js/kube.js" | relURL }}" type="text/javascript">
+  </script>
+  <script src="{{ "/js/kube.legenda.js" | relURL }}" type="text/javascript">
+  </script>
+  <script src="{{ "/js/master.js" | relURL }}" type="text/javascript">
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<nav id="docs_sidebar">
+  <div class="content">
+    <div class="logotype">
+      <a href="/" title="home" class="title">{{ .Site.Title }}</a>
+      <p class="subhead">docs</p>
+    </div>
+    <div class="pages">
+      <p><b>{{ .Params.section }}</b></p>
+      <ul>
+        {{ $menu := index .Site.Menus .Params.section}}
+        {{ range $menu }}
+          <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+    <hr />
+    <p><i>Jump to:</i></p>
+    <ul class="docs_sections">
+      <li><a href="/docs">Docs Home</a></li>
+      <li><a href="/docs/concepts">Concepts</a></li>
+      <li><a href="/docs/reference">Reference</a></li>
+      <li><a href="/docs/tutorials">Tutorials</a></li>
+    </ul>
+  </div>
+  <br />
+</nav>

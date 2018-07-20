@@ -1,0 +1,10 @@
+{{ define "title"}} {{ .Title}} {{end}}
+{{ define "header"}} {{ partial "header" .}} {{end}}
+{{ define "main" }}
+<div class="single">
+  {{ .Content }}
+</div>
+{{ end }}
+{{ define "footer" }} 
+  {{ partial "footer" . }} 
+{{ end }}
