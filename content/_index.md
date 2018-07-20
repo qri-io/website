@@ -21,7 +21,7 @@ bodyClass: index
     <div class="wrap">
       <div id="web_of_datasets" class="feature_description">
         <h2>Qri is a Web of Datasets</h2>
-        <p>qri is built around datasets. Bigger than a spreadsheet, smaller than a database, datasets are all around us. qri is a big dataset bonanza, where people of all stripes can mix together all their sweet sweet data.</p>
+        <p>Qri is built around datasets. Bigger than a spreadsheet, smaller than a database, datasets are all around us. qri is a big dataset bonanza, where people of all stripes can mix together all their sweet sweet data.</p>
       </div>
       <div id="open_source" class="feature_description">
         <h2>This Party is Free and Open Source</h2>
@@ -76,7 +76,7 @@ bodyClass: index
         </div>
         <div id="git_style" class="feature_description">
           <h3>Git-style version control</h3>
-          <p>qri’s dataset versioning system is  inspired by git, and signs each commit with your identifying keypair. Because qri is only about datasets, qri generates commit messages for you.</p>
+          <p>Qri’s dataset versioning system is inspired by git, and signs each commit with your identifying keypair. Because qri is only about datasets, qri generates commit messages for you.</p>
         </div>
         <div id="data_formats" class="feature_description">
           <h3>Native support for JSON, CSV, CBOR data formats</h3>
@@ -84,11 +84,11 @@ bodyClass: index
         </div>
         <div id="meta_specs" class="feature_description">
           <h3>Metadata based on library science</h3>
-          <p>Librarians are better at metadata than developers, so we based our metadata spec on DCAT & Project Open Data,  for cleaner integration with existing data catlogs</p>
+          <p>Librarians are better at metadata than developers, so we based our metadata spec on DCAT & Project Open Data, for cleaner integration with existing data catlogs</p>
         </div>
         <div id="json_schemas" class="feature_description">
-          <h3>JSON-Schema’s for validation & OpenAPIs</h3>
-          <p>dataset schemas are defined with the same spec that drives OpenAPIs. Datasets automatically generate a JSON API & accompanying OpenAPI documentation</p>
+          <h3>JSON-Schemas for validation & OpenAPIs</h3>
+          <p>Dataset schemas are defined with the same spec that drives OpenAPIs. Datasets automatically generate a JSON API & accompanying OpenAPI documentation</p>
         </div>
         <div id="transformations" class="feature_description">
           <h3>Automate data munging with Python’s cousin: Skylark</h3>
