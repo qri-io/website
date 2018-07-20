@@ -14,4 +14,4 @@ This section of the docs attempts to artiulate qri through the ideas that drive 
 * **[Overview](/docs/concepts/overview)**
 * **[Content Addressing](/docs/concepts/content-addressing)**
 * **[Naming](/docs/concepts/names)**
-* **[Value Cascade](/docs/concepts/set_value_cascade)**
+* **[Value Cascade](/docs/concepts/value_cascade)**

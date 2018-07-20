@@ -29,7 +29,7 @@ menu:
     - name: dataset names
       url: /docs/concepts/names
     - name: value cascade
-      url: /docs/concepts/set_value_cascade
+      url: /docs/concepts/value_cascade
   reference:
     - name: Dataset
       url: /docs/reference/dataset
