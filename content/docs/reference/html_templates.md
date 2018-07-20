@@ -6,3 +6,5 @@ section: reference
 ---
 
 # HTML Templates
+
+_coming soon!_

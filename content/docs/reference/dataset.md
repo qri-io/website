@@ -62,7 +62,7 @@ _commit fields:_
 
 _additional data types:_
 
-User:
+#### `User`
 
 _example_
 ```json
@@ -104,7 +104,7 @@ _meta fields:_
 
 _additional data types:_
 
-#### Citation:
+#### `Citation`
 
 _example:_
 ```json
@@ -115,7 +115,7 @@ _example:_
   }
 ```
 
-#### License:
+#### `License`
 
 _example:_
 ```json

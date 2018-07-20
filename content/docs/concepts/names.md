@@ -6,6 +6,8 @@ type: concept
 section: concepts
 ---
 
+# Names in Qri
+
 It’s possible to refer to a dataset in a number of ways. It’s easiest to look at the full definition of a dataset reference, and then show what the “defaults” are to make sense of things. The full definition of a dataset reference is as follows:
 
 

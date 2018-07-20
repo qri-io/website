@@ -13,11 +13,11 @@
     
     <item>
       <title>The Source Cascade</title>
-      <link>https://qri.io/docs/concepts/set_value_cascade/</link>
+      <link>https://qri.io/docs/concepts/value_cascade/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/docs/concepts/set_value_cascade/</guid>
-      <description>A good dataset is as complete and accruate as possible. Good datasets have metadata with a concise yet descriptive title, a description that elaborates, a schema with descriptive details, and so on. When it comes to datasets more detail is better, so long as it&amp;rsquo;s accurate. Because of this, qri provides lots of places to set values. We call those &amp;ldquo;places that might set values&amp;rdquo; sources. There are 4 sources of values in qri:</description>
+      <guid>https://qri.io/docs/concepts/value_cascade/</guid>
+      <description>Value Cascade A good dataset is as complete and accruate as possible. Good datasets have metadata with a concise yet descriptive title, a description that elaborates, a schema with descriptive details, and so on. When it comes to datasets more detail is better, so long as it&amp;rsquo;s accurate. Because of this, qri provides lots of places to set values. We call those &amp;ldquo;places that might set values&amp;rdquo; sources. There are 4 sources of values in qri:</description>
     </item>
     
     <item>
@@ -26,8 +26,7 @@
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/concepts/content-addressing/</guid>
-      <description>An address is a uniform, shorthand way of referring to things. Geographic addresses are an obvious example. 1600 Pennsylvania Ave. is the address of the White House. 268 Elizabeth St. is the address of my childhood home. These houses are different in size and function, but they are both locations with addresses that adhere to a (relatively) consistent system. Addresses make it easier to refer to places.
-The internet today is location addressed.</description>
+      <description>Content Addressing An address is a uniform, shorthand way of referring to things. Geographic addresses are an obvious example. 1600 Pennsylvania Ave. is the address of the White House. 268 Elizabeth St. is the address of my childhood home. These houses are different in size and function, but they are both locations with addresses that adhere to a (relatively) consistent system. Addresses make it easier to refer to places.</description>
     </item>
     
     <item>
@@ -36,7 +35,7 @@ The internet today is location addressed.</description>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/concepts/names/</guid>
-      <description>It’s possible to refer to a dataset in a number of ways. It’s easiest to look at the full definition of a dataset reference, and then show what the “defaults” are to make sense of things. The full definition of a dataset reference is as follows:
+      <description>Names in Qri It’s possible to refer to a dataset in a number of ways. It’s easiest to look at the full definition of a dataset reference, and then show what the “defaults” are to make sense of things. The full definition of a dataset reference is as follows:
 dataset_reference = peer_name/dataset_name@/network/hash  an example of that looks like this:
 b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b5 is the name of a peer, who has a dataset named comics, and it’s hash on the ipfs network at a point in time was QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y</description>
     </item>

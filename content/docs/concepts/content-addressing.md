@@ -4,6 +4,8 @@ date: 2018-01-30T00:00:00-04:00
 section: concepts
 ---
 
+# Content Addressing
+
 An address is a uniform, shorthand way of referring to things. Geographic addresses are an obvious example. 1600 Pennsylvania Ave. is the address of the White House. 268 Elizabeth St. is the address of my childhood home. These houses are different in size and function, but they are both locations with addresses that adhere to a (relatively) consistent system. Addresses make it easier to refer to places.
 
 The internet today is location addressed. Youtube.com and Boingboing.net are locations. We refer to content like a video or a blog by its *universal resource locator* (URL). Much like my childhood house, the internet is organized around the location of content. 
@@ -25,5 +27,3 @@ It seems silly to ask for the Universal location of a book because any copy of t
 Switching from location addressing to content addressing has a *decentralizing* effect. Being freed from concerns of location every “download*”* of a dataset can be used to make that dataset available, fighting link rot.  What’s more, content drift on the distributed web is simply not possible, because content cannot be changed without changing the address.  And that’s just the beginning. 
 
 Content addressing facilitates *shared dependencies*. Because 1) someone can share with me an exact, authoritative copy of their dataset, and 2) she cannot change the data without me knowing, I can depend on it. As soon as I can depend on someone else’s data, that’s one less dataset I have to create myself. I am now free to use that time to create or update other data that someone else may be able to use, simultaneously preserving resources and growing knowledge. 
-
-Shared dependencies are the magic of open source software missing from open data. To pull this off **I’m proposing we build a piece of public infrastructure on the distributed web, namely** ***a dataset version control system*** **(DVCS).** 

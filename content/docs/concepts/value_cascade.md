@@ -1,9 +1,10 @@
 ---
 title: The Source Cascade
 date: 2018-01-30T00:00:00-04:00
-type: tutorial
-sections: concepts
+section: concepts
 ---
+
+# Value Cascade
 
 A good dataset is as complete and accruate as possible. Good datasets have metadata with a concise yet descriptive title, a description that elaborates, a schema with descriptive details, and so on. When it comes to datasets more detail is better, so long as it's accurate. Because of this, qri provides _lots_ of places to set values. We call those "places that might set values" _sources_. There are 4 sources of values in qri:
 
@@ -23,8 +24,8 @@ We need a set of rules for how these conflicts will be resolved so you don't get
 The "priority of which source wins" is called the **source cascade**, and by default they're in this order from highest to lowest:
 
 * User-Specified
-* Previous
 * Scripts
+* Previous
 * Inference
 
 User-Specified values have the highest priority. This means that if a user updates a dataset, and specifies a `meta.title`, it will override _any other source_.
