@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tutorials on qri</title>
+    <link>https://qri.io/docs/tutorials/</link>
+    <description>Recent content in tutorials on qri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 30 Jan 2018 00:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://qri.io/docs/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CLI quickstart</title>
+      <link>https://qri.io/docs/tutorials/cli_quickstart/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/tutorials/cli_quickstart/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Skylark Transformations</title>
+      <link>https://qri.io/docs/tutorials/skylark_transformations/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/tutorials/skylark_transformations/</guid>
+      <description>Skylark Transformations Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. A transformation is a repeatable script for generating a dataset. Skylark is a scripting langauge from Google that feels a lot like python. This package implements skylark as a transformation syntax. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>concepts on qri</title>
+    <link>https://qri.io/docs/concepts/</link>
+    <description>Recent content in concepts on qri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 30 Jan 2018 00:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://qri.io/docs/concepts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Source Cascade</title>
+      <link>https://qri.io/docs/concepts/set_value_cascade/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/set_value_cascade/</guid>
+      <description>A good dataset is as complete and accruate as possible. Good datasets have metadata with a concise yet descriptive title, a description that elaborates, a schema with descriptive details, and so on. When it comes to datasets more detail is better, so long as it&amp;rsquo;s accurate. Because of this, qri provides lots of places to set values. We call those &amp;ldquo;places that might set values&amp;rdquo; sources. There are 4 sources of values in qri:</description>
+    </item>
+    
+    <item>
+      <title>content-addressing</title>
+      <link>https://qri.io/docs/concepts/content-addressing/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/content-addressing/</guid>
+      <description>An address is a uniform, shorthand way of referring to things. Geographic addresses are an obvious example. 1600 Pennsylvania Ave. is the address of the White House. 268 Elizabeth St. is the address of my childhood home. These houses are different in size and function, but they are both locations with addresses that adhere to a (relatively) consistent system. Addresses make it easier to refer to places.
+The internet today is location addressed.</description>
+    </item>
+    
+    <item>
+      <title>names</title>
+      <link>https://qri.io/docs/concepts/names/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/names/</guid>
+      <description>It’s possible to refer to a dataset in a number of ways. It’s easiest to look at the full definition of a dataset reference, and then show what the “defaults” are to make sense of things. The full definition of a dataset reference is as follows:
+dataset_reference = peer_name/dataset_name@/network/hash  an example of that looks like this:
+b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b5 is the name of a peer, who has a dataset named comics, and it’s hash on the ipfs network at a point in time was QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y</description>
+    </item>
+    
+    <item>
+      <title>overview</title>
+      <link>https://qri.io/docs/concepts/overview/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/overview/</guid>
+      <description>What is Qri (&amp;ldquo;query&amp;rdquo;)? Qri is a distributed dataset version control system built with peer-2-peer data exchange. Peers create datasets, which are stored in versions. Qri peers form a distributed network to exchange information about their datasets, which they transmit between each other over the distributed web.
+Datasets are recorded structured data according to a specification that dictates the purpose of each component piece of a dataset. By design, qri can only store datasets.</description>
+    </item>
+    
+    <item>
+      <title>registries</title>
+      <link>https://qri.io/docs/concepts/registries/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/registries/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>version control</title>
+      <link>https://qri.io/docs/concepts/version_control/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/version_control/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
