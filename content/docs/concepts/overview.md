@@ -13,7 +13,7 @@ _Datasets_ are recorded structured data according to a specification that dictat
 
 All datasets on qri are immutable. Datasets are identified by their cryptographic hash, and assume they are being stored on a content-addressed file system (content is referred to by cryptographic hash). Changes to datasets are stored by creating a new version of data that references the previous version. All Versions of Qri includes a _naming system_ that connects human-readable names to the latest version ("tip") of a dataset history of qri datasets are tracked & attributed, signed with a keypair associated with the _Peer_.
 
-Qri leverages the content-addressing scheme of the distributed web to provide global, immutable identifiers for datasets. By default qri is configured to use IPFS as it's "distributed web implementation", but is architected to support multiple content-addressed storage formats. Through.
+Qri leverages the content-addressing scheme of the distributed web to provide global, immutable identifiers for datasets. By default qri is configured to use IPFS as it's "distributed web implementation", but is architected to support multiple content-addressed storage formats. 
 
 Peers can opt into _registries_ that reinforce the network, providing a social governance structure & features like search & high-uptime. Registries are built on a federated model where participating peers can communicate with registries for a layer of insulation against bad actors.
 
