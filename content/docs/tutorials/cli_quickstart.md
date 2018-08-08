@@ -6,6 +6,7 @@ section: tutorials
 ---
 
 # CLI Tutorial, Part 1
+_(last updated August 8, 2018)_
 
 Welcome to the wonderful world of the Qri Command Line Interface. After the first section of this tutorial you will be able to set up your qri repo, check the version of qri you are running, create a new dataset, list your datasets, and export your datasets. Following is an index.
 
@@ -26,7 +27,7 @@ The whole tutorial is divided into eight sections. The topics are as follows:
   2.4 `qri save`  
 
 3. Dataset Reference (DatasetRefs)  
-  3.1 what is a dataset ref and how is it formatted  
+  3.1 what is a dataset ref and how is it formatted?  
   3.2 `qri rename`  
   3.3 `qri log` - how to find the hash of a previous dataset version  
 
@@ -58,7 +59,7 @@ The whole tutorial is divided into eight sections. The topics are as follows:
   8.4 `qri add`  
 
 
-## QLI Quickstart
+## 1. QLI Quickstart
 
 Head over to our [releases](https://github.com/qri-io/qri/releases) page and download the latest version of the Qri installer (the .pkg file).
 
@@ -66,7 +67,7 @@ Once you've gone through the install process, open up your terminal.
 
 Let's start by teaching you how to fish, so to speak. 
 
-### qri help
+### 1.1 qri help
 Type the command `qri help`
 
 This is the output you should receive:
@@ -126,43 +127,43 @@ By just typing `qri`, `qri help`, or `qri --help`,  you can get a list of all th
 
 And typing `--help` after any Qri command, you can get a list of all the flags and options available for that command, as well as example usage.
 
-### qri version
+### 1.2 qri version
 
 If you are ever having trouble with something that is supposed to be working just fine, or you and a friend are getting different behaviors while using the same command, it could be that you are not using the most recent version of Qri.
 
-Since Qri is in active and rapid development, changes happen often. Updating Qri to the latest version should not have an effect on your repo, unless specified in the release notes. Such breaking changes will be outlined, as well as information on what you should do to ease the transition.
+Since Qri is in active and rapid development, we're making changes to the app all the time. Updating Qri to the latest version should not have an effect on your repo, unless specified in the release notes. Such breaking changes will be outlined, as well as information on what you should do to ease the transition.
 
 The most current version of Qri will be specified by the latest [release](https://github.com/qri-io/qri/releases).
 
 At the last update of this tutorial, the most current version is `0.5.1`
 
-To get the version number of the qri software you are running, run the command `qri version`
+To view the version number of the qri software you are running, run the command `qri version`
 
 ```
 $ qri version
 0.5.1
 ```
 
-### qri setup
+### 1.3 qri setup
 
 Okay, okay, enough stringing you along. Time to get into what you are really here for. Let's set up our Qri repository, or repo, and create a new dataset.
 
 When you run the `qri setup` command, you are actually doing a few things:
 
-1. New repo check:  
-  First, Qri will check to see if there is already a qri repo on your machine. If not, Qri attempts to creates a new repo, using the configuration details in the default config file (unless overriden with the `--ipfs-config` and/or `--config-data` flags, type `qri setup --help` for more details)
+  A. New repo check:  
+    First, Qri will check to see if there is already a qri repo on your machine. If not, Qri attempts to creates a new repo, using the configuration details in the default config file (unless overriden with the `--ipfs-config` and/or `--config-data` flags, type `qri setup --help` for more details)
 
-2. Peername:  
-  It will prompt you for a peername, if you have not provided one using the `--peername` flag or used a custom config file that has the peername provided. It will ping the registry to see if that peername is currently taken. If it is taken, it will prompt you for another one.
+  B. Peername:  
+    It will prompt you for a peername, if you have not provided one using the `--peername` flag or used a custom config file that has the peername provided. It will ping the registry to see if that peername is currently taken. If it is taken, it will prompt you for another one.
 
-3. Directories:  
-  It will create the repo directories on your QRI_PATH. QRI_PATH is an environment variable. We recommend that you leave the QRI_PATH variable as is, unless you have a good reason to change it.
+  C. Directories:  
+    It will create the repo directories on your QRI_PATH. QRI_PATH is an environment variable. We recommend that you leave the QRI_PATH variable as is, unless you have a good reason to change it.
 
-4. IPFS:  
-  If IPFS (the network protocol that allows Qri to be a peer to peer service) does not exist on your system, Qri will install it for you. It will create the IPFS repo on your IPFS_PATH. IPFS_PATH is an environment variable. We recommend that you leave the IPFS_PATH variable as is.
+  D. IPFS:  
+    If IPFS (the network protocol that allows Qri to be a peer to peer service) does not exist on your system, Qri will install it for you. It will create the IPFS repo on your IPFS_PATH. IPFS_PATH is an environment variable. We recommend that you leave the IPFS_PATH variable as is.
 
-5. Config:  
-  Qri creates a config file and saves it in your Qri repo folder.
+  E. Config:  
+    Qri creates a config file and saves it in your Qri repo folder.
 
 So let's get to it. I am going to create a qri repo called `tutorial`. Whenever you see `tutorial`, please substitute it with a peername of your choice.
 
@@ -176,7 +177,7 @@ tutorial
 set up qri repo at: /Users/home/.qri
 ```
 
-If you try to set up a repo that has a peername that has already been taken, it will error. For example, if I try to set up a repo with the same peername as before:
+If you try to set up a repo that has a peername which has already been taken, it will error. For example, if I try to set up a repo with the same peername as before:
 
 ```
 $ qri setup
@@ -188,31 +189,35 @@ new_tutorial
 set up qri repo at: /Users/home/.qri
 ```
 
-### qri new
+### 1.4 qri new
 
-Yay! You've make a Qri repo. Congratulations :) You now a dataset version control system on your computer. Now let's learn how to use it.
+Yay! You've made a Qri repo. Congratulations :) You now have a dataset version control system on your computer. Now let's learn how to use it.
 
 So you wanna add a new dataset that you've created to Qri? That's super easy.
 
-Let's start by briefly going over what we at Qri mean when we say 'dataset'. We've listened to a bunch of folks who are smarter and more entrenched in the data world than us, and combined their ideas to make our definition of a dataset. You can read about what constitutes a dataset in detail on the [dataset reference](/docs/reference/dataset) page.
+Let's start by briefly going over what we at Qri mean when we say 'dataset'. We've listened to a bunch of folks who are smarter and more entrenched in the data world than we are, and combined their ideas and principles to make our definition of a dataset. You can read about what constitutes a dataset in detail on the [dataset reference](/docs/reference/dataset) page.
 
 In short, a dataset is made up of a body, metadata, structure, a commit, a viz, and a transform.
 
-The `body` is the _data_ associated with the dataset.  
+The `body` is the _data_ associated with the dataset. In the case of a spreadsheet format, this would be the column/row names, the values inside each cell, etc.
 
-The `metadata` is all the details surrounding that data, including the title, description, contributors, and any other biographical or logistical details.  
+The `metadata` is all the information and details _about_ that data, including the title, description, contributors, and any other biographical or logistical details.  
+
 The `structure` is what it sounds like. It holds information about the structure of the data, the number of entries, the number of bytes, the shape of the data, or the schema. We use the schema to validate future interations of the dataset. You can use the same schema for multiple datasets.  
-The `commit` is all the pertinate information about that specific version of the dataset, for example, details about what changed from the last version to this version (usually found in the `title` and `messsage` sections), as well as the timestamp, and signature of the peer that made the commit.  
-The `viz` is the go/html template that should be used to render that dataset.
-And the `transform` is the (optional) code used to create that dataset. 
 
-We won't be talking about transforms here, you can read all about transforms in the [skylark transform tutorial](/docs/tutorials/skylark_transfomations).
+The `commit` is all the pertinate information about that specific version of the dataset, for example, details about what changed from the last version to this version (usually found in the `title` and `messsage` sections), as well as the timestamp, and signature of the peer that made the commit.  
+
+The `viz` is the go/html template that should be used to render that dataset into a visual representation of that data (chart, graph, etc.).
+
+And the `transform` is the (optional) code used to create that dataset (e.g., the code that was used to take the file from somewhere on the web and generate a dataset in qri). 
+
+We won't be talking about transforms here, you can read all about them in the [skylark transform tutorial](/docs/tutorials/skylark_transfomations).
   
 Phew. Okay. That is a lot of information. And all you want is to create a dataset.
 
 For this method of adding a new dataset to Qri, we only need a data file.
 
-If you have a csv, json, or cbor file you would like to add, more power to you. If not, save the following text as `data.csv`:
+If you have a csv, json, or cbor file you would like to add, more power to you. If not, take a moment now to save the following text to your computer as `data.csv`:
 
 ```
 1,Team Liquid,TL,8,4
@@ -229,7 +234,7 @@ If you have a csv, json, or cbor file you would like to add, more power to you. 
 
 The text is the current standings for the North American Professional League of Legends Teams in the 2018 Summer split.
 
-In order to add this very import dataset to your Qri repo, we are going to use the `qri new` command. We will use the `--body` flag to add data to the dataset, and we will have to pass in a dataset name. I am going to use the name `nalcs_standings`, but feel free to name it whatever you like. A full dataset name includes the peername of the peer that initally added the dataset to Qri, so the full dataset name will actually be `tutorial/nalcs_standings`. We can use `me`, as a shorthand for any of our own datasets, so we can also use `me/nalcs_standings` as a dataset reference.
+In order to add this very important dataset to your Qri repo, we are going to use the `qri new` command. We will use the `--body` flag to add data to the dataset, and we will have to pass in a dataset name. I am going to use the name `nalcs_standings`, but feel free to name it whatever you like. A full dataset name includes the peername of the peer that initally added the dataset to Qri, so the full dataset name will actually be `tutorial/nalcs_standings`. We can use `me`, as a shorthand for any of our own datasets, so we can also use `me/nalcs_standings` as a dataset reference.
 
 ```
 $ qri new --body ~path/to/data/data.csv me/nalcs_standings
@@ -242,9 +247,9 @@ Your Qri id, and your dataset hash should and will be different than mine.
 
 And that is the simpliest, no frills way to add a dataset to qri! Continue on to see how to view all the datasets you have on Qri, and how to export them from Qri.
 
-### qri list
+### 1.5 qri list
 
-This is nice a simple. To view the list of datasets you have on Qri, run `qri list`
+This is nice and simple. To view the list of datasets you have on Qri, run `qri list`
 
 ```
 $ qri list
@@ -256,9 +261,9 @@ The first line is the dataset name.
 The second is the hash of this particular version of the dataset.
 The third line contains some stats on your dataset
 
-### qri export
+### 1.6 qri export
 
-Getting your data out of Qri is simple. You just use the `qri export` command. The dataset will be saved to the current folder in a directory named with the dataset name. If you've been following the example, the directory will be called `nalcs_standings`
+Getting your data out of Qri is simple. Just use the `qri export` command. The dataset will be saved to the current folder in a directory named with the dataset name. If you've been following the example, the directory will be called `nalcs_standings`
 
 ```
 $ qri export me/nalcs_standings
@@ -277,7 +282,7 @@ If you continue to the next section, don't delete those files yet! In the next s
 
 
 
-# CLI Tutorial, Part 2
+# 2. CLI Tutorial, Part 2
 
 This tutorial assumes you have worked through [Part 1](/docs/tutorials/cli_quickstart). You should be fine to follow along with this document, but you may miss some references.
 
@@ -285,7 +290,7 @@ So, you should have added a dataset (which I entitled `nalcs_standings`) using t
 
 Next we are going to learn to remove a dataset, add a dataset with metadata and structure using a `dataset.json` file, add new data and validate that dataset, and save the newer version of the dataset.
 
-### qri remove
+### 2.1 qri remove
 
 Removing a dataset from Qri is quite simple:
 
@@ -296,7 +301,7 @@ removed dataset 'tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZw
  
  If you run `qri list` again, you will see it is removed from your list of datasets.
 
- ### qri new --file
+ ### 2.2 qri new --file
 
  Now for some added fanciness. Remember that `dataset.yaml` file that was created when we used `qri export me/nalcs_standings`, let's open that up now and check it out.
 
@@ -340,9 +345,7 @@ As we learned before, the dataset file will contain the following, if it exists 
 
 Right now, this dataset contains a `bodyPath`, `commit`, `qri`, and `structure`.
 
-Let's add some detail.
-
-First, let's add some proper column names to the `schema` section of the `structure`.
+Let's add some detail. First, let's add some proper column names to the `schema` section of the `structure`.
 
 The dataset contains the standings, names, abbriviation, wins and losses, for the North American League Championship Series, or the North American pro League of Legends esports league. Let's fill in the column names.
 
@@ -384,7 +387,7 @@ structure:
     type: array
 ```
 
-Next, let's talk metadata. Metadata is super important. It's the place where whoever gathered the data (or whoever is augmenting it) can give background on what the data contains, how it was collected, who collected it, and any other details that need recording.
+Next, let's talk metadata. Metadata is super important. It's the place where whoever gathered the data (or whoever is augmenting it) can give background and context on what the data contains, how it was collected, who collected it, and any other details that need recording.
 
 Datasets can be written as `json` or ` yaml` files. Here we will write them in yaml, as that is the Qri default. For more on the structure of yaml files, check out [this page on yaml syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html).
 
@@ -407,7 +410,7 @@ For example:
 $ qri new --body /users/home/nalcs_standings/data.csv --file /users/home/nalcs_standings/dataset.yaml me/nalcs_standings --title 'initial dataset' --message 'week 7 NALCS standings for the 2018 summer split' me/nalcs_standings
 ```
 
-Would give you the same dataset, but with a custom title and message. If no title or message are given, Qri will generate a title for you.
+...would give you the same dataset, but with a custom title and message. If no title or message are given, Qri will generate a title for you.
 
 You can also add a commit messsage and title to the dataset itselfs:
 
@@ -420,7 +423,7 @@ commit:
 Note!!! Any flags given in the command will override the message given in the `dataset.yaml` file!!!
 
 
-### validate
+### 2.3 validate
 
 Okay, so we've added a new dataset into Qri. What happens when you want to update that dataset?
 
@@ -469,7 +472,7 @@ $ qri validate --body ~/Documents/datasets/dummy.csv me/nalcs_standings
 
 The output of the command gives the errors that need to be fixed in order for the schema to match.
 
-### qri save
+### 2.4 qri save
 
 Now that we know the dataset has no validation errors, let's give it an update.
 
