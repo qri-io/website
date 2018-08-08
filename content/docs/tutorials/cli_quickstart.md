@@ -5,7 +5,7 @@ date: 2018-01-30T00:00:00-04:00
 section: tutorials
 ---
 
-# CLI Tutorial
+# CLI Tutorial, Part 1
 
 Welcome to the wonderful world of the Qri Command Line Interface. After the first section of this tutorial you will be able to set up your qri repo, check the version of qri you are running, create a new dataset, list your datasets, and export your datasets. Following is an index.
 
@@ -215,16 +215,16 @@ For this method of adding a new dataset to Qri, we only need a data file.
 If you have a csv, json, or cbor file you would like to add, more power to you. If not, save the following text as `data.csv`:
 
 ```
-1,Team Liquid,TL,10,4
-2,Echo Fox,EF,9,5
-2,100 Thieves,100,9,5
-4,FlyQuest,FQ,7,7
-4,Cloud9,C9,7,7
-4,OpTic Gaming,OG,7,7
-7,TSM,TSM,6,8
-8,Counter Logic Gaming,CLG,5,9
-8,Golden Guardians,GG,5,9
-8,Clutch Gaming,CG,5,9
+1,Team Liquid,TL,8,4
+1,100 Thieves,100,8,4
+3,Echo Fox,EF,7,5
+3,FlyQuest,FQ,7,5
+5,OpTic Gaming,OG,6,6
+6,TSM,TSM,5,7
+6,Cloud9,C9,5,7
+6,Counter Logic Gaming,CLG,5,7
+6,Golden Guardians,GG,5,7
+10,Clutch Gaming,CG,4,8
 ```
 
 The text is the current standings for the North American Professional League of Legends Teams in the 2018 Summer split.
@@ -272,5 +272,269 @@ The `data.csv` file is the body of the dataset.
 
 The `dataset.yaml` file contains all the other dataset information if it exists: metadata, structure, commit, viz, and transform. It contains a field called `bodyPath`, which is the path on ipfs at which the body file is saved. It also contains a field called `qri`, which you will notice exists imbedded in other sections as well. This is an internal reference that makes sure Qri is using the correct version to read your dataset.
 
-If you continue to the next section, you will learn how to create a dataset full of detail using a `dataset.yaml` file.
+If you continue to the next section, don't delete those files yet! In the next section we will learn how to create a dataset full of detail using a `dataset.yaml` file.
 
+
+
+
+# CLI Tutorial, Part 2
+
+This tutorial assumes you have worked through [Part 1](/docs/tutorials/cli_quickstart). You should be fine to follow along with this document, but you may miss some references.
+
+So, you should have added a dataset (which I entitled `nalcs_standings`) using the `qri new` command, and seen that dataset listed using the `qri list` command, and exported that dataset.
+
+Next we are going to learn to remove a dataset, add a dataset with metadata and structure using a `dataset.json` file, add new data and validate that dataset, and save the newer version of the dataset.
+
+### qri remove
+
+Removing a dataset from Qri is quite simple:
+
+```
+$ qri remove me/nalcs_standings
+removed dataset 'tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT'
+```
+ 
+ If you run `qri list` again, you will see it is removed from your list of datasets.
+
+ ### qri new --file
+
+ Now for some added fanciness. Remember that `dataset.yaml` file that was created when we used `qri export me/nalcs_standings`, let's open that up now and check it out.
+
+ You should get something that looks like this:
+
+``` yaml
+ bodyPath: /ipfs/QmPBQKHc2os92kTKzdJ8xGdyP6mo6JAT9d7QncEzYSSGCM
+commit:
+  author:
+    id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
+  qri: cm:0
+  signature: zHgYne5lRdftX5CV/RkRbuWloRm0LvjFzdmo25XqTIBEqhVW0ywhy/yl+rmVvOJo26mJbvwUN8QwxLllpEVkv5YHYCQhxWu/8+RpGKuMJFzhjB/pRhw4+ykjxRGe/zLLkaN97uAq+fnjR7Ld0VKMkuSEtpuVkpguiyjxrEfrAxKExQHyxGc9wBqeEFK7TtmW98cX9VonoRm5jW4/SRSYqK3fgAXuPK+wiRmHfnOzWxJXQ/KIKLiF91pl/8UeqovlRR+vbTHzjpZvSlGL1Xu9fz6DiqpQXkygh5vYn4GFj3YniOusTf8RmmaHmZ+4smAu3PxSg+fVPpRvWSuuLIqTMg==
+  timestamp: "2018-08-06T21:27:29.791238974Z"
+  title: created dataset
+qri: ds:0
+structure:
+  checksum: QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj
+  entries: 10
+  errCount: 0
+  format: csv
+  length: 211
+  qri: st:0
+  schema:
+    items:
+      items:
+      - title: field_1
+        type: integer
+      - title: field_2
+        type: string
+      - title: field_3
+        type: string
+      - title: field_4
+        type: integer
+      - title: field_5
+        type: integer
+      type: array
+    type: array
+```
+
+As we learned before, the dataset file will contain the following, if it exists in the dataset: `bodyPath`, `commit`, `qri`, `structure`, `metadata`, `viz`, and `transform`.
+
+Right now, this dataset contains a `bodyPath`, `commit`, `qri`, and `structure`.
+
+Let's add some detail.
+
+First, let's add some proper column names to the `schema` section of the `structure`.
+
+The dataset contains the standings, names, abbriviation, wins and losses, for the North American League Championship Series, or the North American pro League of Legends esports league. Let's fill in the column names.
+
+Notice how we didn't have to create the schema or structure. If not provided, Qri will determine the structure of a file itself. JSON files will be recorded as an array or an object, but not more specific than that as of the time this tutorial was written. CSV files will be traversed and the title and type of each column will be determined.
+
+The correct column titles have been filled in below:
+
+``` yaml
+ bodyPath: /ipfs/QmPBQKHc2os92kTKzdJ8xGdyP6mo6JAT9d7QncEzYSSGCM
+commit:
+  author:
+    id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
+  qri: cm:0
+  signature: zHgYne5lRdftX5CV/RkRbuWloRm0LvjFzdmo25XqTIBEqhVW0ywhy/yl+rmVvOJo26mJbvwUN8QwxLllpEVkv5YHYCQhxWu/8+RpGKuMJFzhjB/pRhw4+ykjxRGe/zLLkaN97uAq+fnjR7Ld0VKMkuSEtpuVkpguiyjxrEfrAxKExQHyxGc9wBqeEFK7TtmW98cX9VonoRm5jW4/SRSYqK3fgAXuPK+wiRmHfnOzWxJXQ/KIKLiF91pl/8UeqovlRR+vbTHzjpZvSlGL1Xu9fz6DiqpQXkygh5vYn4GFj3YniOusTf8RmmaHmZ+4smAu3PxSg+fVPpRvWSuuLIqTMg==
+  timestamp: "2018-08-06T21:27:29.791238974Z"
+  title: created dataset
+qri: ds:0
+structure:
+  checksum: QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj
+  entries: 10
+  errCount: 0
+  format: csv
+  length: 211
+  qri: st:0
+  schema:
+    items:
+      items:
+      - title: rank
+        type: integer
+      - title: team
+        type: string
+      - title: abbreviation
+        type: string
+      - title: wins
+        type: integer
+      - title: losses
+        type: integer
+      type: array
+    type: array
+```
+
+Next, let's talk metadata. Metadata is super important. It's the place where whoever gathered the data (or whoever is augmenting it) can give background on what the data contains, how it was collected, who collected it, and any other details that need recording.
+
+Datasets can be written as `json` or ` yaml` files. Here we will write them in yaml, as that is the Qri default. For more on the structure of yaml files, check out [this page on yaml syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html).
+
+ 
+
+Save your new and improved `dataset.yaml` file, and you are ready to go.
+
+Go back to your trusty terminal. My `dataset.yaml` file still lives in my nalcs_standings folder, along with the body file:`data.csv`. We are going to need both a dataset file and a body file to run this next step:
+
+```
+$ qri new --body /users/home/nalcs_standings/data.csv --file /users/home/nalcs_standings/dataset.yaml me/nalcs_standings
+created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+```
+
+Note, you can also add a commit message and title using the command line flags `title` and `--message`
+
+For example:
+
+```
+$ qri new --body /users/home/nalcs_standings/data.csv --file /users/home/nalcs_standings/dataset.yaml me/nalcs_standings --title 'initial dataset' --message 'week 7 NALCS standings for the 2018 summer split' me/nalcs_standings
+```
+
+Would give you the same dataset, but with a custom title and message. If no title or message are given, Qri will generate a title for you.
+
+You can also add a commit messsage and title to the dataset itselfs:
+
+```
+commit:
+  title: initial dataset
+  message: week 7 NALCS standings for the 2018 summer split
+```
+
+Note!!! Any flags given in the command will override the message given in the `dataset.yaml` file!!!
+
+
+### validate
+
+Okay, so we've added a new dataset into Qri. What happens when you want to update that dataset?
+
+The stats from the sample dataset I gave were the NALCS standings until week 6. After week 7 the standing shifted. Let's update the `nalcs_standings` dataset to include the week 7 results.
+
+Save this as a new file `NALCS_Summer_2018_Week_7_Standings.csv` (or you can save over your old file with this new data, since the old version is in Qri, you can export the standings from week 6 any time you like):
+
+```
+1,Team Liquid,TL,10,4
+2,Echo Fox,EF,9,5
+2,100 Thieves,100,9,5
+4,FlyQuest,FQ,7,7
+4,Cloud9,C9,7,7
+4,OpTic Gaming,OG,7,7
+7,TSM,TSM,6,8
+8,Counter Logic Gaming,CLG,5,9
+8,Golden Guardians,GG,5,9
+8,Clutch Gaming,CG,5,9
+```
+
+Now, to make sure we haven't made any silly mistakes let's validate this new body of data against the schema already present in the `nalcs_standings` dataset.
+
+```
+$ qri validate --body ~/Documents/datasets/NALCS_Summer_2018_Week_7_Standings.csv me/nalcs_standings
+✔ All good!
+```
+
+Notice that, like the `qri new` command or the `qri remove` command, we pass the peername and dataset name (in this case `me/nalcs_standings` or `tutorial/nalcs_standings`) as an argument to the command.
+
+Let's say instead, we have a dummy file called `dummy.csv` that we want to validate against the structure of the `nalcs_standings` dataset. Let's say this file contains the following:
+
+```
+Bad,data
+that,doesn't
+make,any
+sense,
+```
+
+```
+$ qri validate --body ~/Documents/datasets/dummy.csv me/nalcs_standings
+0: /0/0: "Bad" type should be integer
+1: /1/0: "that" type should be integer
+2: /2/0: "make" type should be integer
+3: /3/0: "sense" type should be integer
+```
+
+The output of the command gives the errors that need to be fixed in order for the schema to match.
+
+### qri save
+
+Now that we know the dataset has no validation errors, let's give it an update.
+
+I want to update this dataset with new data in the body. I also want to add a title and message to this version of the dataset, which we call a `commit` (those of you familiar with other version control systems, specifically [git](https://git-scm.com/) will recognize that lingo).
+
+We can add a title and message in two ways. We can also add a `dataset.yaml` file that contains a `commit` section with a `title` and a `message` field. Or we can fill in a `title` and `message` using the `--title` and `--message` flags when we run the command.
+
+Here is the potential dataset.yaml file:
+
+```
+commit:
+  title: body update
+  message: dataset has been updated with the week 7 match results
+```
+
+```
+$ qri save --file ~/path/to/dataset.yaml --body ~/path/to/NALCS_Summer_2018_Week_7_Standings.csv me/nalcs_standings
+```
+
+And without the `dataset.yaml` file:
+```
+$ qri save --body ~/path/to/NALCS_Summer_2018_Week_7_Standings.csv --title 'body update' --message 'dataset has been updated with the week 7 match results' me/nalcs_standings
+```
+
+How do we know that the commit message saved correctly? To check, let's use the `qri get` command (which we will go over in more detail in section 4)  
+
+```
+$ qri get me/nalcs_standings
+tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu:
+  bodyPath: /ipfs/QmPBQKHc2os92kTKzdJ8xGdyP6mo6JAT9d7QncEzYSSGCM
+  commit:
+    author:
+      id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
+    message: dataset has been updated with the week 7 match results
+    path: /ipfs/QmZB2diMaX2QkJ5iMw8mHjR3DL2V99FejoH4wuUxojhMeM
+    qri: cm:0
+    signature: lYLaLSFquDBdWMkzkwOXPNo5cUljH8U91Ht0KjESgsYem3r6XSEvPMD5EImlmvXGirbIq6rZKZhsIoTE4JP0alSId9Ndv3q8N7/cU6xdrQ5Kz1bgSCP5c2Min/jqiZ7HsdJdbRp1WR5oxQqjhEvUgkGTHbNqtpRqYSQNeESTB/AATzYRtb78AbPzWbD6pSEGSp4R/8i0QQyq9YPghw6GiuCJJrFzr727e0E1gPWNCii59jS1WdZ2nL6Z8Y7kPthUT6hmx/1adl72v1VMWsYJdeaI11bd+PWFVL87+MNoePlEyNcOfEkhEx3wxYEphWegbqk/3qsujrblOwMUrDQ9mg==
+    timestamp: "2018-08-07T19:05:41.432138675Z"
+    title: dataset update
+  path: /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu/dataset.json
+  previousPath: /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+  qri: ds:0
+  structure:
+    checksum: QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj
+    entries: 10
+    errCount: 0
+    format: csv
+    length: 211
+    path: /ipfs/QmWLLipjATTJXEjEWp691bCJXLqZRMURtfYK11ejwPVzJX
+    qri: st:0
+    schema:
+      items:
+        items:
+        - title: rank
+          type: integer
+        - title: team
+          type: string
+        - title: abbreviation
+          type: string
+        - title: wins
+          type: integer
+        - title: losses
+          type: integer
+        type: array
+      type: array
+```
+
+The `commit` section has the `title` and `message` fields adjusted correctly!

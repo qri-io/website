@@ -17,7 +17,9 @@
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/tutorials/cli_quickstart/</guid>
-      <description>CLI Quickstart coming soon!</description>
+      <description>CLI Tutorial, Part 1 Welcome to the wonderful world of the Qri Command Line Interface. After the first section of this tutorial you will be able to set up your qri repo, check the version of qri you are running, create a new dataset, list your datasets, and export your datasets. Following is an index.
+The whole tutorial is divided into eight sections. The topics are as follows:
+ QLI Quickstart</description>
     </item>
     
     <item>
