@@ -10,7 +10,7 @@ _(last updated August 8, 2018)_
 
 Welcome to the wonderful world of the Qri Command Line Interface. After the first section of this tutorial is the quick start. After following that portion, you will be able to set up your qri repo, check the version of qri you are running, create a new dataset, list your datasets, and export your datasets. 
 
-The whole tutorial is divided into 5 sections. The topics are as follows:
+The whole tutorial is divided into six sections. The topics are as follows:
 
 1. [QLI Quickstart](#part1)  
   1.1 [`qri help`](#qri-help)  
@@ -52,7 +52,7 @@ The whole tutorial is divided into 5 sections. The topics are as follows:
 <a id="part1"></a>
 ## 1. QLI Tutorial, Part 1 - Quickstart
 
-Head over to our [releases](https://github.com/qri-io/qri/releases) page and download the latest version of the Qri installer (the .pkg file).
+Download the latest version of the Qri installer [here.](https://github.com/qri-io/qri/releases/download/v0.5.0/qri_os_x_cli_darwin_amd64.pkg)
 
 Once you've gone through the install process, open up your terminal.
 
@@ -115,9 +115,9 @@ Use "qri [command] --help" for more information about a command.
 
 ```
 
-By just typing `qri`, `qri help`, or `qri --help`,  you can get a list of all the commands that are at your fingertips.
+By just typing `qri`, `qri help`, or `qri --help`, you can get a list of all the commands that are at your fingertips.
 
-And typing `--help` after any Qri command, you can get a list of all the flags and options available for that command, as well as example usage.
+And by typing `--help` after any Qri command, you can get a list of all the flags and options available for that command, as well as example usage.
 
 For example, running `qri diff --help` gives you a summary of what the command does, some examples on how to use that command, and the flags you can use to elicit different behaviors:
 
@@ -262,7 +262,7 @@ created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiP
 
 This bit: `me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT` is the full dataset reference. Everything before the `@` sign is human readable. Everything after it is 1) your Qri id, 2) the network your dataset is saved on (in this case: ipfs), 3) the hash of your dataset.
 
-Your Qri id, and your dataset hash should and will be different than mine.
+Your Qri id and your dataset hash should and will be different than mine.
 
 And that is the simpliest, no frills way to add a dataset to qri! Continue on to see how to view all the datasets you have on Qri, and how to export them from Qri.
 
@@ -632,9 +632,9 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 ```
 
-First, the date and time is displayed. Next, the dataset hash. This is the id, so to speak, of this particular verison of the dataset. It is unique. Last is the commit title, so you have a little bit of context when looking through the log about what was added during that update.
+First, the date and time is displayed. Next, the dataset hash. The hash is the id, so to speak, of this particular verison of the dataset. It is unique. Last is the commit title, so you have a little bit of context when looking through the log about what was added during that update.
 
-In the next section, we are going to go over the dataset reference and how to explore a dataset using the command line.
+In the next section, we'll go over the dataset reference and how to explore a dataset using the command line.
 
 <a id="part3"></a>
 # 3.  CLI Tutorial, Part 3 - Exploring the dataset
@@ -644,14 +644,12 @@ In part three of our tutorial (which assumes you have read through [Part 1]((/do
 <a id="datasetRef"></a>
 ### 3.1 Dataset Reference
 
-In Qri, we have a specific convention for naming datasets, we often call this name the dataset reference.
-
-The dataset reference is used by Qri to locate the specific version of the dataset you are trying to access.
+In Qri, we have a specific convention for naming datasets, we often call this name the dataset reference. The dataset reference is used by Qri to locate the specific version of the dataset you are trying to access.
 
 Here is an example of a dataset reference:
 `tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu`
 
-Whoa, that's alot, right? Well, once you know how to read it it is way less intimidating.
+Whoa, that's a lot, right? Well, once you know how to read it, it is way less intimidating.
 
 Let's start by spliting up this dataset reference into two main parts on either side of the `@` symbol, and look at each piece one at a time.
 
@@ -701,7 +699,7 @@ $ qri info me/nalcs_standings
     211 bytes, 10 entries, 0 errors
 ```
 
-You'll notice, its a very similar format to what the info we recieve when we use `qri list`.
+You'll notice, it's a very similar format to what the info we recieve when we use `qri list`.
 
 <a id="qri-get"></a>
 ### 3.3 qri get and qri use
@@ -864,7 +862,7 @@ $ qri body --format csv me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8
 <a id="part4"></a>
 # CLI Tutorial, Part 4 - Peer commands
 
-So now that you can create, update, and examine your own datasets, how do you look for datasets on other's Qri nodes?
+So now that you can create, update, and examine your own datasets, how do you look for datasets on others' Qri nodes?
 
 We are now going to look at the `qri connect` and `qri peers` commands, starting with how to spin up your Qri node to connect with other, get a list of your peers, get info about them, list their datasets, and add their datasets to your own repository.
 
@@ -1020,7 +1018,7 @@ First, the registry has a list of peer IDs. We keep this list so that when a new
 
 Second, the registry supliments our search results. Once a dataset is published to the registry, it is indexed and other peers can use the `qri search` command to find it.
 
-Before we move forward, I want to clarify something. Once you add a dataset into Qri, any peer that connects to your Qri node can look at and add your dataset using the `qri peers` and `qri list <peername>` commands (which we will go over in section seven). They can view your dataset regardless of whether or not that dataset is published to the registry. 
+Before we move forward, I want to clarify something. Once you add a dataset into Qri, any peer that connects to your Qri node can look at and add your dataset using the `qri peers` and `qri list <peername>` commands. They can view your dataset regardless of whether or not that dataset is published to the registry. 
 
 Publishing the dataset to the registry determines whether or not the dataset will show up in search results, not whether it is accessible by other Qri peers.
 

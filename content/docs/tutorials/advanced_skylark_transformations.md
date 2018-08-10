@@ -5,7 +5,7 @@ section: tutorials
 draft: true
 ---
 
-Qri ("query") is about datasets. A _transformion_ is a repeatable script for generating a dataset. [Skylark](https://github.com/google/skylark/blob/master/doc/spec.md) is a scripting langauge from Google that feels a lot like python. This package implements skylark as a _transformation syntax_. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
+Qri ("query") is about datasets. A _transformation_ is a repeatable script for generating a dataset. [Skylark](https://github.com/google/skylark/blob/master/doc/spec.md) is a scripting langauge from Google that feels a lot like python. This package implements skylark as a _transformation syntax_. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
 
 Typical examples of a skylark transformation include:
 * combining paginated calls to an API into a single dataset
