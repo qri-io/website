@@ -5,61 +5,52 @@ date: 2018-01-30T00:00:00-04:00
 section: tutorials
 ---
 
-# CLI Tutorial, Part 1
+# CLI Tutorial
 _(last updated August 8, 2018)_
 
-Welcome to the wonderful world of the Qri Command Line Interface. After the first section of this tutorial you will be able to set up your qri repo, check the version of qri you are running, create a new dataset, list your datasets, and export your datasets. Following is an index.
+Welcome to the wonderful world of the Qri Command Line Interface. After the first section of this tutorial is the quick start. After following that portion, you will be able to set up your qri repo, check the version of qri you are running, create a new dataset, list your datasets, and export your datasets. 
 
-The whole tutorial is divided into eight sections. The topics are as follows:
+The whole tutorial is divided into 5 sections. The topics are as follows:
 
-1. QLI Quickstart  
-  1.1 `qri help`  
-  1.2 `qri version`  
-  1.3 `qri setup`  
-  1.4 `qri new`  
-  1.5 `qri list`  
-  1.6 `qri export`  
+1. [QLI Quickstart](#part1)  
+  1.1 [`qri help`](#qri-help)  
+  1.2 [`qri version`](#qri-version)  
+  1.3 [`qri setup`](#qri-setup)  
+  1.4 [`qri new`](#qri-new)  
+  1.5 [`qri list`](#qri-list)  
+  1.6 [`qri export`](#qri-export)  
 
-2. New and Save 
-  2.1 `qri remove`  
-  2.2 `qri new` - adding a new dataset while using a dataset.yaml file (add metadata and commit info using dataset.yaml file)  
-  2.3 `qri validate`  
-  2.4 `qri save`  
+2. [New and Save](#part2)   
+  2.1 [`qri remove`](#qri-remove)  
+  2.2 [`qri new`](#qri-new) - adding a new dataset while using a dataset.yaml file (add metadata and commit info using dataset.yaml file)  
+  2.3 [`qri validate`](#qri-validate)  
+  2.4 [`qri save`](#qri-save)  
+  2.5 [`qri log`](#qri-log) - how to find the hash of a previous dataset version  
 
-3. Dataset Reference (DatasetRefs)  
-  3.1 what is a dataset ref and how is it formatted?  
-  3.2 `qri rename`  
-  3.3 `qri log` - how to find the hash of a previous dataset version  
+3. [Exploring the dataset](#part3)  
+  3.1 [what is a dataset ref and how is it formatted?](#datasetRef)  
+  3.2 [`qri info`](#qri-info)  
+  3.3 [`qri get` and `qri-use`](#qri-get)   
+  3.4 [`qri body`](#qri-body)
 
-4. Exploring the dataset  
-  4.1 `qri use`  
-  4.2 `qri info`  
-  4.3 `qri get`  
-  4.4 `qri body`  
-  4.5 `qri diff`  
+4. [Peer commands](#part4)  
+  4.1 [`qri connect`](#qri-connect)  
+  4.2 [`qri peers list`](#qri-peers-list)  
+  4.3 [`qri list <peername>`](#qri-list-peername)  
+  4.4 [`qri add`](#qri-add)  
+  4.5 [`qri peers info`](#qri-peers-info)  
 
-5. Search and the Registry  
-  5.1 what is the registry and why do we need it?  
-  5.2 `qri registry publish`  
-  5.3 `qri search`  
+5. [Search and the Registry](#part5)  
+  5.1 [what is the registry and why do we need it?](#registry)  
+  5.2 [`qri registry publish`](#qri-registry-publish)  
+  5.3 [`qri search`](#qri-search)  
 
-6. Render  
-  6.1 `qri render` - default  
-  6.2 creating your own template  
+6. [Config](#part6)  
+  6.1 [`qri config get`](#qri-config-get)  
+  6.2 [`qri config set`](#qri-config-set)  
 
-7. Config  
-  7.1 `qri config get`  
-  7.2 `qri config set`  
-  7.3 more resources  
-
-8. Peer commands  
-  8.1 `qri peers list`  
-  8.2 `qri peers info`  
-  8.3 `qri list`  
-  8.4 `qri add`  
-
-
-## 1. QLI Quickstart
+<a id="part1"></a>
+## 1. QLI Tutorial, Part 1 - Quickstart
 
 Head over to our [releases](https://github.com/qri-io/qri/releases) page and download the latest version of the Qri installer (the .pkg file).
 
@@ -67,6 +58,7 @@ Once you've gone through the install process, open up your terminal.
 
 Let's start by teaching you how to fish, so to speak. 
 
+<a id="qri-help"></a>
 ### 1.1 qri help
 Type the command `qri help`
 
@@ -127,11 +119,37 @@ By just typing `qri`, `qri help`, or `qri --help`,  you can get a list of all th
 
 And typing `--help` after any Qri command, you can get a list of all the flags and options available for that command, as well as example usage.
 
+For example, running `qri diff --help` gives you a summary of what the command does, some examples on how to use that command, and the flags you can use to elicit different behaviors:
+
+```
+$ qri diff --help
+
+Diff compares two datasets from your repo and prints a representation
+of the differences between them.  You can specifify the datasets
+either by name or by their hash
+
+Usage:
+  qri diff [flags]
+
+Examples:
+  show diff between two versions of the same dataset:
+  $ qri diff me/annual_pop@/ipfs/QmcBZoEQ7ot4UYKn1JM3gwd4LHorj6FJ4Ep19rfLBT3VZ8
+  me/annual_pop@/ipfs/QmVvqsge5wqp4piJbLArwVB6iJSTrdM8ZRpHY7fikASrr8
+
+  show diff between two different datasets:
+  $ qri diff me/population_2016 me/population_2017
+
+Flags:
+  -d, --display string   set display format [reg|short|delta|detail]
+  -h, --help             help for diff
+```
+
+<a id="qri-version"></a>
 ### 1.2 qri version
 
 If you are ever having trouble with something that is supposed to be working just fine, or you and a friend are getting different behaviors while using the same command, it could be that you are not using the most recent version of Qri.
 
-Since Qri is in active and rapid development, we're making changes to the app all the time. Updating Qri to the latest version should not have an effect on your repo, unless specified in the release notes. Such breaking changes will be outlined, as well as information on what you should do to ease the transition.
+Since Qri is in active and rapid development, we're making changes to the app all the time. Updating Qri to the latest version should not have an effect on your repo, unless specified in the release notes. Breaking changes will be outlined, as well as information on what you should do to ease the transition.
 
 The most current version of Qri will be specified by the latest [release](https://github.com/qri-io/qri/releases).
 
@@ -143,7 +161,7 @@ To view the version number of the qri software you are running, run the command 
 $ qri version
 0.5.1
 ```
-
+<a id="qri-setup"></a>
 ### 1.3 qri setup
 
 Okay, okay, enough stringing you along. Time to get into what you are really here for. Let's set up our Qri repository, or repo, and create a new dataset.
@@ -154,7 +172,7 @@ When you run the `qri setup` command, you are actually doing a few things:
     First, Qri will check to see if there is already a qri repo on your machine. If not, Qri attempts to creates a new repo, using the configuration details in the default config file (unless overriden with the `--ipfs-config` and/or `--config-data` flags, type `qri setup --help` for more details)
 
   B. Peername:  
-    It will prompt you for a peername, if you have not provided one using the `--peername` flag or used a custom config file that has the peername provided. It will ping the registry to see if that peername is currently taken. If it is taken, it will prompt you for another one.
+    It will prompt you for a peername (if you have not provided one using the `--peername` flag or used a custom config file that has the peername provided). It will ping the registry to see if that peername is currently taken. If it is taken, it will prompt you for another one.
 
   C. Directories:  
     It will create the repo directories on your QRI_PATH. QRI_PATH is an environment variable. We recommend that you leave the QRI_PATH variable as is, unless you have a good reason to change it.
@@ -167,7 +185,7 @@ When you run the `qri setup` command, you are actually doing a few things:
 
 So let's get to it. I am going to create a qri repo called `tutorial`. Whenever you see `tutorial`, please substitute it with a peername of your choice.
 
-When we run `qri setup`, Qri will come up with a randomized peername (a mix between colors and dog breeds, for more info on how that's determined check out the [qri-io/doggos](github.com/qri-io/doggos) github repo). If you do not set your own peername, it will use this randomized name as your peername. You can also change your peername later using the `qri config set` command (check out section 7 of this tutorial)
+When we run `qri setup`, Qri will come up with a randomized peername (a mix between colors and dog breeds, for more info on how that's determined check out the [qri-io/doggos](github.com/qri-io/doggos) github repo). If you do not set your own peername, it will use this randomized name as your peername. You can also change your peername later using the `qri config set` command (check out section 6 of this tutorial)
 
 
 ```
@@ -189,6 +207,7 @@ new_tutorial
 set up qri repo at: /Users/home/.qri
 ```
 
+<a id="qri-new"></a>
 ### 1.4 qri new
 
 Yay! You've made a Qri repo. Congratulations :) You now have a dataset version control system on your computer. Now let's learn how to use it.
@@ -201,7 +220,7 @@ In short, a dataset is made up of a body, metadata, structure, a commit, a viz, 
 
 The `body` is the _data_ associated with the dataset. In the case of a spreadsheet format, this would be the column/row names, the values inside each cell, etc.
 
-The `metadata` is all the information and details _about_ that data, including the title, description, contributors, and any other biographical or logistical details.  
+The `meta` is all the information and details _about_ that data, including the title, description, contributors, and any other biographical or logistical details.  
 
 The `structure` is what it sounds like. It holds information about the structure of the data, the number of entries, the number of bytes, the shape of the data, or the schema. We use the schema to validate future interations of the dataset. You can use the same schema for multiple datasets.  
 
@@ -232,21 +251,22 @@ If you have a csv, json, or cbor file you would like to add, more power to you. 
 10,Clutch Gaming,CG,4,8
 ```
 
-The text is the current standings for the North American Professional League of Legends Teams in the 2018 Summer split.
+The text is the week 6 standings for the North American Professional League of Legends Teams in the 2018 Summer split.
 
-In order to add this very important dataset to your Qri repo, we are going to use the `qri new` command. We will use the `--body` flag to add data to the dataset, and we will have to pass in a dataset name. I am going to use the name `nalcs_standings`, but feel free to name it whatever you like. A full dataset name includes the peername of the peer that initally added the dataset to Qri, so the full dataset name will actually be `tutorial/nalcs_standings`. We can use `me`, as a shorthand for any of our own datasets, so we can also use `me/nalcs_standings` as a dataset reference.
+In order to add this very important dataset to your Qri repo, we are going to use the `qri new` command. We will use the `--body` flag to add data to the dataset, and we will have to pass in a dataset name. I am going to use the name `nalcs_standings`, but feel free to name it whatever you like. A dataset reference also includes the peername of the peer that initally added the dataset to Qri, so the dataset reference will actually be `tutorial/nalcs_standings`. We can use `me`, as a shorthand for any datasets we ourselves have added to Qri, so we can also use `me/nalcs_standings` as a dataset reference.
 
 ```
 $ qri new --body ~path/to/data/data.csv me/nalcs_standings
 created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT
 ```
 
-This bit: `me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT` is the dataset reference. Everything before the `@` sign is human readable. Everything after it is 1) your Qri id, 2) the network your dataset is saved on (in this case: ipfs), 3) the hash of your dataset.
+This bit: `me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT` is the full dataset reference. Everything before the `@` sign is human readable. Everything after it is 1) your Qri id, 2) the network your dataset is saved on (in this case: ipfs), 3) the hash of your dataset.
 
 Your Qri id, and your dataset hash should and will be different than mine.
 
 And that is the simpliest, no frills way to add a dataset to qri! Continue on to see how to view all the datasets you have on Qri, and how to export them from Qri.
 
+<a id="qri-list"></a>
 ### 1.5 qri list
 
 This is nice and simple. To view the list of datasets you have on Qri, run `qri list`
@@ -258,12 +278,13 @@ $ qri list
     211 bytes, 10 entries, 0 errors
 ```
 The first line is the dataset name.
-The second is the hash of this particular version of the dataset.
+The second is the hash, or unique id, of this particular version of the dataset.
 The third line contains some stats on your dataset
 
+<a id="qri-export"></a>
 ### 1.6 qri export
 
-Getting your data out of Qri is simple. Just use the `qri export` command. The dataset will be saved to the current folder in a directory named with the dataset name. If you've been following the example, the directory will be called `nalcs_standings`
+Getting your data out of Qri is simple. Just use the `qri export` command. The dataset will be saved to the current folder in a directory named with the dataset name. If you've been following the example, the directory will be called `nalcs_standings`. Run `qri export --help` for details on saving the dataset to a different directory.
 
 ```
 $ qri export me/nalcs_standings
@@ -279,17 +300,16 @@ The `dataset.yaml` file contains all the other dataset information if it exists:
 
 If you continue to the next section, don't delete those files yet! In the next section we will learn how to create a dataset full of detail using a `dataset.yaml` file.
 
+<a id="part2"></a>
+# 2. CLI Tutorial, Part 2 - New and Save
 
-
-
-# 2. CLI Tutorial, Part 2
-
-This tutorial assumes you have worked through [Part 1](/docs/tutorials/cli_quickstart). You should be fine to follow along with this document, but you may miss some references.
+This tutorial assumes you have worked through [Part 1](/docs/tutorials/cli_quickstart/#part1). You should be fine to follow along with this document, but you may miss some references.
 
 So, you should have added a dataset (which I entitled `nalcs_standings`) using the `qri new` command, and seen that dataset listed using the `qri list` command, and exported that dataset.
 
-Next we are going to learn to remove a dataset, add a dataset with metadata and structure using a `dataset.json` file, add new data and validate that dataset, and save the newer version of the dataset.
+Next we are going to learn to remove a dataset, add a dataset with meta and structure using a `dataset.json` file, add new data and validate that dataset, and save the newer version of the dataset.
 
+<a id="qri-remove"></a>
 ### 2.1 qri remove
 
 Removing a dataset from Qri is quite simple:
@@ -391,6 +411,50 @@ Next, let's talk metadata. Metadata is super important. It's the place where who
 
 Datasets can be written as `json` or ` yaml` files. Here we will write them in yaml, as that is the Qri default. For more on the structure of yaml files, check out [this page on yaml syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html).
 
+Let's add a dataset title (a human readable title), description, and tags.
+
+
+``` yaml
+bodyPath: /ipfs/QmPBQKHc2os92kTKzdJ8xGdyP6mo6JAT9d7QncEzYSSGCM
+commit:
+  author:
+    id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
+  qri: cm:0
+  signature: zHgYne5lRdftX5CV/RkRbuWloRm0LvjFzdmo25XqTIBEqhVW0ywhy/yl+rmVvOJo26mJbvwUN8QwxLllpEVkv5YHYCQhxWu/8+RpGKuMJFzhjB/pRhw4+ykjxRGe/zLLkaN97uAq+fnjR7Ld0VKMkuSEtpuVkpguiyjxrEfrAxKExQHyxGc9wBqeEFK7TtmW98cX9VonoRm5jW4/SRSYqK3fgAXuPK+wiRmHfnOzWxJXQ/KIKLiF91pl/8UeqovlRR+vbTHzjpZvSlGL1Xu9fz6DiqpQXkygh5vYn4GFj3YniOusTf8RmmaHmZ+4smAu3PxSg+fVPpRvWSuuLIqTMg==
+  timestamp: "2018-08-06T21:27:29.791238974Z"
+  title: created dataset
+qri: ds:0
+structure:
+  checksum: QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj
+  entries: 10
+  errCount: 0
+  format: csv
+  length: 211
+  qri: st:0
+  schema:
+    items:
+      items:
+      - title: rank
+        type: integer
+      - title: team
+        type: string
+      - title: abbreviation
+        type: string
+      - title: wins
+        type: integer
+      - title: losses
+        type: integer
+      type: array
+    type: array
+meta:
+  title: NALCS Summer Split Standings 2018
+  description: The standings for the North American League Championship Series, the professional League of Legends league. Data taken from Riot's esports website.
+  downloadPage: https://www.lolesports.com/en_US/na-lcs/na_2018_summer/standings/regular_season
+  keywords:
+    - league of legends
+    - riot games
+    - nalcs
+```
  
 
 Save your new and improved `dataset.yaml` file, and you are ready to go.
@@ -422,8 +486,10 @@ commit:
 
 Note!!! Any flags given in the command will override the message given in the `dataset.yaml` file!!!
 
+HOLD UP. We began this `qri new --file` adventure by using an already existing `dataset.yaml` file. What if we don't have one?? What if I want some guidance on how to create my own `dataset.yaml` file??? You're in luck. Using the command `qri export --blank` will create an empty `dataset.yaml` file with instructions :)
 
-### 2.3 validate
+<a id="qri-validate"></a>
+### 2.3 qri validate
 
 Okay, so we've added a new dataset into Qri. What happens when you want to update that dataset?
 
@@ -472,9 +538,10 @@ $ qri validate --body ~/Documents/datasets/dummy.csv me/nalcs_standings
 
 The output of the command gives the errors that need to be fixed in order for the schema to match.
 
+<a id="qri-save"></a>
 ### 2.4 qri save
 
-Now that we know the dataset has no validation errors, let's give it an update.
+Now that we know the dataset has no validation errors, let's save this version to Qri.
 
 I want to update this dataset with new data in the body. I also want to add a title and message to this version of the dataset, which we call a `commit` (those of you familiar with other version control systems, specifically [git](https://git-scm.com/) will recognize that lingo).
 
@@ -502,26 +569,34 @@ How do we know that the commit message saved correctly? To check, let's use the 
 ```
 $ qri get me/nalcs_standings
 tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu:
-  bodyPath: /ipfs/QmPBQKHc2os92kTKzdJ8xGdyP6mo6JAT9d7QncEzYSSGCM
+  bodyPath: /ipfs/QmbZdKCJLF2jRKhbRaRknFjxsPYTwEvE4jGWQfZYu52iFY
   commit:
     author:
       id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
-    message: dataset has been updated with the week 7 match results
-    path: /ipfs/QmZB2diMaX2QkJ5iMw8mHjR3DL2V99FejoH4wuUxojhMeM
+    path: /ipfs/QmTK4CsgohfUSzmCd6PDtGd34wC5CrSZktbJMBVYzKpbNt
     qri: cm:0
-    signature: lYLaLSFquDBdWMkzkwOXPNo5cUljH8U91Ht0KjESgsYem3r6XSEvPMD5EImlmvXGirbIq6rZKZhsIoTE4JP0alSId9Ndv3q8N7/cU6xdrQ5Kz1bgSCP5c2Min/jqiZ7HsdJdbRp1WR5oxQqjhEvUgkGTHbNqtpRqYSQNeESTB/AATzYRtb78AbPzWbD6pSEGSp4R/8i0QQyq9YPghw6GiuCJJrFzr727e0E1gPWNCii59jS1WdZ2nL6Z8Y7kPthUT6hmx/1adl72v1VMWsYJdeaI11bd+PWFVL87+MNoePlEyNcOfEkhEx3wxYEphWegbqk/3qsujrblOwMUrDQ9mg==
-    timestamp: "2018-08-07T19:05:41.432138675Z"
-    title: dataset update
-  path: /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu/dataset.json
-  previousPath: /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+    signature: wZe5queKi3drhecadkTrIHZGq+JD9AvOQpiT0l4fLd7jZvgBG7/T91LhhqTY2do2Au01IpthGdqg4Y1gT9Ec1+2TYADr3nFqtKO/wuey95/p0O99NP6MfTh97z6jtZs0T/gpnTGgSNgqDo96chcyauJfRm9LtlnpNm9H2RmaRMX2tSrGrbFeHFwm2BtLQKAFAcj/zK+QsohBc+Uz6Xr3lRdkG1y/Iyz9RMbDfDWPKQqZZH/QU27npbXD7zU9AeiY2YASSgXhD6hzVneGutiKdreiG6pvWvWEhZzyPhxMsnAn23jD5DOiZ02ytwaZiYcC4cfksIS7lZ/IPdWkNehB5Q==
+    timestamp: "2018-08-09T16:11:59.644134156Z"
+    title: body update
+    message: dataset has been updated with the week 7 match results
+  meta:
+    description: The standings for the North American League Championship Series,
+      the professional League of Legends league. Data taken from Riot's esports website.
+    keywords:
+    - league of legends
+    - riot games
+    - nalcs
+    qri: md:0
+    title: NALCS Summer Split Standings 2018
+  path: /ipfs/QmZ8XgfLkM4vwMgTNG1NXmUer5pF5SvsparxSnk37DeBhJ/dataset.json
   qri: ds:0
   structure:
-    checksum: QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj
+    checksum: QmXbeDBKs9HtWK4UpA9woKXDXtr75gbLJxjxyVNBjN2jvn
     entries: 10
     errCount: 0
     format: csv
-    length: 211
-    path: /ipfs/QmWLLipjATTJXEjEWp691bCJXLqZRMURtfYK11ejwPVzJX
+    length: 212
+    path: /ipfs/QmWRAsGrTqs1zvgdMJn42cwchrygAymoDNnZrKiHj6PL8e
     qri: st:0
     schema:
       items:
@@ -541,3 +616,589 @@ tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/Qmf
 ```
 
 The `commit` section has the `title` and `message` fields adjusted correctly!
+
+<a id="qri-log"></a>
+### 2.5 qri log
+
+Qri is a dataset version control system. That means each time you make an update and `qri save` a dataset, a snapshot is created. It means that even though you have made changes to the dataset, you can always retrieve any previous version you have saved before. Let's take a look at how we can view these previous versions using the `qri log` command.
+
+```
+$ qri log me/nalcs_standings
+Aug  8 19:05:41 - /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
+  dataset update
+
+Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+  created dataset
+
+```
+
+First, the date and time is displayed. Next, the dataset hash. This is the id, so to speak, of this particular verison of the dataset. It is unique. Last is the commit title, so you have a little bit of context when looking through the log about what was added during that update.
+
+In the next section, we are going to go over the dataset reference and how to explore a dataset using the command line.
+
+<a id="part3"></a>
+# 3.  CLI Tutorial, Part 3 - Exploring the dataset
+
+In part three of our tutorial (which assumes you have read through [Part 1]((/docs/tutorials/cli_quickstart/#part1)) and [Part 2]((/docs/tutorials/cli_quickstart/#part2))), we are doing to learn about the dataset reference and the tools we can use in the Qri command line client to explore your datasets.
+
+<a id="datasetRef"></a>
+### 3.1 Dataset Reference
+
+In Qri, we have a specific convention for naming datasets, we often call this name the dataset reference.
+
+The dataset reference is used by Qri to locate the specific version of the dataset you are trying to access.
+
+Here is an example of a dataset reference:
+`tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu`
+
+Whoa, that's alot, right? Well, once you know how to read it it is way less intimidating.
+
+Let's start by spliting up this dataset reference into two main parts on either side of the `@` symbol, and look at each piece one at a time.
+
+The first part is the human readable reference: `tutorial/nalcs_standings`. Often times, it is the only part of the dataset reference we need. __It will always point to the most recent version of the dataset__. We have been using this form of dataset references for this whole tutorial.
+
+This human readable portion can be further divided into two sections along the forward slash (`/`): the peername, and the dataset name.
+
+For example, in the above dataset reference, `tutorial` is the peername, and `nalcs_standings` is the dataset name.
+
+Now onto the second part, containing the `@` symbol and everything after.
+
+`@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu`
+
+From the `@` symbol to the `/` forward slash, you have your `peerID`, this is the unique id for the peer that added the dataset originally. In this case the peerID is `QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9`.
+
+From the first `/` to the second `/`, you have the network id that the dataset is saved on. In almost all cases, as well as in this example, the network is `ipfs`.
+
+From the second `/` to the end of the dataset reference, you have the hash of the dataset, or the specific id that references this particular version of the dataset. In this example, the dataset ID is `QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu`.
+
+Although I have it listed above for veracity, often the peerID is left out of dataset references, as you do not need it to get a dataset that is in your own repo:
+
+`tutorial/nalcs_standings@/ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu`
+
+In fact, you do not even need the human readable portion:
+
+`@/ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu`
+
+will work just fine.
+
+The difference between using `peername/dataset_name` and `@/network/dataset_hash`, is that the human readable portion will always only give you the most recent verison of the dataset, where any dataset reference with a network and dataset hash will give you the dataset at the specific save point.
+
+The dataset hash is how we view the previous versions of our dataset.
+
+__Note: if you are using just the machine readible portion of the dataset reference, be sure to proceed the peerID or the network with the `at` symbol._
+
+Now, let's use the dataset reference to explore the dataset.
+
+<a id="qri-info"></a>
+### 3.2 qri info
+
+Let's get some basic info on our qri dataset:
+
+```
+$ qri info me/nalcs_standings
+0  tutorial/nalcs_standings
+    /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
+    211 bytes, 10 entries, 0 errors
+```
+
+You'll notice, its a very similar format to what the info we recieve when we use `qri list`.
+
+<a id="qri-get"></a>
+### 3.3 qri get and qri use
+
+We've looked at `qri get` briefly, but only to get a whole flood of information about a dataset. We can also use it to get specific pieces of information. We can use the `qri get` command to explore the `bodyPath`, `commit`, `qri`, `structure`, `meta`, `viz`, and `transform`.
+
+For example, let's say we want to know what the metadata description is for our dataset:
+
+```
+$ qri get meta.description me/nalcs_standings
+tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu: 
+  The standings for the North American League Championship Series, the professional League of Legends league. Data taken from Riot Games' esports website.
+```
+
+Okay, now let's look at the commit:
+
+```
+$ qri get commit me/nalcs_standings
+tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmZ8XgfLkM4vwMgTNG1NXmUer5pF5SvsparxSnk37DeBhJ:
+  author:
+    id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
+  path: /ipfs/QmTK4CsgohfUSzmCd6PDtGd34wC5CrSZktbJMBVYzKpbNt
+  qri: cm:0
+  signature: wZe5queKi3drhecadkTrIHZGq+JD9AvOQpiT0l4fLd7jZvgBG7/T91LhhqTY2do2Au01IpthGdqg4Y1gT9Ec1+2TYADr3nFqtKO/wuey95/p0O99NP6MfTh97z6jtZs0T/gpnTGgSNgqDo96chcyauJfRm9LtlnpNm9H2RmaRMX2tSrGrbFeHFwm2BtLQKAFAcj/zK+QsohBc+Uz6Xr3lRdkG1y/Iyz9RMbDfDWPKQqZZH/QU27npbXD7zU9AeiY2YASSgXhD6hzVneGutiKdreiG6pvWvWEhZzyPhxMsnAn23jD5DOiZ02ytwaZiYcC4cfksIS7lZ/IPdWkNehB5Q==
+  timestamp: "2018-08-09T16:11:59.644134156Z"
+  title: body update
+  message: dataset has been updated with the week 7 match results
+```
+
+Great. Now, what if I want to know the title and message of the first commit, or the commit that was created when we first added the dataset using `qri new`?
+
+In order to do that, we would have to use the hash of the first version of the dataset. We can get that hash by using `qri log`. This command gives us the history of our datasets:
+
+
+```
+$ qri log me/nalcs_standings
+Aug  8 19:05:41 - /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
+  dataset update
+
+Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+  created dataset
+
+```
+
+As a reminder, the hash of your datasets, even if you name them the same as we do in the tutorials, will be different than the ones presented here. In order to look at previous versions of your dataset, you must use the hashes that get printed to your terminal when you run `qri log` yourself.
+
+So, let's get the commit of the previous dataset using it's particular hash: `QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW`
+
+```
+$ qri get commit me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW:
+  author:
+    id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
+  path: /ipfs/QmTK4CsgohfUSzmCd6PDtGd34wC5CrSZktbJMBVYzKpbNt
+  qri: cm:0
+  signature: wZe5queKi3drhecadkTrIHZGq+JD9AvOQpiT0l4fLd7jZvgBG7/T91LhhqTY2do2Au01IpthGdqg4Y1gT9Ec1+2TYADr3nFqtKO/wuey95/p0O99NP6MfTh97z6jtZs0T/gpnTGgSNgqDo96chcyauJfRm9LtlnpNm9H2RmaRMX2tSrGrbFeHFwm2BtLQKAFAcj/zK+QsohBc+Uz6Xr3lRdkG1y/Iyz9RMbDfDWPKQqZZH/QU27npbXD7zU9AeiY2YASSgXhD6hzVneGutiKdreiG6pvWvWEhZzyPhxMsnAn23jD5DOiZ02ytwaZiYcC4cfksIS7lZ/IPdWkNehB5Q==
+  timestamp: "2018-08-09T16:11:59.644134156Z"
+  title: created dataset
+```
+
+We did not have a message when we used `qri new`, we only had a title: 'created dataset'.
+
+Cool! So you just explored the dataset using a dataset reference with a dataset hash.
+
+Now, having to repeatedly copy and paste the same dataset reference every time you want to `qri get` something seems a little tedious. We felt that way, too.
+
+In order to streamline things a bit, we created the `qri use` command. Whatever dataset reference you give to the `qri use` command can be used in any subsequent `qri get` commands, until the `qri use` list is cleared using the `qri use --clear` command.
+
+```
+$ qri use me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+
+$ qri get commit.title
+tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW:
+  created dataset
+```
+
+You can view the dataset reference stored in use by running the `qri use --list` command
+
+```
+$ qri use --list
+me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+```
+
+<a id="qri-body"></a>
+### qri body
+
+Okay, so we know now we can use the `qri get` command to explore the `bodyPath`, `commit`, `qri`, `structure`, `metadata`, `viz`, and `transform`. But what if you want to view the body itself?
+
+That's where the `qri body` command comes in.
+
+Like the `qri get` command, you can view the body at different points in time by using a dataset reference with a dataset hash. As of writing this tutorial, however, `qri use` does not work with `qri body`, this is a known discrepancy.
+
+Let's use `qri body` to look at the most recent version of `me/nalcs_standings`
+
+```
+$ qri body me/nalcs_standings
+[[1,"Team Liquid","TL",10,4],[2,"Echo Fox","EF",9,5],[2,"100 Thieves","100",9,5],[4,"FlyQuest","FQ",7,7],[4,"Cloud9","C9",7,7],[4,"OpTic Gaming","OG",7,7],[7,"TSM","TSM",6,8],[8,"Counter Logic Gaming","CLG",5,9],[8,"Golden Guardians","GG",5,9],[8,"Clutch Gaming","CG",5,9]]
+```
+
+You'll notice, that even though the data is correct, that doesn't look much like the csv we imported. That's because the `qri body` command defaults to showing the data in JSON format. Using the `--format` flag, we can print as csv.
+
+```
+$ qri body --format csv me/nalcs_standings
+1,Team Liquid,TL,10,4
+2,Echo Fox,EF,9,5
+2,100 Thieves,100,9,5
+4,FlyQuest,FQ,7,7
+4,Cloud9,C9,7,7
+4,OpTic Gaming,OG,7,7
+7,TSM,TSM,6,8
+8,Counter Logic Gaming,CLG,5,9
+8,Golden Guardians,GG,5,9
+8,Clutch Gaming,CG,5,9
+```
+
+You can use `--limit` and `--offset` to get different parts of the dataset body:
+
+```
+$ qri body --format csv --limit 5 me/nalcs_standings
+1,Team Liquid,TL,10,4
+2,Echo Fox,EF,9,5
+2,100 Thieves,100,9,5
+4,FlyQuest,FQ,7,7
+4,Cloud9,C9,7,7
+```
+
+```
+$ qri body --formt csv --limit 5 --offset 5 me/nalcs_standings
+4,OpTic Gaming,OG,7,7
+7,TSM,TSM,6,8
+8,Counter Logic Gaming,CLG,5,9
+8,Golden Guardians,GG,5,9
+8,Clutch Gaming,CG,5,9
+```
+
+Now, to see the body of the previous version of the dataset, we will use `qri log` to get the hash, and then use the hash to get the body:
+
+```
+$ qri log me/nalcs_standings
+Aug  8 19:05:41 - /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
+  dataset update
+
+Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+  created dataset
+
+$ qri body --format csv me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+1,Team Liquid,TL,8,4
+1,100 Thieves,100,8,4
+3,Echo Fox,EF,7,5
+3,FlyQuest,FQ,7,5
+5,OpTic Gaming,OG,6,6
+6,TSM,TSM,5,7
+6,Cloud9,C9,5,7
+6,Counter Logic Gaming,CLG,5,7
+6,Golden Guardians,GG,5,7
+10,Clutch Gaming,CG,4,8
+```
+
+<a id="part4"></a>
+# CLI Tutorial, Part 4 - Peer commands
+
+So now that you can create, update, and examine your own datasets, how do you look for datasets on other's Qri nodes?
+
+We are now going to look at the `qri connect` and `qri peers` commands, starting with how to spin up your Qri node to connect with other, get a list of your peers, get info about them, list their datasets, and add their datasets to your own repository.
+
+Unfortunately, it will be less straightforward to follow along on this section of the tutorial. Because you can only view a Qri node of a peer who is currently online, the list of peers that I have and the peers that will be connected to your qri node will be different.
+
+<a id="qri-connect"></a>
+### 4.1 qri connect
+
+In order for others to view your datasets, or for you to view a peer's dataset, you need to have a Qri node running. This is super easy. All you need to do is open up a terminal window and run the command `qri connect`
+
+```
+$ qri connect
+16:04:36.076  INFO     qrip2p: boostrapping to: QmTZxETL4YCCzB1yFx4GT1te68henVHD1XPQMkHZ1N22mm bootstrap.go:28
+16:04:36.078  INFO     qrip2p: boostrapping to: QmNX9nSos8sRFvqGTwdEme6LQ8R1eJ8EuFgW32F9jjp2Pb bootstrap.go:28
+16:04:36.079  INFO     qriapi:
+peername: tutorial
+profileID:  QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
+API port: 2503
+RPC port: 2504
+IPFS Addresses:
+  /ip4/127.0.0.1/tcp/4001/ipfs/QmZnDzTmoQZSt7hVhJAqsaoGCqx4VUVbYpZnyxmKJWy5pe
+  /ip4/192.168.0.8/tcp/4001/ipfs/QmZnDzTmoQZSt7hVhJAqsaoGCqx4VUVbYpZnyxmKJWy5pe
+  /ip6/::1/tcp/4001/ipfs/QmZnDzTmoQZSt7hVhJAqsaoGCqx4VUVbYpZnyxmKJWy5pe
+  /ip4/24.104.245.18/tcp/32666/ipfs/QmZnDzTmoQZSt7hVhJAqsaoGCqx4VUVbYpZnyxmKJWy5
+```
+
+You may also see other activity in this terminal window. Whenever you connect to a new peer, or exchange data with a peer, there will be output to the terminal describing the activity.
+
+With `qri connect` running in the terminal, you now have access to all the `qri peers` commands.
+
+<a id="qri-peers-list"></a>
+### 4.2 qri peers list
+
+Now that we have a Qri node running, we can find out what peers we are connected to!
+
+Using the `qri peers list` command, we will get a list of the currently connected peers. Note, this list will contain different peers than the list printed here.
+
+```
+$ qri peers list
+
+tutorial_peer | online
+QmQDAHk8jx6mJ1migbC6oEij52odepBV7RHBoGoGFWUr7F
+
+
+mojo | online
+QmfREVLKSKngemAQLJJEdNbm2ha71uRZhvXdNquCJA86eP
+@qri_io
+Mojo is a qri gateway.
+
+epa | online
+QmXKaJKveAc4ZKm4ys9zXWutPaqr2F3Jm34YqfU1dWmDmh
+@EPA
+The Environmental Protection Agency protects people and the environment from significant health risks, sponsors and conducts research, and develops and enforces environmental regulations.
+```
+
+Now that we have some peer names and ids, we can take a look at another peer's datasets!
+
+<a id="qri-list-peername"></a>
+### 4.3 qri list <peername>
+
+To view the list of datasets currently on a peer's node, use the `qri list <peername>` command. This is the same command we use to list our own datasets! Let's say I want to view the datasets on the `tutorial_peer`:
+
+```
+$ qri list tutorial_peer
+1  tutorial_peer/paris_energy_pledges
+    /ipfs/QmbbULznAxYWmq3v5wgD2czb9eQeEfK74pJakN6VE42zCi
+    Renewable/Low-Carbon Energy Production Pledges from NDCs of Paris Accord
+    *under construction* a listing of the pledges made by countries to shift thei...
+    87 KBs, 168 entries, 383 errors
+2  fivethirtyeight/weather_ksea
+    /ipfs/QmVi6Li9usDQMtW5wVPDMpAa7Xx2jpKd25bKCWoz8e3Suu
+    20 KBs, 365 entries, 0 errors
+```
+
+You can see this peer has two datasets. If you take a look at the dataset references, you will see a distinct difference. The `tutorial_peer/paris_energy_pledges` dataset was added by this peer, the `tutorial_peer`. The `fivethirtyeight/weather_ksea` dataset, however, was originally added by the `fivethirtyeight` peer. The `tutorial_peer` added the `fivethirtyeight/weather_ksea` dataset by connecting to the `fivethirtyeight` peer and adding that datasets to its own repository.
+
+In the next section, we are going to learn how to add a peer's dataset to our own node.
+
+<a id="qri-add"></a>
+### 4.4 qri add
+
+Now, to `qri add`!
+
+First, you must still have `qri connect` running in another terminal. This allows us access to the Qri network.
+
+Second, you must have the dataset reference for the dataset you want to add. By running the `qri peers list` command, we found we have a peer called `tutorial_peer`. By running the `qri list tutorial_peer` command, we found that peer has a dataset called `tutorial_peer/paris_energy_pledges`. Let's add that dataset :)
+
+```
+$ qri add tutorial_peer/paris_energy_pledges
+1  tutorial_peer/paris_energy_pledges
+    /ipfs/QmbbULznAxYWmq3v5wgD2czb9eQeEfK74pJakN6VE42zCi
+    Renewable/Low-Carbon Energy Production Pledges from NDCs of Paris Accord
+    *under construction* a listing of the pledges made by countries to shift thei...
+    87 KBs, 168 entries, 383 errors
+Successfully added dataset tutorial_peer/paris_energy_pledges
+```
+
+If we run `qri list` to see our datasets, we will see this new dataset in our repository:
+
+```
+$ qri list
+1  tutorial/nalcs_standings
+    /ipfs/Qmager6xdesYPTgcgQwUPyPtQVddxCy6fLXKZhnKku9ra2
+    NALCS Summer Split Standings 2018
+    The standings for the North American League Championship Series, the professi...
+    211 bytes, 10 entries, 0 errors
+2  tutorial_peer/paris_energy_pledges
+    /ipfs/QmbbULznAxYWmq3v5wgD2czb9eQeEfK74pJakN6VE42zCi
+    Renewable/Low-Carbon Energy Production Pledges from NDCs of Paris Accord
+    *under construction* a listing of the pledges made by countries to shift thei...
+    87 KBs, 168 entries, 383 errors
+```
+
+You can now use any of the Qri commands you normally use for exploring or exporting datasets to checkout out this added `tutorial_peer/paris_energy_pledges` dataset.
+
+One note: if you make a change or update to a peers dataset using the `qri save` command, the dataset will now be renamed from `<other_peername>/<dataset_name>` to `<my_peername>/<dataset_name>`
+
+<a id="qri-peers-info"></a>
+### 4.5 qri peers info
+
+To get details about a peer, such as their real name, twitter handle, or email address, you can use the `qri peers info` command:
+
+```
+$ qri peers info tutorial_peer
+color: ""
+created: "2018-07-26T14:35:39.614543043-04:00"
+description: ""
+email: "test@test.com"
+homeurl: ""
+id: QmQDAHk8jx6mJ1migbC6oEij52odepBV7RHBoGoGFWUr7F
+name: "tutorial example peer"
+peerIDs:
+- /ipfs/QmaZN1jED9KGzso8d2PdyrA1U9VyA8hVZ3RkRnatzJumrX
+peername: tutorial_peer
+photo: ""
+poster: ""
+thumb: ""
+twitter: ""
+type: peer
+updated: "2018-07-26T14:35:39.614543043-04:00"
+```
+
+You can learn how to update your own profile in [Part 6]((/docs/tutorials/cli_quickstart/#part6)) of this tutorial.
+
+<a id="part5"></a>
+# CLI Tutorial, Part 5 - Search and the Registry
+<a id="registry"></a>
+### 5.1 What is the registry
+
+The registry is a light weight centralized service for two purposes.
+
+First, the registry has a list of peer IDs. We keep this list so that when a new person joins Qri, their peer ID does not conflict with anyone elses.
+
+Second, the registry supliments our search results. Once a dataset is published to the registry, it is indexed and other peers can use the `qri search` command to find it.
+
+Before we move forward, I want to clarify something. Once you add a dataset into Qri, any peer that connects to your Qri node can look at and add your dataset using the `qri peers` and `qri list <peername>` commands (which we will go over in section seven). They can view your dataset regardless of whether or not that dataset is published to the registry. 
+
+Publishing the dataset to the registry determines whether or not the dataset will show up in search results, not whether it is accessible by other Qri peers.
+
+<a id="qri-registry-publish"></a>
+### 5.2 qri registry publish
+
+In order to make sure a dataset is published to the registry, use the command `qri registry publish`
+
+```
+$ qri registry publish me/nalcs_standings
+published dataset me/nalcs_standings
+```
+
+To remove it from the registyr:
+
+```
+$ qri registry unpublish me/nalcs_standings
+unpublished dataset me/nalcs_standings
+```
+
+However, since we are going to use the search command in the next section, I want to make sure that my `nalcs_standings` dataset is published:
+
+```
+$ qri registry publish me/nalcs_standings
+published dataset me/nalcs_standings
+```
+
+<a id="qri-search"></a>
+### 5.3 qri search
+
+Keywords, titles, descriptions, and dataset names are all indexed for search. So, for example, I will try using the search term `nalcs` to look for our sample dataset.
+
+```
+$ qri search nalcs
+showing 1 results for 'nalcs'
+1. tutorial/nalcs_standings
+   NALCS Summer Split Standings 2018
+   The standings for the North American League Championship Series, the professional League of Legends league. Data taken from Riot's esports website.
+```
+
+<a id="part6"></a>
+# CLI Tutorial, Part 6 - Profile and Config
+
+Now, let's say you want to change your peername (which we do not recommend), or add your email address or twitter handle to your profile. You can do all those actions and more using the `qri config set` command.
+
+First, however, let's learn how to view the config using `qri config get`!
+
+<a id="qri-config-get"></a>
+### 6.1 qri config get
+
+To view all the config details, run `qri config get`
+
+```
+$ qri config get
+API:
+  allowedorigins:
+  - http://localhost:2505
+  - http://app.qri.io
+  - https://app.qri.io
+  enabled: true
+  port: 2503
+  proxyforcehttps: false
+  readonly: false
+  tls: false
+  urlroot: ""
+CLI:
+  colorizeoutput: true
+Logging:
+  levels:
+    qriapi: debug
+    qrip2p: debug
+P2P:
+  addrs: null
+  bootstrapaddrs: []
+  enabled: true
+  httpgatewayaddr: ""
+  peerid: QmbiT5cJgxTZd2AV19bFJMA3zXMV1aDf8oEzfNc8qjMJwx
+  port: 0
+  privkey: ""
+  profilereplication: full
+  pubkey: ""
+  qribootstrapaddrs:
+  - /ip4/130.211.198.23/tcp/4001/ipfs/QmNX9nSos8sRFvqGTwdEme6LQ8R1eJ8EuFgW32F9jjp2Pb
+  - /ip4/35.193.162.149/tcp/4001/ipfs/QmTZxETL4YCCzB1yFx4GT1te68henVHD1XPQMkHZ1N22mm
+Profile:
+  color: ""
+  created: "2018-04-25T11:49:15.88838293-04:00"
+  description: ""
+  email: ""
+  homeurl: ""
+  id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
+  name: ""
+  peername: tutorial
+  photo: ""
+  poster: ""
+  thumb: ""
+  twitter: ""
+  type: peer
+  updated: "2018-04-25T11:49:15.88838293-04:00"
+RPC:
+  enabled: true
+  port: 2504
+Registry:
+  location: https://registry.qri.io
+Render:
+  defaultTemplateHash: /ipfs/QmeqeRTf2Cvkqdx4xUdWi1nJB2TgCyxmemsL3H4f1eTBaw
+  templateUpdateAddress: /ipns/defaulttmpl.qri.io
+Repo:
+  middleware: []
+  type: fs
+Store:
+  type: ipfs
+Webapp:
+  analyticstoken: ""
+  enabled: true
+  entrypointhash: QmP99mprLUGhMqrh5gyqt4McrgfTJCKCSh5eGJaZw2LycF
+  entrypointupdateaddress: /ipns/webapp.qri.io
+  port: 2505
+```
+
+Note that in the P2P section, there is a field called privkey. This should never be shared with anyone, and by default, is stripped from the content. Run `qri config --help` to learn more.
+
+Most of these fields you will never care about or change. However, the profile section will probably be of interest.
+
+Like the `qri get` command, we can use the section names to show only part of the config. So, to get just the profile from the config: `qri config get profile`.
+
+```
+$ qri config get profile
+color: ""
+created: "2018-04-25T11:49:15.88838293-04:00"
+description: ""
+email: ""
+homeurl: ""
+id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
+name: ""
+peername: tutorial
+photo: ""
+poster: ""
+thumb: ""
+twitter: ""
+type: peer
+updated: "2018-04-25T11:49:15.88838293-04:00"
+
+$ qri config get profile.peername
+tutorial
+
+```
+
+<a id="qri-config-set"></a>
+### 6.2 qri config set
+
+Now, let's say you want to add a name and a description to your profile. I'm going to add 'example peer' as the name and 'This peer was created to teach people how to use Qri' as the description.
+
+```
+$ qri config get profile.name 'example peer' profile.description 'This peer was created to teach people how to use Qri'
+config updated
+
+$ qri config get profile
+color: ""
+created: "2018-04-25T11:49:15.88838293-04:00"
+description: "This peer was created to teach people how to use Qri"
+email: ""
+homeurl: ""
+id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
+name: "example peer"
+peername: tutorial
+photo: ""
+poster: ""
+thumb: ""
+twitter: ""
+type: peer
+updated: "2018-04-25T11:49:15.88838293-04:00"
+```
+
+To learn more about the Config, please check out the config package [readme](https://github.com/qri-io/qri/blob/master/config/readme.md).
+
+# End!
+
+That's all for now of our tutorial. We will be updating this as the code and functionality of Qri changes.
+
+If you find any errors or are having trouble following along with the tutorial, please file an issue at our [website github repo](https://github.com/qri-io/website)
