@@ -52,7 +52,7 @@ params:
   DateFormFull: "Mon Jan 2 2006 15:04:05 MST"
   Description: "a home for datasets"
   Email: "info@qri.io"
-  FaviconFile: "img/leaf.ico"
+  # FaviconFile: "/docs/favicon.ico"
   SegmentTracker: "b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju"
   GitHub: "qri-io"
   # Lang = "en" 
