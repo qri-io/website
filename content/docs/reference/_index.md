@@ -14,4 +14,5 @@ Reference documentation is no-frills explanation of _what stuff is_. If your con
 * **[Dataset](/docs/reference/dataset)**
 * **[Skylark Syntax](/docs/reference/skylark_syntax)**
 * **[HTML Templates](/docs/reference/html_templates)**
+* **[Command Line Interface](/docs/reference/cli_commands)**
 

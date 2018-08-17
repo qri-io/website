@@ -23,7 +23,7 @@
   <meta property="og:title" content="CLI quickstart" />
 <meta property="og:description" content="CLI Tutorial (last updated August 8, 2018)
 Welcome to the wonderful world of the Qri Command Line Interface. After the first section of this tutorial is the quick start. After following that portion, you will be able to set up your qri repo, check the version of qri you are running, create a new dataset, list your datasets, and export your datasets.
-The whole tutorial is divided into 5 sections." />
+The whole tutorial is divided into six sections." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://qri.io/docs/tutorials/cli_quickstart/" />
 
@@ -131,7 +131,7 @@ The whole tutorial is divided into 5 sections." />
 
 <p>Welcome to the wonderful world of the Qri Command Line Interface. After the first section of this tutorial is the quick start. After following that portion, you will be able to set up your qri repo, check the version of qri you are running, create a new dataset, list your datasets, and export your datasets.</p>
 
-<p>The whole tutorial is divided into 5 sections. The topics are as follows:</p>
+<p>The whole tutorial is divided into six sections. The topics are as follows:</p>
 
 <ol>
 <li><p><a href="#part1">QLI Quickstart</a><br />
@@ -176,7 +176,7 @@ The whole tutorial is divided into 5 sections." />
 
 <h2 id="1-qli-tutorial-part-1-quickstart">1. QLI Tutorial, Part 1 - Quickstart</h2>
 
-<p>Head over to our <a href="https://github.com/qri-io/qri/releases">releases</a> page and download the latest version of the Qri installer (the .pkg file).</p>
+<p>Download the latest version of the Qri installer <a href="https://github.com/qri-io/qri/releases/download/v0.5.0/qri_os_x_cli_darwin_amd64.pkg">here.</a></p>
 
 <p>Once you&rsquo;ve gone through the install process, open up your terminal.</p>
 
@@ -240,9 +240,9 @@ Use &quot;qri [command] --help&quot; for more information about a command.
 
 </code></pre>
 
-<p>By just typing <code>qri</code>, <code>qri help</code>, or <code>qri --help</code>,  you can get a list of all the commands that are at your fingertips.</p>
+<p>By just typing <code>qri</code>, <code>qri help</code>, or <code>qri --help</code>, you can get a list of all the commands that are at your fingertips.</p>
 
-<p>And typing <code>--help</code> after any Qri command, you can get a list of all the flags and options available for that command, as well as example usage.</p>
+<p>And by typing <code>--help</code> after any Qri command, you can get a list of all the flags and options available for that command, as well as example usage.</p>
 
 <p>For example, running <code>qri diff --help</code> gives you a summary of what the command does, some examples on how to use that command, and the flags you can use to elicit different behaviors:</p>
 
@@ -384,7 +384,7 @@ created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiP
 
 <p>This bit: <code>me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT</code> is the full dataset reference. Everything before the <code>@</code> sign is human readable. Everything after it is 1) your Qri id, 2) the network your dataset is saved on (in this case: ipfs), 3) the hash of your dataset.</p>
 
-<p>Your Qri id, and your dataset hash should and will be different than mine.</p>
+<p>Your Qri id and your dataset hash should and will be different than mine.</p>
 
 <p>And that is the simpliest, no frills way to add a dataset to qri! Continue on to see how to view all the datasets you have on Qri, and how to export them from Qri.</p>
 
@@ -743,9 +743,9 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 </code></pre>
 
-<p>First, the date and time is displayed. Next, the dataset hash. This is the id, so to speak, of this particular verison of the dataset. It is unique. Last is the commit title, so you have a little bit of context when looking through the log about what was added during that update.</p>
+<p>First, the date and time is displayed. Next, the dataset hash. The hash is the id, so to speak, of this particular verison of the dataset. It is unique. Last is the commit title, so you have a little bit of context when looking through the log about what was added during that update.</p>
 
-<p>In the next section, we are going to go over the dataset reference and how to explore a dataset using the command line.</p>
+<p>In the next section, we&rsquo;ll go over the dataset reference and how to explore a dataset using the command line.</p>
 
 <p><a id="part3"></a></p>
 
@@ -757,14 +757,12 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 <h3 id="3-1-dataset-reference">3.1 Dataset Reference</h3>
 
-<p>In Qri, we have a specific convention for naming datasets, we often call this name the dataset reference.</p>
-
-<p>The dataset reference is used by Qri to locate the specific version of the dataset you are trying to access.</p>
+<p>In Qri, we have a specific convention for naming datasets, we often call this name the dataset reference. The dataset reference is used by Qri to locate the specific version of the dataset you are trying to access.</p>
 
 <p>Here is an example of a dataset reference:
 <code>tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu</code></p>
 
-<p>Whoa, that&rsquo;s alot, right? Well, once you know how to read it it is way less intimidating.</p>
+<p>Whoa, that&rsquo;s a lot, right? Well, once you know how to read it, it is way less intimidating.</p>
 
 <p>Let&rsquo;s start by spliting up this dataset reference into two main parts on either side of the <code>@</code> symbol, and look at each piece one at a time.</p>
 
@@ -814,7 +812,7 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
     211 bytes, 10 entries, 0 errors
 </code></pre>
 
-<p>You&rsquo;ll notice, its a very similar format to what the info we recieve when we use <code>qri list</code>.</p>
+<p>You&rsquo;ll notice, it&rsquo;s a very similar format to what the info we recieve when we use <code>qri list</code>.</p>
 
 <p><a id="qri-get"></a></p>
 
@@ -968,7 +966,7 @@ $ qri body --format csv me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8
 
 <h1 id="cli-tutorial-part-4-peer-commands">CLI Tutorial, Part 4 - Peer commands</h1>
 
-<p>So now that you can create, update, and examine your own datasets, how do you look for datasets on other&rsquo;s Qri nodes?</p>
+<p>So now that you can create, update, and examine your own datasets, how do you look for datasets on others&rsquo; Qri nodes?</p>
 
 <p>We are now going to look at the <code>qri connect</code> and <code>qri peers</code> commands, starting with how to spin up your Qri node to connect with other, get a list of your peers, get info about them, list their datasets, and add their datasets to your own repository.</p>
 
@@ -1126,7 +1124,7 @@ updated: &quot;2018-07-26T14:35:39.614543043-04:00&quot;
 
 <p>Second, the registry supliments our search results. Once a dataset is published to the registry, it is indexed and other peers can use the <code>qri search</code> command to find it.</p>
 
-<p>Before we move forward, I want to clarify something. Once you add a dataset into Qri, any peer that connects to your Qri node can look at and add your dataset using the <code>qri peers</code> and <code>qri list &lt;peername&gt;</code> commands (which we will go over in section seven). They can view your dataset regardless of whether or not that dataset is published to the registry.</p>
+<p>Before we move forward, I want to clarify something. Once you add a dataset into Qri, any peer that connects to your Qri node can look at and add your dataset using the <code>qri peers</code> and <code>qri list &lt;peername&gt;</code> commands. They can view your dataset regardless of whether or not that dataset is published to the registry.</p>
 
 <p>Publishing the dataset to the registry determines whether or not the dataset will show up in search results, not whether it is accessible by other Qri peers.</p>
 
