@@ -18,7 +18,7 @@ Qri has a simple python client that makes it easier to work with qri datasets us
 
 Since the qri python client is using qri under the hood, for it to work correctly you need to have qri setup and installed before using the python client.  To install qri, you can either install the [desktop app for OS X or the CLI](https://qri.io/download/) and create your repo (for the CLI run `qri setup` to do this).
 
-Next try adding a dataset.  If you need an example dataset (or would like to follow along in later steps) you can download one from our repo with the following command
+Next try adding a dataset. If you need an example dataset (or would like to follow along in later steps) you can download one from our repo with the following command
 ```sh
 curl https://raw.githubusercontent.com/qri-io/qri-python/master/example_data/body.csv -o "body.csv" https://raw.githubusercontent.com/qri-io/qri-python/master/example_data/head.yaml -o "head.yaml"
 ```
@@ -69,7 +69,7 @@ To load a dataset into memory, use `qri.load_ds`, passing the name of the datase
 ```python
 ds = qri.load_ds('osterbit/BirthdatesOfUSPresidents')
 ```
-The python `QriDataset` is represented as an object with two properties: a `head` containing the dataset's metadata as a python dictionary and a `body` containing the data as a pandas dataframe.  To manipulate these objects we can just use the native methods already available to them.
+The python `QriDataset` is represented as an object with two properties: a `head` containing the dataset's metadata as a python dictionary and a `body` containing the data as a pandas dataframe. To manipulate these objects we can just use the native methods already available to them.
 ```python
 ds.head
 ```
@@ -97,7 +97,7 @@ ds.head
         'type': 'array'},
        'type': 'array'}}}
 
-You'll notice in the body below, that the field 'birth_date' is inconsistently formatted.  In some entries the date is abbreviated while in others it is written out, and on the later entries the date is given with the day before the month:
+You'll notice in the body below, that the field 'birth_date' is inconsistently formatted. In some entries the date is abbreviated while in others it is written out, and on the later entries the date is given with the day before the month:
 
 ```python
 ds.body
@@ -282,7 +282,7 @@ ds.body
 </div>
 
 ## Fixing the data
-To fix the inconstent date formatting, we'll write a function to parse the dates.  It looks like there are 3 different formats so we'll want to handle each of these (for more info on dates and strings in python [strftime.org](http://strftime.org/) has a good cheat sheet).
+To fix the inconstent date formatting, we'll write a function to parse the dates. It looks like there are 3 different formats so we'll want to handle each of these (for more info on dates and strings in python [strftime.org](http://strftime.org/) has a good cheat sheet).
 ```python
 import datetime
 def parse_date(date_string):
@@ -293,7 +293,7 @@ def parse_date(date_string):
             pass
     raise ValueError('unable to parse dates with given formats')
 ```
-If we apply this function alone we'll have an issue where two digit years are assumed to be prefixed with '20'- rather than '19'-.  So we'll use the fact that a president must be at least 35 years old to fix this and then combine the two functions and convert back to a string:
+If we apply this function alone we'll have an issue where two digit years are assumed to be prefixed with '20'- rather than '19'-. So we'll use the fact that a president must be at least 35 years old to fix this and then combine the two functions and convert back to a string:
 
 ```python
 def fix_date(date, max_year, adjustment=100):

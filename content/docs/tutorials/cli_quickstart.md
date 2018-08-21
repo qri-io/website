@@ -1032,7 +1032,7 @@ $ qri registry publish me/nalcs_standings
 published dataset me/nalcs_standings
 ```
 
-To remove it from the registyr:
+To remove it from the registry:
 
 ```
 $ qri registry unpublish me/nalcs_standings
@@ -1199,4 +1199,4 @@ To learn more about the Config, please check out the config package [readme](htt
 
 That's all for now of our tutorial. We will be updating this as the code and functionality of Qri changes.
 
-If you find any errors or are having trouble following along with the tutorial, please file an issue at our [website github repo](https://github.com/qri-io/website)
+If you find any errors or are having trouble following along with the tutorial, please file an issue at our [website github repo](https://github.com/qri-io/website).

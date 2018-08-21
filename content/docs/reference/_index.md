@@ -7,7 +7,7 @@ section: reference
 
 # Qri Reference
 
-Reference documentation is no-frills explanation of _what stuff is_. If your confused about how a specific field should work, or want to know what options are available, reference documentation is your friend. If you're more interested in getting started, [tutorials](/docs/tutorials) are a better place to start.
+Reference documentation is no-frills explanation of _what stuff is_. If you're confused about how a specific field should work, or want to know what options are available, reference documentation is your friend. If you're more interested in getting started, [tutorials](/docs/tutorials) are a better place to start.
 
 ### Reference Sections
 
