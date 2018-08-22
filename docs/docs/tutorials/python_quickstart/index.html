@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.37-DEV" />
+  <meta name="generator" content="Hugo 0.48-DEV" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,24 +25,8 @@
 1. Before you start Qri has a simple python client that makes it easier to work with qri datasets using the tools you already use&ndash;like pandas and Jupyter.
 Since the qri python client is using qri under the hood, for it to work correctly you need to have qri setup and installed before using the python client." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/tutorials/python_quickstart/" />
-
-
-
-<meta property="article:published_time" content="2018-08-21T00:00:00-04:00"/>
-
+<meta property="og:url" content="https://qri.io/docs/tutorials/python_quickstart/" /><meta property="article:published_time" content="2018-08-21T00:00:00-04:00"/>
 <meta property="article:modified_time" content="2018-08-21T00:00:00-04:00"/>
-
-
-
-
-
-
-
-
-
-
-
   
 
 
@@ -106,6 +90,8 @@ Since the qri python client is using qri under the hood, for it to work correctl
         
           <li><a href="../../../docs/tutorials/cli_quickstart">CLI quickstart</a></li>
         
+          <li><a href="../../../docs/tutorials/python_quickstart">Python &amp; Jupyter</a></li>
+        
           <li><a href="../../../docs/tutorials/skylark_transformations">Skylark Transformations</a></li>
         
       </ul>
@@ -141,7 +127,7 @@ Since the qri python client is using qri under the hood, for it to work correctl
 
 <p>Since the qri python client is using qri under the hood, for it to work correctly you need to have qri setup and installed before using the python client.  To install qri, you can either install the <a href="https://qri.io/download/">desktop app for OS X or the CLI</a> and create your repo (for the CLI run <code>qri setup</code> to do this).</p>
 
-<p>Next try adding a dataset.  If you need an example dataset (or would like to follow along in later steps) you can download one from our repo with the following command</p>
+<p>Next try adding a dataset. If you need an example dataset (or would like to follow along in later steps) you can download one from our repo with the following command</p>
 
 <pre><code class="language-sh">curl https://raw.githubusercontent.com/qri-io/qri-python/master/example_data/body.csv -o &quot;body.csv&quot; https://raw.githubusercontent.com/qri-io/qri-python/master/example_data/head.yaml -o &quot;head.yaml&quot;
 </code></pre>
@@ -199,7 +185,7 @@ If this succeeds you should be good to move on to installing and using the qri p
 <pre><code class="language-python">ds = qri.load_ds('osterbit/BirthdatesOfUSPresidents')
 </code></pre>
 
-<p>The python <code>QriDataset</code> is represented as an object with two properties: a <code>head</code> containing the dataset&rsquo;s metadata as a python dictionary and a <code>body</code> containing the data as a pandas dataframe.  To manipulate these objects we can just use the native methods already available to them.</p>
+<p>The python <code>QriDataset</code> is represented as an object with two properties: a <code>head</code> containing the dataset&rsquo;s metadata as a python dictionary and a <code>body</code> containing the data as a pandas dataframe. To manipulate these objects we can just use the native methods already available to them.</p>
 
 <pre><code class="language-python">ds.head
 </code></pre>
@@ -225,7 +211,7 @@ If this succeeds you should be good to move on to installing and using the qri p
    'type': 'array'}}}
 </code></pre>
 
-<p>You&rsquo;ll notice in the body below, that the field &lsquo;birth_date&rsquo; is inconsistently formatted.  In some entries the date is abbreviated while in others it is written out, and on the later entries the date is given with the day before the month:</p>
+<p>You&rsquo;ll notice in the body below, that the field &lsquo;birth_date&rsquo; is inconsistently formatted. In some entries the date is abbreviated while in others it is written out, and on the later entries the date is given with the day before the month:</p>
 
 <pre><code class="language-python">ds.body
 </code></pre>
@@ -407,7 +393,7 @@ If this succeeds you should be good to move on to installing and using the qri p
 
 <h2 id="fixing-the-data">Fixing the data</h2>
 
-<p>To fix the inconstent date formatting, we&rsquo;ll write a function to parse the dates.  It looks like there are 3 different formats so we&rsquo;ll want to handle each of these (for more info on dates and strings in python <a href="http://strftime.org/">strftime.org</a> has a good cheat sheet).</p>
+<p>To fix the inconstent date formatting, we&rsquo;ll write a function to parse the dates. It looks like there are 3 different formats so we&rsquo;ll want to handle each of these (for more info on dates and strings in python <a href="http://strftime.org/">strftime.org</a> has a good cheat sheet).</p>
 
 <pre><code class="language-python">import datetime
 def parse_date(date_string):
@@ -419,7 +405,7 @@ def parse_date(date_string):
     raise ValueError('unable to parse dates with given formats')
 </code></pre>
 
-<p>If we apply this function alone we&rsquo;ll have an issue where two digit years are assumed to be prefixed with &lsquo;20&rsquo;- rather than &lsquo;19&rsquo;-.  So we&rsquo;ll use the fact that a president must be at least 35 years old to fix this and then combine the two functions and convert back to a string:</p>
+<p>If we apply this function alone we&rsquo;ll have an issue where two digit years are assumed to be prefixed with &lsquo;20&rsquo;- rather than &lsquo;19&rsquo;-. So we&rsquo;ll use the fact that a president must be at least 35 years old to fix this and then combine the two functions and convert back to a string:</p>
 
 <pre><code class="language-python">def fix_date(date, max_year, adjustment=100):
     if date.year &gt; max_year:

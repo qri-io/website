@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.37-DEV" />
+  <meta name="generator" content="Hugo 0.48-DEV" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,24 +24,8 @@
   <meta property="og:title" content="dataset" />
 <meta property="og:description" content="dataset definition" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/reference/dataset/" />
-
-
-
-<meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
-
+<meta property="og:url" content="https://qri.io/docs/reference/dataset/" /><meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
 <meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
-
-
-
-
-
-
-
-
-
-
-
   
 
 
@@ -277,7 +261,7 @@
 <p>Meta contains human-readable descriptive metadata that qualifies and distinguishes a dataset.
 Well-defined Meta should aid in making datasets Findable by describing a dataset in generalizable taxonomies that can aggregate across other dataset documents. Because dataset documents are intended to interoperate with many other data storage and cataloging systems, meta fields and conventions are derived from existing metadata formats whenever possible.</p>
 
-<p>All of the meta fields below must be well-formed valid values. However: <em>The Meta section of a dataset supports arbitrary metadata</em>. This means you can place additional values not listed here &amp; qri will store them as-is, without any additional validation.</p>
+<p>All of the meta fields below must be well-formed, valid values. However: <em>The Meta section of a dataset supports arbitrary metadata</em>. This means you can place additional values not listed here &amp; qri will store them as-is, without any additional validation.</p>
 
 <p>Another important note here: <em>qri software doesn&rsquo;t leverage things like identifier, downloadPath, homePath, etc.</em>. Qri considers all fields here <em>descriptive</em> metadata, as opposted to <em>structural</em> metadata. In practice this means qri User interfaces may leverage the meta component for the purposes of <em>correlation</em> and <em>display</em>. Information stored in the meta section is <em>not</em> intended for use by machines to interpret the dataset. For example, setting the <code>identifier</code> is of no significance to qri, it&rsquo;s included here for interoperability with other specifications like <a href="https://www.w3.org/TR/vocab-dcat/#Property:dataset_identifier">DCAT</a></p>
 

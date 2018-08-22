@@ -46,6 +46,8 @@ menu:
       url: /docs/tutorials/cli_quickstart
     - name: Skylark Transformations
       url: /docs/tutorials/skylark_transformations
+    - name: Python & Jupyter
+      url: /docs/tutorials/python_quickstart
 params:
   IsDev: false
   Author: "qri"
