@@ -39,6 +39,8 @@ menu:
       url: /docs/reference/html_templates
     - name: Skylark Syntax
       url: /docs/reference/skylark_syntax
+    - name: CLI reference
+      url: /docs/reference/cli_commands
   tutorials:
     - name: CLI quickstart
       url: /docs/tutorials/cli_quickstart
