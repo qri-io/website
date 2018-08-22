@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta name="generator" content="Hugo 0.48-DEV" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Python quickstart </title>
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  <meta name="author" content="qri">
+
+
+  <meta property="og:title" content="Python quickstart" />
+<meta property="og:description" content="Python Quickstart  Before you start Install the Python Client Work with qri in a Jupyter Notebook  
+1. Before you start Qri has a simple python client that makes it easier to work with qri datasets using the tools you already use&ndash;like pandas and Jupyter.
+Since the qri python client is using qri under the hood, for it to work correctly you need to have qri setup and installed before using the python client." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://qri.io/docs/tutorials/python_quickstart/" /><meta property="article:published_time" content="2018-08-21T00:00:00-04:00"/>
+<meta property="article:modified_time" content="2018-08-21T00:00:00-04:00"/>
+  
+
+
+
+
+  
+  
+  
+  
+  
+
+  <link rel="canonical" href="https://qri.io/docs/tutorials/python_quickstart/">  
+
+  <link rel="shortcut icon" type="image/png" href="data:image/png;base64,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RvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3Eld+D/AfhEhmLqHBsfAAAAAElFTkSuQmCC">
+
+
+  <link href="../../../css/font.css" rel="stylesheet" type="text/css">
+  <link href="../../../css/qri.css" rel="stylesheet" type="text/css">
+  
+
+  <script src="../../../js/jquery-2.1.4.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../../../css/highlight.default.min.css">
+  <link rel="stylesheet" href="../../../css/highlight.theme.tomorrow.css">
+  <script src="../../../js/highlight.pack.js"></script>
+  <script>
+    window.onload = function(e) {
+      let elements = document.querySelectorAll('.highlight pre')
+      Array.from(elements).forEach((block, i) => {
+        hljs.highlightBlock(block)
+      })
+    }
+  </script>
+
+  <script type="text/javascript" src="../../../js/tocbot.min.js"></script>
+
+  
+    <script type="text/javascript">
+     !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+      analytics.load("b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju");
+      analytics.page()
+    }}();
+    </script>
+  
+</head>
+
+
+<body class="page-kube docs " >
+  <header></header>
+  <main>
+<div id="docs_page" class="docs">
+  <nav id="docs_sidebar">
+  <div class="content">
+    <div class="logotype">
+      <a href="../../../" title="home" class="title">qri</a>
+      <p class="subhead">docs</p>
+    </div>
+    <div class="pages">
+      <p><b>tutorials</b></p>
+      <ul>
+        
+        
+          <li><a href="../../../docs/tutorials/cli_quickstart">CLI quickstart</a></li>
+        
+          <li><a href="../../../docs/tutorials/python_quickstart">Python &amp; Jupyter</a></li>
+        
+          <li><a href="../../../docs/tutorials/skylark_transformations">Skylark Transformations</a></li>
+        
+      </ul>
+    </div>
+    <hr />
+    <p><i>Jump to:</i></p>
+    <ul class="docs_sections">
+      <li><a href="../../../docs">Docs Home</a></li>
+      <li><a href="../../../docs/concepts">Concepts</a></li>
+      <li><a href="../../../docs/reference">Reference</a></li>
+      <li><a href="../../../docs/tutorials">Tutorials</a></li>
+    </ul>
+  </div>
+  <br />
+</nav>
+  <section id="main">
+    <div class="content">
+      
+
+<h1 id="python-quickstart">Python Quickstart</h1>
+
+<ol>
+<li><a href="#part1">Before you start</a></li>
+<li><a href="#part2">Install the Python Client</a></li>
+<li><a href="#part3">Work with qri in a Jupyter Notebook</a></li>
+</ol>
+
+<p><a id="part1"></a></p>
+
+<h1 id="1-before-you-start">1. Before you start</h1>
+
+<p>Qri has a simple python client that makes it easier to work with qri datasets using the tools you already use&ndash;like pandas and Jupyter.</p>
+
+<p>Since the qri python client is using qri under the hood, for it to work correctly you need to have qri setup and installed before using the python client.  To install qri, you can either install the <a href="https://qri.io/download/">desktop app for OS X or the CLI</a> and create your repo (for the CLI run <code>qri setup</code> to do this).</p>
+
+<p>Next try adding a dataset. If you need an example dataset (or would like to follow along in later steps) you can download one from our repo with the following command</p>
+
+<pre><code class="language-sh">curl https://raw.githubusercontent.com/qri-io/qri-python/master/example_data/body.csv -o &quot;body.csv&quot; https://raw.githubusercontent.com/qri-io/qri-python/master/example_data/head.yaml -o &quot;head.yaml&quot;
+</code></pre>
+
+<p>And to add it, from the directory of your downloaded files run</p>
+
+<pre><code class="language-sh">qri new  --file head.yaml --body body.csv me/BirthdatesOfUSPresidents
+</code></pre>
+
+<p>(where &lsquo;presidentBdays&rsquo; can be changed to any name you find descriptive)
+If this succeeds you should be good to move on to installing and using the qri python client.</p>
+
+<p><a id="part2"></a></p>
+
+<h1 id="2-install-the-python-client">2. Install the Python Client</h1>
+
+<p>Ensure that you are running python 3 and then install with</p>
+
+<pre><code class="language-sh">pip install qri
+</code></pre>
+
+<p><a id="part3"></a></p>
+
+<h1 id="3-work-with-qri-in-a-jupyter-notebook">3. Work with qri in a Jupyter Notebook</h1>
+
+<p>The qri python client does not currently support the full array of features available in the desktop and CLI clients.  The functionality it does currently support includes</p>
+
+<ul>
+<li>listing datasets saved in your repo</li>
+<li>loading datasets into a pandas dataframe for manipulation in python</li>
+<li>saving dataset back to your repo</li>
+</ul>
+
+<p>To demonstrate the functionality we&rsquo;ll walk through loading, changing, and saving the dataset we just added in a Jupyter notebook:</p>
+
+<hr />
+
+<p>first  we import qri</p>
+
+<pre><code class="language-python">import qri
+</code></pre>
+
+<p>to wee what datasets we have in our repo, we use <code>qri.list_ds</code></p>
+
+<pre><code class="language-python">qri.list_ds()
+</code></pre>
+
+<pre><code>['fivethirtyeight/weather_ksea',
+ 'dustmop/test3_repo',
+ 'osterbit/BirthdatesOfUSPresidents']
+</code></pre>
+
+<p>To load a dataset into memory, use <code>qri.load_ds</code>, passing the name of the dataset you want to load.</p>
+
+<pre><code class="language-python">ds = qri.load_ds('osterbit/BirthdatesOfUSPresidents')
+</code></pre>
+
+<p>The python <code>QriDataset</code> is represented as an object with two properties: a <code>head</code> containing the dataset&rsquo;s metadata as a python dictionary and a <code>body</code> containing the data as a pandas dataframe. To manipulate these objects we can just use the native methods already available to them.</p>
+
+<pre><code class="language-python">ds.head
+</code></pre>
+
+<pre><code>{'bodyPath': '/ipfs/QmV5kQAyeDEJKkTTk97pEAFCnEty2iRvrzErYhgsz87BZu',
+ 'commit': {'author': {'id': 'QmQDAHk8jx6mJ1migbC6oEij52odepBV7RHBoGoGFWUr7F'},
+  'path': '/ipfs/QmUpPqbzXQMWFDXChruFH4JTJchbHkGNyaL9A6g9LWXbJa',
+  #...
+ 'meta': {'description': 'Date and location of birth and death of US Presidents as of 2018',
+  'qri': 'md:0',
+  'title': 'Birthdsates of US Presidents'},
+ 'path': '/ipfs/QmQc5vDSpa9UfpUu9o2vpmahoVJueE5F7mdgoS1pfD37kR/dataset.json',
+ 'qri': 'ds:0',
+ 'root': 'osterbit/BirthdatesOfUSPresidents@QmQDAHk8jx6mJ1migbC6oEij52odepBV7RHBoGoGFWUr7F/ipfs/QmQc5vDSpa9UfpUu9o2vpmahoVJueE5F7mdgoS1pfD37kR',
+ 'structure': {'checksum': 'QmPtotmvHgy8bREmf5oQKN5EDKfpjzjUYmeunXyqV9UVHR',
+  #...
+  'schema': {'items': {'items': [{'title': 'president', 'type': 'string'},
+     {'title': 'birth_date', 'type': 'string'},
+     {'title': 'birth_place', 'type': 'string'},
+     {'title': 'death_date', 'type': 'string'},
+     {'title': 'location_of_death', 'type': 'string'}],
+    'type': 'array'},
+   'type': 'array'}}}
+</code></pre>
+
+<p>You&rsquo;ll notice in the body below, that the field &lsquo;birth_date&rsquo; is inconsistently formatted. In some entries the date is abbreviated while in others it is written out, and on the later entries the date is given with the day before the month:</p>
+
+<pre><code class="language-python">ds.body
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>birth_date</th>
+      <th>birth_place</th>
+      <th>death_date</th>
+      <th>location_of_death</th>
+      <th>president</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Feb 22, 1732</td>
+      <td>Westmoreland Co., Va.</td>
+      <td>Dec 14, 1799</td>
+      <td>Mount Vernon, Va.</td>
+      <td>George Washington</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Oct 30, 1735</td>
+      <td>Quincy, Mass.</td>
+      <td>July 4, 1826</td>
+      <td>Quincy, Mass.</td>
+      <td>John Adams</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Apr 13, 1743</td>
+      <td>Albemarle Co., Va.</td>
+      <td>July 4, 1826</td>
+      <td>Albemarle Co., Va.</td>
+      <td>Thomas Jefferson</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Mar 16, 1751</td>
+      <td>Port Conway, Va.</td>
+      <td>June 28, 1836</td>
+      <td>Orange Co., Va.</td>
+      <td>James Madison</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Apr 28, 1758</td>
+      <td>Westmoreland Co., Va.</td>
+      <td>July 4, 1831</td>
+      <td>New York, New York</td>
+      <td>James Monroe</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>July 11, 1767</td>
+      <td>Quincy, Mass.</td>
+      <td>Feb 23, 1848</td>
+      <td>Washington, D.C.</td>
+      <td>John Quincy Adams</td>
+    </tr>
+    <tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>29-May-17</td>
+      <td>Brookline, Mass.</td>
+      <td>22-Nov-63</td>
+      <td>Dallas, Texas</td>
+      <td>John F. Kennedy</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>27-Aug-08</td>
+      <td>Gillespie Co., Texas</td>
+      <td>22-Jan-73</td>
+      <td>Gillespie Co., Texas</td>
+      <td>Lyndon B. Johnson</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>9-Jan-13</td>
+      <td>Yorba Linda, Cal.</td>
+      <td>22-Apr-94</td>
+      <td>New York, New York</td>
+      <td>Richard Nixon</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>14-Jul-13</td>
+      <td>Omaha, Nebraska</td>
+      <td>26-Dec-06</td>
+      <td>Rancho Mirage, Cal.</td>
+      <td>Gerald Ford</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>1-Oct-24</td>
+      <td>Plains, Georgia</td>
+      <td></td>
+      <td></td>
+      <td>Jimmy Carter</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>6-Feb-11</td>
+      <td>Tampico, Illinois</td>
+      <td>5-Jun-04</td>
+      <td>Los Angeles, Cal.</td>
+      <td>Ronald Reagan</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>12-Jun-24</td>
+      <td>Milton, Mass.</td>
+      <td></td>
+      <td></td>
+      <td>George Bush</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>19-Aug-46</td>
+      <td>Hope, Arkansas</td>
+      <td></td>
+      <td></td>
+      <td>Bill Clinton</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>6-Jul-46</td>
+      <td>New Haven, Conn.</td>
+      <td></td>
+      <td></td>
+      <td>George W. Bush</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>4-Aug-61</td>
+      <td>Honolulu, Hawaii</td>
+      <td></td>
+      <td></td>
+      <td>Barack Obama</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>14-Jun-46</td>
+      <td>New York, New York</td>
+      <td></td>
+      <td></td>
+      <td>Donald Trump</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="fixing-the-data">Fixing the data</h2>
+
+<p>To fix the inconstent date formatting, we&rsquo;ll write a function to parse the dates. It looks like there are 3 different formats so we&rsquo;ll want to handle each of these (for more info on dates and strings in python <a href="http://strftime.org/">strftime.org</a> has a good cheat sheet).</p>
+
+<pre><code class="language-python">import datetime
+def parse_date(date_string):
+    for date_fmt in ('%b %d, %Y', '%B %d, %Y', '%d-%b-%y'):
+        try:
+            return datetime.datetime.strptime(date_string, date_fmt)
+        except ValueError:
+            pass
+    raise ValueError('unable to parse dates with given formats')
+</code></pre>
+
+<p>If we apply this function alone we&rsquo;ll have an issue where two digit years are assumed to be prefixed with &lsquo;20&rsquo;- rather than &lsquo;19&rsquo;-. So we&rsquo;ll use the fact that a president must be at least 35 years old to fix this and then combine the two functions and convert back to a string:</p>
+
+<pre><code class="language-python">def fix_date(date, max_year, adjustment=100):
+    if date.year &gt; max_year:
+        # if the year is gt than our max date it is making an error on the century (1900s vs 2000s)
+        corrected_date = datetime.datetime(year=date.year-adjustment, month=date.month, day=date.day)
+        return corrected_date
+    else:
+        return date
+
+# (combining the above)
+def make_dates_consistent(date_string):
+    # parse the date into a datetime object
+    date_obj = parse_date(date_string)
+    # since the minimum age to be president is 35
+    # we'll set the max year to reflect that
+    max_possible_dob_year = datetime.datetime.today().year - 35
+    dob = fix_date(date_obj, max_possible_dob_year)
+    # since csv's don't know about datetime objects we'll convert back to a string
+    # since it's easy to do we'll also include a format that also gives the day of the week
+    fmt = &quot;%a %b %d, %Y&quot;
+    return dob.strftime(fmt)
+</code></pre>
+
+<p>Now we can apply this function to the field as we would with a regular dataframe:</p>
+
+<pre><code class="language-python">ds.body['birth_date'] = ds.body['birth_date'].apply(lambda d: make_dates_consistent(d))
+</code></pre>
+
+<p>Next we check the output to make sure it worked:</p>
+
+<pre><code class="language-python">ds.body
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>birth_date</th>
+      <th>birth_place</th>
+      <th>death_date</th>
+      <th>location_of_death</th>
+      <th>president</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Fri Feb 22, 1732</td>
+      <td>Westmoreland Co., Va.</td>
+      <td>Dec 14, 1799</td>
+      <td>Mount Vernon, Va.</td>
+      <td>George Washington</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Sun Oct 30, 1735</td>
+      <td>Quincy, Mass.</td>
+      <td>July 4, 1826</td>
+      <td>Quincy, Mass.</td>
+      <td>John Adams</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Sat Apr 13, 1743</td>
+      <td>Albemarle Co., Va.</td>
+      <td>July 4, 1826</td>
+      <td>Albemarle Co., Va.</td>
+      <td>Thomas Jefferson</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Tue Mar 16, 1751</td>
+      <td>Port Conway, Va.</td>
+      <td>June 28, 1836</td>
+      <td>Orange Co., Va.</td>
+      <td>James Madison</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Fri Apr 28, 1758</td>
+      <td>Westmoreland Co., Va.</td>
+      <td>July 4, 1831</td>
+      <td>New York, New York</td>
+      <td>James Monroe</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sat Jul 11, 1767</td>
+      <td>Quincy, Mass.</td>
+      <td>Feb 23, 1848</td>
+      <td>Washington, D.C.</td>
+      <td>John Quincy Adams</td>
+    </tr>
+    <tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Tue May 29, 1917</td>
+      <td>Brookline, Mass.</td>
+      <td>22-Nov-63</td>
+      <td>Dallas, Texas</td>
+      <td>John F. Kennedy</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Thu Aug 27, 1908</td>
+      <td>Gillespie Co., Texas</td>
+      <td>22-Jan-73</td>
+      <td>Gillespie Co., Texas</td>
+      <td>Lyndon B. Johnson</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Thu Jan 09, 1913</td>
+      <td>Yorba Linda, Cal.</td>
+      <td>22-Apr-94</td>
+      <td>New York, New York</td>
+      <td>Richard Nixon</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Mon Jul 14, 1913</td>
+      <td>Omaha, Nebraska</td>
+      <td>26-Dec-06</td>
+      <td>Rancho Mirage, Cal.</td>
+      <td>Gerald Ford</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Wed Oct 01, 1924</td>
+      <td>Plains, Georgia</td>
+      <td></td>
+      <td></td>
+      <td>Jimmy Carter</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Mon Feb 06, 1911</td>
+      <td>Tampico, Illinois</td>
+      <td>5-Jun-04</td>
+      <td>Los Angeles, Cal.</td>
+      <td>Ronald Reagan</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>Thu Jun 12, 1924</td>
+      <td>Milton, Mass.</td>
+      <td></td>
+      <td></td>
+      <td>George Bush</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>Mon Aug 19, 1946</td>
+      <td>Hope, Arkansas</td>
+      <td></td>
+      <td></td>
+      <td>Bill Clinton</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Sat Jul 06, 1946</td>
+      <td>New Haven, Conn.</td>
+      <td></td>
+      <td></td>
+      <td>George W. Bush</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Fri Aug 04, 1961</td>
+      <td>Honolulu, Hawaii</td>
+      <td></td>
+      <td></td>
+      <td>Barack Obama</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Fri Jun 14, 1946</td>
+      <td>New York, New York</td>
+      <td></td>
+      <td></td>
+      <td>Donald Trump</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="saving-your-improvements">Saving your improvements</h2>
+
+<p>Finally, we save the dataset back to our repo with a commit message describing the changes we made:</p>
+
+<pre><code class="language-python">ds.save(&quot;fixed inconsistent date formatting&quot;, publish=True)
+</code></pre>
+
+<pre><code>posting dataset to registry ...
+
+dataset saved
+</code></pre>
+
+    </div>
+  </section>
+</div>
+</main>
+  <footer></footer>
+
+
+  <script src="../../../js/kube.js" type="text/javascript">
+  </script>
+  <script src="../../../js/kube.legenda.js" type="text/javascript">
+  </script>
+  <script src="../../../js/master.js" type="text/javascript">
+  </script>
+</body>
+
+</html>

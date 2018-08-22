@@ -79,7 +79,7 @@ _example_
 Meta contains human-readable descriptive metadata that qualifies and distinguishes a dataset.
 Well-defined Meta should aid in making datasets Findable by describing a dataset in generalizable taxonomies that can aggregate across other dataset documents. Because dataset documents are intended to interoperate with many other data storage and cataloging systems, meta fields and conventions are derived from existing metadata formats whenever possible.
 
-All of the meta fields below must be well-formed valid values. However: _The Meta section of a dataset supports arbitrary metadata_. This means you can place additional values not listed here & qri will store them as-is, without any additional validation.
+All of the meta fields below must be well-formed, valid values. However: _The Meta section of a dataset supports arbitrary metadata_. This means you can place additional values not listed here & qri will store them as-is, without any additional validation.
 
 Another important note here: _qri software doesn't leverage things like identifier, downloadPath, homePath, etc._. Qri considers all fields here _descriptive_ metadata, as opposted to _structural_ metadata. In practice this means qri User interfaces may leverage the meta component for the purposes of _correlation_ and _display_. Information stored in the meta section is _not_ intended for use by machines to interpret the dataset. For example, setting the `identifier` is of no significance to qri, it's included here for interoperability with other specifications like [DCAT](https://www.w3.org/TR/vocab-dcat/#Property:dataset_identifier)
 

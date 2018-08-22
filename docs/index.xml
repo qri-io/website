@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Python quickstart</title>
+      <link>https://qri.io/docs/tutorials/python_quickstart/</link>
+      <pubDate>Tue, 21 Aug 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/tutorials/python_quickstart/</guid>
+      <description>Python Quickstart  Before you start Install the Python Client Work with qri in a Jupyter Notebook  
+1. Before you start Qri has a simple python client that makes it easier to work with qri datasets using the tools you already use&amp;ndash;like pandas and Jupyter.
+Since the qri python client is using qri under the hood, for it to work correctly you need to have qri setup and installed before using the python client.</description>
+    </item>
+    
+    <item>
       <title>CLI commands</title>
       <link>https://qri.io/docs/reference/cli_commands/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
@@ -57,6 +68,8 @@ The whole tutorial is divided into six sections.</description>
       
       <guid>https://qri.io/company/</guid>
       <description>Qri is a 5-person startup lucky enough to work with a wonderful community of friends. We do work in Brooklyn, NY.
+We are:
+Brendan, the founder. Kasey, the dev. Dustin, the dev. Tom, the data. Rico, the ops.
 One day we&amp;rsquo;ll get around to writing a proper company description, but if you want to get a hold of us, feel free to email sparkle_pony_2000 at-cymbal qri.io</description>
     </item>
     
