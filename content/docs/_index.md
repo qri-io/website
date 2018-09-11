@@ -10,6 +10,9 @@ section: docs
     <header>
       <h1>Docs</h1>
       <p><a href="https://twitter.com/sarah_edo/status/768179009263808512">or it didn't happen</a></p>
+    <div>
+      Need help using the Qri app? Head on over to our <a href="https://github.com/qri-io/frontend"><b>github</b></a> and create an <a href="https://github.com/qri-io/frontend/issues/new"><b>issue</b></a> describing your problem.
+    </div>
     </header>
     <div class="sections">
       <a href="/docs/reference" class="section">
