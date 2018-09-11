@@ -11,7 +11,7 @@ section: docs
       <h1>Docs</h1>
       <p><a href="https://twitter.com/sarah_edo/status/768179009263808512">or it didn't happen</a></p>
     <div>
-      Need help using the Qri app? Head on over to our <a href="https://github.com/qri-io/frontend"><b>github</b></a> and create an <a href="https://github.com/qri-io/frontend/issues/new"><b>issue</b></a> describing your problem.
+      Need help using the Qri app? Head on over to our <a href="https://github.com/qri-io/frontend"><b>github</b></a> and create an <a href="https://github.com/qri-io/frontend/issues/new"><b>issue</b></a> describing your problem. If github is not your thing, you can also reach out to us directly on twitter at <a href="https://twitter.com/qri_io"><b>@qri_io</b></a>
     </div>
     </header>
     <div class="sections">
