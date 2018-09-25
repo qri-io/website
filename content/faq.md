@@ -10,16 +10,18 @@ No.
 ## What’s a dataset?
 
 Datasets are a data structure that is broken up in a way that allows us to link changes between parts of that data structure on a content addressed file system, preserving links in certain ways. 
-With a dataset we have the underlying data, it’s structure which contains the structure & schema of the data.
+With a dataset we have the underlying data, its structure which contains the structure & schema of the data.
 
-All datasets have three parts:
+All datasets have several parts:
 
-- Data - eg: a csv file
+- Body - eg: a csv file
 - Metadata - human-oriented description of the data, eg: title, author, date created, category
 - Structure - machine-oriented description of the data, eg: “the third column in this table is a date”
 
 
 ## What does Version Control Mean?
+
+Like git or github (if you're familiar with them), Qri keeps snapshots of datasets at different (chosen) points in time, allowing you to see how a dataset has evolved. 
 
 
 ## Where Does My Data Live?

@@ -140,13 +140,11 @@
 
 <p>Having multiple sources of values creates a problem:</p>
 
-<pre><code>_If the same value is specified in more than one place, only of place can be win out in the end._
-</code></pre>
+<p><em>If the same value is specified in more than one place, only one of places can win out in the end.</em></p>
 
 <p>We need a set of rules for how these conflicts will be resolved so you don&rsquo;t get super frustrated trying to set a value, only to have it lose to some other source. So we try to keep the rule as simple as possible:</p>
 
-<pre><code>_Each Source gets a priority. Values set in higher-priority sources override lower-priority sources._
-</code></pre>
+<p><em>Each Source gets a priority. Values set in higher-priority sources override lower-priority sources.</em></p>
 
 <p>The &ldquo;priority of which source wins&rdquo; is called the <strong>source cascade</strong>, and by default they&rsquo;re in this order from highest to lowest:</p>
 
@@ -164,7 +162,6 @@
 <ul>
 <li>The User has specified a <code>meta.title</code> property, and that&rsquo;s it</li>
 <li>The previous version has no title specified</li>
-<li></li>
 </ul>
 
 <h3 id="removing-values">Removing values</h3>

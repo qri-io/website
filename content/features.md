@@ -22,15 +22,15 @@ While qri doesn't do all of these things today, it will someday. All of these co
 We want to get as many data problems out of the way to make as much room as possible for data questions. We’ve called the project qri (pronounced “query”) as a way of keeping ourselves focused on those data questions.
  
 Free
-No one has built "github for data" because if you store a user's data, the cost of serving the average user outstrips the money you make from them. This is true today, and anyone offering free storage is either spending someone else's money or making money from you in another way. On the distributed web, everyone can make a piece of their own hard drive available for storage, which removes the cost of storage. By asking you B-Y-O hard drive to store the data you want, we can drop the cost to zero and mean it.
+No one has built "github for data" because if you store a user's data, the cost of serving the average user outstrips the money you make from them. This is true today, and anyone offering free storage is either spending someone else's money or making money from you in another way. On the distributed web, everyone can make a piece of their own hard drive available for storage, which removes the cost of storage. By asking you to B-Y-O hard drive to store the data you want, we can drop the cost to zero and mean it.
  
 Never munge the same dataset twice
 By leveraging some new tricks (content addressing, hash collisions, and metadata search) we’ll end up with a tool that’ll let you know if a file has already been worked on. You’ll be able to use a file to check to see if it’s been turned into a dataset anywhere in the world. This means if someone in your office adds a file you both have to qri, you don’t need to ask if they’ve added it, it’ll de-duplicate automatically. 
  
 Frictionless
-Frictionless means you can make any dataset work/play with any other dataset. __[EXAMPLE]__. You can compare weather patterns with sports outcomes, can search for spurious correlations, 
+Frictionless means you can make any dataset work/play with any other dataset. __[EXAMPLE]__. You can compare weather patterns with sports outcomes, you can track presidential approval ratings against milk prices, or play around with fun, spurious correlations.
  
-The other way we mean “frictionless” is by integrating with as many existing data tools as possible. We’ll integrate with tools like Jupyter Notebook, R and others.
+The other way we mean “frictionless” is by integrating with as many existing data tools as possible. We’ll integrate with tools like Jupyter Notebook, R, and others.
  
 Keep everything in sync
 We’ll do this by checking data transformations into version control. This is a concept that takes time to unpack at the technical level, but the goal is simple: If you make a dataset and transform the data in some way (say by combining it with another dataset or running it through a formula), we record the transformation and its result. That way when you go back and change the original dataset, we can automatically re-run the stuff (queries) you did on the updated data.

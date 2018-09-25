@@ -33,7 +33,7 @@ bodyClass: index
       </div>
       <div id="any_skill_level" class="feature_description">
         <h2>Tools for Any Skill Level</h2>
-        <p>Whether your a data scientist, or have only ever touched excel, we have tools for you.</p>
+        <p>Whether you're a data scientist, or have only ever touched excel, we have tools for you.</p>
       </div>
     </div>
   </section>
@@ -84,11 +84,11 @@ bodyClass: index
         </div>
         <div id="meta_specs" class="feature_description">
           <h3>Metadata based on library science</h3>
-          <p>Librarians are better at metadata than developers, so we based our metadata spec on DCAT & Project Open Data, for cleaner integration with existing data catalogs</p>
+          <p>Librarians are better at metadata than developers, so we based our metadata spec on DCAT & Project Open Data, for cleaner integration with existing data catlogs.</p>
         </div>
         <div id="json_schemas" class="feature_description">
           <h3>JSON-Schemas for validation & OpenAPIs</h3>
-          <p>Dataset schemas are defined with the same spec that drives OpenAPIs. Datasets automatically generate a JSON API & accompanying OpenAPI documentation</p>
+          <p>Dataset schemas are defined with the same spec that drives OpenAPIs. Datasets automatically generate a JSON API & accompanying OpenAPI documentation.</p>
         </div>
         <div id="transformations" class="feature_description">
           <h3>Automate data munging with Python’s cousin: Skylark</h3>

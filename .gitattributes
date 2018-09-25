@@ -1,0 +1,4 @@
+*.html    -diff -merge
+*.html    linguist-generated=true
+*.xml     -diff -merge
+*.xml     linguist-generated=true

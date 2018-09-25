@@ -1,0 +1,72 @@
+
+
+Task - CLI tutorial/documentation:
+  look through different sources for different cli documentation already -
+  ☐ notes
+  ☐ org
+  ☐ qri readme
+  ☐ godocs
+
+  basic uses of qri -
+  ✔ help - if you need help with a command --help to the end of any command will give you details on how to use it @done (18-08-07 11:11)
+  ✔ setup -> walks through adding a user name @done (18-08-07 11:11)
+  ✔ version -> show what version of qri you are using, hopefully the most recent version @done (18-08-07 11:11)
+  ✔ new: @done (18-08-07 11:11)
+    ✔ create csv simple one, name it data.csv @done (18-08-07 11:11)
+    ✔ run command again with --title, --message to show override @done (18-08-07 11:11)
+  ✔ list -> make sure previous dataset is in there @done (18-08-07 11:11)
+  ✔ export -> export tip, export previous version @done (18-08-07 11:11)
+
+  ✔ remove @done (18-08-07 13:26)
+  ✔ new with a dataset.yaml @done (18-08-07 15:06)
+    ✔ create dataset, fill in details as so, name it dataset.yaml (explain can also be .json) @done (18-08-07 15:06)
+    ✔ explain command with flags will override the dataset.yaml @done (18-08-07 15:06)
+    ✔ add metadata to dataset.yaml file, and use this to create new dataset @done (18-08-07 15:06)
+  ✔ validate -> add a row and check if its valid @done (18-08-07 15:06)
+  ✔ save -> add metadata and a new row @done (18-08-07 15:06)
+
+  ☐ dataset reference details
+  ☐ rename -> rename it to something, maybe rename it back if you want original name
+  ☐ log -> look at history to get previous ids if needed
+
+  ☐ use -> use and repeat at the start of each of the next tutorials
+  ☐ info -> get info on that dataset
+  ☐ get -> get title, get some metadata of head, do the same for other hash
+  ☐ body -> get body of tip, get body at hash
+  ☐ diff -> get diff of two, use different flags to get in different formats
+
+  ☐ qri search -> search for dataset, explain where search gets it's functionality
+  ☐ qri registry publish -> publish dataset
+  ☐ qri search -> now search again
+  
+  ☐ render -> use basic template to render
+    ☐ create new template and save that update
+  ☐ config -> change details about user, _can you change sn?_
+
+  peer commands:
+  ☐ peers list -> look for peers, may not be any online unfortunately, read up on p2p networking
+  ☐ peers info -> get info on a specific peer
+  ☐ list peername -> list that peer's datasets
+  ☐ add -> add that dataset to my own
+    ☐ get
+    ☐ export
+    ☐ remove
+
+
+Want to write a qri structure command that gets the structure and dataset and everything but doesn't save the dataset! Could probably just 
+
+
+Need to be added to qri use:
+  ☐ logqq
+  ☐ body
+  ☐ diff
+  ☐ export
+  ☐ get
+  ☐ info
+  ☐ render
+  ☐ validate
+  Should be able to use qri use on anything that doesn't make changes to a dataset
+
+ Issue:
+   changing only metadata does not trigger an update, says there are no changes detected
+

@@ -23,12 +23,25 @@ Since the qri python client is using qri under the hood, for it to work correctl
     </item>
     
     <item>
+
+      <title>CLI commands</title>
+      <link>https://qri.io/docs/reference/cli_commands/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/reference/cli_commands/</guid>
+      <description>Qri CLI command line reference Qri (&amp;ldquo;query&amp;rdquo;) is a global dataset version control system on the distributed web.
+   Command Description     qri add Add a dataset from another peer   qri body Get the body of a dataset   qri config Get and set local configuration information   qri connect Connect to the distributed web by spinning up a Qri node   qri diff Compare differences between two datasets   qri export Copy datasets to your local filesystem   qri get Get elements of qri datasets   qri info Show summarized description of a dataset   qri list Show a list of datasets   qri log Show log of dataset history   qri new Create a new dataset   qri peers Commands for working with peers   qri registry Commands for working with a qri registry   qri remove Remove a dataset from your local repository   qri rename Change the name of a dataset   qri render Execute a template against a dataset   qri save Save changes to a dataset   qri search Search qri   qri setup Initialize qri and IPFS repositories, provision a new qri ID   qri use Select datasets for use with the qri get command   qri validate Show schema validation errors   qri version Print the version number</description>
+    </item>
+    
+    <item>
       <title>CLI quickstart</title>
       <link>https://qri.io/docs/tutorials/cli_quickstart/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/tutorials/cli_quickstart/</guid>
-      <description>CLI Quickstart coming soon!</description>
+      <description>CLI Tutorial (last updated August 8, 2018)
+Welcome to the wonderful world of the Qri Command Line Interface. After the first section of this tutorial is the quick start. After following that portion, you will be able to set up your qri repo, check the version of qri you are running, create a new dataset, list your datasets, and export your datasets.
+The whole tutorial is divided into six sections.</description>
     </item>
     
     <item>
@@ -55,7 +68,9 @@ Since the qri python client is using qri under the hood, for it to work correctl
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/company/</guid>
-      <description>qri is a 4 person startup who&amp;rsquo;s been lucky enough to work with a wonderful community of friends. We do work in Brooklyn.
+      <description>Qri is a 5-person startup lucky enough to work with a wonderful community of friends. We do work in Brooklyn, NY.
+We are:
+Brendan, the founder. Kasey, the dev. Dustin, the dev. Tom, the data. Rico, the ops.
 One day we&amp;rsquo;ll get around to writing a proper company description, but if you want to get a hold of us, feel free to email sparkle_pony_2000 at-cymbal qri.io</description>
     </item>
     
@@ -84,9 +99,9 @@ One day we&amp;rsquo;ll get around to writing a proper company description, but 
       
       <guid>https://qri.io/faq/</guid>
       <description>Is qri a blockchain? No.
-What’s a dataset? Datasets are a data structure that is broken up in a way that allows us to link changes between parts of that data structure on a content addressed file system, preserving links in certain ways. With a dataset we have the underlying data, it’s structure which contains the structure &amp;amp; schema of the data.
-All datasets have three parts:
- Data - eg: a csv file Metadata - human-oriented description of the data, eg: title, author, date created, category Structure - machine-oriented description of the data, eg: “the third column in this table is a date”  What does Version Control Mean?</description>
+What’s a dataset? Datasets are a data structure that is broken up in a way that allows us to link changes between parts of that data structure on a content addressed file system, preserving links in certain ways. With a dataset we have the underlying data, its structure which contains the structure &amp;amp; schema of the data.
+All datasets have several parts:
+ Body - eg: a csv file Metadata - human-oriented description of the data, eg: title, author, date created, category Structure - machine-oriented description of the data, eg: “the third column in this table is a date”  What does Version Control Mean?</description>
     </item>
     
     <item>

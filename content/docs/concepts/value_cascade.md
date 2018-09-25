@@ -15,11 +15,11 @@ A good dataset is as complete and accruate as possible. Good datasets have metad
 
 Having multiple sources of values creates a problem: 
   
-    _If the same value is specified in more than one place, only of place can be win out in the end._
+_If the same value is specified in more than one place, only one of places can win out in the end._
 
 We need a set of rules for how these conflicts will be resolved so you don't get super frustrated trying to set a value, only to have it lose to some other source. So we try to keep the rule as simple as possible:
   
-    _Each Source gets a priority. Values set in higher-priority sources override lower-priority sources._
+_Each Source gets a priority. Values set in higher-priority sources override lower-priority sources._
 
 The "priority of which source wins" is called the **source cascade**, and by default they're in this order from highest to lowest:
 
@@ -34,6 +34,5 @@ So let's use an example that outlines:
 
 * The User has specified a `meta.title` property, and that's it
 * The previous version has no title specified
-* 
 
 ### Removing values

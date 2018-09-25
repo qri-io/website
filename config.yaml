@@ -39,11 +39,15 @@ menu:
       url: /docs/reference/html_templates
     - name: Skylark Syntax
       url: /docs/reference/skylark_syntax
+    - name: CLI reference
+      url: /docs/reference/cli_commands
   tutorials:
     - name: CLI quickstart
       url: /docs/tutorials/cli_quickstart
     - name: Skylark Transformations
       url: /docs/tutorials/skylark_transformations
+    - name: Python & Jupyter
+      url: /docs/tutorials/python_quickstart
 params:
   IsDev: false
   Author: "qri"
@@ -52,7 +56,7 @@ params:
   DateFormFull: "Mon Jan 2 2006 15:04:05 MST"
   Description: "a home for datasets"
   Email: "info@qri.io"
-  FaviconFile: "img/leaf.ico"
+  # FaviconFile: "/docs/favicon.ico"
   SegmentTracker: "b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju"
   GitHub: "qri-io"
   # Lang = "en" 
