@@ -23,6 +23,7 @@ Since the qri python client is using qri under the hood, for it to work correctl
     </item>
     
     <item>
+
       <title>CLI commands</title>
       <link>https://qri.io/docs/reference/cli_commands/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
@@ -158,6 +159,26 @@ Datasets are recorded structured data according to a specification that dictates
       
       <guid>https://qri.io/docs/reference/skylark_syntax/</guid>
       <description>Skylark Syntax Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. Transformions are repeatable scripts for generating a dataset. Skylark is a scripting langauge from Google that feels a lot like python. This package implements skylark as a transformation syntax. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
+    </item>
+    
+    <item>
+      <title>terms of service</title>
+      <link>https://qri.io/legal/privacy_policy/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/legal/privacy_policy/</guid>
+      <description> Privacy Policy </description>
+    </item>
+    
+    <item>
+      <title>terms of service</title>
+      <link>https://qri.io/legal/tos/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/legal/tos/</guid>
+      <description>QRI TERMS OF USE
+Qri, Inc. (“Qri,” “we,” “us,” or “our”) welcomes you. We provide you access to our free to use, peer-to-peer network, that allows users to share and collaborate on datasets (the “Network”) via our website at qri.io (the “Website”), subject to the following terms of use (the “Terms of Use”), which may be updated by us from time to time without notice to you.
+BY ACCESSING THE WEBSITE AND USING THE NETWORK, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE LEGALLY BOUND BY THESE TERMS OF USE AND OUR PRIVACY POLICY, WHICH IS HEREBY INCORPORATED BY REFERENCE (COLLECTIVELY, THIS “AGREEMENT”).</description>
     </item>
     
     <item>
