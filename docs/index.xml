@@ -23,7 +23,6 @@ Since the qri python client is using qri under the hood, for it to work correctl
     </item>
     
     <item>
-
       <title>CLI commands</title>
       <link>https://qri.io/docs/reference/cli_commands/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
