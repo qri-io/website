@@ -144,15 +144,9 @@ Since the qri python client is using qri under the hood, for it to work correctl
 <p>Since the qri python client is using qri under the hood, for it to work correctly you need to have qri setup and installed before using the python client.  To install qri, you can either install the <a href="https://qri.io/download/">desktop app for OS X or the CLI</a> and create your repo (for the CLI run <code>qri setup</code> to do this).</p>
 
 <p>Next try adding a dataset. If you need an example dataset (or would like to follow along in later steps) you can download one from our repo with the following command</p>
-
-<pre><code class="language-sh">curl https://raw.githubusercontent.com/qri-io/qri-python/master/example_data/body.csv -o &quot;body.csv&quot; https://raw.githubusercontent.com/qri-io/qri-python/master/example_data/head.yaml -o &quot;head.yaml&quot;
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">curl https://raw.githubusercontent.com/qri-io/qri-python/master/example_data/body.csv -o <span class="s2">&#34;body.csv&#34;</span> https://raw.githubusercontent.com/qri-io/qri-python/master/example_data/head.yaml -o <span class="s2">&#34;head.yaml&#34;</span></code></pre></div>
 <p>And to add it, from the directory of your downloaded files run</p>
-
-<pre><code class="language-sh">qri new  --file head.yaml --body body.csv me/BirthdatesOfUSPresidents
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">qri new  --file head.yaml --body body.csv me/BirthdatesOfUSPresidents</code></pre></div>
 <p>(where &lsquo;presidentBdays&rsquo; can be changed to any name you find descriptive)
 If this succeeds you should be good to move on to installing and using the qri python client.</p>
 
@@ -161,10 +155,7 @@ If this succeeds you should be good to move on to installing and using the qri p
 <h1 id="2-install-the-python-client">2. Install the Python Client</h1>
 
 <p>Ensure that you are running python 3 and then install with</p>
-
-<pre><code class="language-sh">pip install qri
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pip install qri</code></pre></div>
 <p><a id="part3"></a></p>
 
 <h1 id="3-work-with-qri-in-a-jupyter-notebook">3. Work with qri in a Jupyter Notebook</h1>
@@ -182,30 +173,18 @@ If this succeeds you should be good to move on to installing and using the qri p
 <hr />
 
 <p>first  we import qri</p>
-
-<pre><code class="language-python">import qri
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">qri</span></code></pre></div>
 <p>to wee what datasets we have in our repo, we use <code>qri.list_ds</code></p>
-
-<pre><code class="language-python">qri.list_ds()
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">qri</span><span class="o">.</span><span class="n">list_ds</span><span class="p">()</span></code></pre></div>
 <pre><code>['fivethirtyeight/weather_ksea',
  'dustmop/test3_repo',
  'osterbit/BirthdatesOfUSPresidents']
 </code></pre>
 
 <p>To load a dataset into memory, use <code>qri.load_ds</code>, passing the name of the dataset you want to load.</p>
-
-<pre><code class="language-python">ds = qri.load_ds('osterbit/BirthdatesOfUSPresidents')
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ds</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_ds</span><span class="p">(</span><span class="s1">&#39;osterbit/BirthdatesOfUSPresidents&#39;</span><span class="p">)</span></code></pre></div>
 <p>The python <code>QriDataset</code> is represented as an object with two properties: a <code>head</code> containing the dataset&rsquo;s metadata as a python dictionary and a <code>body</code> containing the data as a pandas dataframe. To manipulate these objects we can just use the native methods already available to them.</p>
-
-<pre><code class="language-python">ds.head
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ds</span><span class="o">.</span><span class="n">head</span></code></pre></div>
 <pre><code>{'bodyPath': '/ipfs/QmV5kQAyeDEJKkTTk97pEAFCnEty2iRvrzErYhgsz87BZu',
  'commit': {'author': {'id': 'QmQDAHk8jx6mJ1migbC6oEij52odepBV7RHBoGoGFWUr7F'},
   'path': '/ipfs/QmUpPqbzXQMWFDXChruFH4JTJchbHkGNyaL9A6g9LWXbJa',
@@ -228,10 +207,7 @@ If this succeeds you should be good to move on to installing and using the qri p
 </code></pre>
 
 <p>You&rsquo;ll notice in the body below, that the field &lsquo;birth_date&rsquo; is inconsistently formatted. In some entries the date is abbreviated while in others it is written out, and on the later entries the date is given with the day before the month:</p>
-
-<pre><code class="language-python">ds.body
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ds</span><span class="o">.</span><span class="n">body</span></code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -410,51 +386,39 @@ If this succeeds you should be good to move on to installing and using the qri p
 <h2 id="fixing-the-data">Fixing the data</h2>
 
 <p>To fix the inconstent date formatting, we&rsquo;ll write a function to parse the dates. It looks like there are 3 different formats so we&rsquo;ll want to handle each of these (for more info on dates and strings in python <a href="http://strftime.org/">strftime.org</a> has a good cheat sheet).</p>
-
-<pre><code class="language-python">import datetime
-def parse_date(date_string):
-    for date_fmt in ('%b %d, %Y', '%B %d, %Y', '%d-%b-%y'):
-        try:
-            return datetime.datetime.strptime(date_string, date_fmt)
-        except ValueError:
-            pass
-    raise ValueError('unable to parse dates with given formats')
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="k">def</span> <span class="nf">parse_date</span><span class="p">(</span><span class="n">date_string</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">date_fmt</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;%b </span><span class="si">%d</span><span class="s1">, %Y&#39;</span><span class="p">,</span> <span class="s1">&#39;%B </span><span class="si">%d</span><span class="s1">, %Y&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%y&#39;</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date_string</span><span class="p">,</span> <span class="n">date_fmt</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;unable to parse dates with given formats&#39;</span><span class="p">)</span></code></pre></div>
 <p>If we apply this function alone we&rsquo;ll have an issue where two digit years are assumed to be prefixed with &lsquo;20&rsquo;- rather than &lsquo;19&rsquo;-. So we&rsquo;ll use the fact that a president must be at least 35 years old to fix this and then combine the two functions and convert back to a string:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fix_date</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">max_year</span><span class="p">,</span> <span class="n">adjustment</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">date</span><span class="o">.</span><span class="n">year</span> <span class="o">&gt;</span> <span class="n">max_year</span><span class="p">:</span>
+        <span class="c1"># if the year is gt than our max date it is making an error on the century (1900s vs 2000s)</span>
+        <span class="n">corrected_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">year</span><span class="o">-</span><span class="n">adjustment</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">corrected_date</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">date</span>
 
-<pre><code class="language-python">def fix_date(date, max_year, adjustment=100):
-    if date.year &gt; max_year:
-        # if the year is gt than our max date it is making an error on the century (1900s vs 2000s)
-        corrected_date = datetime.datetime(year=date.year-adjustment, month=date.month, day=date.day)
-        return corrected_date
-    else:
-        return date
-
-# (combining the above)
-def make_dates_consistent(date_string):
-    # parse the date into a datetime object
-    date_obj = parse_date(date_string)
-    # since the minimum age to be president is 35
-    # we'll set the max year to reflect that
-    max_possible_dob_year = datetime.datetime.today().year - 35
-    dob = fix_date(date_obj, max_possible_dob_year)
-    # since csv's don't know about datetime objects we'll convert back to a string
-    # since it's easy to do we'll also include a format that also gives the day of the week
-    fmt = &quot;%a %b %d, %Y&quot;
-    return dob.strftime(fmt)
-</code></pre>
-
+<span class="c1"># (combining the above)</span>
+<span class="k">def</span> <span class="nf">make_dates_consistent</span><span class="p">(</span><span class="n">date_string</span><span class="p">):</span>
+    <span class="c1"># parse the date into a datetime object</span>
+    <span class="n">date_obj</span> <span class="o">=</span> <span class="n">parse_date</span><span class="p">(</span><span class="n">date_string</span><span class="p">)</span>
+    <span class="c1"># since the minimum age to be president is 35</span>
+    <span class="c1"># we&#39;ll set the max year to reflect that</span>
+    <span class="n">max_possible_dob_year</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">year</span> <span class="o">-</span> <span class="mi">35</span>
+    <span class="n">dob</span> <span class="o">=</span> <span class="n">fix_date</span><span class="p">(</span><span class="n">date_obj</span><span class="p">,</span> <span class="n">max_possible_dob_year</span><span class="p">)</span>
+    <span class="c1"># since csv&#39;s don&#39;t know about datetime objects we&#39;ll convert back to a string</span>
+    <span class="c1"># since it&#39;s easy to do we&#39;ll also include a format that also gives the day of the week</span>
+    <span class="n">fmt</span> <span class="o">=</span> <span class="s2">&#34;%a %b </span><span class="si">%d</span><span class="s2">, %Y&#34;</span>
+    <span class="k">return</span> <span class="n">dob</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span></code></pre></div>
 <p>Now we can apply this function to the field as we would with a regular dataframe:</p>
-
-<pre><code class="language-python">ds.body['birth_date'] = ds.body['birth_date'].apply(lambda d: make_dates_consistent(d))
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ds</span><span class="o">.</span><span class="n">body</span><span class="p">[</span><span class="s1">&#39;birth_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">body</span><span class="p">[</span><span class="s1">&#39;birth_date&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">make_dates_consistent</span><span class="p">(</span><span class="n">d</span><span class="p">))</span></code></pre></div>
 <p>Next we check the output to make sure it worked:</p>
-
-<pre><code class="language-python">ds.body
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ds</span><span class="o">.</span><span class="n">body</span></code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -633,10 +597,7 @@ def make_dates_consistent(date_string):
 <h2 id="saving-your-improvements">Saving your improvements</h2>
 
 <p>Finally, we save the dataset back to our repo with a commit message describing the changes we made:</p>
-
-<pre><code class="language-python">ds.save(&quot;fixed inconsistent date formatting&quot;, publish=True)
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ds</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;fixed inconsistent date formatting&#34;</span><span class="p">,</span> <span class="n">publish</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre></div>
 <pre><code>posting dataset to registry ...
 
 dataset saved

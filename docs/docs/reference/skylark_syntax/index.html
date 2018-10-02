@@ -194,28 +194,22 @@
 <h3 id="transform-configuration">Transform Configuration</h3>
 
 <p>You can inject variables into the transform through the transform config section in the dataset file. For example:</p>
-
-<pre><code class="language-yaml"># dataset.yaml file
-transform:
-  scriptpath: transform.sky
-  config:
-    name: Joe
-    number: 5556578909
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># dataset.yaml file</span><span class="w">
+</span><span class="w"></span>transform<span class="p">:</span><span class="w">
+</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.sky<span class="w">
+</span><span class="w">  </span>config<span class="p">:</span><span class="w">
+</span><span class="w">    </span>name<span class="p">:</span><span class="w"> </span>Joe<span class="w">
+</span><span class="w">    </span>number<span class="p">:</span><span class="w"> </span><span class="m">5556578909</span></code></pre></div>
 <p>In your transform script, you can get the name and number by loading the <code>qri.sky</code> module and using the <code>get_config</code> function:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
 
-<pre><code class="language-python">load(&quot;qri.sky&quot;, &quot;qri&quot;)
-
-def transform(ds):
-  name = qri.get_config(&quot;name&quot;)
-  # casting number to an int just in case it was mistaken 
-  # for a string
-  number = int(qri.get_config(&quot;number&quot;))
-  # do something here to set the body before returning
-  return ds
-</code></pre>
-
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">get_config</span><span class="p">(</span><span class="s2">&#34;name&#34;</span><span class="p">)</span>
+  <span class="c1"># casting number to an int just in case it was mistaken </span>
+  <span class="c1"># for a string</span>
+  <span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">qri</span><span class="o">.</span><span class="n">get_config</span><span class="p">(</span><span class="s2">&#34;number&#34;</span><span class="p">))</span>
+  <span class="c1"># do something here to set the body before returning</span>
+  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <hr />
 
 <h3 id="transform-secrets">Transform Secrets</h3>
@@ -223,24 +217,18 @@ def transform(ds):
 <p>Sometimes you need special keys or information that you want to exist in your transform, but you don&rsquo;t want anyone else to see or have access to. This is where transform secrets come in. You can add a private api key, for example, and not be worried that when another use looks at your dataset, that they will have access to your secret key.</p>
 
 <p>You add secrets much in the same why that you add config variables.</p>
-
-<pre><code class="language-yaml"># in dataset.yaml file
-transform:
-  scriptpath: transform.sky
-  secrets:
-    api_key: SOME-PRIVATE-KEY-HERE
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># in dataset.yaml file</span><span class="w">
+</span><span class="w"></span>transform<span class="p">:</span><span class="w">
+</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.sky<span class="w">
+</span><span class="w">  </span>secrets<span class="p">:</span><span class="w">
+</span><span class="w">    </span>api_key<span class="p">:</span><span class="w"> </span>SOME-PRIVATE-KEY-HERE</code></pre></div>
 <p>To get that secret, load the <code>qri</code> module and use the <code>get_secret</code> method:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
 
-<pre><code class="language-python">load(&quot;qri.sky&quot;, &quot;qri&quot;)
-
-def transform(ds):
-  api_key = qri.get_secret(&quot;api_key&quot;)
-  # do something here to add to the dataset body
-  return ds
-</code></pre>
-
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="n">api_key</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">get_secret</span><span class="p">(</span><span class="s2">&#34;api_key&#34;</span><span class="p">)</span>
+  <span class="c1"># do something here to add to the dataset body</span>
+  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <hr />
 
 <p>For information on the different modules of our starlark standard library, checkout our <a href="../../../docs/reference/starlib">starlib reference page</a>.</p>
