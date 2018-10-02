@@ -27,8 +27,11 @@ We're excited about skylark for a few reasons:
 * [1.2 - Dataset Files and Transform Settings](#dataset_files)
 * [1.3 - Deleting and Exporting Datasets](#delete_export)
 
-* [2.0 - Download & HTTP](#download)
-* [2.1 - HTML](#html)
+* [2.0 - Download function](#download)
+* [2.1 - Config and Secrets](#config)
+* [2.2 - Modules and `qri`](#modules)
+* [2.3 - http](#http)
+* [2.4 - html](#html)
 
 <a id="hello_world"></a>
 ## 1.0 '["Hello","World"]'
@@ -166,7 +169,7 @@ In this section we are going to talk about the Qri function `download`. The `dow
 
 The `download` function is always run before the `transform` step. The dataset returned from the `download` function, gets passed as the dataset parameter in the `transform` function.
 
-
+<a id="config"></a>
 ## 2.1 Config and Secrets
 
 When we came up with the idea of including transforms in Qri, the thing we were most excited about was a transforms ability to be customized for the person running it. In order to have customizability, we needed a way to inject variables into a transform script. For example, if there is a dataset that has a call to the github api, that can pull down the stats from one of my projects, but I want to also use that transfrom to pull down stats from a second project, one of the variables in my transform would probably be `repo_name`.
@@ -194,11 +197,12 @@ Note, if you want to run this transform yourself, you will need to head over to 
 
 Okay, so that's how you add a config variable and a secrets variable into the transform, but how do you actually use it in the transform file? That's where the `qri` module comes in.
 
-## 2.1 Modules and `qri`
+<a id="modules"></a>
+## 2.2 Modules and `qri`
 
 Chances are, if you are trying to do something cool with Qri, you will need more than just the basic functionality we've shown you so far.
 
-You can also import modules from the starlark standard library ([Starlib](https://github.com/qri-io/starlib) we have been working on. [Here]() is our reference page that details each module and each function within that module.
+You can also import modules from the starlark standard library ([Starlib](https://github.com/qri-io/starlib) we have been working on. [Here](/docs/reference/starlib) is our reference page that details each module and each function within that module.
 
 For now, let's look at the `qri` module. Here is how you load a module into a transform:
 
@@ -208,9 +212,6 @@ For now, let's look at the `qri` module. Here is how you load a module into a tr
 load("qri.sky", "qri")
 
 def download(ds):
-  return ds
-
-def transform(ds):
   return ds
 ```
 
@@ -231,6 +232,7 @@ def download(ds):
   return ds
 
 def transform(ds):
+  ds.set_body(["need to set a body or the will be an error"])
   return ds
 ```
 
@@ -240,7 +242,8 @@ Head over to the terminal. Change directories until you are in your `lol_last_10
 $ qri new --file dataset.yaml me/lol_last_100_matches --dry-run
 ```
 
-## 2.1 http module
+<a id="http"></a>
+## 2.3 http module
 
 Now that we can get config and secrets variables, let's use those to grab some data from an API enpoint using the http package.
 
@@ -248,7 +251,7 @@ The http package can only be used in the `download` function. You do not have ac
 
 You have access to the `get`, `put`, `post`, `delete`, `patch`, and `options` methods from the `http` module. We are going to use the `get` method to grab some json for the Riot Games json api.
 
-Note: you can use the `text`, `content`, and `json` methods on a response to get the response body. `text` and `content` will return a string representation, `json` will convert it to json. Please see the starlib reference page for more info.
+Note: you can use the `text`, `content`, and `json` methods on a response to get the response body. `text` and `content` will return a string representation, `json` will convert it to json. Please see the [starlib reference page](/docs/reference/starlib) for more info.
 
 
 ```python
@@ -287,10 +290,6 @@ def download(ds):
   print(matches) # prints a long list of dictionaries containing match data
   ds.set_body(matches)
   return ds
-
-def transform(ds):
-  print(ds)
-  return ds
 ```
 
 First double check that this works by running
@@ -311,6 +310,45 @@ If you are running into problems, double check that your api key is up to date!
 To get this dataset into your qri node, run the same command, without the `--dry-run` flag.
 
 <a id="html"></a>
-## 2.1 html module
+## 2.4 html module
 
-<!-- download wikipedia, convert to parsed html, find first title, create dataset from that -->
+Let's take a cursory look at the html module. The `html` module allows you use methods to grab elements from an html page, much like you would using jquery. Take a look at the [starlib reference page](/docs/reference/starlib) to find out more.
+
+Let's go to wikipedia, and get a list of all the languages that you can read wikipedia in!
+
+We will download the main wikipedia page, parse it using the `html` method, then navigate down to the <a> element, get the language from the 'title' attribute, and add it to the list of languages.
+
+```python
+load("html.sky", "html")
+load("http.sky", "http")
+
+def download(ds):
+  res = http.get("https://en.wikipedia.org/wiki/Main_Page")
+  doc = html(res.content())
+  # from inspecting the contents of the wikipedia page, I was able to 
+  # determine that the list of languages was located in a div who's id 
+  # is `#p-lang` 
+  langElems = doc.find("#p-lang").find("li")
+  langs = []
+  for i in range(0, langElems.len()):
+    # get the ith element in the list of <li>'s
+    li = langElems.eq(i)
+    # list of the children of the <li>, in this case it is a list of one
+    # element, an <a> tag
+    alist = li.children()
+    # There is only one <a> in the list, but it is still a list
+    # to get that first <a> element:
+    a = alist.first()
+    # the "title" attribute in the <a> element contains the language, written
+    # in english
+    language = a.attr("title")
+    # append this to the list of languages
+    langs.append(language)
+    #
+    # this can all be done, alittle more confusingly, in one line:
+    # langs.append(langElems.eq(i).children().first().attr("title"))
+  ds.set_body(langs)
+  return ds
+```
+
+To learn more about our starlark standard library, check out the [reference page](/docs/reference/starlib) which details each module and all of it's methods.
