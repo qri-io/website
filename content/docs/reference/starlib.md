@@ -95,20 +95,21 @@ def download(ds):
 #### time
   _you can access these methods from the `time` module:_ 
 
-  * [time.time](#time)
-  * [time.duration](#duration)
-  * [time.location](#location)
-  * [time.now](#now)
+  * [time.time](#time) 
+  * [time.duration](#duration)  
+  * [time.location](#location)  
+  * [time.now](#now)  
 
 ##### time
   _you can access these methods from a `time` object:_
-  * [year](#year)
-  * [month](#month)
-  * [day](#day)
-  * [hour](#hour)
-  * [minute](#minute)
-  * [second](#second)
-  * [nanosecond](#nanosecond)
+  
+  * [year](#year)  
+  * [month](#month)  
+  * [day](#day)  
+  * [hour](#hour)  
+  * [minute](#minute)  
+  * [second](#second)  
+  * [nanosecond](#nanosecond)  
 
 <a id="xlsx_module"></a>
 #### xlsx

@@ -22,11 +22,13 @@ We're excited about skylark for a few reasons:
 
 # Table of Contents
 
-* [1.0 - Hello World](#hello_world) Hello, World, Transform function, and setting the body
+#### Quick start and the Transform Function
+* [1.0 - Hello World](#hello_world) 
 * [1.1 - Set the meta](#meta)
 * [1.2 - Dataset Files and Transform Settings](#dataset_files)
 * [1.3 - Deleting and Exporting Datasets](#delete_export)
 
+#### Download Function, Config, Modules
 * [2.0 - Download function](#download)
 * [2.1 - Config and Secrets](#config)
 * [2.2 - Modules and `qri`](#modules)
