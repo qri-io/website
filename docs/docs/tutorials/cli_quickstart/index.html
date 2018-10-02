@@ -452,40 +452,37 @@ removed dataset 'tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZw
 <p>Now for some added fanciness. Remember that <code>dataset.yaml</code> file that was created when we used <code>qri export me/nalcs_standings</code>, let&rsquo;s open that up now and check it out.</p>
 
 <p>You should get something that looks like this:</p>
-
-<pre><code class="language-yaml"> bodyPath: /ipfs/QmPBQKHc2os92kTKzdJ8xGdyP6mo6JAT9d7QncEzYSSGCM
-commit:
-  author:
-    id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
-  qri: cm:0
-  signature: zHgYne5lRdftX5CV/RkRbuWloRm0LvjFzdmo25XqTIBEqhVW0ywhy/yl+rmVvOJo26mJbvwUN8QwxLllpEVkv5YHYCQhxWu/8+RpGKuMJFzhjB/pRhw4+ykjxRGe/zLLkaN97uAq+fnjR7Ld0VKMkuSEtpuVkpguiyjxrEfrAxKExQHyxGc9wBqeEFK7TtmW98cX9VonoRm5jW4/SRSYqK3fgAXuPK+wiRmHfnOzWxJXQ/KIKLiF91pl/8UeqovlRR+vbTHzjpZvSlGL1Xu9fz6DiqpQXkygh5vYn4GFj3YniOusTf8RmmaHmZ+4smAu3PxSg+fVPpRvWSuuLIqTMg==
-  timestamp: &quot;2018-08-06T21:27:29.791238974Z&quot;
-  title: created dataset
-qri: ds:0
-structure:
-  checksum: QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj
-  entries: 10
-  errCount: 0
-  format: csv
-  length: 211
-  qri: st:0
-  schema:
-    items:
-      items:
-      - title: field_1
-        type: integer
-      - title: field_2
-        type: string
-      - title: field_3
-        type: string
-      - title: field_4
-        type: integer
-      - title: field_5
-        type: integer
-      type: array
-    type: array
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w"> </span>bodyPath<span class="p">:</span><span class="w"> </span>/ipfs/QmPBQKHc2os92kTKzdJ8xGdyP6mo6JAT9d7QncEzYSSGCM<span class="w">
+</span><span class="w"></span>commit<span class="p">:</span><span class="w">
+</span><span class="w">  </span>author<span class="p">:</span><span class="w">
+</span><span class="w">    </span>id<span class="p">:</span><span class="w"> </span>QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9<span class="w">
+</span><span class="w">  </span>qri<span class="p">:</span><span class="w"> </span>cm<span class="p">:</span><span class="m">0</span><span class="w">
+</span><span class="w">  </span>signature<span class="p">:</span><span class="w"> </span>zHgYne5lRdftX5CV/RkRbuWloRm0LvjFzdmo25XqTIBEqhVW0ywhy/yl+rmVvOJo26mJbvwUN8QwxLllpEVkv5YHYCQhxWu/<span class="m">8</span>+RpGKuMJFzhjB/pRhw4+ykjxRGe/zLLkaN97uAq+fnjR7Ld0VKMkuSEtpuVkpguiyjxrEfrAxKExQHyxGc9wBqeEFK7TtmW98cX9VonoRm5jW4/SRSYqK3fgAXuPK+wiRmHfnOzWxJXQ/KIKLiF91pl/8UeqovlRR+vbTHzjpZvSlGL1Xu9fz6DiqpQXkygh5vYn4GFj3YniOusTf8RmmaHmZ+4smAu3PxSg+fVPpRvWSuuLIqTMg==<span class="w">
+</span><span class="w">  </span>timestamp<span class="p">:</span><span class="w"> </span><span class="s2">&#34;2018-08-06T21:27:29.791238974Z&#34;</span><span class="w">
+</span><span class="w">  </span>title<span class="p">:</span><span class="w"> </span>created<span class="w"> </span>dataset<span class="w">
+</span><span class="w"></span>qri<span class="p">:</span><span class="w"> </span>ds<span class="p">:</span><span class="m">0</span><span class="w">
+</span><span class="w"></span>structure<span class="p">:</span><span class="w">
+</span><span class="w">  </span>checksum<span class="p">:</span><span class="w"> </span>QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj<span class="w">
+</span><span class="w">  </span>entries<span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
+</span><span class="w">  </span>errCount<span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="w">  </span>format<span class="p">:</span><span class="w"> </span>csv<span class="w">
+</span><span class="w">  </span>length<span class="p">:</span><span class="w"> </span><span class="m">211</span><span class="w">
+</span><span class="w">  </span>qri<span class="p">:</span><span class="w"> </span>st<span class="p">:</span><span class="m">0</span><span class="w">
+</span><span class="w">  </span>schema<span class="p">:</span><span class="w">
+</span><span class="w">    </span>items<span class="p">:</span><span class="w">
+</span><span class="w">      </span>items<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>field_1<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>integer<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>field_2<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>string<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>field_3<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>string<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>field_4<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>integer<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>field_5<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>integer<span class="w">
+</span><span class="w">      </span>type<span class="p">:</span><span class="w"> </span>array<span class="w">
+</span><span class="w">    </span>type<span class="p">:</span><span class="w"> </span>array</code></pre></div>
 <p>As we learned before, the dataset file will contain the following, if it exists in the dataset: <code>bodyPath</code>, <code>commit</code>, <code>qri</code>, <code>structure</code>, <code>metadata</code>, <code>viz</code>, and <code>transform</code>.</p>
 
 <p>Right now, this dataset contains a <code>bodyPath</code>, <code>commit</code>, <code>qri</code>, and <code>structure</code>.</p>
@@ -497,87 +494,81 @@ structure:
 <p>Notice how we didn&rsquo;t have to create the schema or structure. If not provided, Qri will determine the structure of a file itself. JSON files will be recorded as an array or an object, but not more specific than that as of the time this tutorial was written. CSV files will be traversed and the title and type of each column will be determined.</p>
 
 <p>The correct column titles have been filled in below:</p>
-
-<pre><code class="language-yaml"> bodyPath: /ipfs/QmPBQKHc2os92kTKzdJ8xGdyP6mo6JAT9d7QncEzYSSGCM
-commit:
-  author:
-    id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
-  qri: cm:0
-  signature: zHgYne5lRdftX5CV/RkRbuWloRm0LvjFzdmo25XqTIBEqhVW0ywhy/yl+rmVvOJo26mJbvwUN8QwxLllpEVkv5YHYCQhxWu/8+RpGKuMJFzhjB/pRhw4+ykjxRGe/zLLkaN97uAq+fnjR7Ld0VKMkuSEtpuVkpguiyjxrEfrAxKExQHyxGc9wBqeEFK7TtmW98cX9VonoRm5jW4/SRSYqK3fgAXuPK+wiRmHfnOzWxJXQ/KIKLiF91pl/8UeqovlRR+vbTHzjpZvSlGL1Xu9fz6DiqpQXkygh5vYn4GFj3YniOusTf8RmmaHmZ+4smAu3PxSg+fVPpRvWSuuLIqTMg==
-  timestamp: &quot;2018-08-06T21:27:29.791238974Z&quot;
-  title: created dataset
-qri: ds:0
-structure:
-  checksum: QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj
-  entries: 10
-  errCount: 0
-  format: csv
-  length: 211
-  qri: st:0
-  schema:
-    items:
-      items:
-      - title: rank
-        type: integer
-      - title: team
-        type: string
-      - title: abbreviation
-        type: string
-      - title: wins
-        type: integer
-      - title: losses
-        type: integer
-      type: array
-    type: array
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w"> </span>bodyPath<span class="p">:</span><span class="w"> </span>/ipfs/QmPBQKHc2os92kTKzdJ8xGdyP6mo6JAT9d7QncEzYSSGCM<span class="w">
+</span><span class="w"></span>commit<span class="p">:</span><span class="w">
+</span><span class="w">  </span>author<span class="p">:</span><span class="w">
+</span><span class="w">    </span>id<span class="p">:</span><span class="w"> </span>QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9<span class="w">
+</span><span class="w">  </span>qri<span class="p">:</span><span class="w"> </span>cm<span class="p">:</span><span class="m">0</span><span class="w">
+</span><span class="w">  </span>signature<span class="p">:</span><span class="w"> </span>zHgYne5lRdftX5CV/RkRbuWloRm0LvjFzdmo25XqTIBEqhVW0ywhy/yl+rmVvOJo26mJbvwUN8QwxLllpEVkv5YHYCQhxWu/<span class="m">8</span>+RpGKuMJFzhjB/pRhw4+ykjxRGe/zLLkaN97uAq+fnjR7Ld0VKMkuSEtpuVkpguiyjxrEfrAxKExQHyxGc9wBqeEFK7TtmW98cX9VonoRm5jW4/SRSYqK3fgAXuPK+wiRmHfnOzWxJXQ/KIKLiF91pl/8UeqovlRR+vbTHzjpZvSlGL1Xu9fz6DiqpQXkygh5vYn4GFj3YniOusTf8RmmaHmZ+4smAu3PxSg+fVPpRvWSuuLIqTMg==<span class="w">
+</span><span class="w">  </span>timestamp<span class="p">:</span><span class="w"> </span><span class="s2">&#34;2018-08-06T21:27:29.791238974Z&#34;</span><span class="w">
+</span><span class="w">  </span>title<span class="p">:</span><span class="w"> </span>created<span class="w"> </span>dataset<span class="w">
+</span><span class="w"></span>qri<span class="p">:</span><span class="w"> </span>ds<span class="p">:</span><span class="m">0</span><span class="w">
+</span><span class="w"></span>structure<span class="p">:</span><span class="w">
+</span><span class="w">  </span>checksum<span class="p">:</span><span class="w"> </span>QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj<span class="w">
+</span><span class="w">  </span>entries<span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
+</span><span class="w">  </span>errCount<span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="w">  </span>format<span class="p">:</span><span class="w"> </span>csv<span class="w">
+</span><span class="w">  </span>length<span class="p">:</span><span class="w"> </span><span class="m">211</span><span class="w">
+</span><span class="w">  </span>qri<span class="p">:</span><span class="w"> </span>st<span class="p">:</span><span class="m">0</span><span class="w">
+</span><span class="w">  </span>schema<span class="p">:</span><span class="w">
+</span><span class="w">    </span>items<span class="p">:</span><span class="w">
+</span><span class="w">      </span>items<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>rank<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>integer<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>team<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>string<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>abbreviation<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>string<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>wins<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>integer<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>losses<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>integer<span class="w">
+</span><span class="w">      </span>type<span class="p">:</span><span class="w"> </span>array<span class="w">
+</span><span class="w">    </span>type<span class="p">:</span><span class="w"> </span>array</code></pre></div>
 <p>Next, let&rsquo;s talk metadata. Metadata is super important. It&rsquo;s the place where whoever gathered the data (or whoever is augmenting it) can give background and context on what the data contains, how it was collected, who collected it, and any other details that need recording.</p>
 
 <p>Datasets can be written as <code>json</code> or <code>yaml</code> files. Here we will write them in yaml, as that is the Qri default. For more on the structure of yaml files, check out <a href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">this page on yaml syntax</a>.</p>
 
 <p>Let&rsquo;s add a dataset title (a human readable title), description, and tags.</p>
-
-<pre><code class="language-yaml">bodyPath: /ipfs/QmPBQKHc2os92kTKzdJ8xGdyP6mo6JAT9d7QncEzYSSGCM
-commit:
-  author:
-    id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
-  qri: cm:0
-  signature: zHgYne5lRdftX5CV/RkRbuWloRm0LvjFzdmo25XqTIBEqhVW0ywhy/yl+rmVvOJo26mJbvwUN8QwxLllpEVkv5YHYCQhxWu/8+RpGKuMJFzhjB/pRhw4+ykjxRGe/zLLkaN97uAq+fnjR7Ld0VKMkuSEtpuVkpguiyjxrEfrAxKExQHyxGc9wBqeEFK7TtmW98cX9VonoRm5jW4/SRSYqK3fgAXuPK+wiRmHfnOzWxJXQ/KIKLiF91pl/8UeqovlRR+vbTHzjpZvSlGL1Xu9fz6DiqpQXkygh5vYn4GFj3YniOusTf8RmmaHmZ+4smAu3PxSg+fVPpRvWSuuLIqTMg==
-  timestamp: &quot;2018-08-06T21:27:29.791238974Z&quot;
-  title: created dataset
-qri: ds:0
-structure:
-  checksum: QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj
-  entries: 10
-  errCount: 0
-  format: csv
-  length: 211
-  qri: st:0
-  schema:
-    items:
-      items:
-      - title: rank
-        type: integer
-      - title: team
-        type: string
-      - title: abbreviation
-        type: string
-      - title: wins
-        type: integer
-      - title: losses
-        type: integer
-      type: array
-    type: array
-meta:
-  title: NALCS Summer Split Standings 2018
-  description: The standings for the North American League Championship Series, the professional League of Legends league. Data taken from Riot's esports website.
-  downloadPage: https://www.lolesports.com/en_US/na-lcs/na_2018_summer/standings/regular_season
-  keywords:
-    - league of legends
-    - riot games
-    - nalcs
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">bodyPath<span class="p">:</span><span class="w"> </span>/ipfs/QmPBQKHc2os92kTKzdJ8xGdyP6mo6JAT9d7QncEzYSSGCM<span class="w">
+</span><span class="w"></span>commit<span class="p">:</span><span class="w">
+</span><span class="w">  </span>author<span class="p">:</span><span class="w">
+</span><span class="w">    </span>id<span class="p">:</span><span class="w"> </span>QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9<span class="w">
+</span><span class="w">  </span>qri<span class="p">:</span><span class="w"> </span>cm<span class="p">:</span><span class="m">0</span><span class="w">
+</span><span class="w">  </span>signature<span class="p">:</span><span class="w"> </span>zHgYne5lRdftX5CV/RkRbuWloRm0LvjFzdmo25XqTIBEqhVW0ywhy/yl+rmVvOJo26mJbvwUN8QwxLllpEVkv5YHYCQhxWu/<span class="m">8</span>+RpGKuMJFzhjB/pRhw4+ykjxRGe/zLLkaN97uAq+fnjR7Ld0VKMkuSEtpuVkpguiyjxrEfrAxKExQHyxGc9wBqeEFK7TtmW98cX9VonoRm5jW4/SRSYqK3fgAXuPK+wiRmHfnOzWxJXQ/KIKLiF91pl/8UeqovlRR+vbTHzjpZvSlGL1Xu9fz6DiqpQXkygh5vYn4GFj3YniOusTf8RmmaHmZ+4smAu3PxSg+fVPpRvWSuuLIqTMg==<span class="w">
+</span><span class="w">  </span>timestamp<span class="p">:</span><span class="w"> </span><span class="s2">&#34;2018-08-06T21:27:29.791238974Z&#34;</span><span class="w">
+</span><span class="w">  </span>title<span class="p">:</span><span class="w"> </span>created<span class="w"> </span>dataset<span class="w">
+</span><span class="w"></span>qri<span class="p">:</span><span class="w"> </span>ds<span class="p">:</span><span class="m">0</span><span class="w">
+</span><span class="w"></span>structure<span class="p">:</span><span class="w">
+</span><span class="w">  </span>checksum<span class="p">:</span><span class="w"> </span>QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj<span class="w">
+</span><span class="w">  </span>entries<span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
+</span><span class="w">  </span>errCount<span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="w">  </span>format<span class="p">:</span><span class="w"> </span>csv<span class="w">
+</span><span class="w">  </span>length<span class="p">:</span><span class="w"> </span><span class="m">211</span><span class="w">
+</span><span class="w">  </span>qri<span class="p">:</span><span class="w"> </span>st<span class="p">:</span><span class="m">0</span><span class="w">
+</span><span class="w">  </span>schema<span class="p">:</span><span class="w">
+</span><span class="w">    </span>items<span class="p">:</span><span class="w">
+</span><span class="w">      </span>items<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>rank<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>integer<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>team<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>string<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>abbreviation<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>string<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>wins<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>integer<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>losses<span class="w">
+</span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>integer<span class="w">
+</span><span class="w">      </span>type<span class="p">:</span><span class="w"> </span>array<span class="w">
+</span><span class="w">    </span>type<span class="p">:</span><span class="w"> </span>array<span class="w">
+</span><span class="w"></span>meta<span class="p">:</span><span class="w">
+</span><span class="w">  </span>title<span class="p">:</span><span class="w"> </span>NALCS<span class="w"> </span>Summer<span class="w"> </span>Split<span class="w"> </span>Standings<span class="w"> </span><span class="m">2018</span><span class="w">
+</span><span class="w">  </span>description<span class="p">:</span><span class="w"> </span>The<span class="w"> </span>standings<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>North<span class="w"> </span>American<span class="w"> </span>League<span class="w"> </span>Championship<span class="w"> </span>Series<span class="p">,</span><span class="w"> </span>the<span class="w"> </span>professional<span class="w"> </span>League<span class="w"> </span>of<span class="w"> </span>Legends<span class="w"> </span>league.<span class="w"> </span>Data<span class="w"> </span>taken<span class="w"> </span>from<span class="w"> </span>Riot&#39;s<span class="w"> </span>esports<span class="w"> </span>website.<span class="w">
+</span><span class="w">  </span>downloadPage<span class="p">:</span><span class="w"> </span>https<span class="p">:</span>//www.lolesports.com/en_US/na-lcs/na_2018_summer/standings/regular_season<span class="w">
+</span><span class="w">  </span>keywords<span class="p">:</span><span class="w">
+</span><span class="w">    </span>-<span class="w"> </span>league<span class="w"> </span>of<span class="w"> </span>legends<span class="w">
+</span><span class="w">    </span>-<span class="w"> </span>riot<span class="w"> </span>games<span class="w">
+</span><span class="w">    </span>-<span class="w"> </span>nalcs</code></pre></div>
 <p>Save your new and improved <code>dataset.yaml</code> file, and you are ready to go.</p>
 
 <p>Go back to your trusty terminal. My <code>dataset.yaml</code> file still lives in my nalcs_standings folder, along with the body file:<code>data.csv</code>. We are going to need both a dataset file and a body file to run this next step:</p>

@@ -269,16 +269,10 @@ on the distributed web.</p>
 <p>Add retrieves a dataset owned by another peer and adds it to your repo.
 The dataset reference of the dataset will remain the same, including
 the name of the peer that originally added the dataset.</p>
-
-<pre><code>qri add [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri add <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples">Examples</h3>
-
-<pre><code>  add a dataset named their_data, owned by other_peer:
-  $ qri add other_peer/their_data
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># add a dataset named their_data, owned by other_peer:
+</span><span class="c1"></span>$ qri add other_peer/their_data</code></pre></div>
 <h3 id="options">Options</h3>
 
 <pre><code>  -h, --help   help for add
@@ -295,22 +289,16 @@ the name of the peer that originally added the dataset.</p>
 <h3 id="synopsis-1">Synopsis</h3>
 
 <p><code>qri body</code> reads entries from a dataset. Default is 50 entries, starting from the beginning of the body. You can using the <code>--limit</code> and <code>--offset</code> flags to iterate through the dataset body.</p>
-
-<pre><code>qri body [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri body <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-1">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># show the first 50 rows of a dataset:
+</span><span class="c1"></span>$ qri body me/dataset_name
 
-<pre><code>  show the first 50 rows of a dataset:
-  $ qri body me/dataset_name
+<span class="c1"># show the next 50 rows of a dataset:
+</span><span class="c1"></span>$ qri body --offset <span class="m">50</span> me/dataset_name
 
-  show the next 50 rows of a dataset:
-  $ qri body --offset 50 me/dataset_name
-
-  save the body as csv to file
-  $ qri body -o new_file.csv -f csv me/dataset_name
-</code></pre>
-
+<span class="c1"># save the body as csv to file
+</span><span class="c1"></span>$ qri body -o new_file.csv -f csv me/dataset_name</code></pre></div>
 <h3 id="options-1">Options</h3>
 
 <pre><code>  -a, --all             read all dataset entries (overrides limit, offest)
@@ -343,17 +331,14 @@ runtime via command a line argument.</p>
 <a href="https://github.com/qri-io/qri/blob/master/config/readme.md">https://github.com/qri-io/qri/blob/master/config/readme.md</a></p>
 
 <h3 id="examples-2">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># get your profile information
+</span><span class="c1"></span>$ qri config get profile
 
-<pre><code>  # get your profile information
-  $ qri config get profile
+<span class="c1"># set your api port to 4444
+</span><span class="c1"></span>$ qri config <span class="nb">set</span> api.port <span class="m">4444</span>
 
-  # set your api port to 4444
-  $ qri config set api.port 4444
-
-  # disable rpc connections:
-  $ qri config set rpc.enabled false
-</code></pre>
-
+<span class="c1"># disable rpc connections:
+</span><span class="c1"></span>$ qri config <span class="nb">set</span> rpc.enabled false</code></pre></div>
 <h3 id="options-2">Options</h3>
 
 <pre><code>  -h, --help   help for config
@@ -379,22 +364,16 @@ traverse the config object. For details on each config field checkout:
 <p>The &ndash;with-private-keys option will show private keys.
 PLEASE PLEASE PLEASE NEVER SHARE YOUR PRIVATE KEYS WITH ANYONE. EVER.
 Anyone with your private keys can impersonate you on qri.</p>
-
-<pre><code>qri config get [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri config get <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-3">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># get the entire config
+</span><span class="c1"></span>qri config get
 
-<pre><code>  # get the entire config
-  qri config get
+<span class="c1"># get the config profile
+</span><span class="c1"></span>qri config get profile
 
-  # get the config profile
-  qri config get profile
-
-  # get the profile description
-  qri config get profile.description
-</code></pre>
-
+<span class="c1"># get the profile description
+</span><span class="c1"></span>qri config get profile.description</code></pre></div>
 <h3 id="options-3">Options</h3>
 
 <pre><code>  -c, --concise             print output without indentation, only applies to json format
@@ -425,20 +404,14 @@ or only parts of it, the &lsquo;qri config set&rsquo; command is more specific.<
 set the leaves of the branches. In other words, the you cannot set a
 field that is itself an object or array. For details on each config
 field checkout: <a href="https://github.com/qri-io/qri/blob/master/config/readme.md">https://github.com/qri-io/qri/blob/master/config/readme.md</a></p>
-
-<pre><code>qri config set [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri config <span class="nb">set</span> <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-4">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># set a profile description
+</span><span class="c1"></span>qri config <span class="nb">set</span> profile.description <span class="s2">&#34;This is my new description that I
+</span><span class="s2">am very proud of and want displayed in my profile&#34;</span>
 
-<pre><code>  # set a profile description
-  qri config set profile.description &quot;This is my new description that I
-  am very proud of and want displayed in my profile&quot;
-
-  # disable rpc communication
-  qri config set rpc.enabled false
-</code></pre>
-
+<span class="c1"># disable rpc communication
+</span><span class="c1"></span>qri config <span class="nb">set</span> rpc.enabled false</code></pre></div>
 <h3 id="options-4">Options</h3>
 
 <pre><code>  -h, --help   help for set
@@ -465,10 +438,7 @@ things:
 
 <p>When you run connect you are connecting to the distributed web, interacting with
 peers &amp; swapping data.</p>
-
-<pre><code>qri connect [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri connect <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="options-5">Options</h3>
 
 <pre><code>      --api-port int           port to start api on
@@ -498,20 +468,14 @@ peers &amp; swapping data.</p>
 of the differences between them.  You can specifify the datasets
 either by name or by their hash. You can compare different versions of
 the same dataset.</p>
-
-<pre><code>qri diff [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri diff <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-5">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># show diff between two versions of the same dataset:
+</span><span class="c1"></span>$ qri diff me/annual_pop@/ipfs/QmcBZoEQ7ot4UYKn1JM3gwd4LHorj6FJ4Ep19rfLBT3VZ8 
+me/annual_pop@/ipfs/QmVvqsge5wqp4piJbLArwVB6iJSTrdM8ZRpHY7fikASrr8
 
-<pre><code>  show diff between two versions of the same dataset:
-  $ qri diff me/annual_pop@/ipfs/QmcBZoEQ7ot4UYKn1JM3gwd4LHorj6FJ4Ep19rfLBT3VZ8 
-  me/annual_pop@/ipfs/QmVvqsge5wqp4piJbLArwVB6iJSTrdM8ZRpHY7fikASrr8
-
-  show diff between two different datasets:
-  $ qri diff me/population_2016 me/population_2017
-</code></pre>
-
+<span class="c1"># show diff between two different datasets:
+</span><span class="c1"></span>$ qri diff me/population_2016 me/population_2017</code></pre></div>
 <h3 id="options-6">Options</h3>
 
 <pre><code>  -d, --display string   set display format [reg|short|delta|detail]
@@ -534,22 +498,16 @@ the same dataset.</p>
 
 <p>If you want an empty dataset that can be filled in with details to create a
 new dataset, use &ndash;blank.</p>
-
-<pre><code>qri export [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri <span class="nb">export</span> <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-6">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># export dataset
+</span><span class="c1"></span>qri <span class="nb">export</span> me/annual_pop
 
-<pre><code>  # export dataset
-  qri export me/annual_pop
+<span class="c1"># export without the body of the dataset
+</span><span class="c1"></span>qri <span class="nb">export</span> --no-body me/annual_pop
 
-  # export without the body of the dataset
-  qri export --no-body me/annual_pop
-
-  # export to a specific directory
-  qri export -o ~/new_directory me/annual_pop
-</code></pre>
-
+<span class="c1"># export to a specific directory
+</span><span class="c1"></span>qri <span class="nb">export</span> -o ~/new_directory me/annual_pop</code></pre></div>
 <h3 id="options-7">Options</h3>
 
 <pre><code>      --blank                export a blank dataset YAML file, overrides all other flags except output
@@ -581,25 +539,19 @@ by supplying more than one dataset reference.</p>
 
 <p>Check out <a href="https://qri.io/docs/reference/dataset/">https://qri.io/docs/reference/dataset/</a> to learn about each section of the
 dataset and its fields.</p>
-
-<pre><code>qri get [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri get <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-7">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># print the entire dataset to the console
+</span><span class="c1"></span>qri get me/annual_pop
 
-<pre><code>  # print the entire dataset to the console
-  qri get me/annual_pop
+<span class="c1"># print the meta to the console
+</span><span class="c1"></span>qri get meta me/annual_pop
 
-  # print the meta to the console
-  qri get meta me/annual_pop
+<span class="c1"># print the dataset body size to the console
+</span><span class="c1"></span>qri get structure.length me/annual_pop
 
-  # print the dataset body size to the console
-  qri get structure.length me/annual_pop
-
-  # print the dataset body size for two different datasets
-  qri get structure.length me/annual_pop me/annual_gdp
-</code></pre>
-
+<span class="c1"># print the dataset body size for two different datasets
+</span><span class="c1"></span>qri get structure.length me/annual_pop me/annual_gdp</code></pre></div>
 <h3 id="options-8">Options</h3>
 
 <pre><code>      --concise         print output without indentation, only applies to json format
@@ -627,32 +579,26 @@ representation of the dataset, without the dataset body, identical to
 
 <p>To get info on a peer&rsquo;s dataset, you must be running <code>qri connect</code> in a separate
 terminal window.</p>
-
-<pre><code>qri info [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri info <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-8">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># get info for my dataset:
+</span><span class="c1"></span>qri info me/annual_pop
 
-<pre><code>  # get info for my dataset:
-  qri info me/annual_pop
+<span class="c1"># get info for a dataset at a specific version:
+</span><span class="c1"></span>qri info me@/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
 
-  # get info for a dataset at a specific version:
-  qri info me@/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
+or
 
-  or
+qri info me/comics@/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
 
-  qri info me/comics@/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
+<span class="c1"># get info in json format
+</span><span class="c1"></span>qri info -f json me/annual_pop
 
-  # get info in json format
-  qri info -f json me/annual_pop
+<span class="c1"># to get info on a peer&#39;s dataset, spin up your qri node
+</span><span class="c1"></span>qri connect
 
-  # to get info on a peer's dataset, spin up your qri node
-  qri connect
-
-  # then, in a separate window, request the info from peer b5
-  qri info b5/comics
-</code></pre>
-
+<span class="c1"># then, in a separate window, request the info from peer b5
+</span><span class="c1"></span>qri info b5/comics</code></pre></div>
 <h3 id="options-9">Options</h3>
 
 <pre><code>  -f, --format string   set output format [json]
@@ -676,23 +622,17 @@ qri repository.</p>
 
 <p>When used in conjuction with <code>qri connect</code>, list can list a peer&rsquo;s dataset. You
 must have <code>qri connect</code> running in a separate terminal window.</p>
-
-<pre><code>qri list [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri list <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-9">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># show all of your datasets:
+</span><span class="c1"></span>qri list
 
-<pre><code>  # show all of your datasets:
-  qri list
+<span class="c1"># to view the list of your peer&#39;s dataset,
+</span><span class="c1"># in one terminal window:
+</span><span class="c1"></span>qri connect
 
-  # to view the list of your peer's dataset,
-  # in one terminal window:
-  qri connect
-
-  # in a separate terminal window, to show all of b5's datasets:
-  qri list b5
-</code></pre>
-
+<span class="c1"># in a separate terminal window, to show all of b5&#39;s datasets:
+</span><span class="c1"></span>qri list b5</code></pre></div>
 <h3 id="options-10">Options</h3>
 
 <pre><code>  -f, --format string   set output format [json]
@@ -719,16 +659,10 @@ about how that dataset looked at at that point in time.</p>
 created the version) and a message explaining what changed. Log prints these
 details in order of occurrence, starting with the most recent known version,
 working backwards in time.</p>
-
-<pre><code>qri log [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri log <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-10">Examples</h3>
-
-<pre><code>  show log for the dataset b5/precip:
-  $ qri log b5/precip
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># show log for the dataset b5/precip:
+</span><span class="c1"></span>$ qri log b5/precip</code></pre></div>
 <h3 id="options-11">Options</h3>
 
 <pre><code>  -h, --help         help for log
@@ -759,19 +693,13 @@ qri currently supports three data formats:
 <p>Once you’ve added data, you can use the export command to pull the data out of
 qri, change the data outside of qri, and use the save command to record those
 changes to qri.</p>
-
-<pre><code>qri new [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri new <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-11">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># create a new dataset named annual_pop:
+</span><span class="c1"></span>$ qri new --body data.csv me/annual_pop
 
-<pre><code>  create a new dataset named annual_pop:
-  $ qri new --body data.csv me/annual_pop
-
-create a dataset with a dataset data file:
-  $ qri new --file dataset.yaml --body comics.csv me/comic_characters
-</code></pre>
-
+<span class="c1"># create a dataset with a dataset data file:
+</span><span class="c1"></span>$ qri new --file dataset.yaml --body comics.csv me/comic_characters</code></pre></div>
 <h3 id="options-12">Options</h3>
 
 <pre><code>  -b, --body string       path to file or url for contents of dataset
@@ -824,19 +752,13 @@ to connect to a peer that also has spun up it&rsquo;s own Qri node.</p>
 
 <p>A multiaddress, or multiaddr, is the most specific way to refer to a peer&rsquo;s location, and is therefore
 the most sure-fire way to connect to a peer.</p>
-
-<pre><code>qri peers connect [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri peers connect <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-12">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># spin up a Qri node
+</span><span class="c1"></span>qri connect
 
-<pre><code>  # spin up a Qri node
-  qri connect
-
-  # in a separate terminal, connect to a specific peer
-  qri peers connect /ip4/192.168.0.194/tcp/4001/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
-</code></pre>
-
+<span class="c1"># in a separate terminal, connect to a specific peer
+</span><span class="c1"></span>qri peers connect /ip4/192.168.0.194/tcp/4001/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn</code></pre></div>
 <h3 id="options-14">Options</h3>
 
 <pre><code>  -h, --help   help for connect
@@ -865,16 +787,10 @@ explicit connection.  This is not the same as blocking a peer or connection.</p>
 connection.</p>
 
 <p>You must have <code>qri connect</code> running in another terminal.</p>
-
-<pre><code>qri peers disconnect [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri peers disconnect <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-13">Examples</h3>
-
-<pre><code>  # disconnect from a peer using a multiaddr
-  qri peers disconnect /ip4/192.168.0.194/tcp/4001/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># disconnect from a peer using a multiaddr
+</span><span class="c1"></span>qri peers disconnect /ip4/192.168.0.194/tcp/4001/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn</code></pre></div>
 <h3 id="options-15">Options</h3>
 
 <pre><code>  -h, --help   help for disconnect
@@ -896,19 +812,13 @@ format is yaml.</p>
 <p>Using the <code>--verbose</code> flag, you can also view a peer&rsquo;s network information.</p>
 
 <p>You must have <code>qri connect</code> running in another terminal.</p>
-
-<pre><code>qri peers info [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri peers info <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-14">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># show info on a peer named &#34;b5&#34;:
+</span><span class="c1"></span>$ qri peers info b5
 
-<pre><code>  show info on a peer named &quot;b5&quot;:
-  $ qri peers info b5
-
-  show info in json:
-  $ qri peers info b5 --format json
-</code></pre>
-
+<span class="c1"># show info in json:
+</span><span class="c1"></span>$ qri peers info b5 --format json</code></pre></div>
 <h3 id="options-16">Options</h3>
 
 <pre><code>      --format string   output format. formats: yaml, json (default &quot;yaml&quot;)
@@ -932,22 +842,16 @@ format is yaml.</p>
 
 <p>To find peers that are not online, but to which your node has previously been
 connected, use the <code>--cached</code> flag.</p>
-
-<pre><code>qri peers list [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri peers list <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-15">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># spin up a Qri node
+</span><span class="c1"></span>qri connect
 
-<pre><code>  # spin up a Qri node
-  qri connect
+<span class="c1"># thenin a separate terminal, to list qri peers:
+</span><span class="c1"></span>qri peers list
 
-  # thenin a separate terminal, to list qri peers:
-  qri peers list
-
-  # to ensure you get a cached version of the list:
-  qri peers list --cached
-</code></pre>
-
+<span class="c1"># to ensure you get a cached version of the list:
+</span><span class="c1"></span>qri peers list --cached</code></pre></div>
 <h3 id="options-17">Options</h3>
 
 <pre><code>  -c, --cached           show peers that aren't online, but previously seen
@@ -1008,16 +912,10 @@ Qri will back your dataset up onto the registry.</p>
 <p>Published datasets can be found by other peers using the <code>qri search</code> command.</p>
 
 <p>Datasets are by default published to the registry when they are created.</p>
-
-<pre><code>qri registry publish [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri registry publish <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-16">Examples</h3>
-
-<pre><code>  Publish a dataset you've created to the registry:
-  $ qri registry publish me/dataset_name
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># Publish a dataset you&#39;ve created to the registry:
+</span><span class="c1"></span>$ qri registry publish me/dataset_name</code></pre></div>
 <h3 id="options-19">Options</h3>
 
 <pre><code>  -h, --help   help for publish
@@ -1038,16 +936,10 @@ you dataset was previously backed up onto the registry, this backup will
 be removed.</p>
 
 <p>This dataset will no longer show up in search results.</p>
-
-<pre><code>qri registry unpublish [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri registry unpublish <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-17">Examples</h3>
-
-<pre><code>  Remove a dataset from the registry:
-  $ qri registry unpublish me/dataset_name
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># Remove a dataset from the registry:
+</span><span class="c1"></span>$ qri registry unpublish me/dataset_name</code></pre></div>
 <h3 id="options-20">Options</h3>
 
 <pre><code>  -h, --help   help for unpublish
@@ -1075,16 +967,10 @@ adjust this cap using IPFS, qri will respect it.</p>
 
 <p>In the future we’ll add a flag that’ll force immediate removal of a dataset from
 both qri &amp; IPFS. Promise.</p>
-
-<pre><code>qri remove [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri remove <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-18">Examples</h3>
-
-<pre><code>  remove a dataset named annual_pop:
-  $ qri remove me/annual_pop
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># remove a dataset named annual_pop:
+</span><span class="c1"></span>$ qri remove me/annual_pop</code></pre></div>
 <h3 id="options-21">Options</h3>
 
 <pre><code>  -h, --help   help for remove
@@ -1107,16 +993,10 @@ you rename your local dataset, your peer&rsquo;s version of your dataset will
 not have the updated name. While this won&rsquo;t break anything, it will
 confuse anyone who has added your dataset before the change. Try to keep
 renames to a minimum.</p>
-
-<pre><code>qri rename [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri rename <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-19">Examples</h3>
-
-<pre><code>  rename a dataset named annual_pop to annual_population:
-  $ qri rename me/annual_pop me/annual_population
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># rename a dataset named annual_pop to annual_population:
+</span><span class="c1"></span>$ qri rename me/annual_pop me/annual_population</code></pre></div>
 <h3 id="options-22">Options</h3>
 
 <pre><code>  -h, --help   help for rename
@@ -1140,19 +1020,13 @@ graphs, or just display your dataset in a different format.</p>
 
 <p>Use the <code>--template</code> flag to use a custom template. If no template is
 provided, Qri will render the dataset with a default template.</p>
-
-<pre><code>qri render [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri render <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-20">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># render a dataset called me/schools:
+</span><span class="c1"></span>$ qri render -o<span class="o">=</span>schools.html me/schools
 
-<pre><code>  render a dataset called me/schools:
-  $ qri render -o=schools.html me/schools
-
-  render a dataset with a custom template:
-  $ qri render --template=template.html me/schools
-</code></pre>
-
+<span class="c1"># render a dataset with a custom template:
+</span><span class="c1"></span>$ qri render --template<span class="o">=</span>template.html me/schools</code></pre></div>
 <h3 id="options-23">Options</h3>
 
 <pre><code>  -a, --all               read all dataset entries (overrides limit, offest)
@@ -1186,19 +1060,13 @@ peer, the dataset gets renamed from <code>peers_name/dataset_name</code> to <cod
 
 <p>The <code>--message</code>&rdquo; and <code>--title</code> flags allow you to add a commit message and title
 to the save.</p>
-
-<pre><code>qri save [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri save <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-21">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># save updated data to dataset annual_pop:
+</span><span class="c1"></span>qri --body /path/to/data.csv me/annual_pop
 
-<pre><code>  # save updated data to dataset annual_pop:
-  qri --body /path/to/data.csv me/annual_pop
-
-  # save updated dataset (no data) to annual_pop:
-  qri --file /path/to/dataset.yaml me/annual_pop
-</code></pre>
-
+<span class="c1"># save updated dataset (no data) to annual_pop:
+</span><span class="c1"></span>qri --file /path/to/dataset.yaml me/annual_pop</code></pre></div>
 <h3 id="options-24">Options</h3>
 
 <pre><code>      --body string       path to file or url of data to add as dataset contents
@@ -1223,17 +1091,10 @@ to the save.</p>
 <p>Search datasets &amp; peers that match your query. Search pings the qri registry.</p>
 
 <p>Any dataset that has been published to the registry is available for search.</p>
-
-<pre><code>qri search [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri search <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-22">Examples</h3>
-
-<pre><code>
-  # search 
-  $ qri search &quot;annual population&quot;
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># search 
+</span><span class="c1"></span>$ qri search <span class="s2">&#34;annual population&#34;</span></code></pre></div>
 <h3 id="options-25">Options</h3>
 
 <pre><code>  -f, --format string   set output format [json]
@@ -1264,16 +1125,10 @@ overwrite this info.</p>
 
 <p>Use the <code>--remove</code> to remove your Qri repo. This deletes your entire repo,
 including all your datasets, and de-registers your peername from the registry.</p>
-
-<pre><code>qri setup [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri setup <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-23">Examples</h3>
-
-<pre><code>  run setup with a peername of your choosing:
-  $ qri setup --peername=your_great_peername
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># run setup with a peername of your choosing:
+</span><span class="c1"></span>$ qri setup --peername<span class="o">=</span>your_great_peername</code></pre></div>
 <h3 id="options-26">Options</h3>
 
 <pre><code>  -a, --anonymous            use an auto-generated peername
@@ -1303,26 +1158,20 @@ is explicitly given for those commands.</p>
 
 <p>We created this command to ease the typing/copy and pasting burden while using
 Qri to explore a dataset.</p>
-
-<pre><code>qri use [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri use <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-24">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># use dataset me/dataset_name, then get meta.title:
+</span><span class="c1"></span>qri use me/dataset_name
+qri get meta.title
 
-<pre><code>  # use dataset me/dataset_name, then get meta.title:
-  qri use me/dataset_name
-  qri get meta.title
+<span class="c1"># clear current selection:
+</span><span class="c1"></span>qri use --clear
 
-  # clear current selection:
-  qri use --clear
+<span class="c1"># show current selected dataset references:
+</span><span class="c1"></span>qri use --list
 
-  # show current selected dataset references:
-  qri use --list
-
-  # add multiple references to the remembered list
-  qri use me/population_2017 me/population_2018
-</code></pre>
-
+<span class="c1"># add multiple references to the remembered list
+</span><span class="c1"></span>qri use me/population_2017 me/population_2018</code></pre></div>
 <h3 id="options-27">Options</h3>
 
 <pre><code>  -c, --clear   clear the current selection
@@ -1350,16 +1199,12 @@ arguments.</p>
 stored in qri. When only one of schema or body args are provided, the other
 comes from a dataset reference. For example, to check how a file “data.csv”
 validates against a dataset &ldquo;foo”, we would run:</p>
-
-<p>$ qri validate &ndash;body data.csv me/foo</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri validate --body data.csv me/foo</code></pre></div>
 <p>In this case, qri will will print any validation as if data.csv was foo’s data.</p>
 
 <p>To see how changes to a schema will validate against a
 dataset in qri, we would run:</p>
-
-<p>$ qri validate &ndash;schema schema.json me/foo</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri validate --schema schema.json me/foo</code></pre></div>
 <p>In this case, qri will print validation errors as if stucture.json was the
 schema for dataset &ldquo;me/foo&rdquo;</p>
 
@@ -1370,22 +1215,16 @@ will affect a dataset before saving changes to a dataset.</p>
 command.</p>
 
 <p>Note: &ndash;body and &ndash;schema flags will override the dataset if both flags are provided.</p>
-
-<pre><code>qri validate [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri validate <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="examples-25">Examples</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># show errors in an existing dataset:
+</span><span class="c1"></span>qri validate b5/comics
 
-<pre><code>  # show errors in an existing dataset:
-  qri validate b5/comics
+<span class="c1"># validate a new body against an existing schema
+</span><span class="c1"></span>qri validate --body new_data.csv me/annual_pop
 
-  # validate a new body against an existing schema
-  qri validate --body new_data.csv me/annual_pop
-
-  # validate data against a new schema
-  qri validate --body data.csv --schema schema.json
-</code></pre>
-
+<span class="c1"># validate data against a new schema
+</span><span class="c1"></span>qri validate --body data.csv --schema schema.json</code></pre></div>
 <h3 id="options-28">Options</h3>
 
 <pre><code>  -b, --body string     data file to initialize from
@@ -1406,10 +1245,7 @@ command.</p>
 <p>Qri uses semantic versioning.</p>
 
 <p>For updates &amp; further information check <a href="https://github.com/qri-io/qri/releases">https://github.com/qri-io/qri/releases</a></p>
-
-<pre><code>qri version [flags]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri version <span class="o">[</span>flags<span class="o">]</span></code></pre></div>
 <h3 id="options-29">Options</h3>
 
 <pre><code>  -h, --help   help for version

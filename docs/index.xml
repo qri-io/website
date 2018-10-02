@@ -169,7 +169,7 @@ Datasets are recorded structured data according to a specification that dictates
       <description>Starlark modules  qri http html time xlsx  
 qri you can access these methods from the qri object, eg qri.get_body()
  get_body get_config get_secret set_meta set_schema  To load:
-load(&amp;quot;qri.sky&amp;quot;, &amp;quot;qri&amp;quot;)  
+load(&amp;#34;qri.sky&amp;#34;, &amp;#34;qri&amp;#34;) 
 http you can access these methods from the http module
  http.delete http.get http.options http.patch http.post http.put  response you can access these methods from a response object
  content encoding headers json status_code text url</description>
