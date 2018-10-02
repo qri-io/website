@@ -429,7 +429,7 @@ footer#page_footer {
   overflow: auto;
   padding: 20px;
   width: 25%;
-  max-width: 200px;
+  max-width: 300px;
   background: #eee;
   box-shadow: inside 0 -4px 6px rgba(0,0,0,0.25);
   height: 100%;
@@ -456,6 +456,12 @@ footer#page_footer {
 #docs_page #main .content {
   max-width: 650px;
   margin: 60px auto;
+}
+
+code {
+  background: #eee;
+  padding: 10px;
+  border-style: 1px, solid, rbga(0,0,0,0,25);
 }
 
 @media (max-width: 750px) {

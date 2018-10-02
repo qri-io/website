@@ -6,6 +6,7 @@ author: "qri.io"
 theme: "qri_io"
 pluralizelisttitles: false
 publishDir: docs
+pygmentscodefences: true
 menu:
   main:
     - name: "Docs"
