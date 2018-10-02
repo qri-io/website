@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta name="generator" content="Hugo 0.44" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> starlib reference </title>
+
+  
+  <meta name="description" content="list of all the functions and modules in starlark standard library"> 
+  
+  
+  
+  
+  
+
+  
+
+  <meta name="author" content="qri">
+
+
+  <meta property="og:title" content="starlib reference" />
+<meta property="og:description" content="list of all the functions and modules in starlark standard library" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://qri.io/docs/reference/starlib/" />
+
+
+
+<meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+
+<meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  
+  
+
+  <link rel="canonical" href="https://qri.io/docs/reference/starlib/">  
+
+  <link rel="shortcut icon" type="image/png" href="data:image/png;base64,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RvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3Eld+D/AfhEhmLqHBsfAAAAAElFTkSuQmCC">
+
+
+  <link href="../../../css/font.css" rel="stylesheet" type="text/css">
+  <link href="../../../css/qri.css" rel="stylesheet" type="text/css">
+  
+
+  <script src="../../../js/jquery-2.1.4.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../../../css/highlight.default.min.css">
+  <link rel="stylesheet" href="../../../css/highlight.theme.tomorrow.css">
+  <script src="../../../js/highlight.pack.js"></script>
+  <script>
+    window.onload = function(e) {
+      let elements = document.querySelectorAll('.highlight pre')
+      Array.from(elements).forEach((block, i) => {
+        hljs.highlightBlock(block)
+      })
+    }
+  </script>
+
+  <script type="text/javascript" src="../../../js/tocbot.min.js"></script>
+
+  
+    <script type="text/javascript">
+     !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+      analytics.load("b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju");
+      analytics.page()
+    }}();
+    </script>
+  
+</head>
+
+
+<body class="page-kube docs " >
+  <header></header>
+  <main>
+<div id="docs_page" class="docs">
+  <nav id="docs_sidebar">
+  <div class="content">
+    <div class="logotype">
+      <a href="../../../" title="home" class="title">qri</a>
+      <p class="subhead">docs</p>
+    </div>
+    <div class="pages">
+      <p><b>reference</b></p>
+      <ul>
+        
+        
+          <li><a href="../../../docs/reference/cli_commands">CLI reference</a></li>
+        
+          <li><a href="../../../docs/reference/dataset">Dataset</a></li>
+        
+          <li><a href="../../../docs/reference/starlib">Starlark Standard Library</a></li>
+        
+          <li><a href="../../../docs/reference/skylark_syntax">Starlark Syntax</a></li>
+        
+          <li><a href="../../../docs/reference/html_templates">Viz Templates</a></li>
+        
+      </ul>
+    </div>
+    <hr />
+    <p><i>Jump to:</i></p>
+    <ul class="docs_sections">
+      <li><a href="../../../docs">Docs Home</a></li>
+      <li><a href="../../../docs/concepts">Concepts</a></li>
+      <li><a href="../../../docs/reference">Reference</a></li>
+      <li><a href="../../../docs/tutorials">Tutorials</a></li>
+    </ul>
+  </div>
+  <br />
+</nav>
+  <section id="main">
+    <div class="content">
+      
+
+<h1 id="starlark-modules">Starlark modules</h1>
+
+<ul>
+<li><a href="#qri_module">qri</a></li>
+<li><a href="#http_module">http</a></li>
+<li><a href="#html_module">html</a></li>
+<li><a href="#time_module">time</a></li>
+<li><a href="#xlsx_module">xlsx</a></li>
+</ul>
+
+<hr />
+
+<p><a id="qri_module"></a></p>
+
+<h4 id="qri">qri</h4>
+
+<p><em>you can access these methods from the <code>qri</code> object, eg <code>qri.get_body()</code></em></p>
+
+<ul>
+<li><a href="#get_body">get_body</a></li>
+<li><a href="#get_config">get_config</a></li>
+<li><a href="#get_secret">get_secret</a></li>
+<li><a href="#set_meta">set_meta</a></li>
+<li><a href="#set_schema">set_schema</a></li>
+</ul>
+
+<p>To load:</p>
+
+<pre><code class="language-python">load(&quot;qri.sky&quot;, &quot;qri&quot;)
+</code></pre>
+
+<p><a id="http_module"></a></p>
+
+<h4 id="http">http</h4>
+
+<p><em>you can access these methods from the <code>http</code> module</em></p>
+
+<ul>
+<li><a href="#delete">http.delete</a></li>
+<li><a href="#http.get">http.get</a></li>
+<li><a href="#options">http.options</a></li>
+<li><a href="#patch">http.patch</a></li>
+<li><a href="#post">http.post</a></li>
+<li><a href="#put">http.put</a></li>
+</ul>
+
+<h5 id="response">response</h5>
+
+<p><em>you can access these methods from a response object</em></p>
+
+<ul>
+<li><a href="#content">content</a></li>
+<li><a href="#encoding">encoding</a></li>
+<li><a href="#headers">headers</a></li>
+<li><a href="#json">json</a></li>
+<li><a href="#status_code">status_code</a></li>
+<li><a href="#text">text</a></li>
+<li><a href="#url">url</a></li>
+</ul>
+
+<p><a id="html_module"></a></p>
+
+<h4 id="html">html</h4>
+
+<p><em>can only be used in the <code>download</code> function. You must use the <code>html</code> function to parse an html response, to get a document  object that you can traverse</em></p>
+
+<p>To load and parse:</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+load(&quot;http.sky&quot;, &quot;http&quot;)
+
+def download(ds):
+  res = http.get(&quot;https://some-website.com&quot;)
+  # parses the response body into something that 
+  # can be traversed using a jquery-like syntax
+  doc = html(res.content())
+  return ds
+</code></pre>
+
+<p><em>The following methods can be used on the document object that gets returned by using the <code>html</code> function:</em></p>
+
+<ul>
+<li><a href="#attr">attr</a></li>
+<li><a href="#children">children</a></li>
+<li><a href="#children_filtered">children_filtered</a></li>
+<li><a href="#contents">contents</a></li>
+<li><a href="#eq">eq</a></li>
+<li><a href="#find">find</a></li>
+<li><a href="#first">first</a></li>
+<li><a href="#filter">filter</a></li>
+<li><a href="#get">get</a></li>
+<li><a href="#has">has</a></li>
+<li><a href="#last">last</a></li>
+<li><a href="#len">len</a></li>
+<li><a href="#parent">parent</a></li>
+<li><a href="#parents_until">parents_until</a></li>
+<li><a href="#siblings">siblings</a></li>
+<li><a href="#html_text">text</a></li>
+</ul>
+
+<p><a id="time_module"></a></p>
+
+<h4 id="time">time</h4>
+
+<p><em>you can access these methods from the <code>time</code> module:</em></p>
+
+<ul>
+<li><a href="#time">time.time</a></li>
+<li><a href="#duration">time.duration</a></li>
+<li><a href="#location">time.location</a></li>
+<li><a href="#now">time.now</a></li>
+</ul>
+
+<h5 id="time-1">time</h5>
+
+<p><em>you can access these methods from a <code>time</code> object:</em>
+  * <a href="#year">year</a>
+  * <a href="#month">month</a>
+  * <a href="#day">day</a>
+  * <a href="#hour">hour</a>
+  * <a href="#minute">minute</a>
+  * <a href="#second">second</a>
+  * <a href="#nanosecond">nanosecond</a></p>
+
+<p><a id="xlsx_module"></a></p>
+
+<h4 id="xlsx">xlsx</h4>
+
+<p><em>you can access these methods from the <code>xlsx</code> module. <code>xlsx</code> can only be used in the <code>download</code> function:</em></p>
+
+<ul>
+<li><a href="#get_url">xlsx.get_url</a></li>
+<li><a href="#get_sheets">get_sheets</a></li>
+<li><a href="#get_rows">get_rows</a></li>
+</ul>
+
+<hr />
+
+<h3 id="function-definitions">Function Definitions</h3>
+
+<p><a id="get_body}"></a></p>
+
+<h4 id="get-body">get_body</h4>
+
+<p><code>qri.get_body()</code> - returns the body from the data from the body file</p>
+
+<p><a id="get_config"></a></p>
+
+<h4 id="get-config">get_config</h4>
+
+<p><code>qri.get_config(key)</code> - returns the value of a config variable, declared in the dataset file:</p>
+
+<pre><code class="language-yaml"># in the dataset.yaml file:
+transform:
+  scriptpath: transform.sky
+  config:
+    key: value
+</code></pre>
+
+<p><a id="get_secret"></a></p>
+
+<h4 id="get-secret">get_secret</h4>
+
+<p><code>qri.get_secret(key)</code> - returns the value of a secrets variable, declared in the dataset file:</p>
+
+<pre><code class="language-yaml"># in the dataset.yaml file:
+transform:
+  scriptpath: transform.sky
+  secrets:
+    key: value
+</code></pre>
+
+<p><a id="set_meta"></a></p>
+
+<h4 id="set-meta">set_meta</h4>
+
+<p><code>qri.set_meta(field, value)</code> - Sets the meta at specific field to the value</p>
+
+<pre><code class="language-python">load(&quot;qri.sky&quot;, &quot;qri&quot;)
+
+def transform(ds):
+  ds.set_meta(&quot;title&quot;, &quot;Reference Transform&quot;)
+  ds.set_body([&quot;must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="set_schema"></a></p>
+
+<h4 id="set-schema">set_schema</h4>
+
+<p><code>qri.set_schema(value)</code> - Sets the schema to the object found at value. Schemas are written as <a href="https://json-schema.org/">json schemas</a></p>
+
+<pre><code class="language-python">load(&quot;qri.sky&quot;, &quot;qri&quot;)
+
+def transform(ds):
+  schema = {
+    &quot;type&quot;: &quot;array&quot;,
+    &quot;items&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;items&quot;: [{
+          &quot;description&quot;: &quot;type of animal&quot;,
+          &quot;title&quot;: &quot;Animal&quot;,
+          &quot;type&quot;: &quot;string&quot;
+        }, {
+          &quot;description&quot;: &quot;number of legs this animal has&quot;,
+          &quot;title&quot;: &quot;Number of Legs&quot;,
+          &quot;type&quot;: &quot;integer&quot;
+        }
+      ]
+    }
+  }
+
+  ds.set_schema(schema)
+  ds.set_body([
+    [&quot;cat&quot;, 4],
+    [&quot;bird&quot;, 2],
+    [&quot;snake&quot;, 0]
+  ])
+  return ds
+</code></pre>
+
+<p><a id="attr"></a></p>
+
+<h4 id="attr">attr</h4>
+
+<p><code>selection.attr(attribute)</code> - Returns a string of the given attribute for that selection in the document. For example:</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;div title=&quot;hello world&quot; class=&quot;example_class_name&quot;&gt;&lt;p&gt;test&lt;/p&gt;&lt;/div&gt;'
+  #
+  # find returns a list of elements that match the search string:
+  divs = html(example_html).find(&quot;div&quot;)
+  #
+  # get the first element in the list:
+  div = divs.first()
+  #
+  # get the attr with the key &quot;title&quot;
+  attr = div.attr(&quot;title&quot;)
+  print(attr) # prints &quot;hello world&quot;
+  #
+  ds.set_body([attr])
+  return ds
+</code></pre>
+
+<p><a id="children"></a></p>
+
+<h4 id="children">children</h4>
+
+<p><code>selection.children()</code> - gets the child elements of each element in the Selection. It returns a new Selection object containing these elements</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;p class=&quot;C&quot;&gt;c&lt;/p&gt;&lt;p class=&quot;D&quot;&gt;d&lt;/p&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  # gives you a selection of the body element
+  body = doc.find(&quot;body&quot;)
+  # gives you a selection made up of the children of body
+  children_len = body.children().len()
+  print(children_len) # prints 4, specifically the 4 p elements
+  ds.set_body([&quot;need to set a body&quot;])
+  return ds
+</code></pre>
+
+<p><a id="children_filtered"></a></p>
+
+<h4 id="children-filtered">children_filtered</h4>
+
+<p><code>selection.children_filtered(filter)</code> - gets the child elements of each element in the selection, filtered by the specified selector. It returns a new Selection object containing these elements</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  # find the body element and select it's two div element children
+  divs = doc.find(&quot;body&quot;).children()
+  # filter the divs to get the 2 p elements with class name &quot;.A&quot;
+  p_as = divs.children_filtered(&quot;.A&quot;) 
+  print(p_as.text()) # prints &quot;aa&quot;
+  ds.set_body([&quot;need to set a body&quot;])
+  return ds
+</code></pre>
+
+<p><a id="contents"></a></p>
+
+<h4 id="contents">contents</h4>
+
+<p><code>selection.contents()</code> - Contents gets the children of each element in the Selection, including text and comment nodes. It returns a new Selection object containing these elements</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&quot;C&quot;&gt;c&lt;/p&gt;&lt;p class=&quot;D&quot;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  # get the body
+  body = doc.contents()
+  print(body.len()) # prints &quot;2&quot;, the 2 div elements
+  print(body.text()) # prints &quot;abcd&quot;
+  ds.set_body([&quot;this must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="eq"></a></p>
+
+<h4 id="eq">eq</h4>
+
+<p><code>selection.eq(index)</code> - Eq returns node i as a new selection</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&quot;C&quot;&gt;c&lt;/p&gt;&lt;p class=&quot;D&quot;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  #
+  # get the body
+  body = doc.find(&quot;p&quot;)
+  print(body.len()) # prints &quot;4&quot;, the 4 p elements
+  #
+  # create list of the text in each element:
+  texts = []
+  for i in range(body.len()):
+    # use `eq` function to access each node
+    texts.append(body.eq(i).text())
+  print(texts) # prints [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+  #
+  ds.set_body(texts)
+  return ds
+</code></pre>
+
+<p><a id="find"></a></p>
+
+<h4 id="find">find</h4>
+
+<p><code>selection.find(selector)</code> - Find gets the descendants of each element in the current set of matched elements, filtered by a given selector string. It returns a new Selection containing these matched elements.</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  # get the elements with the class &quot;.B&quot;
+  p_Bs = doc.find(&quot;.B&quot;)
+  print(p_Bs.len()) # prints &quot;2&quot;, the 2 p elements with class &quot;.B&quot;
+  print(p_Bs.text()) # prints &quot;bb&quot;
+  ds.set_body([&quot;this must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="first"></a></p>
+
+<h4 id="first">first</h4>
+
+<p><code>selection.first()</code> - First returns the first element of the selection as a new selection</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&quot;C&quot;&gt;c&lt;/p&gt;&lt;p class=&quot;D&quot;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  # get the body
+  body = doc.find(&quot;body&quot;)
+  # get the children of the body, in this case 2 divs
+  divs = body.children()
+  # get the first div
+  div = divs.first()
+  print(div.text()) # prints &quot;ab&quot;
+  ds.set_body([&quot;this must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="filter"></a></p>
+
+<h4 id="filter">filter</h4>
+
+<p><code>selection.filter(selector)</code> - Filter reduces the set of matched elements to those that match the selector string. It returns a new Selection object for this subset of matching elements</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  # get a list of all the p tags
+  ps = doc.find(&quot;p&quot;)
+  print(ps.len()) # prints &quot;4&quot;, the 4 p elements
+  # filter ps to find elements with class &quot;.B&quot;
+  p_Bs = ps.filter(&quot;.B&quot;)
+  print(p_Bs.len()) # prints &quot;2&quot;, the 2 p elements with class &quot;.B&quot;
+  print(p_Bs.text()) # prints &quot;bb&quot;
+  ds.set_body([&quot;this must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="has"></a></p>
+
+<h4 id="has">has</h4>
+
+<p><code>selection.has()</code> - Has reduces the set of matched elements to those that have a descendant that matches the selector. It returns a new Selection object with the matching elements</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&quot;C&quot;&gt;c&lt;/p&gt;&lt;p class=&quot;D&quot;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  # get body element
+  divs = doc.find(&quot;body&quot;).children()
+  # get div that has a child with class &quot;.A&quot;
+  div = divs.has(&quot;.A&quot;)
+  ps = div.children()
+  print(ps.text()) # prints &quot;ab&quot;, 2 p elements that exist in the div element
+  ds.set_body([&quot;this must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="last"></a></p>
+
+<h4 id="last">last</h4>
+
+<p><code>selection.last()</code> - Last returns the last element of the selection as a new selection</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&quot;C&quot;&gt;c&lt;/p&gt;&lt;p class=&quot;D&quot;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  # get the body
+  body = doc.find(&quot;body&quot;)
+  # get the children of the body, in this case 2 divs
+  divs = body.children()
+  # get the first div
+  div = divs.last()
+  print(div.text()) # prints &quot;cd&quot;
+  ds.set_body([&quot;this must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="len"></a></p>
+
+<h4 id="len">len</h4>
+
+<p><code>selection.len()</code> - Len returns the length of the nodes in the selection as an integer</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;p class=&quot;C&quot;&gt;c&lt;/p&gt;&lt;p class=&quot;D&quot;&gt;d&lt;/p&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  # get the body
+  body = doc.find(&quot;body&quot;)
+  print(body.len()) # prints &quot;4&quot;, the 4 p elements
+  ds.set_body([&quot;this must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="parent}"></a></p>
+
+<h4 id="parent">parent</h4>
+
+<p><code>selection.parent()</code> - Parent gets the parent of each element in the Selection. It returns a new Selection object containing the matched elements</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;div title=&quot;hi&quot;&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&quot;C&quot;&gt;c&lt;/p&gt;&lt;p class=&quot;D&quot;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  # select p elements
+  ps = doc.find(&quot;p&quot;)
+  # get parents of p elements, in this case 2 divs
+  divs = ps.parent()
+  print(divs.len()) # 2 div parent elements
+  title = divs.first().attr(&quot;title&quot;)
+  print(title)
+  ds.set_body([&quot;this must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="parents_until"></a></p>
+
+<h4 id="parents-until">parents_until</h4>
+
+<p><code>selection.parents_until(selector)</code> - ParentsUntil gets the ancestors of each element in the Selection, up to but not including the element matched by the selector. It returns a new Selection object containing the matched elements</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;div title=&quot;hi&quot;&gt;&lt;span title=&quot;bye&quot;&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;&lt;div title=&quot;woo&quot;&gt;&lt;span title=&quot;weee&quot;&gt;&lt;p class=&quot;C&quot;&gt;c&lt;/p&gt;&lt;p class=&quot;D&quot;&gt;d&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  # select p elements
+  ps = doc.find(&quot;p&quot;)
+  # get all parents of the p elements, but doesn't include the body element
+  parents = ps.parents_until(&quot;body&quot;)
+  print(parents.len()) # 4 div parent elements
+  print(parents.eq(0).attr(&quot;title&quot;)) # prints &quot;bye&quot;
+  print(parents.eq(1).attr(&quot;title&quot;)) # prints &quot;hi&quot;
+  print(parents.eq(2).attr(&quot;title&quot;)) # prints &quot;weee&quot;
+  print(parents.eq(3).attr(&quot;title&quot;)) # prints &quot;woo&quot;
+  ds.set_body([&quot;this must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="siblings"></a></p>
+
+<h4 id="siblings">siblings</h4>
+
+<p><code>selection,siblings()</code> - Siblings gets the siblings of each element in the Selection. It returns a new Selection object containing the matched elements</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&quot;C&quot;&gt;c&lt;/p&gt;&lt;p class=&quot;D&quot;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  # select elements with class &quot;.A&quot;
+  a = doc.find(&quot;.A&quot;)
+  # get all parents of the p elements, but doesn't include the body element
+  b = a.siblings()
+  print(b.len()) # prints &quot;1&quot;, the p element with class &quot;.B&quot;
+  print(b.text()) # prints &quot;b&quot;
+  ds.set_body([&quot;this must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="html_text"></a></p>
+
+<h4 id="text">text</h4>
+
+<p><code>text()</code> - Text gets the combined text contents of each element in the set of matched elements, including their descendants</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def transform(ds):
+  example_html = '&lt;body&gt;&lt;div&gt;&lt;p class=&quot;A&quot;&gt;a&lt;/p&gt;&lt;p class=&quot;B&quot;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&quot;C&quot;&gt;c&lt;/p&gt;&lt;p class=&quot;D&quot;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;'
+  doc = html(example_html)
+  a = doc.text() # prints &quot;abcd&quot;
+  ds.set_body([&quot;this must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="delete"></a></p>
+
+<h4 id="http-delete">http.delete</h4>
+
+<p><code>http.delete(url)</code> - Sends a DELETE request to the given url. Returns a response.</p>
+
+<p><a id="get"></a></p>
+
+<h4 id="http-get">http.get</h4>
+
+<p><code>http.get(url)</code> - Sends a GET request to the given url. Returns a response.</p>
+
+<pre><code class="language-python">load(&quot;http.sky&quot;, &quot;http&quot;)
+
+def download(ds):
+  res = http.get(&quot;https://www.fake-json-response-endpoint.com&quot;)
+  ds.set_body(res.json())
+  return ds
+</code></pre>
+
+<p><a id="options"></a></p>
+
+<h4 id="http-options">http.options</h4>
+
+<p><code>http.options(url)</code> - Sends an OPTIONS request to the given url. Returns a response.</p>
+
+<p><a id="patch"></a></p>
+
+<h4 id="http-patch">http.patch</h4>
+
+<p><code>http.patch(url)</code> - Sends a PATCH request to the given url. Returns a response.</p>
+
+<p><a id="post"></a></p>
+
+<h4 id="http-post">http.post</h4>
+
+<p><code>http.post(url)</code> - Sends a POST request to the given url. Returns a response.</p>
+
+<p><a id="put"></a></p>
+
+<h4 id="http-put">http.put</h4>
+
+<p><code>http.put(url)</code> - Sends a PUT request to the given url. Returns a response.</p>
+
+<p><a id="content"></a></p>
+
+<h4 id="content">content</h4>
+
+<p><code>response.content()</code> - returns the raw data as a string. This string can be passed to <code>html(content_string)</code> to return a document that can be parsed by the <code>html</code> functions.</p>
+
+<pre><code class="language-python">load(&quot;http.sky&quot;, &quot;http&quot;)
+load(&quot;html.sky&quot;, &quot;html&quot;)
+
+def download(ds):
+  res = http.get(&quot;https://some-website-to-get-html.com&quot;)
+  doc = html(res.content())
+  # do stuff here with html document
+  ds.set_body(some_data)
+  return ds
+</code></pre>
+
+<p><a id="encoding"></a></p>
+
+<h4 id="encoding">encoding</h4>
+
+<p><code>response.encoding()</code> - returns a string with the different forms of encoding used in the response.</p>
+
+<p><a id="headers"></a></p>
+
+<h4 id="headers">headers</h4>
+
+<p><code>response.headers()</code> - returns a dictionary of the response headers.</p>
+
+<p><a id="json"></a></p>
+
+<h4 id="json">json</h4>
+
+<p><code>response.json()</code> - attempts the response body as json.</p>
+
+<p><a id="status_code"></a></p>
+
+<h4 id="status-code">status_code</h4>
+
+<p><code>response.status_code</code> - returns the status code of the response.</p>
+
+<p><a id="text"></a></p>
+
+<h4 id="text-1">text</h4>
+
+<p><code>response.text()</code> - returns the raw data as a string. This string can be passed to <code>html(text)</code> to return a document that can be parsed by the <code>html</code> functions.</p>
+
+<p><a id="url"></a></p>
+
+<h4 id="url">url</h4>
+
+<p><code>response.url</code> -  returns a string representation of the url</p>
+
+<p><a id="time"></a></p>
+
+<h4 id="time-2">time</h4>
+
+<p><code>time.time(rfc3339_time_string)</code> - converts a string in <code>time.RFC3339</code> format to a time type.</p>
+
+<pre><code class="language-python">load(&quot;time.sky&quot;, &quot;time&quot;)
+
+def transform(ds):
+  time_string = &quot;2018-10-31T00:00:00Z&quot;
+  t = time.time(time_string)
+  print(t.month()) # prints 10
+  print(t.day()) # prints 31
+  print(t.year()) # prints 2018
+  ds.set_body([&quot;must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="duration"></a></p>
+
+<h4 id="duration">duration</h4>
+
+<p><code>time.duration(duration_string)</code> - converts a string in &lsquo;00h0m0s&rsquo; format to a duration</p>
+
+<pre><code class="language-python">load(&quot;time.sky&quot;, &quot;time&quot;)
+
+def transform(ds):
+  duration_1_str = &quot;450h79m300s&quot;
+  duration_2_str = &quot;0h0m1s&quot;
+  #
+  d1 = time.duration(duration_1_str)
+  print(d1) # prints &quot;451h24m0s&quot;, notice how it parsed the string and converted 300 seconds into 5 min, and 79 + 5 min into 1hr 24 min
+  #
+  d2 = time.duration(duration_2_str)
+  print(d2) # prints &quot;1s&quot;
+  #
+  print(d1 + d2) # prints &quot;451h24m1s&quot;
+  print(d1 - d2) # prints &quot;451h23m59s&quot;
+  #
+  # create another duration, same length as d2
+  #
+  d3 = time.duration(duration_2_str)
+  print( d2 == d3 ) # prints true
+  ds.set_body([&quot;must be set&quot;])
+  return ds
+</code></pre>
+
+<p>You also get a duration when you subtract two times:</p>
+
+<pre><code class="language-python">load(&quot;time.sky&quot;, &quot;time&quot;)
+
+def transform(ds):
+  oct_1 = &quot;2018-10-01T00:00:00Z&quot;
+  halloween = &quot;2018-10-31T00:00:00Z&quot;
+  f = time.time(oct_1)
+  h = time.time(halloween)
+  duration = h - f # subtracting two time values gives you a duration
+  print(duration) # prints &quot;720h0m0s&quot;
+  print(720/24) # prints &quot;30&quot;, thirty days between the two dates
+  ds.set_body([&quot;must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="location"></a></p>
+
+<h4 id="location">location</h4>
+
+<p><code>time.location(location_string)</code> - loads location based on string. Empty string returns &ldquo;UTC&rdquo;</p>
+
+<pre><code class="language-python">load(&quot;time.sky&quot;, &quot;time&quot;)
+
+def transform(ds):
+  loc = time.location(&quot;&quot;)
+  print(loc)
+  ds.set_body([&quot;must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="now"></a></p>
+
+<h4 id="now">now</h4>
+
+<p><code>time.now()</code> - returns the current time</p>
+
+<pre><code class="language-python">load(&quot;time.sky&quot;, &quot;time&quot;)
+
+def transform(ds):
+  now = time.now()
+  print(now) # returns current time
+  #
+  # print date in MM/DD/YYYY format
+  #
+  print(str(now.month()) + &quot;/&quot; + str(now.day()) + &quot;/&quot; + str(now.year()))
+  ds.set_body([&quot;must be set&quot;])
+  return ds
+</code></pre>
+
+<p><a id="year"></a></p>
+
+<h4 id="year">year</h4>
+
+<p><code>t.year()</code> - returns year as int</p>
+
+<p><a id="month"></a></p>
+
+<h4 id="month">month</h4>
+
+<p><code>t.month()</code> - returns month as int</p>
+
+<p><a id="day"></a></p>
+
+<h4 id="day">day</h4>
+
+<p><code>t.day()</code> - returns day as int</p>
+
+<p><a id="hour"></a></p>
+
+<h4 id="hour">hour</h4>
+
+<p><code>t.hour()</code> - returns hour as int</p>
+
+<p><a id="minute"></a></p>
+
+<h4 id="minute">minute</h4>
+
+<p><code>t.minute()</code> - returns minute as int</p>
+
+<p><a id="second"></a></p>
+
+<h4 id="second">second</h4>
+
+<p><code>t.second()</code> - returns second as in</p>
+
+<p><a id="nanosecond"></a></p>
+
+<h4 id="nanosecond">nanosecond</h4>
+
+<p><code>t.nanosecond()</code> - returns nanosecond as int</p>
+
+<p><a id="get_url"></a></p>
+
+<h4 id="xlsx-get-url">xlsx.get_url</h4>
+
+<p><code>xlsx.get_url(url)</code> - makes a get request of the url, attempts to return the body as a xlsx file. Can only be used in the <code>download</code> function</p>
+
+<p>This example shows how to use <code>get_url</code>, <code>get_sheets</code>, and <code>get_rows</code>:</p>
+
+<pre><code class="language-python">load(&quot;xlsx.sky&quot;, &quot;xlsx&quot;)
+
+def download(ds):
+  data = xlsx.get_url(&quot;https://www.ntia.doc.gov/files/ntia/publications/225-5000-composite-inventory_2015-12-16.xlsx&quot;)
+  #
+  # get the sheets of the xlsx file
+  # and print. Will print out a map of ints to sheet names:
+  sheets = data.get_sheets()
+  print(sheets)
+  #
+  # get name of first sheet and print:
+  sheet1 = sheets[1]
+  print(sheet1) # prints &quot;Sheet1&quot;
+  #
+  # get data from sheet 1 and print:
+  rows = data.get_rows(sheet1)
+  print(rows) # prints 2d list of data
+  #
+  # set the first 10 rows as the body:
+  ds.set_body(rows[:10])
+  return ds
+</code></pre>
+
+<p><a id="get_sheets"></a></p>
+
+<h4 id="get-sheets">get_sheets</h4>
+
+<p><code>x.get_sheets()</code> - returns a map of ints to sheet names, indexing starts with 1. See above <code>get_url</code> example for use.</p>
+
+<p><a id="get_rows"></a></p>
+
+<h4 id="get-rows">get_rows</h4>
+
+<p><code>x.get_rows(sheet_name)</code> - returns a 2 dimentional list of data from the specified sheet. See above <code>get_url</code> example for use</p>
+
+    </div>
+  </section>
+</div>
+</main>
+  <footer></footer>
+
+
+  <script src="../../../js/kube.js" type="text/javascript">
+  </script>
+  <script src="../../../js/kube.legenda.js" type="text/javascript">
+  </script>
+  <script src="../../../js/master.js" type="text/javascript">
+  </script>
+</body>
+
+</html>

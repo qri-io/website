@@ -8,13 +8,11 @@
   </url>
   
   <url>
-
     <loc>https://qri.io/docs/reference/cli_commands/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-
     <loc>https://qri.io/docs/tutorials/cli_quickstart/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
@@ -91,6 +89,11 @@
   
   <url>
     <loc>https://qri.io/docs/reference/skylark_syntax/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/reference/starlib/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   

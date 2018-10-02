@@ -21,7 +21,7 @@
 
 
   <meta property="og:title" content="Skylark Transformations" />
-<meta property="og:description" content="Skylark Transformations Qri (&ldquo;query&rdquo;) is about datasets. A transformation is a repeatable script for generating a dataset. Skylark is a scripting langauge from Google that feels a lot like python. This package implements skylark as a transformation syntax. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset." />
+<meta property="og:description" content="Skylark Transformations Qri (&ldquo;query&rdquo;) is about datasets. A transformation is a repeatable script for generating a dataset. Starlark, formerly &ldquo;Skylark&rdquo;, is a scripting langauge from Google that feels a lot like python. This package implements skylark as a transformation syntax. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://qri.io/docs/tutorials/skylark_transformations/" />
 
@@ -106,7 +106,7 @@
         
           <li><a href="../../../docs/tutorials/python_quickstart">Python &amp; Jupyter</a></li>
         
-          <li><a href="../../../docs/tutorials/skylark_transformations">Skylark Transformations</a></li>
+          <li><a href="../../../docs/tutorials/skylark_transformations">Starlark Transformations</a></li>
         
       </ul>
     </div>
@@ -127,7 +127,7 @@
 
 <h1 id="skylark-transformations">Skylark Transformations</h1>
 
-<p>Qri (&ldquo;query&rdquo;) is about datasets. A <em>transformation</em> is a repeatable script for generating a dataset. <a href="https://github.com/google/skylark/blob/master/doc/spec.md">Skylark</a> is a scripting langauge from Google that feels a lot like python. This package implements skylark as a <em>transformation syntax</em>. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</p>
+<p>Qri (&ldquo;query&rdquo;) is about datasets. A <em>transformation</em> is a repeatable script for generating a dataset. <a href="https://github.com/google/skylark/blob/master/doc/spec.md">Starlark</a>, formerly &ldquo;Skylark&rdquo;,  is a scripting langauge from Google that feels a lot like python. This package implements skylark as a <em>transformation syntax</em>. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</p>
 
 <p>Typical examples of a skylark transformation include:</p>
 
@@ -142,7 +142,29 @@
 * <strong>deterministic subset of python</strong> - unlike python, skylark removes properties that reduce introspection into code behaviour. things like <code>while</code> loops and recursive functions are ommitted, making it possible for qri to infer how a given transformation will behave.
 * <strong>parallel execution</strong> - thanks to this deterministic requirement (and lack of global interpreter lock) skylark functions can be executed in parallel. Combined with peer-2-peer networking, we&rsquo;re hoping to advance tranformations toward peer-driven distribed computing. More on that in the coming months.</p>
 
-<h2 id="hello-world">&lsquo;[&ldquo;Hello&rdquo;,&ldquo;World&rdquo;]&rsquo;</h2>
+<h1 id="table-of-contents">Table of Contents</h1>
+
+<ul>
+<li><a href="#hello_world">1.0 - Hello World</a> Hello, World, Transform function, and setting the body</li>
+<li><a href="#meta">1.1 - Set the meta</a></li>
+<li><a href="#dataset_files">1.2 - Dataset Files and Transform Settings</a></li>
+
+<li><p><a href="#delete_export">1.3 - Deleting and Exporting Datasets</a></p></li>
+
+<li><p><a href="#download">2.0 - Download function</a></p></li>
+
+<li><p><a href="#config">2.1 - Config and Secrets</a></p></li>
+
+<li><p><a href="#modules">2.2 - Modules and <code>qri</code></a></p></li>
+
+<li><p><a href="#http">2.3 - http</a></p></li>
+
+<li><p><a href="#html">2.4 - html</a></p></li>
+</ul>
+
+<p><a id="hello_world"></a></p>
+
+<h2 id="1-0-hello-world">1.0 &lsquo;[&ldquo;Hello&rdquo;,&ldquo;World&rdquo;]&rsquo;</h2>
 
 <p>To write our first transformation we&rsquo;re going to need two files. The first is a <code>dataset.yaml</code> file that will define our dataset, the second <code>transform.sky</code> file will hold our skylark transformation code. Both files should be in the same folder.</p>
 
@@ -159,8 +181,9 @@ transform:
 
 <p>Save this in <code>transform.sky</code>:</p>
 
-<pre><code class="language-python">def transform(qri):
-  return([&quot;hello&quot;,&quot;world&quot;])
+<pre><code class="language-python">def transform(ds):
+  ds.set_body([&quot;hello&quot;,&quot;world&quot;])
+  return ds
 </code></pre>
 
 <p>From a terminal, navigate to the directory that contains these files, and run the transformation:</p>
@@ -169,43 +192,46 @@ transform:
 $ cd /wherever/you/saved/those/files
 
 # add this dataset to qri
-$ qri add --file=dataset.yaml
+$ qri new --file=dataset.yaml
 </code></pre>
 
 <p>The output of <code>qri info me/hello_world</code> will look slightly different for you. My peername is &ldquo;b5&rdquo;, instead of <code>b5/hello_world</code>, you&rsquo;ll see your own username followed by <code>/hello_world</code>. Also that <code>/ipfs/Qmbx59VBd9joyP4oLmqPAmL3HGQKeQ2pejXtHRnLQ3N5Za</code> bit will have different characters, and that&rsquo;s a good thing! For more info on those characters &amp; what they mean, it&rsquo;s worth reading about content-addressing. But for now let&rsquo;s keep going.</p>
 
 <p>Let&rsquo;s dig in on that <code>transform.sky</code> file a bit:</p>
 
-<pre><code class="language-python">def transform(qri):
-  return([&quot;hello&quot;,&quot;world&quot;])
+<pre><code class="language-python">def transform(ds):
+  ds.set_body([&quot;hello&quot;,&quot;world&quot;])
+  return ds
 </code></pre>
 
-<p>Here we&rsquo;ve defined single function: <code>transform</code>, it takes an <em>argument</em> named <code>qri</code> (we haven&rsquo;t actually <em>used</em> this argument, but that&rsquo;s ok), and returns a set of two strings, <code>&quot;hello&quot;</code>, and <code>&quot;world&quot;</code>. The name &ldquo;transform&rdquo; is special. <code>transform</code> is an example of a <em>data function</em>. Data functions are special functions that qri recognizes, <code>transform</code> is one, and we&rsquo;ll introduce you to another data function later on. Data functions have a few things in common:</p>
+<p>Here we&rsquo;ve defined single function: <code>transform</code>, it takes an <em>argument</em> named <code>ds</code> (which stands for &lsquo;dataset&rsquo;), it sets the body of dataset <code>ds</code> to equal a list of two strings, <code>&quot;hello&quot;</code>, and <code>&quot;world&quot;</code>, and it returns the dataset <code>ds</code>. The name &ldquo;transform&rdquo; is special. <code>transform</code> is an example of a <em>qri function</em>. Qri functions are special functions that qri recognizes, <code>transform</code> is one, and we&rsquo;ll introduce you to another qri function later on. Qri functions have a few things in common:</p>
 
 <ul>
-<li>Data functions <em>always</em> return data</li>
-<li>When you define a data function, qri calls it for you</li>
+<li>Qri functions <em>always</em> take and return datasets</li>
+<li>When you define a qri function, qri calls it for you</li>
 <li>All tranform functions are optional (you don&rsquo;t <em>need</em> to define them), <em>but</em></li>
-<li>A transformation must have at least one data function</li>
-<li>Data functions are always called in the same order</li>
-<li>Data functions often get a <code>qri</code> parameter that lets them do special things</li>
+<li>A transformation must have at least one qri function</li>
+<li>Qri functions are always called in the same order</li>
 </ul>
 
-<p>When we ran <code>qri add</code> from the terminal qri opened this file, saw that we defined a <code>transform</code> function and called it, passing in the <code>qri</code> argument for us to play with. We ignored the qri arugment entirely (that&rsquo;s ok, the <code>qri</code> arugment doesn&rsquo;t have feelings). The one thing we actually did was return data. In this case: <code>[&quot;hello&quot;, &quot;world&quot;]</code>.</p>
+<p>When we ran <code>qri new</code> from the terminal qri opened this file, saw that we defined a <code>transform</code> function and called it, passing in a new dataset argument for us to play with. We must also return a dataset. The one thing we actually did was set the dataset body. In this case: <code>[&quot;hello&quot;, &quot;world&quot;]</code>.</p>
 
-<h2 id="using-the-qri-argument-to-set-metadata">Using the qri argument to set Metadata</h2>
+<p><a id="meta"></a></p>
 
-<p>Let&rsquo;s use the qri argument to do something interesting by adding a line to our <code>transform.sky</code> that sets dataset metadata for us:</p>
+<h2 id="1-1-using-the-dataset-argument-to-set-metadata">1.1 Using the dataset argument to set Metadata</h2>
 
-<pre><code class="language-python">def transform(qri):
-  qri.set_meta(&quot;description&quot;, &quot;this is an example dataset to learn about transformations&quot;)
-  return([&quot;hello&quot;,&quot;world&quot;])
+<p>Let&rsquo;s use the dataset argument to do something interesting by adding a line to our <code>transform.sky</code> that sets dataset metadata for us:</p>
+
+<pre><code class="language-python">def transform(ds):
+  ds.set_meta(&quot;description&quot;, &quot;this is an example dataset to learn about transformations&quot;)
+  ds.set_body([&quot;hello&quot;,&quot;world&quot;])
+  return ds
 </code></pre>
 
 <p>Save <code>transform.sky</code>, and let&rsquo;s update our dataset. From the same directory in a terminal run:</p>
 
 <pre><code class="language-shell"># update our dataset:
-$ qri update --file=dataset.yaml
+$ qri save --file=dataset.yaml
 # dataset saved: b5/hello_world@QmSyDX5LYTiwQi861F5NAwdHrrnd1iRGsoEvCyzQMUyZ4W/ipfs/QmScVmhSBkYN99Esh9UE1X6D81QQV6Cg5LQ6WKyr1t38J4
 
 # see our new description:
@@ -226,22 +252,25 @@ $ qri info me/hello_world
 #   created dataset
 </code></pre>
 
-<h2 id="dataset-files-override-transform-settings">Dataset files override transform settings</h2>
+<p><a id="dataset_files"></a></p>
+
+<h2 id="1-2-dataset-files-override-transform-settings">1.2 Dataset files override transform settings</h2>
 
 <p>While we&rsquo;re here, we might as well point out a potential gotcha, let&rsquo;s add a second call to <code>qri.set_meta</code> that sets title:</p>
 
 <pre><code class="language-python"># this is an example skylark transformation
 
-def transform(qri):
-  qri.set_meta(&quot;title&quot;, &quot;I'm a title set by a transformation!&quot;)
-  qri.set_meta(&quot;description&quot;, &quot;this is an example dataset&quot;)
-  return([&quot;hello&quot;,&quot;world&quot;])
+def transform(ds):
+  ds.set_meta(&quot;title&quot;, &quot;I'm a title set by a transformation!&quot;)
+  ds.set_meta(&quot;description&quot;, &quot;this is an example dataset&quot;)
+  ds.set_body([&quot;hello&quot;,&quot;world&quot;])
+  return ds
 </code></pre>
 
 <p>Save that file, and let&rsquo;s update:</p>
 
 <pre><code class="language-shell"># add this dataset to qri
-$ qri update --file=dataset.yaml
+$ qri save --file=dataset.yaml
 
 # add this dataset to qri
 $ qri info me/hello_world
@@ -254,7 +283,9 @@ $ qri info me/hello_world
 
 <p>In our transform we called <code>qri.set_meta(&quot;title&quot;, ...)</code>, but the title hasn&rsquo;t changed, what gives? That&rsquo;s because we have <em>also</em> set the <code>title</code> in our <code>dataset.yaml</code> file. The thing to remember is <strong>Settings in a dataset file override tranformations</strong>. This helps make transformation scripts more flexible. If later on you re-run this transform but wanted to change the title of the dataset, you can do so without digging into the tranform code. This starts to make more sense when transform scripts get a little more complicated. Speaking of complicated, let&rsquo;s move on to a new transformation to do something a little more interesting.</p>
 
-<h4 id="1-3-deleting-a-dataset">1.3 Deleting a Dataset</h4>
+<p><a id="delete_export"></a></p>
+
+<h2 id="1-3-deleting-and-exporting-a-dataset">1.3 Deleting and Exporting a Dataset</h2>
 
 <p>Before we go, you may want to delete this tutorial data. Then again, maybe you&rsquo;d like a copy of the data outside of qri for reference. Or, maybe you don&rsquo;t care. Who knows? You know. That&rsquo;s who. <em>Anyway</em>, if you&rsquo;d like to export the full dataset that qri created feel free to run:</p>
 
@@ -265,6 +296,193 @@ $ qri info me/hello_world
 
 <pre><code class="language-shell">$ qri delete me/hello_world
 </code></pre>
+
+<p><a id="download"></a></p>
+
+<h2 id="2-0-download-function">2.0 Download function</h2>
+
+<p>In this section we are going to talk about the Qri function <code>download</code>. The <code>download</code> function takes a dataset and returns a datasets, like the <code>transform</code> function. Unlike the <code>transform</code> function, however, the <code>download</code> function is the only place where you have access to the network. This is the only place you can download that api, that json, that website&rsquo;s html.</p>
+
+<p>The <code>download</code> function is always run before the <code>transform</code> step. The dataset returned from the <code>download</code> function, gets passed as the dataset parameter in the <code>transform</code> function.</p>
+
+<p><a id="config"></a></p>
+
+<h2 id="2-1-config-and-secrets">2.1 Config and Secrets</h2>
+
+<p>When we came up with the idea of including transforms in Qri, the thing we were most excited about was a transforms ability to be customized for the person running it. In order to have customizability, we needed a way to inject variables into a transform script. For example, if there is a dataset that has a call to the github api, that can pull down the stats from one of my projects, but I want to also use that transfrom to pull down stats from a second project, one of the variables in my transform would probably be <code>repo_name</code>.</p>
+
+<p>Often, when we try to get information from an api, that api requires us to have a special key that is only associated with our identity. It is, also, often  private and should not be shared in the dataset itself or made public in anyway.</p>
+
+<p>This is where the config and secrets comes in. The following comes from a dataset whose purpose is to get data on the last 100 League of Legends matches a specific player (in this case called <code>summoner</code>) has played in a specific region (in this case, North America). Let&rsquo;s create a new folder called <code>lol_last_100_matches</code>, and a new <code>dataset.yaml</code> file within that folder:</p>
+
+<pre><code class="language-yaml"># lol_last_100_matches/dataset.yaml
+name: league_player_matches
+meta:
+  title: Dataset created using the qri starlark tutorial. Pings the Riot Games (creater of the computer game League of Legends) api, gets a summoner's account id, and then a list of their last 100 matches.
+transform:
+  scriptpath: transform.sky
+  config:
+    summoner: sørenbjerg
+    region: na1
+  secrets:
+    api_key: ****************************
+
+</code></pre>
+
+<p>Note, if you want to run this transform yourself, you will need to head over to the <a href="https://developer.riotgames.com/">Riot Games developer website</a>, and create a login. Then, you can generate your own api key right from your developer dashboard. You will replace the series of ***** in your dataset.yaml file with your own api key.</p>
+
+<p>Okay, so that&rsquo;s how you add a config variable and a secrets variable into the transform, but how do you actually use it in the transform file? That&rsquo;s where the <code>qri</code> module comes in.</p>
+
+<p><a id="modules"></a></p>
+
+<h2 id="2-2-modules-and-qri">2.2 Modules and <code>qri</code></h2>
+
+<p>Chances are, if you are trying to do something cool with Qri, you will need more than just the basic functionality we&rsquo;ve shown you so far.</p>
+
+<p>You can also import modules from the starlark standard library (<a href="https://github.com/qri-io/starlib">Starlib</a> we have been working on. <a href="../../../docs/reference/starlib">Here</a> is our reference page that details each module and each function within that module.</p>
+
+<p>For now, let&rsquo;s look at the <code>qri</code> module. Here is how you load a module into a transform:</p>
+
+<pre><code class="language-python"># lol_last_100_matches/transform.sky
+load(&quot;qri.sky&quot;, &quot;qri&quot;)
+
+def download(ds):
+  return ds
+</code></pre>
+
+<p>You might be asking yourself: why do we load the module with the extension <code>.sky</code>? Why not <code>.star</code>? Well, up until recently, the scripting language was called &ldquo;Skylark&rdquo;, and not &ldquo;Starlark&rdquo;, so there are some remnants of that original name still in our library. This is one of those remnants.</p>
+
+<p>Great, now that we&rsquo;ve loaded the <code>qri</code> module, let&rsquo;s actually use it to get the summoner name, region, and api_key, from the dataset.</p>
+
+<pre><code class="language-python">load(&quot;qri.sky&quot;, &quot;qri&quot;)
+
+def download(ds):
+  summoner = qri.get_config(&quot;summoner&quot;)
+  region = qri.get_config(&quot;region&quot;)
+  api_key = qri.get_secret(&quot;api_key&quot;)
+  print(summoner) # prints &quot;sørenbjerg&quot;
+  print(region) # prints &quot;na1&quot;
+  print(api_key) # prints the api_key
+  return ds
+
+def transform(ds):
+  ds.set_body([&quot;need to set a body or the will be an error&quot;])
+  return ds
+</code></pre>
+
+<p>Head over to the terminal. Change directories until you are in your <code>lol_last_100_matches</code> folder. We are going to use the <code>--dry-run</code> flag. This will allow us to see the output of the transform, without actually saving it to our Qri node.</p>
+
+<pre><code class="language-bash">$ qri new --file dataset.yaml me/lol_last_100_matches --dry-run
+</code></pre>
+
+<p><a id="http"></a></p>
+
+<h2 id="2-3-http-module">2.3 http module</h2>
+
+<p>Now that we can get config and secrets variables, let&rsquo;s use those to grab some data from an API enpoint using the http package.</p>
+
+<p>The http package can only be used in the <code>download</code> function. You do not have access to the network in any the <code>transform</code> function. If you try to download something in the <code>transform</code> function, you will get an error.</p>
+
+<p>You have access to the <code>get</code>, <code>put</code>, <code>post</code>, <code>delete</code>, <code>patch</code>, and <code>options</code> methods from the <code>http</code> module. We are going to use the <code>get</code> method to grab some json for the Riot Games json api.</p>
+
+<p>Note: you can use the <code>text</code>, <code>content</code>, and <code>json</code> methods on a response to get the response body. <code>text</code> and <code>content</code> will return a string representation, <code>json</code> will convert it to json. Please see the <a href="../../../docs/reference/starlib">starlib reference page</a> for more info.</p>
+
+<pre><code class="language-python">load(&quot;qri.sky&quot;, &quot;qri&quot;)
+load(&quot;http.sky&quot;, &quot;http&quot;)
+
+def download(ds):
+  # get config and secrets variables from dataset
+  summoner = qri.get_config(&quot;summoner&quot;)
+  region = qri.get_config(&quot;region&quot;)
+  api_key = qri.get_secret(&quot;api_key&quot;)
+  #
+  # get response from api endpoint
+  #
+  res = http.get(&quot;https://&quot; + region + &quot;.api.riotgames.com/lol/summoner/v3/summoners/by-name/&quot; + summoner + &quot;?api_key=&quot; + api_key)
+  #
+  # get json from body, get accountId from json
+  # note: when the response gets converted to json, it automatically gives the 
+  # accountId and id fields a float type. If we were to convert straight to 
+  # a string, it would appear in scientific notation. To combat this, I am 
+  # casting it to int type, before finally settling on string type.
+  #
+  data = res.json()
+  accountId = str(int(data[&quot;accountId&quot;]))
+  #
+  # get match data and set as the body of the dataset
+  #
+  res = http.get(&quot;https://&quot; + region + &quot;.api.riotgames.com/lol/match/v3/matchlists/by-account/&quot; + accountId + &quot;?api_key=&quot; + api_key)
+  #
+  # the response is a python dictionary with the dictionary key &quot;matches&quot;
+  # that points to a list of dictionaries. Each item in the list contains 
+  # information on a specific match. We only want to keep the actual list
+  # of matches:
+  #
+  matches = res.json()[&quot;matches&quot;]
+  print(matches) # prints a long list of dictionaries containing match data
+  ds.set_body(matches)
+  return ds
+</code></pre>
+
+<p>First double check that this works by running</p>
+
+<pre><code class="language-bash">$ qri new --file dataset.yaml --dry-run
+🏃🏽‍♀️ dry run
+🤖 executing transform
+📡 running download...
+⚙️  running transform...
+# HERE THE OUTPUT OF THE `print(matches)` CALL
+✅ transform complete
+created new dataset me/league_player_matches@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/map/QmV9jSavMgEFnC2METNKUvJLb4sVvoMTf6EthuAKmqzbfg
+</code></pre>
+
+<p>If you are running into problems, double check that your api key is up to date!</p>
+
+<p>To get this dataset into your qri node, run the same command, without the <code>--dry-run</code> flag.</p>
+
+<p><a id="html"></a></p>
+
+<h2 id="2-4-html-module">2.4 html module</h2>
+
+<p>Let&rsquo;s take a cursory look at the html module. The <code>html</code> module allows you use methods to grab elements from an html page, much like you would using jquery. Take a look at the <a href="../../../docs/reference/starlib">starlib reference page</a> to find out more.</p>
+
+<p>Let&rsquo;s go to wikipedia, and get a list of all the languages that you can read wikipedia in!</p>
+
+<p>We will download the main wikipedia page, parse it using the <code>html</code> method, then navigate down to the <a> element, get the language from the &lsquo;title&rsquo; attribute, and add it to the list of languages.</p>
+
+<pre><code class="language-python">load(&quot;html.sky&quot;, &quot;html&quot;)
+load(&quot;http.sky&quot;, &quot;http&quot;)
+
+def download(ds):
+  res = http.get(&quot;https://en.wikipedia.org/wiki/Main_Page&quot;)
+  doc = html(res.content())
+  # from inspecting the contents of the wikipedia page, I was able to 
+  # determine that the list of languages was located in a div who's id 
+  # is `#p-lang` 
+  langElems = doc.find(&quot;#p-lang&quot;).find(&quot;li&quot;)
+  langs = []
+  for i in range(0, langElems.len()):
+    # get the ith element in the list of &lt;li&gt;'s
+    li = langElems.eq(i)
+    # list of the children of the &lt;li&gt;, in this case it is a list of one
+    # element, an &lt;a&gt; tag
+    alist = li.children()
+    # There is only one &lt;a&gt; in the list, but it is still a list
+    # to get that first &lt;a&gt; element:
+    a = alist.first()
+    # the &quot;title&quot; attribute in the &lt;a&gt; element contains the language, written
+    # in english
+    language = a.attr(&quot;title&quot;)
+    # append this to the list of languages
+    langs.append(language)
+    #
+    # this can all be done, alittle more confusingly, in one line:
+    # langs.append(langElems.eq(i).children().first().attr(&quot;title&quot;))
+  ds.set_body(langs)
+  return ds
+</code></pre>
+
+<p>To learn more about our starlark standard library, check out the <a href="../../../docs/reference/starlib">reference page</a> which details each module and all of it&rsquo;s methods.</p>
 
     </div>
   </section>
