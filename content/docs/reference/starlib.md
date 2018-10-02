@@ -93,13 +93,15 @@ def download(ds):
 
 <a id="time_module"></a>
 #### time
+  _you can access these methods from the `time` module:_ 
+
   * [time.time](#time)
   * [time.duration](#duration)
   * [time.location](#location)
   * [time.now](#now)
-  * [time.zero](#now)
 
 ##### time
+  _you can access these methods from a `time` object:_
   * [year](#year)
   * [month](#month)
   * [day](#day)
@@ -110,6 +112,7 @@ def download(ds):
 
 <a id="xlsx_module"></a>
 #### xlsx
+  _you can access these methods from the `xlsx` module. `xlsx` can only be used in the `download` function:_
 
   * [xlsx.get_url](#get_url)
   * [get_sheets](#get_sheets)
@@ -152,19 +155,72 @@ transform:
 #### set_meta 
   `qri.set_meta(field, value)` - Sets the meta at specific field to the value
 
+```python
+load("qri.sky", "qri")
+
+def transform(ds):
+  ds.set_meta("title", "Reference Transform")
+  ds.set_body(["must be set"])
+  return ds
+```
+
 <a id="set_schema"></a>
 #### set_schema 
-  `qri.set_schema(value)` - Sets the schema to the object found at value. Schemas are written as [json schemas](#)
+  `qri.set_schema(value)` - Sets the schema to the object found at value. Schemas are written as [json schemas](https://json-schema.org/)
+
+```python
+load("qri.sky", "qri")
+
+def transform(ds):
+  schema = {
+    "type": "array",
+    "items": {
+      "type": "array",
+      "items": [{
+          "description": "type of animal",
+          "title": "Animal",
+          "type": "string"
+        }, {
+          "description": "number of legs this animal has",
+          "title": "Number of Legs",
+          "type": "integer"
+        }
+      ]
+    }
+  }
+
+  ds.set_schema(schema)
+  ds.set_body([
+    ["cat", 4],
+    ["bird", 2],
+    ["snake", 0]
+  ])
+  return ds
+```
 
 <a id="attr"></a>
 #### attr 
   `selection.attr(attribute)` - Returns a string of the given attribute for that selection in the document. For example:
 
-  ``` python
-  example_html = '<div class="example_class_name"><p>test</p></div>'
-  doc = html(example_html)
-  doc.attr("class") # is equal to 'example_class_name'
-  ```
+```python
+load("html.sky", "html")
+
+def transform(ds):
+  example_html = '<div title="hello world" class="example_class_name"><p>test</p></div>'
+  #
+  # find returns a list of elements that match the search string:
+  divs = html(example_html).find("div")
+  #
+  # get the first element in the list:
+  div = divs.first()
+  #
+  # get the attr with the key "title"
+  attr = div.attr("title")
+  print(attr) # prints "hello world"
+  #
+  ds.set_body([attr])
+  return ds
+```
 
 <a id="children"></a>
 #### children 
@@ -225,6 +281,27 @@ def transform(ds):
 #### eq 
   `selection.eq(index)` - Eq returns node i as a new selection
 
+```python
+load("html.sky", "html")
+
+def transform(ds):
+  example_html = '<body><div><p class="A">a</p><p class="B">b</p></div><div><p class="C">c</p><p class="D">d</p></div></body>'
+  doc = html(example_html)
+  #
+  # get the body
+  body = doc.find("p")
+  print(body.len()) # prints "4", the 4 p elements
+  #
+  # create list of the text in each element:
+  texts = []
+  for i in range(body.len()):
+    # use `eq` function to access each node
+    texts.append(body.eq(i).text())
+  print(texts) # prints ["a", "b", "c", "d"]
+  #
+  ds.set_body(texts)
+  return ds
+```
 
 <a id="find"></a>
 #### find 
@@ -498,60 +575,158 @@ def download(ds):
 
 <a id="time"></a>
 #### time
-  `time.time()` -
+  `time.time(rfc3339_time_string)` - converts a string in `time.RFC3339` format to a time type.
+
+```python
+load("time.sky", "time")
+
+def transform(ds):
+  time_string = "2018-10-31T00:00:00Z"
+  t = time.time(time_string)
+  print(t.month()) # prints 10
+  print(t.day()) # prints 31
+  print(t.year()) # prints 2018
+  ds.set_body(["must be set"])
+  return ds
+```
 
 <a id="duration"></a>
 #### duration
-  `time.duration()` - 
+  `time.duration(duration_string)` - converts a string in '00h0m0s' format to a duration
+
+```python
+load("time.sky", "time")
+
+def transform(ds):
+  duration_1_str = "450h79m300s"
+  duration_2_str = "0h0m1s"
+  #
+  d1 = time.duration(duration_1_str)
+  print(d1) # prints "451h24m0s", notice how it parsed the string and converted 300 seconds into 5 min, and 79 + 5 min into 1hr 24 min
+  #
+  d2 = time.duration(duration_2_str)
+  print(d2) # prints "1s"
+  #
+  print(d1 + d2) # prints "451h24m1s"
+  print(d1 - d2) # prints "451h23m59s"
+  #
+  # create another duration, same length as d2
+  #
+  d3 = time.duration(duration_2_str)
+  print( d2 == d3 ) # prints true
+  ds.set_body(["must be set"])
+  return ds
+```
+  You also get a duration when you subtract two times:
+
+```python
+load("time.sky", "time")
+
+def transform(ds):
+  oct_1 = "2018-10-01T00:00:00Z"
+  halloween = "2018-10-31T00:00:00Z"
+  f = time.time(oct_1)
+  h = time.time(halloween)
+  duration = h - f # subtracting two time values gives you a duration
+  print(duration) # prints "720h0m0s"
+  print(720/24) # prints "30", thirty days between the two dates
+  ds.set_body(["must be set"])
+  return ds
+```
 
 <a id="location"></a>
 #### location
-  `time.location()` - 
+  `time.location(location_string)` - loads location based on string. Empty string returns "UTC"
+
+```python
+load("time.sky", "time")
+
+def transform(ds):
+  loc = time.location("")
+  print(loc)
+  ds.set_body(["must be set"])
+  return ds
+```
 
 <a id="now"></a>
 #### now
-  `time.now()` - 
+  `time.now()` - returns the current time
 
-<a id="struct"></a>
-#### struct
-  `time.struct()` - 
+```python
+load("time.sky", "time")
+
+def transform(ds):
+  now = time.now()
+  print(now) # returns current time
+  #
+  # print date in MM/DD/YYYY format
+  #
+  print(str(now.month()) + "/" + str(now.day()) + "/" + str(now.year()))
+  ds.set_body(["must be set"])
+  return ds
+```
 
 <a id="year"></a>
 #### year
-  `t.year()` - 
+  `t.year()` - returns year as int
 
 <a id="month"></a>
 #### month
-  `t.month()` - 
+  `t.month()` - returns month as int
 
 <a id="day"></a>
 #### day
-  `t.day()` - 
+  `t.day()` - returns day as int
 
 <a id="hour"></a>
 #### hour
-  `t.hour()` - 
+  `t.hour()` - returns hour as int
 
 <a id="minute"></a>
 #### minute
-  `t.minute()` - 
+  `t.minute()` - returns minute as int
 
 <a id="second"></a>
 #### second
-  `t.second()` - 
+  `t.second()` - returns second as in
 
 <a id="nanosecond"></a>
 #### nanosecond
-  `t.nanosecond()` - 
+  `t.nanosecond()` - returns nanosecond as int
 
 <a id="get_url"></a>
 #### xlsx.get_url
-  `xlsx.get_url(url)` - 
+  `xlsx.get_url(url)` - makes a get request of the url, attempts to return the body as a xlsx file. Can only be used in the `download` function 
+
+This example shows how to use `get_url`, `get_sheets`, and `get_rows`:
+```python
+load("xlsx.sky", "xlsx")
+
+def download(ds):
+  data = xlsx.get_url("https://www.ntia.doc.gov/files/ntia/publications/225-5000-composite-inventory_2015-12-16.xlsx")
+  #
+  # get the sheets of the xlsx file
+  # and print. Will print out a map of ints to sheet names:
+  sheets = data.get_sheets()
+  print(sheets)
+  #
+  # get name of first sheet and print:
+  sheet1 = sheets[1]
+  print(sheet1) # prints "Sheet1"
+  #
+  # get data from sheet 1 and print:
+  rows = data.get_rows(sheet1)
+  print(rows) # prints 2d list of data
+  #
+  # set the first 10 rows as the body:
+  ds.set_body(rows[:10])
+  return ds
+```
 
 <a id="get_sheets"></a>
 #### get_sheets
-  `x.get_sheets()` - 
+  `x.get_sheets()` - returns a map of ints to sheet names, indexing starts with 1. See above `get_url` example for use.
 
 <a id="get_rows"></a>
 #### get_rows
-  `x.get_rows()` - 
+  `x.get_rows(sheet_name)` - returns a 2 dimentional list of data from the specified sheet. See above `get_url` example for use
