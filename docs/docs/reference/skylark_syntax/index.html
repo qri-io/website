@@ -179,7 +179,7 @@
 
 <h4 id="def-download-ds">def download(ds):</h4>
 
-<p>Download is the only function in which you can make an http request or get an http response, aka the only place in a transform where you can download data from a website or server. You must then manipulate the response to get some structured data, which can be set as the body.</p>
+<p>Download is the only function in which you can make an http request or get an http response, or download a xlsx file, aka the only place in a transform where you can get data from a website or server. You must then manipulate the response to get some structured data, which can be set as the body.</p>
 
 <p>The download function is always run before the transform function.</p>
 
@@ -208,7 +208,6 @@
   <span class="c1"># casting number to an int just in case it was mistaken </span>
   <span class="c1"># for a string</span>
   <span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">qri</span><span class="o">.</span><span class="n">get_config</span><span class="p">(</span><span class="s2">&#34;number&#34;</span><span class="p">))</span>
-  <span class="c1"># do something here to set the body before returning</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <hr />
 

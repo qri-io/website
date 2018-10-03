@@ -144,23 +144,42 @@
 
 <p><a id="qri_module"></a></p>
 
-<h4 id="qri">qri</h4>
+<h3 id="qri">qri</h3>
 
-<p><em>you can access these methods from the <code>qri</code> object, eg <code>qri.get_body()</code></em></p>
+<p><em>you can access these methods from the <code>qri</code> module, eg <code>qri.get_config()</code></em></p>
 
 <ul>
-<li><a href="#get_body">get_body</a></li>
 <li><a href="#get_config">get_config</a></li>
 <li><a href="#get_secret">get_secret</a></li>
-<li><a href="#set_meta">set_meta</a></li>
-<li><a href="#set_schema">set_schema</a></li>
+<li><a href="#get_config">get_config</a></li>
+<li><a href="#get_secret">get_secret</a></li>
+<li><a href="#list_datasets">list_datasets</a></li>
+<li><a href="#load_dataset_body">load_dataset_body</a></li>
+<li><a href="#load_dataset_head">load_dataset_head</a></li>
 </ul>
 
 <p>To load:</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span></code></pre></div>
+<hr />
+
+<p><a id="dataset"></a></p>
+
+<h3 id="dataset">dataset</h3>
+
+<p><em>you can access these methods from the <code>dataset</code> object. A dataset object gets passed into and returned from the <code>transform</code> and <code>download</code> functions, usually refered to as <code>ds</code></em></p>
+
+<ul>
+<li><a href="#set_meta">set_meta</a></li>
+<li><a href="#set_schema">set_schema</a></li>
+<li><a href="#get_body">get_body</a></li>
+<li><a href="#set_body">set_body</a><br /></li>
+</ul>
+
+<hr />
+
 <p><a id="http_module"></a></p>
 
-<h4 id="http">http</h4>
+<h3 id="http">http</h3>
 
 <p><em>you can access these methods from the <code>http</code> module</em></p>
 
@@ -187,9 +206,11 @@
 <li><a href="#url">url</a></li>
 </ul>
 
+<hr />
+
 <p><a id="html_module"></a></p>
 
-<h4 id="html">html</h4>
+<h3 id="html">html</h3>
 
 <p><em>can only be used in the <code>download</code> function. You must use the <code>html</code> function to parse an html response, to get a document  object that you can traverse</em></p>
 
@@ -224,9 +245,11 @@
 <li><a href="#html_text">text</a></li>
 </ul>
 
+<hr />
+
 <p><a id="time_module"></a></p>
 
-<h4 id="time">time</h4>
+<h3 id="time">time</h3>
 
 <p><em>you can access these methods from the <code>time</code> module:</em></p>
 
@@ -251,9 +274,11 @@
 <li><a href="#nanosecond">nanosecond</a><br /></li>
 </ul>
 
+<hr />
+
 <p><a id="xlsx_module"></a></p>
 
-<h4 id="xlsx">xlsx</h4>
+<h3 id="xlsx">xlsx</h3>
 
 <p><em>you can access these methods from the <code>xlsx</code> module. <code>xlsx</code> can only be used in the <code>download</code> function:</em></p>
 
@@ -265,13 +290,9 @@
 
 <hr />
 
-<h3 id="function-definitions">Function Definitions</h3>
+<h2 id="function-definitions">Function Definitions</h2>
 
-<p><a id="get_body}"></a></p>
-
-<h4 id="get-body">get_body</h4>
-
-<p><code>qri.get_body()</code> - returns the body from the data from the body file</p>
+<h3 id="qri-1">qri</h3>
 
 <p><a id="get_config"></a></p>
 
@@ -293,22 +314,116 @@
 </span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.sky<span class="w">
 </span><span class="w">  </span>secrets<span class="p">:</span><span class="w">
 </span><span class="w">    </span>key<span class="p">:</span><span class="w"> </span>value</code></pre></div>
+<p><a id="list_datasets"></a></p>
+
+<h4 id="list-datasets">list_datasets</h4>
+
+<p><code>qri.list_datasets()</code> - returns list of datasets references available on your qri node</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="n">datasets</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">list_datasets</span><span class="p">()</span>
+  <span class="c1">#</span>
+  <span class="c1"># prints a list of string dataset references</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span> 
+  <span class="c1">#</span>
+  <span class="c1"># create a dataset that contains a list of your datasets:</span>
+  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+<p><a id="load_dataset_body"></a></p>
+
+<h4 id="load-dataset-body">load_dataset_body</h4>
+
+<p><code>qri.load_dataset_body(dataset_referece)</code> - returns the body of the specified dataset as a list or dictionary. <a href="../../../docs/concepts/names">Read more about dataset references</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="c1"># let&#39;s say there is a dataset named &#34;2017_billboard_top_100&#34; and a dataset named &#34;2018_billboard_top_100&#34;</span>
+  <span class="c1"># let&#39;s create a dataset of the artists that are on both lists:</span>
+  <span class="n">billboard_2017</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_dataset_body</span><span class="p">(</span><span class="s2">&#34;me/2017_billboard_top_100&#34;</span><span class="p">)</span>
+  <span class="n">billboard_2018</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_dataset_body</span><span class="p">(</span><span class="s2">&#34;me/2018_billboard_top_100&#34;</span><span class="p">)</span>
+  <span class="c1">#</span>
+  <span class="n">artists</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">billboard_2017</span><span class="p">)):</span>
+    <span class="n">artist</span> <span class="o">=</span> <span class="n">billboard_2017</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;artist&#39;</span><span class="p">]</span>
+    <span class="c1">#</span>
+    <span class="c1"># if we&#39;ve already encountered this artist,</span>
+    <span class="c1"># move on to the next one</span>
+    <span class="k">if</span> <span class="n">artist</span> <span class="ow">in</span> <span class="n">artists</span><span class="p">:</span>
+      <span class="k">continue</span>
+    <span class="c1">#</span>
+    <span class="c1"># iterate through billboard_2018, if this artist</span>
+    <span class="c1"># appears there, add it to the list of artists</span>
+    <span class="c1"># and break out of the for loop</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">billboard_2018</span><span class="p">)):</span>
+      <span class="k">if</span> <span class="n">artist</span> <span class="o">==</span> <span class="n">billboard_2018</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;artist&#39;</span><span class="p">]:</span>
+        <span class="n">artists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">artist</span><span class="p">)</span>
+        <span class="k">break</span>
+  <span class="c1">#</span>
+  <span class="c1"># ensure the list is unique</span>
+  <span class="n">artists</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">artists</span><span class="p">))</span>
+  <span class="n">ds</span><span class="o">.</span><span class="n">set_Body</span><span class="p">(</span><span class="n">artists</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+<p><a id="load_dataset_head"></a></p>
+
+<h4 id="load-dataset-head">load_dataset_head</h4>
+
+<p><code>qri.load_dataset_head()</code> - loads all the parts of the dataset, except for the body, as a dictionary with all or some of these keys: <code>meta</code>, <code>structure</code>, <code>commit</code>, <code>transform</code>, <code>viz</code>. If the dataset does not contain a transform, for example, then the dataset head dictionary will not contain a <code>transform</code> field.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="c1"># let&#39;s say you want to create a dataset that contains some</span>
+  <span class="c1"># descriptive elements of a previous dataset</span>
+  <span class="c1"># in this case, the meta, the description, and the format</span>
+  <span class="n">head</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_dataset_head</span><span class="p">(</span><span class="s2">&#34;me/previous_dataset&#34;</span><span class="p">)</span>
+  <span class="c1">#</span>
+  <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+  <span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+  <span class="n">format</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+  <span class="c1">#</span>
+  <span class="k">if</span> <span class="s2">&#34;meta&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&#34;title&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">]:</span>
+      <span class="n">title</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">][</span><span class="s2">&#34;title&#34;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&#34;description&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">]:</span>
+      <span class="n">description</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">][</span><span class="s2">&#34;description&#34;</span><span class="p">]</span>
+  <span class="c1">#</span>
+  <span class="k">if</span> <span class="s2">&#34;structure&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&#34;format&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;structure&#34;</span><span class="p">]:</span>
+      <span class="n">format</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;structure&#34;</span><span class="p">][</span><span class="s2">&#34;format&#34;</span><span class="p">]</span>
+  <span class="c1">#</span>
+  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">({</span><span class="s2">&#34;title&#34;</span><span class="p">:</span><span class="n">title</span><span class="p">,</span> <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span> <span class="s2">&#34;format&#34;</span><span class="p">:</span> <span class="n">format</span><span class="p">})</span>
+  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+<hr />
+
+<h2 id="dataset-1">dataset</h2>
+
+<p><a id="get_body"></a></p>
+
+<h4 id="get-body">get_body</h4>
+
+<p><code>ds.get_body()</code> - returns the body of the current dataset as a list or dictionary</p>
+
+<p><a id="set_body"></a></p>
+
+<h4 id="set-body">set_body</h4>
+
+<p><code>ds.set_body(body, raw)</code> - <code>body</code> should usually be a list or a dictionary. <code>raw</code> is a boolean value. If true, it expects <code>body</code> to be a string and will store the body as byte data. Returns <code>None</code>.</p>
+
 <p><a id="set_meta"></a></p>
 
 <h4 id="set-meta">set_meta</h4>
 
-<p><code>qri.set_meta(field, value)</code> - Sets the meta at specific field to the value</p>
+<p><code>ds.set_meta(field, value)</code> - Sets a specific field of the meta to the value. <code>field</code> and <code>value</code> are both strings. Returns <code>None</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
   <span class="n">ds</span><span class="o">.</span><span class="n">set_meta</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">,</span> <span class="s2">&#34;Reference Transform&#34;</span><span class="p">)</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="set_schema"></a></p>
 
 <h4 id="set-schema">set_schema</h4>
 
-<p><code>qri.set_schema(value)</code> - Sets the schema to the object found at value. Schemas are written as <a href="https://json-schema.org/">json schemas</a></p>
+<p><code>ds.set_schema(value)</code> - <code>value</code> is a dictionary written as a <a href="https://json-schema.org/">json schema</a>. Returns <code>None</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -336,11 +451,15 @@
     <span class="p">[</span><span class="s2">&#34;snake&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
   <span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+<hr />
+
+<h2 id="html-1">html</h2>
+
 <p><a id="attr"></a></p>
 
 <h4 id="attr">attr</h4>
 
-<p><code>selection.attr(attribute)</code> - Returns a string of the given attribute for that selection in the document. For example:</p>
+<p><code>selection.attr(attribute)</code> - Returns a string of the given attribute for that selection in the document. <code>attribute</code> is a string.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -373,13 +492,12 @@
   <span class="c1"># gives you a selection made up of the children of body</span>
   <span class="n">children_len</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="nb">len</span><span class="p">()</span>
   <span class="k">print</span><span class="p">(</span><span class="n">children_len</span><span class="p">)</span> <span class="c1"># prints 4, specifically the 4 p elements</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;need to set a body&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="children_filtered"></a></p>
 
 <h4 id="children-filtered">children_filtered</h4>
 
-<p><code>selection.children_filtered(filter)</code> - gets the child elements of each element in the selection, filtered by the specified selector. It returns a new Selection object containing these elements</p>
+<p><code>selection.children_filtered(filter)</code> - gets the child elements of each element in the selection, filtered by the specified by the <code>filter</code> string. It returns a new Selection object containing these elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -390,13 +508,12 @@
   <span class="c1"># filter the divs to get the 2 p elements with class name &#34;.A&#34;</span>
   <span class="n">p_as</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">children_filtered</span><span class="p">(</span><span class="s2">&#34;.A&#34;</span><span class="p">)</span> 
   <span class="k">print</span><span class="p">(</span><span class="n">p_as</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;aa&#34;</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;need to set a body&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="contents"></a></p>
 
 <h4 id="contents">contents</h4>
 
-<p><code>selection.contents()</code> - Contents gets the children of each element in the Selection, including text and comment nodes. It returns a new Selection object containing these elements</p>
+<p><code>selection.contents()</code> - gets the children of each element in the Selection, including text and comment nodes. It returns a new Selection object containing these elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -406,13 +523,12 @@
   <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">contents</span><span class="p">()</span>
   <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;2&#34;, the 2 div elements</span>
   <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;abcd&#34;</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;this must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="eq"></a></p>
 
 <h4 id="eq">eq</h4>
 
-<p><code>selection.eq(index)</code> - Eq returns node i as a new selection</p>
+<p><code>selection.eq(index)</code> - returns node i as a new selection</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -436,7 +552,7 @@
 
 <h4 id="find">find</h4>
 
-<p><code>selection.find(selector)</code> - Find gets the descendants of each element in the current set of matched elements, filtered by a given selector string. It returns a new Selection containing these matched elements.</p>
+<p><code>selection.find(selector)</code> - gets the descendants of each element in the current set of matched elements, filtered by a given <code>selector</code> string. It returns a new Selection containing these matched elements.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -446,13 +562,12 @@
   <span class="n">p_Bs</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;.B&#34;</span><span class="p">)</span>
   <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;2&#34;, the 2 p elements with class &#34;.B&#34;</span>
   <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;bb&#34;</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;this must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="first"></a></p>
 
 <h4 id="first">first</h4>
 
-<p><code>selection.first()</code> - First returns the first element of the selection as a new selection</p>
+<p><code>selection.first()</code> - returns the first element of the selection as a new selection</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -465,13 +580,12 @@
   <span class="c1"># get the first div</span>
   <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
   <span class="k">print</span><span class="p">(</span><span class="n">div</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;ab&#34;</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;this must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="filter"></a></p>
 
 <h4 id="filter">filter</h4>
 
-<p><code>selection.filter(selector)</code> - Filter reduces the set of matched elements to those that match the selector string. It returns a new Selection object for this subset of matching elements</p>
+<p><code>selection.filter(selector)</code> - reduces the set of matched elements to those that match the <code>selector</code> string. It returns a new Selection object for this subset of matching elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -484,13 +598,12 @@
   <span class="n">p_Bs</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="s2">&#34;.B&#34;</span><span class="p">)</span>
   <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;2&#34;, the 2 p elements with class &#34;.B&#34;</span>
   <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;bb&#34;</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;this must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="has"></a></p>
 
 <h4 id="has">has</h4>
 
-<p><code>selection.has()</code> - Has reduces the set of matched elements to those that have a descendant that matches the selector. It returns a new Selection object with the matching elements</p>
+<p><code>selection.has()</code> - reduces the set of matched elements to those that have a descendant that matches the <code>selector</code> string. It returns a new Selection object with the matching elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -502,13 +615,12 @@
   <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">has</span><span class="p">(</span><span class="s2">&#34;.A&#34;</span><span class="p">)</span>
   <span class="n">ps</span> <span class="o">=</span> <span class="n">div</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
   <span class="k">print</span><span class="p">(</span><span class="n">ps</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;ab&#34;, 2 p elements that exist in the div element</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;this must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="last"></a></p>
 
 <h4 id="last">last</h4>
 
-<p><code>selection.last()</code> - Last returns the last element of the selection as a new selection</p>
+<p><code>selection.last()</code> - returns the last element of the selection as a new selection</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -521,13 +633,12 @@
   <span class="c1"># get the first div</span>
   <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">last</span><span class="p">()</span>
   <span class="k">print</span><span class="p">(</span><span class="n">div</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;cd&#34;</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;this must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="len"></a></p>
 
 <h4 id="len">len</h4>
 
-<p><code>selection.len()</code> - Len returns the length of the nodes in the selection as an integer</p>
+<p><code>selection.len()</code> - returns the length of the nodes in the selection as an integer</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -536,13 +647,12 @@
   <span class="c1"># get the body</span>
   <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
   <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;4&#34;, the 4 p elements</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;this must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="parent}"></a></p>
 
 <h4 id="parent">parent</h4>
 
-<p><code>selection.parent()</code> - Parent gets the parent of each element in the Selection. It returns a new Selection object containing the matched elements</p>
+<p><code>selection.parent()</code> - gets the parent of each element in the Selection. It returns a new Selection object containing the matched elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -555,13 +665,12 @@
   <span class="k">print</span><span class="p">(</span><span class="n">divs</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># 2 div parent elements</span>
   <span class="n">title</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">)</span>
   <span class="k">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;this must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="parents_until"></a></p>
 
 <h4 id="parents-until">parents_until</h4>
 
-<p><code>selection.parents_until(selector)</code> - ParentsUntil gets the ancestors of each element in the Selection, up to but not including the element matched by the selector. It returns a new Selection object containing the matched elements</p>
+<p><code>selection.parents_until(selector)</code> - gets the ancestors of each element in the Selection, up to but not including the element matched by the <code>selector</code> string. It returns a new Selection object containing the matched elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -576,13 +685,12 @@
   <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;hi&#34;</span>
   <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;weee&#34;</span>
   <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;woo&#34;</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;this must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="siblings"></a></p>
 
 <h4 id="siblings">siblings</h4>
 
-<p><code>selection,siblings()</code> - Siblings gets the siblings of each element in the Selection. It returns a new Selection object containing the matched elements</p>
+<p><code>selection,siblings()</code> - gets the siblings of each element in the Selection. It returns a new Selection object containing the matched elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -594,32 +702,46 @@
   <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">siblings</span><span class="p">()</span>
   <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;1&#34;, the p element with class &#34;.B&#34;</span>
   <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;b&#34;</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;this must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="html_text"></a></p>
 
 <h4 id="text">text</h4>
 
-<p><code>text()</code> - Text gets the combined text contents of each element in the set of matched elements, including their descendants</p>
+<p><code>text()</code> - gets the combined text contents of each element in the set of matched elements, including their descendants</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
   <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
   <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
   <span class="n">a</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="c1"># prints &#34;abcd&#34;</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;this must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+<hr />
+
+<h2 id="http-1">http</h2>
+
 <p><a id="delete"></a></p>
 
-<h4 id="http-delete">http.delete</h4>
+<h4 id="delete">delete</h4>
 
-<p><code>http.delete(url)</code> - Sends a DELETE request to the given url. Returns a response.</p>
+<p><code>http.delete(url, params, headers, data, jsondata, auth)</code> - sends a DELETE request to the given url. Returns a response.
+  <code>url</code>: string
+  <code>params</code>: dictionary of param names to param values
+  <code>headers</code>: dictionary of header names to header values
+  <code>data</code>: dictionary
+  <code>jsondata</code>: dictionary or list
+  <code>auth</code>: string</p>
 
 <p><a id="get"></a></p>
 
-<h4 id="http-get">http.get</h4>
+<h4 id="get">get</h4>
 
-<p><code>http.get(url)</code> - Sends a GET request to the given url. Returns a response.</p>
+<p><code>http.get(url, params, headers, data, jsondata, auth)</code> - sends a GET request to the given url. Returns a response.
+  <code>url</code>: string<br />
+  <code>params</code>: dictionary of param names to param values<br />
+  <code>headers</code>: dictionary of header names to header values<br />
+  <code>data</code>: dictionary<br />
+  <code>jsondata</code>: dictionary or list<br />
+  <code>auth</code>: string</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;http.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;http&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -628,27 +750,55 @@
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="options"></a></p>
 
-<h4 id="http-options">http.options</h4>
+<h4 id="options">options</h4>
 
-<p><code>http.options(url)</code> - Sends an OPTIONS request to the given url. Returns a response.</p>
+<p><code>http.options(url, params, headers, data, jsondata, auth)</code> - Sends an OPTIONS request to the given url. Returns a response.
+  <code>url</code>: string<br />
+  <code>params</code>: dictionary of param names to param values<br />
+  <code>headers</code>: dictionary of header names to header values<br />
+  <code>data</code>: dictionary<br />
+  <code>jsondata</code>: dictionary or list<br />
+  <code>auth</code>: string</p>
 
 <p><a id="patch"></a></p>
 
-<h4 id="http-patch">http.patch</h4>
+<h4 id="patch">patch</h4>
 
-<p><code>http.patch(url)</code> - Sends a PATCH request to the given url. Returns a response.</p>
+<p><code>http.patch(url, params, headers, data, jsondata, auth)</code> - Sends a PATCH request to the given url. Returns a response.
+  <code>url</code>: string
+  <code>params</code>: dictionary of param names to param values
+  <code>headers</code>: dictionary of header names to header values
+  <code>data</code>: dictionary
+  <code>jsondata</code>: dictionary or list
+  <code>auth</code>: string</p>
 
 <p><a id="post"></a></p>
 
-<h4 id="http-post">http.post</h4>
+<h4 id="post">post</h4>
 
-<p><code>http.post(url)</code> - Sends a POST request to the given url. Returns a response.</p>
+<p><code>http.post(url, params, headers, data, jsondata, auth)</code> - Sends a POST request to the given url. Returns a response.
+  <code>url</code>: string
+  <code>params</code>: dictionary of param names to param values
+  <code>headers</code>: dictionary of header names to header values
+  <code>data</code>: dictionary
+  <code>jsondata</code>: dictionary or list
+  <code>auth</code>: string</p>
 
 <p><a id="put"></a></p>
 
-<h4 id="http-put">http.put</h4>
+<h4 id="put">put</h4>
 
-<p><code>http.put(url)</code> - Sends a PUT request to the given url. Returns a response.</p>
+<p><code>http.put(url, params, headers, data, jsondata, auth)</code> - Sends a PUT request to the given url. Returns a response.
+  <code>url</code>: string
+  <code>params</code>: dictionary of param names to param values
+  <code>headers</code>: dictionary of header names to header values
+  <code>data</code>: dictionary
+  <code>jsondata</code>: dictionary or list
+  <code>auth</code>: string</p>
+
+<hr />
+
+<h2 id="response-1">response</h2>
 
 <p><a id="content"></a></p>
 
@@ -668,13 +818,13 @@
 
 <h4 id="encoding">encoding</h4>
 
-<p><code>response.encoding()</code> - returns a string with the different forms of encoding used in the response.</p>
+<p><code>response.encoding</code> - a string, the different forms of encoding used in the response.</p>
 
 <p><a id="headers"></a></p>
 
 <h4 id="headers">headers</h4>
 
-<p><code>response.headers()</code> - returns a dictionary of the response headers.</p>
+<p><code>response.headers</code> - a dictionary of the response headers.</p>
 
 <p><a id="json"></a></p>
 
@@ -686,7 +836,7 @@
 
 <h4 id="status-code">status_code</h4>
 
-<p><code>response.status_code</code> - returns the status code of the response.</p>
+<p><code>response.status_code</code> - an integer, the status code of the response.</p>
 
 <p><a id="text"></a></p>
 
@@ -698,28 +848,43 @@
 
 <h4 id="url">url</h4>
 
-<p><code>response.url</code> -  returns a string representation of the url</p>
+<p><code>response.url</code> -  a string representation of the url</p>
+
+<hr />
+
+<h2 id="time-2">time</h2>
 
 <p><a id="time"></a></p>
 
-<h4 id="time-2">time</h4>
+<h4 id="time-3">time</h4>
 
-<p><code>time.time(rfc3339_time_string)</code> - converts a string in <code>time.RFC3339</code> format to a time type.</p>
+<p><code>time.time(time_string, format_string, location_string)</code> - converts a time string, that is in format to a time object. Returns a time object. If no format or location are given, it assumes you mean to to use RFC3339: &ldquo;2006-01-02T15:04:05Z07:00&rdquo;. To learn more about format strings checkout to <a href="https://golang.org/src/time/format.go">time/format</a> golang page, or this <a href="https://flaviocopes.com/go-date-time-format/">helpful blog post</a> from flaviocopes</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="c1"># an example with no format or location string</span>
   <span class="n">time_string</span> <span class="o">=</span> <span class="s2">&#34;2018-10-31T00:00:00Z&#34;</span>
   <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">time_string</span><span class="p">)</span>
   <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">month</span><span class="p">())</span> <span class="c1"># prints 10</span>
   <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">day</span><span class="p">())</span> <span class="c1"># prints 31</span>
   <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">year</span><span class="p">())</span> <span class="c1"># prints 2018</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;must be set&#34;</span><span class="p">])</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+  <span class="k">return</span> <span class="n">ds</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="c1"># an example with a format and location string:</span>
+  <span class="c1"># basically, as long as you use the data</span>
+  <span class="c1"># Mon Jan 2 15:04:05 -0700 MST 2006 as a reference, you are good</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">location</span><span class="p">(</span><span class="s2">&#34;America/New_York&#34;</span><span class="p">))</span>
+  <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="s2">&#34;November 15, 2018&#34;</span><span class="p">,</span> <span class="s2">&#34;January 2, 2006&#34;</span><span class="p">,</span> <span class="s2">&#34;America/New_York&#34;</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">month</span><span class="p">())</span> <span class="c1"># prints 11</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">day</span><span class="p">())</span> <span class="c1"># prints 15</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">year</span><span class="p">())</span> <span class="c1"># prints 2018</span>
+  <span class="k">return</span> <span class="n">ds</span> </code></pre></div>
 <p><a id="duration"></a></p>
 
 <h4 id="duration">duration</h4>
 
-<p><code>time.duration(duration_string)</code> - converts a string in &lsquo;00h0m0s&rsquo; format to a duration</p>
+<p><code>time.duration(duration_string)</code> - converts a string in &lsquo;00h0m0s&rsquo; format to a duration object, returns a duration.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -739,7 +904,6 @@
   <span class="c1">#</span>
   <span class="n">d3</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">duration</span><span class="p">(</span><span class="n">duration_2_str</span><span class="p">)</span>
   <span class="k">print</span><span class="p">(</span> <span class="n">d2</span> <span class="o">==</span> <span class="n">d3</span> <span class="p">)</span> <span class="c1"># prints true</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p>You also get a duration when you subtract two times:</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
@@ -751,8 +915,6 @@
   <span class="n">h</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">halloween</span><span class="p">)</span>
   <span class="n">duration</span> <span class="o">=</span> <span class="n">h</span> <span class="o">-</span> <span class="n">f</span> <span class="c1"># subtracting two time values gives you a duration</span>
   <span class="k">print</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span> <span class="c1"># prints &#34;720h0m0s&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="mi">720</span><span class="o">/</span><span class="mi">24</span><span class="p">)</span> <span class="c1"># prints &#34;30&#34;, thirty days between the two dates</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="location"></a></p>
 
@@ -762,9 +924,8 @@
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">loc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">location</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;must be set&#34;</span><span class="p">])</span>
+  <span class="n">loc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">location</span><span class="p">(</span><span class="s2">&#34;EST&#34;</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span> <span class="c1"># returns &#34;EST&#34;</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="now"></a></p>
 
@@ -777,10 +938,8 @@
   <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
   <span class="k">print</span><span class="p">(</span><span class="n">now</span><span class="p">)</span> <span class="c1"># returns current time</span>
   <span class="c1">#</span>
-  <span class="c1"># print date in MM/DD/YYYY format</span>
-  <span class="c1">#</span>
+  <span class="c1"># print date in MM/DD/YYYY format:</span>
   <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">month</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&#34;/&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">day</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&#34;/&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">year</span><span class="p">()))</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="s2">&#34;must be set&#34;</span><span class="p">])</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="year"></a></p>
 
@@ -816,13 +975,17 @@
 
 <h4 id="second">second</h4>
 
-<p><code>t.second()</code> - returns second as in</p>
+<p><code>t.second()</code> - returns second as int</p>
 
 <p><a id="nanosecond"></a></p>
 
 <h4 id="nanosecond">nanosecond</h4>
 
 <p><code>t.nanosecond()</code> - returns nanosecond as int</p>
+
+<hr />
+
+<h2 id="xlsx-1">xlsx</h2>
 
 <p><a id="get_url"></a></p>
 
