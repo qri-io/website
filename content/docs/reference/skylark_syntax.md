@@ -46,7 +46,7 @@ So far there are two predefined Qri functions, with more planned for future use:
 * transform
 
 #### def download(ds):
-  Download is the only function in which you can make an http request or get an http response, aka the only place in a transform where you can download data from a website or server. You must then manipulate the response to get some structured data, which can be set as the body.
+  Download is the only function in which you can make an http request or get an http response, or download a xlsx file, aka the only place in a transform where you can get data from a website or server. You must then manipulate the response to get some structured data, which can be set as the body.
 
   The download function is always run before the transform function.
 
@@ -81,7 +81,6 @@ def transform(ds):
   # casting number to an int just in case it was mistaken 
   # for a string
   number = int(qri.get_config("number"))
-  # do something here to set the body before returning
   return ds
 ```
 

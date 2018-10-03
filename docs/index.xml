@@ -166,13 +166,15 @@ Datasets are recorded structured data according to a specification that dictates
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/reference/starlib/</guid>
-      <description>Starlark modules  qri http html time xlsx  
-qri you can access these methods from the qri object, eg qri.get_body()
- get_body get_config get_secret set_meta set_schema  To load:
-load(&amp;#34;qri.sky&amp;#34;, &amp;#34;qri&amp;#34;) 
-http you can access these methods from the http module
- http.delete http.get http.options http.patch http.post http.put  response you can access these methods from a response object
- content encoding headers json status_code text url</description>
+      <description>Starlark Standard Library Modules  qri ds or dataset http html time xlsx  
+qri module you can access these methods from the qri module, eg qri.get_config()
+ get_config get_secret list_datasets load_dataset_body load_dataset_head  To load:
+load(&amp;#34;qri.sky&amp;#34;, &amp;#34;qri&amp;#34;) Function Definitions: 
+get_config qri.get_config(key)
+returns the value of a config variable, declared in the dataset file:
+# in the dataset.yaml file:transform:scriptpath:transform.skyconfig:key:value 
+get_secret qri.get_secret(key)
+returns the value of a secrets variable, declared in the dataset file:</description>
     </item>
     
     <item>

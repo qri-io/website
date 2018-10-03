@@ -6,25 +6,27 @@ section: reference
 ---
 
 
-# Starlark modules
+# Starlark Standard Library Modules
 
 * [qri](#qri_module)
+* [ds or dataset](#dataset_object)
 * [http](#http_module)
 * [html](#html_module)
 * [time](#time_module)
 * [xlsx](#xlsx_module)
 
+
 ** **
 
 <a id="qri_module"></a>
-#### qri
-  _you can access these methods from the `qri` object, eg `qri.get_body()`_
+## qri module
+  _you can access these methods from the `qri` module, eg `qri.get_config()`_
 
-  * [get_body](#get_body)
   * [get_config](#get_config)
   * [get_secret](#get_secret)
-  * [set_meta](#set_meta)
-  * [set_schema](#set_schema)
+  * [list_datasets](#list_datasets)
+  * [load_dataset_body](#load_dataset_body)
+  * [load_dataset_head](#load_dataset_head)
 
 To load:
 
@@ -32,30 +34,210 @@ To load:
 load("qri.sky", "qri")
 ```
 
-<a id="http_module"></a>
-#### http
-  _you can access these methods from the `http` module_
+** **
 
-  * [http.delete](#delete)
-  * [http.get](#http.get)
-  * [http.options](#options)
-  * [http.patch](#patch)
-  * [http.post](#post)
-  * [http.put](#put)
+## Function Definitions:
 
-##### response
-  _you can access these methods from a response object_
+<a id="get_config"></a>
+#### get_config 
+`qri.get_config(key)`
 
-  * [content](#content)
-  * [encoding](#encoding)
-  * [headers](#headers)
-  * [json](#json)
-  * [status_code](#status_code)
-  * [text](#text)
-  * [url](#url)
+  returns the value of a config variable, declared in the dataset file:
+
+```yaml
+# in the dataset.yaml file:
+transform:
+  scriptpath: transform.sky
+  config:
+    key: value
+```
+
+<a id="get_secret"></a>
+#### get_secret 
+`qri.get_secret(key)`
+
+  returns the value of a secrets variable, declared in the dataset file:
+
+```yaml
+# in the dataset.yaml file:
+transform:
+  scriptpath: transform.sky
+  secrets:
+    key: value
+```
+
+<a id="list_datasets"></a>
+#### list_datasets
+`qri.list_datasets()`
+
+  returns list of datasets references available on your qri node
+
+```python
+load("qri.sky", "qri")
+
+def transform(ds):
+  datasets = qri.list_datasets()
+  #
+  # prints a list of string dataset references
+  print(datasets) 
+  #
+  # create a dataset that contains a list of your datasets:
+  ds.set_body(datasets)
+  return ds
+```
+
+<a id="load_dataset_body"></a>
+#### load_dataset_body
+`qri.load_dataset_body(dataset_referece)`
+
+  returns the body of the specified dataset as a list or dictionary. [Read more about dataset references](/docs/concepts/names)
+
+```python
+load("qri.sky", "qri")
+
+def transform(ds):
+  # let's say there is a dataset named "2017_billboard_top_100" and a dataset named "2018_billboard_top_100"
+  # let's create a dataset of the artists that are on both lists:
+  billboard_2017 = qri.load_dataset_body("me/2017_billboard_top_100")
+  billboard_2018 = qri.load_dataset_body("me/2018_billboard_top_100")
+  #
+  artists = []
+  for i in range(0, len(billboard_2017)):
+    artist = billboard_2017[i]['artist']
+    #
+    # if we've already encountered this artist,
+    # move on to the next one
+    if artist in artists:
+      continue
+    #
+    # iterate through billboard_2018, if this artist
+    # appears there, add it to the list of artists
+    # and break out of the for loop
+    for j in range(0, len(billboard_2018)):
+      if artist == billboard_2018[j]['artist']:
+        artists.append(artist)
+        break
+  #
+  # ensure the list is unique
+  artists = list(set(artists))
+  ds.set_Body(artists)
+  return ds
+```
+
+<a id="load_dataset_head"></a>
+#### load_dataset_head
+`qri.load_dataset_head()`
+
+  loads all the parts of the dataset, except for the body, as a dictionary with all or some of these keys: `meta`, `structure`, `commit`, `transform`, `viz`. If the dataset does not contain a transform, for example, then the dataset head dictionary will not contain a `transform` field.
+
+```python
+load("qri.sky", "qri")
+
+def transform(ds):
+  # let's say you want to create a dataset that contains some
+  # descriptive elements of a previous dataset
+  # in this case, the meta, the description, and the format
+  head = qri.load_dataset_head("me/previous_dataset")
+  #
+  title = ""
+  description = ""
+  format = ""
+  #
+  if "meta" in head:
+    if "title" in head["meta"]:
+      title = head["meta"]["title"]
+    if "description" in head["meta"]:
+      description = head["meta"]["description"]
+  #
+  if "structure" in head:
+    if "format" in head["structure"]:
+      format = head["structure"]["format"]
+  #
+  ds.set_body({"title":title, "description": description, "format": format})
+  return ds
+```
+
+** **
+
+<a id="dataset_object"></a>
+## dataset object - ds
+  _you can access these methods from the `dataset` object. A dataset object gets passed into and returned from the `transform` and `download` functions, usually refered to as `ds`_
+
+* [set_meta](#set_meta)
+* [set_schema](#set_schema)
+* [get_body](#get_body)
+* [set_body](#set_body)  
+
+** **
+
+## Function Definitions:
+
+<a id="get_body"></a>
+#### get_body 
+`ds.get_body()`
+
+  returns the body of the current dataset as a list or dictionary
+
+<a id="set_body"></a>
+#### set_body 
+`ds.set_body(body, raw)`
+
+`body` should usually be a list or a dictionary. `raw` is a boolean value. If true, it expects `body` to be a string and will store the body as byte data. Returns `None`.
+
+<a id="set_meta"></a>
+#### set_meta 
+`ds.set_meta(field, value)`
+
+  Sets a specific field of the meta to the value. `field` and `value` are both strings. Returns `None`.
+
+```python
+load("qri.sky", "qri")
+
+def transform(ds):
+  ds.set_meta("title", "Reference Transform")
+  return ds
+```
+
+<a id="set_schema"></a>
+#### set_schema 
+`ds.set_schema(value)`
+
+`value` is a dictionary written as a [json schema](https://json-schema.org/). Returns `None`
+
+```python
+load("qri.sky", "qri")
+
+def transform(ds):
+  schema = {
+    "type": "array",
+    "items": {
+      "type": "array",
+      "items": [{
+          "description": "type of animal",
+          "title": "Animal",
+          "type": "string"
+        }, {
+          "description": "number of legs this animal has",
+          "title": "Number of Legs",
+          "type": "integer"
+        }
+      ]
+    }
+  }
+
+  ds.set_schema(schema)
+  ds.set_body([
+    ["cat", 4],
+    ["bird", 2],
+    ["snake", 0]
+  ])
+  return ds
+```
+
+** **
 
 <a id="html_module"></a>
-#### html
+## html module
   _can only be used in the `download` function. You must use the `html` function to parse an html response, to get a document  object that you can traverse_
 
 To load and parse:
@@ -91,117 +273,15 @@ def download(ds):
   * [siblings](#siblings)
   * [text](#html_text)
 
-<a id="time_module"></a>
-#### time
-  _you can access these methods from the `time` module:_ 
-
-  * [time.time](#time) 
-  * [time.duration](#duration)  
-  * [time.location](#location)  
-  * [time.now](#now)  
-
-##### time
-  _you can access these methods from a `time` object:_
-  
-  * [year](#year)  
-  * [month](#month)  
-  * [day](#day)  
-  * [hour](#hour)  
-  * [minute](#minute)  
-  * [second](#second)  
-  * [nanosecond](#nanosecond)  
-
-<a id="xlsx_module"></a>
-#### xlsx
-  _you can access these methods from the `xlsx` module. `xlsx` can only be used in the `download` function:_
-
-  * [xlsx.get_url](#get_url)
-  * [get_sheets](#get_sheets)
-  * [get_rows](#get_rows)
-
 ** **
 
-### Function Definitions
-
-<a id="get_body}"></a>
-#### get_body 
-
-  `qri.get_body()` - returns the body from the data from the body file
-
-<a id="get_config"></a>
-#### get_config 
-  `qri.get_config(key)` - returns the value of a config variable, declared in the dataset file:
-
-```yaml
-# in the dataset.yaml file:
-transform:
-  scriptpath: transform.sky
-  config:
-    key: value
-```
-
-<a id="get_secret"></a>
-#### get_secret 
-  `qri.get_secret(key)` - returns the value of a secrets variable, declared in the dataset file:
-
-```yaml
-# in the dataset.yaml file:
-transform:
-  scriptpath: transform.sky
-  secrets:
-    key: value
-```
-
-<a id="set_meta"></a>
-#### set_meta 
-  `qri.set_meta(field, value)` - Sets the meta at specific field to the value
-
-```python
-load("qri.sky", "qri")
-
-def transform(ds):
-  ds.set_meta("title", "Reference Transform")
-  ds.set_body(["must be set"])
-  return ds
-```
-
-<a id="set_schema"></a>
-#### set_schema 
-  `qri.set_schema(value)` - Sets the schema to the object found at value. Schemas are written as [json schemas](https://json-schema.org/)
-
-```python
-load("qri.sky", "qri")
-
-def transform(ds):
-  schema = {
-    "type": "array",
-    "items": {
-      "type": "array",
-      "items": [{
-          "description": "type of animal",
-          "title": "Animal",
-          "type": "string"
-        }, {
-          "description": "number of legs this animal has",
-          "title": "Number of Legs",
-          "type": "integer"
-        }
-      ]
-    }
-  }
-
-  ds.set_schema(schema)
-  ds.set_body([
-    ["cat", 4],
-    ["bird", 2],
-    ["snake", 0]
-  ])
-  return ds
-```
+## Function Definitions:
 
 <a id="attr"></a>
 #### attr 
-  `selection.attr(attribute)` - Returns a string of the given attribute for that selection in the document. For example:
+`selection.attr(attribute)`
+
+  Returns a string of the given attribute for that selection in the document. `attribute` is a string.
 
 ```python
 load("html.sky", "html")
@@ -225,7 +305,9 @@ def transform(ds):
 
 <a id="children"></a>
 #### children 
-  `selection.children()` - gets the child elements of each element in the Selection. It returns a new Selection object containing these elements
+`selection.children()`
+
+  gets the child elements of each element in the Selection. It returns a new Selection object containing these elements
 
 ```python
 load("html.sky", "html")
@@ -238,13 +320,14 @@ def transform(ds):
   # gives you a selection made up of the children of body
   children_len = body.children().len()
   print(children_len) # prints 4, specifically the 4 p elements
-  ds.set_body(["need to set a body"])
   return ds
 ```
 
 <a id="children_filtered"></a>
 #### children_filtered 
-  `selection.children_filtered(filter)` - gets the child elements of each element in the selection, filtered by the specified selector. It returns a new Selection object containing these elements
+`selection.children_filtered(filter)`
+
+  gets the child elements of each element in the selection, filtered by the specified by the `filter` string. It returns a new Selection object containing these elements
 
 ```python
 load("html.sky", "html")
@@ -257,12 +340,13 @@ def transform(ds):
   # filter the divs to get the 2 p elements with class name ".A"
   p_as = divs.children_filtered(".A") 
   print(p_as.text()) # prints "aa"
-  ds.set_body(["need to set a body"])
   return ds
 ```
 <a id="contents"></a>
 #### contents 
-  `selection.contents()` - Contents gets the children of each element in the Selection, including text and comment nodes. It returns a new Selection object containing these elements
+`selection.contents()`
+
+  gets the children of each element in the Selection, including text and comment nodes. It returns a new Selection object containing these elements
 
 ```python
 load("html.sky", "html")
@@ -274,13 +358,14 @@ def transform(ds):
   body = doc.contents()
   print(body.len()) # prints "2", the 2 div elements
   print(body.text()) # prints "abcd"
-  ds.set_body(["this must be set"])
   return ds
 ```
 
 <a id="eq"></a>
 #### eq 
-  `selection.eq(index)` - Eq returns node i as a new selection
+`selection.eq(index)`
+
+  returns node i as a new selection
 
 ```python
 load("html.sky", "html")
@@ -306,7 +391,9 @@ def transform(ds):
 
 <a id="find"></a>
 #### find 
-  `selection.find(selector)` - Find gets the descendants of each element in the current set of matched elements, filtered by a given selector string. It returns a new Selection containing these matched elements.
+`selection.find(selector)`
+
+  gets the descendants of each element in the current set of matched elements, filtered by a given `selector` string. It returns a new Selection containing these matched elements.
 
 ```python
 load("html.sky", "html")
@@ -318,13 +405,14 @@ def transform(ds):
   p_Bs = doc.find(".B")
   print(p_Bs.len()) # prints "2", the 2 p elements with class ".B"
   print(p_Bs.text()) # prints "bb"
-  ds.set_body(["this must be set"])
   return ds
 ```
 
 <a id="first"></a>
 #### first 
-  `selection.first()` - First returns the first element of the selection as a new selection
+`selection.first()`
+
+  returns the first element of the selection as a new selection
 
 ```python
 load("html.sky", "html")
@@ -339,13 +427,14 @@ def transform(ds):
   # get the first div
   div = divs.first()
   print(div.text()) # prints "ab"
-  ds.set_body(["this must be set"])
   return ds
 ```
 
 <a id="filter"></a>
 #### filter 
-  `selection.filter(selector)` - Filter reduces the set of matched elements to those that match the selector string. It returns a new Selection object for this subset of matching elements
+`selection.filter(selector)`
+
+  reduces the set of matched elements to those that match the `selector` string. It returns a new Selection object for this subset of matching elements
 
 ```python
 load("html.sky", "html")
@@ -360,13 +449,14 @@ def transform(ds):
   p_Bs = ps.filter(".B")
   print(p_Bs.len()) # prints "2", the 2 p elements with class ".B"
   print(p_Bs.text()) # prints "bb"
-  ds.set_body(["this must be set"])
   return ds
 ```
 
 <a id="has"></a>
 #### has 
-  `selection.has()` - Has reduces the set of matched elements to those that have a descendant that matches the selector. It returns a new Selection object with the matching elements
+`selection.has()`
+
+  reduces the set of matched elements to those that have a descendant that matches the `selector` string. It returns a new Selection object with the matching elements
 
 ```python
 load("html.sky", "html")
@@ -380,13 +470,14 @@ def transform(ds):
   div = divs.has(".A")
   ps = div.children()
   print(ps.text()) # prints "ab", 2 p elements that exist in the div element
-  ds.set_body(["this must be set"])
   return ds
 ```
 
 <a id="last"></a>
 #### last 
-  `selection.last()` - Last returns the last element of the selection as a new selection
+`selection.last()`
+
+  returns the last element of the selection as a new selection
 
 ```python
 load("html.sky", "html")
@@ -401,13 +492,14 @@ def transform(ds):
   # get the first div
   div = divs.last()
   print(div.text()) # prints "cd"
-  ds.set_body(["this must be set"])
   return ds
 ```
 
 <a id="len"></a>
 #### len 
-  `selection.len()` - Len returns the length of the nodes in the selection as an integer
+`selection.len()`
+
+  returns the length of the nodes in the selection as an integer
 
 ```python
 load("html.sky", "html")
@@ -418,13 +510,14 @@ def transform(ds):
   # get the body
   body = doc.find("body")
   print(body.len()) # prints "4", the 4 p elements
-  ds.set_body(["this must be set"])
   return ds
 ```
 
 <a id="parent}"></a>
 #### parent 
-  `selection.parent()` - Parent gets the parent of each element in the Selection. It returns a new Selection object containing the matched elements
+`selection.parent()`
+
+  gets the parent of each element in the Selection. It returns a new Selection object containing the matched elements
 
 ```python
 load("html.sky", "html")
@@ -439,13 +532,14 @@ def transform(ds):
   print(divs.len()) # 2 div parent elements
   title = divs.first().attr("title")
   print(title)
-  ds.set_body(["this must be set"])
   return ds
 ```
 
 <a id="parents_until"></a>
 #### parents_until 
-  `selection.parents_until(selector)` - ParentsUntil gets the ancestors of each element in the Selection, up to but not including the element matched by the selector. It returns a new Selection object containing the matched elements
+`selection.parents_until(selector)`
+
+  gets the ancestors of each element in the Selection, up to but not including the element matched by the `selector` string. It returns a new Selection object containing the matched elements
 
 ```python
 load("html.sky", "html")
@@ -462,13 +556,14 @@ def transform(ds):
   print(parents.eq(1).attr("title")) # prints "hi"
   print(parents.eq(2).attr("title")) # prints "weee"
   print(parents.eq(3).attr("title")) # prints "woo"
-  ds.set_body(["this must be set"])
   return ds
 ```
 
 <a id="siblings"></a>
 #### siblings 
-  `selection,siblings()` - Siblings gets the siblings of each element in the Selection. It returns a new Selection object containing the matched elements
+`selection.siblings()`
+
+  gets the siblings of each element in the Selection. It returns a new Selection object containing the matched elements
 
 ```python
 load("html.sky", "html")
@@ -482,13 +577,14 @@ def transform(ds):
   b = a.siblings()
   print(b.len()) # prints "1", the p element with class ".B"
   print(b.text()) # prints "b"
-  ds.set_body(["this must be set"])
   return ds
 ```
 
 <a id="html_text"></a>
 #### text 
-  `text()` - Text gets the combined text contents of each element in the set of matched elements, including their descendants
+`text()`
+
+  gets the combined text contents of each element in the set of matched elements, including their descendants
 
 ```python
 load("html.sky", "html")
@@ -497,17 +593,66 @@ def transform(ds):
   example_html = '<body><div><p class="A">a</p><p class="B">b</p></div><div><p class="C">c</p><p class="D">d</p></div></body>'
   doc = html(example_html)
   a = doc.text() # prints "abcd"
-  ds.set_body(["this must be set"])
   return ds
 ```
 
+** **
+
+<a id="http_module"></a>
+## http module
+  _you can access these methods from the `http` module_
+
+  * [http.delete](#delete)
+  * [http.get](#http.get)
+  * [http.options](#options)
+  * [http.patch](#patch)
+  * [http.post](#post)
+  * [http.put](#put)
+
+##### response object
+  _you can access these methods from a response object_
+
+  * [content](#content)
+  * [encoding](#encoding)
+  * [headers](#headers)
+  * [json](#json)
+  * [status_code](#status_code)
+  * [text](#text)
+  * [url](#url)
+
+** **
+
+## Function Definitions:
+
 <a id="delete"></a>
-#### http.delete 
-  `http.delete(url)` - Sends a DELETE request to the given url. Returns a response.
+#### delete 
+`http.delete(url, params, headers, data, jsondata, auth)`
+
+  sends a DELETE request to the given url. Returns a response.
+
+| param | type | optional? |
+|----|------|------|
+| url | string url | no |
+| params | dictionary of param names to param values | yes |
+| headers | dictionary of header names to header values | yes |
+| data | dictionary | yes |
+| jsondata | dictionary or list | yes |
+| auth | string | yes | 
 
 <a id="get"></a>
-#### http.get
-  `http.get(url)` - Sends a GET request to the given url. Returns a response.
+#### get
+`http.get(url, params, headers, data, jsondata, auth)`
+
+  sends a GET request to the given url. Returns a response.
+
+| param | type | optional? |
+|----|------|------|
+| url | string url | no |
+| params | dictionary of param names to param values | yes |
+| headers | dictionary of header names to header values | yes |
+| data | dictionary | yes |
+| jsondata | dictionary or list | yes |
+| auth | string | yes |   
 
 ```python
 load("http.sky", "http")
@@ -519,24 +664,75 @@ def download(ds):
 ```
 
 <a id="options"></a>
-#### http.options 
-  `http.options(url)` - Sends an OPTIONS request to the given url. Returns a response.
+#### options 
+`http.options(url, params, headers, data, jsondata, auth)`
+
+  Sends an OPTIONS request to the given url. Returns a response.
+
+| param | type | optional? |
+|----|------|------|
+| url | string url | no |
+| params | dictionary of param names to param values | yes |
+| headers | dictionary of header names to header values | yes |
+| data | dictionary | yes |
+| jsondata | dictionary or list | yes |
+| auth | string | yes |   
 
 <a id="patch"></a>
-#### http.patch 
-  `http.patch(url)` - Sends a PATCH request to the given url. Returns a response.
+#### patch 
+`http.patch(url, params, headers, data, jsondata, auth)`
+
+  Sends a PATCH request to the given url. Returns a response.
+
+| param | type | optional? |
+|----|------|------|
+| url | string url | no |
+| params | dictionary of param names to param values | yes |
+| headers | dictionary of header names to header values | yes |
+| data | dictionary | yes |
+| jsondata | dictionary or list | yes |
+| auth | string | yes | 
 
 <a id="post"></a>
-#### http.post 
-  `http.post(url)` - Sends a POST request to the given url. Returns a response.
+#### post 
+`http.post(url, params, headers, data, jsondata, auth)`
+
+  Sends a POST request to the given url. Returns a response.
+
+| param | type | optional? |
+|----|------|------|
+| url | string url | no |
+| params | dictionary of param names to param values | yes |
+| headers | dictionary of header names to header values | yes |
+| data | dictionary | yes |
+| jsondata | dictionary or list | yes |
+| auth | string | yes | 
+
   
 <a id="put"></a>
-#### http.put 
-  `http.put(url)` - Sends a PUT request to the given url. Returns a response.
+#### put 
+`http.put(url, params, headers, data, jsondata, auth)`
+
+Sends a PUT request to the given url. Returns a response.
+
+| param | type | optional? |
+|----|------|------|
+| url | string url | no |
+| params | dictionary of param names to param values | yes |
+| headers | dictionary of header names to header values | yes |
+| data | dictionary | yes |
+| jsondata | dictionary or list | yes |
+| auth | string | yes | 
+
+** **
+
+## response
 
 <a id="content"></a>
 #### content 
-  `response.content()` - returns the raw data as a string. This string can be passed to `html(content_string)` to return a document that can be parsed by the `html` functions.
+`response.content()`
+
+  returns the raw data as a string. This string can be passed to `html(content_string)` to return a document that can be parsed by the `html` functions.
 
 ```python
 load("http.sky", "http")
@@ -552,48 +748,105 @@ def download(ds):
 
 <a id="encoding"></a>
 #### encoding 
-  `response.encoding()` - returns a string with the different forms of encoding used in the response.
+`response.encoding`
+
+  a string, the different forms of encoding used in the response.
   
 <a id="headers"></a>
 #### headers 
-  `response.headers()` - returns a dictionary of the response headers.
+`response.headers`
+
+  a dictionary of the response headers.
   
 <a id="json"></a>
 #### json 
-  `response.json()` - attempts the response body as json.
+`response.json()`
+
+  attempts the response body as json.
   
 <a id="status_code"></a>
 #### status_code 
-  `response.status_code` - returns the status code of the response.
+`response.status_code`
+
+  an integer, the status code of the response.
   
 <a id="text"></a>
 #### text 
-  `response.text()` - returns the raw data as a string. This string can be passed to `html(text)` to return a document that can be parsed by the `html` functions.
+`response.text()`
+
+  returns the raw data as a string. This string can be passed to `html(text)` to return a document that can be parsed by the `html` functions.
   
 <a id="url"></a>
 #### url 
-  `response.url` -  returns a string representation of the url
+`response.url`
+
+   a string representation of the url
+
+** **
+
+<a id="time_module"></a>
+## time module
+  _you can access these methods from the `time` module:_ 
+
+  * [time.time](#time) 
+  * [time.duration](#duration)  
+  * [time.location](#location)  
+  * [time.now](#now)  
+
+##### time object
+  _you can access these methods from a `time` object:_
+  
+  * [year](#year)  
+  * [month](#month)  
+  * [day](#day)  
+  * [hour](#hour)  
+  * [minute](#minute)  
+  * [second](#second)  
+  * [nanosecond](#nanosecond)  
+
+** **
+
+## Function Definitions:
 
 <a id="time"></a>
 #### time
-  `time.time(rfc3339_time_string)` - converts a string in `time.RFC3339` format to a time type.
+`time.time(time_string, format_string, location_string)`
+
+  converts a time string, that is in format to a time object. Returns a time object. If no format or location are given, it assumes you mean to to use RFC3339: "2006-01-02T15:04:05Z07:00". To learn more about format strings checkout to [time/format](https://golang.org/src/time/format.go) golang page, or this [helpful blog post](https://flaviocopes.com/go-date-time-format/) from flaviocopes
 
 ```python
 load("time.sky", "time")
 
 def transform(ds):
+  # an example with no format or location string
   time_string = "2018-10-31T00:00:00Z"
   t = time.time(time_string)
   print(t.month()) # prints 10
   print(t.day()) # prints 31
   print(t.year()) # prints 2018
-  ds.set_body(["must be set"])
   return ds
+```
+
+```python
+load("time.sky", "time")
+
+def transform(ds):
+  # an example with a format and location string:
+  # basically, as long as you use the data
+  # Mon Jan 2 15:04:05 -0700 MST 2006 as a reference, you are good
+  print(time.location("America/New_York"))
+  t = time.time("November 15, 2018", "January 2, 2006", "America/New_York")
+  print(t.month()) # prints 11
+  print(t.day()) # prints 15
+  print(t.year()) # prints 2018
+  return ds 
 ```
 
 <a id="duration"></a>
 #### duration
-  `time.duration(duration_string)` - converts a string in '00h0m0s' format to a duration
+`time.duration(duration_string)`
+
+  converts a string in '00h0m0s' format to a duration object, returns a duration.
 
 ```python
 load("time.sky", "time")
@@ -609,13 +862,14 @@ def transform(ds):
   print(d2) # prints "1s"
   #
   print(d1 + d2) # prints "451h24m1s"
-  print(d1 - d2) # prints "451h23m59s"
+  print(d1
+
+  d2) # prints "451h23m59s"
   #
   # create another duration, same length as d2
   #
   d3 = time.duration(duration_2_str)
   print( d2 == d3 ) # prints true
-  ds.set_body(["must be set"])
   return ds
 ```
   You also get a duration when you subtract two times:
@@ -628,30 +882,33 @@ def transform(ds):
   halloween = "2018-10-31T00:00:00Z"
   f = time.time(oct_1)
   h = time.time(halloween)
-  duration = h - f # subtracting two time values gives you a duration
+  duration = h
+
+  f # subtracting two time values gives you a duration
   print(duration) # prints "720h0m0s"
-  print(720/24) # prints "30", thirty days between the two dates
-  ds.set_body(["must be set"])
   return ds
 ```
 
 <a id="location"></a>
 #### location
-  `time.location(location_string)` - loads location based on string. Empty string returns "UTC"
+`time.location(location_string)`
+
+  loads location based on string. Empty string returns "UTC"
 
 ```python
 load("time.sky", "time")
 
 def transform(ds):
-  loc = time.location("")
-  print(loc)
-  ds.set_body(["must be set"])
+  loc = time.location("EST")
+  print(loc) # returns "EST"
   return ds
 ```
 
 <a id="now"></a>
 #### now
-  `time.now()` - returns the current time
+`time.now()`
+
+  returns the current time
 
 ```python
 load("time.sky", "time")
@@ -660,44 +917,72 @@ def transform(ds):
   now = time.now()
   print(now) # returns current time
   #
-  # print date in MM/DD/YYYY format
-  #
+  # print date in MM/DD/YYYY format:
   print(str(now.month()) + "/" + str(now.day()) + "/" + str(now.year()))
-  ds.set_body(["must be set"])
   return ds
 ```
 
 <a id="year"></a>
 #### year
-  `t.year()` - returns year as int
+`t.year()`
+
+  returns year as int
 
 <a id="month"></a>
 #### month
-  `t.month()` - returns month as int
+`t.month()`
+
+  returns month as int
 
 <a id="day"></a>
 #### day
-  `t.day()` - returns day as int
+`t.day()`
+
+  returns day as int
 
 <a id="hour"></a>
 #### hour
-  `t.hour()` - returns hour as int
+`t.hour()`
+
+  returns hour as int
 
 <a id="minute"></a>
 #### minute
-  `t.minute()` - returns minute as int
+`t.minute()`
+
+  returns minute as int
 
 <a id="second"></a>
 #### second
-  `t.second()` - returns second as in
+`t.second()`
+
+  returns second as int
 
 <a id="nanosecond"></a>
 #### nanosecond
-  `t.nanosecond()` - returns nanosecond as int
+`t.nanosecond()`
+
+  returns nanosecond as int
+
+** **
+
+<a id="xlsx_module"></a>
+## xlsx module
+  _you can access these methods from the `xlsx` module. `xlsx` can only be used in the `download` function:_
+
+  * [xlsx.get_url](#get_url)
+  * [get_sheets](#get_sheets)
+  * [get_rows](#get_rows)
+
+** **
+
+## Function Definitions:
 
 <a id="get_url"></a>
 #### xlsx.get_url
-  `xlsx.get_url(url)` - makes a get request of the url, attempts to return the body as a xlsx file. Can only be used in the `download` function 
+`xlsx.get_url(url)`
+
+  makes a get request of the url, attempts to return the body as a xlsx file. Can only be used in the `download` function 
 
 This example shows how to use `get_url`, `get_sheets`, and `get_rows`:
 ```python
@@ -726,8 +1011,12 @@ def download(ds):
 
 <a id="get_sheets"></a>
 #### get_sheets
-  `x.get_sheets()` - returns a map of ints to sheet names, indexing starts with 1. See above `get_url` example for use.
+`x.get_sheets()`
+
+  returns a map of ints to sheet names, indexing starts with 1. See above `get_url` example for use.
 
 <a id="get_rows"></a>
 #### get_rows
-  `x.get_rows(sheet_name)` - returns a 2 dimentional list of data from the specified sheet. See above `get_url` example for use
+`x.get_rows(sheet_name)`
+
+  returns a 2 dimentional list of data from the specified sheet. See above `get_url` example for use
