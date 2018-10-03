@@ -166,7 +166,7 @@ Datasets are recorded structured data according to a specification that dictates
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/reference/starlib/</guid>
-      <description>Starlark modules  qri ds or dataset http html time xlsx  
+      <description>Starlark Standard Library Modules  qri ds or dataset http html time xlsx  
 qri module you can access these methods from the qri module, eg qri.get_config()
  get_config get_secret list_datasets load_dataset_body load_dataset_head  To load:
 load(&amp;#34;qri.sky&amp;#34;, &amp;#34;qri&amp;#34;) Function Definitions: 

@@ -6,7 +6,7 @@ section: reference
 ---
 
 
-# Starlark modules
+# Starlark Standard Library Modules
 
 * [qri](#qri_module)
 * [ds or dataset](#dataset_object)
