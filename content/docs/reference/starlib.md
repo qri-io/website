@@ -9,19 +9,19 @@ section: reference
 # Starlark modules
 
 * [qri](#qri_module)
+* [ds or dataset](#dataset_object)
 * [http](#http_module)
 * [html](#html_module)
 * [time](#time_module)
 * [xlsx](#xlsx_module)
 
+
 ** **
 
 <a id="qri_module"></a>
-### qri
+## qri module
   _you can access these methods from the `qri` module, eg `qri.get_config()`_
 
-  * [get_config](#get_config)
-  * [get_secret](#get_secret)
   * [get_config](#get_config)
   * [get_secret](#get_secret)
   * [list_datasets](#list_datasets)
@@ -36,8 +36,131 @@ load("qri.sky", "qri")
 
 ** **
 
-<a id="dataset"></a>
-### dataset
+## Function Definitions:
+
+<a id="get_config"></a>
+#### get_config 
+`qri.get_config(key)`
+
+  returns the value of a config variable, declared in the dataset file:
+
+```yaml
+# in the dataset.yaml file:
+transform:
+  scriptpath: transform.sky
+  config:
+    key: value
+```
+
+<a id="get_secret"></a>
+#### get_secret 
+`qri.get_secret(key)`
+
+  returns the value of a secrets variable, declared in the dataset file:
+
+```yaml
+# in the dataset.yaml file:
+transform:
+  scriptpath: transform.sky
+  secrets:
+    key: value
+```
+
+<a id="list_datasets"></a>
+#### list_datasets
+`qri.list_datasets()`
+
+  returns list of datasets references available on your qri node
+
+```python
+load("qri.sky", "qri")
+
+def transform(ds):
+  datasets = qri.list_datasets()
+  #
+  # prints a list of string dataset references
+  print(datasets) 
+  #
+  # create a dataset that contains a list of your datasets:
+  ds.set_body(datasets)
+  return ds
+```
+
+<a id="load_dataset_body"></a>
+#### load_dataset_body
+`qri.load_dataset_body(dataset_referece)`
+
+  returns the body of the specified dataset as a list or dictionary. [Read more about dataset references](/docs/concepts/names)
+
+```python
+load("qri.sky", "qri")
+
+def transform(ds):
+  # let's say there is a dataset named "2017_billboard_top_100" and a dataset named "2018_billboard_top_100"
+  # let's create a dataset of the artists that are on both lists:
+  billboard_2017 = qri.load_dataset_body("me/2017_billboard_top_100")
+  billboard_2018 = qri.load_dataset_body("me/2018_billboard_top_100")
+  #
+  artists = []
+  for i in range(0, len(billboard_2017)):
+    artist = billboard_2017[i]['artist']
+    #
+    # if we've already encountered this artist,
+    # move on to the next one
+    if artist in artists:
+      continue
+    #
+    # iterate through billboard_2018, if this artist
+    # appears there, add it to the list of artists
+    # and break out of the for loop
+    for j in range(0, len(billboard_2018)):
+      if artist == billboard_2018[j]['artist']:
+        artists.append(artist)
+        break
+  #
+  # ensure the list is unique
+  artists = list(set(artists))
+  ds.set_Body(artists)
+  return ds
+```
+
+<a id="load_dataset_head"></a>
+#### load_dataset_head
+`qri.load_dataset_head()`
+
+  loads all the parts of the dataset, except for the body, as a dictionary with all or some of these keys: `meta`, `structure`, `commit`, `transform`, `viz`. If the dataset does not contain a transform, for example, then the dataset head dictionary will not contain a `transform` field.
+
+```python
+load("qri.sky", "qri")
+
+def transform(ds):
+  # let's say you want to create a dataset that contains some
+  # descriptive elements of a previous dataset
+  # in this case, the meta, the description, and the format
+  head = qri.load_dataset_head("me/previous_dataset")
+  #
+  title = ""
+  description = ""
+  format = ""
+  #
+  if "meta" in head:
+    if "title" in head["meta"]:
+      title = head["meta"]["title"]
+    if "description" in head["meta"]:
+      description = head["meta"]["description"]
+  #
+  if "structure" in head:
+    if "format" in head["structure"]:
+      format = head["structure"]["format"]
+  #
+  ds.set_body({"title":title, "description": description, "format": format})
+  return ds
+```
+
+** **
+
+<a id="dataset_object"></a>
+## dataset object - ds
   _you can access these methods from the `dataset` object. A dataset object gets passed into and returned from the `transform` and `download` functions, usually refered to as `ds`_
 
 * [set_meta](#set_meta)
@@ -47,32 +170,74 @@ load("qri.sky", "qri")
 
 ** **
 
-<a id="http_module"></a>
-### http
-  _you can access these methods from the `http` module_
+## Function Definitions:
 
-  * [http.delete](#delete)
-  * [http.get](#http.get)
-  * [http.options](#options)
-  * [http.patch](#patch)
-  * [http.post](#post)
-  * [http.put](#put)
+<a id="get_body"></a>
+#### get_body 
+`ds.get_body()`
 
-##### response
-  _you can access these methods from a response object_
+  returns the body of the current dataset as a list or dictionary
 
-  * [content](#content)
-  * [encoding](#encoding)
-  * [headers](#headers)
-  * [json](#json)
-  * [status_code](#status_code)
-  * [text](#text)
-  * [url](#url)
+<a id="set_body"></a>
+#### set_body 
+`ds.set_body(body, raw)`
+
+`body` should usually be a list or a dictionary. `raw` is a boolean value. If true, it expects `body` to be a string and will store the body as byte data. Returns `None`.
+
+<a id="set_meta"></a>
+#### set_meta 
+`ds.set_meta(field, value)`
+
+  Sets a specific field of the meta to the value. `field` and `value` are both strings. Returns `None`.
+
+```python
+load("qri.sky", "qri")
+
+def transform(ds):
+  ds.set_meta("title", "Reference Transform")
+  return ds
+```
+
+<a id="set_schema"></a>
+#### set_schema 
+`ds.set_schema(value)`
+
+`value` is a dictionary written as a [json schema](https://json-schema.org/). Returns `None`
+
+```python
+load("qri.sky", "qri")
+
+def transform(ds):
+  schema = {
+    "type": "array",
+    "items": {
+      "type": "array",
+      "items": [{
+          "description": "type of animal",
+          "title": "Animal",
+          "type": "string"
+        }, {
+          "description": "number of legs this animal has",
+          "title": "Number of Legs",
+          "type": "integer"
+        }
+      ]
+    }
+  }
+
+  ds.set_schema(schema)
+  ds.set_body([
+    ["cat", 4],
+    ["bird", 2],
+    ["snake", 0]
+  ])
+  return ds
+```
 
 ** **
 
 <a id="html_module"></a>
-### html
+## html module
   _can only be used in the `download` function. You must use the `html` function to parse an html response, to get a document  object that you can traverse_
 
 To load and parse:
@@ -110,216 +275,13 @@ def download(ds):
 
 ** **
 
-<a id="time_module"></a>
-### time
-  _you can access these methods from the `time` module:_ 
-
-  * [time.time](#time) 
-  * [time.duration](#duration)  
-  * [time.location](#location)  
-  * [time.now](#now)  
-
-##### time
-  _you can access these methods from a `time` object:_
-  
-  * [year](#year)  
-  * [month](#month)  
-  * [day](#day)  
-  * [hour](#hour)  
-  * [minute](#minute)  
-  * [second](#second)  
-  * [nanosecond](#nanosecond)  
-
-** **
-
-<a id="xlsx_module"></a>
-### xlsx
-  _you can access these methods from the `xlsx` module. `xlsx` can only be used in the `download` function:_
-
-  * [xlsx.get_url](#get_url)
-  * [get_sheets](#get_sheets)
-  * [get_rows](#get_rows)
-
-** **
-
-## Function Definitions
-
-### qri
-
-<a id="get_config"></a>
-#### get_config 
-  `qri.get_config(key)` - returns the value of a config variable, declared in the dataset file:
-
-```yaml
-# in the dataset.yaml file:
-transform:
-  scriptpath: transform.sky
-  config:
-    key: value
-```
-
-<a id="get_secret"></a>
-#### get_secret 
-  `qri.get_secret(key)` - returns the value of a secrets variable, declared in the dataset file:
-
-```yaml
-# in the dataset.yaml file:
-transform:
-  scriptpath: transform.sky
-  secrets:
-    key: value
-```
-
-<a id="list_datasets"></a>
-#### list_datasets
-  `qri.list_datasets()` - returns list of datasets references available on your qri node
-
-```python
-load("qri.sky", "qri")
-
-def transform(ds):
-  datasets = qri.list_datasets()
-  #
-  # prints a list of string dataset references
-  print(datasets) 
-  #
-  # create a dataset that contains a list of your datasets:
-  ds.set_body(datasets)
-  return ds
-```
-
-<a id="load_dataset_body"></a>
-#### load_dataset_body
-  `qri.load_dataset_body(dataset_referece)` - returns the body of the specified dataset as a list or dictionary. [Read more about dataset references](/docs/concepts/names)
-
-```python
-load("qri.sky", "qri")
-
-def transform(ds):
-  # let's say there is a dataset named "2017_billboard_top_100" and a dataset named "2018_billboard_top_100"
-  # let's create a dataset of the artists that are on both lists:
-  billboard_2017 = qri.load_dataset_body("me/2017_billboard_top_100")
-  billboard_2018 = qri.load_dataset_body("me/2018_billboard_top_100")
-  #
-  artists = []
-  for i in range(0, len(billboard_2017)):
-    artist = billboard_2017[i]['artist']
-    #
-    # if we've already encountered this artist,
-    # move on to the next one
-    if artist in artists:
-      continue
-    #
-    # iterate through billboard_2018, if this artist
-    # appears there, add it to the list of artists
-    # and break out of the for loop
-    for j in range(0, len(billboard_2018)):
-      if artist == billboard_2018[j]['artist']:
-        artists.append(artist)
-        break
-  #
-  # ensure the list is unique
-  artists = list(set(artists))
-  ds.set_Body(artists)
-  return ds
-```
-
-<a id="load_dataset_head"></a>
-#### load_dataset_head
-  `qri.load_dataset_head()` - loads all the parts of the dataset, except for the body, as a dictionary with all or some of these keys: `meta`, `structure`, `commit`, `transform`, `viz`. If the dataset does not contain a transform, for example, then the dataset head dictionary will not contain a `transform` field.
-
-```python
-load("qri.sky", "qri")
-
-def transform(ds):
-  # let's say you want to create a dataset that contains some
-  # descriptive elements of a previous dataset
-  # in this case, the meta, the description, and the format
-  head = qri.load_dataset_head("me/previous_dataset")
-  #
-  title = ""
-  description = ""
-  format = ""
-  #
-  if "meta" in head:
-    if "title" in head["meta"]:
-      title = head["meta"]["title"]
-    if "description" in head["meta"]:
-      description = head["meta"]["description"]
-  #
-  if "structure" in head:
-    if "format" in head["structure"]:
-      format = head["structure"]["format"]
-  #
-  ds.set_body({"title":title, "description": description, "format": format})
-  return ds
-```
-
-** **
-
-## dataset
-
-<a id="get_body"></a>
-#### get_body 
-  `ds.get_body()` - returns the body of the current dataset as a list or dictionary
-
-<a id="set_body"></a>
-#### set_body 
-  `ds.set_body(body, raw)` - `body` should usually be a list or a dictionary. `raw` is a boolean value. If true, it expects `body` to be a string and will store the body as byte data. Returns `None`.
-
-<a id="set_meta"></a>
-#### set_meta 
-  `ds.set_meta(field, value)` - Sets a specific field of the meta to the value. `field` and `value` are both strings. Returns `None`.
-
-```python
-load("qri.sky", "qri")
-
-def transform(ds):
-  ds.set_meta("title", "Reference Transform")
-  return ds
-```
-
-<a id="set_schema"></a>
-#### set_schema 
-  `ds.set_schema(value)` - `value` is a dictionary written as a [json schema](https://json-schema.org/). Returns `None`
-
-```python
-load("qri.sky", "qri")
-
-def transform(ds):
-  schema = {
-    "type": "array",
-    "items": {
-      "type": "array",
-      "items": [{
-          "description": "type of animal",
-          "title": "Animal",
-          "type": "string"
-        }, {
-          "description": "number of legs this animal has",
-          "title": "Number of Legs",
-          "type": "integer"
-        }
-      ]
-    }
-  }
-
-  ds.set_schema(schema)
-  ds.set_body([
-    ["cat", 4],
-    ["bird", 2],
-    ["snake", 0]
-  ])
-  return ds
-```
-
-** **
-
-## html
+## Function Definitions:
 
 <a id="attr"></a>
 #### attr 
-  `selection.attr(attribute)` - Returns a string of the given attribute for that selection in the document. `attribute` is a string.
+`selection.attr(attribute)`
+
+  Returns a string of the given attribute for that selection in the document. `attribute` is a string.
 
 ```python
 load("html.sky", "html")
@@ -343,7 +305,9 @@ def transform(ds):
 
 <a id="children"></a>
 #### children 
-  `selection.children()` - gets the child elements of each element in the Selection. It returns a new Selection object containing these elements
+`selection.children()`
+
+  gets the child elements of each element in the Selection. It returns a new Selection object containing these elements
 
 ```python
 load("html.sky", "html")
@@ -361,7 +325,9 @@ def transform(ds):
 
 <a id="children_filtered"></a>
 #### children_filtered 
-  `selection.children_filtered(filter)` - gets the child elements of each element in the selection, filtered by the specified by the `filter` string. It returns a new Selection object containing these elements
+`selection.children_filtered(filter)`
+
+  gets the child elements of each element in the selection, filtered by the specified by the `filter` string. It returns a new Selection object containing these elements
 
 ```python
 load("html.sky", "html")
@@ -378,7 +344,9 @@ def transform(ds):
 ```
 <a id="contents"></a>
 #### contents 
-  `selection.contents()` - gets the children of each element in the Selection, including text and comment nodes. It returns a new Selection object containing these elements
+`selection.contents()`
+
+  gets the children of each element in the Selection, including text and comment nodes. It returns a new Selection object containing these elements
 
 ```python
 load("html.sky", "html")
@@ -395,7 +363,9 @@ def transform(ds):
 
 <a id="eq"></a>
 #### eq 
-  `selection.eq(index)` - returns node i as a new selection
+`selection.eq(index)`
+
+  returns node i as a new selection
 
 ```python
 load("html.sky", "html")
@@ -421,7 +391,9 @@ def transform(ds):
 
 <a id="find"></a>
 #### find 
-  `selection.find(selector)` - gets the descendants of each element in the current set of matched elements, filtered by a given `selector` string. It returns a new Selection containing these matched elements.
+`selection.find(selector)`
+
+  gets the descendants of each element in the current set of matched elements, filtered by a given `selector` string. It returns a new Selection containing these matched elements.
 
 ```python
 load("html.sky", "html")
@@ -438,7 +410,9 @@ def transform(ds):
 
 <a id="first"></a>
 #### first 
-  `selection.first()` - returns the first element of the selection as a new selection
+`selection.first()`
+
+  returns the first element of the selection as a new selection
 
 ```python
 load("html.sky", "html")
@@ -458,7 +432,9 @@ def transform(ds):
 
 <a id="filter"></a>
 #### filter 
-  `selection.filter(selector)` - reduces the set of matched elements to those that match the `selector` string. It returns a new Selection object for this subset of matching elements
+`selection.filter(selector)`
+
+  reduces the set of matched elements to those that match the `selector` string. It returns a new Selection object for this subset of matching elements
 
 ```python
 load("html.sky", "html")
@@ -478,7 +454,9 @@ def transform(ds):
 
 <a id="has"></a>
 #### has 
-  `selection.has()` - reduces the set of matched elements to those that have a descendant that matches the `selector` string. It returns a new Selection object with the matching elements
+`selection.has()`
+
+  reduces the set of matched elements to those that have a descendant that matches the `selector` string. It returns a new Selection object with the matching elements
 
 ```python
 load("html.sky", "html")
@@ -497,7 +475,9 @@ def transform(ds):
 
 <a id="last"></a>
 #### last 
-  `selection.last()` - returns the last element of the selection as a new selection
+`selection.last()`
+
+  returns the last element of the selection as a new selection
 
 ```python
 load("html.sky", "html")
@@ -517,7 +497,9 @@ def transform(ds):
 
 <a id="len"></a>
 #### len 
-  `selection.len()` - returns the length of the nodes in the selection as an integer
+`selection.len()`
+
+  returns the length of the nodes in the selection as an integer
 
 ```python
 load("html.sky", "html")
@@ -533,7 +515,9 @@ def transform(ds):
 
 <a id="parent}"></a>
 #### parent 
-  `selection.parent()` - gets the parent of each element in the Selection. It returns a new Selection object containing the matched elements
+`selection.parent()`
+
+  gets the parent of each element in the Selection. It returns a new Selection object containing the matched elements
 
 ```python
 load("html.sky", "html")
@@ -553,7 +537,9 @@ def transform(ds):
 
 <a id="parents_until"></a>
 #### parents_until 
-  `selection.parents_until(selector)` - gets the ancestors of each element in the Selection, up to but not including the element matched by the `selector` string. It returns a new Selection object containing the matched elements
+`selection.parents_until(selector)`
+
+  gets the ancestors of each element in the Selection, up to but not including the element matched by the `selector` string. It returns a new Selection object containing the matched elements
 
 ```python
 load("html.sky", "html")
@@ -575,7 +561,9 @@ def transform(ds):
 
 <a id="siblings"></a>
 #### siblings 
-  `selection,siblings()` - gets the siblings of each element in the Selection. It returns a new Selection object containing the matched elements
+`selection.siblings()`
+
+  gets the siblings of each element in the Selection. It returns a new Selection object containing the matched elements
 
 ```python
 load("html.sky", "html")
@@ -594,7 +582,9 @@ def transform(ds):
 
 <a id="html_text"></a>
 #### text 
-  `text()` - gets the combined text contents of each element in the set of matched elements, including their descendants
+`text()`
+
+  gets the combined text contents of each element in the set of matched elements, including their descendants
 
 ```python
 load("html.sky", "html")
@@ -608,27 +598,61 @@ def transform(ds):
 
 ** **
 
-## http
+<a id="http_module"></a>
+## http module
+  _you can access these methods from the `http` module_
+
+  * [http.delete](#delete)
+  * [http.get](#http.get)
+  * [http.options](#options)
+  * [http.patch](#patch)
+  * [http.post](#post)
+  * [http.put](#put)
+
+##### response object
+  _you can access these methods from a response object_
+
+  * [content](#content)
+  * [encoding](#encoding)
+  * [headers](#headers)
+  * [json](#json)
+  * [status_code](#status_code)
+  * [text](#text)
+  * [url](#url)
+
+** **
+
+## Function Definitions:
 
 <a id="delete"></a>
 #### delete 
-  `http.delete(url, params, headers, data, jsondata, auth)` - sends a DELETE request to the given url. Returns a response.
-  `url`: string
-  `params`: dictionary of param names to param values
-  `headers`: dictionary of header names to header values
-  `data`: dictionary
-  `jsondata`: dictionary or list
-  `auth`: string
+`http.delete(url, params, headers, data, jsondata, auth)`
+
+  sends a DELETE request to the given url. Returns a response.
+
+| param | type | optional? |
+|----|------|------|
+| url | string url | no |
+| params | dictionary of param names to param values | yes |
+| headers | dictionary of header names to header values | yes |
+| data | dictionary | yes |
+| jsondata | dictionary or list | yes |
+| auth | string | yes | 
 
 <a id="get"></a>
 #### get
-  `http.get(url, params, headers, data, jsondata, auth)` - sends a GET request to the given url. Returns a response.
-  `url`: string  
-  `params`: dictionary of param names to param values  
-  `headers`: dictionary of header names to header values  
-  `data`: dictionary  
-  `jsondata`: dictionary or list  
-  `auth`: string  
+`http.get(url, params, headers, data, jsondata, auth)`
+
+  sends a GET request to the given url. Returns a response.
+
+| param | type | optional? |
+|----|------|------|
+| url | string url | no |
+| params | dictionary of param names to param values | yes |
+| headers | dictionary of header names to header values | yes |
+| data | dictionary | yes |
+| jsondata | dictionary or list | yes |
+| auth | string | yes |   
 
 ```python
 load("http.sky", "http")
@@ -641,43 +665,64 @@ def download(ds):
 
 <a id="options"></a>
 #### options 
-  `http.options(url, params, headers, data, jsondata, auth)` - Sends an OPTIONS request to the given url. Returns a response.
-  `url`: string  
-  `params`: dictionary of param names to param values  
-  `headers`: dictionary of header names to header values  
-  `data`: dictionary  
-  `jsondata`: dictionary or list  
-  `auth`: string  
+`http.options(url, params, headers, data, jsondata, auth)`
+
+  Sends an OPTIONS request to the given url. Returns a response.
+
+| param | type | optional? |
+|----|------|------|
+| url | string url | no |
+| params | dictionary of param names to param values | yes |
+| headers | dictionary of header names to header values | yes |
+| data | dictionary | yes |
+| jsondata | dictionary or list | yes |
+| auth | string | yes |   
 
 <a id="patch"></a>
 #### patch 
-  `http.patch(url, params, headers, data, jsondata, auth)` - Sends a PATCH request to the given url. Returns a response.
-  `url`: string 
-  `params`: dictionary of param names to param values 
-  `headers`: dictionary of header names to header values 
-  `data`: dictionary 
-  `jsondata`: dictionary or list 
-  `auth`: string 
+`http.patch(url, params, headers, data, jsondata, auth)`
+
+  Sends a PATCH request to the given url. Returns a response.
+
+| param | type | optional? |
+|----|------|------|
+| url | string url | no |
+| params | dictionary of param names to param values | yes |
+| headers | dictionary of header names to header values | yes |
+| data | dictionary | yes |
+| jsondata | dictionary or list | yes |
+| auth | string | yes | 
 
 <a id="post"></a>
 #### post 
-  `http.post(url, params, headers, data, jsondata, auth)` - Sends a POST request to the given url. Returns a response.
-  `url`: string 
-  `params`: dictionary of param names to param values 
-  `headers`: dictionary of header names to header values 
-  `data`: dictionary 
-  `jsondata`: dictionary or list 
-  `auth`: string 
+`http.post(url, params, headers, data, jsondata, auth)`
+
+  Sends a POST request to the given url. Returns a response.
+
+| param | type | optional? |
+|----|------|------|
+| url | string url | no |
+| params | dictionary of param names to param values | yes |
+| headers | dictionary of header names to header values | yes |
+| data | dictionary | yes |
+| jsondata | dictionary or list | yes |
+| auth | string | yes | 
+
   
 <a id="put"></a>
 #### put 
-  `http.put(url, params, headers, data, jsondata, auth)` - Sends a PUT request to the given url. Returns a response.
-  `url`: string 
-  `params`: dictionary of param names to param values 
-  `headers`: dictionary of header names to header values 
-  `data`: dictionary 
-  `jsondata`: dictionary or list 
-  `auth`: string 
+`http.put(url, params, headers, data, jsondata, auth)`
+
+Sends a PUT request to the given url. Returns a response.
+
+| param | type | optional? |
+|----|------|------|
+| url | string url | no |
+| params | dictionary of param names to param values | yes |
+| headers | dictionary of header names to header values | yes |
+| data | dictionary | yes |
+| jsondata | dictionary or list | yes |
+| auth | string | yes | 
 
 ** **
 
@@ -685,7 +730,9 @@ def download(ds):
 
 <a id="content"></a>
 #### content 
-  `response.content()` - returns the raw data as a string. This string can be passed to `html(content_string)` to return a document that can be parsed by the `html` functions.
+`response.content()`
+
+  returns the raw data as a string. This string can be passed to `html(content_string)` to return a document that can be parsed by the `html` functions.
 
 ```python
 load("http.sky", "http")
@@ -701,35 +748,71 @@ def download(ds):
 
 <a id="encoding"></a>
 #### encoding 
-  `response.encoding` - a string, the different forms of encoding used in the response.
+`response.encoding`
+
+  a string, the different forms of encoding used in the response.
   
 <a id="headers"></a>
 #### headers 
-  `response.headers` - a dictionary of the response headers.
+`response.headers`
+
+  a dictionary of the response headers.
   
 <a id="json"></a>
 #### json 
-  `response.json()` - attempts the response body as json.
+`response.json()`
+
+  attempts the response body as json.
   
 <a id="status_code"></a>
 #### status_code 
-  `response.status_code` - an integer, the status code of the response.
+`response.status_code`
+
+  an integer, the status code of the response.
   
 <a id="text"></a>
 #### text 
-  `response.text()` - returns the raw data as a string. This string can be passed to `html(text)` to return a document that can be parsed by the `html` functions.
+`response.text()`
+
+  returns the raw data as a string. This string can be passed to `html(text)` to return a document that can be parsed by the `html` functions.
   
 <a id="url"></a>
 #### url 
-  `response.url` -  a string representation of the url
+`response.url`
+
+   a string representation of the url
 
 ** **
 
-## time
+<a id="time_module"></a>
+## time module
+  _you can access these methods from the `time` module:_ 
+
+  * [time.time](#time) 
+  * [time.duration](#duration)  
+  * [time.location](#location)  
+  * [time.now](#now)  
+
+##### time object
+  _you can access these methods from a `time` object:_
+  
+  * [year](#year)  
+  * [month](#month)  
+  * [day](#day)  
+  * [hour](#hour)  
+  * [minute](#minute)  
+  * [second](#second)  
+  * [nanosecond](#nanosecond)  
+
+** **
+
+## Function Definitions:
 
 <a id="time"></a>
 #### time
-  `time.time(time_string, format_string, location_string)` - converts a time string, that is in format to a time object. Returns a time object. If no format or location are given, it assumes you mean to to use RFC3339: "2006-01-02T15:04:05Z07:00". To learn more about format strings checkout to [time/format](https://golang.org/src/time/format.go) golang page, or this [helpful blog post](https://flaviocopes.com/go-date-time-format/) from flaviocopes
+`time.time(time_string, format_string, location_string)`
+
+  converts a time string, that is in format to a time object. Returns a time object. If no format or location are given, it assumes you mean to to use RFC3339: "2006-01-02T15:04:05Z07:00". To learn more about format strings checkout to [time/format](https://golang.org/src/time/format.go) golang page, or this [helpful blog post](https://flaviocopes.com/go-date-time-format/) from flaviocopes
 
 ```python
 load("time.sky", "time")
@@ -761,7 +844,9 @@ def transform(ds):
 
 <a id="duration"></a>
 #### duration
-  `time.duration(duration_string)` - converts a string in '00h0m0s' format to a duration object, returns a duration.
+`time.duration(duration_string)`
+
+  converts a string in '00h0m0s' format to a duration object, returns a duration.
 
 ```python
 load("time.sky", "time")
@@ -777,7 +862,9 @@ def transform(ds):
   print(d2) # prints "1s"
   #
   print(d1 + d2) # prints "451h24m1s"
-  print(d1 - d2) # prints "451h23m59s"
+  print(d1
+
+  d2) # prints "451h23m59s"
   #
   # create another duration, same length as d2
   #
@@ -795,14 +882,18 @@ def transform(ds):
   halloween = "2018-10-31T00:00:00Z"
   f = time.time(oct_1)
   h = time.time(halloween)
-  duration = h - f # subtracting two time values gives you a duration
+  duration = h
+
+  f # subtracting two time values gives you a duration
   print(duration) # prints "720h0m0s"
   return ds
 ```
 
 <a id="location"></a>
 #### location
-  `time.location(location_string)` - loads location based on string. Empty string returns "UTC"
+`time.location(location_string)`
+
+  loads location based on string. Empty string returns "UTC"
 
 ```python
 load("time.sky", "time")
@@ -815,7 +906,9 @@ def transform(ds):
 
 <a id="now"></a>
 #### now
-  `time.now()` - returns the current time
+`time.now()`
+
+  returns the current time
 
 ```python
 load("time.sky", "time")
@@ -831,39 +924,65 @@ def transform(ds):
 
 <a id="year"></a>
 #### year
-  `t.year()` - returns year as int
+`t.year()`
+
+  returns year as int
 
 <a id="month"></a>
 #### month
-  `t.month()` - returns month as int
+`t.month()`
+
+  returns month as int
 
 <a id="day"></a>
 #### day
-  `t.day()` - returns day as int
+`t.day()`
+
+  returns day as int
 
 <a id="hour"></a>
 #### hour
-  `t.hour()` - returns hour as int
+`t.hour()`
+
+  returns hour as int
 
 <a id="minute"></a>
 #### minute
-  `t.minute()` - returns minute as int
+`t.minute()`
+
+  returns minute as int
 
 <a id="second"></a>
 #### second
-  `t.second()` - returns second as int
+`t.second()`
+
+  returns second as int
 
 <a id="nanosecond"></a>
 #### nanosecond
-  `t.nanosecond()` - returns nanosecond as int
+`t.nanosecond()`
+
+  returns nanosecond as int
 
 ** **
 
-## xlsx
+<a id="xlsx_module"></a>
+## xlsx module
+  _you can access these methods from the `xlsx` module. `xlsx` can only be used in the `download` function:_
+
+  * [xlsx.get_url](#get_url)
+  * [get_sheets](#get_sheets)
+  * [get_rows](#get_rows)
+
+** **
+
+## Function Definitions:
 
 <a id="get_url"></a>
 #### xlsx.get_url
-  `xlsx.get_url(url)` - makes a get request of the url, attempts to return the body as a xlsx file. Can only be used in the `download` function 
+`xlsx.get_url(url)`
+
+  makes a get request of the url, attempts to return the body as a xlsx file. Can only be used in the `download` function 
 
 This example shows how to use `get_url`, `get_sheets`, and `get_rows`:
 ```python
@@ -892,8 +1011,12 @@ def download(ds):
 
 <a id="get_sheets"></a>
 #### get_sheets
-  `x.get_sheets()` - returns a map of ints to sheet names, indexing starts with 1. See above `get_url` example for use.
+`x.get_sheets()`
+
+  returns a map of ints to sheet names, indexing starts with 1. See above `get_url` example for use.
 
 <a id="get_rows"></a>
 #### get_rows
-  `x.get_rows(sheet_name)` - returns a 2 dimentional list of data from the specified sheet. See above `get_url` example for use
+`x.get_rows(sheet_name)`
+
+  returns a 2 dimentional list of data from the specified sheet. See above `get_url` example for use

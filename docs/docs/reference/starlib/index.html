@@ -134,6 +134,7 @@
 
 <ul>
 <li><a href="#qri_module">qri</a></li>
+<li><a href="#dataset_object">ds or dataset</a></li>
 <li><a href="#http_module">http</a></li>
 <li><a href="#html_module">html</a></li>
 <li><a href="#time_module">time</a></li>
@@ -144,13 +145,11 @@
 
 <p><a id="qri_module"></a></p>
 
-<h3 id="qri">qri</h3>
+<h2 id="qri-module">qri module</h2>
 
 <p><em>you can access these methods from the <code>qri</code> module, eg <code>qri.get_config()</code></em></p>
 
 <ul>
-<li><a href="#get_config">get_config</a></li>
-<li><a href="#get_secret">get_secret</a></li>
 <li><a href="#get_config">get_config</a></li>
 <li><a href="#get_secret">get_secret</a></li>
 <li><a href="#list_datasets">list_datasets</a></li>
@@ -162,9 +161,122 @@
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span></code></pre></div>
 <hr />
 
-<p><a id="dataset"></a></p>
+<h2 id="function-definitions">Function Definitions:</h2>
 
-<h3 id="dataset">dataset</h3>
+<p><a id="get_config"></a></p>
+
+<h4 id="get-config">get_config</h4>
+
+<p><code>qri.get_config(key)</code></p>
+
+<p>returns the value of a config variable, declared in the dataset file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># in the dataset.yaml file:</span><span class="w">
+</span><span class="w"></span>transform<span class="p">:</span><span class="w">
+</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.sky<span class="w">
+</span><span class="w">  </span>config<span class="p">:</span><span class="w">
+</span><span class="w">    </span>key<span class="p">:</span><span class="w"> </span>value</code></pre></div>
+<p><a id="get_secret"></a></p>
+
+<h4 id="get-secret">get_secret</h4>
+
+<p><code>qri.get_secret(key)</code></p>
+
+<p>returns the value of a secrets variable, declared in the dataset file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># in the dataset.yaml file:</span><span class="w">
+</span><span class="w"></span>transform<span class="p">:</span><span class="w">
+</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.sky<span class="w">
+</span><span class="w">  </span>secrets<span class="p">:</span><span class="w">
+</span><span class="w">    </span>key<span class="p">:</span><span class="w"> </span>value</code></pre></div>
+<p><a id="list_datasets"></a></p>
+
+<h4 id="list-datasets">list_datasets</h4>
+
+<p><code>qri.list_datasets()</code></p>
+
+<p>returns list of datasets references available on your qri node</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="n">datasets</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">list_datasets</span><span class="p">()</span>
+  <span class="c1">#</span>
+  <span class="c1"># prints a list of string dataset references</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span> 
+  <span class="c1">#</span>
+  <span class="c1"># create a dataset that contains a list of your datasets:</span>
+  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+<p><a id="load_dataset_body"></a></p>
+
+<h4 id="load-dataset-body">load_dataset_body</h4>
+
+<p><code>qri.load_dataset_body(dataset_referece)</code></p>
+
+<p>returns the body of the specified dataset as a list or dictionary. <a href="../../../docs/concepts/names">Read more about dataset references</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="c1"># let&#39;s say there is a dataset named &#34;2017_billboard_top_100&#34; and a dataset named &#34;2018_billboard_top_100&#34;</span>
+  <span class="c1"># let&#39;s create a dataset of the artists that are on both lists:</span>
+  <span class="n">billboard_2017</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_dataset_body</span><span class="p">(</span><span class="s2">&#34;me/2017_billboard_top_100&#34;</span><span class="p">)</span>
+  <span class="n">billboard_2018</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_dataset_body</span><span class="p">(</span><span class="s2">&#34;me/2018_billboard_top_100&#34;</span><span class="p">)</span>
+  <span class="c1">#</span>
+  <span class="n">artists</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">billboard_2017</span><span class="p">)):</span>
+    <span class="n">artist</span> <span class="o">=</span> <span class="n">billboard_2017</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;artist&#39;</span><span class="p">]</span>
+    <span class="c1">#</span>
+    <span class="c1"># if we&#39;ve already encountered this artist,</span>
+    <span class="c1"># move on to the next one</span>
+    <span class="k">if</span> <span class="n">artist</span> <span class="ow">in</span> <span class="n">artists</span><span class="p">:</span>
+      <span class="k">continue</span>
+    <span class="c1">#</span>
+    <span class="c1"># iterate through billboard_2018, if this artist</span>
+    <span class="c1"># appears there, add it to the list of artists</span>
+    <span class="c1"># and break out of the for loop</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">billboard_2018</span><span class="p">)):</span>
+      <span class="k">if</span> <span class="n">artist</span> <span class="o">==</span> <span class="n">billboard_2018</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;artist&#39;</span><span class="p">]:</span>
+        <span class="n">artists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">artist</span><span class="p">)</span>
+        <span class="k">break</span>
+  <span class="c1">#</span>
+  <span class="c1"># ensure the list is unique</span>
+  <span class="n">artists</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">artists</span><span class="p">))</span>
+  <span class="n">ds</span><span class="o">.</span><span class="n">set_Body</span><span class="p">(</span><span class="n">artists</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+<p><a id="load_dataset_head"></a></p>
+
+<h4 id="load-dataset-head">load_dataset_head</h4>
+
+<p><code>qri.load_dataset_head()</code></p>
+
+<p>loads all the parts of the dataset, except for the body, as a dictionary with all or some of these keys: <code>meta</code>, <code>structure</code>, <code>commit</code>, <code>transform</code>, <code>viz</code>. If the dataset does not contain a transform, for example, then the dataset head dictionary will not contain a <code>transform</code> field.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="c1"># let&#39;s say you want to create a dataset that contains some</span>
+  <span class="c1"># descriptive elements of a previous dataset</span>
+  <span class="c1"># in this case, the meta, the description, and the format</span>
+  <span class="n">head</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_dataset_head</span><span class="p">(</span><span class="s2">&#34;me/previous_dataset&#34;</span><span class="p">)</span>
+  <span class="c1">#</span>
+  <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+  <span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+  <span class="n">format</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+  <span class="c1">#</span>
+  <span class="k">if</span> <span class="s2">&#34;meta&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&#34;title&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">]:</span>
+      <span class="n">title</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">][</span><span class="s2">&#34;title&#34;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&#34;description&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">]:</span>
+      <span class="n">description</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">][</span><span class="s2">&#34;description&#34;</span><span class="p">]</span>
+  <span class="c1">#</span>
+  <span class="k">if</span> <span class="s2">&#34;structure&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&#34;format&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;structure&#34;</span><span class="p">]:</span>
+      <span class="n">format</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;structure&#34;</span><span class="p">][</span><span class="s2">&#34;format&#34;</span><span class="p">]</span>
+  <span class="c1">#</span>
+  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">({</span><span class="s2">&#34;title&#34;</span><span class="p">:</span><span class="n">title</span><span class="p">,</span> <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span> <span class="s2">&#34;format&#34;</span><span class="p">:</span> <span class="n">format</span><span class="p">})</span>
+  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+<hr />
+
+<p><a id="dataset_object"></a></p>
+
+<h2 id="dataset-object-ds">dataset object - ds</h2>
 
 <p><em>you can access these methods from the <code>dataset</code> object. A dataset object gets passed into and returned from the <code>transform</code> and <code>download</code> functions, usually refered to as <code>ds</code></em></p>
 
@@ -177,40 +289,75 @@
 
 <hr />
 
-<p><a id="http_module"></a></p>
+<h2 id="function-definitions-1">Function Definitions:</h2>
 
-<h3 id="http">http</h3>
+<p><a id="get_body"></a></p>
 
-<p><em>you can access these methods from the <code>http</code> module</em></p>
+<h4 id="get-body">get_body</h4>
 
-<ul>
-<li><a href="#delete">http.delete</a></li>
-<li><a href="#http.get">http.get</a></li>
-<li><a href="#options">http.options</a></li>
-<li><a href="#patch">http.patch</a></li>
-<li><a href="#post">http.post</a></li>
-<li><a href="#put">http.put</a></li>
-</ul>
+<p><code>ds.get_body()</code></p>
 
-<h5 id="response">response</h5>
+<p>returns the body of the current dataset as a list or dictionary</p>
 
-<p><em>you can access these methods from a response object</em></p>
+<p><a id="set_body"></a></p>
 
-<ul>
-<li><a href="#content">content</a></li>
-<li><a href="#encoding">encoding</a></li>
-<li><a href="#headers">headers</a></li>
-<li><a href="#json">json</a></li>
-<li><a href="#status_code">status_code</a></li>
-<li><a href="#text">text</a></li>
-<li><a href="#url">url</a></li>
-</ul>
+<h4 id="set-body">set_body</h4>
 
+<p><code>ds.set_body(body, raw)</code></p>
+
+<p><code>body</code> should usually be a list or a dictionary. <code>raw</code> is a boolean value. If true, it expects <code>body</code> to be a string and will store the body as byte data. Returns <code>None</code>.</p>
+
+<p><a id="set_meta"></a></p>
+
+<h4 id="set-meta">set_meta</h4>
+
+<p><code>ds.set_meta(field, value)</code></p>
+
+<p>Sets a specific field of the meta to the value. <code>field</code> and <code>value</code> are both strings. Returns <code>None</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="n">ds</span><span class="o">.</span><span class="n">set_meta</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">,</span> <span class="s2">&#34;Reference Transform&#34;</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+<p><a id="set_schema"></a></p>
+
+<h4 id="set-schema">set_schema</h4>
+
+<p><code>ds.set_schema(value)</code></p>
+
+<p><code>value</code> is a dictionary written as a <a href="https://json-schema.org/">json schema</a>. Returns <code>None</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;array&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;items&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;array&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;items&#34;</span><span class="p">:</span> <span class="p">[{</span>
+          <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;type of animal&#34;</span><span class="p">,</span>
+          <span class="s2">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Animal&#34;</span><span class="p">,</span>
+          <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;number of legs this animal has&#34;</span><span class="p">,</span>
+          <span class="s2">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Number of Legs&#34;</span><span class="p">,</span>
+          <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;integer&#34;</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="n">ds</span><span class="o">.</span><span class="n">set_schema</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span>
+    <span class="p">[</span><span class="s2">&#34;cat&#34;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&#34;bird&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&#34;snake&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+  <span class="p">])</span>
+  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <hr />
 
 <p><a id="html_module"></a></p>
 
-<h3 id="html">html</h3>
+<h2 id="html-module">html module</h2>
 
 <p><em>can only be used in the <code>download</code> function. You must use the <code>html</code> function to parse an html response, to get a document  object that you can traverse</em></p>
 
@@ -247,219 +394,15 @@
 
 <hr />
 
-<p><a id="time_module"></a></p>
-
-<h3 id="time">time</h3>
-
-<p><em>you can access these methods from the <code>time</code> module:</em></p>
-
-<ul>
-<li><a href="#time">time.time</a></li>
-<li><a href="#duration">time.duration</a><br /></li>
-<li><a href="#location">time.location</a><br /></li>
-<li><a href="#now">time.now</a><br /></li>
-</ul>
-
-<h5 id="time-1">time</h5>
-
-<p><em>you can access these methods from a <code>time</code> object:</em></p>
-
-<ul>
-<li><a href="#year">year</a><br /></li>
-<li><a href="#month">month</a><br /></li>
-<li><a href="#day">day</a><br /></li>
-<li><a href="#hour">hour</a><br /></li>
-<li><a href="#minute">minute</a><br /></li>
-<li><a href="#second">second</a><br /></li>
-<li><a href="#nanosecond">nanosecond</a><br /></li>
-</ul>
-
-<hr />
-
-<p><a id="xlsx_module"></a></p>
-
-<h3 id="xlsx">xlsx</h3>
-
-<p><em>you can access these methods from the <code>xlsx</code> module. <code>xlsx</code> can only be used in the <code>download</code> function:</em></p>
-
-<ul>
-<li><a href="#get_url">xlsx.get_url</a></li>
-<li><a href="#get_sheets">get_sheets</a></li>
-<li><a href="#get_rows">get_rows</a></li>
-</ul>
-
-<hr />
-
-<h2 id="function-definitions">Function Definitions</h2>
-
-<h3 id="qri-1">qri</h3>
-
-<p><a id="get_config"></a></p>
-
-<h4 id="get-config">get_config</h4>
-
-<p><code>qri.get_config(key)</code> - returns the value of a config variable, declared in the dataset file:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># in the dataset.yaml file:</span><span class="w">
-</span><span class="w"></span>transform<span class="p">:</span><span class="w">
-</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.sky<span class="w">
-</span><span class="w">  </span>config<span class="p">:</span><span class="w">
-</span><span class="w">    </span>key<span class="p">:</span><span class="w"> </span>value</code></pre></div>
-<p><a id="get_secret"></a></p>
-
-<h4 id="get-secret">get_secret</h4>
-
-<p><code>qri.get_secret(key)</code> - returns the value of a secrets variable, declared in the dataset file:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># in the dataset.yaml file:</span><span class="w">
-</span><span class="w"></span>transform<span class="p">:</span><span class="w">
-</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.sky<span class="w">
-</span><span class="w">  </span>secrets<span class="p">:</span><span class="w">
-</span><span class="w">    </span>key<span class="p">:</span><span class="w"> </span>value</code></pre></div>
-<p><a id="list_datasets"></a></p>
-
-<h4 id="list-datasets">list_datasets</h4>
-
-<p><code>qri.list_datasets()</code> - returns list of datasets references available on your qri node</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">datasets</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">list_datasets</span><span class="p">()</span>
-  <span class="c1">#</span>
-  <span class="c1"># prints a list of string dataset references</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span> 
-  <span class="c1">#</span>
-  <span class="c1"># create a dataset that contains a list of your datasets:</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="load_dataset_body"></a></p>
-
-<h4 id="load-dataset-body">load_dataset_body</h4>
-
-<p><code>qri.load_dataset_body(dataset_referece)</code> - returns the body of the specified dataset as a list or dictionary. <a href="../../../docs/concepts/names">Read more about dataset references</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="c1"># let&#39;s say there is a dataset named &#34;2017_billboard_top_100&#34; and a dataset named &#34;2018_billboard_top_100&#34;</span>
-  <span class="c1"># let&#39;s create a dataset of the artists that are on both lists:</span>
-  <span class="n">billboard_2017</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_dataset_body</span><span class="p">(</span><span class="s2">&#34;me/2017_billboard_top_100&#34;</span><span class="p">)</span>
-  <span class="n">billboard_2018</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_dataset_body</span><span class="p">(</span><span class="s2">&#34;me/2018_billboard_top_100&#34;</span><span class="p">)</span>
-  <span class="c1">#</span>
-  <span class="n">artists</span> <span class="o">=</span> <span class="p">[]</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">billboard_2017</span><span class="p">)):</span>
-    <span class="n">artist</span> <span class="o">=</span> <span class="n">billboard_2017</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;artist&#39;</span><span class="p">]</span>
-    <span class="c1">#</span>
-    <span class="c1"># if we&#39;ve already encountered this artist,</span>
-    <span class="c1"># move on to the next one</span>
-    <span class="k">if</span> <span class="n">artist</span> <span class="ow">in</span> <span class="n">artists</span><span class="p">:</span>
-      <span class="k">continue</span>
-    <span class="c1">#</span>
-    <span class="c1"># iterate through billboard_2018, if this artist</span>
-    <span class="c1"># appears there, add it to the list of artists</span>
-    <span class="c1"># and break out of the for loop</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">billboard_2018</span><span class="p">)):</span>
-      <span class="k">if</span> <span class="n">artist</span> <span class="o">==</span> <span class="n">billboard_2018</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;artist&#39;</span><span class="p">]:</span>
-        <span class="n">artists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">artist</span><span class="p">)</span>
-        <span class="k">break</span>
-  <span class="c1">#</span>
-  <span class="c1"># ensure the list is unique</span>
-  <span class="n">artists</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">artists</span><span class="p">))</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_Body</span><span class="p">(</span><span class="n">artists</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="load_dataset_head"></a></p>
-
-<h4 id="load-dataset-head">load_dataset_head</h4>
-
-<p><code>qri.load_dataset_head()</code> - loads all the parts of the dataset, except for the body, as a dictionary with all or some of these keys: <code>meta</code>, <code>structure</code>, <code>commit</code>, <code>transform</code>, <code>viz</code>. If the dataset does not contain a transform, for example, then the dataset head dictionary will not contain a <code>transform</code> field.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="c1"># let&#39;s say you want to create a dataset that contains some</span>
-  <span class="c1"># descriptive elements of a previous dataset</span>
-  <span class="c1"># in this case, the meta, the description, and the format</span>
-  <span class="n">head</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_dataset_head</span><span class="p">(</span><span class="s2">&#34;me/previous_dataset&#34;</span><span class="p">)</span>
-  <span class="c1">#</span>
-  <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-  <span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-  <span class="n">format</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-  <span class="c1">#</span>
-  <span class="k">if</span> <span class="s2">&#34;meta&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">:</span>
-    <span class="k">if</span> <span class="s2">&#34;title&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">]:</span>
-      <span class="n">title</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">][</span><span class="s2">&#34;title&#34;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="s2">&#34;description&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">]:</span>
-      <span class="n">description</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">][</span><span class="s2">&#34;description&#34;</span><span class="p">]</span>
-  <span class="c1">#</span>
-  <span class="k">if</span> <span class="s2">&#34;structure&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">:</span>
-    <span class="k">if</span> <span class="s2">&#34;format&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;structure&#34;</span><span class="p">]:</span>
-      <span class="n">format</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;structure&#34;</span><span class="p">][</span><span class="s2">&#34;format&#34;</span><span class="p">]</span>
-  <span class="c1">#</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">({</span><span class="s2">&#34;title&#34;</span><span class="p">:</span><span class="n">title</span><span class="p">,</span> <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span> <span class="s2">&#34;format&#34;</span><span class="p">:</span> <span class="n">format</span><span class="p">})</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<hr />
-
-<h2 id="dataset-1">dataset</h2>
-
-<p><a id="get_body"></a></p>
-
-<h4 id="get-body">get_body</h4>
-
-<p><code>ds.get_body()</code> - returns the body of the current dataset as a list or dictionary</p>
-
-<p><a id="set_body"></a></p>
-
-<h4 id="set-body">set_body</h4>
-
-<p><code>ds.set_body(body, raw)</code> - <code>body</code> should usually be a list or a dictionary. <code>raw</code> is a boolean value. If true, it expects <code>body</code> to be a string and will store the body as byte data. Returns <code>None</code>.</p>
-
-<p><a id="set_meta"></a></p>
-
-<h4 id="set-meta">set_meta</h4>
-
-<p><code>ds.set_meta(field, value)</code> - Sets a specific field of the meta to the value. <code>field</code> and <code>value</code> are both strings. Returns <code>None</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_meta</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">,</span> <span class="s2">&#34;Reference Transform&#34;</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="set_schema"></a></p>
-
-<h4 id="set-schema">set_schema</h4>
-
-<p><code>ds.set_schema(value)</code> - <code>value</code> is a dictionary written as a <a href="https://json-schema.org/">json schema</a>. Returns <code>None</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;array&#34;</span><span class="p">,</span>
-    <span class="s2">&#34;items&#34;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;array&#34;</span><span class="p">,</span>
-      <span class="s2">&#34;items&#34;</span><span class="p">:</span> <span class="p">[{</span>
-          <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;type of animal&#34;</span><span class="p">,</span>
-          <span class="s2">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Animal&#34;</span><span class="p">,</span>
-          <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span>
-        <span class="p">},</span> <span class="p">{</span>
-          <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;number of legs this animal has&#34;</span><span class="p">,</span>
-          <span class="s2">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Number of Legs&#34;</span><span class="p">,</span>
-          <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;integer&#34;</span>
-        <span class="p">}</span>
-      <span class="p">]</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_schema</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span>
-    <span class="p">[</span><span class="s2">&#34;cat&#34;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-    <span class="p">[</span><span class="s2">&#34;bird&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-    <span class="p">[</span><span class="s2">&#34;snake&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-  <span class="p">])</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<hr />
-
-<h2 id="html-1">html</h2>
+<h2 id="function-definitions-2">Function Definitions:</h2>
 
 <p><a id="attr"></a></p>
 
 <h4 id="attr">attr</h4>
 
-<p><code>selection.attr(attribute)</code> - Returns a string of the given attribute for that selection in the document. <code>attribute</code> is a string.</p>
+<p><code>selection.attr(attribute)</code></p>
+
+<p>Returns a string of the given attribute for that selection in the document. <code>attribute</code> is a string.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -481,7 +424,9 @@
 
 <h4 id="children">children</h4>
 
-<p><code>selection.children()</code> - gets the child elements of each element in the Selection. It returns a new Selection object containing these elements</p>
+<p><code>selection.children()</code></p>
+
+<p>gets the child elements of each element in the Selection. It returns a new Selection object containing these elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -497,7 +442,9 @@
 
 <h4 id="children-filtered">children_filtered</h4>
 
-<p><code>selection.children_filtered(filter)</code> - gets the child elements of each element in the selection, filtered by the specified by the <code>filter</code> string. It returns a new Selection object containing these elements</p>
+<p><code>selection.children_filtered(filter)</code></p>
+
+<p>gets the child elements of each element in the selection, filtered by the specified by the <code>filter</code> string. It returns a new Selection object containing these elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -513,7 +460,9 @@
 
 <h4 id="contents">contents</h4>
 
-<p><code>selection.contents()</code> - gets the children of each element in the Selection, including text and comment nodes. It returns a new Selection object containing these elements</p>
+<p><code>selection.contents()</code></p>
+
+<p>gets the children of each element in the Selection, including text and comment nodes. It returns a new Selection object containing these elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -528,7 +477,9 @@
 
 <h4 id="eq">eq</h4>
 
-<p><code>selection.eq(index)</code> - returns node i as a new selection</p>
+<p><code>selection.eq(index)</code></p>
+
+<p>returns node i as a new selection</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -552,7 +503,9 @@
 
 <h4 id="find">find</h4>
 
-<p><code>selection.find(selector)</code> - gets the descendants of each element in the current set of matched elements, filtered by a given <code>selector</code> string. It returns a new Selection containing these matched elements.</p>
+<p><code>selection.find(selector)</code></p>
+
+<p>gets the descendants of each element in the current set of matched elements, filtered by a given <code>selector</code> string. It returns a new Selection containing these matched elements.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -567,7 +520,9 @@
 
 <h4 id="first">first</h4>
 
-<p><code>selection.first()</code> - returns the first element of the selection as a new selection</p>
+<p><code>selection.first()</code></p>
+
+<p>returns the first element of the selection as a new selection</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -585,7 +540,9 @@
 
 <h4 id="filter">filter</h4>
 
-<p><code>selection.filter(selector)</code> - reduces the set of matched elements to those that match the <code>selector</code> string. It returns a new Selection object for this subset of matching elements</p>
+<p><code>selection.filter(selector)</code></p>
+
+<p>reduces the set of matched elements to those that match the <code>selector</code> string. It returns a new Selection object for this subset of matching elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -603,7 +560,9 @@
 
 <h4 id="has">has</h4>
 
-<p><code>selection.has()</code> - reduces the set of matched elements to those that have a descendant that matches the <code>selector</code> string. It returns a new Selection object with the matching elements</p>
+<p><code>selection.has()</code></p>
+
+<p>reduces the set of matched elements to those that have a descendant that matches the <code>selector</code> string. It returns a new Selection object with the matching elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -620,7 +579,9 @@
 
 <h4 id="last">last</h4>
 
-<p><code>selection.last()</code> - returns the last element of the selection as a new selection</p>
+<p><code>selection.last()</code></p>
+
+<p>returns the last element of the selection as a new selection</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -638,7 +599,9 @@
 
 <h4 id="len">len</h4>
 
-<p><code>selection.len()</code> - returns the length of the nodes in the selection as an integer</p>
+<p><code>selection.len()</code></p>
+
+<p>returns the length of the nodes in the selection as an integer</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -652,7 +615,9 @@
 
 <h4 id="parent">parent</h4>
 
-<p><code>selection.parent()</code> - gets the parent of each element in the Selection. It returns a new Selection object containing the matched elements</p>
+<p><code>selection.parent()</code></p>
+
+<p>gets the parent of each element in the Selection. It returns a new Selection object containing the matched elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -670,7 +635,9 @@
 
 <h4 id="parents-until">parents_until</h4>
 
-<p><code>selection.parents_until(selector)</code> - gets the ancestors of each element in the Selection, up to but not including the element matched by the <code>selector</code> string. It returns a new Selection object containing the matched elements</p>
+<p><code>selection.parents_until(selector)</code></p>
+
+<p>gets the ancestors of each element in the Selection, up to but not including the element matched by the <code>selector</code> string. It returns a new Selection object containing the matched elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -690,7 +657,9 @@
 
 <h4 id="siblings">siblings</h4>
 
-<p><code>selection,siblings()</code> - gets the siblings of each element in the Selection. It returns a new Selection object containing the matched elements</p>
+<p><code>selection.siblings()</code></p>
+
+<p>gets the siblings of each element in the Selection. It returns a new Selection object containing the matched elements</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -707,7 +676,9 @@
 
 <h4 id="text">text</h4>
 
-<p><code>text()</code> - gets the combined text contents of each element in the set of matched elements, including their descendants</p>
+<p><code>text()</code></p>
+
+<p>gets the combined text contents of each element in the set of matched elements, including their descendants</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -717,31 +688,150 @@
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <hr />
 
-<h2 id="http-1">http</h2>
+<p><a id="http_module"></a></p>
+
+<h2 id="http-module">http module</h2>
+
+<p><em>you can access these methods from the <code>http</code> module</em></p>
+
+<ul>
+<li><a href="#delete">http.delete</a></li>
+<li><a href="#http.get">http.get</a></li>
+<li><a href="#options">http.options</a></li>
+<li><a href="#patch">http.patch</a></li>
+<li><a href="#post">http.post</a></li>
+<li><a href="#put">http.put</a></li>
+</ul>
+
+<h5 id="response-object">response object</h5>
+
+<p><em>you can access these methods from a response object</em></p>
+
+<ul>
+<li><a href="#content">content</a></li>
+<li><a href="#encoding">encoding</a></li>
+<li><a href="#headers">headers</a></li>
+<li><a href="#json">json</a></li>
+<li><a href="#status_code">status_code</a></li>
+<li><a href="#text">text</a></li>
+<li><a href="#url">url</a></li>
+</ul>
+
+<hr />
+
+<h2 id="function-definitions-3">Function Definitions:</h2>
 
 <p><a id="delete"></a></p>
 
 <h4 id="delete">delete</h4>
 
-<p><code>http.delete(url, params, headers, data, jsondata, auth)</code> - sends a DELETE request to the given url. Returns a response.
-  <code>url</code>: string
-  <code>params</code>: dictionary of param names to param values
-  <code>headers</code>: dictionary of header names to header values
-  <code>data</code>: dictionary
-  <code>jsondata</code>: dictionary or list
-  <code>auth</code>: string</p>
+<p><code>http.delete(url, params, headers, data, jsondata, auth)</code></p>
+
+<p>sends a DELETE request to the given url. Returns a response.</p>
+
+<table>
+<thead>
+<tr>
+<th>param</th>
+<th>type</th>
+<th>optional?</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>url</td>
+<td>string url</td>
+<td>no</td>
+</tr>
+
+<tr>
+<td>params</td>
+<td>dictionary of param names to param values</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>headers</td>
+<td>dictionary of header names to header values</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>data</td>
+<td>dictionary</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>jsondata</td>
+<td>dictionary or list</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>auth</td>
+<td>string</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
 
 <p><a id="get"></a></p>
 
 <h4 id="get">get</h4>
 
-<p><code>http.get(url, params, headers, data, jsondata, auth)</code> - sends a GET request to the given url. Returns a response.
-  <code>url</code>: string<br />
-  <code>params</code>: dictionary of param names to param values<br />
-  <code>headers</code>: dictionary of header names to header values<br />
-  <code>data</code>: dictionary<br />
-  <code>jsondata</code>: dictionary or list<br />
-  <code>auth</code>: string</p>
+<p><code>http.get(url, params, headers, data, jsondata, auth)</code></p>
+
+<p>sends a GET request to the given url. Returns a response.</p>
+
+<table>
+<thead>
+<tr>
+<th>param</th>
+<th>type</th>
+<th>optional?</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>url</td>
+<td>string url</td>
+<td>no</td>
+</tr>
+
+<tr>
+<td>params</td>
+<td>dictionary of param names to param values</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>headers</td>
+<td>dictionary of header names to header values</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>data</td>
+<td>dictionary</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>jsondata</td>
+<td>dictionary or list</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>auth</td>
+<td>string</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;http.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;http&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -752,59 +842,237 @@
 
 <h4 id="options">options</h4>
 
-<p><code>http.options(url, params, headers, data, jsondata, auth)</code> - Sends an OPTIONS request to the given url. Returns a response.
-  <code>url</code>: string<br />
-  <code>params</code>: dictionary of param names to param values<br />
-  <code>headers</code>: dictionary of header names to header values<br />
-  <code>data</code>: dictionary<br />
-  <code>jsondata</code>: dictionary or list<br />
-  <code>auth</code>: string</p>
+<p><code>http.options(url, params, headers, data, jsondata, auth)</code></p>
+
+<p>Sends an OPTIONS request to the given url. Returns a response.</p>
+
+<table>
+<thead>
+<tr>
+<th>param</th>
+<th>type</th>
+<th>optional?</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>url</td>
+<td>string url</td>
+<td>no</td>
+</tr>
+
+<tr>
+<td>params</td>
+<td>dictionary of param names to param values</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>headers</td>
+<td>dictionary of header names to header values</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>data</td>
+<td>dictionary</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>jsondata</td>
+<td>dictionary or list</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>auth</td>
+<td>string</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
 
 <p><a id="patch"></a></p>
 
 <h4 id="patch">patch</h4>
 
-<p><code>http.patch(url, params, headers, data, jsondata, auth)</code> - Sends a PATCH request to the given url. Returns a response.
-  <code>url</code>: string
-  <code>params</code>: dictionary of param names to param values
-  <code>headers</code>: dictionary of header names to header values
-  <code>data</code>: dictionary
-  <code>jsondata</code>: dictionary or list
-  <code>auth</code>: string</p>
+<p><code>http.patch(url, params, headers, data, jsondata, auth)</code></p>
+
+<p>Sends a PATCH request to the given url. Returns a response.</p>
+
+<table>
+<thead>
+<tr>
+<th>param</th>
+<th>type</th>
+<th>optional?</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>url</td>
+<td>string url</td>
+<td>no</td>
+</tr>
+
+<tr>
+<td>params</td>
+<td>dictionary of param names to param values</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>headers</td>
+<td>dictionary of header names to header values</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>data</td>
+<td>dictionary</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>jsondata</td>
+<td>dictionary or list</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>auth</td>
+<td>string</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
 
 <p><a id="post"></a></p>
 
 <h4 id="post">post</h4>
 
-<p><code>http.post(url, params, headers, data, jsondata, auth)</code> - Sends a POST request to the given url. Returns a response.
-  <code>url</code>: string
-  <code>params</code>: dictionary of param names to param values
-  <code>headers</code>: dictionary of header names to header values
-  <code>data</code>: dictionary
-  <code>jsondata</code>: dictionary or list
-  <code>auth</code>: string</p>
+<p><code>http.post(url, params, headers, data, jsondata, auth)</code></p>
+
+<p>Sends a POST request to the given url. Returns a response.</p>
+
+<table>
+<thead>
+<tr>
+<th>param</th>
+<th>type</th>
+<th>optional?</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>url</td>
+<td>string url</td>
+<td>no</td>
+</tr>
+
+<tr>
+<td>params</td>
+<td>dictionary of param names to param values</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>headers</td>
+<td>dictionary of header names to header values</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>data</td>
+<td>dictionary</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>jsondata</td>
+<td>dictionary or list</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>auth</td>
+<td>string</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
 
 <p><a id="put"></a></p>
 
 <h4 id="put">put</h4>
 
-<p><code>http.put(url, params, headers, data, jsondata, auth)</code> - Sends a PUT request to the given url. Returns a response.
-  <code>url</code>: string
-  <code>params</code>: dictionary of param names to param values
-  <code>headers</code>: dictionary of header names to header values
-  <code>data</code>: dictionary
-  <code>jsondata</code>: dictionary or list
-  <code>auth</code>: string</p>
+<p><code>http.put(url, params, headers, data, jsondata, auth)</code></p>
+
+<p>Sends a PUT request to the given url. Returns a response.</p>
+
+<table>
+<thead>
+<tr>
+<th>param</th>
+<th>type</th>
+<th>optional?</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>url</td>
+<td>string url</td>
+<td>no</td>
+</tr>
+
+<tr>
+<td>params</td>
+<td>dictionary of param names to param values</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>headers</td>
+<td>dictionary of header names to header values</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>data</td>
+<td>dictionary</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>jsondata</td>
+<td>dictionary or list</td>
+<td>yes</td>
+</tr>
+
+<tr>
+<td>auth</td>
+<td>string</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
 
 <hr />
 
-<h2 id="response-1">response</h2>
+<h2 id="response">response</h2>
 
 <p><a id="content"></a></p>
 
 <h4 id="content">content</h4>
 
-<p><code>response.content()</code> - returns the raw data as a string. This string can be passed to <code>html(content_string)</code> to return a document that can be parsed by the <code>html</code> functions.</p>
+<p><code>response.content()</code></p>
+
+<p>returns the raw data as a string. This string can be passed to <code>html(content_string)</code> to return a document that can be parsed by the <code>html</code> functions.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;http.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;http&#34;</span><span class="p">)</span>
 <span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
 
@@ -818,47 +1086,90 @@
 
 <h4 id="encoding">encoding</h4>
 
-<p><code>response.encoding</code> - a string, the different forms of encoding used in the response.</p>
+<p><code>response.encoding</code></p>
+
+<p>a string, the different forms of encoding used in the response.</p>
 
 <p><a id="headers"></a></p>
 
 <h4 id="headers">headers</h4>
 
-<p><code>response.headers</code> - a dictionary of the response headers.</p>
+<p><code>response.headers</code></p>
+
+<p>a dictionary of the response headers.</p>
 
 <p><a id="json"></a></p>
 
 <h4 id="json">json</h4>
 
-<p><code>response.json()</code> - attempts the response body as json.</p>
+<p><code>response.json()</code></p>
+
+<p>attempts the response body as json.</p>
 
 <p><a id="status_code"></a></p>
 
 <h4 id="status-code">status_code</h4>
 
-<p><code>response.status_code</code> - an integer, the status code of the response.</p>
+<p><code>response.status_code</code></p>
+
+<p>an integer, the status code of the response.</p>
 
 <p><a id="text"></a></p>
 
 <h4 id="text-1">text</h4>
 
-<p><code>response.text()</code> - returns the raw data as a string. This string can be passed to <code>html(text)</code> to return a document that can be parsed by the <code>html</code> functions.</p>
+<p><code>response.text()</code></p>
+
+<p>returns the raw data as a string. This string can be passed to <code>html(text)</code> to return a document that can be parsed by the <code>html</code> functions.</p>
 
 <p><a id="url"></a></p>
 
 <h4 id="url">url</h4>
 
-<p><code>response.url</code> -  a string representation of the url</p>
+<p><code>response.url</code></p>
+
+<p>a string representation of the url</p>
 
 <hr />
 
-<h2 id="time-2">time</h2>
+<p><a id="time_module"></a></p>
+
+<h2 id="time-module">time module</h2>
+
+<p><em>you can access these methods from the <code>time</code> module:</em></p>
+
+<ul>
+<li><a href="#time">time.time</a></li>
+<li><a href="#duration">time.duration</a><br /></li>
+<li><a href="#location">time.location</a><br /></li>
+<li><a href="#now">time.now</a><br /></li>
+</ul>
+
+<h5 id="time-object">time object</h5>
+
+<p><em>you can access these methods from a <code>time</code> object:</em></p>
+
+<ul>
+<li><a href="#year">year</a><br /></li>
+<li><a href="#month">month</a><br /></li>
+<li><a href="#day">day</a><br /></li>
+<li><a href="#hour">hour</a><br /></li>
+<li><a href="#minute">minute</a><br /></li>
+<li><a href="#second">second</a><br /></li>
+<li><a href="#nanosecond">nanosecond</a><br /></li>
+</ul>
+
+<hr />
+
+<h2 id="function-definitions-4">Function Definitions:</h2>
 
 <p><a id="time"></a></p>
 
-<h4 id="time-3">time</h4>
+<h4 id="time">time</h4>
 
-<p><code>time.time(time_string, format_string, location_string)</code> - converts a time string, that is in format to a time object. Returns a time object. If no format or location are given, it assumes you mean to to use RFC3339: &ldquo;2006-01-02T15:04:05Z07:00&rdquo;. To learn more about format strings checkout to <a href="https://golang.org/src/time/format.go">time/format</a> golang page, or this <a href="https://flaviocopes.com/go-date-time-format/">helpful blog post</a> from flaviocopes</p>
+<p><code>time.time(time_string, format_string, location_string)</code></p>
+
+<p>converts a time string, that is in format to a time object. Returns a time object. If no format or location are given, it assumes you mean to to use RFC3339: &ldquo;2006-01-02T15:04:05Z07:00&rdquo;. To learn more about format strings checkout to <a href="https://golang.org/src/time/format.go">time/format</a> golang page, or this <a href="https://flaviocopes.com/go-date-time-format/">helpful blog post</a> from flaviocopes</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -884,7 +1195,9 @@
 
 <h4 id="duration">duration</h4>
 
-<p><code>time.duration(duration_string)</code> - converts a string in &lsquo;00h0m0s&rsquo; format to a duration object, returns a duration.</p>
+<p><code>time.duration(duration_string)</code></p>
+
+<p>converts a string in &lsquo;00h0m0s&rsquo; format to a duration object, returns a duration.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -898,7 +1211,9 @@
   <span class="k">print</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span> <span class="c1"># prints &#34;1s&#34;</span>
   <span class="c1">#</span>
   <span class="k">print</span><span class="p">(</span><span class="n">d1</span> <span class="o">+</span> <span class="n">d2</span><span class="p">)</span> <span class="c1"># prints &#34;451h24m1s&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">d1</span> <span class="o">-</span> <span class="n">d2</span><span class="p">)</span> <span class="c1"># prints &#34;451h23m59s&#34;</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">d1</span>
+
+  <span class="n">d2</span><span class="p">)</span> <span class="c1"># prints &#34;451h23m59s&#34;</span>
   <span class="c1">#</span>
   <span class="c1"># create another duration, same length as d2</span>
   <span class="c1">#</span>
@@ -913,14 +1228,18 @@
   <span class="n">halloween</span> <span class="o">=</span> <span class="s2">&#34;2018-10-31T00:00:00Z&#34;</span>
   <span class="n">f</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">oct_1</span><span class="p">)</span>
   <span class="n">h</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">halloween</span><span class="p">)</span>
-  <span class="n">duration</span> <span class="o">=</span> <span class="n">h</span> <span class="o">-</span> <span class="n">f</span> <span class="c1"># subtracting two time values gives you a duration</span>
+  <span class="n">duration</span> <span class="o">=</span> <span class="n">h</span>
+
+  <span class="n">f</span> <span class="c1"># subtracting two time values gives you a duration</span>
   <span class="k">print</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span> <span class="c1"># prints &#34;720h0m0s&#34;</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="location"></a></p>
 
 <h4 id="location">location</h4>
 
-<p><code>time.location(location_string)</code> - loads location based on string. Empty string returns &ldquo;UTC&rdquo;</p>
+<p><code>time.location(location_string)</code></p>
+
+<p>loads location based on string. Empty string returns &ldquo;UTC&rdquo;</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -931,7 +1250,9 @@
 
 <h4 id="now">now</h4>
 
-<p><code>time.now()</code> - returns the current time</p>
+<p><code>time.now()</code></p>
+
+<p>returns the current time</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -945,53 +1266,83 @@
 
 <h4 id="year">year</h4>
 
-<p><code>t.year()</code> - returns year as int</p>
+<p><code>t.year()</code></p>
+
+<p>returns year as int</p>
 
 <p><a id="month"></a></p>
 
 <h4 id="month">month</h4>
 
-<p><code>t.month()</code> - returns month as int</p>
+<p><code>t.month()</code></p>
+
+<p>returns month as int</p>
 
 <p><a id="day"></a></p>
 
 <h4 id="day">day</h4>
 
-<p><code>t.day()</code> - returns day as int</p>
+<p><code>t.day()</code></p>
+
+<p>returns day as int</p>
 
 <p><a id="hour"></a></p>
 
 <h4 id="hour">hour</h4>
 
-<p><code>t.hour()</code> - returns hour as int</p>
+<p><code>t.hour()</code></p>
+
+<p>returns hour as int</p>
 
 <p><a id="minute"></a></p>
 
 <h4 id="minute">minute</h4>
 
-<p><code>t.minute()</code> - returns minute as int</p>
+<p><code>t.minute()</code></p>
+
+<p>returns minute as int</p>
 
 <p><a id="second"></a></p>
 
 <h4 id="second">second</h4>
 
-<p><code>t.second()</code> - returns second as int</p>
+<p><code>t.second()</code></p>
+
+<p>returns second as int</p>
 
 <p><a id="nanosecond"></a></p>
 
 <h4 id="nanosecond">nanosecond</h4>
 
-<p><code>t.nanosecond()</code> - returns nanosecond as int</p>
+<p><code>t.nanosecond()</code></p>
+
+<p>returns nanosecond as int</p>
 
 <hr />
 
-<h2 id="xlsx-1">xlsx</h2>
+<p><a id="xlsx_module"></a></p>
+
+<h2 id="xlsx-module">xlsx module</h2>
+
+<p><em>you can access these methods from the <code>xlsx</code> module. <code>xlsx</code> can only be used in the <code>download</code> function:</em></p>
+
+<ul>
+<li><a href="#get_url">xlsx.get_url</a></li>
+<li><a href="#get_sheets">get_sheets</a></li>
+<li><a href="#get_rows">get_rows</a></li>
+</ul>
+
+<hr />
+
+<h2 id="function-definitions-5">Function Definitions:</h2>
 
 <p><a id="get_url"></a></p>
 
 <h4 id="xlsx-get-url">xlsx.get_url</h4>
 
-<p><code>xlsx.get_url(url)</code> - makes a get request of the url, attempts to return the body as a xlsx file. Can only be used in the <code>download</code> function</p>
+<p><code>xlsx.get_url(url)</code></p>
+
+<p>makes a get request of the url, attempts to return the body as a xlsx file. Can only be used in the <code>download</code> function</p>
 
 <p>This example shows how to use <code>get_url</code>, <code>get_sheets</code>, and <code>get_rows</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;xlsx.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;xlsx&#34;</span><span class="p">)</span>
@@ -1019,13 +1370,17 @@
 
 <h4 id="get-sheets">get_sheets</h4>
 
-<p><code>x.get_sheets()</code> - returns a map of ints to sheet names, indexing starts with 1. See above <code>get_url</code> example for use.</p>
+<p><code>x.get_sheets()</code></p>
+
+<p>returns a map of ints to sheet names, indexing starts with 1. See above <code>get_url</code> example for use.</p>
 
 <p><a id="get_rows"></a></p>
 
 <h4 id="get-rows">get_rows</h4>
 
-<p><code>x.get_rows(sheet_name)</code> - returns a 2 dimentional list of data from the specified sheet. See above <code>get_url</code> example for use</p>
+<p><code>x.get_rows(sheet_name)</code></p>
+
+<p>returns a 2 dimentional list of data from the specified sheet. See above <code>get_url</code> example for use</p>
 
     </div>
   </section>
