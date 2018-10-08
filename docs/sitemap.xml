@@ -149,6 +149,18 @@
   </url>
   
   <url>
+    <loc>https://qri.io/tags/concepts/</loc>
+    <lastmod>2017-10-30T00:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/tags/content-addressing/</loc>
+    <lastmod>2017-10-30T00:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://qri.io/legal/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
     <priority>0</priority>
@@ -162,6 +174,7 @@
   
   <url>
     <loc>https://qri.io/tags/</loc>
+    <lastmod>2017-10-30T00:00:00-04:00</lastmod>
     <priority>0</priority>
   </url>
   

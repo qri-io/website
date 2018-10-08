@@ -11,6 +11,9 @@ pygmentsUseClassic: true
 pygmentsuseclasses: true
 menu:
   main:
+    - name: "Blog"
+      url: "/blog/"
+      weight: -100
     - name: "Docs"
       weight: -100
       url: "/docs/"
@@ -67,3 +70,6 @@ params:
   # Lang = "en" 
   # LinkedIn = "//linkedin.com/in/you"
   Twitter: "qri_io"
+taxonomies:
+  tag: "tags"
+  category: "categories"

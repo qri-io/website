@@ -1,24 +1,21 @@
+
 {{ define "title"}} {{ .Title}} {{end}}
-{{ define "header"}} {{ partial "header" .}} {{end}}
+{{ define "header"}} {{ partial "header-light" .}} {{end}}
 
-{{ define "main"}}
-<div id="main" class="docs single">
-<div class="push-center" itemscope itemtype="http://schema.org/BlogPosting">
-    {{ template "_internal/schema.html" . }}
-<div id="hero">
-    <h1 itemprop="headline">  {{.Title}}</h1>
-    {{ if .Description }}
-<blockquote itemprop="description">{{ .Description }}</blockquote>
-{{ end }}
-<time class="post-time">{{ partial "post/meta" . }}</time>
+{{ define "main" }}
+<div id="blog" class="page">
+  <header>
+    <div class="wrap">
+      <h1 class="title">{{.Title}}</h1>
+      <p class="info"><span class="date">{{ dateFormat "Jan 2, 2006" .Date }}</span> {{ range .Params.tags }}<span class="tag">{{ . }}</span>{{ end }}</p>
+    </div>
+  </header>
+  <section class="content">
+    <div class="wrap">
+        {{ .Content }}
+    </div>
+  </section>
 </div>
-<div id="post-box">
-<div id="post" itemprop="articleBody">
-    
-    {{.Content | safeHTML}}
+{{ end }} 
 
-</div>
-</div>
-</div>
-{{ end }}
-{{ define "footer"}} {{ partial "footer.html" .}} {{ end }}
+{{ define "footer" }} {{ partial "footer" . }} {{ end }}
