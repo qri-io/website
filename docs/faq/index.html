@@ -6,9 +6,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> faq </title>
+  <title> Frequently-Asked Questions </title>
 
   
+  <meta name="description" content="we try to answer frequent questions here, tweet @qri_io if you think something&#39;s missing!"> 
   
   
   
@@ -20,14 +21,11 @@
   <meta name="author" content="qri">
 
 
-  <meta property="og:title" content="faq" />
-<meta property="og:description" content="Is qri a blockchain? No.
-What’s a dataset? Datasets are a data structure that is broken up in a way that allows us to link changes between parts of that data structure on a content addressed file system, preserving links in certain ways. With a dataset we have the underlying data, its structure which contains the structure &amp; schema of the data.
-All datasets have several parts:
- Body - eg: a csv file Metadata - human-oriented description of the data, eg: title, author, date created, category Structure - machine-oriented description of the data, eg: “the third column in this table is a date”  What does Version Control Mean?" />
+  <meta property="og:title" content="Frequently-Asked Questions" />
+<meta property="og:description" content="we try to answer frequent questions here, tweet @qri_io if you think something&#39;s missing!" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/faq/" /><meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
-<meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
+<meta property="og:url" content="https://qri.io/faq/" /><meta property="article:published_time" content="2018-10-08T00:00:00-04:00"/>
+<meta property="article:modified_time" content="2018-10-08T00:00:00-04:00"/>
   
 
 
@@ -75,7 +73,7 @@ All datasets have several parts:
 
 
 <body class="page-kube page " >
-  <header> <div class="show_sm">
+  <header> <div class="show_sm light">
   <div id="nav_toggle_box">
     <div id="nav_toggle_brand">
       <a href="../">qri</a>
@@ -83,7 +81,7 @@ All datasets have several parts:
   </div>
 </div>
 
-<div id="main_nav" class="hide_sm">
+<div id="main_nav" class="hide_sm light">
   <div class="wrap">
     <div class="logotype">
       <a href="../" title="home">qri</a>
@@ -102,19 +100,29 @@ All datasets have several parts:
 </div>
  </header>
   <main>
-<div class="single">
-  
+<div id="blog" class="page">
+  <header>
+    <div class="wrap">
+      <h1 class="title">Frequently-Asked Questions</h1>
+      <i>last updated: Oct 8, 2018</i>
+      <p>we try to answer frequent questions here, tweet @qri_io if you think something&#39;s missing!</p>
+      <hr />
+    </div>
+  </header>
+  <section class="content">
+    <div class="wrap">
+      
 
 <h4 id="is-qri-a-blockchain">Is qri a blockchain?</h4>
 
-<p>No.</p>
+<p>Nope.</p>
 
-<h2 id="what-s-a-dataset">What’s a dataset?</h2>
+<h4 id="what-s-a-dataset">What’s a dataset?</h4>
 
 <p>Datasets are a data structure that is broken up in a way that allows us to link changes between parts of that data structure on a content addressed file system, preserving links in certain ways.
 With a dataset we have the underlying data, its structure which contains the structure &amp; schema of the data.</p>
 
-<p>All datasets have several parts:</p>
+<p>All datasets have at most 6 components. The most important ones are:</p>
 
 <ul>
 <li>Body - eg: a csv file</li>
@@ -122,53 +130,57 @@ With a dataset we have the underlying data, its structure which contains the str
 <li>Structure - machine-oriented description of the data, eg: “the third column in this table is a date”</li>
 </ul>
 
-<h2 id="what-does-version-control-mean">What does Version Control Mean?</h2>
+<h4 id="what-does-version-control-mean">What does Version Control Mean?</h4>
 
 <p>Like git or github (if you&rsquo;re familiar with them), Qri keeps snapshots of datasets at different (chosen) points in time, allowing you to see how a dataset has evolved.</p>
 
-<h2 id="where-does-my-data-live">Where Does My Data Live?</h2>
+<h4 id="where-does-my-data-live">Where Does My Data Live?</h4>
 
 <p>Data on qri lives <em>inside an IPFS repository.</em> I know, that sounds a little scary. Cutting to the chase, if you want to get data out of qri, check out qri export. If you want to get data <em>into</em> qri, checkout qri add.</p>
 
 <p>The longer story is the data you add to qri lives on your computer, and is made available on the distributed web.</p>
 
-<h2 id="what-kinds-of-data-does-qri-support">What kinds of data does qri support?</h2>
+<h4 id="what-kinds-of-data-does-qri-support">What kinds of data does qri support?</h4>
 
 <p>qri works with CSV &amp; JSON files. you can put all kinds of data in CSV &amp; JSON files.</p>
 
-<h2 id="who-can-see-my-data">Who Can See My Data?</h2>
+<h4 id="who-can-see-my-data">Who Can See My Data?</h4>
 
 <p>Currently <strong>all data on qri is public.</strong> We’re working on support for both encrypted data and private networks. You can track the progress of encryption and private networks feel free to +1 any of those comments to let us know you want them faster.</p>
 
-<h2 id="how-much-does-it-cost">How much does it cost?</h2>
+<h4 id="how-much-does-it-cost">How much does it cost?</h4>
 
 <p>It’s free! Really! Qri is free forever, all you need to bring is your own hard drive.</p>
 
-<h2 id="how-much-data-can-you-store-in-qri">How much Data can you store in Qri?</h2>
+<h4 id="how-much-data-can-you-store-in-qri">How much Data can you store in Qri?</h4>
 
 <p>As much as your hard drive(s) can hold.</p>
 
-<h2 id="can-i-upload-connect-data-directly-to-and-from-my-favorite-app">Can I upload / connect data directly to and from [my favorite app]?</h2>
+<h4 id="can-i-upload-connect-data-directly-to-and-from-my-favorite-app">Can I upload / connect data directly to and from [my favorite app]?</h4>
 
 <p>We plan to support apps and software popular among data folks like… Jupyter Notebook, R, and many others. Be sure to stay in the loop on updates and let us know which apps are most important to you.</p>
 
 <p>If you’re into writing libraries, qri comes with a command line client, JSON API, and RPC API intended for these exact purposes.</p>
 
-<h2 id="are-you-open-source">Are you Open Source?</h2>
+<h4 id="are-you-open-source">Are you Open Source?</h4>
 
 <p>Oh we’re glad you asked. We’re <em>so</em> open source. Join the party over at <a href="https://github.com/qri-io">https://github.com/qri-io</a></p>
 
-<h2 id="how-do-you-make-money">How do you make money?</h2>
+<h4 id="how-do-you-make-money">How do you make money?</h4>
 
 <p>If you want a private version of qri for your company, school, startup, teen pop band, hedge fund, whatever. Give us a call.</p>
 
+    </div>
+  </section>
 </div>
 </main>
-  <footer> 
-  <footer id="page_footer">
+  <footer><footer id="page_footer">
   <div class="wrap">
     <nav class="links">
       <div class="site_links">
+        <a href="../contact/">Contact</a>
+        <a href="../faq/">FAQ</a>
+        <a href="../blog/">Blog</a>
         <a href="../docs/">Docs</a>
         <a href="../download/">Download</a>
       </div>
@@ -181,8 +193,7 @@ With a dataset we have the underlying data, its structure which contains the str
       <p>&copy; 2018 qri, inc.</p>
     </div>
   </div>
-</footer> 
-</footer>
+</footer></footer>
 
 
   <script src="../js/kube.js" type="text/javascript">

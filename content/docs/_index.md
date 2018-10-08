@@ -10,9 +10,10 @@ section: docs
     <header>
       <h1>Docs</h1>
       <p><a href="https://twitter.com/sarah_edo/status/768179009263808512">or it didn't happen</a></p>
-    <div>
-      Need help using the Qri app? Head on over to our <a href="https://github.com/qri-io/frontend"><b>github</b></a> and create an <a href="https://github.com/qri-io/frontend/issues/new"><b>issue</b></a> describing your problem. If github is not your thing, you can also reach out to us directly on twitter at <a href="https://twitter.com/qri_io"><b>@qri_io</b></a>
-    </div>
+      <div>
+        Need help using the Qri app? Head on over to our <a href="https://github.com/qri-io/frontend"><b>github</b></a> and create an <a href="https://github.com/qri-io/frontend/issues/new"><b>issue</b></a> describing your problem. If github is not your thing, you can also reach out to us directly on twitter at <a href="https://twitter.com/qri_io"><b>@qri_io</b></a>
+        <p>We also run a <a href="https://discord.gg/etap8Gb"><b>Discord chat</b></a> for Qri-related conversations &amp; questions. Join up!</p>
+      </div>
     </header>
     <div class="sections">
       <a href="/docs/reference" class="section">

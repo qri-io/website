@@ -521,7 +521,7 @@ footer#page_footer {
 }
 
 #blog header .blobs {
-  background: center center no-repeat url('../img/blobs/blog_blobs_2.png');
+  background: center center no-repeat url('../img/blobs/blog_blobs.png');
   background-size: contain;
   position: fixed;
   right: -30px;
