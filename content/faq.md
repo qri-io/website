@@ -88,9 +88,7 @@ If you want a private version of qri for your company, school, startup, teen pop
 
 #### What's next for qri?
 
-As an open project, we do our best to share what we're up to on our blog, via twitter, and through our github. We also address questions/issues raised by our community of users on Discord. We encourage you to follow us
-
-We're always looking for users to try qri out and tell us how to make it better. We hope to hear from you!
+As an open project, we do our best to share what we're up to on our blog, via twitter, and through our github. We also address questions/issues raised by our community of users on Discord. If what you've learned so far excites you, we encourage you to follow us and even consider contributing.
 
 
 
