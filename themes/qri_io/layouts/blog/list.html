@@ -1,0 +1,24 @@
+{{ define "title"}} {{ .Title}} {{end}}
+{{ define "header"}} {{ partial "header-light" .}} {{end}}
+
+{{ define "main" }}
+<div id="blog" class="index">
+  <header>
+    <div class="wrap">
+      <div class="blobs"></div>
+      <h1 class="title">{{.Title}}</h1>
+      <p>{{.Description}}</p>
+    </div>
+  </header>
+  <section class="posts">
+    <div class="wrap">
+    {{ range .Paginator.Pages.ByWeight }}
+      {{ partial "blog/post-summary" . }}
+    {{ end }}
+    </div>
+  </section>
+<!-- <section>{{ partial "pagination" .}}</section> -->
+</div>
+{{ end }} 
+
+{{ define "footer" }}{{ end }}

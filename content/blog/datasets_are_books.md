@@ -2,6 +2,9 @@
 title: "Datasets Are Books, Not Houses"
 date: 2017-10-30T00:00:00-04:00
 draft: false
+tags:
+- concepts
+- content-addressing
 author: b5
 description: What's content addressing? What does it have to do with datasets? Why am I on this site in the first place? Read on, dear reader. Read on.
 ---

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Content Addressing on qri</title>
+    <link>https://qri.io/tags/content-addressing/</link>
+    <description>Recent content in Content Addressing on qri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Oct 2017 00:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://qri.io/tags/content-addressing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Datasets Are Books, Not Houses</title>
+      <link>https://qri.io/blog/datasets_are_books/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/blog/datasets_are_books/</guid>
+      <description>The world of linked data is built on shaky foundations that prevent a true data commons from emerging. The problem isn’t with the data, but with the way data is linked. Specifically, the way links are addressed.
+An address is a uniform, shorthand way of referring to things. Geographic addresses are an obvious example. 1600 Pennsylvania Ave. is the address of the White House. 268 Elizabeth St. is the address of my childhood home.</description>
+    </item>
+    
+  </channel>
+</rss>

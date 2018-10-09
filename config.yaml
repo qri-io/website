@@ -11,6 +11,9 @@ pygmentsUseClassic: true
 pygmentsuseclasses: true
 menu:
   main:
+    - name: "Blog"
+      url: "/blog/"
+      weight: -100
     - name: "Docs"
       weight: -100
       url: "/docs/"
@@ -27,6 +30,8 @@ menu:
   concepts:
     - name: overview
       url: /docs/concepts/overview
+    - name: distributed storage
+      url: /docs/concepts/distributed-storage
     - name: content addressing
       url: /docs/concepts/content-addressing
     - name: dataset names
@@ -67,3 +72,6 @@ params:
   # Lang = "en" 
   # LinkedIn = "//linkedin.com/in/you"
   Twitter: "qri_io"
+taxonomies:
+  tag: "tags"
+  category: "categories"

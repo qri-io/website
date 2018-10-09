@@ -12,6 +12,27 @@
     
     
     <item>
+      <title>Contact Us  </title>
+      <link>https://qri.io/contact/</link>
+      <pubDate>Mon, 08 Oct 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/contact/</guid>
+      <description>twitter: @qri_io
+email: hello [at] qri.io</description>
+    </item>
+    
+    <item>
+      <title>Frequently-Asked Questions</title>
+      <link>https://qri.io/faq/</link>
+      <pubDate>Mon, 08 Oct 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/faq/</guid>
+      <description>Is qri a blockchain? Nope.
+What’s a dataset? Datasets are a data structure that is broken up in a way that allows us to link changes between parts of that data structure on a content addressed file system, preserving links in certain ways. With a dataset we have the underlying data, its structure which contains the structure &amp;amp; schema of the data.
+All datasets have at most 6 components. The most important ones are:</description>
+    </item>
+    
+    <item>
       <title>Python quickstart</title>
       <link>https://qri.io/docs/tutorials/python_quickstart/</link>
       <pubDate>Tue, 21 Aug 2018 00:00:00 -0400</pubDate>
@@ -44,6 +65,15 @@ The whole tutorial is divided into six sections.</description>
     </item>
     
     <item>
+      <title>Distributed Storage</title>
+      <link>https://qri.io/docs/concepts/distributed-storage/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/distributed-storage/</guid>
+      <description>Going Distributed Makes Data Free &amp;amp; Dependable Qri doesn’t need a central server to work, instead it&amp;rsquo;s built in a distributed, peer-2-peer architecture that moves data by connecting computers directly. By connecting computers directly, we make storing data on Qri free, because datasets don&amp;rsquo;t have to be stored in the cloud. Your “payment” is the hard drive space to store the data you want to keep. This frees up datasets to get as big as they need to be, and stored wherever makes the most sense.</description>
+    </item>
+    
+    <item>
       <title>Skylark Transformations</title>
       <link>https://qri.io/docs/tutorials/skylark_transformations/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
@@ -62,18 +92,6 @@ The whole tutorial is divided into six sections.</description>
     </item>
     
     <item>
-      <title>company</title>
-      <link>https://qri.io/company/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/company/</guid>
-      <description>Qri is a 5-person startup lucky enough to work with a wonderful community of friends. We do work in Brooklyn, NY.
-We are:
-Brendan, the founder. Kasey, the dev. Dustin, the dev. Tom, the data. Rico, the ops.
-One day we&amp;rsquo;ll get around to writing a proper company description, but if you want to get a hold of us, feel free to email sparkle_pony_2000 at-cymbal qri.io</description>
-    </item>
-    
-    <item>
       <title>content-addressing</title>
       <link>https://qri.io/docs/concepts/content-addressing/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
@@ -89,18 +107,6 @@ One day we&amp;rsquo;ll get around to writing a proper company description, but 
       
       <guid>https://qri.io/docs/reference/dataset/</guid>
       <description>Dataset A Dataset is a document for describing &amp;amp; storing structured data. Dataset documents are designed to satisfy the FAIR principle of being Findable, Accessible, Interoperable, and Reusable, in relation to other dataset documents, and related-but-separate technologies such as data catalogs, HTTP API&amp;rsquo;s, and data package formats Datasets are designed to be stored and distributed on content-addressed (identify-by-hash) systems The dataset document definition is built from a research-first principle, valuing direct interoperability with existing standards over novel definitions or specifications.</description>
-    </item>
-    
-    <item>
-      <title>faq</title>
-      <link>https://qri.io/faq/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/faq/</guid>
-      <description>Is qri a blockchain? No.
-What’s a dataset? Datasets are a data structure that is broken up in a way that allows us to link changes between parts of that data structure on a content addressed file system, preserving links in certain ways. With a dataset we have the underlying data, its structure which contains the structure &amp;amp; schema of the data.
-All datasets have several parts:
- Body - eg: a csv file Metadata - human-oriented description of the data, eg: title, author, date created, category Structure - machine-oriented description of the data, eg: “the third column in this table is a date”  What does Version Control Mean?</description>
     </item>
     
     <item>
