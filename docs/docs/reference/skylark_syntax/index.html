@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.48-DEV" />
+  <meta name="generator" content="Hugo 0.44" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,8 +24,24 @@
   <meta property="og:title" content="starlark syntax" />
 <meta property="og:description" content="starlark transformations" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/reference/skylark_syntax/" /><meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+<meta property="og:url" content="https://qri.io/docs/reference/skylark_syntax/" />
+
+
+
+<meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+
 <meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
+
+
+
+
+
+
+
+
+
+
+
   
 
 
@@ -116,7 +132,7 @@
 
 <h1 id="starlark-syntax">Starlark Syntax</h1>
 
-<p>Qri (&ldquo;query&rdquo;) is about datasets. Transformions are repeatable scripts for generating a dataset. <a href="https://github.com/google/skylark/blob/master/doc/spec.md">Starlark</a> is a scripting langauge from Google that feels a lot like python. This package implements skylark as a <em>transformation syntax</em>. Starlark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</p>
+<p>Qri (&ldquo;query&rdquo;) is about datasets. Transformations are repeatable scripts for generating a dataset. <a href="https://github.com/google/skylark/blob/master/doc/spec.md">Starlark</a> is a scripting language from Google that feels a lot like python. This package implements skylark as a <em>transformation syntax</em>. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</p>
 
 <p>Typical examples of a starlark transformation include:</p>
 
@@ -167,7 +183,7 @@
 
 <p>The download function is always run before the transform function.</p>
 
-<p>The transform function will recieve the dataset returned from the download function.</p>
+<p>The transform function will receive the dataset returned from the download function.</p>
 
 <h4 id="def-transform-ds">def transform(ds):</h4>
 

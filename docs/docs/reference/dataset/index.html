@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.48-DEV" />
+  <meta name="generator" content="Hugo 0.44" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,8 +24,24 @@
   <meta property="og:title" content="dataset" />
 <meta property="og:description" content="dataset definition" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/reference/dataset/" /><meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+<meta property="og:url" content="https://qri.io/docs/reference/dataset/" />
+
+
+
+<meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+
 <meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
+
+
+
+
+
+
+
+
+
+
+
   
 
 
@@ -120,7 +136,7 @@
 <em>Findable, Accessible, Interoperable, and Reusable</em>, in relation to other dataset documents, and related-but-separate technologies such as data catalogs, HTTP API&rsquo;s, and data package formats Datasets are designed to be stored and distributed on content-addressed
 (identify-by-hash) systems The dataset document definition is built from a research-first principle, valuing direct interoperability with existing standards over novel definitions or specifications.</p>
 
-<p><em>The main implementation of dataset is avialable at <a href="https://github.com/qri-io/dataset">https://github.com/qri-io/dataset</a>. If you have any concerns or questions, We&rsquo;d be delighted if you filed an <a href="https://github.com/qri-io/dataset/issues">issue</a>.</em></p>
+<p><em>The main implementation of dataset is available at <a href="https://github.com/qri-io/dataset">https://github.com/qri-io/dataset</a>. If you have any concerns or questions, We&rsquo;d be delighted if you filed an <a href="https://github.com/qri-io/dataset/issues">issue</a>.</em></p>
 
 <hr />
 
@@ -262,7 +278,7 @@ Well-defined Meta should aid in making datasets Findable by describing a dataset
 
 <p>All of the meta fields below must be well-formed, valid values. However: <em>The Meta section of a dataset supports arbitrary metadata</em>. This means you can place additional values not listed here &amp; qri will store them as-is, without any additional validation.</p>
 
-<p>Another important note here: <em>qri software doesn&rsquo;t leverage things like identifier, downloadPath, homePath, etc.</em>. Qri considers all fields here <em>descriptive</em> metadata, as opposted to <em>structural</em> metadata. In practice this means qri User interfaces may leverage the meta component for the purposes of <em>correlation</em> and <em>display</em>. Information stored in the meta section is <em>not</em> intended for use by machines to interpret the dataset. For example, setting the <code>identifier</code> is of no significance to qri, it&rsquo;s included here for interoperability with other specifications like <a href="https://www.w3.org/TR/vocab-dcat/#Property:dataset_identifier">DCAT</a></p>
+<p>Another important note here: <em>qri software doesn&rsquo;t leverage things like identifier, downloadPath, homePath, etc.</em>. Qri considers all fields here <em>descriptive</em> metadata, as opposed to <em>structural</em> metadata. In practice this means qri User interfaces may leverage the meta component for the purposes of <em>correlation</em> and <em>display</em>. Information stored in the meta section is <em>not</em> intended for use by machines to interpret the dataset. For example, setting the <code>identifier</code> is of no significance to qri, it&rsquo;s included here for interoperability with other specifications like <a href="https://www.w3.org/TR/vocab-dcat/#Property:dataset_identifier">DCAT</a></p>
 
 <p><em>meta fields:</em></p>
 
@@ -321,7 +337,7 @@ Well-defined Meta should aid in making datasets Findable by describing a dataset
 <tr>
 <td><code>identifier</code></td>
 <td><code>string</code></td>
-<td>identifer for the dataset</td>
+<td>identifier for the dataset</td>
 </tr>
 
 <tr>
@@ -386,7 +402,7 @@ Well-defined Meta should aid in making datasets Findable by describing a dataset
 <p>Structure defines the characteristics of a dataset document necessary for a machine to interpret the dataset body.
 Structure fields are things like the encoding data format (JSON,CSV,etc.), length of the dataset body in bytes, stored in a rigid form intended for machine use. A well defined structure &amp; accompanying software should allow the end user to spend more time focusing on the data itself.</p>
 
-<p>Two dataset documents that both have a defined structure will have some degree of natural interoperability, depending first on the amount of detail provided in a dataset&rsquo;s structure, and then by the natural comparibilty of the datasets.</p>
+<p>Two dataset documents that both have a defined structure will have some degree of natural interoperability, depending first on the amount of detail provided in a dataset&rsquo;s structure, and then by the natural comparability of the datasets.</p>
 
 <p><em>structure fields:</em></p>
 
@@ -485,7 +501,7 @@ Ideally, transforms should contain all the machine-necessary bits to determinist
 <tr>
 <td><code>syntax</code></td>
 <td><code>string</code></td>
-<td>langauge this transform is written in. Only &ldquo;skylark&rdquo; is currently supported</td>
+<td>language this transform is written in. Only &ldquo;skylark&rdquo; is currently supported</td>
 </tr>
 
 <tr>
@@ -535,7 +551,7 @@ Ideally, transforms should contain all the machine-necessary bits to determinist
 <tr>
 <td><code>scriptPath</code></td>
 <td><code>string</code></td>
-<td>location of script that generates the vizualization</td>
+<td>location of script that generates the visualization</td>
 </tr>
 </tbody>
 </table>
