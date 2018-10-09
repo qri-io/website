@@ -161,7 +161,7 @@ def transform(ds):
 
 <a id="dataset_object"></a>
 ## dataset object - ds
-  _you can access these methods from the `dataset` object. A dataset object gets passed into and returned from the `transform` and `download` functions, usually refered to as `ds`_
+  _you can access these methods from the `dataset` object. A dataset object gets passed into and returned from the `transform` and `download` functions, usually referred to as `ds`_
 
 * [set_meta](#set_meta)
 * [set_schema](#set_schema)

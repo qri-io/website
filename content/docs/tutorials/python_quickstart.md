@@ -53,7 +53,7 @@ first  we import qri
 ```python
 import qri
 ```
-to wee what datasets we have in our repo, we use `qri.list_ds`
+to see what datasets we have in our repo, we use `qri.list_ds`
 ```python
 qri.list_ds()
 ```
