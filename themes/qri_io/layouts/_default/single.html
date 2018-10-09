@@ -5,6 +5,8 @@
   {{ .Content }}
 </div>
 {{ end }}
+
 {{ define "footer" }} 
+  {{ partial "mailing-list-signup" . }} 
   {{ partial "footer" . }} 
 {{ end }}

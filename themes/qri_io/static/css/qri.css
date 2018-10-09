@@ -565,3 +565,27 @@ footer#page_footer {
 #blog.page .content { margin-bottom: 200px; }
 #blog.page .content p { line-height: 1.7em; }
 #blog.page .diagram { max-width: 400px; margin: 20px auto; }
+
+#mailing-list-signup {
+  padding-top: 40px;
+  padding-bottom: 80px;
+  background: #efefef;
+}
+
+#mailing-list-signup .title { margin-bottom: 0; }
+#mailing-list-signup .description { margin-top: 6px; }
+
+#mailing-list-signup #mce-EMAIL {
+  font-size: 20px;
+  border-radius: 3px;
+  padding: 9px 8px;
+  margin: 5px 5px 15px 0;
+  border-style: none;
+}
+
+#mailing-list-signup #mc-embedded-subscribe {
+  font-size: 17px;
+  border-radius: 3px;
+  margin: 3px 0 15px 5px;
+  border: none;
+}

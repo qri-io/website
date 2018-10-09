@@ -18,4 +18,7 @@
 </div>
 {{ end }} 
 
-{{ define "footer" }} {{ partial "footer" . }} {{ end }}
+{{ define "footer" }}
+    {{ partial "mailing-list-signup" . }}
+    {{ partial "footer" . }}
+{{ end }}

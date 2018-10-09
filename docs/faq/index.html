@@ -125,16 +125,25 @@ With a dataset we have the underlying data, its structure which contains the str
 <p>All datasets have at most 6 components. The most important ones are:</p>
 
 <ul>
-<li>Body - eg: a csv file</li>
-<li>Metadata - human-oriented description of the data, eg: title, author, date created, category</li>
-<li>Structure - machine-oriented description of the data, eg: “the third column in this table is a date”</li>
+<li>Body - The ‘body’ is what most people might call the ‘data’ itself. It’s the rows or columns that organize records, or observations — the underlying content within the cells of a table, eg: a csv file.</li>
+<li>Metadata - Human-oriented description of the data, eg: title, author, date created, category. Metadata describes or contextualizes the ‘body’.  Metadata includes everything from the title, the source, the author(s), publication date, notes, methodology and on and on. We’ve based our metadata fields on the DCAT specification.</li>
+<li>Structure - Machine-oriented description of the data. A dataset’s structure defines what kinds of data live inside the body - numbers (integers, decimals), strings, arrays, etc. eg: “the third column in this table is a date.”</li>
+<li>For more on the other components, see our handy, if super dense Docs section: <a href="https://qri.io/docs/">https://qri.io/docs/</a></li>
 </ul>
 
-<h4 id="what-does-version-control-mean">What does Version Control Mean?</h4>
+<h4 id="what-does-version-control-mean">What does version control mean?</h4>
 
 <p>Like git or github (if you&rsquo;re familiar with them), Qri keeps snapshots of datasets at different (chosen) points in time, allowing you to see how a dataset has evolved.</p>
 
-<h4 id="where-does-my-data-live">Where Does My Data Live?</h4>
+<p>We’re hoping to do for datasets what Github did for open-source software. Qri provides a reliable way for peers to share datasets publicly or with select peers, and allows users to find, edit, and manage versions of whatever datasets they find or publish to the network. Qri tracks all aspects of a dataset’s changes, including metadata, authors, and the data itself. All datasets conform to schema standards so the network of files can interoperate.</p>
+
+<h4 id="what-s-the-main-value-users-can-get-out-of-using-qri">What&rsquo;s the main value users can get out of using qri?</h4>
+
+<p>Trust. Trust in both a dataset&rsquo;s provenance (source and authenticity - a.k.a. where it came from) and evolution (version control - a.k.a. what, if anything, has been done to it e.g. cleaning, transformations).</p>
+
+<p>If we promote trust and confidence in these areas, users can build on each others&rsquo; work (and prevent duplicative work), ask new and better questions, and unearth new insights from the mountains of data we generate and work on together.</p>
+
+<h4 id="where-does-my-data-live">Where does my data live?</h4>
 
 <p>Data on qri lives <em>inside an IPFS repository.</em> I know, that sounds a little scary. Cutting to the chase, if you want to get data out of qri, check out qri export. If you want to get data <em>into</em> qri, checkout qri add.</p>
 
@@ -142,9 +151,9 @@ With a dataset we have the underlying data, its structure which contains the str
 
 <h4 id="what-kinds-of-data-does-qri-support">What kinds of data does qri support?</h4>
 
-<p>qri works with CSV &amp; JSON files. you can put all kinds of data in CSV &amp; JSON files.</p>
+<p>ALL kinds of data! We&rsquo;re rapidly building in support for every and any kind of data. Today, qri works best with CSV &amp; JSON files - you can put all kinds of data in CSV &amp; JSON files.</p>
 
-<h4 id="who-can-see-my-data">Who Can See My Data?</h4>
+<h4 id="who-can-see-my-data">Who can see my data?</h4>
 
 <p>Currently <strong>all data on qri is public.</strong> We’re working on support for both encrypted data and private networks. You can track the progress of encryption and private networks feel free to +1 any of those comments to let us know you want them faster.</p>
 
@@ -156,13 +165,21 @@ With a dataset we have the underlying data, its structure which contains the str
 
 <p>As much as your hard drive(s) can hold.</p>
 
+<h4 id="what-is-the-distributed-web-and-why-is-qri-built-on-it">What is the distributed web? And why is qri built on it?</h4>
+
+<p>The distributed web, or more accurately ’a’ distributed web is simply a linked network of ‘nodes’ or computers. It’s simply an internet that allows computers to talk to one another directly without going through a centralized server (often owned / managed by a single individual or organization). In qri’s case, our network is built on IPFS – the Interplanetary File System.</p>
+
+<p>We built qri on IPFS for two important reasons. The first is content addressing - the ability to identify content by WHAT it is, rather than WHERE it is (traditionally, its URL). If you visit a dataset stored on a URL today and again in 2 weeks, how can you identify what has changed? IPFS makes knowing what’s changed possible, and makes an incredible foundation for a data commons.</p>
+
+<p>Secondly, decentralized storage means that the amount/size of datasets qri can support is limited only by the hard drive space offered to the network by peers. Centralized storage (offered by a company or org) is always limited by the amount they can afford to provide. Qri isn’t limited by this.</p>
+
 <h4 id="can-i-upload-connect-data-directly-to-and-from-my-favorite-app">Can I upload / connect data directly to and from [my favorite app]?</h4>
 
 <p>We plan to support apps and software popular among data folks like… Jupyter Notebook, R, and many others. Be sure to stay in the loop on updates and let us know which apps are most important to you.</p>
 
 <p>If you’re into writing libraries, qri comes with a command line client, JSON API, and RPC API intended for these exact purposes.</p>
 
-<h4 id="are-you-open-source">Are you Open Source?</h4>
+<h4 id="are-you-open-source">Are you open source?</h4>
 
 <p>Oh we’re glad you asked. We’re <em>so</em> open source. Join the party over at <a href="https://github.com/qri-io">https://github.com/qri-io</a></p>
 
@@ -170,11 +187,35 @@ With a dataset we have the underlying data, its structure which contains the str
 
 <p>If you want a private version of qri for your company, school, startup, teen pop band, hedge fund, whatever. Give us a call.</p>
 
+<h4 id="what-s-next-for-qri">What&rsquo;s next for qri?</h4>
+
+<p>As an open project, we do our best to share what we&rsquo;re up to on our blog, via twitter, and through our github. We also address questions/issues raised by our community of users on Discord. If what you&rsquo;ve learned so far excites you, we encourage you to follow us and even consider contributing.</p>
+
     </div>
   </section>
 </div>
 </main>
-  <footer><footer id="page_footer">
+  <footer>
+  <div id="mailing-list-signup">
+  <form class="wrap" action="https://qri.us19.list-manage.com/subscribe/post?u=54a6a8c1171101850b8576277&amp;id=b41eb6f58e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+      <h2 class="title">Join our mailing list!</h2>
+      <p class="description"><i>At-most-once-a-month updates on project progress.</i></p>
+
+      <input type="email" value="" name="EMAIL" class="required email" placeholder="email@address.com" id="mce-EMAIL">
+      
+      <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+      <div style="position: absolute; left: -5000px;" aria-hidden="true">
+        <input type="text" name="b_54a6a8c1171101850b8576277_b41eb6f58e" tabindex="-1" value="">
+      </div>
+      <div id="mce-responses" class="clear">
+        <div class="response" id="mce-error-response" style="display:none"></div>
+        <div class="response" id="mce-success-response" style="display:none"></div>
+      </div>
+    </div>
+  </form>
+</div>
+  <footer id="page_footer">
   <div class="wrap">
     <nav class="links">
       <div class="site_links">
@@ -193,7 +234,8 @@ With a dataset we have the underlying data, its structure which contains the str
       <p>&copy; 2018 qri, inc.</p>
     </div>
   </div>
-</footer></footer>
+</footer>
+</footer>
 
 
   <script src="../js/kube.js" type="text/javascript">
