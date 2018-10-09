@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.48-DEV" />
+  <meta name="generator" content="Hugo 0.44" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,8 +24,24 @@
 <meta property="og:description" content="What is Qri (&ldquo;query&rdquo;)? Qri is a distributed dataset version control system built with peer-2-peer data exchange. Peers create datasets, which are stored in versions. Qri peers form a distributed network to exchange information about their datasets, which they transmit between each other over the distributed web.
 Datasets are recorded structured data according to a specification that dictates the purpose of each component piece of a dataset. By design, qri can only store datasets." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/concepts/overview/" /><meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+<meta property="og:url" content="https://qri.io/docs/concepts/overview/" />
+
+
+
+<meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+
 <meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
+
+
+
+
+
+
+
+
+
+
+
   
 
 
@@ -124,7 +140,7 @@ Datasets are recorded structured data according to a specification that dictates
 
 <p>Peers can opt into <em>registries</em> that reinforce the network, providing a social governance structure &amp; features like search &amp; high-uptime. Registries are built on a federated model where participating peers can communicate with registries for a layer of insulation against bad actors.</p>
 
-<p>Dataset <em>transformations</em> describe automated methods for producing a dataset that qri can execute. When a dataset specifies a transformation, the tranformation is excecuted once, and both the result &amp; transformation itself are embedded within the dataset version. Transformations must produce exactly one dataset as their result, and can depend on zero or more datasets during their execution. These dependent datasets are recorded to form a dependency graph which, when combined with versioning allow qri to automatically check for changes to dependant graphs and re-execute changes as required.</p>
+<p>Dataset <em>transformations</em> describe automated methods for producing a dataset that qri can execute. When a dataset specifies a transformation, the transformation is executed once, and both the result &amp; transformation itself are embedded within the dataset version. Transformations must produce exactly one dataset as their result, and can depend on zero or more datasets during their execution. These dependent datasets are recorded to form a dependency graph which, when combined with versioning allow qri to automatically check for changes to dependent graphs and re-execute changes as required.</p>
 
     </div>
   </section>

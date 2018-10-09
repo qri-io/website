@@ -38,7 +38,7 @@ We’ll do this by checking data transformations into version control. This is a
 All changes are attributed
 Every node on the network will require changes be cryptographically signed and timestamped. This is required to maintain the digital provenance of a dataset. If data is going to be used in a professional context, it must be auditable. Digital provenance is both tedious and tricky, so we’ll do it in the background for you. 
  
-We should say that the attribution model we’re working with allows for anonymous users, so while all changes must be attributed to someone, you always know who that person is. We’ll make this distinction clear, and you will be able to make judgement calls about weather or not to work with data based on your view of anonymity.
+We should say that the attribution model we’re working with allows for anonymous users, so while all changes must be attributed to someone, you always know who that person is. We’ll make this distinction clear, and you will be able to make judgment calls about weather or not to work with data based on your view of anonymity.
  
 Dramatically cut down on “link rot”
 Replacing URLS with content-addressed, immutable data means that the only way to “rot” a link is to make all copies of that data unavailable on the network.

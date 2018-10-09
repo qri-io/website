@@ -54,7 +54,7 @@
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/reference/skylark_syntax/</guid>
-      <description>Starlark Syntax Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. Transformions are repeatable scripts for generating a dataset. Starlark is a scripting langauge from Google that feels a lot like python. This package implements skylark as a transformation syntax. Starlark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
+      <description>Starlark Syntax Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. Transformations are repeatable scripts for generating a dataset. Starlark is a scripting language from Google that feels a lot like python. This package implements skylark as a transformation syntax. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
     </item>
     
     <item>

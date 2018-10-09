@@ -7,7 +7,7 @@ section: tutorials
 
 # Skylark Transformations
 
-Qri ("query") is about datasets. A _transformation_ is a repeatable script for generating a dataset. [Starlark](https://github.com/google/skylark/blob/master/doc/spec.md), formerly "Skylark",  is a scripting langauge from Google that feels a lot like python. This package implements skylark as a _transformation syntax_. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
+Qri ("query") is about datasets. A _transformation_ is a repeatable script for generating a dataset. [Starlark](https://github.com/google/skylark/blob/master/doc/spec.md), formerly "Skylark",  is a scripting language from Google that feels a lot like python. This package implements skylark as a _transformation syntax_. Skylark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
 
 Typical examples of a skylark transformation include:
 
@@ -17,8 +17,8 @@ Typical examples of a skylark transformation include:
 
 We're excited about skylark for a few reasons:
 * **python syntax** - _many_ people working in data science these days write python, we like that, skylark likes that. dope.
-* **deterministic subset of python** - unlike python, skylark removes properties that reduce introspection into code behaviour. things like `while` loops and recursive functions are ommitted, making it possible for qri to infer how a given transformation will behave.
-* **parallel execution** - thanks to this deterministic requirement (and lack of global interpreter lock) skylark functions can be executed in parallel. Combined with peer-2-peer networking, we're hoping to advance tranformations toward peer-driven distribed computing. More on that in the coming months.
+* **deterministic subset of python** - unlike python, skylark removes properties that reduce introspection into code behaviour. things like `while` loops and recursive functions are omitted, making it possible for qri to infer how a given transformation will behave.
+* **parallel execution** - thanks to this deterministic requirement (and lack of global interpreter lock) skylark functions can be executed in parallel. Combined with peer-2-peer networking, we're hoping to advance transformations toward peer-driven distributed computing. More on that in the coming months.
 
 # Table of Contents
 
@@ -80,7 +80,7 @@ Here we've defined single function: `transform`, it takes an _argument_ named `d
 
 * Qri functions *always* take and return datasets
 * When you define a qri function, qri calls it for you
-* All tranform functions are optional (you don't _need_ to define them), _but_
+* All transform functions are optional (you don't _need_ to define them), _but_
 * A transformation must have at least one qri function
 * Qri functions are always called in the same order
 
@@ -149,7 +149,7 @@ $ qri info me/hello_world
 #     17 bytes, 2 entries, 0 errors
 ```
 
-In our transform we called `qri.set_meta("title", ...)`, but the title hasn't changed, what gives? That's because we have _also_ set the `title` in our `dataset.yaml` file. The thing to remember is **Settings in a dataset file override tranformations**. This helps make transformation scripts more flexible. If later on you re-run this transform but wanted to change the title of the dataset, you can do so without digging into the tranform code. This starts to make more sense when transform scripts get a little more complicated. Speaking of complicated, let's move on to a new transformation to do something a little more interesting.
+In our transform we called `qri.set_meta("title", ...)`, but the title hasn't changed, what gives? That's because we have _also_ set the `title` in our `dataset.yaml` file. The thing to remember is **Settings in a dataset file override transformations**. This helps make transformation scripts more flexible. If later on you re-run this transform but wanted to change the title of the dataset, you can do so without digging into the transform code. This starts to make more sense when transform scripts get a little more complicated. Speaking of complicated, let's move on to a new transformation to do something a little more interesting.
 
 <a id="delete_export"></a>
 ## 1.3 Deleting and Exporting a Dataset
@@ -174,7 +174,7 @@ The `download` function is always run before the `transform` step. The dataset r
 <a id="config"></a>
 ## 2.1 Config and Secrets
 
-When we came up with the idea of including transforms in Qri, the thing we were most excited about was a transforms ability to be customized for the person running it. In order to have customizability, we needed a way to inject variables into a transform script. For example, if there is a dataset that has a call to the github api, that can pull down the stats from one of my projects, but I want to also use that transfrom to pull down stats from a second project, one of the variables in my transform would probably be `repo_name`.
+When we came up with the idea of including transforms in Qri, the thing we were most excited about was a transforms ability to be customized for the person running it. In order to have customizability, we needed a way to inject variables into a transform script. For example, if there is a dataset that has a call to the github api, that can pull down the stats from one of my projects, but I want to also use that transform to pull down stats from a second project, one of the variables in my transform would probably be `repo_name`.
 
 Often, when we try to get information from an api, that api requires us to have a special key that is only associated with our identity. It is, also, often  private and should not be shared in the dataset itself or made public in anyway.
 
@@ -184,7 +184,7 @@ This is where the config and secrets comes in. The following comes from a datase
 # lol_last_100_matches/dataset.yaml
 name: league_player_matches
 meta:
-  title: Dataset created using the qri starlark tutorial. Pings the Riot Games (creater of the computer game League of Legends) api, gets a summoner's account id, and then a list of their last 100 matches.
+  title: Dataset created using the qri starlark tutorial. Pings the Riot Games (creator of the computer game League of Legends) api, gets a summoner's account id, and then a list of their last 100 matches.
 transform:
   scriptpath: transform.sky
   config:
@@ -247,7 +247,7 @@ $ qri new --file dataset.yaml me/lol_last_100_matches --dry-run
 <a id="http"></a>
 ## 2.3 http module
 
-Now that we can get config and secrets variables, let's use those to grab some data from an API enpoint using the http package.
+Now that we can get config and secrets variables, let's use those to grab some data from an API endpoint using the http package.
 
 The http package can only be used in the `download` function. You do not have access to the network in any the `transform` function. If you try to download something in the `transform` function, you will get an error.
 

@@ -10,7 +10,7 @@ A Dataset is a document for describing & storing structured data. Dataset docume
 _Findable, Accessible, Interoperable, and Reusable_, in relation to other dataset documents, and related-but-separate technologies such as data catalogs, HTTP API's, and data package formats Datasets are designed to be stored and distributed on content-addressed
 (identify-by-hash) systems The dataset document definition is built from a research-first principle, valuing direct interoperability with existing standards over novel definitions or specifications.
 
-_The main implementation of dataset is avialable at https://github.com/qri-io/dataset. If you have any concerns or questions, We'd be delighted if you filed an [issue](https://github.com/qri-io/dataset/issues)._
+_The main implementation of dataset is available at https://github.com/qri-io/dataset. If you have any concerns or questions, We'd be delighted if you filed an [issue](https://github.com/qri-io/dataset/issues)._
 
 ** **
 
@@ -81,7 +81,7 @@ Well-defined Meta should aid in making datasets Findable by describing a dataset
 
 All of the meta fields below must be well-formed, valid values. However: _The Meta section of a dataset supports arbitrary metadata_. This means you can place additional values not listed here & qri will store them as-is, without any additional validation.
 
-Another important note here: _qri software doesn't leverage things like identifier, downloadPath, homePath, etc._. Qri considers all fields here _descriptive_ metadata, as opposted to _structural_ metadata. In practice this means qri User interfaces may leverage the meta component for the purposes of _correlation_ and _display_. Information stored in the meta section is _not_ intended for use by machines to interpret the dataset. For example, setting the `identifier` is of no significance to qri, it's included here for interoperability with other specifications like [DCAT](https://www.w3.org/TR/vocab-dcat/#Property:dataset_identifier)
+Another important note here: _qri software doesn't leverage things like identifier, downloadPath, homePath, etc._. Qri considers all fields here _descriptive_ metadata, as opposed to _structural_ metadata. In practice this means qri User interfaces may leverage the meta component for the purposes of _correlation_ and _display_. Information stored in the meta section is _not_ intended for use by machines to interpret the dataset. For example, setting the `identifier` is of no significance to qri, it's included here for interoperability with other specifications like [DCAT](https://www.w3.org/TR/vocab-dcat/#Property:dataset_identifier)
 
 _meta fields:_
 
@@ -94,7 +94,7 @@ _meta fields:_
 | `description`         | `string`      | roughly a paragraph of human-readable text that provides context for the dataset |
 | `downloadPath`        | `string`      | URL or other path string to where to download this dataset   |
 | `homePath`            | `string`      | URL or other path string to a "landing page" resource that explains the dataset  |
-| `identifier`          | `string`      | identifer for the dataset   |
+| `identifier`          | `string`      | identifier for the dataset   |
 | `keywords`            | `[]string`    | string of "tags" to connect this dataset with other datasets that carry similar keywords   |
 | `language`            | `[]string`    | array of languages this dataset is written, in [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format, ordered by most-to-least dominant  |
 | `license`             | `License`     | the legal licensing agreement this dataset is released under  |
@@ -131,7 +131,7 @@ _example:_
 Structure defines the characteristics of a dataset document necessary for a machine to interpret the dataset body.
 Structure fields are things like the encoding data format (JSON,CSV,etc.), length of the dataset body in bytes, stored in a rigid form intended for machine use. A well defined structure & accompanying software should allow the end user to spend more time focusing on the data itself.
 
-Two dataset documents that both have a defined structure will have some degree of natural interoperability, depending first on the amount of detail provided in a dataset's structure, and then by the natural comparibilty of the datasets.
+Two dataset documents that both have a defined structure will have some degree of natural interoperability, depending first on the amount of detail provided in a dataset's structure, and then by the natural comparability of the datasets.
 
 _structure fields:_
 
@@ -159,7 +159,7 @@ _transform fields:_
 | name                 | type     | description |
 |----------------------|----------|-------------|
 | `scriptPath`         | `string` | the path to the script that produced this transformation |
-| `syntax`             | `string` | langauge this transform is written in. Only "skylark" is currently supported |
+| `syntax`             | `string` | language this transform is written in. Only "skylark" is currently supported |
 | `syntaxVersion`      | `string` | an identifier for the application and version number that produced the result |
 | `config`             | `object` | any configuration that would affect the resulting hash. transformations may use values present in config to perform their operations |
 | `resources`          | `object` |  map of all datasets transform depends on with both name and commit paths |
@@ -174,6 +174,6 @@ _viz fields:_
 | name         | type     | description |
 |--------------|----------|-------------|
 | `format`     | `string` | designates the visualization configuration syntax, currently only `html` is accepted |
-| `scriptPath` | `string` | location of script that generates the vizualization |
+| `scriptPath` | `string` | location of script that generates the visualization |
 
 ** ** 

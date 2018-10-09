@@ -6,7 +6,7 @@ section: reference
 ---
 
 # Starlark Syntax
-Qri ("query") is about datasets. Transformions are repeatable scripts for generating a dataset. [Starlark](https://github.com/google/skylark/blob/master/doc/spec.md) is a scripting langauge from Google that feels a lot like python. This package implements skylark as a _transformation syntax_. Starlark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
+Qri ("query") is about datasets. Transformations are repeatable scripts for generating a dataset. [Starlark](https://github.com/google/skylark/blob/master/doc/spec.md) is a scripting language from Google that feels a lot like python. This package implements skylark as a _transformation syntax_. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
 
 Typical examples of a starlark transformation include:
 
@@ -50,7 +50,7 @@ So far there are two predefined Qri functions, with more planned for future use:
 
   The download function is always run before the transform function.
 
-  The transform function will recieve the dataset returned from the download function.
+  The transform function will receive the dataset returned from the download function.
 
 
 #### def transform(ds):

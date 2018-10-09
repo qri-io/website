@@ -79,7 +79,7 @@ The whole tutorial is divided into six sections.</description>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/tutorials/skylark_transformations/</guid>
-      <description>Skylark Transformations Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. A transformation is a repeatable script for generating a dataset. Starlark, formerly &amp;ldquo;Skylark&amp;rdquo;, is a scripting langauge from Google that feels a lot like python. This package implements skylark as a transformation syntax. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
+      <description>Skylark Transformations Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. A transformation is a repeatable script for generating a dataset. Starlark, formerly &amp;ldquo;Skylark&amp;rdquo;, is a scripting language from Google that feels a lot like python. This package implements skylark as a transformation syntax. Skylark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
     </item>
     
     <item>
@@ -88,7 +88,7 @@ The whole tutorial is divided into six sections.</description>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/concepts/value_cascade/</guid>
-      <description>Value Cascade A good dataset is as complete and accruate as possible. Good datasets have metadata with a concise yet descriptive title, a description that elaborates, a schema with descriptive details, and so on. When it comes to datasets more detail is better, so long as it&amp;rsquo;s accurate. Because of this, qri provides lots of places to set values. We call those &amp;ldquo;places that might set values&amp;rdquo; sources. There are 4 sources of values in qri:</description>
+      <description>Value Cascade A good dataset is as complete and accurate as possible. Good datasets have metadata with a concise yet descriptive title, a description that elaborates, a schema with descriptive details, and so on. When it comes to datasets more detail is better, so long as it&amp;rsquo;s accurate. Because of this, qri provides lots of places to set values. We call those &amp;ldquo;places that might set values&amp;rdquo; sources. There are 4 sources of values in qri:</description>
     </item>
     
     <item>
@@ -163,7 +163,7 @@ Datasets are recorded structured data according to a specification that dictates
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/reference/skylark_syntax/</guid>
-      <description>Starlark Syntax Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. Transformions are repeatable scripts for generating a dataset. Starlark is a scripting langauge from Google that feels a lot like python. This package implements skylark as a transformation syntax. Starlark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
+      <description>Starlark Syntax Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. Transformations are repeatable scripts for generating a dataset. Starlark is a scripting language from Google that feels a lot like python. This package implements skylark as a transformation syntax. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
     </item>
     
     <item>

@@ -6,7 +6,7 @@ section: concepts
 
 # Value Cascade
 
-A good dataset is as complete and accruate as possible. Good datasets have metadata with a concise yet descriptive title, a description that elaborates, a schema with descriptive details, and so on. When it comes to datasets more detail is better, so long as it's accurate. Because of this, qri provides _lots_ of places to set values. We call those "places that might set values" _sources_. There are 4 sources of values in qri:
+A good dataset is as complete and accurate as possible. Good datasets have metadata with a concise yet descriptive title, a description that elaborates, a schema with descriptive details, and so on. When it comes to datasets more detail is better, so long as it's accurate. Because of this, qri provides _lots_ of places to set values. We call those "places that might set values" _sources_. There are 4 sources of values in qri:
 
 * **User-Specified** - users can provide values
 * **Scripts** - transforms can set dataset values

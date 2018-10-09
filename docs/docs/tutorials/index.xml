@@ -39,7 +39,7 @@ The whole tutorial is divided into six sections.</description>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/tutorials/skylark_transformations/</guid>
-      <description>Skylark Transformations Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. A transformation is a repeatable script for generating a dataset. Starlark, formerly &amp;ldquo;Skylark&amp;rdquo;, is a scripting langauge from Google that feels a lot like python. This package implements skylark as a transformation syntax. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
+      <description>Skylark Transformations Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. A transformation is a repeatable script for generating a dataset. Starlark, formerly &amp;ldquo;Skylark&amp;rdquo;, is a scripting language from Google that feels a lot like python. This package implements skylark as a transformation syntax. Skylark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
     </item>
     
   </channel>
