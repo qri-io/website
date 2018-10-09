@@ -28,6 +28,11 @@
   </url>
   
   <url>
+    <loc>https://qri.io/docs/concepts/distributed-storage/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://qri.io/docs/tutorials/skylark_transformations/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>

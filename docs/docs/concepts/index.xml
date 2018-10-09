@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Distributed Storage</title>
+      <link>https://qri.io/docs/concepts/distributed-storage/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/distributed-storage/</guid>
+      <description>Going Distributed Makes Data Free &amp;amp; Dependable Qri doesn’t need a central server to work, instead it&amp;rsquo;s built in a distributed, peer-2-peer architecture that moves data by connecting computers directly. By connecting computers directly, we make storing data on Qri free, because datasets don&amp;rsquo;t have to be stored in the cloud. Your “payment” is the hard drive space to store the data you want to keep. This frees up datasets to get as big as they need to be, and stored wherever makes the most sense.</description>
+    </item>
+    
+    <item>
       <title>The Source Cascade</title>
       <link>https://qri.io/docs/concepts/value_cascade/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>

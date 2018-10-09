@@ -30,6 +30,8 @@ menu:
   concepts:
     - name: overview
       url: /docs/concepts/overview
+    - name: distributed storage
+      url: /docs/concepts/distributed-storage
     - name: content addressing
       url: /docs/concepts/content-addressing
     - name: dataset names
