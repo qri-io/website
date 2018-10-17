@@ -6,24 +6,11 @@ section: concepts
 ---
 
 # Datasets: Qri's Building Block
-
-Datasets are recorded structured data. By design, Qri can only store datasets. Unlike general version control systems, all datasets stored in qri can interoperate because they are the same kind of document. Datasets are stored & transmitted in standard data formats (eg. JSON, CSV), allowing outside systems to bypass qri entirely to interact directly with datasets qri produces & consumes.
-
-Datasets are defined to have the following properties by default:
-
-* **Versioned** datasets have git-like version histories that track
-* **Attributed** all changes are signed with keypair cryptography
-* **Archival** all datasets are immutable, timestamped, and identified by their hash
-* **Interoperable** datasets can be exported & converted to different data formats
-* **Tolerant** datasets are designed to still work when data is invalid, or use little-to-no schema definition.
-
-A Dataset can theoretically be any size, but in these early stages we're targeting datasets that are 1Gig and under in size. We're doing work today that will allow datasets to function at any scale.
-
-### Dataset Components
-Each dataset can have up to six distinct components:
-
 <style>
-  #dataset_components { position: relative; }
+  #dataset_components { 
+    position: relative;
+    margin-bottom: 120px;
+  }
   .diagram {
     max-width: 260px;
     margin: 60px auto;
@@ -45,6 +32,7 @@ Each dataset can have up to six distinct components:
   }
   .description:hover {
     box-shadow: 0 5px 6px rgba(0,0,0,0.2);
+    color: white;
   }
   .description h4 { margin: 0 }
   
@@ -55,6 +43,19 @@ Each dataset can have up to six distinct components:
   #transform h4 { color: #338092; }
   #structure h4 { color: #4fc7f3; }
 
+  #commit:hover { background: #a8c7d3; }
+  #commit:hover h4 { color: white; }
+  #viz:hover { background: #ec325a; }
+  #viz:hover h4 { color: white; }
+  #body:hover { background: #afd148; }
+  #body:hover h4 { color: white; }
+  #meta:hover { background: #f8ab31; }
+  #meta:hover h4 { color: white; }
+  #transform:hover { background: #338092; }
+  #transform:hover h4 { color: white; }
+  #structure:hover { background: #4fc7f3; }
+  #structure:hover h4 { color: white; }
+
 </style>
 
 <div id="dataset_components">
@@ -63,7 +64,7 @@ Each dataset can have up to six distinct components:
       <h4 class="commit">Commit</h4>
       <p>versioning & attribution for this dataset at a specific point in time</p>
     </a>
-    <a href="/docs/reference/dataset#description" id="viz" class="description">
+    <a href="/docs/reference/dataset#viz" id="viz" class="description">
       <h4 class="viz">Viz</h4>
       <p>template details for visually representing this dataset</p>
     </a>
@@ -93,4 +94,14 @@ Each dataset can have up to six distinct components:
   </div>
 </div>
 
+Datasets are recorded structured data. By design, Qri can only store datasets. Unlike general version control systems, all datasets stored in qri can interoperate because they are the same kind of document. Datasets are stored & transmitted in standard data formats (eg. JSON, CSV), allowing outside systems to bypass qri entirely to interact directly with datasets qri produces & consumes.
 
+Datasets are defined to have the following properties by default:
+
+* **Versioned** datasets have git-like version histories that track
+* **Attributed** all changes are signed with keypair cryptography
+* **Archival** all datasets are immutable, timestamped, and identified by their hash
+* **Interoperable** datasets can be exported & converted to different data formats
+* **Tolerant** datasets are designed to still work when data is invalid, or use little-to-no schema definition.
+
+A Dataset can theoretically be any size, but in these early stages we're targeting datasets that are 1Gig and under in size. We're doing work today that will allow datasets to function at any scale.

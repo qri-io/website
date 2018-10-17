@@ -24,18 +24,21 @@ hr {
   margin: 25px auto;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 5px;
+  border: 1px solid #f3f3f3;
+}
+
 th {
-  text-align: left;
   font-weight: 500;
-  padding: 5px;
 }
 
-td {
-  padding: 5px;
-}
-
-tr:nth-child(odd) {
-  background: #eee;
+tr:nth-child(even) {
+  background: #f8f8f8;
 }
 
 #main.index {
@@ -126,12 +129,14 @@ tr:nth-child(odd) {
 }
 
 #hero .text_block { width: 50%; }
+#hero .text_block .subhead { font-weight: 400; margin-top: 20px; }
 
 #hero h1,
 #work_together h1 {
-  font-size: 2.6em;
+  font-size: 2.8em;
   line-height: 1.2em;
   text-transform: uppercase;
+  margin-bottom: 0;
 }
 
 #feature_descriptions,
@@ -176,7 +181,7 @@ tr:nth-child(odd) {
   flex-basis: 48%;
 }
 
-#feature_descriptions #web_of_datasets { margin-top: 80px; }
+#feature_descriptions #web_of_datasets { margin-top: 80px; margin-bottom: 40px; }
 #feature_descriptions #any_skill_level { margin-top: -80px; }
 
 .feature_description {

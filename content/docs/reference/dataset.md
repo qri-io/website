@@ -33,7 +33,7 @@ Each component is described in detail below.
 ** **
 
 
-### [`body`](#body)
+### <a id="body">`body`</a>
 Body is the principle content of a dataset. A dataset body is the subject which all other fields describe and qualify.
 
 Supported Data Formats:
@@ -46,7 +46,7 @@ The structure of the data stored is arbitrary, with one important exception: _th
 
 ** ** 
 
-### [`commit`](#commit)
+### <a id="commit">`commit`</a>
 Commit encapsulates information about changes to a dataset in relation to other entries in a given history. Commit is directly analogous to the concept of a Commit Message in the git version control system. A full commit defines the administrative metadata of a dataset, answering _"who made this dataset, when, and why"_.
 
 _commit fields:_
@@ -75,7 +75,7 @@ _example_
 
 ** ** 
 
-### [`meta`](#meta)
+### <a id="meta">`meta`</a>
 Meta contains human-readable descriptive metadata that qualifies and distinguishes a dataset.
 Well-defined Meta should aid in making datasets Findable by describing a dataset in generalizable taxonomies that can aggregate across other dataset documents. Because dataset documents are intended to interoperate with many other data storage and cataloging systems, meta fields and conventions are derived from existing metadata formats whenever possible.
 
@@ -127,7 +127,7 @@ _example:_
 
 ** ** 
 
-### [`structure`](#structure)
+### <a id="structure">`structure`</a>
 Structure defines the characteristics of a dataset document necessary for a machine to interpret the dataset body.
 Structure fields are things like the encoding data format (JSON,CSV,etc.), length of the dataset body in bytes, stored in a rigid form intended for machine use. A well defined structure & accompanying software should allow the end user to spend more time focusing on the data itself.
 
@@ -149,7 +149,7 @@ _structure fields:_
 
 ** ** 
 
-### [`transform`](#transform)
+### <a id="transform">`transform`</a>
 Transform is a record of executing a transformation on data. Transforms can theoretically be anything from an SQL query, a jupyter
 notebook, the state of an ETL pipeline, etc, so long as the input is zero or more datasets, and the output is a single dataset
 Ideally, transforms should contain all the machine-necessary bits to deterministicly execute the algorithm referenced in "ScriptPath".
@@ -166,7 +166,7 @@ _transform fields:_
 
 ** ** 
 
-### [`viz`](#viz)
+### <a id="viz">`viz`</a>
 Viz stores configuration data related to representing a dataset as a visualization
 
 _viz fields:_
