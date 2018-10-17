@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.48-DEV" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +26,6 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://qri.io/docs/reference/dataset/" /><meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
 <meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
-
   
 
 
@@ -172,7 +171,7 @@
 
 <hr />
 
-<h3 id="body"><code>body</code></h3>
+<h3 id="a-id-body-body-a"><a id="body"><code>body</code></a></h3>
 
 <p>Body is the principle content of a dataset. A dataset body is the subject which all other fields describe and qualify.</p>
 
@@ -188,7 +187,7 @@
 
 <hr />
 
-<h3 id="commit"><code>commit</code></h3>
+<h3 id="a-id-commit-commit-a"><a id="commit"><code>commit</code></a></h3>
 
 <p>Commit encapsulates information about changes to a dataset in relation to other entries in a given history. Commit is directly analogous to the concept of a Commit Message in the git version control system. A full commit defines the administrative metadata of a dataset, answering <em>&ldquo;who made this dataset, when, and why&rdquo;</em>.</p>
 
@@ -254,7 +253,7 @@
   <span class="p">}</span></code></pre></div>
 <hr />
 
-<h3 id="meta"><code>meta</code></h3>
+<h3 id="a-id-meta-meta-a"><a id="meta"><code>meta</code></a></h3>
 
 <p>Meta contains human-readable descriptive metadata that qualifies and distinguishes a dataset.
 Well-defined Meta should aid in making datasets Findable by describing a dataset in generalizable taxonomies that can aggregate across other dataset documents. Because dataset documents are intended to interoperate with many other data storage and cataloging systems, meta fields and conventions are derived from existing metadata formats whenever possible.</p>
@@ -380,7 +379,7 @@ Well-defined Meta should aid in making datasets Findable by describing a dataset
   <span class="p">}</span></code></pre></div>
 <hr />
 
-<h3 id="structure"><code>structure</code></h3>
+<h3 id="a-id-structure-structure-a"><a id="structure"><code>structure</code></a></h3>
 
 <p>Structure defines the characteristics of a dataset document necessary for a machine to interpret the dataset body.
 Structure fields are things like the encoding data format (JSON,CSV,etc.), length of the dataset body in bytes, stored in a rigid form intended for machine use. A well defined structure &amp; accompanying software should allow the end user to spend more time focusing on the data itself.</p>
@@ -457,7 +456,7 @@ Structure fields are things like the encoding data format (JSON,CSV,etc.), lengt
 
 <hr />
 
-<h3 id="transform"><code>transform</code></h3>
+<h3 id="a-id-transform-transform-a"><a id="transform"><code>transform</code></a></h3>
 
 <p>Transform is a record of executing a transformation on data. Transforms can theoretically be anything from an SQL query, a jupyter
 notebook, the state of an ETL pipeline, etc, so long as the input is zero or more datasets, and the output is a single dataset
@@ -509,7 +508,7 @@ Ideally, transforms should contain all the machine-necessary bits to determinist
 
 <hr />
 
-<h3 id="viz"><code>viz</code></h3>
+<h3 id="a-id-viz-viz-a"><a id="viz"><code>viz</code></a></h3>
 
 <p>Viz stores configuration data related to representing a dataset as a visualization</p>
 

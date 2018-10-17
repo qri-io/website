@@ -12,6 +12,7 @@ This section of the docs attempts to articulate qri through the ideas that drive
 ### Concept Sections
 
 * **[Overview](/docs/concepts/overview)**
+* **[Datasets](/docs/concepts/dataset)**
 * **[Distributed Storage](/docs/concepts/distributed-storage)**
 * **[Content Addressing](/docs/concepts/content-addressing)**
 * **[Naming](/docs/concepts/names)**
