@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Testing on qri</title>
+    <link>https://qri.io/tags/testing/</link>
+    <description>Recent content in Testing on qri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Oct 2018 15:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://qri.io/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How We Sped Up Unit Test Performance by 10x at Qri</title>
+      <link>https://qri.io/blog/unit_test_performance/</link>
+      <pubDate>Wed, 17 Oct 2018 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/blog/unit_test_performance/</guid>
+      <description>Hi, I&amp;rsquo;m Dustin, and I work on Qri, helping build our tool for reusable, reproducable, reliable datasets on IPFS. My focus since joining earlier this year has been improving the stability and especially the performance of our application backend. A few months into working on this task, I was especially pained at how slow our entire unit test suite was taking to run - up to nearly 5 minutes on my machine.</description>
+    </item>
+    
+  </channel>
+</rss>

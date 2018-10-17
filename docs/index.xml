@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>How We Sped Up Unit Test Performance by 10x at Qri</title>
+      <link>https://qri.io/blog/unit_test_performance/</link>
+      <pubDate>Wed, 17 Oct 2018 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/blog/unit_test_performance/</guid>
+      <description>Hi, I&amp;rsquo;m Dustin, and I work on Qri, helping build our tool for reusable, reproducable, reliable datasets on IPFS. My focus since joining earlier this year has been improving the stability and especially the performance of our application backend. A few months into working on this task, I was especially pained at how slow our entire unit test suite was taking to run - up to nearly 5 minutes on my machine.</description>
+    </item>
+    
+    <item>
       <title>Contact Us  </title>
       <link>https://qri.io/contact/</link>
       <pubDate>Mon, 08 Oct 2018 00:00:00 -0400</pubDate>

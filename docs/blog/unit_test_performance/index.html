@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta name="generator" content="Hugo 0.49.2" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> How We Sped Up Unit Test Performance by 10x at Qri </title>
+
+  
+  <meta name="description" content="How we improved our unit test performance by profiling and iterating"> 
+  
+  
+  
+  
+  
+
+  
+
+  <meta name="author" content="dustmop">
+
+
+  <meta property="og:title" content="How We Sped Up Unit Test Performance by 10x at Qri" />
+<meta property="og:description" content="How we improved our unit test performance by profiling and iterating" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://qri.io/blog/unit_test_performance/" /><meta property="article:published_time" content="2018-10-17T15:00:00-04:00"/>
+<meta property="article:modified_time" content="2018-10-17T15:00:00-04:00"/>
+
+  
+
+
+
+
+  
+  
+  
+  
+  
+
+  <link rel="canonical" href="https://qri.io/blog/unit_test_performance/">  
+
+  <link href="../../favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="../../css/font.css" rel="stylesheet" type="text/css">
+  <link href="../../css/qri.css" rel="stylesheet" type="text/css">
+  
+
+  <script src="../../js/jquery-2.1.4.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../../css/highlight.default.min.css">
+  <link rel="stylesheet" href="../../css/highlight.theme.tomorrow.css">
+  <script src="../../js/highlight.pack.js"></script>
+  <script>
+    window.onload = function(e) {
+      let elements = document.querySelectorAll('.highlight pre')
+      Array.from(elements).forEach((block, i) => {
+        hljs.highlightBlock(block)
+      })
+    }
+  </script>
+
+  <script type="text/javascript" src="../../js/tocbot.min.js"></script>
+
+  
+    <script type="text/javascript">
+     !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+      analytics.load("b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju");
+      analytics.page()
+    }}();
+    </script>
+  
+</head>
+
+
+<body class="page-kube blog " >
+  <header> <div class="show_sm light">
+  <div id="nav_toggle_box">
+    <div id="nav_toggle_brand">
+      <a href="../../">qri</a>
+    </div><a data-component="toggleme" data-target="#top" href="#" id="nav-toggle"><i class="kube-menu"></i></a>
+  </div>
+</div>
+
+<div id="main_nav" class="hide_sm light">
+  <div class="wrap">
+    <div class="logotype">
+      <a href="../../" title="home">qri</a>
+    </div>
+    <nav class="menu" >
+       
+       
+    <a href="../../blog/" >Blog</a>
+    
+    <a href="../../docs/" >Docs</a>
+    
+    <a href="../../download/" >Download</a>
+    
+    </nav>
+  </div>
+</div>
+ </header>
+  <main>
+<div id="blog" class="page">
+  <header>
+    <div class="wrap">
+      <h1 class="title">How We Sped Up Unit Test Performance by 10x at Qri</h1>
+      <p class="info"><span class="date">Oct 17, 2018</span> <span class="tag">performance</span><span class="tag">testing</span></p>
+    </div>
+  </header>
+  <section class="content">
+    <div class="wrap">
+        
+
+<p>Hi, I&rsquo;m Dustin, and I work on <a href="https://qri.io">Qri</a>, helping build our tool for reusable, reproducable, reliable datasets on IPFS. My focus since joining earlier this year has been improving the stability and especially the performance of our application backend. A few months into working on this task, I was especially pained at how slow our entire unit test suite was taking to run - up to nearly 5 minutes on my machine. I decided to dig in and see what was causing this problem. I&rsquo;m providing here a basic description of how the process went, providing some insight into how performance improvement works to help others with speeding up their own projects.</p>
+
+<p>Looking at the output of <code>go test</code>, I could see that most of the time spent running test was caused by 5 directories, with the others taking at most a few seconds each:</p>
+
+<pre><code>ok      github.com/qri-io/qri/api      30.159s
+ok      github.com/qri-io/qri/cmd      79.327s
+ok      github.com/qri-io/qri/config   40.614s
+ok      github.com/qri-io/qri/lib      74.311s
+ok      github.com/qri-io/qri/p2p      43.396s
+TOTAL                                 266.807
+</code></pre>
+
+<p>As nearly all of our tests are unit testing individual functions, with only 1 being a medium sized integration test, this felt like way too long for each test directory to run. However, instead of simply relying on intuition, I went ahead and profiled our tests to see where time was being wasted.</p>
+
+<h2 id="pprof">pprof</h2>
+
+<p><code>pprof</code> is a go tool that builds on the legacy of the classic Unix tool <code>gprof</code>. It works by instrumenting code such that it records samples during execution, pausing at regular intervals to mark which function is executing, in order to provide an overall map of where time is being spent. It can be invoked to create a visual graph of runtime performance, in this case testing the <code>lib</code> directory of qri, like so:</p>
+
+<pre><code>go test ./lib/. -cpuprofile cpu.prof --count=1
+</code></pre>
+
+<pre><code>go tool pprof -png cpu.prof &gt; profile_graph.png
+</code></pre>
+
+<p>Profiles are a bit tricky to read the first time you encounter them, but they aren&rsquo;t too complicated once you get over the initial learning curve. The key thing to remember is that these graphs represent sampled runtimes, so they aren&rsquo;t an exact representation of what is really happening in code. They might leave out function calls in a call chain, will drop information that isn&rsquo;t statistically significant, and can distort times based upon how much of total runtime the sampling actually represents.</p>
+
+<p>Here&rsquo;s more or less what I ended up with:</p>
+
+<p><img src="../../diagrams/unit_test_profile_0.png" style="border: solid 1px black;" /></p>
+
+<p>Before diving into the graph, it&rsquo;s worth taking a look at the legend on top to see what we&rsquo;re dealing with. The third line of the legend shows a duration of 52.8s, which is the runtime of the whole test. Next, the total samples took up 33.87s, meaning that we&rsquo;re only seeing about 64% of the real runtime. So when looking at other times in the call graph, they should be divided by 64% to calculate the real value.</p>
+
+<p>Now, observing the call graph, darker red nodes represent larger runtimes, and the worst offender in this case is NewTestRepo. This function creates a mock object representing a user&rsquo;s repository of datasets, so it being slow is a sign that something is wrong. Just as a test of webserver code should be using a mock instead of spinning up a real HTTP server, we want our mock repos to be cheaper than real world objects; they shouldn&rsquo;t be the cause of slowness.</p>
+
+<p>Scrolling down in the profile shows that this function eventually calls json.Unmarshal which, in total, represents 14.51 seconds. Recall that this is only 64% of reality, so doing some simple math (14.51 / .64) shows that it&rsquo;s actually running for 22.67 seconds out of the total 53, meaning half the runtime of these tests is spent just parsing json. While in general, parsing is intrinsically slow, this seemed to be excessive.</p>
+
+<h2 id="json-parsing">json parsing</h2>
+
+<p>With this knowledge in mind, I dug into the code that NewTestRepo was using, looking for any potential problems. In doing so I identified two issues with how our testdata was being used. Mock repositories are created by parsing json files in the testdata/ directory, simulating a collection of datasets stored entirely in memory. However, this step was performed on every single testcase, reparsing the same files over and over again, throwing out the result at the end of each testcase. Instead, I made the TestRepo builder cache the parse results, and then make a copy whenever its constructor was called, so parsing only had to happen once. Secondly, I found that one of our testdata files was quite large: about 28MB. The original intention for this large file was to verify that our parsing code and repo implementation could handle big datasets without crashing, but along the way it got included into the default set of testdata, slowing everything down. Checking that our code worked correctly on large data could be validated with a single test; it didn&rsquo;t need to be done for every single case in our suite.</p>
+
+<p>The two fixes at <a href="https://github.com/qri-io/dataset/pull/141">https://github.com/qri-io/dataset/pull/141</a> and <a href="https://github.com/qri-io/qri/pull/529">https://github.com/qri-io/qri/pull/529</a> improved test runtimes a significant amount:</p>
+
+<pre><code>ok      github.com/qri-io/qri/api      30.159s   13.498s
+ok      github.com/qri-io/qri/cmd      79.327s   54.005s
+ok      github.com/qri-io/qri/config   40.614s   42.107s
+ok      github.com/qri-io/qri/lib      74.311s   26.220s
+ok      github.com/qri-io/qri/p2p      43.396s   46.917s
+TOTAL                                 266.807   182.747
+</code></pre>
+
+<h2 id="cryptographic-info">cryptographic info</h2>
+
+<p>Going back to the profile, a rerun showed the next cause of slowdown:</p>
+
+<p><img src="../../diagrams/unit_test_profile_1.png" style="border: solid 1px black;" />
+<img src="../../diagrams/unit_test_profile_2.png" style="border: solid 1px black;" /></p>
+
+<p>Another situation where creating mock objects was dominating the test runtime. In this case, it was clear that GenerateKeyPairWithReader in libp2p was the culprit. Like parsing json, generating cryptographic information is also slow since it requires repeated primality testing of large numbers. But why was it happening so much?</p>
+
+<p>Qri&rsquo;s architecture involves a backend, which is a command-line application that accesses local repositories, along with an API webserver that our frontend Electron app talks to, and finally a p2p layer that enables nodes to share information between each other. Setting up this p2p layer involves generating private keys for establishing identities. When running Qri as an application this is normally done once using the <code>setup</code> command which stores the user&rsquo;s configuration file in their home directory.</p>
+
+<p>For tests, a mock configuration was being used, created by the function DefaultConfig, which consists of mostly empty values. However, at some point, probably in order to get libp2p functionality working, this default constructor was changed to also generate new keys by using the GenerateKeyPairWithReader call. Though calling this function once is not that big of a deal, this DefaultConfig constructor was actually being used in every single test, sometimes multiple times, duplicating the work of generating private keys all over the place.</p>
+
+<p>This speaks to a general principle, that dumb objects (like configuration files, or collections of flag options, or structured parameters) should never themselves be doing any complicated work, and also, expensive operations shouldn&rsquo;t have their source obscured, rather they should be explictly called out wherever they are in use.</p>
+
+<p>The preferred fix in situations like this is to use dependency injection whenever a dumb object needs to be assigned a high-information field. The constructors of these dumb objects can then decide how exactly it wants the pertinant information to be generated, like reading the user&rsquo;s actual configuration file in prod, or utilizing a cheap mock in tests.</p>
+
+<p>To accomplish this, I created a collection of hardcoded p2p cryptographic keys that should only be used for tests, as well as a factory that would use these pregenerated keys to construct TestRepos, DefaultConfigs, or any other objects that might need them. The call to GenerateKeyPairWithReader was also placed inside of a wrapper with an interface, and tests would instead use a test implementation of this interface that would just return a pregenerated keys.</p>
+
+<pre><code>// CryptoGenerator is an interface for generating cryptographic info like private keys and peerIDs
+type CryptoGenerator interface {
+	// GeneratePrivateKeyAndPeerID returns a base64 encoded private key, and a peerID
+	GeneratePrivateKeyAndPeerID() (string, string)
+}
+
+// ...
+
+// NewTestCrypto returns a mocked cryptographic generator for tests
+func NewTestCrypto() CryptoGenerator {
+	return &amp;testCryptoGenerator{}
+}
+
+func (g *testCryptoGenerator) GeneratePrivateKeyAndPeerID() (string, string) {
+	info := cfgtest.GetTestPeerInfo()
+	return info.EncodedPrivKey, info.EncodedPeerID
+}
+</code></pre>
+
+<p>It took a number of large commits to implement these changes, since the assumption of DefaultConfig not needing any input parameter was already pervasive amongst our codebase. <a href="https://github.com/qri-io/qri/pull/527">https://github.com/qri-io/qri/pull/527</a> and <a href="https://github.com/qri-io/qri/pull/530">https://github.com/qri-io/qri/pull/530</a> and <a href="https://github.com/qri-io/qri/pull/531">https://github.com/qri-io/qri/pull/531</a> and <a href="https://github.com/qri-io/qri/pull/536">https://github.com/qri-io/qri/pull/536</a> and <a href="https://github.com/qri-io/qri/pull/556">https://github.com/qri-io/qri/pull/556</a>.</p>
+
+<p>Afterwards the test times became quite acceptable:</p>
+
+<pre><code>ok      github.com/qri-io/qri/api      13.498s    2.379s
+ok      github.com/qri-io/qri/cmd      54.005s   23.092s
+ok      github.com/qri-io/qri/config   42.107s    0.336s
+ok      github.com/qri-io/qri/lib      26.220s    3.967s
+ok      github.com/qri-io/qri/p2p      46.917s    3.686s
+TOTAL                                 182.747    33.459
+</code></pre>
+
+<p>With this, I was very satisfied with our new test performance. Having faster tests means that our Continous Integration runs faster, development goes smoother, outside contributors have an easier time trying things out, and overall everyone is happier with the status of our codebase!</p>
+
+<p>I hope you might find these examples useful as a way to track down and fix slowness in your own test suites!</p>
+
+<p>Follow us at <a href="https://twitter.com/qri_io">@qri_io</a>!</p>
+
+    </div>
+  </section>
+</div>
+</main>
+  <footer>
+    <div id="mailing-list-signup">
+  <form class="wrap" action="https://qri.us19.list-manage.com/subscribe/post?u=54a6a8c1171101850b8576277&amp;id=b41eb6f58e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+      <h2 class="title">Join our mailing list!</h2>
+      <p class="description"><i>At-most-once-a-month updates on project progress.</i></p>
+
+      <input type="email" value="" name="EMAIL" class="required email" placeholder="email@address.com" id="mce-EMAIL">
+      
+      <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+      <div style="position: absolute; left: -5000px;" aria-hidden="true">
+        <input type="text" name="b_54a6a8c1171101850b8576277_b41eb6f58e" tabindex="-1" value="">
+      </div>
+      <div id="mce-responses" class="clear">
+        <div class="response" id="mce-error-response" style="display:none"></div>
+        <div class="response" id="mce-success-response" style="display:none"></div>
+      </div>
+    </div>
+  </form>
+</div>
+    <footer id="page_footer">
+  <div class="wrap">
+    <nav class="links">
+      <div class="site_links">
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../docs/">Docs</a>
+        <a href="../../download/">Download</a>
+      </div>
+      <div class="social_links">
+        <a href="https://github.com/qri-io">github</a>
+        <a href="https://twitter.com/qri_io">twitter</a>
+      </div>
+    </nav>
+    <div class="copyright">
+      <p>&copy; 2018 qri, inc.</p>
+    </div>
+  </div>
+</footer>
+</footer>
+
+
+  <script src="../../js/kube.js" type="text/javascript">
+  </script>
+  <script src="../../js/kube.legenda.js" type="text/javascript">
+  </script>
+  <script src="../../js/master.js" type="text/javascript">
+  </script>
+</body>
+
+</html>
