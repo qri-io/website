@@ -10,9 +10,9 @@ bodyClass: index
     <div class="wrap">
       <div id="blob_trio"></div>
       <div class="text_block">
-        <h1>You're Invited to a Data Party</h1>
-        <p>qri (“query”) is a free data bonanza<br />for everyone</p>
-        <a href="/download" id="download_button" class="button">Party</a>
+        <h1>qri (“query”) is a New Tool For Data Science</h1>
+        <p>distribted, versioned, scriptable, exportable datasets</p>
+        <a href="/download" id="download_button" class="button">Download</a>
       </div>
     </div>
   </header>
