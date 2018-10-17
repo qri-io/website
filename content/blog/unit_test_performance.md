@@ -1,17 +1,17 @@
 ---
-title: "Unit Test Performance at Qri"
-date: 2018-10-16T02:00:00-04:00
+title: "How We Sped Up Unit Test Performance by 10x at Qri"
+date: 2018-10-17T15:00:00-04:00
 draft: false
 tags:
 - performance
 - testing
 author: dustmop
-description: How we improved up unit test performance by profiling and iterating
+description: How we improved our unit test performance by profiling and iterating
 ---
 
-Hi, I'm Dustin, and I work on Qri, helping build our tool for reusable, reproducable, reliable datasets on IPFS. My focus since joining earlier this year has been improving the stability and especially the performance of our application backend. A few months into working on this task, I was especially pained at how slow our entire unit test suite was taking to run - up to nearly 5 minutes on my machine. I decided to dig in and see what was causing this problem.
+Hi, I'm Dustin, and I work on [Qri](https://qri.io), helping build our tool for reusable, reproducable, reliable datasets on IPFS. My focus since joining earlier this year has been improving the stability and especially the performance of our application backend. A few months into working on this task, I was especially pained at how slow our entire unit test suite was taking to run - up to nearly 5 minutes on my machine. I decided to dig in and see what was causing this problem. I'm providing here a basic description of how the process went, providing some insight into how performance improvement works to help others with speeding up their own projects. 
 
-Looking at the output of `go test`, I could see that most of the runtime was caused by 5 directories, with the others taking at most a few seconds each:
+Looking at the output of `go test`, I could see that most of the time spent running test was caused by 5 directories, with the others taking at most a few seconds each:
 
 ```
 ok      github.com/qri-io/qri/api      30.159s
@@ -118,3 +118,5 @@ TOTAL                                 182.747    33.459
 With this, I was very satisfied with our new test performance. Having faster tests means that our Continous Integration runs faster, development goes smoother, outside contributors have an easier time trying things out, and overall everyone is happier with the status of our codebase!
 
 I hope you might find these examples useful as a way to track down and fix slowness in your own test suites!
+
+Follow us at [@qri_io](https://twitter.com/qri_io)!
