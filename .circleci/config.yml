@@ -1,0 +1,14 @@
+version: '2'
+jobs:
+  build:
+    working_directory: "~/website"
+    docker:
+      - image: circleci/golang:1.11
+    steps:
+      - checkout
+      - run: 
+          name: install misspell
+          command: curl -L -o ./install-misspell.sh https://git.io/misspell && sh ./install-misspell.sh
+      - run:
+          name: Check Spelling
+          command: ./bin/misspell -error ~/website/content/

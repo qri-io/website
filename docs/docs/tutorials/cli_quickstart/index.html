@@ -279,7 +279,7 @@ Flags:
 <p>When you run the <code>qri setup</code> command, you are actually doing a few things:</p>
 
 <p>A. New repo check:<br />
-    First, Qri will check to see if there is already a qri repo on your machine. If not, Qri attempts to creates a new repo, using the configuration details in the default config file (unless overriden with the <code>--ipfs-config</code> and/or <code>--config-data</code> flags, type <code>qri setup --help</code> for more details)</p>
+    First, Qri will check to see if there is already a qri repo on your machine. If not, Qri attempts to creates a new repo, using the configuration details in the default config file (unless overridden with the <code>--ipfs-config</code> and/or <code>--config-data</code> flags, type <code>qri setup --help</code> for more details)</p>
 
 <p>B. Peername:<br />
     It will prompt you for a peername (if you have not provided one using the <code>--peername</code> flag or used a custom config file that has the peername provided). It will ping the registry to see if that peername is currently taken. If it is taken, it will prompt you for another one.</p>
@@ -360,7 +360,7 @@ set up qri repo at: /Users/home/.qri
 
 <p>The text is the week 6 standings for the North American Professional League of Legends Teams in the 2018 Summer split.</p>
 
-<p>In order to add this very important dataset to your Qri repo, we are going to use the <code>qri new</code> command. We will use the <code>--body</code> flag to add data to the dataset, and we will have to pass in a dataset name. I am going to use the name <code>nalcs_standings</code>, but feel free to name it whatever you like. A dataset reference also includes the peername of the peer that initally added the dataset to Qri, so the dataset reference will actually be <code>tutorial/nalcs_standings</code>. We can use <code>me</code>, as a shorthand for any datasets we ourselves have added to Qri, so we can also use <code>me/nalcs_standings</code> as a dataset reference.</p>
+<p>In order to add this very important dataset to your Qri repo, we are going to use the <code>qri new</code> command. We will use the <code>--body</code> flag to add data to the dataset, and we will have to pass in a dataset name. I am going to use the name <code>nalcs_standings</code>, but feel free to name it whatever you like. A dataset reference also includes the peername of the peer that initially added the dataset to Qri, so the dataset reference will actually be <code>tutorial/nalcs_standings</code>. We can use <code>me</code>, as a shorthand for any datasets we ourselves have added to Qri, so we can also use <code>me/nalcs_standings</code> as a dataset reference.</p>
 
 <pre><code>$ qri new --body ~path/to/data/data.csv me/nalcs_standings
 created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT
@@ -718,7 +718,7 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 </code></pre>
 
-<p>First, the date and time is displayed. Next, the dataset hash. The hash is the id, so to speak, of this particular verison of the dataset. It is unique. Last is the commit title, so you have a little bit of context when looking through the log about what was added during that update.</p>
+<p>First, the date and time is displayed. Next, the dataset hash. The hash is the id, so to speak, of this particular version of the dataset. It is unique. Last is the commit title, so you have a little bit of context when looking through the log about what was added during that update.</p>
 
 <p>In the next section, we&rsquo;ll go over the dataset reference and how to explore a dataset using the command line.</p>
 
@@ -767,7 +767,7 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 <p>will work just fine.</p>
 
-<p>The difference between using <code>peername/dataset_name</code> and <code>@/network/dataset_hash</code>, is that the human readable portion will always only give you the most recent verison of the dataset, where any dataset reference with a network and dataset hash will give you the dataset at the specific save point.</p>
+<p>The difference between using <code>peername/dataset_name</code> and <code>@/network/dataset_hash</code>, is that the human readable portion will always only give you the most recent version of the dataset, where any dataset reference with a network and dataset hash will give you the dataset at the specific save point.</p>
 
 <p>The dataset hash is how we view the previous versions of our dataset.</p>
 
@@ -787,7 +787,7 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
     211 bytes, 10 entries, 0 errors
 </code></pre>
 
-<p>You&rsquo;ll notice, it&rsquo;s a very similar format to what the info we recieve when we use <code>qri list</code>.</p>
+<p>You&rsquo;ll notice, it&rsquo;s a very similar format to what the info we receive when we use <code>qri list</code>.</p>
 
 <p><a id="qri-get"></a></p>
 

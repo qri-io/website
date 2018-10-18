@@ -9,7 +9,7 @@ author: dustmop
 description: How we improved our unit test performance by profiling and iterating
 ---
 
-Hi, I'm Dustin, and I work on [Qri](https://qri.io), helping build our tool for reusable, reproducable, reliable datasets on IPFS. My focus since joining earlier this year has been improving the stability and especially the performance of our application backend. A few months into working on this task, I was especially pained at how slow our entire unit test suite was taking to run - up to nearly 5 minutes on my machine. I decided to dig in and see what was causing this problem. I'm providing here a basic description of how the process went, providing some insight into how performance improvement works to help others with speeding up their own projects. 
+Hi, I'm Dustin, and I work on [Qri](https://qri.io), helping build our tool for reusable, reproducible, reliable datasets on IPFS. My focus since joining earlier this year has been improving the stability and especially the performance of our application backend. A few months into working on this task, I was especially pained at how slow our entire unit test suite was taking to run - up to nearly 5 minutes on my machine. I decided to dig in and see what was causing this problem. I'm providing here a basic description of how the process went, providing some insight into how performance improvement works to help others with speeding up their own projects. 
 
 Looking at the output of `go test`, I could see that most of the time spent running test was caused by 5 directories, with the others taking at most a few seconds each:
 
@@ -76,7 +76,7 @@ Qri's architecture involves a backend, which is a command-line application that 
 
 For tests, a mock configuration was being used, created by the function DefaultConfig, which consists of mostly empty values. However, at some point, probably in order to get libp2p functionality working, this default constructor was changed to also generate new keys by using the GenerateKeyPairWithReader call. Though calling this function once is not that big of a deal, this DefaultConfig constructor was actually being used in every single test, sometimes multiple times, duplicating the work of generating private keys all over the place.
 
-This speaks to a general principle, that dumb objects (like configuration files, or collections of flag options, or structured parameters) should never themselves be doing any complicated work, and also, expensive operations shouldn't have their source obscured, rather they should be explictly called out wherever they are in use.
+This speaks to a general principle, that dumb objects (like configuration files, or collections of flag options, or structured parameters) should never themselves be doing any complicated work, and also, expensive operations shouldn't have their source obscured, rather they should be explicitly called out wherever they are in use.
 
 The preferred fix in situations like this is to use dependency injection whenever a dumb object needs to be assigned a high-information field. The constructors of these dumb objects can then decide how exactly it wants the pertinant information to be generated, like reading the user's actual configuration file in prod, or utilizing a cheap mock in tests.
 
@@ -115,7 +115,7 @@ ok      github.com/qri-io/qri/p2p      46.917s    3.686s
 TOTAL                                 182.747    33.459
 ```
 
-With this, I was very satisfied with our new test performance. Having faster tests means that our Continous Integration runs faster, development goes smoother, outside contributors have an easier time trying things out, and overall everyone is happier with the status of our codebase!
+With this, I was very satisfied with our new test performance. Having faster tests means that our Continuous Integration runs faster, development goes smoother, outside contributors have an easier time trying things out, and overall everyone is happier with the status of our codebase!
 
 I hope you might find these examples useful as a way to track down and fix slowness in your own test suites!
 

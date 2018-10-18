@@ -169,7 +169,7 @@ Okay, okay, enough stringing you along. Time to get into what you are really her
 When you run the `qri setup` command, you are actually doing a few things:
 
   A. New repo check:  
-    First, Qri will check to see if there is already a qri repo on your machine. If not, Qri attempts to creates a new repo, using the configuration details in the default config file (unless overriden with the `--ipfs-config` and/or `--config-data` flags, type `qri setup --help` for more details)
+    First, Qri will check to see if there is already a qri repo on your machine. If not, Qri attempts to creates a new repo, using the configuration details in the default config file (unless overridden with the `--ipfs-config` and/or `--config-data` flags, type `qri setup --help` for more details)
 
   B. Peername:  
     It will prompt you for a peername (if you have not provided one using the `--peername` flag or used a custom config file that has the peername provided). It will ping the registry to see if that peername is currently taken. If it is taken, it will prompt you for another one.
@@ -253,7 +253,7 @@ If you have a csv, json, or cbor file you would like to add, more power to you. 
 
 The text is the week 6 standings for the North American Professional League of Legends Teams in the 2018 Summer split.
 
-In order to add this very important dataset to your Qri repo, we are going to use the `qri new` command. We will use the `--body` flag to add data to the dataset, and we will have to pass in a dataset name. I am going to use the name `nalcs_standings`, but feel free to name it whatever you like. A dataset reference also includes the peername of the peer that initally added the dataset to Qri, so the dataset reference will actually be `tutorial/nalcs_standings`. We can use `me`, as a shorthand for any datasets we ourselves have added to Qri, so we can also use `me/nalcs_standings` as a dataset reference.
+In order to add this very important dataset to your Qri repo, we are going to use the `qri new` command. We will use the `--body` flag to add data to the dataset, and we will have to pass in a dataset name. I am going to use the name `nalcs_standings`, but feel free to name it whatever you like. A dataset reference also includes the peername of the peer that initially added the dataset to Qri, so the dataset reference will actually be `tutorial/nalcs_standings`. We can use `me`, as a shorthand for any datasets we ourselves have added to Qri, so we can also use `me/nalcs_standings` as a dataset reference.
 
 ```
 $ qri new --body ~path/to/data/data.csv me/nalcs_standings
@@ -632,7 +632,7 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 ```
 
-First, the date and time is displayed. Next, the dataset hash. The hash is the id, so to speak, of this particular verison of the dataset. It is unique. Last is the commit title, so you have a little bit of context when looking through the log about what was added during that update.
+First, the date and time is displayed. Next, the dataset hash. The hash is the id, so to speak, of this particular version of the dataset. It is unique. Last is the commit title, so you have a little bit of context when looking through the log about what was added during that update.
 
 In the next section, we'll go over the dataset reference and how to explore a dataset using the command line.
 
@@ -679,7 +679,7 @@ In fact, you do not even need the human readable portion:
 
 will work just fine.
 
-The difference between using `peername/dataset_name` and `@/network/dataset_hash`, is that the human readable portion will always only give you the most recent verison of the dataset, where any dataset reference with a network and dataset hash will give you the dataset at the specific save point.
+The difference between using `peername/dataset_name` and `@/network/dataset_hash`, is that the human readable portion will always only give you the most recent version of the dataset, where any dataset reference with a network and dataset hash will give you the dataset at the specific save point.
 
 The dataset hash is how we view the previous versions of our dataset.
 
@@ -699,7 +699,7 @@ $ qri info me/nalcs_standings
     211 bytes, 10 entries, 0 errors
 ```
 
-You'll notice, it's a very similar format to what the info we recieve when we use `qri list`.
+You'll notice, it's a very similar format to what the info we receive when we use `qri list`.
 
 <a id="qri-get"></a>
 ### 3.3 qri get and qri use

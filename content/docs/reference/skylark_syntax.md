@@ -32,7 +32,7 @@ Starlark transformations have a few rules on top of skylark itself:
 
 * Qri functions *always* get and return a dataset
 * When you define a Qri function, qri calls it for you
-* All tranform functions are optional (you don't _need_ to define them), _but_
+* All transform functions are optional (you don't _need_ to define them), _but_
 * A transformation must have at least one Qri function
 * Qri functions are always called in the same order
 
