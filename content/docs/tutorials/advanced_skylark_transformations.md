@@ -5,7 +5,7 @@ section: tutorials
 draft: true
 ---
 
-Qri ("query") is about datasets. A _transformation_ is a repeatable script for generating a dataset. [Skylark](https://github.com/google/skylark/blob/master/doc/spec.md) is a scripting langauge from Google that feels a lot like python. This package implements skylark as a _transformation syntax_. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
+Qri ("query") is about datasets. A _transformation_ is a repeatable script for generating a dataset. [Skylark](https://github.com/google/skylark/blob/master/doc/spec.md) is a scripting language from Google that feels a lot like python. This package implements skylark as a _transformation syntax_. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
 
 Typical examples of a skylark transformation include:
 * combining paginated calls to an API into a single dataset
@@ -14,7 +14,7 @@ Typical examples of a skylark transformation include:
 
 We're excited about skylark for a few reasons:
 * **python syntax** - _many_ people working in data science these days write python, we like that, skylark likes that. dope.
-* **deterministic subset of python** - unlike python, skylark removes properties that reduce introspection into code behaviour. things like `while` loops and recursive functions are ommitted, making it possible for qri to infer how a given transformation will behave.
+* **deterministic subset of python** - unlike python, skylark removes properties that reduce introspection into code behaviour. things like `while` loops and recursive functions are omitted, making it possible for qri to infer how a given transformation will behave.
 * **parallel execution** - thanks to this deterministic requirement (and lack of global interpreter lock) skylark functions can be executed in parallel. Combined with peer-2-peer networking, we're hoping to advance tranformations toward peer-driven distribed computing. More on that in the coming months.
 
 ## 1.0: Writing Skylark Transformations
@@ -76,12 +76,12 @@ Here we've defined single function: `transform`, it takes an _argument_ named `q
 
 * Data functions *always* return data
 * When you define a data function, qri calls it for you
-* All tranform functions are optional (you don't _need_ to define them), _but_
+* All transform functions are optional (you don't _need_ to define them), _but_
 * A transformation must have at least one data function
 * Data functions are always called in the same order
 * Data functions often get a `qri` parameter that lets them do special things
 
-When we ran `qri add` from the terminal qri opened this file, saw that we defined a `transform` function and called it, passing in the `qri` argument for us to play with. We ignored the qri arugment entirely (that's ok, the `qri` arugment doesn't have feelings). The one thing we actually did was return data. In this case: `["hello", "world"]`.
+When we ran `qri add` from the terminal qri opened this file, saw that we defined a `transform` function and called it, passing in the `qri` argument for us to play with. We ignored the qri argument entirely (that's ok, the `qri` argument doesn't have feelings). The one thing we actually did was return data. In this case: `["hello", "world"]`.
 
 ### 1.1 Using the qri argument to set Metadata
 Let's use the qri argument to do something interesting by adding a line to our `transform.sky` that sets dataset metadata for us:
@@ -140,7 +140,7 @@ $ qri info me/hello_world
 #     17 bytes, 2 entries, 0 errors
 ```
 
-In our transform we called `qri.set_meta("title", ...)`, but the title hasn't changed, what gives? That's because we have _also_ set the `title` in our `dataset.yaml` file. The thing to remember is **Settings in a dataset file override tranformations**. This helps make transformation scripts more flexible. If later on you re-run this transform but wanted to change the title of the dataset, you can do so without digging into the tranform code. This starts to make more sense when transform scripts get a little more complicated. Speaking of complicated, let's move on to a new transformation to do something a little more interesting.
+In our transform we called `qri.set_meta("title", ...)`, but the title hasn't changed, what gives? That's because we have _also_ set the `title` in our `dataset.yaml` file. The thing to remember is **Settings in a dataset file override transformations**. This helps make transformation scripts more flexible. If later on you re-run this transform but wanted to change the title of the dataset, you can do so without digging into the transform code. This starts to make more sense when transform scripts get a little more complicated. Speaking of complicated, let's move on to a new transformation to do something a little more interesting.
 
 #### 1.3 Deleting a Dataset
 

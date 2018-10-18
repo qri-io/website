@@ -1019,4 +1019,4 @@ def download(ds):
 #### get_rows
 `x.get_rows(sheet_name)`
 
-  returns a 2 dimentional list of data from the specified sheet. See above `get_url` example for use
+  returns a 2 dimensional list of data from the specified sheet. See above `get_url` example for use
