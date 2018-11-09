@@ -87,7 +87,7 @@ _meta fields:_
 
 | name                  | type          | description   |
 |-----------------------|---------------|---------------|
-| `accessPath`          | `string`      | url or location to access this dataset.   |
+| `accessPath`          | `string`      | URL or location to access this dataset.   |
 | `accrualPeriodicity`  | `string`      | frequency with which dataset changes. Must be an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals) repeating duration   |
 | `citations`           | `[]Citation`  | array of assets used to build this dataset   |
 | `contributors`        | `[]User`      | description   |

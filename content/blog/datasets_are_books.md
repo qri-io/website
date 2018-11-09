@@ -19,7 +19,7 @@ Location addressing works well for many purposes, but it’s a poor system for l
 
 Content drift is arguably the more insidious problem. It’s completely possible that by now someone has demolished my childhood home and replaced it with a different house. In this case the address is the same, but the content has *drifted*, taking on a different meaning since I last visited. In the data context, the cognitive and procedural overhead of confirming that data exists *and hasn’t changed* dissuades us from taking on the challenge in the first place.
 
-**These problems have balkanized theopen data landscape.** Because it’s not possible to build a sufficient reliable system that spans across locations and services, data providers have very little incentive to depend on each other.
+**These problems have balkanized the open data landscape.** Because it’s not possible to build a sufficient reliable system that spans across locations and services, data providers have very little incentive to depend on each other.
 
 So, what’s the alternative? 
 
