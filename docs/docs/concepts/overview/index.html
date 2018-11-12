@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.48-DEV" />
+  <meta name="generator" content="Hugo 0.44" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,8 +24,24 @@
 <meta property="og:description" content="What is Qri (&ldquo;query&rdquo;)? Qri is a distributed dataset version control system built with peer-2-peer data exchange. Peers create datasets, which are stored in versions. Qri peers form a distributed network to exchange information about their datasets, which they transmit between each other over the distributed web.
 Datasets are recorded structured data according to a specification that dictates the purpose of each component piece of a dataset. By design, qri can only store datasets." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/concepts/overview/" /><meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+<meta property="og:url" content="https://qri.io/docs/concepts/overview/" />
+
+
+
+<meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+
 <meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
+
+
+
+
+
+
+
+
+
+
+
   
 
 
@@ -120,7 +136,7 @@ Datasets are recorded structured data according to a specification that dictates
 
 <p>All datasets on qri are immutable. Datasets are identified by their cryptographic hash, and assume they are being stored on a content-addressed file system (content is referred to by cryptographic hash). Changes to datasets are stored by creating a new version of data that references the previous version. All Versions of Qri includes a <em>naming system</em> that connects human-readable names to the latest version (&ldquo;tip&rdquo;) of a dataset history of qri datasets are tracked &amp; attributed, signed with a keypair associated with the <em>Peer</em>.</p>
 
-<p>Qri leverages the content-addressing scheme of the distributed web to provide global, immutable identifiers for datasets. By default qri is configured to use IPFS as it&rsquo;s &ldquo;distributed web implementation&rdquo;, but is architected to support multiple content-addressed storage formats.</p>
+<p>Qri leverages the content-addressing scheme of the distributed web to provide global, immutable identifiers for datasets. By default qri is configured to use IPFS as its &ldquo;distributed web implementation&rdquo;, but is architected to support multiple content-addressed storage formats.</p>
 
 <p>Peers can opt into <em>registries</em> that reinforce the network, providing a social governance structure &amp; features like search &amp; high-uptime. Registries are built on a federated model where participating peers can communicate with registries for a layer of insulation against bad actors.</p>
 
