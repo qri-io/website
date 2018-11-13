@@ -1,25 +1,31 @@
 ---
-title: "Skylark Transformations"
+title: "Starlark Transformations"
 date: 2018-01-30T00:00:00-04:00
 section: tutorials
 draft: true
 ---
 
-Qri ("query") is about datasets. A _transformation_ is a repeatable script for generating a dataset. [Skylark](https://github.com/google/skylark/blob/master/doc/spec.md) is a scripting language from Google that feels a lot like python. This package implements skylark as a _transformation syntax_. Skylark tranformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
+Qri ("query") is about datasets. There are two ways to change a dataset, the first is by _manual changes_, which is what happens whenever you edit dataset contents and hit save. 
 
-Typical examples of a skylark transformation include:
+The second way is with a _tranform script_. A transform script is code that updates a dataset. Transform scripts can update any part of a dataset, and are embedded in the dataset itself as a record of how the transform was accomplished. Later on we can re-run those same scripts to make self-updating datasets.
+
+Transforms are written in the [Starlark](https://github.com/google/starlark-go/blob/master/doc/spec.md) scripting syntax. Starlark is meant to feel almost exactly like python, so if you've ever written python code, you should feel right at home.
+
+Typical examples of a starlark transformation include:
 * combining paginated calls to an API into a single dataset
 * downloading unstructured structured data from the internet to extract
 * re-shaping raw input data before saving a dataset
 
-We're excited about skylark for a few reasons:
-* **python syntax** - _many_ people working in data science these days write python, we like that, skylark likes that. dope.
-* **deterministic subset of python** - unlike python, skylark removes properties that reduce introspection into code behaviour. things like `while` loops and recursive functions are omitted, making it possible for qri to infer how a given transformation will behave.
-* **parallel execution** - thanks to this deterministic requirement (and lack of global interpreter lock) skylark functions can be executed in parallel. Combined with peer-2-peer networking, we're hoping to advance tranformations toward peer-driven distribed computing. More on that in the coming months.
+In this tutorial we'll take a first look at starlark transforms to see how they work.
 
-## 1.0: Writing Skylark Transformations
+<!-- We're excited about starlark for a few reasons:
+* **python syntax** - _many_ people working in data science these days write python, we like that, starlark likes that. dope.
+* **deterministic subset of python** - unlike python, starlark removes properties that reduce introspection into code behaviour. things like `while` loops and recursive functions are omitted, making it possible for qri to infer how a given transformation will behave.
+* **parallel execution** - thanks to this deterministic requirement (and lack of global interpreter lock) starlark functions can be executed in parallel. Combined with peer-2-peer networking, we're hoping to advance tranformations toward peer-driven distribed computing. More on that in the coming months. -->
 
-To write our first transformation we're going to need two files. The first is a `dataset.yaml` file that will define our dataset, the second `transform.sky` file will hold our skylark transformation code. Both files should be in the same folder.
+## 1.0: Writing Starlark Transformations
+
+To write our first transformation we're going to need two files. The first is a `dataset.yaml` file that will define our dataset, the second `transform.star` file will hold our starlark transformation code. Both files should be in the same folder.
 
 Save this in `dataset.yaml`:
 ```yaml
@@ -29,21 +35,21 @@ meta:
   title: hello world example
 
 transform:
-  scriptpath: transform.sky
+  scriptpath: transform.star
 ```
 
-Save this in `transform.sky`:
+Save this in `transform.star`:
 ```python
-def transform(qri):
-  return(["hello","world"])
+def transform(ds,ctx):
+  ds.set_body(["hello","world"])
 ```
 
-From a terminal, navigate to the directory that contains these files, and run the transformation:
+From a terminal, navigate to the directory that contains these files, and save the dataset to Qri
 ```shell
 $ cd /wherever/you/saved/those/files
 
 # add this dataset to qri
-$ qri add --file=dataset.yaml
+$ qri save --file=dataset.yaml
 ```
 
 If everything goes according to plan, qri will see that you've specified a transformation, run it, and save the result as a dataset. We can examine our dataset with the `info` and `data` commands:
@@ -56,7 +62,7 @@ $ qri info me/hello_world
 #    hello world example
 #    17 bytes, 2 entries, 0 errors
 
-# show the body of our dataset, created by transform.sky:
+# show the body of our dataset, created by transform.star:
 $ qri data me/hello_world
 # ["hello", "world"]
 
@@ -67,12 +73,12 @@ $ qri data -s 1 me/hello_world
 
 The output of `qri info me/hello_world` will look slightly different for you. My peername is "b5", instead of `b5/hello_world`, you'll see your own username followed by `/hello_world`. Also that `/ipfs/Qmbx59VBd9joyP4oLmqPAmL3HGQKeQ2pejXtHRnLQ3N5Za` bit will have different characters, and that's a good thing! For more info on those characters & what they mean, it's worth reading about content-addressing. But for now let's keep going.
 
-Let's dig in on that `transform.sky` file a bit:
+Let's dig in on that `transform.star` file a bit:
 ```python
-def transform(qri):
-  return(["hello","world"])
+def transform(ds,ctx):
+  ds.set_body(["hello","world"])
 ```
-Here we've defined single function: `transform`, it takes an _argument_ named `qri` (we haven't actually _used_ this argument, but that's ok), and returns a set of two strings, `"hello"`, and `"world"`. The name "transform" is special. `transform` is an example of a _data function_. Data functions are special functions that qri recognizes, `transform` is one, and we'll introduce you to another data function later on. Data functions have a few things in common:
+Here we've defined single function: `transform`, it takes two arguments: `ds` and `ctx`. `ds` is . We haven't actually _used_ this argument, but that's ok. and returns a set of two strings, `"hello"`, and `"world"`. The name "transform" is special. `transform` is an example of a _data function_. Data functions are special functions that qri recognizes, `transform` is one, and we'll introduce you to another data function later on. Data functions have a few things in common:
 
 * Data functions *always* return data
 * When you define a data function, qri calls it for you
@@ -84,14 +90,14 @@ Here we've defined single function: `transform`, it takes an _argument_ named `q
 When we ran `qri add` from the terminal qri opened this file, saw that we defined a `transform` function and called it, passing in the `qri` argument for us to play with. We ignored the qri argument entirely (that's ok, the `qri` argument doesn't have feelings). The one thing we actually did was return data. In this case: `["hello", "world"]`.
 
 ### 1.1 Using the qri argument to set Metadata
-Let's use the qri argument to do something interesting by adding a line to our `transform.sky` that sets dataset metadata for us:
+Let's use the qri argument to do something interesting by adding a line to our `transform.star` that sets dataset metadata for us:
 ```python
 def transform(qri):
-  qri.set_meta("description", "this is an example dataset to learn about transformations")
+  ds.set_meta("description", "this is an example dataset to learn about transformations")
   return(["hello","world"])
 ```
 
-Save `transform.sky`, and let's update our dataset. From the same directory in a terminal run:
+Save `transform.star`, and let's update our dataset. From the same directory in a terminal run:
 ```shell
 # update our dataset:
 $ qri update --file=dataset.yaml
@@ -116,14 +122,15 @@ $ qri log me/hello_world
 ```
 
 ### 1.2 Dataset files override transform settings
-While we're here, we might as well point out a potential gotcha, let's add a second call to `qri.set_meta` that sets title:
+While we're here, we might as well point out a potential gotcha, let's add a second call to `ds.set_meta` that sets title:
 ```python
-# this is an example skylark transformation
+# this is an example starlark transformation
 
-def transform(qri):
-  qri.set_meta("title", "I'm a title set by a transformation!")
-  qri.set_meta("description", "this is an example dataset")
-  return(["hello","world"])
+def transform(ds, ctx):
+  ds.set_meta("title", "I'm a title set by a transformation!")
+  ds.set_meta("description", "this is an example dataset")
+  ds.set_body(["hello","world"])
+  return
 ```
 
 Save that file, and let's update:
@@ -140,7 +147,7 @@ $ qri info me/hello_world
 #     17 bytes, 2 entries, 0 errors
 ```
 
-In our transform we called `qri.set_meta("title", ...)`, but the title hasn't changed, what gives? That's because we have _also_ set the `title` in our `dataset.yaml` file. The thing to remember is **Settings in a dataset file override transformations**. This helps make transformation scripts more flexible. If later on you re-run this transform but wanted to change the title of the dataset, you can do so without digging into the transform code. This starts to make more sense when transform scripts get a little more complicated. Speaking of complicated, let's move on to a new transformation to do something a little more interesting.
+In our transform we called `ds.set_meta("title", ...)`, but the title hasn't changed, what gives? That's because we have _also_ set the `title` in our `dataset.yaml` file. The thing to remember is **Settings in a dataset file override transformations**. This helps make transformation scripts more flexible. If later on you re-run this transform but wanted to change the title of the dataset, you can do so without digging into the transform code. This starts to make more sense when transform scripts get a little more complicated. Speaking of complicated, let's move on to a new transformation to do something a little more interesting.
 
 #### 1.3 Deleting a Dataset
 
@@ -149,9 +156,14 @@ Before we go, you may want to delete this tutorial data. Then again, maybe you'd
 $ qri export me/hello_world
 ```
 
-Then you can delete your data from qri for good with:
+And Qri will output a zip archive of that dataset named `hello_world.zip`. Then you can delete your data from qri for good with:
 ```shell
 $ qri delete me/hello_world
+```
+
+If you wanted to re-add that datset later you can re-add it with:
+```shell
+$ qri save --file=hello_world.zip
 ```
 
 
@@ -163,7 +175,7 @@ Let's start fresh create a new directory `continent_populations`. The name of th
 continent_populations
 ├── continent_populations.csv
 ├── dataset.yaml
-└── transform.sky
+└── transform.star
 ```
 
 First, create a comma-separated values file, `continent_populations.csv`:
@@ -188,14 +200,28 @@ meta:
     url: https://en.wikipedia.org/wiki/List_of_continents_by_population
 
 transform:
-  scriptpath: transform.sky
+  scriptpath: transform.star
 
-body: continent_populations.sky
+structure:
+  format: json
+  schema: {
+    "type": "array",
+    "items": {
+      "type": "array",
+      "items": [
+        {"name": "continent", "type": "string"},
+        {"name": "population", "type": "integer"},
+        {"name": "percent", "type": "number"}
+      ]
+    }
+  }
+
+body: continent_populations.star
 ```
 
-Finally, create a new `transform.sky` file:
+Finally, create a new `transform.star` file:
 ```python
-# this is an example skylark transformation that adds the percentage
+# this is an example starlark transformation that adds the percentage
 
 def transform(qri):
   qri.structure.set_schema(schema)
@@ -216,26 +242,15 @@ def add_average(data):
     item.append(pct)
   return data
 
-schema = {
-  "type": "array",
-  "items": {
-    "type": "array",
-    "items": [
-      {"name": "continent", "type": "string"},
-      {"name": "population", "type": "integer"},
-      {"name": "percent", "type": "number"}
-    ]
-  }
-}
 ```
 
 Then let's add it to qri:
 ```shell
-$ qri add --file=dataset.yaml
+$ qri save --file=dataset.yaml
 ```
 
 
-### 3.0 Getting data from the web
+<!-- ### 3.0 Getting data from the web
 Transforms on input data are great, but
 * less auditable
 * 
@@ -245,4 +260,4 @@ Transforms on input data are great, but
 ```
 
 ### 4.0 Building Datasets from other datasets
-
+ -->
