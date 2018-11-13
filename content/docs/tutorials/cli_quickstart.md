@@ -146,7 +146,7 @@ If you are ever having trouble with something that is supposed to be working jus
 
 Since Qri is in active and rapid development, we're making changes to the app all the time. Updating Qri to the latest version should not have an effect on your repo, unless specified in the release notes. Breaking changes will be outlined, as well as information on what you should do to ease the transition.
 
-The most current version of Qri will be specified by the latest [release](https://github.com/qri-io/qri/releases). A list of what's changed from version to version is avilable in the [changelog](https://github.com/qri-io/qri/blob/master/CHANGELOG.md).
+The most current version of Qri will be specified by the latest [release](https://github.com/qri-io/qri/releases). A list of what's changed from version to version is available in the [changelog](https://github.com/qri-io/qri/blob/master/CHANGELOG.md).
 
 At the last update of this tutorial, the most current version is `0.6.0`.
 
@@ -244,7 +244,7 @@ And that is the simpliest, no frills way to add a dataset to qri! Continue on to
 <a id="1.5"></a>
 ### 1.5 qri list
 
-The first thing we'll want to do is list all of the datasets we have in our respository. This is nice and simple. To view the list of datasets you have on Qri, run `qri list`
+The first thing we'll want to do is list all of the datasets we have in our repository. This is nice and simple. To view the list of datasets you have on Qri, run `qri list`
 
 ```
 $ qri list

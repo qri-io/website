@@ -1,6 +1,6 @@
 # qri.io site
 
-This is the repo for https://qri.io, our beloved website. Changes, fixes & Pull requests are welcomed & appriciated.
+This is the repo for https://qri.io, our beloved website. Changes, fixes & Pull requests are welcomed & appreciated.
 
 This site is built with [hugo](https://gohugo.io), a static site generator.
 
