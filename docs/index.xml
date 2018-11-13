@@ -42,17 +42,6 @@ All datasets have at most 6 components. The most important ones are:</descriptio
     </item>
     
     <item>
-      <title>Python quickstart</title>
-      <link>https://qri.io/docs/tutorials/python_quickstart/</link>
-      <pubDate>Tue, 21 Aug 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/tutorials/python_quickstart/</guid>
-      <description>Python Quickstart  Before you start Install the Python Client Work with qri in a Jupyter Notebook  
-1. Before you start Qri has a simple python client that makes it easier to work with qri datasets using the tools you already use&amp;ndash;like pandas and Jupyter.
-Since the qri python client is using qri under the hood, for it to work correctly you need to have qri setup and installed before using the python client.</description>
-    </item>
-    
-    <item>
       <title>CLI commands</title>
       <link>https://qri.io/docs/reference/cli_commands/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
@@ -68,9 +57,14 @@ Since the qri python client is using qri under the hood, for it to work correctl
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/tutorials/cli_quickstart/</guid>
-      <description>CLI Tutorial (last updated August 8, 2018)
-Welcome to the wonderful world of the Qri Command Line Interface. After the first section of this tutorial is the quick start. After following that portion, you will be able to set up your qri repo, check the version of qri you are running, create a new dataset, list your datasets, and export your datasets.
-The whole tutorial is divided into six sections.</description>
+      <description>CLI Tutorial (last updated Nov 12, 2018, using qri version 0.6.0)
+Welcome to the wonderful world of the Qri Command Line Interface. Here we&amp;rsquo;ll get you started with using qri&amp;rsquo;s command-line tools, giving a brief overview of what qri&amp;rsquo;s CLI can do.
+The whole tutorial is divided into six sections. The topics are as follows:
+ QLI Quickstart
+1.1 qri help
+1.2 qri version
+1.3 qri setup
+1.4 qri save</description>
     </item>
     
     <item>
@@ -83,21 +77,14 @@ The whole tutorial is divided into six sections.</description>
     </item>
     
     <item>
-      <title>Skylark Transformations</title>
-      <link>https://qri.io/docs/tutorials/skylark_transformations/</link>
+      <title>Starlark Transformations</title>
+      <link>https://qri.io/docs/tutorials/starlark_transformations/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/docs/tutorials/skylark_transformations/</guid>
-      <description>Skylark Transformations Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. A transformation is a repeatable script for generating a dataset. Starlark, formerly &amp;ldquo;Skylark&amp;rdquo;, is a scripting language from Google that feels a lot like python. This package implements skylark as a transformation syntax. Skylark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
-    </item>
-    
-    <item>
-      <title>The Source Cascade</title>
-      <link>https://qri.io/docs/concepts/value_cascade/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/concepts/value_cascade/</guid>
-      <description>Value Cascade A good dataset is as complete and accurate as possible. Good datasets have metadata with a concise yet descriptive title, a description that elaborates, a schema with descriptive details, and so on. When it comes to datasets more detail is better, so long as it&amp;rsquo;s accurate. Because of this, qri provides lots of places to set values. We call those &amp;ldquo;places that might set values&amp;rdquo; sources. There are 4 sources of values in qri:</description>
+      <guid>https://qri.io/docs/tutorials/starlark_transformations/</guid>
+      <description>Starlark Transformations Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. A transformation is a repeatable script for generating a dataset. Starlark. This package implements starlark as a transformation syntax. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
+Typical examples of a starlark transformation include:
+ combining paginated calls to an API into a single dataset downloading unstructured structured data from the internet to extract  So let&amp;rsquo;s dive in and learn about transforms!</description>
     </item>
     
     <item>
@@ -177,10 +164,10 @@ Datasets are recorded structured data according to a specification that dictates
     
     <item>
       <title>starlark syntax</title>
-      <link>https://qri.io/docs/reference/skylark_syntax/</link>
+      <link>https://qri.io/docs/reference/starlark_syntax/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/docs/reference/skylark_syntax/</guid>
+      <guid>https://qri.io/docs/reference/starlark_syntax/</guid>
       <description>Starlark Syntax Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. Transformations are repeatable scripts for generating a dataset. Starlark is a scripting language from Google that feels a lot like python. This package implements skylark as a transformation syntax. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
     </item>
     
