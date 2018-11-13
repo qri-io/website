@@ -46,7 +46,7 @@ menu:
     - name: Viz Templates
       url: /docs/reference/html_templates
     - name: Starlark Syntax
-      url: /docs/reference/skylark_syntax
+      url: /docs/reference/starlark_syntax
     - name: Starlark Standard Library
       url: /docs/reference/starlib
     - name: CLI reference
@@ -55,7 +55,7 @@ menu:
     - name: CLI quickstart
       url: /docs/tutorials/cli_quickstart
     - name: Starlark Transformations
-      url: /docs/tutorials/skylark_transformations
+      url: /docs/tutorials/starlark_transformations
     - name: Python & Jupyter
       url: /docs/tutorials/python_quickstart
 params:

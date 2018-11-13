@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta name="generator" content="Hugo 0.48-DEV" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> starlark syntax </title>
+
+  
+  <meta name="description" content="starlark transformations"> 
+  
+  
+  
+  
+  
+
+  
+
+  <meta name="author" content="qri">
+
+
+  <meta property="og:title" content="starlark syntax" />
+<meta property="og:description" content="starlark transformations" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://qri.io/docs/reference/starlark_syntax/" /><meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+<meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
+  
+
+
+
+
+  
+  
+  
+  
+  
+
+  <link rel="canonical" href="https://qri.io/docs/reference/starlark_syntax/">  
+
+  <link href="../../../favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="../../../css/font.css" rel="stylesheet" type="text/css">
+  <link href="../../../css/qri.css" rel="stylesheet" type="text/css">
+  
+
+  <script src="../../../js/jquery-2.1.4.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../../../css/highlight.default.min.css">
+  <link rel="stylesheet" href="../../../css/highlight.theme.tomorrow.css">
+  <script src="../../../js/highlight.pack.js"></script>
+  <script>
+    window.onload = function(e) {
+      let elements = document.querySelectorAll('.highlight pre')
+      Array.from(elements).forEach((block, i) => {
+        hljs.highlightBlock(block)
+      })
+    }
+  </script>
+
+  <script type="text/javascript" src="../../../js/tocbot.min.js"></script>
+
+  
+    <script type="text/javascript">
+     !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+      analytics.load("b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju");
+      analytics.page()
+    }}();
+    </script>
+  
+</head>
+
+
+<body class="page-kube docs " >
+  <header></header>
+  <main>
+<div id="docs_page" class="docs">
+  <nav id="docs_sidebar">
+  <div class="content">
+    <div class="logotype">
+      <a href="../../../" title="home" class="title">qri</a>
+      <p class="subhead">docs</p>
+    </div>
+    <div class="pages">
+      <p><b>reference</b></p>
+      <ul>
+        
+        
+          <li><a href="../../../docs/reference/cli_commands">CLI reference</a></li>
+        
+          <li><a href="../../../docs/reference/dataset">Dataset</a></li>
+        
+          <li><a href="../../../docs/reference/starlib">Starlark Standard Library</a></li>
+        
+          <li><a href="../../../docs/reference/starlark_syntax">Starlark Syntax</a></li>
+        
+          <li><a href="../../../docs/reference/html_templates">Viz Templates</a></li>
+        
+      </ul>
+    </div>
+    <hr />
+    <p><i>Jump to:</i></p>
+    <ul class="docs_sections">
+      <li><a href="../../../docs">Docs Home</a></li>
+      <li><a href="../../../docs/concepts">Concepts</a></li>
+      <li><a href="../../../docs/reference">Reference</a></li>
+      <li><a href="../../../docs/tutorials">Tutorials</a></li>
+    </ul>
+  </div>
+  <br />
+</nav>
+  <section id="main">
+    <div class="content">
+      
+
+<h1 id="starlark-syntax">Starlark Syntax</h1>
+
+<p>Qri (&ldquo;query&rdquo;) is about datasets. Transformations are repeatable scripts for generating a dataset. <a href="https://github.com/google/skylark/blob/master/doc/spec.md">Starlark</a> is a scripting language from Google that feels a lot like python. This package implements skylark as a <em>transformation syntax</em>. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</p>
+
+<p>Typical examples of a starlark transformation include:</p>
+
+<ul>
+<li>combining paginated calls to an API into a single dataset</li>
+<li>downloading unstructured structured data from the internet to extract</li>
+<li>re-shaping raw input data before saving a dataset</li>
+</ul>
+
+<h3 id="differences-from-python">Differences from Python</h3>
+
+<p><strong>No While Loops</strong></p>
+
+<p><strong>No Recursion</strong></p>
+
+<p><strong>Set Variables Once</strong></p>
+
+<p><strong>Can be run in parallel</strong></p>
+
+<hr />
+
+<h3 id="starlark-in-qri">Starlark In Qri:</h3>
+
+<p>Starlark transformations have a few rules on top of skylark itself:</p>
+
+<ul>
+<li>Qri functions <em>always</em> get and return a dataset</li>
+<li>When you define a Qri function, qri calls it for you</li>
+<li>All transform functions are optional (you don&rsquo;t <em>need</em> to define them), <em>but</em></li>
+<li>A transformation must have at least one Qri function</li>
+<li>Qri functions are always called in the same order</li>
+</ul>
+
+<hr />
+
+<h3 id="transform-functions">Transform Functions</h3>
+
+<p>So far there are two predefined Qri functions, with more planned for future use:</p>
+
+<ul>
+<li>download</li>
+<li>transform</li>
+</ul>
+
+<h4 id="def-download-ds">def download(ds):</h4>
+
+<p>Download is the only function in which you can make an http request or get an http response, or download a xlsx file, aka the only place in a transform where you can get data from a website or server. You must then manipulate the response to get some structured data, which can be set as the body.</p>
+
+<p>The download function is always run before the transform function.</p>
+
+<p>The transform function will receive the dataset returned from the download function.</p>
+
+<h4 id="def-transform-ds">def transform(ds):</h4>
+
+<p>The transform function can pull from a body file and config file, as well as set the metadata or schema of a dataset. It can also has access to the dataset returned from a download function.</p>
+
+<hr />
+
+<h3 id="transform-configuration">Transform Configuration</h3>
+
+<p>You can inject variables into the transform through the transform config section in the dataset file. For example:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># dataset.yaml file</span><span class="w">
+</span><span class="w"></span>transform<span class="p">:</span><span class="w">
+</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.sky<span class="w">
+</span><span class="w">  </span>config<span class="p">:</span><span class="w">
+</span><span class="w">    </span>name<span class="p">:</span><span class="w"> </span>Joe<span class="w">
+</span><span class="w">    </span>number<span class="p">:</span><span class="w"> </span><span class="m">5556578909</span></code></pre></div>
+<p>In your transform script, you can get the name and number by loading the <code>qri.sky</code> module and using the <code>get_config</code> function:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">get_config</span><span class="p">(</span><span class="s2">&#34;name&#34;</span><span class="p">)</span>
+  <span class="c1"># casting number to an int just in case it was mistaken </span>
+  <span class="c1"># for a string</span>
+  <span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">qri</span><span class="o">.</span><span class="n">get_config</span><span class="p">(</span><span class="s2">&#34;number&#34;</span><span class="p">))</span>
+  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+<hr />
+
+<h3 id="transform-secrets">Transform Secrets</h3>
+
+<p>Sometimes you need special keys or information that you want to exist in your transform, but you don&rsquo;t want anyone else to see or have access to. This is where transform secrets come in. You can add a private api key, for example, and not be worried that when another use looks at your dataset, that they will have access to your secret key.</p>
+
+<p>You add secrets much in the same why that you add config variables.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># in dataset.yaml file</span><span class="w">
+</span><span class="w"></span>transform<span class="p">:</span><span class="w">
+</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.sky<span class="w">
+</span><span class="w">  </span>secrets<span class="p">:</span><span class="w">
+</span><span class="w">    </span>api_key<span class="p">:</span><span class="w"> </span>SOME-PRIVATE-KEY-HERE</code></pre></div>
+<p>To get that secret, load the <code>qri</code> module and use the <code>get_secret</code> method:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+  <span class="n">api_key</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">get_secret</span><span class="p">(</span><span class="s2">&#34;api_key&#34;</span><span class="p">)</span>
+  <span class="c1"># do something here to add to the dataset body</span>
+  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+<hr />
+
+<p>For information on the different modules of our starlark standard library, checkout our <a href="../../../docs/reference/starlib">starlib reference page</a>.</p>
+
+    </div>
+  </section>
+</div>
+</main>
+  <footer></footer>
+
+
+  <script src="../../../js/kube.js" type="text/javascript">
+  </script>
+  <script src="../../../js/kube.legenda.js" type="text/javascript">
+  </script>
+  <script src="../../../js/master.js" type="text/javascript">
+  </script>
+</body>
+
+</html>

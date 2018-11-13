@@ -21,15 +21,6 @@
     </item>
     
     <item>
-      <title>The Source Cascade</title>
-      <link>https://qri.io/docs/concepts/value_cascade/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/concepts/value_cascade/</guid>
-      <description>Value Cascade A good dataset is as complete and accurate as possible. Good datasets have metadata with a concise yet descriptive title, a description that elaborates, a schema with descriptive details, and so on. When it comes to datasets more detail is better, so long as it&amp;rsquo;s accurate. Because of this, qri provides lots of places to set values. We call those &amp;ldquo;places that might set values&amp;rdquo; sources. There are 4 sources of values in qri:</description>
-    </item>
-    
-    <item>
       <title>content-addressing</title>
       <link>https://qri.io/docs/concepts/content-addressing/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
