@@ -52,7 +52,7 @@ Before we get started, let's understand what we mean by "transform". Here's the 
 
 **A Transformation is a forward transition from one snapshot to another snapshot.**
 
-In plain english: transformations are how datasets change. There are two types of transformation: _manual_ and _scripted_. Manual transforms are direct manipulations of data, scripted transformations use code to make changes.
+In plain English: transformations are how datasets change. There are two types of transformation: _manual_ and _scripted_. Manual transforms are direct manipulations of data, scripted transformations use code to make changes.
 
 There are some rules to how transformations work:
 
@@ -138,9 +138,9 @@ $ qri save --file dataset.yaml
 error saving: no changes detected
 ```
 
-Wait, we got an error. what gives? This is because the result of running the transform _didn't change the dataset_. Transforms have to describe _changes_. This is a super important feature of Qri, and transforms. If nothing changes, Qri can tell you as much, and avoid creating uncessary versions of a dataset. 
+Wait, we got an error. what gives? This is because the result of running the transform _didn't change the dataset_. Transforms have to describe _changes_. This is a super important feature of Qri, and transforms. If nothing changes, Qri can tell you as much, and avoid creating unnecessary versions of a dataset. 
 
-To get this to work, let's change somthing! Let's open up our `transform.star` file and write a script that adds more numbers to our body:
+To get this to work, let's change something! Let's open up our `transform.star` file and write a script that adds more numbers to our body:
 
 ```python
 def transform(ds, ctx):
@@ -197,7 +197,7 @@ The `download` function is always run before the `transform` step, and places it
 
 When we came up with the idea of including transforms in Qri, the thing we were most excited about was a transforms ability to be customized for the person running it. In order to have customizability, we needed a way to _configure_ a transform script. For example, if there is a dataset that has a call to the github api, that can pull down the stats from one of my projects, but I want to also use that transform to pull down stats from a second project, one of the variables in my transform would probably be `repo_name`.
 
-Related to configuratino are _secrets_. Often, when we try to get information from an api, that api requires us to have a special key that is only associated with our identity. It's often private and should not be shared in the dataset itself or made public in any way.
+Related to configuration are _secrets_. Often, when we try to get information from an api, that api requires us to have a special key that is only associated with our identity. It's often private and should not be shared in the dataset itself or made public in any way.
 
 This is where the config and secrets comes in. `config` and `secrets` are both part of the transform dataset component.
 

@@ -7,7 +7,7 @@ draft: true
 
 Qri ("query") is about datasets. There are two ways to change a dataset, the first is by _manual changes_, which is what happens whenever you edit dataset contents and hit save. 
 
-The second way is with a _tranform script_. A transform script is code that updates a dataset. Transform scripts can update any part of a dataset, and are embedded in the dataset itself as a record of how the transform was accomplished. Later on we can re-run those same scripts to make self-updating datasets.
+The second way is with a _transform script_. A transform script is code that updates a dataset. Transform scripts can update any part of a dataset, and are embedded in the dataset itself as a record of how the transform was accomplished. Later on we can re-run those same scripts to make self-updating datasets.
 
 Transforms are written in the [Starlark](https://github.com/google/starlark-go/blob/master/doc/spec.md) scripting syntax. Starlark is meant to feel almost exactly like python, so if you've ever written python code, you should feel right at home.
 
