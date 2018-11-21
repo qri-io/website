@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.44" />
+  <meta name="generator" content="Hugo 0.48-DEV" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,24 +30,8 @@ The whole tutorial is divided into six sections. The topics are as follows:
 1.3 qri setup
 1.4 qri save" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/tutorials/cli_quickstart/" />
-
-
-
-<meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
-
+<meta property="og:url" content="https://qri.io/docs/tutorials/cli_quickstart/" /><meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
 <meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
-
-
-
-
-
-
-
-
-
-
-
   
 
 
@@ -284,7 +268,7 @@ Flags:
 
 <h3 id="1-3-qri-setup">1.3 qri setup</h3>
 
-<p>Okay, okay, enough stringing you along. Time to start <em>doing</em> things. A <em>Repository</em> (<em>repo</em> for short) is a special place on your hard drive that qri keeps all it&rsquo;s data in. The command for creating a new repository is <code>qri setup</code>. When you run the <code>qri setup</code> command, you are actually doing a few things:</p>
+<p>Okay, okay, enough stringing you along. Time to start <em>doing</em> things. A <em>Repository</em> (<em>repo</em> for short) is a special place on your hard drive that qri keeps all its data in. The command for creating a new repository is <code>qri setup</code>. When you run the <code>qri setup</code> command, you are actually doing a few things:</p>
 
 <ul>
 <li><p><strong>New repo check:</strong> <br />
@@ -326,7 +310,7 @@ new_tutorial
 
 <p>So you wanna add a new dataset that you&rsquo;ve created to Qri? That&rsquo;s super easy. For this method of adding a new dataset to Qri, we only need a data file.</p>
 
-<p>If you have a csv, json, or cbor file you would like to add, more power to you. If not, take a moment now to save the following text to your computer as <code>body.csv</code>:</p>
+<p>If you have a csv, json, or cbor file you would like to add, more power to you. If not, take a moment now to save the following text to your computer as <code>data.csv</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-csv" data-lang="csv">1,Team Liquid,TL,8,4
 1,100 Thieves,100,8,4
 3,Echo Fox,EF,7,5
@@ -346,11 +330,11 @@ new_tutorial
 <span class="c1"># then save a new dataset
 </span><span class="c1"></span>$ qri save --body data.csv me/nalcs_standings
 created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT</code></pre></div>
-<p>This bit: <code>me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT</code> is the full dataset <em>reference</em>. Everything on left side of the <code>@</code> sign is the human readable <em>alias</em>. The right side of the <code>@</code> symbol is for referring to this exact dataset, this exact version. The first grabled set of number &amp; letters is your Qri id. <code>/ipfs</code> is the network your dataset is saved on (in this case: ipfs), and finally the the <em>hash</em> of your dataset. You can read more about hashes and content-addressing in our <a href="../../../docs/concepts/content-addressing">content addressing doc</a></p>
+<p>This bit: <code>me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT</code> is the full dataset <em>reference</em>. Everything on left side of the <code>@</code> sign is the human readable <em>alias</em>. The right side of the <code>@</code> symbol is for referring to this exact dataset, this exact version. The first garbled set of number &amp; letters is your Qri id. <code>/ipfs</code> is the network your dataset is saved on (in this case: ipfs), and finally the the <em>hash</em> of your dataset. You can read more about hashes and content-addressing in our <a href="../../../docs/concepts/content-addressing">content addressing doc</a></p>
 
 <p>Your Qri id and your dataset hash should and will be different than mine.</p>
 
-<p>And that is the simpliest, no frills way to add a dataset to qri! Continue on to see how to view all the datasets you have on Qri, and how to export them from Qri.</p>
+<p>And that is the simplest, no frills way to add a dataset to qri! Continue on to see how to view all the datasets you have on Qri, and how to export them from Qri.</p>
 
 <p><a id="1.5"></a></p>
 
@@ -449,7 +433,7 @@ removed dataset &#39;tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2s
 
 <p>Right now, this dataset contains <code>body</code> (recorded as <code>bodyPath</code>), <code>commit</code>, and <code>structure</code> components. It&rsquo;s a nice start, but let&rsquo;s add some detail. First, let&rsquo;s add some proper column names to the <code>schema</code> section of the <code>structure</code>.</p>
 
-<p>The dataset contains the standings, names, abbriviation, wins and losses, for the North American League Championship Series, or the North American pro League of Legends esports league. Let&rsquo;s fill in the column names.</p>
+<p>The dataset contains the standings, names, abbreviation, wins and losses, for the North American League Championship Series, or the North American pro League of Legends esports league. Let&rsquo;s fill in the column names.</p>
 
 <p>Notice how we didn&rsquo;t have to create the schema or structure. If not provided, Qri will determine the structure of a file itself. JSON files will be recorded as an array or an object, but not more specific than that as of the time this tutorial was written. CSV files will be traversed and the title and Qri will try to guess the correct column names. In this case it&rsquo;s fallen back to numbered column names, so let&rsquo;s fix them!</p>
 
@@ -522,7 +506,7 @@ created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiP
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri save --file /users/home/nalcs_standings/dataset.yaml me/nalcs_standings --title &#39;initial dataset&#39; --message &#39;week 7 NALCS standings for the 2018 summer split&#39; me/nalcs_standings</code></pre></div>
 <p>&hellip;would give you the same dataset, but with a custom title and message. If no title or message are given, Qri will generate a title for you.</p>
 
-<p>You can also add a commit messsage and title to the dataset itself by adding a <code>commit</code> component to <code>dataset.yaml</code>:</p>
+<p>You can also add a commit message and title to the dataset itself by adding a <code>commit</code> component to <code>dataset.yaml</code>:</p>
 
 <pre><code>commit:
   title: initial dataset
@@ -671,9 +655,9 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 <p>The <code>meta</code> is all the information and details <em>about</em> that data, including the title, description, contributors, and any other biographical or logistical details.</p>
 
-<p>The <code>structure</code> is what it sounds like. It holds information about the structure of the data, the number of entries, the number of bytes, the shape of the data, or the schema. We use the schema to validate future interations of the dataset. You can use the same schema for multiple datasets.</p>
+<p>The <code>structure</code> is what it sounds like. It holds information about the structure of the data, the number of entries, the number of bytes, the shape of the data, or the schema. We use the schema to validate future iterations of the dataset. You can use the same schema for multiple datasets.</p>
 
-<p>The <code>commit</code> is all the pertinate information about that specific version of the dataset, for example, details about what changed from the last version to this version (usually found in the <code>title</code> and <code>messsage</code> sections), as well as the timestamp, and signature of the peer that made the commit.</p>
+<p>The <code>commit</code> is all the pertinent information about that specific version of the dataset, for example, details about what changed from the last version to this version (usually found in the <code>title</code> and <code>message</code> sections), as well as the timestamp, and signature of the peer that made the commit.</p>
 
 <p>The <code>viz</code> is the go/html template that should be used to render that dataset into a visual representation of that data (chart, graph, etc.).</p>
 
@@ -690,7 +674,7 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 <p>Whoa, that&rsquo;s a lot, right? Well, once you know how to read it, it is way less intimidating.</p>
 
-<p>Let&rsquo;s start by spliting up this dataset reference into two main parts on either side of the <code>@</code> symbol, and look at each piece one at a time.</p>
+<p>Let&rsquo;s start by splitting up this dataset reference into two main parts on either side of the <code>@</code> symbol, and look at each piece one at a time.</p>
 
 <p>The first part is the human readable reference: <code>tutorial/nalcs_standings</code>. Often times, it is the only part of the dataset reference we need. <strong>It will always point to the most recent version of the dataset</strong>. We have been using this form of dataset references for this whole tutorial.</p>
 
@@ -722,7 +706,7 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 <p>The dataset hash is how we view the previous versions of our dataset.</p>
 
-<p><em>Note: if you are using just the machine readible portion of the dataset reference, be sure to proceed the peerID or the network with the <code>at</code> symbol.</em></p>
+<p><em>Note: if you are using just the machine readable portion of the dataset reference, be sure to precede the peerID or the network with the <code>at</code> symbol.</em></p>
 
 <p>Now, let&rsquo;s use the dataset reference to explore the dataset.</p>
 
@@ -769,7 +753,7 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
   created dataset</code></pre></div>
 <p>As a reminder, the hash of your datasets, even if you name them the same as we do in the tutorials, will be different than the ones presented here. In order to look at previous versions of your dataset, you must use the hashes that get printed to your terminal when you run <code>qri log</code> yourself.</p>
 
-<p>So, let&rsquo;s get the commit of the previous dataset using it&rsquo;s particular hash: <code>QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW</code></p>
+<p>So, let&rsquo;s get the commit of the previous dataset using its particular hash: <code>QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri get commit me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW:
   author:
@@ -826,7 +810,7 @@ me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW</code></
 2,Echo Fox,EF,9,5
 2,100 Thieves,100,9,5
 4,FlyQuest,FQ,7,7
-4,Cloud9,C9,7,7</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri body --formt csv --limit 5 --offset 5 me/nalcs_standings
+4,Cloud9,C9,7,7</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri body --format csv --limit 5 --offset 5 me/nalcs_standings
 4,OpTic Gaming,OG,7,7
 7,TSM,TSM,6,8
 8,Counter Logic Gaming,CLG,5,9
@@ -955,7 +939,7 @@ Successfully added dataset tutorial_peer/paris_energy_pledges</code></pre></div>
     87 KBs, 168 entries, 383 errors</code></pre></div>
 <p>You can now use any of the Qri commands you normally use for exploring or exporting datasets to checkout out this added <code>tutorial_peer/paris_energy_pledges</code> dataset.</p>
 
-<p>One note: if you make a change or update to a peers dataset using the <code>qri save</code> command, the dataset will now be renamed from <code>&lt;other_peername&gt;/&lt;dataset_name&gt;</code> to <code>&lt;my_peername&gt;/&lt;dataset_name&gt;</code></p>
+<p>One note: if you make a change or update to a peer&rsquo;s dataset using the <code>qri save</code> command, the dataset will now be renamed from <code>&lt;other_peername&gt;/&lt;dataset_name&gt;</code> to <code>&lt;my_peername&gt;/&lt;dataset_name&gt;</code></p>
 
 <p><a id="4.5"></a></p>
 
@@ -993,7 +977,7 @@ updated: &#34;2018-07-26T14:35:39.614543043-04:00&#34;</code></pre></div>
 
 <p>First, the registry has a list of peer IDs. We keep this list so that when a new person joins Qri, their peer ID does not conflict with anyone elses.</p>
 
-<p>Second, the registry supliments our search results. Once a dataset is published to the registry, it is indexed and other peers can use the <code>qri search</code> command to find it.</p>
+<p>Second, the registry supplements our search results. Once a dataset is published to the registry, it is indexed and other peers can use the <code>qri search</code> command to find it.</p>
 
 <p>Before we move forward, I want to clarify something. Once you add a dataset into Qri, any peer that connects to your Qri node can look at and add your dataset using the <code>qri peers</code> and <code>qri list &lt;peername&gt;</code> commands. They can view your dataset regardless of whether or not that dataset is published to the registry.</p>
 
@@ -1128,7 +1112,7 @@ showing 1 results for &#39;nalcs&#39;
 <h3 id="6-2-qri-config-set">6.2 qri config set</h3>
 
 <p>Now, let&rsquo;s say you want to add a name and a description to your profile. I&rsquo;m going to add &lsquo;example peer&rsquo; as the name and &lsquo;This peer was created to teach people how to use Qri&rsquo; as the description.</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">$<span class="w"> </span>qri<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>profile.name<span class="w"> </span><span class="s1">&#39;example peer&#39;</span><span class="w"> </span>profile.description<span class="w"> </span><span class="s1">&#39;This peer was created to teach people how to use Qri&#39;</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">$<span class="w"> </span>qri<span class="w"> </span>config<span class="w"> </span>set<span class="w"> </span>profile.name<span class="w"> </span><span class="s1">&#39;example peer&#39;</span><span class="w"> </span>profile.description<span class="w"> </span><span class="s1">&#39;This peer was created to teach people how to use Qri&#39;</span><span class="w">
 </span><span class="w"></span>config<span class="w"> </span>updated<span class="w">
 </span><span class="w">
 </span><span class="w"></span>$<span class="w"> </span>qri<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>profile<span class="w">
