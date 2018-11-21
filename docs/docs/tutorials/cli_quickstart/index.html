@@ -308,9 +308,9 @@ new_tutorial
 
 <p>Yay! You&rsquo;ve made a Qri repo. Congratulations :) You now have a dataset version control system on your computer. Now let&rsquo;s learn how to use it.</p>
 
-<p>So you wanna add a new dataset that you&rsquo;ve created to Qri? That&rsquo;s super easy. For this method of adding a new dataset to Qri, we only need a data file.</p>
+<p>So you wanna add a new dataset that you&rsquo;ve created to Qri? That&rsquo;s super easy. For this method of adding a new dataset to Qri, we only need a body file.</p>
 
-<p>If you have a csv, json, or cbor file you would like to add, more power to you. If not, take a moment now to save the following text to your computer as <code>data.csv</code>:</p>
+<p>If you have a csv, json, or cbor file you would like to add, more power to you. If not, take a moment now to save the following text to your computer as <code>body.csv</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-csv" data-lang="csv">1,Team Liquid,TL,8,4
 1,100 Thieves,100,8,4
 3,Echo Fox,EF,7,5
@@ -323,12 +323,14 @@ new_tutorial
 10,Clutch Gaming,CG,4,8</code></pre></div>
 <p>The text is the week 6 standings for the North American Professional League of Legends Teams in the 2018 Summer split.</p>
 
-<p>In order to add this very important dataset to your Qri repo, we are going to use the <code>qri save</code> command. We will use the <code>--body</code> flag to add data to the dataset, and we will have to pass in a dataset name. I am going to use the name <code>nalcs_standings</code>, but feel free to name it whatever you like. A dataset reference also includes the peername of the peer that initially added the dataset to Qri, so the dataset reference will actually be <code>tutorial/nalcs_standings</code>. We can use <code>me</code>, as a shorthand for any datasets we ourselves have added to Qri, so we can also use <code>me/nalcs_standings</code> as a dataset reference. Putting it all this is what our command looks like:</p>
+<p>In order to add this very important dataset to your Qri repo, we are going to use the <code>qri save</code> command. We will use the <code>--body</code> flag to add data to the dataset. Qri calls the &ldquo;data&rdquo; part of a dataset <code>body</code> to make it distinct from other &ldquo;data&rdquo; like <code>meta</code> and <code>structure</code>, which we&rsquo;ll learn about later on.</p>
+
+<p>We also have to pass in a dataset name. I am going to use the name <code>nalcs_standings</code>, but feel free to name it whatever you like. A dataset reference also includes the peername of the peer that initially added the dataset to Qri, so the dataset reference will actually be <code>tutorial/nalcs_standings</code>. We can use <code>me</code>, as a shorthand for any datasets we ourselves have added to Qri, so we can also use <code>me/nalcs_standings</code> as a dataset reference. Putting it all this is what our command looks like:</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># first, navigate to the folder that contains your datasets
 </span><span class="c1"></span>$ <span class="nb">cd</span> /path/to/my/dataset
 
 <span class="c1"># then save a new dataset
-</span><span class="c1"></span>$ qri save --body data.csv me/nalcs_standings
+</span><span class="c1"></span>$ qri save --body body.csv me/nalcs_standings
 created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT</code></pre></div>
 <p>This bit: <code>me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT</code> is the full dataset <em>reference</em>. Everything on left side of the <code>@</code> sign is the human readable <em>alias</em>. The right side of the <code>@</code> symbol is for referring to this exact dataset, this exact version. The first garbled set of number &amp; letters is your Qri id. <code>/ipfs</code> is the network your dataset is saved on (in this case: ipfs), and finally the the <em>hash</em> of your dataset. You can read more about hashes and content-addressing in our <a href="../../../docs/concepts/content-addressing">content addressing doc</a></p>
 

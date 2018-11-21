@@ -205,9 +205,9 @@ set up qri repo at: /Users/home/.qri
 
 Yay! You've made a Qri repo. Congratulations :) You now have a dataset version control system on your computer. Now let's learn how to use it.
 
-So you wanna add a new dataset that you've created to Qri? That's super easy. For this method of adding a new dataset to Qri, we only need a data file.
+So you wanna add a new dataset that you've created to Qri? That's super easy. For this method of adding a new dataset to Qri, we only need a body file.
 
-If you have a csv, json, or cbor file you would like to add, more power to you. If not, take a moment now to save the following text to your computer as `data.csv`:
+If you have a csv, json, or cbor file you would like to add, more power to you. If not, take a moment now to save the following text to your computer as `body.csv`:
 
 ```csv
 1,Team Liquid,TL,8,4
@@ -224,14 +224,16 @@ If you have a csv, json, or cbor file you would like to add, more power to you. 
 
 The text is the week 6 standings for the North American Professional League of Legends Teams in the 2018 Summer split.
 
-In order to add this very important dataset to your Qri repo, we are going to use the `qri save` command. We will use the `--body` flag to add data to the dataset, and we will have to pass in a dataset name. I am going to use the name `nalcs_standings`, but feel free to name it whatever you like. A dataset reference also includes the peername of the peer that initially added the dataset to Qri, so the dataset reference will actually be `tutorial/nalcs_standings`. We can use `me`, as a shorthand for any datasets we ourselves have added to Qri, so we can also use `me/nalcs_standings` as a dataset reference. Putting it all this is what our command looks like:
+In order to add this very important dataset to your Qri repo, we are going to use the `qri save` command. We will use the `--body` flag to add data to the dataset. Qri calls the "data" part of a dataset `body` to make it distinct from other "data" like `meta` and `structure`, which we'll learn about later on.
+
+We also have to pass in a dataset name. I am going to use the name `nalcs_standings`, but feel free to name it whatever you like. A dataset reference also includes the peername of the peer that initially added the dataset to Qri, so the dataset reference will actually be `tutorial/nalcs_standings`. We can use `me`, as a shorthand for any datasets we ourselves have added to Qri, so we can also use `me/nalcs_standings` as a dataset reference. Putting it all this is what our command looks like:
 
 ```shell
 # first, navigate to the folder that contains your datasets
 $ cd /path/to/my/dataset
 
 # then save a new dataset
-$ qri save --body data.csv me/nalcs_standings
+$ qri save --body body.csv me/nalcs_standings
 created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT
 ```
 
