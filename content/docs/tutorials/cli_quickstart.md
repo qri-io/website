@@ -160,7 +160,7 @@ $ qri version
 <a id="1.3"></a>
 ### 1.3 qri setup
 
-Okay, okay, enough stringing you along. Time to start _doing_ things. A _Repository_ (_repo_ for short) is a special place on your hard drive that qri keeps all it's data in. The command for creating a new repository is `qri setup`. When you run the `qri setup` command, you are actually doing a few things:
+Okay, okay, enough stringing you along. Time to start _doing_ things. A _Repository_ (_repo_ for short) is a special place on your hard drive that qri keeps all its data in. The command for creating a new repository is `qri setup`. When you run the `qri setup` command, you are actually doing a few things:
 
 * **New repo check:** <br />
 First, Qri will check to see if there is already a qri repo on your machine. If not, Qri attempts to creates a new repo, using the configuration details in the default config file (unless overridden with the `--ipfs-config` and/or `--config-data` flags, type `qri setup --help` for more details)
@@ -207,7 +207,7 @@ Yay! You've made a Qri repo. Congratulations :) You now have a dataset version c
 
 So you wanna add a new dataset that you've created to Qri? That's super easy. For this method of adding a new dataset to Qri, we only need a data file.
 
-If you have a csv, json, or cbor file you would like to add, more power to you. If not, take a moment now to save the following text to your computer as `body.csv`:
+If you have a csv, json, or cbor file you would like to add, more power to you. If not, take a moment now to save the following text to your computer as `data.csv`:
 
 ```csv
 1,Team Liquid,TL,8,4
@@ -235,11 +235,11 @@ $ qri save --body data.csv me/nalcs_standings
 created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT
 ```
 
-This bit: `me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT` is the full dataset _reference_. Everything on left side of the `@` sign is the human readable _alias_. The right side of the `@` symbol is for referring to this exact dataset, this exact version. The first grabled set of number & letters is your Qri id. `/ipfs` is the network your dataset is saved on (in this case: ipfs), and finally the the _hash_ of your dataset. You can read more about hashes and content-addressing in our [content addressing doc](/docs/concepts/content-addressing)
+This bit: `me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT` is the full dataset _reference_. Everything on left side of the `@` sign is the human readable _alias_. The right side of the `@` symbol is for referring to this exact dataset, this exact version. The first garbled set of number & letters is your Qri id. `/ipfs` is the network your dataset is saved on (in this case: ipfs), and finally the the _hash_ of your dataset. You can read more about hashes and content-addressing in our [content addressing doc](/docs/concepts/content-addressing)
 
 Your Qri id and your dataset hash should and will be different than mine.
 
-And that is the simpliest, no frills way to add a dataset to qri! Continue on to see how to view all the datasets you have on Qri, and how to export them from Qri.
+And that is the simplest, no frills way to add a dataset to qri! Continue on to see how to view all the datasets you have on Qri, and how to export them from Qri.
 
 <a id="1.5"></a>
 ### 1.5 qri list
@@ -342,7 +342,7 @@ There's more than just a csv file here! When we created this dataset, Qri did a 
 
 Right now, this dataset contains `body` (recorded as `bodyPath`), `commit`, and `structure` components. It's a nice start, but let's add some detail. First, let's add some proper column names to the `schema` section of the `structure`.
 
-The dataset contains the standings, names, abbriviation, wins and losses, for the North American League Championship Series, or the North American pro League of Legends esports league. Let's fill in the column names.
+The dataset contains the standings, names, abbreviation, wins and losses, for the North American League Championship Series, or the North American pro League of Legends esports league. Let's fill in the column names.
 
 Notice how we didn't have to create the schema or structure. If not provided, Qri will determine the structure of a file itself. JSON files will be recorded as an array or an object, but not more specific than that as of the time this tutorial was written. CSV files will be traversed and the title and Qri will try to guess the correct column names. In this case it's fallen back to numbered column names, so let's fix them!
 
@@ -433,7 +433,7 @@ $ qri save --file /users/home/nalcs_standings/dataset.yaml me/nalcs_standings --
 
 ...would give you the same dataset, but with a custom title and message. If no title or message are given, Qri will generate a title for you.
 
-You can also add a commit messsage and title to the dataset itself by adding a `commit` component to `dataset.yaml`:
+You can also add a commit message and title to the dataset itself by adding a `commit` component to `dataset.yaml`:
 
 ```
 commit:
@@ -611,9 +611,9 @@ The `body` is the _data_ associated with the dataset. In the case of a spreadshe
 
 The `meta` is all the information and details _about_ that data, including the title, description, contributors, and any other biographical or logistical details.  
 
-The `structure` is what it sounds like. It holds information about the structure of the data, the number of entries, the number of bytes, the shape of the data, or the schema. We use the schema to validate future interations of the dataset. You can use the same schema for multiple datasets.  
+The `structure` is what it sounds like. It holds information about the structure of the data, the number of entries, the number of bytes, the shape of the data, or the schema. We use the schema to validate future iterations of the dataset. You can use the same schema for multiple datasets.  
 
-The `commit` is all the pertinate information about that specific version of the dataset, for example, details about what changed from the last version to this version (usually found in the `title` and `messsage` sections), as well as the timestamp, and signature of the peer that made the commit.  
+The `commit` is all the pertinent information about that specific version of the dataset, for example, details about what changed from the last version to this version (usually found in the `title` and `message` sections), as well as the timestamp, and signature of the peer that made the commit.  
 
 The `viz` is the go/html template that should be used to render that dataset into a visual representation of that data (chart, graph, etc.).
 
@@ -629,7 +629,7 @@ Here is an example of a dataset reference:
 
 Whoa, that's a lot, right? Well, once you know how to read it, it is way less intimidating.
 
-Let's start by spliting up this dataset reference into two main parts on either side of the `@` symbol, and look at each piece one at a time.
+Let's start by splitting up this dataset reference into two main parts on either side of the `@` symbol, and look at each piece one at a time.
 
 The first part is the human readable reference: `tutorial/nalcs_standings`. Often times, it is the only part of the dataset reference we need. __It will always point to the most recent version of the dataset__. We have been using this form of dataset references for this whole tutorial.
 
@@ -661,7 +661,7 @@ The difference between using `peername/dataset_name` and `@/network/dataset_hash
 
 The dataset hash is how we view the previous versions of our dataset.
 
-_Note: if you are using just the machine readible portion of the dataset reference, be sure to proceed the peerID or the network with the `at` symbol._
+_Note: if you are using just the machine readable portion of the dataset reference, be sure to precede the peerID or the network with the `at` symbol._
 
 Now, let's use the dataset reference to explore the dataset.
 
@@ -724,7 +724,7 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 As a reminder, the hash of your datasets, even if you name them the same as we do in the tutorials, will be different than the ones presented here. In order to look at previous versions of your dataset, you must use the hashes that get printed to your terminal when you run `qri log` yourself.
 
-So, let's get the commit of the previous dataset using it's particular hash: `QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW`
+So, let's get the commit of the previous dataset using its particular hash: `QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW`
 
 ```text
 $ qri get commit me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
@@ -806,7 +806,7 @@ $ qri body --format csv --limit 5 me/nalcs_standings
 ```
 
 ```text
-$ qri body --formt csv --limit 5 --offset 5 me/nalcs_standings
+$ qri body --format csv --limit 5 --offset 5 me/nalcs_standings
 4,OpTic Gaming,OG,7,7
 7,TSM,TSM,6,8
 8,Counter Logic Gaming,CLG,5,9
@@ -956,7 +956,7 @@ $ qri list
 
 You can now use any of the Qri commands you normally use for exploring or exporting datasets to checkout out this added `tutorial_peer/paris_energy_pledges` dataset.
 
-One note: if you make a change or update to a peers dataset using the `qri save` command, the dataset will now be renamed from `<other_peername>/<dataset_name>` to `<my_peername>/<dataset_name>`
+One note: if you make a change or update to a peer's dataset using the `qri save` command, the dataset will now be renamed from `<other_peername>/<dataset_name>` to `<my_peername>/<dataset_name>`
 
 <a id="4.5"></a>
 ### 4.5 qri peers info
@@ -995,7 +995,7 @@ The registry is a light weight centralized service for two purposes.
 
 First, the registry has a list of peer IDs. We keep this list so that when a new person joins Qri, their peer ID does not conflict with anyone elses.
 
-Second, the registry supliments our search results. Once a dataset is published to the registry, it is indexed and other peers can use the `qri search` command to find it.
+Second, the registry supplements our search results. Once a dataset is published to the registry, it is indexed and other peers can use the `qri search` command to find it.
 
 Before we move forward, I want to clarify something. Once you add a dataset into Qri, any peer that connects to your Qri node can look at and add your dataset using the `qri peers` and `qri list <peername>` commands. They can view your dataset regardless of whether or not that dataset is published to the registry. 
 
@@ -1152,7 +1152,7 @@ tutorial
 Now, let's say you want to add a name and a description to your profile. I'm going to add 'example peer' as the name and 'This peer was created to teach people how to use Qri' as the description.
 
 ```yaml
-$ qri config get profile.name 'example peer' profile.description 'This peer was created to teach people how to use Qri'
+$ qri config set profile.name 'example peer' profile.description 'This peer was created to teach people how to use Qri'
 config updated
 
 $ qri config get profile
