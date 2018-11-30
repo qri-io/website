@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.48-DEV" />
+  <meta name="generator" content="Hugo 0.44" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,8 +30,24 @@ The whole tutorial is divided into six sections. The topics are as follows:
 1.3 qri setup
 1.4 qri save" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/tutorials/cli_quickstart/" /><meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+<meta property="og:url" content="https://qri.io/docs/tutorials/cli_quickstart/" />
+
+
+
+<meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+
 <meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
+
+
+
+
+
+
+
+
+
+
+
   
 
 
@@ -92,8 +108,6 @@ The whole tutorial is divided into six sections. The topics are as follows:
         
         
           <li><a href="../../../docs/tutorials/cli_quickstart">CLI quickstart</a></li>
-        
-          <li><a href="../../../docs/tutorials/python_quickstart">Python &amp; Jupyter</a></li>
         
           <li><a href="../../../docs/tutorials/starlark_transformations">Starlark Transformations</a></li>
         
@@ -179,62 +193,61 @@ The whole tutorial is divided into six sections. The topics are as follows:
 <p>Type the command <code>qri help</code></p>
 
 <p>You should see something like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">qri (&#34;query&#34;) is a dataset version control system on the distributed web.
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">qri <span class="o">(</span><span class="s2">&#34;query&#34;</span><span class="o">)</span> is a dataset version control system on the distributed web.
 More info: https://qri.io
 
 Feedback, questions, bug reports, and contributions are welcome!
 https://github.com/qri-io/qri/issues
 
 Usage:
-  qri [command]
+  qri <span class="o">[</span>command<span class="o">]</span>
 
 Dataset Commands:
   add         Add a dataset from another peer
   body        Get the body of a dataset
   diff        Compare differences between two datasets
-  export      Copy datasets to your local filesystem
+  <span class="nb">export</span>      Copy datasets to your <span class="nb">local</span> filesystem
   get         Get elements of qri datasets
   info        Show summarized description of a dataset
   list        Show a list of datasets
-  log         Show log of dataset history
-  remove      Remove a dataset from your local repository
+  log         Show log of dataset <span class="nb">history</span>
+  remove      Remove a dataset from your <span class="nb">local</span> repository
   rename      Change the name of a dataset
   render      Execute a template against a dataset
   save        Save changes to a dataset
   update      add/create the lastest version of a dataset
-  use         Select datasets for use with the qri get command
+  use         Select datasets <span class="k">for</span> use with the qri get <span class="nb">command</span>
   validate    Show schema validation errors
 
 Network Commands:
   connect     Connect to the distributed web by spinning up a Qri node
-  peers       Commands for working with peers
-  publish     set dataset publicity
+  peers       Commands <span class="k">for</span> working with peers
+  publish     <span class="nb">set</span> dataset publicity
   search      Search qri
 
 Other Commands:
-  config      Get and set local configuration information
-  help        Help about any command
+  config      Get and <span class="nb">set</span> <span class="nb">local</span> configuration information
+  <span class="nb">help</span>        Help about any <span class="nb">command</span>
   setup       Initialize qri and IPFS repositories, provision a new qri ID
   version     Print the version number
 
 Flags:
-  -h, --help        help for qri
+  -h, --help        <span class="nb">help</span> <span class="k">for</span> qri
       --no-color    disable colorized output
       --no-prompt   disable all interactive prompts
 
-Use &#34;qri [command] --help&#34; for more information about a command.</code></pre></div>
+Use <span class="s2">&#34;qri [command] --help&#34;</span> <span class="k">for</span> more information about a command.</code></pre></div>
 <p>By just typing <code>qri</code>, <code>qri help</code>, or <code>qri --help</code>, you can get a list of all the commands that are at your fingertips.</p>
 
 <p>You can also add the  <code>--help</code> flag after any Qri command to get more info on the command. <code>--help</code> will print a list of all the flags and options available for that command, as well as example usage. For example, running <code>qri diff --help</code> gives you a summary of what the command does, some examples on how to use that command, and the flags you can use to elicit different behaviors:</p>
-
-<pre><code>$ qri diff --help
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri diff --help
 
 Diff compares two datasets from your repo and prints a representation
 of the differences between them.  You can specifify the datasets
-either by name or by their hash
+either by name or by their <span class="nb">hash</span>
 
 Usage:
-  qri diff [flags]
+  qri diff <span class="o">[</span>flags<span class="o">]</span>
 
 Examples:
   show diff between two versions of the same dataset:
@@ -245,10 +258,8 @@ Examples:
   $ qri diff me/population_2016 me/population_2017
 
 Flags:
-  -d, --display string   set display format [reg|short|delta|detail]
-  -h, --help             help for diff
-</code></pre>
-
+  -d, --display string   <span class="nb">set</span> display format <span class="o">[</span>reg<span class="p">|</span>short<span class="p">|</span>delta<span class="p">|</span>detail<span class="o">]</span>
+  -h, --help             <span class="nb">help</span> <span class="k">for</span> diff</code></pre></div>
 <p><a id="1.2"></a></p>
 
 <h3 id="1-2-qri-version">1.2 qri version</h3>
@@ -268,17 +279,17 @@ Flags:
 
 <h3 id="1-3-qri-setup">1.3 qri setup</h3>
 
-<p>Okay, okay, enough stringing you along. Time to start <em>doing</em> things. A <em>Repository</em> (<em>repo</em> for short) is a special place on your hard drive that qri keeps all its data in. The command for creating a new repository is <code>qri setup</code>. When you run the <code>qri setup</code> command, you are actually doing a few things:</p>
+<p>Okay, okay, enough stringing you along. Time to start <em>doing</em> things. A <em>repository</em> (<em>repo</em> for short) is a special place on your hard drive in which Qri keeps all your data. The command for creating a new repository is <code>qri setup</code>. When you run the <code>qri setup</code> command, you are actually doing a few things:</p>
 
 <ul>
 <li><p><strong>New repo check:</strong> <br />
-First, Qri will check to see if there is already a qri repo on your machine. If not, Qri attempts to creates a new repo, using the configuration details in the default config file (unless overridden with the <code>--ipfs-config</code> and/or <code>--config-data</code> flags, type <code>qri setup --help</code> for more details)</p></li>
+First, Qri will check to see if there is already a Qri repo on your machine. If not, Qri attempts to creates a new repo, using the configuration details in the default config file (unless overridden with the <code>--ipfs-config</code> and/or <code>--config-data</code> flags, type <code>qri setup --help</code> for more details)</p></li>
 
 <li><p><strong>Setting a peername:</strong> <br />
-setup will prompt you for a peername (if you have not provided one using the <code>--peername</code> flag or used a custom config file that has the peername provided). It will ping the registry to see if that peername is currently taken. If it is taken, it will prompt you for another one.</p></li>
+Setup will prompt you for a peername (if you have not provided one using the <code>--peername</code> flag or used a custom config file that has the peername provided). It will ping the registry to see if that peername is currently taken. If it is taken, it will prompt you for another one.</p></li>
 
 <li><p><strong>Create QRI_PATH Directory</strong> <br />
-setup will create the repo directories on your QRI_PATH. QRI_PATH is an environment variable. We recommend that you leave the QRI_PATH variable as is, unless you have a good reason to change it.</p></li>
+Setup will create the repo directories on your QRI_PATH. QRI_PATH is an environment variable. We recommend that you leave the QRI_PATH variable as is, unless you have a good reason to change it.</p></li>
 
 <li><p><strong>Init IPFS</strong> <br />
 If IPFS (the network protocol that allows Qri to be a peer to peer service) does not exist on your system, Qri will install it for you. It will create the IPFS repo on your IPFS_PATH. IPFS_PATH is an environment variable. We recommend that you leave the IPFS_PATH variable as is.</p></li>
@@ -343,13 +354,10 @@ created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiP
 <h3 id="1-5-qri-list">1.5 qri list</h3>
 
 <p>The first thing we&rsquo;ll want to do is list all of the datasets we have in our repository. This is nice and simple. To view the list of datasets you have on Qri, run <code>qri list</code></p>
-
-<pre><code>$ qri list
-1  tutorial/nalcs_standings
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri list
+<span class="m">1</span>  tutorial/nalcs_standings
     /ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT
-    211 bytes, 10 entries, 0 errors
-</code></pre>
-
+    <span class="m">211</span> bytes, <span class="m">10</span> entries, <span class="m">0</span> errors</code></pre></div>
 <p>The first line is the dataset name.
 The second is the hash, or unique id, of this particular version of the dataset.
 The third line contains some stats on your dataset</p>
@@ -360,19 +368,33 @@ The third line contains some stats on your dataset</p>
 
 <h3 id="1-6-qri-export">1.6 qri export</h3>
 
-<p>Getting your data out of Qri is simple. Just use the <code>qri export</code> command. The dataset will be saved to the current folder in a directory named with the dataset name as a <code>.zip</code> archive. If you&rsquo;ve been following the example, the directory will be called <code>nalcs_standings.zip</code>. Run <code>qri export --help</code> for details on what export can do.</p>
+<p>Getting your data out of Qri is simple. Just use the <code>qri export</code> command. The dataset will be saved to the current folder in a directory named with the dataset name as a <code>.zip</code> archive. If you&rsquo;ve been following the example, the archive will be called <code>nalcs_standings.zip</code>. Run <code>qri export --help</code> for details on what export can do.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri <span class="nb">export</span> me/nalcs_standings
 
-<pre><code>$ qri export me/nalcs_standings
-exported dataset to: nalcs_standings.zip
-</code></pre>
+<span class="c1"># run ls to list the files in your current directory
+</span><span class="c1"></span>$ ls
+Applications
+Desktop
+Documents
+Movies
+nalcs_standings.zip
+Pictures
 
-<p>If you open the .zip archive, you&rsquo;ll notice that two files are saved when exported. <code>body.csv</code> and <code>dataset.yaml</code>.</p>
+<span class="c1"># to double check all is well in the zip file, let&#39;s unzip and explore
+</span><span class="c1"># unzip nalcs_standings.zip -d nalcs_standings
+</span><span class="c1"></span>Archive:  nalcs_standings.zip
+  inflating: nalcs_standings/dataset.json
+  inflating: nalcs_standings/ref.txt
+  inflating: nalcs_standings/body.csv</code></pre></div>
+<p>If you open the .zip archive, you&rsquo;ll notice that three files are saved when exported. <code>body.csv</code>, <code>dataset.yaml</code>, and <code>ref.txt</code>.</p>
 
 <p>The <code>body.csv</code> file is the body of the dataset that we initially added.</p>
 
-<p>The <code>dataset.yaml</code> file contains all the other dataset information if it exists: metadata, structure, commit, viz, and transform. It contains a field called <code>bodyPath</code>, which is the path on ipfs at which the body file is saved. It also contains a field called <code>qri</code>, which you will notice exists imbedded in other sections as well. This is an internal reference that makes sure Qri is using the correct version to read your dataset.</p>
+<p>The <code>dataset.json</code> file contains all the other dataset information if it exists: metadata, structure, commit, viz, and transform. It contains a field called <code>bodyPath</code>, which is the path on ipfs at which the body file is saved. It also contains a field called <code>qri</code>, which you will notice exists imbedded in other sections as well. This is an internal reference that makes sure Qri is using the correct version to read your dataset.</p>
 
-<p>If you continue to the next section, don&rsquo;t delete those files yet! In the next section we will learn how to create a dataset full of detail using a <code>dataset.yaml</code> file.</p>
+<p>The <code>ref.txt</code> contains a string with the exact dataset reference of this dataset.</p>
+
+<p>If you continue to the next section, don&rsquo;t delete these files yet! In the next section we will learn how to create a dataset full of detail using a <code>dataset.json</code> file.</p>
 
 <p><a id="2.0"></a></p>
 
@@ -389,26 +411,86 @@ exported dataset to: nalcs_standings.zip
 <h3 id="2-1-qri-remove">2.1 qri remove</h3>
 
 <p>Removing a dataset from Qri is quite simple:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri remove me/nalcs_standings
-removed dataset &#39;tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT&#39;</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri remove me/nalcs_standings
+removed dataset <span class="s1">&#39;tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT&#39;</span></code></pre></div>
 <p>If you run <code>qri list</code> again, you will see it is removed from your list of datasets.</p>
 
 <p><a id="2.2"></a></p>
 
 <h3 id="2-2-qri-save-file">2.2 qri save &ndash;file</h3>
 
-<p>Now for some added fanciness. Remember that <code>dataset.yaml</code> file that was created when we used <code>qri export me/nalcs_standings</code>, let&rsquo;s open that up now and check it out.</p>
+<p>Now for some added fanciness. Remember that <code>dataset.json</code> file that was created when we used <code>qri export me/nalcs_standings</code>, let&rsquo;s open that up now and check it out.</p>
 
 <p>You should get something that looks like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">bodyPath<span class="p">:</span><span class="w"> </span>/ipfs/QmPBQKHc2os92kTKzdJ8xGdyP6mo6JAT9d7QncEzYSSGCM<span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;commit&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;author&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;QmXrCvaZkMXSPEFrpy3xMghgrkxFAsYoqcLogt3dU6c1RX&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;qri&#34;</span><span class="p">:</span> <span class="s2">&#34;cm:0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;signature&#34;</span><span class="p">:</span> <span class="s2">&#34;RccSIHOZ2gR3dxMwyY32kkTL9HcNxneCY3sMQUs8yq/XzQfbCdfFj01sUlD0gprWK7lHOGbdQUlWr5yTg+avQnjb0u9Wyfi8zGkP6WtEwIuKn179j44HWxjKoc9+4CaiNjrgBhrhTBf+yXW68GX4LA04qISgIu0lSg/CAf8xuYe5eQ7CuQDPBLKi7plJzt/tbPRRX79uxoQQk9g9oNyQf52UYBodaIbsy57YLOmOUD7B7eTgU+JHg5yH0xivL0HtvINsOUtVfZEeGHBQlZv7o5KHP8H19IqWvwhPrYQE5btCrZsSjT0Tp9NlgpJzogWJKZexuB5TGNOgX3xhKN0YPw==&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-11-30T19:08:45.70823323Z&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;created dataset&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;bodyPath&#34;</span><span class="p">:</span> <span class="s2">&#34;/ipfs/QmbsSSNuWq4w7E4JgpzjghRfQeWeRcowMaFDKyy5j33gFu&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;qri&#34;</span><span class="p">:</span> <span class="s2">&#34;ds:0&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;structure&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;checksum&#34;</span><span class="p">:</span> <span class="s2">&#34;QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;entries&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="nt">&#34;errCount&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&#34;format&#34;</span><span class="p">:</span> <span class="s2">&#34;csv&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;formatConfig&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;lazyQuotes&#34;</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;length&#34;</span><span class="p">:</span> <span class="mi">211</span><span class="p">,</span>
+    <span class="nt">&#34;qri&#34;</span><span class="p">:</span> <span class="s2">&#34;st:0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;schema&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;items&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;items&#34;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;field_1&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;integer&#34;</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;field_2&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;field_3&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;field_4&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;integer&#34;</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;field_5&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;integer&#34;</span>
+          <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;array&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;array&#34;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>There&rsquo;s more than just a csv file here! When we created this dataset, Qri did a bunch of work behind the scenes to make sure your data is as portable and usable as possible. Qri stores your data in <em>immutable versions</em> so you have a clear record of how your data looked. The top-level parts of this dataset.yaml file are called <em>components</em> of a dataset.</p>
+
+<p>Right now, this dataset contains <code>body</code> (recorded as <code>bodyPath</code>), <code>commit</code>, and <code>structure</code> components. It&rsquo;s a nice start, but let&rsquo;s add some detail. First, let&rsquo;s add some proper column names to the <code>schema</code> section of the <code>structure</code>.</p>
+
+<p>The dataset contains the standings, names, abbreviation, wins and losses, for the North American League Championship Series, or the North American pro League of Legends esports league. Let&rsquo;s fill in the column names.</p>
+
+<p>Datasets can be written as <code>json</code> or <code>yaml</code> files. We have been using <code>json</code>, as that is the Qri export default, but <code>yaml</code> can often times be more user-friendly. This is the same dataset file, but written in yaml. For more on the structure of yaml files, check out <a href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">this page on yaml syntax</a>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># dataset.yaml file:</span><span class="w">
 </span><span class="w"></span>commit<span class="p">:</span><span class="w">
 </span><span class="w">  </span>author<span class="p">:</span><span class="w">
-</span><span class="w">    </span>id<span class="p">:</span><span class="w"> </span>QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9<span class="w">
-</span><span class="w">  </span>qri<span class="p">:</span><span class="w"> </span>cm<span class="p">:</span><span class="m">0</span><span class="w">
-</span><span class="w">  </span>signature<span class="p">:</span><span class="w"> </span>zHgYne5lRdftX5CV/RkRbuWloRm0LvjFzdmo25XqTIBEqhVW0ywhy/yl+rmVvOJo26mJbvwUN8QwxLllpEVkv5YHYCQhxWu/<span class="m">8</span>+RpGKuMJFzhjB/pRhw4+ykjxRGe/zLLkaN97uAq+fnjR7Ld0VKMkuSEtpuVkpguiyjxrEfrAxKExQHyxGc9wBqeEFK7TtmW98cX9VonoRm5jW4/SRSYqK3fgAXuPK+wiRmHfnOzWxJXQ/KIKLiF91pl/8UeqovlRR+vbTHzjpZvSlGL1Xu9fz6DiqpQXkygh5vYn4GFj3YniOusTf8RmmaHmZ+4smAu3PxSg+fVPpRvWSuuLIqTMg==<span class="w">
-</span><span class="w">  </span>timestamp<span class="p">:</span><span class="w"> </span><span class="s2">&#34;2018-08-06T21:27:29.791238974Z&#34;</span><span class="w">
+</span><span class="w">    </span>id<span class="p">:</span><span class="w"> </span>QmXrCvaZkMXSPEFrpy3xMghgrkxFAsYoqcLogt3dU6c1RX<span class="w">
+</span><span class="w">  </span>qri<span class="p">:</span><span class="w"> </span>cm<span class="p">:</span><span class="m">0</span><span class="p">,</span><span class="w">
+</span><span class="w">  </span>signature<span class="p">:</span><span class="w"> </span>RccSIHOZ2gR3dxMwyY32kkTL9HcNxneCY3sMQUs8yq/XzQfbCdfFj01sUlD0gprWK7lHOGbdQUlWr5yTg+avQnjb0u9Wyfi8zGkP6WtEwIuKn179j44HWxjKoc9+4CaiNjrgBhrhTBf+yXW68GX4LA04qISgIu0lSg/CAf8xuYe5eQ7CuQDPBLKi7plJzt/tbPRRX79uxoQQk9g9oNyQf52UYBodaIbsy57YLOmOUD7B7eTgU+JHg5yH0xivL0HtvINsOUtVfZEeGHBQlZv7o5KHP8H19IqWvwhPrYQE5btCrZsSjT0Tp9NlgpJzogWJKZexuB5TGNOgX3xhKN0YPw==<span class="p">,</span><span class="w">
+</span><span class="w">  </span>timestamp<span class="p">:</span><span class="w"> </span><span class="ld">2018-11-30T19:08:45.70823323Z</span><span class="p">,</span><span class="w">
 </span><span class="w">  </span>title<span class="p">:</span><span class="w"> </span>created<span class="w"> </span>dataset<span class="w">
-</span><span class="w"></span>qri<span class="p">:</span><span class="w"> </span>ds<span class="p">:</span><span class="m">0</span><span class="w">
+</span><span class="w"></span>bodyPath<span class="p">:</span><span class="w"> </span>/ipfs/QmbsSSNuWq4w7E4JgpzjghRfQeWeRcowMaFDKyy5j33gFu<span class="p">,</span><span class="w">
+</span><span class="w"></span>qri<span class="p">:</span><span class="w"> </span>ds<span class="p">:</span><span class="m">0</span><span class="p">,</span><span class="w">
 </span><span class="w"></span>structure<span class="p">:</span><span class="w">
 </span><span class="w">  </span>checksum<span class="p">:</span><span class="w"> </span>QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj<span class="w">
 </span><span class="w">  </span>entries<span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
@@ -431,16 +513,11 @@ removed dataset &#39;tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2s
 </span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>integer<span class="w">
 </span><span class="w">      </span>type<span class="p">:</span><span class="w"> </span>array<span class="w">
 </span><span class="w">    </span>type<span class="p">:</span><span class="w"> </span>array</code></pre></div>
-<p>There&rsquo;s more than just a csv file here! When we created this dataset, Qri did a bunch of work behind the scenes to make sure your data is as portable and usable as possible. Qri stores your data in <em>immutable versions</em> so you have a clear record of how your data looked. The top-level parts of this dataset.yaml file are called <em>components</em> of a dataset.</p>
+<p>Notice how, when we saved this new dataset, we didn&rsquo;t have to write our own schema or structure. If not provided, Qri will determine the structure of a file itself. JSON files will be recorded as an array or an object, but not more specific than that as of the time this tutorial was written. CSV files will be traversed and Qri will try to guess the correct column names. In this case it&rsquo;s fallen back to numbered column names, so let&rsquo;s fix them!</p>
 
-<p>Right now, this dataset contains <code>body</code> (recorded as <code>bodyPath</code>), <code>commit</code>, and <code>structure</code> components. It&rsquo;s a nice start, but let&rsquo;s add some detail. First, let&rsquo;s add some proper column names to the <code>schema</code> section of the <code>structure</code>.</p>
-
-<p>The dataset contains the standings, names, abbreviation, wins and losses, for the North American League Championship Series, or the North American pro League of Legends esports league. Let&rsquo;s fill in the column names.</p>
-
-<p>Notice how we didn&rsquo;t have to create the schema or structure. If not provided, Qri will determine the structure of a file itself. JSON files will be recorded as an array or an object, but not more specific than that as of the time this tutorial was written. CSV files will be traversed and the title and Qri will try to guess the correct column names. In this case it&rsquo;s fallen back to numbered column names, so let&rsquo;s fix them!</p>
-
-<p>Let&rsquo;s make a new file called <code>dataset.yaml</code>, and write out a new structure component. The correct column titles have been filled in below:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">structure<span class="p">:</span><span class="w">
+<p>Let&rsquo;s edit our new <code>dataset.yaml</code> file, and fill out our structure component. Let&rsquo;s also remove unneeded components for creating a new dataset: bodyPath and commit. The correct column titles in the schema have been filled in below:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">qri<span class="p">:</span><span class="w"> </span>ds<span class="p">:</span><span class="m">0</span><span class="p">,</span><span class="w">
+</span><span class="w"></span>structure<span class="p">:</span><span class="w">
 </span><span class="w">  </span>checksum<span class="p">:</span><span class="w"> </span>QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj<span class="w">
 </span><span class="w">  </span>entries<span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
 </span><span class="w">  </span>errCount<span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
@@ -452,7 +529,7 @@ removed dataset &#39;tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2s
 </span><span class="w">      </span>items<span class="p">:</span><span class="w">
 </span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>rank<span class="w">
 </span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>integer<span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>team<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>team<span class="w"> </span>name<span class="w">
 </span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>string<span class="w">
 </span><span class="w">      </span>-<span class="w"> </span>title<span class="p">:</span><span class="w"> </span>abbreviation<span class="w">
 </span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>string<span class="w">
@@ -462,12 +539,11 @@ removed dataset &#39;tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2s
 </span><span class="w">        </span>type<span class="p">:</span><span class="w"> </span>integer<span class="w">
 </span><span class="w">      </span>type<span class="p">:</span><span class="w"> </span>array<span class="w">
 </span><span class="w">    </span>type<span class="p">:</span><span class="w"> </span>array</code></pre></div>
-<p>Next, let&rsquo;s talk metadata. Metadata is super important. It&rsquo;s the place where whoever gathered the data (or whoever is augmenting it) can give background and context on what the data contains, how it was collected, who collected it, and any other details that need recording.</p>
+<p>Next, let&rsquo;s talk metadata. Metadata is super important. It&rsquo;s the place where whomever gathered the data (or whomever is augmenting it) can give background and context on what the data contains, how it was collected, who collected it, and any other details that need recording.</p>
 
-<p>Datasets can be written as <code>json</code> or <code>yaml</code> files. Here we will write them in yaml, as that is the Qri default. For more on the structure of yaml files, check out <a href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">this page on yaml syntax</a>.</p>
-
-<p>Let&rsquo;s add a dataset title (a human readable title), description, and tags. We record all descriptive metadata in the <code>meta</code> component.</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">structure<span class="p">:</span><span class="w">
+<p>Let&rsquo;s add a dataset title (a human readable title), description, and tags to this new <code>dataset.yaml</code> file. We record all descriptive metadata in the <code>meta</code> component.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">qri<span class="p">:</span><span class="w"> </span>ds<span class="p">:</span><span class="m">0</span><span class="p">,</span><span class="w">
+</span><span class="w"></span>structure<span class="p">:</span><span class="w">
 </span><span class="w">  </span>checksum<span class="p">:</span><span class="w"> </span>QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj<span class="w">
 </span><span class="w">  </span>entries<span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
 </span><span class="w">  </span>errCount<span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
@@ -500,21 +576,18 @@ removed dataset &#39;tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2s
 <p>Save your new and improved <code>dataset.yaml</code> file, and you are ready to go.</p>
 
 <p>Go back to your trusty terminal. My <code>dataset.yaml</code> file still lives in my nalcs_standings folder, along with the body file:<code>body.csv</code>. We are going to need both a dataset file and a body file to run this next step:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri save --file /users/home/nalcs_standings/dataset.yaml me/nalcs_standings
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri save --file dataset.yaml --body body.csv me/nalcs_standings
 created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW</code></pre></div>
 <p>Note, you can also add a commit message and title using the command line flags <code>title</code> and <code>--message</code></p>
 
 <p>For example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri save --file /users/home/nalcs_standings/dataset.yaml me/nalcs_standings --title &#39;initial dataset&#39; --message &#39;week 7 NALCS standings for the 2018 summer split&#39; me/nalcs_standings</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri save --file dataset.yaml --body  body.csv me/nalcs_standings --title <span class="s1">&#39;initial dataset&#39;</span> --message <span class="s1">&#39;week 7 NALCS standings for the 2018 summer split&#39;</span> me/nalcs_standings</code></pre></div>
 <p>&hellip;would give you the same dataset, but with a custom title and message. If no title or message are given, Qri will generate a title for you.</p>
 
 <p>You can also add a commit message and title to the dataset itself by adding a <code>commit</code> component to <code>dataset.yaml</code>:</p>
-
-<pre><code>commit:
-  title: initial dataset
-  message: week 7 NALCS standings for the 2018 summer split
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">commit<span class="p">:</span><span class="w">
+</span><span class="w">  </span>title<span class="p">:</span><span class="w"> </span>initial<span class="w"> </span>dataset<span class="w">
+</span><span class="w">  </span>message<span class="p">:</span><span class="w"> </span>week<span class="w"> </span><span class="m">7</span><span class="w"> </span>NALCS<span class="w"> </span>standings<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span><span class="m">2018</span><span class="w"> </span>summer<span class="w"> </span>split</code></pre></div>
 <p>Note!!! Any flags given in the command will override the message given in the <code>dataset.yaml</code> file!!!</p>
 
 <p>HOLD UP. We began this <code>qri save --file</code> adventure by using an already existing <code>dataset.yaml</code> file. What if we don&rsquo;t have one?? What if I want some guidance on how to create my own <code>dataset.yaml</code> file??? You&rsquo;re in luck. Using the command <code>qri export --blank</code> will create an empty <code>dataset.yaml</code> file with instructions :)</p>
@@ -528,7 +601,7 @@ created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiP
 <p>The stats from the sample dataset I gave were the NALCS standings until week 6. After week 7 the standing shifted. Let&rsquo;s update the <code>nalcs_standings</code> dataset to include the week 7 results.</p>
 
 <p>Save this as a new file <code>NALCS_Summer_2018_Week_7_Standings.csv</code> (or you can save over your old file with this new data, since the old version is in Qri, you can export the standings from week 6 any time you like):</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">1,Team Liquid,TL,10,4
+<div class="highlight"><pre class="chroma"><code class="language-csv" data-lang="csv">1,Team Liquid,TL,10,4
 2,Echo Fox,EF,9,5
 2,100 Thieves,100,9,5
 4,FlyQuest,FQ,7,7
@@ -539,21 +612,21 @@ created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiP
 8,Golden Guardians,GG,5,9
 8,Clutch Gaming,CG,5,9</code></pre></div>
 <p>Now, to make sure we haven&rsquo;t made any silly mistakes let&rsquo;s validate this new body of data against the schema already present in the <code>nalcs_standings</code> dataset.</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri validate --body NALCS_Summer_2018_Week_7_Standings.csv me/nalcs_standings
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri validate --body NALCS_Summer_2018_Week_7_Standings.csv me/nalcs_standings
 ✔ All good!</code></pre></div>
 <p>Notice that, like the <code>qri save</code> command or the <code>qri remove</code> command, we pass the peername and dataset name (in this case <code>me/nalcs_standings</code> or <code>tutorial/nalcs_standings</code>) as an argument to the command.</p>
 
 <p>Let&rsquo;s say instead, we have a dummy file called <code>dummy.csv</code> that we want to validate against the structure of the <code>nalcs_standings</code> dataset. Let&rsquo;s say this file contains the following:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Bad,data
+<div class="highlight"><pre class="chroma"><code class="language-csv" data-lang="csv">Bad,data
 that,doesn&#39;t
 make,any
 sense,</code></pre></div>
 <p>We can check to see how well this <code>dummy.csv</code> file would work if checked against our <code>nalcs_standings</code> dataset with:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri validate --body dummy.csv me/nalcs_standings
-0: /0/0: &#34;Bad&#34; type should be integer
-1: /1/0: &#34;that&#34; type should be integer
-2: /2/0: &#34;make&#34; type should be integer
-3: /3/0: &#34;sense&#34; type should be integer</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri validate --body dummy.csv me/nalcs_standings
+<span class="m">0</span>: /0/0: <span class="s2">&#34;Bad&#34;</span> <span class="nb">type</span> should be integer
+<span class="m">1</span>: /1/0: <span class="s2">&#34;that&#34;</span> <span class="nb">type</span> should be integer
+<span class="m">2</span>: /2/0: <span class="s2">&#34;make&#34;</span> <span class="nb">type</span> should be integer
+<span class="m">3</span>: /3/0: <span class="s2">&#34;sense&#34;</span> <span class="nb">type</span> should be integer</code></pre></div>
 <p>The output of the command gives the errors that need to be fixed in order for the schema to match. This is super helpful when you&rsquo;re working on correcting data before adding to Qri.</p>
 
 <p><a id="2.4"></a></p>
@@ -564,19 +637,16 @@ sense,</code></pre></div>
 
 <p>I want to update this dataset with new data in the body. I also want to add a title and message to this version of the dataset, which we call a <code>commit</code> (those of you familiar with other version control systems, specifically <a href="https://git-scm.com/">git</a> will recognize that lingo).</p>
 
-<p>We can add a title and message in two ways. We can also add a <code>dataset.yaml</code> file that contains a <code>commit</code> section with a <code>title</code> and a <code>message</code> field. Or we can fill in a <code>title</code> and <code>message</code> using the <code>--title</code> and <code>--message</code> flags when we run the command.</p>
+<p>We can add a title and message in two ways. We can add a <code>dataset.yaml</code> file that contains a <code>commit</code> section with a <code>title</code> and a <code>message</code> field. Or we can fill in a <code>title</code> and <code>message</code> using the <code>--title</code> and <code>--message</code> flags when we run the command.</p>
 
 <p>Here is the potential dataset.yaml file:</p>
-
-<pre><code>commit:
-  title: body update
-  message: dataset has been updated with the week 7 match results
-</code></pre>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri save --file ~/path/to/dataset.yaml --body ~/path/to/NALCS_Summer_2018_Week_7_Standings.csv me/nalcs_standings</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">commit<span class="p">:</span><span class="w">
+</span><span class="w">  </span>title<span class="p">:</span><span class="w"> </span>body<span class="w"> </span>update<span class="w">
+</span><span class="w">  </span>message<span class="p">:</span><span class="w"> </span>dataset<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>updated<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>week<span class="w"> </span><span class="m">7</span><span class="w"> </span>match<span class="w"> </span>results</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri save --file dataset.yaml --body NALCS_Summer_2018_Week_7_Standings.csv me/nalcs_standings</code></pre></div>
 <p>And without the <code>dataset.yaml</code> file:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri save --body ~/path/to/NALCS_Summer_2018_Week_7_Standings.csv --title &#39;body update&#39; --message &#39;dataset has been updated with the week 7 match results&#39; me/nalcs_standings</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri save --body NALCS_Summer_2018_Week_7_Standings.csv --title <span class="s1">&#39;body update&#39;</span> --message <span class="s1">&#39;dataset has been updated with the week 7 match results&#39;</span> me/nalcs_standings</code></pre></div>
 <p>How do we know that the commit message saved correctly? To check, let&rsquo;s use the <code>qri get</code> command (which we will go over in more detail in section 4)</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri get me/nalcs_standings
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri get me/nalcs_standings
 tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu:
   bodyPath: /ipfs/QmbZdKCJLF2jRKhbRaRknFjxsPYTwEvE4jGWQfZYu52iFY
   commit:
@@ -584,27 +654,27 @@ tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/Qmf
       id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
     path: /ipfs/QmTK4CsgohfUSzmCd6PDtGd34wC5CrSZktbJMBVYzKpbNt
     qri: cm:0
-    signature: wZe5queKi3drhecadkTrIHZGq+JD9AvOQpiT0l4fLd7jZvgBG7/T91LhhqTY2do2Au01IpthGdqg4Y1gT9Ec1+2TYADr3nFqtKO/wuey95/p0O99NP6MfTh97z6jtZs0T/gpnTGgSNgqDo96chcyauJfRm9LtlnpNm9H2RmaRMX2tSrGrbFeHFwm2BtLQKAFAcj/zK+QsohBc+Uz6Xr3lRdkG1y/Iyz9RMbDfDWPKQqZZH/QU27npbXD7zU9AeiY2YASSgXhD6hzVneGutiKdreiG6pvWvWEhZzyPhxMsnAn23jD5DOiZ02ytwaZiYcC4cfksIS7lZ/IPdWkNehB5Q==
-    timestamp: &#34;2018-08-09T16:11:59.644134156Z&#34;
+    signature: wZe5queKi3drhecadkTrIHZGq+JD9AvOQpiT0l4fLd7jZvgBG7/T91LhhqTY2do2Au01IpthGdqg4Y1gT9Ec1+2TYADr3nFqtKO/wuey95/p0O99NP6MfTh97z6jtZs0T/gpnTGgSNgqDo96chcyauJfRm9LtlnpNm9H2RmaRMX2tSrGrbFeHFwm2BtLQKAFAcj/zK+QsohBc+Uz6Xr3lRdkG1y/Iyz9RMbDfDWPKQqZZH/QU27npbXD7zU9AeiY2YASSgXhD6hzVneGutiKdreiG6pvWvWEhZzyPhxMsnAn23jD5DOiZ02ytwaZiYcC4cfksIS7lZ/IPdWkNehB5Q<span class="o">==</span>
+    timestamp: <span class="s2">&#34;2018-08-09T16:11:59.644134156Z&#34;</span>
     title: body update
-    message: dataset has been updated with the week 7 match results
+    message: dataset has been updated with the week <span class="m">7</span> match results
   meta:
-    description: The standings for the North American League Championship Series,
-      the professional League of Legends league. Data taken from Riot&#39;s esports website.
+    description: The standings <span class="k">for</span> the North American League Championship Series,
+      the professional League of Legends league. Data taken from Riot<span class="err">&#39;</span>s esports website.
     keywords:
     - league of legends
     - riot games
     - nalcs
     qri: md:0
-    title: NALCS Summer Split Standings 2018
+    title: NALCS Summer Split Standings <span class="m">2018</span>
   path: /ipfs/QmZ8XgfLkM4vwMgTNG1NXmUer5pF5SvsparxSnk37DeBhJ/dataset.json
   qri: ds:0
   structure:
     checksum: QmXbeDBKs9HtWK4UpA9woKXDXtr75gbLJxjxyVNBjN2jvn
-    entries: 10
-    errCount: 0
+    entries: <span class="m">10</span>
+    errCount: <span class="m">0</span>
     format: csv
-    length: 212
+    length: <span class="m">212</span>
     path: /ipfs/QmWRAsGrTqs1zvgdMJn42cwchrygAymoDNnZrKiHj6PL8e
     qri: st:0
     schema:
@@ -629,11 +699,11 @@ tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/Qmf
 <h3 id="2-5-qri-log">2.5 qri log</h3>
 
 <p>Qri is a dataset version control system. That means each time you make an update and <code>qri save</code> a dataset, a snapshot is created. It means that even though you have made changes to the dataset, you can always retrieve any previous version you have saved before. Let&rsquo;s take a look at how we can view these previous versions using the <code>qri log</code> command.</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri log me/nalcs_standings
-Aug  8 19:05:41 - /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri log me/nalcs_standings
+Aug  <span class="m">8</span> <span class="m">19</span>:05:41 - /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
   dataset update
 
-Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+Aug  <span class="m">8</span> <span class="m">18</span>:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
   created dataset</code></pre></div>
 <p>First, the date and time is displayed. Next, the dataset hash. The hash is the id, so to speak, of this particular version of the dataset. It is unique. Last is the commit title, so you have a little bit of context when looking through the log about what was added during that update.</p>
 
@@ -717,10 +787,10 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 <h3 id="3-3-qri-info">3.3 qri info</h3>
 
 <p>Let&rsquo;s get some basic info on our qri dataset:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri info me/nalcs_standings
-0  tutorial/nalcs_standings
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri info me/nalcs_standings
+<span class="m">0</span>  tutorial/nalcs_standings
     /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
-    211 bytes, 10 entries, 0 errors</code></pre></div>
+    <span class="m">211</span> bytes, <span class="m">10</span> entries, <span class="m">0</span> errors</code></pre></div>
 <p>You&rsquo;ll notice, it&rsquo;s a very similar format to what the info we receive when we use <code>qri list</code>.</p>
 
 <p><a id="3.3"></a></p>
@@ -730,40 +800,40 @@ Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 <p>We&rsquo;ve looked at <code>qri get</code> briefly, but only to get a whole flood of information about a dataset. We can also use it to get specific pieces of information. We can use the <code>qri get</code> command to explore the <code>bodyPath</code>, <code>commit</code>, <code>qri</code>, <code>structure</code>, <code>meta</code>, <code>viz</code>, and <code>transform</code>.</p>
 
 <p>For example, let&rsquo;s say we want to know what the metadata description is for our dataset:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri get meta.description me/nalcs_standings
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri get meta.description me/nalcs_standings
 tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu: 
-  The standings for the North American League Championship Series, the professional League of Legends league. Data taken from Riot Games&#39; esports website.</code></pre></div>
+  The standings <span class="k">for</span> the North American League Championship Series, the professional League of Legends league. Data taken from Riot Games<span class="err">&#39;</span> esports website.</code></pre></div>
 <p>Okay, now let&rsquo;s look at the commit:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri get commit me/nalcs_standings
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri get commit me/nalcs_standings
 tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmZ8XgfLkM4vwMgTNG1NXmUer5pF5SvsparxSnk37DeBhJ:
   author:
     id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
   path: /ipfs/QmTK4CsgohfUSzmCd6PDtGd34wC5CrSZktbJMBVYzKpbNt
   qri: cm:0
-  signature: wZe5queKi3drhecadkTrIHZGq+JD9AvOQpiT0l4fLd7jZvgBG7/T91LhhqTY2do2Au01IpthGdqg4Y1gT9Ec1+2TYADr3nFqtKO/wuey95/p0O99NP6MfTh97z6jtZs0T/gpnTGgSNgqDo96chcyauJfRm9LtlnpNm9H2RmaRMX2tSrGrbFeHFwm2BtLQKAFAcj/zK+QsohBc+Uz6Xr3lRdkG1y/Iyz9RMbDfDWPKQqZZH/QU27npbXD7zU9AeiY2YASSgXhD6hzVneGutiKdreiG6pvWvWEhZzyPhxMsnAn23jD5DOiZ02ytwaZiYcC4cfksIS7lZ/IPdWkNehB5Q==
-  timestamp: &#34;2018-08-09T16:11:59.644134156Z&#34;
+  signature: wZe5queKi3drhecadkTrIHZGq+JD9AvOQpiT0l4fLd7jZvgBG7/T91LhhqTY2do2Au01IpthGdqg4Y1gT9Ec1+2TYADr3nFqtKO/wuey95/p0O99NP6MfTh97z6jtZs0T/gpnTGgSNgqDo96chcyauJfRm9LtlnpNm9H2RmaRMX2tSrGrbFeHFwm2BtLQKAFAcj/zK+QsohBc+Uz6Xr3lRdkG1y/Iyz9RMbDfDWPKQqZZH/QU27npbXD7zU9AeiY2YASSgXhD6hzVneGutiKdreiG6pvWvWEhZzyPhxMsnAn23jD5DOiZ02ytwaZiYcC4cfksIS7lZ/IPdWkNehB5Q<span class="o">==</span>
+  timestamp: <span class="s2">&#34;2018-08-09T16:11:59.644134156Z&#34;</span>
   title: body update
-  message: dataset has been updated with the week 7 match results</code></pre></div>
+  message: dataset has been updated with the week <span class="m">7</span> match results</code></pre></div>
 <p>Great. Now, what if I want to know the title and message of the first commit, or the commit that was created when we first added the dataset using <code>qri save</code>?</p>
 
 <p>In order to do that, we would have to use the hash of the first version of the dataset. We can get that hash by using <code>qri log</code>. This command gives us the history of our datasets:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri log me/nalcs_standings
-Aug  8 19:05:41 - /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri log me/nalcs_standings
+Aug  <span class="m">8</span> <span class="m">19</span>:05:41 - /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
   dataset update
 
-Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+Aug  <span class="m">8</span> <span class="m">18</span>:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
   created dataset</code></pre></div>
 <p>As a reminder, the hash of your datasets, even if you name them the same as we do in the tutorials, will be different than the ones presented here. In order to look at previous versions of your dataset, you must use the hashes that get printed to your terminal when you run <code>qri log</code> yourself.</p>
 
 <p>So, let&rsquo;s get the commit of the previous dataset using its particular hash: <code>QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri get commit me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri get commit me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW:
   author:
     id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
   path: /ipfs/QmTK4CsgohfUSzmCd6PDtGd34wC5CrSZktbJMBVYzKpbNt
   qri: cm:0
-  signature: wZe5queKi3drhecadkTrIHZGq+JD9AvOQpiT0l4fLd7jZvgBG7/T91LhhqTY2do2Au01IpthGdqg4Y1gT9Ec1+2TYADr3nFqtKO/wuey95/p0O99NP6MfTh97z6jtZs0T/gpnTGgSNgqDo96chcyauJfRm9LtlnpNm9H2RmaRMX2tSrGrbFeHFwm2BtLQKAFAcj/zK+QsohBc+Uz6Xr3lRdkG1y/Iyz9RMbDfDWPKQqZZH/QU27npbXD7zU9AeiY2YASSgXhD6hzVneGutiKdreiG6pvWvWEhZzyPhxMsnAn23jD5DOiZ02ytwaZiYcC4cfksIS7lZ/IPdWkNehB5Q==
-  timestamp: &#34;2018-08-09T16:11:59.644134156Z&#34;
+  signature: wZe5queKi3drhecadkTrIHZGq+JD9AvOQpiT0l4fLd7jZvgBG7/T91LhhqTY2do2Au01IpthGdqg4Y1gT9Ec1+2TYADr3nFqtKO/wuey95/p0O99NP6MfTh97z6jtZs0T/gpnTGgSNgqDo96chcyauJfRm9LtlnpNm9H2RmaRMX2tSrGrbFeHFwm2BtLQKAFAcj/zK+QsohBc+Uz6Xr3lRdkG1y/Iyz9RMbDfDWPKQqZZH/QU27npbXD7zU9AeiY2YASSgXhD6hzVneGutiKdreiG6pvWvWEhZzyPhxMsnAn23jD5DOiZ02ytwaZiYcC4cfksIS7lZ/IPdWkNehB5Q<span class="o">==</span>
+  timestamp: <span class="s2">&#34;2018-08-09T16:11:59.644134156Z&#34;</span>
   title: created dataset</code></pre></div>
 <p>We did not have a message when we used <code>qri save</code>, we only had a title: &lsquo;created dataset&rsquo;.</p>
 
@@ -772,14 +842,14 @@ tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/Qmb
 <p>Now, having to repeatedly copy and paste the same dataset reference every time you want to <code>qri get</code> something seems a little tedious. We felt that way, too.</p>
 
 <p>In order to streamline things a bit, we created the <code>qri use</code> command. Whatever dataset reference you give to the <code>qri use</code> command can be used in any subsequent <code>qri get</code> commands, until the <code>qri use</code> list is cleared using the <code>qri use --clear</code> command.</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri use me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qQmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 $ qri get commit.title
 tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW:
   created dataset</code></pre></div>
 <p>You can view the dataset reference stored in use by running the <code>qri use --list</code> command</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri use --list
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri use --list
 me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW</code></pre></div>
 <p><a id="3.4"></a></p>
 
@@ -792,51 +862,51 @@ me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW</code></
 <p>Like the <code>qri get</code> command, you can view the body at different points in time by using a dataset reference with a dataset hash. As of writing this tutorial, however, <code>qri use</code> does not work with <code>qri body</code>, this is a known discrepancy.</p>
 
 <p>Let&rsquo;s use <code>qri body</code> to look at the most recent version of <code>me/nalcs_standings</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri body me/nalcs_standings
-[[1,&#34;Team Liquid&#34;,&#34;TL&#34;,10,4],[2,&#34;Echo Fox&#34;,&#34;EF&#34;,9,5],[2,&#34;100 Thieves&#34;,&#34;100&#34;,9,5],[4,&#34;FlyQuest&#34;,&#34;FQ&#34;,7,7],[4,&#34;Cloud9&#34;,&#34;C9&#34;,7,7],[4,&#34;OpTic Gaming&#34;,&#34;OG&#34;,7,7],[7,&#34;TSM&#34;,&#34;TSM&#34;,6,8],[8,&#34;Counter Logic Gaming&#34;,&#34;CLG&#34;,5,9],[8,&#34;Golden Guardians&#34;,&#34;GG&#34;,5,9],[8,&#34;Clutch Gaming&#34;,&#34;CG&#34;,5,9]]</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri body me/nalcs_standings
+<span class="o">[[</span><span class="m">1</span>,<span class="s2">&#34;Team Liquid&#34;</span>,<span class="s2">&#34;TL&#34;</span>,10,4<span class="o">]</span>,<span class="o">[</span><span class="m">2</span>,<span class="s2">&#34;Echo Fox&#34;</span>,<span class="s2">&#34;EF&#34;</span>,9,5<span class="o">]</span>,<span class="o">[</span><span class="m">2</span>,<span class="s2">&#34;100 Thieves&#34;</span>,<span class="s2">&#34;100&#34;</span>,9,5<span class="o">]</span>,<span class="o">[</span><span class="m">4</span>,<span class="s2">&#34;FlyQuest&#34;</span>,<span class="s2">&#34;FQ&#34;</span>,7,7<span class="o">]</span>,<span class="o">[</span><span class="m">4</span>,<span class="s2">&#34;Cloud9&#34;</span>,<span class="s2">&#34;C9&#34;</span>,7,7<span class="o">]</span>,<span class="o">[</span><span class="m">4</span>,<span class="s2">&#34;OpTic Gaming&#34;</span>,<span class="s2">&#34;OG&#34;</span>,7,7<span class="o">]</span>,<span class="o">[</span><span class="m">7</span>,<span class="s2">&#34;TSM&#34;</span>,<span class="s2">&#34;TSM&#34;</span>,6,8<span class="o">]</span>,<span class="o">[</span><span class="m">8</span>,<span class="s2">&#34;Counter Logic Gaming&#34;</span>,<span class="s2">&#34;CLG&#34;</span>,5,9<span class="o">]</span>,<span class="o">[</span><span class="m">8</span>,<span class="s2">&#34;Golden Guardians&#34;</span>,<span class="s2">&#34;GG&#34;</span>,5,9<span class="o">]</span>,<span class="o">[</span><span class="m">8</span>,<span class="s2">&#34;Clutch Gaming&#34;</span>,<span class="s2">&#34;CG&#34;</span>,5,9<span class="o">]]</span></code></pre></div>
 <p>You&rsquo;ll notice, that even though the data is correct, that doesn&rsquo;t look much like the csv we imported. That&rsquo;s because the <code>qri body</code> command defaults to showing the data in JSON format. Using the <code>--format</code> flag, we can print as csv.</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri body --format csv me/nalcs_standings
-1,Team Liquid,TL,10,4
-2,Echo Fox,EF,9,5
-2,100 Thieves,100,9,5
-4,FlyQuest,FQ,7,7
-4,Cloud9,C9,7,7
-4,OpTic Gaming,OG,7,7
-7,TSM,TSM,6,8
-8,Counter Logic Gaming,CLG,5,9
-8,Golden Guardians,GG,5,9
-8,Clutch Gaming,CG,5,9</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri body --format csv me/nalcs_standings
+<span class="m">1</span>,Team Liquid,TL,10,4
+<span class="m">2</span>,Echo Fox,EF,9,5
+<span class="m">2</span>,100 Thieves,100,9,5
+<span class="m">4</span>,FlyQuest,FQ,7,7
+<span class="m">4</span>,Cloud9,C9,7,7
+<span class="m">4</span>,OpTic Gaming,OG,7,7
+<span class="m">7</span>,TSM,TSM,6,8
+<span class="m">8</span>,Counter Logic Gaming,CLG,5,9
+<span class="m">8</span>,Golden Guardians,GG,5,9
+<span class="m">8</span>,Clutch Gaming,CG,5,9</code></pre></div>
 <p>You can use <code>--limit</code> and <code>--offset</code> to get different parts of the dataset body:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri body --format csv --limit 5 me/nalcs_standings
-1,Team Liquid,TL,10,4
-2,Echo Fox,EF,9,5
-2,100 Thieves,100,9,5
-4,FlyQuest,FQ,7,7
-4,Cloud9,C9,7,7</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri body --format csv --limit 5 --offset 5 me/nalcs_standings
-4,OpTic Gaming,OG,7,7
-7,TSM,TSM,6,8
-8,Counter Logic Gaming,CLG,5,9
-8,Golden Guardians,GG,5,9
-8,Clutch Gaming,CG,5,9</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri body --format csv --limit <span class="m">5</span> me/nalcs_standings
+<span class="m">1</span>,Team Liquid,TL,10,4
+<span class="m">2</span>,Echo Fox,EF,9,5
+<span class="m">2</span>,100 Thieves,100,9,5
+<span class="m">4</span>,FlyQuest,FQ,7,7
+<span class="m">4</span>,Cloud9,C9,7,7</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri body --format csv --limit <span class="m">5</span> --offset <span class="m">5</span> me/nalcs_standings
+<span class="m">4</span>,OpTic Gaming,OG,7,7
+<span class="m">7</span>,TSM,TSM,6,8
+<span class="m">8</span>,Counter Logic Gaming,CLG,5,9
+<span class="m">8</span>,Golden Guardians,GG,5,9
+<span class="m">8</span>,Clutch Gaming,CG,5,9</code></pre></div>
 <p>Now, to see the body of the previous version of the dataset, we will use <code>qri log</code> to get the hash, and then use the hash to get the body:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri log me/nalcs_standings
-Aug  8 19:05:41 - /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri log me/nalcs_standings
+Aug  <span class="m">8</span> <span class="m">19</span>:05:41 - /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
   dataset update
 
-Aug  8 18:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+Aug  <span class="m">8</span> <span class="m">18</span>:17:39 - /ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
   created dataset
 
 $ qri body --format csv me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
-1,Team Liquid,TL,8,4
-1,100 Thieves,100,8,4
-3,Echo Fox,EF,7,5
-3,FlyQuest,FQ,7,5
-5,OpTic Gaming,OG,6,6
-6,TSM,TSM,5,7
-6,Cloud9,C9,5,7
-6,Counter Logic Gaming,CLG,5,7
-6,Golden Guardians,GG,5,7
-10,Clutch Gaming,CG,4,8</code></pre></div>
+<span class="m">1</span>,Team Liquid,TL,8,4
+<span class="m">1</span>,100 Thieves,100,8,4
+<span class="m">3</span>,Echo Fox,EF,7,5
+<span class="m">3</span>,FlyQuest,FQ,7,5
+<span class="m">5</span>,OpTic Gaming,OG,6,6
+<span class="m">6</span>,TSM,TSM,5,7
+<span class="m">6</span>,Cloud9,C9,5,7
+<span class="m">6</span>,Counter Logic Gaming,CLG,5,7
+<span class="m">6</span>,Golden Guardians,GG,5,7
+<span class="m">10</span>,Clutch Gaming,CG,4,8</code></pre></div>
 <p><a id="4.0"></a></p>
 
 <h1 id="cli-tutorial-part-4-peer-commands">CLI Tutorial, Part 4 - Peer commands</h1>
@@ -852,14 +922,14 @@ $ qri body --format csv me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8
 <h3 id="4-1-qri-connect">4.1 qri connect</h3>
 
 <p>In order for others to view your datasets, or for you to view a peer&rsquo;s dataset, you need to have a Qri node running. This is super easy. All you need to do is open up a terminal window and run the command <code>qri connect</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri connect
-16:04:36.076  INFO     qrip2p: boostrapping to: QmTZxETL4YCCzB1yFx4GT1te68henVHD1XPQMkHZ1N22mm bootstrap.go:28
-16:04:36.078  INFO     qrip2p: boostrapping to: QmNX9nSos8sRFvqGTwdEme6LQ8R1eJ8EuFgW32F9jjp2Pb bootstrap.go:28
-16:04:36.079  INFO     qriapi:
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri connect
+<span class="m">16</span>:04:36.076  INFO     qrip2p: boostrapping to: QmTZxETL4YCCzB1yFx4GT1te68henVHD1XPQMkHZ1N22mm bootstrap.go:28
+<span class="m">16</span>:04:36.078  INFO     qrip2p: boostrapping to: QmNX9nSos8sRFvqGTwdEme6LQ8R1eJ8EuFgW32F9jjp2Pb bootstrap.go:28
+<span class="m">16</span>:04:36.079  INFO     qriapi:
 peername: tutorial
 profileID:  QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
-API port: 2503
-RPC port: 2504
+API port: <span class="m">2503</span>
+RPC port: <span class="m">2504</span>
 IPFS Addresses:
   /ip4/127.0.0.1/tcp/4001/ipfs/QmZnDzTmoQZSt7hVhJAqsaoGCqx4VUVbYpZnyxmKJWy5pe
   /ip4/192.168.0.8/tcp/4001/ipfs/QmZnDzTmoQZSt7hVhJAqsaoGCqx4VUVbYpZnyxmKJWy5pe
@@ -876,18 +946,18 @@ IPFS Addresses:
 <p>Now that we have a Qri node running, we can find out what peers we are connected to!</p>
 
 <p>Using the <code>qri peers list</code> command, we will get a list of the currently connected peers. Note, this list will contain different peers than the list printed here.</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri peers list
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri peers list
 
-tutorial_peer | online
+tutorial_peer <span class="p">|</span> online
 QmQDAHk8jx6mJ1migbC6oEij52odepBV7RHBoGoGFWUr7F
 
 
-mojo | online
+mojo <span class="p">|</span> online
 QmfREVLKSKngemAQLJJEdNbm2ha71uRZhvXdNquCJA86eP
 @qri_io
 Mojo is a qri gateway.
 
-epa | online
+epa <span class="p">|</span> online
 QmXKaJKveAc4ZKm4ys9zXWutPaqr2F3Jm34YqfU1dWmDmh
 @EPA
 The Environmental Protection Agency protects people and the environment from significant health risks, sponsors and conducts research, and develops and enforces environmental regulations.</code></pre></div>
@@ -898,15 +968,15 @@ The Environmental Protection Agency protects people and the environment from sig
 <h3 id="4-3-qri-list-peername">4.3 qri list <peername></h3>
 
 <p>To view the list of datasets currently on a peer&rsquo;s node, use the <code>qri list &lt;peername&gt;</code> command. This is the same command we use to list our own datasets! Let&rsquo;s say I want to view the datasets on the <code>tutorial_peer</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri list tutorial_peer
-1  tutorial_peer/paris_energy_pledges
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri list tutorial_peer
+<span class="m">1</span>  tutorial_peer/paris_energy_pledges
     /ipfs/QmbbULznAxYWmq3v5wgD2czb9eQeEfK74pJakN6VE42zCi
     Renewable/Low-Carbon Energy Production Pledges from NDCs of Paris Accord
-    *under construction* a listing of the pledges made by countries to shift thei...
-    87 KBs, 168 entries, 383 errors
-2  fivethirtyeight/weather_ksea
+    *under construction* a listing of the pledges made by countries to <span class="nb">shift</span> thei...
+    <span class="m">87</span> KBs, <span class="m">168</span> entries, <span class="m">383</span> errors
+<span class="m">2</span>  fivethirtyeight/weather_ksea
     /ipfs/QmVi6Li9usDQMtW5wVPDMpAa7Xx2jpKd25bKCWoz8e3Suu
-    20 KBs, 365 entries, 0 errors</code></pre></div>
+    <span class="m">20</span> KBs, <span class="m">365</span> entries, <span class="m">0</span> errors</code></pre></div>
 <p>You can see this peer has two datasets. If you take a look at the dataset references, you will see a distinct difference. The <code>tutorial_peer/paris_energy_pledges</code> dataset was added by this peer, the <code>tutorial_peer</code>. The <code>fivethirtyeight/weather_ksea</code> dataset, however, was originally added by the <code>fivethirtyeight</code> peer. The <code>tutorial_peer</code> added the <code>fivethirtyeight/weather_ksea</code> dataset by connecting to the <code>fivethirtyeight</code> peer and adding that datasets to its own repository.</p>
 
 <p>In the next section, we are going to learn how to add a peer&rsquo;s dataset to our own node.</p>
@@ -920,25 +990,25 @@ The Environmental Protection Agency protects people and the environment from sig
 <p>First, you must still have <code>qri connect</code> running in another terminal. This allows us access to the Qri network.</p>
 
 <p>Second, you must have the dataset reference for the dataset you want to add. By running the <code>qri peers list</code> command, we found we have a peer called <code>tutorial_peer</code>. By running the <code>qri list tutorial_peer</code> command, we found that peer has a dataset called <code>tutorial_peer/paris_energy_pledges</code>. Let&rsquo;s add that dataset :)</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri add tutorial_peer/paris_energy_pledges
-1  tutorial_peer/paris_energy_pledges
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri add tutorial_peer/paris_energy_pledges
+<span class="m">1</span>  tutorial_peer/paris_energy_pledges
     /ipfs/QmbbULznAxYWmq3v5wgD2czb9eQeEfK74pJakN6VE42zCi
     Renewable/Low-Carbon Energy Production Pledges from NDCs of Paris Accord
-    *under construction* a listing of the pledges made by countries to shift thei...
-    87 KBs, 168 entries, 383 errors
+    *under construction* a listing of the pledges made by countries to <span class="nb">shift</span> thei...
+    <span class="m">87</span> KBs, <span class="m">168</span> entries, <span class="m">383</span> errors
 Successfully added dataset tutorial_peer/paris_energy_pledges</code></pre></div>
 <p>If we run <code>qri list</code> to see our datasets, we will see this new dataset in our repository:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri list
-1  tutorial/nalcs_standings
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri list
+<span class="m">1</span>  tutorial/nalcs_standings
     /ipfs/Qmager6xdesYPTgcgQwUPyPtQVddxCy6fLXKZhnKku9ra2
-    NALCS Summer Split Standings 2018
-    The standings for the North American League Championship Series, the professi...
-    211 bytes, 10 entries, 0 errors
-2  tutorial_peer/paris_energy_pledges
+    NALCS Summer Split Standings <span class="m">2018</span>
+    The standings <span class="k">for</span> the North American League Championship Series, the professi...
+    <span class="m">211</span> bytes, <span class="m">10</span> entries, <span class="m">0</span> errors
+<span class="m">2</span>  tutorial_peer/paris_energy_pledges
     /ipfs/QmbbULznAxYWmq3v5wgD2czb9eQeEfK74pJakN6VE42zCi
     Renewable/Low-Carbon Energy Production Pledges from NDCs of Paris Accord
-    *under construction* a listing of the pledges made by countries to shift thei...
-    87 KBs, 168 entries, 383 errors</code></pre></div>
+    *under construction* a listing of the pledges made by countries to <span class="nb">shift</span> thei...
+    <span class="m">87</span> KBs, <span class="m">168</span> entries, <span class="m">383</span> errors</code></pre></div>
 <p>You can now use any of the Qri commands you normally use for exploring or exporting datasets to checkout out this added <code>tutorial_peer/paris_energy_pledges</code> dataset.</p>
 
 <p>One note: if you make a change or update to a peer&rsquo;s dataset using the <code>qri save</code> command, the dataset will now be renamed from <code>&lt;other_peername&gt;/&lt;dataset_name&gt;</code> to <code>&lt;my_peername&gt;/&lt;dataset_name&gt;</code></p>
@@ -948,23 +1018,23 @@ Successfully added dataset tutorial_peer/paris_energy_pledges</code></pre></div>
 <h3 id="4-5-qri-peers-info">4.5 qri peers info</h3>
 
 <p>To get details about a peer, such as their real name, twitter handle, or email address, you can use the <code>qri peers info</code> command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri peers info tutorial_peer
-color: &#34;&#34;
-created: &#34;2018-07-26T14:35:39.614543043-04:00&#34;
-description: &#34;&#34;
-email: &#34;test@test.com&#34;
-homeurl: &#34;&#34;
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri peers info tutorial_peer
+color: <span class="s2">&#34;&#34;</span>
+created: <span class="s2">&#34;2018-07-26T14:35:39.614543043-04:00&#34;</span>
+description: <span class="s2">&#34;&#34;</span>
+email: <span class="s2">&#34;test@test.com&#34;</span>
+homeurl: <span class="s2">&#34;&#34;</span>
 id: QmQDAHk8jx6mJ1migbC6oEij52odepBV7RHBoGoGFWUr7F
-name: &#34;tutorial example peer&#34;
+name: <span class="s2">&#34;tutorial example peer&#34;</span>
 peerIDs:
 - /ipfs/QmaZN1jED9KGzso8d2PdyrA1U9VyA8hVZ3RkRnatzJumrX
 peername: tutorial_peer
-photo: &#34;&#34;
-poster: &#34;&#34;
-thumb: &#34;&#34;
-twitter: &#34;&#34;
+photo: <span class="s2">&#34;&#34;</span>
+poster: <span class="s2">&#34;&#34;</span>
+thumb: <span class="s2">&#34;&#34;</span>
+twitter: <span class="s2">&#34;&#34;</span>
 type: peer
-updated: &#34;2018-07-26T14:35:39.614543043-04:00&#34;</code></pre></div>
+updated: <span class="s2">&#34;2018-07-26T14:35:39.614543043-04:00&#34;</span></code></pre></div>
 <p>You can learn how to update your own profile in <a href="(/docs/tutorials/cli_quickstart/#part6)">Part 6</a> of this tutorial.</p>
 
 <p><a id="5.0"></a></p>
@@ -990,24 +1060,24 @@ updated: &#34;2018-07-26T14:35:39.614543043-04:00&#34;</code></pre></div>
 <h3 id="5-2-qri-registry-publish">5.2 qri registry publish</h3>
 
 <p>In order to make sure a dataset is published to the registry, use the command <code>qri registry publish</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri registry publish me/nalcs_standings
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri registry publish me/nalcs_standings
 published dataset me/nalcs_standings</code></pre></div>
 <p>To remove it from the registry:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri registry unpublish me/nalcs_standings
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri registry unpublish me/nalcs_standings
 unpublished dataset me/nalcs_standings</code></pre></div>
 <p>However, since we are going to use the search command in the next section, I want to make sure that my <code>nalcs_standings</code> dataset is published:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri registry publish me/nalcs_standings
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri registry publish me/nalcs_standings
 published dataset me/nalcs_standings</code></pre></div>
 <p><a id="5.3"></a></p>
 
 <h3 id="5-3-qri-search">5.3 qri search</h3>
 
 <p>Keywords, titles, descriptions, and dataset names are all indexed for search. So, for example, I will try using the search term <code>nalcs</code> to look for our sample dataset.</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">$ qri search nalcs
-showing 1 results for &#39;nalcs&#39;
-1. tutorial/nalcs_standings
-   NALCS Summer Split Standings 2018
-   The standings for the North American League Championship Series, the professional League of Legends league. Data taken from Riot&#39;s esports website.</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri search nalcs
+showing <span class="m">1</span> results <span class="k">for</span> <span class="s1">&#39;nalcs&#39;</span>
+<span class="m">1</span>. tutorial/nalcs_standings
+   NALCS Summer Split Standings <span class="m">2018</span>
+   The standings <span class="k">for</span> the North American League Championship Series, the professional League of Legends league. Data taken from Riot<span class="err">&#39;</span>s esports website.</code></pre></div>
 <p><a id="6.0"></a></p>
 
 <h1 id="cli-tutorial-part-6-profile-and-config">CLI Tutorial, Part 6 - Profile and Config</h1>
@@ -1021,117 +1091,117 @@ showing 1 results for &#39;nalcs&#39;
 <h3 id="6-1-qri-config-get">6.1 qri config get</h3>
 
 <p>To view all the config details, run <code>qri config get</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">$<span class="w"> </span>qri<span class="w"> </span>config<span class="w"> </span>get<span class="w">
-</span><span class="w"></span>API<span class="p">:</span><span class="w">
-</span><span class="w">  </span>allowedorigins<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">2505</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>http<span class="p">:</span>//app.qri.io<span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>https<span class="p">:</span>//app.qri.io<span class="w">
-</span><span class="w">  </span>enabled<span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span>port<span class="p">:</span><span class="w"> </span><span class="m">2503</span><span class="w">
-</span><span class="w">  </span>proxyforcehttps<span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">  </span>readonly<span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">  </span>tls<span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">  </span>urlroot<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>CLI<span class="p">:</span><span class="w">
-</span><span class="w">  </span>colorizeoutput<span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w"></span>Logging<span class="p">:</span><span class="w">
-</span><span class="w">  </span>levels<span class="p">:</span><span class="w">
-</span><span class="w">    </span>qriapi<span class="p">:</span><span class="w"> </span>debug<span class="w">
-</span><span class="w">    </span>qrip2p<span class="p">:</span><span class="w"> </span>debug<span class="w">
-</span><span class="w"></span>P2P<span class="p">:</span><span class="w">
-</span><span class="w">  </span>addrs<span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="w">  </span>bootstrapaddrs<span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="w">  </span>enabled<span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span>httpgatewayaddr<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span>peerid<span class="p">:</span><span class="w"> </span>QmbiT5cJgxTZd2AV19bFJMA3zXMV1aDf8oEzfNc8qjMJwx<span class="w">
-</span><span class="w">  </span>port<span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
-</span><span class="w">  </span>privkey<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span>profilereplication<span class="p">:</span><span class="w"> </span>full<span class="w">
-</span><span class="w">  </span>pubkey<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span>qribootstrapaddrs<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>/ip4/<span class="m">130.211</span>.<span class="m">198.23</span>/tcp/<span class="m">4001</span>/ipfs/QmNX9nSos8sRFvqGTwdEme6LQ8R1eJ8EuFgW32F9jjp2Pb<span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>/ip4/<span class="m">35.193</span>.<span class="m">162.149</span>/tcp/<span class="m">4001</span>/ipfs/QmTZxETL4YCCzB1yFx4GT1te68henVHD1XPQMkHZ1N22mm<span class="w">
-</span><span class="w"></span>Profile<span class="p">:</span><span class="w">
-</span><span class="w">  </span>color<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span>created<span class="p">:</span><span class="w"> </span><span class="s2">&#34;2018-04-25T11:49:15.88838293-04:00&#34;</span><span class="w">
-</span><span class="w">  </span>description<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span>email<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span>homeurl<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span>id<span class="p">:</span><span class="w"> </span>QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9<span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span>peername<span class="p">:</span><span class="w"> </span>tutorial<span class="w">
-</span><span class="w">  </span>photo<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span>poster<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span>thumb<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span>twitter<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span>type<span class="p">:</span><span class="w"> </span>peer<span class="w">
-</span><span class="w">  </span>updated<span class="p">:</span><span class="w"> </span><span class="s2">&#34;2018-04-25T11:49:15.88838293-04:00&#34;</span><span class="w">
-</span><span class="w"></span>RPC<span class="p">:</span><span class="w">
-</span><span class="w">  </span>enabled<span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span>port<span class="p">:</span><span class="w"> </span><span class="m">2504</span><span class="w">
-</span><span class="w"></span>Registry<span class="p">:</span><span class="w">
-</span><span class="w">  </span>location<span class="p">:</span><span class="w"> </span>https<span class="p">:</span>//registry.qri.io<span class="w">
-</span><span class="w"></span>Render<span class="p">:</span><span class="w">
-</span><span class="w">  </span>defaultTemplateHash<span class="p">:</span><span class="w"> </span>/ipfs/QmeqeRTf2Cvkqdx4xUdWi1nJB2TgCyxmemsL3H4f1eTBaw<span class="w">
-</span><span class="w">  </span>templateUpdateAddress<span class="p">:</span><span class="w"> </span>/ipns/defaulttmpl.qri.io<span class="w">
-</span><span class="w"></span>Repo<span class="p">:</span><span class="w">
-</span><span class="w">  </span>middleware<span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="w">  </span>type<span class="p">:</span><span class="w"> </span>fs<span class="w">
-</span><span class="w"></span>Store<span class="p">:</span><span class="w">
-</span><span class="w">  </span>type<span class="p">:</span><span class="w"> </span>ipfs<span class="w">
-</span><span class="w"></span>Webapp<span class="p">:</span><span class="w">
-</span><span class="w">  </span>analyticstoken<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span>enabled<span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span>entrypointhash<span class="p">:</span><span class="w"> </span>QmP99mprLUGhMqrh5gyqt4McrgfTJCKCSh5eGJaZw2LycF<span class="w">
-</span><span class="w">  </span>entrypointupdateaddress<span class="p">:</span><span class="w"> </span>/ipns/webapp.qri.io<span class="w">
-</span><span class="w">  </span>port<span class="p">:</span><span class="w"> </span><span class="m">2505</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri config get
+API:
+  allowedorigins:
+  - http://localhost:2505
+  - http://app.qri.io
+  - https://app.qri.io
+  enabled: <span class="nb">true</span>
+  port: <span class="m">2503</span>
+  proxyforcehttps: <span class="nb">false</span>
+  readonly: <span class="nb">false</span>
+  tls: <span class="nb">false</span>
+  urlroot: <span class="s2">&#34;&#34;</span>
+CLI:
+  colorizeoutput: <span class="nb">true</span>
+Logging:
+  levels:
+    qriapi: debug
+    qrip2p: debug
+P2P:
+  addrs: null
+  bootstrapaddrs: <span class="o">[]</span>
+  enabled: <span class="nb">true</span>
+  httpgatewayaddr: <span class="s2">&#34;&#34;</span>
+  peerid: QmbiT5cJgxTZd2AV19bFJMA3zXMV1aDf8oEzfNc8qjMJwx
+  port: <span class="m">0</span>
+  privkey: <span class="s2">&#34;&#34;</span>
+  profilereplication: full
+  pubkey: <span class="s2">&#34;&#34;</span>
+  qribootstrapaddrs:
+  - /ip4/130.211.198.23/tcp/4001/ipfs/QmNX9nSos8sRFvqGTwdEme6LQ8R1eJ8EuFgW32F9jjp2Pb
+  - /ip4/35.193.162.149/tcp/4001/ipfs/QmTZxETL4YCCzB1yFx4GT1te68henVHD1XPQMkHZ1N22mm
+Profile:
+  color: <span class="s2">&#34;&#34;</span>
+  created: <span class="s2">&#34;2018-04-25T11:49:15.88838293-04:00&#34;</span>
+  description: <span class="s2">&#34;&#34;</span>
+  email: <span class="s2">&#34;&#34;</span>
+  homeurl: <span class="s2">&#34;&#34;</span>
+  id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
+  name: <span class="s2">&#34;&#34;</span>
+  peername: tutorial
+  photo: <span class="s2">&#34;&#34;</span>
+  poster: <span class="s2">&#34;&#34;</span>
+  thumb: <span class="s2">&#34;&#34;</span>
+  twitter: <span class="s2">&#34;&#34;</span>
+  type: peer
+  updated: <span class="s2">&#34;2018-04-25T11:49:15.88838293-04:00&#34;</span>
+RPC:
+  enabled: <span class="nb">true</span>
+  port: <span class="m">2504</span>
+Registry:
+  location: https://registry.qri.io
+Render:
+  defaultTemplateHash: /ipfs/QmeqeRTf2Cvkqdx4xUdWi1nJB2TgCyxmemsL3H4f1eTBaw
+  templateUpdateAddress: /ipns/defaulttmpl.qri.io
+Repo:
+  middleware: <span class="o">[]</span>
+  type: fs
+Store:
+  type: ipfs
+Webapp:
+  analyticstoken: <span class="s2">&#34;&#34;</span>
+  enabled: <span class="nb">true</span>
+  entrypointhash: QmP99mprLUGhMqrh5gyqt4McrgfTJCKCSh5eGJaZw2LycF
+  entrypointupdateaddress: /ipns/webapp.qri.io
+  port: <span class="m">2505</span></code></pre></div>
 <p>Note that in the P2P section, there is a field called privkey. This should never be shared with anyone, and by default, is stripped from the content. Run <code>qri config --help</code> to learn more.</p>
 
 <p>Most of these fields you will never care about or change. However, the profile section will probably be of interest.</p>
 
 <p>Like the <code>qri get</code> command, we can use the section names to show only part of the config. So, to get just the profile from the config: <code>qri config get profile</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">$<span class="w"> </span>qri<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>profile<span class="w">
-</span><span class="w"></span>color<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>created<span class="p">:</span><span class="w"> </span><span class="s2">&#34;2018-04-25T11:49:15.88838293-04:00&#34;</span><span class="w">
-</span><span class="w"></span>description<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>email<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>homeurl<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>id<span class="p">:</span><span class="w"> </span>QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9<span class="w">
-</span><span class="w"></span>name<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>peername<span class="p">:</span><span class="w"> </span>tutorial<span class="w">
-</span><span class="w"></span>photo<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>poster<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>thumb<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>twitter<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>type<span class="p">:</span><span class="w"> </span>peer<span class="w">
-</span><span class="w"></span>updated<span class="p">:</span><span class="w"> </span><span class="s2">&#34;2018-04-25T11:49:15.88838293-04:00&#34;</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span>$<span class="w"> </span>qri<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>profile.peername<span class="w">
-</span><span class="w"></span>tutorial</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri config get profile
+color: <span class="s2">&#34;&#34;</span>
+created: <span class="s2">&#34;2018-04-25T11:49:15.88838293-04:00&#34;</span>
+description: <span class="s2">&#34;&#34;</span>
+email: <span class="s2">&#34;&#34;</span>
+homeurl: <span class="s2">&#34;&#34;</span>
+id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
+name: <span class="s2">&#34;&#34;</span>
+peername: tutorial
+photo: <span class="s2">&#34;&#34;</span>
+poster: <span class="s2">&#34;&#34;</span>
+thumb: <span class="s2">&#34;&#34;</span>
+twitter: <span class="s2">&#34;&#34;</span>
+type: peer
+updated: <span class="s2">&#34;2018-04-25T11:49:15.88838293-04:00&#34;</span>
+
+$ qri config get profile.peername
+tutorial</code></pre></div>
 <p><a id="6.2"></a></p>
 
 <h3 id="6-2-qri-config-set">6.2 qri config set</h3>
 
 <p>Now, let&rsquo;s say you want to add a name and a description to your profile. I&rsquo;m going to add &lsquo;example peer&rsquo; as the name and &lsquo;This peer was created to teach people how to use Qri&rsquo; as the description.</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">$<span class="w"> </span>qri<span class="w"> </span>config<span class="w"> </span>set<span class="w"> </span>profile.name<span class="w"> </span><span class="s1">&#39;example peer&#39;</span><span class="w"> </span>profile.description<span class="w"> </span><span class="s1">&#39;This peer was created to teach people how to use Qri&#39;</span><span class="w">
-</span><span class="w"></span>config<span class="w"> </span>updated<span class="w">
-</span><span class="w">
-</span><span class="w"></span>$<span class="w"> </span>qri<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>profile<span class="w">
-</span><span class="w"></span>color<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>created<span class="p">:</span><span class="w"> </span><span class="s2">&#34;2018-04-25T11:49:15.88838293-04:00&#34;</span><span class="w">
-</span><span class="w"></span>description<span class="p">:</span><span class="w"> </span><span class="s2">&#34;This peer was created to teach people how to use Qri&#34;</span><span class="w">
-</span><span class="w"></span>email<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>homeurl<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>id<span class="p">:</span><span class="w"> </span>QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9<span class="w">
-</span><span class="w"></span>name<span class="p">:</span><span class="w"> </span><span class="s2">&#34;example peer&#34;</span><span class="w">
-</span><span class="w"></span>peername<span class="p">:</span><span class="w"> </span>tutorial<span class="w">
-</span><span class="w"></span>photo<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>poster<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>thumb<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>twitter<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w"></span>type<span class="p">:</span><span class="w"> </span>peer<span class="w">
-</span><span class="w"></span>updated<span class="p">:</span><span class="w"> </span><span class="s2">&#34;2018-04-25T11:49:15.88838293-04:00&#34;</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri config <span class="nb">set</span> profile.name <span class="s1">&#39;example peer&#39;</span> profile.description <span class="s1">&#39;This peer was created to teach people how to use Qri&#39;</span>
+config updated
+
+$ qri config get profile
+color: <span class="s2">&#34;&#34;</span>
+created: <span class="s2">&#34;2018-04-25T11:49:15.88838293-04:00&#34;</span>
+description: <span class="s2">&#34;This peer was created to teach people how to use Qri&#34;</span>
+email: <span class="s2">&#34;&#34;</span>
+homeurl: <span class="s2">&#34;&#34;</span>
+id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
+name: <span class="s2">&#34;example peer&#34;</span>
+peername: tutorial
+photo: <span class="s2">&#34;&#34;</span>
+poster: <span class="s2">&#34;&#34;</span>
+thumb: <span class="s2">&#34;&#34;</span>
+twitter: <span class="s2">&#34;&#34;</span>
+type: peer
+updated: <span class="s2">&#34;2018-04-25T11:49:15.88838293-04:00&#34;</span></code></pre></div>
 <p>To learn more about the Config, please check out the config package <a href="https://github.com/qri-io/qri/blob/master/config/readme.md">readme</a>.</p>
 
 <h1 id="end">End!</h1>
