@@ -65,7 +65,7 @@ Type the command `qri help`
 
 You should see something like this:
 
-```text
+```shell
 qri ("query") is a dataset version control system on the distributed web.
 More info: https://qri.io
 
@@ -116,7 +116,7 @@ By just typing `qri`, `qri help`, or `qri --help`, you can get a list of all the
 
 You can also add the  `--help` flag after any Qri command to get more info on the command. `--help` will print a list of all the flags and options available for that command, as well as example usage. For example, running `qri diff --help` gives you a summary of what the command does, some examples on how to use that command, and the flags you can use to elicit different behaviors:
 
-```
+```shell
 $ qri diff --help
 
 Diff compares two datasets from your repo and prints a representation
@@ -160,16 +160,16 @@ $ qri version
 <a id="1.3"></a>
 ### 1.3 qri setup
 
-Okay, okay, enough stringing you along. Time to start _doing_ things. A _Repository_ (_repo_ for short) is a special place on your hard drive that qri keeps all its data in. The command for creating a new repository is `qri setup`. When you run the `qri setup` command, you are actually doing a few things:
+Okay, okay, enough stringing you along. Time to start _doing_ things. A _repository_ (_repo_ for short) is a special place on your hard drive in which Qri keeps all your data. The command for creating a new repository is `qri setup`. When you run the `qri setup` command, you are actually doing a few things:
 
 * **New repo check:** <br />
-First, Qri will check to see if there is already a qri repo on your machine. If not, Qri attempts to creates a new repo, using the configuration details in the default config file (unless overridden with the `--ipfs-config` and/or `--config-data` flags, type `qri setup --help` for more details)
+First, Qri will check to see if there is already a Qri repo on your machine. If not, Qri attempts to creates a new repo, using the configuration details in the default config file (unless overridden with the `--ipfs-config` and/or `--config-data` flags, type `qri setup --help` for more details)
 
 * **Setting a peername:** <br />
-setup will prompt you for a peername (if you have not provided one using the `--peername` flag or used a custom config file that has the peername provided). It will ping the registry to see if that peername is currently taken. If it is taken, it will prompt you for another one.
+Setup will prompt you for a peername (if you have not provided one using the `--peername` flag or used a custom config file that has the peername provided). It will ping the registry to see if that peername is currently taken. If it is taken, it will prompt you for another one.
 
 * **Create QRI_PATH Directory** <br />
-setup will create the repo directories on your QRI_PATH. QRI_PATH is an environment variable. We recommend that you leave the QRI_PATH variable as is, unless you have a good reason to change it.
+Setup will create the repo directories on your QRI_PATH. QRI_PATH is an environment variable. We recommend that you leave the QRI_PATH variable as is, unless you have a good reason to change it.
 
 * **Init IPFS** <br />
 If IPFS (the network protocol that allows Qri to be a peer to peer service) does not exist on your system, Qri will install it for you. It will create the IPFS repo on your IPFS_PATH. IPFS_PATH is an environment variable. We recommend that you leave the IPFS_PATH variable as is.
@@ -248,7 +248,7 @@ And that is the simplest, no frills way to add a dataset to qri! Continue on to 
 
 The first thing we'll want to do is list all of the datasets we have in our repository. This is nice and simple. To view the list of datasets you have on Qri, run `qri list`
 
-```
+```shell
 $ qri list
 1  tutorial/nalcs_standings
     /ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT
@@ -263,20 +263,37 @@ As you add more datasets to qri, they'll show up here. As usual, use `qri list -
 <a id="1.6"></a>
 ### 1.6 qri export
 
-Getting your data out of Qri is simple. Just use the `qri export` command. The dataset will be saved to the current folder in a directory named with the dataset name as a `.zip` archive. If you've been following the example, the directory will be called `nalcs_standings.zip`. Run `qri export --help` for details on what export can do.
+Getting your data out of Qri is simple. Just use the `qri export` command. The dataset will be saved to the current folder in a directory named with the dataset name as a `.zip` archive. If you've been following the example, the archive will be called `nalcs_standings.zip`. Run `qri export --help` for details on what export can do.
 
-```
+```shell
 $ qri export me/nalcs_standings
-exported dataset to: nalcs_standings.zip
+
+# run ls to list the files in your current directory
+$ ls
+Applications
+Desktop
+Documents
+Movies
+nalcs_standings.zip
+Pictures
+
+# to double check all is well in the zip file, let's unzip and explore
+# unzip nalcs_standings.zip -d nalcs_standings
+Archive:  nalcs_standings.zip
+  inflating: nalcs_standings/dataset.json
+  inflating: nalcs_standings/ref.txt
+  inflating: nalcs_standings/body.csv
 ```
 
-If you open the .zip archive, you'll notice that two files are saved when exported. `body.csv` and `dataset.yaml`.
+If you open the .zip archive, you'll notice that three files are saved when exported. `body.csv`, `dataset.yaml`, and `ref.txt`.
 
 The `body.csv` file is the body of the dataset that we initially added.
 
-The `dataset.yaml` file contains all the other dataset information if it exists: metadata, structure, commit, viz, and transform. It contains a field called `bodyPath`, which is the path on ipfs at which the body file is saved. It also contains a field called `qri`, which you will notice exists imbedded in other sections as well. This is an internal reference that makes sure Qri is using the correct version to read your dataset.
+The `dataset.json` file contains all the other dataset information if it exists: metadata, structure, commit, viz, and transform. It contains a field called `bodyPath`, which is the path on ipfs at which the body file is saved. It also contains a field called `qri`, which you will notice exists imbedded in other sections as well. This is an internal reference that makes sure Qri is using the correct version to read your dataset.
 
-If you continue to the next section, don't delete those files yet! In the next section we will learn how to create a dataset full of detail using a `dataset.yaml` file.
+The `ref.txt` contains a string with the exact dataset reference of this dataset.
+
+If you continue to the next section, don't delete these files yet! In the next section we will learn how to create a dataset full of detail using a `dataset.json` file.
 
 <a id="2.0"></a>
 # 2. Editing Datasets
@@ -292,7 +309,7 @@ Next we are going to learn to remove a dataset, add a dataset with meta and stru
 
 Removing a dataset from Qri is quite simple:
 
-```text
+```shell
 $ qri remove me/nalcs_standings
 removed dataset 'tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmdoCnuMDQp2VfEEXkrX7QpkVuYD4kMJ7PvRw9XaeYJUAT'
 ```
@@ -302,20 +319,85 @@ If you run `qri list` again, you will see it is removed from your list of datase
 <a id="2.2"></a>
 ### 2.2 qri save --file
 
-Now for some added fanciness. Remember that `dataset.yaml` file that was created when we used `qri export me/nalcs_standings`, let's open that up now and check it out.
+Now for some added fanciness. Remember that `dataset.json` file that was created when we used `qri export me/nalcs_standings`, let's open that up now and check it out.
 
 You should get something that looks like this:
 
-``` yaml
-bodyPath: /ipfs/QmPBQKHc2os92kTKzdJ8xGdyP6mo6JAT9d7QncEzYSSGCM
+```json
+{
+  "commit": {
+    "author": {
+      "id": "QmXrCvaZkMXSPEFrpy3xMghgrkxFAsYoqcLogt3dU6c1RX"
+    },
+    "qri": "cm:0",
+    "signature": "RccSIHOZ2gR3dxMwyY32kkTL9HcNxneCY3sMQUs8yq/XzQfbCdfFj01sUlD0gprWK7lHOGbdQUlWr5yTg+avQnjb0u9Wyfi8zGkP6WtEwIuKn179j44HWxjKoc9+4CaiNjrgBhrhTBf+yXW68GX4LA04qISgIu0lSg/CAf8xuYe5eQ7CuQDPBLKi7plJzt/tbPRRX79uxoQQk9g9oNyQf52UYBodaIbsy57YLOmOUD7B7eTgU+JHg5yH0xivL0HtvINsOUtVfZEeGHBQlZv7o5KHP8H19IqWvwhPrYQE5btCrZsSjT0Tp9NlgpJzogWJKZexuB5TGNOgX3xhKN0YPw==",
+    "timestamp": "2018-11-30T19:08:45.70823323Z",
+    "title": "created dataset"
+  },
+  "bodyPath": "/ipfs/QmbsSSNuWq4w7E4JgpzjghRfQeWeRcowMaFDKyy5j33gFu",
+  "qri": "ds:0",
+  "structure": {
+    "checksum": "QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj",
+    "entries": 10,
+    "errCount": 0,
+    "format": "csv",
+    "formatConfig": {
+      "lazyQuotes": true
+    },
+    "length": 211,
+    "qri": "st:0",
+    "schema": {
+      "items": {
+        "items": [
+          {
+            "title": "field_1",
+            "type": "integer"
+          },
+          {
+            "title": "field_2",
+            "type": "string"
+          },
+          {
+            "title": "field_3",
+            "type": "string"
+          },
+          {
+            "title": "field_4",
+            "type": "integer"
+          },
+          {
+            "title": "field_5",
+            "type": "integer"
+          }
+        ],
+        "type": "array"
+      },
+      "type": "array"
+    }
+  }
+}
+```
+
+There's more than just a csv file here! When we created this dataset, Qri did a bunch of work behind the scenes to make sure your data is as portable and usable as possible. Qri stores your data in _immutable versions_ so you have a clear record of how your data looked. The top-level parts of this dataset.yaml file are called _components_ of a dataset.
+
+Right now, this dataset contains `body` (recorded as `bodyPath`), `commit`, and `structure` components. It's a nice start, but let's add some detail. First, let's add some proper column names to the `schema` section of the `structure`.
+
+The dataset contains the standings, names, abbreviation, wins and losses, for the North American League Championship Series, or the North American pro League of Legends esports league. Let's fill in the column names.
+
+Datasets can be written as `json` or ` yaml` files. We have been using `json`, as that is the Qri export default, but `yaml` can often times be more user-friendly. This is the same dataset file, but written in yaml. For more on the structure of yaml files, check out [this page on yaml syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html).
+
+
+```yaml
+# dataset.yaml file:
 commit:
   author:
-    id: QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9
-  qri: cm:0
-  signature: zHgYne5lRdftX5CV/RkRbuWloRm0LvjFzdmo25XqTIBEqhVW0ywhy/yl+rmVvOJo26mJbvwUN8QwxLllpEVkv5YHYCQhxWu/8+RpGKuMJFzhjB/pRhw4+ykjxRGe/zLLkaN97uAq+fnjR7Ld0VKMkuSEtpuVkpguiyjxrEfrAxKExQHyxGc9wBqeEFK7TtmW98cX9VonoRm5jW4/SRSYqK3fgAXuPK+wiRmHfnOzWxJXQ/KIKLiF91pl/8UeqovlRR+vbTHzjpZvSlGL1Xu9fz6DiqpQXkygh5vYn4GFj3YniOusTf8RmmaHmZ+4smAu3PxSg+fVPpRvWSuuLIqTMg==
-  timestamp: "2018-08-06T21:27:29.791238974Z"
+    id: QmXrCvaZkMXSPEFrpy3xMghgrkxFAsYoqcLogt3dU6c1RX
+  qri: cm:0,
+  signature: RccSIHOZ2gR3dxMwyY32kkTL9HcNxneCY3sMQUs8yq/XzQfbCdfFj01sUlD0gprWK7lHOGbdQUlWr5yTg+avQnjb0u9Wyfi8zGkP6WtEwIuKn179j44HWxjKoc9+4CaiNjrgBhrhTBf+yXW68GX4LA04qISgIu0lSg/CAf8xuYe5eQ7CuQDPBLKi7plJzt/tbPRRX79uxoQQk9g9oNyQf52UYBodaIbsy57YLOmOUD7B7eTgU+JHg5yH0xivL0HtvINsOUtVfZEeGHBQlZv7o5KHP8H19IqWvwhPrYQE5btCrZsSjT0Tp9NlgpJzogWJKZexuB5TGNOgX3xhKN0YPw==,
+  timestamp: 2018-11-30T19:08:45.70823323Z,
   title: created dataset
-qri: ds:0
+bodyPath: /ipfs/QmbsSSNuWq4w7E4JgpzjghRfQeWeRcowMaFDKyy5j33gFu,
+qri: ds:0,
 structure:
   checksum: QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj
   entries: 10
@@ -340,17 +422,12 @@ structure:
     type: array
 ```
 
-There's more than just a csv file here! When we created this dataset, Qri did a bunch of work behind the scenes to make sure your data is as portable and usable as possible. Qri stores your data in _immutable versions_ so you have a clear record of how your data looked. The top-level parts of this dataset.yaml file are called _components_ of a dataset.
+Notice how, when we saved this new dataset, we didn't have to write our own schema or structure. If not provided, Qri will determine the structure of a file itself. JSON files will be recorded as an array or an object, but not more specific than that as of the time this tutorial was written. CSV files will be traversed and Qri will try to guess the correct column names. In this case it's fallen back to numbered column names, so let's fix them!
 
-Right now, this dataset contains `body` (recorded as `bodyPath`), `commit`, and `structure` components. It's a nice start, but let's add some detail. First, let's add some proper column names to the `schema` section of the `structure`.
+Let's edit our new `dataset.yaml` file, and fill out our structure component. Let's also remove unneeded components for creating a new dataset: bodyPath and commit. The correct column titles in the schema have been filled in below: 
 
-The dataset contains the standings, names, abbreviation, wins and losses, for the North American League Championship Series, or the North American pro League of Legends esports league. Let's fill in the column names.
-
-Notice how we didn't have to create the schema or structure. If not provided, Qri will determine the structure of a file itself. JSON files will be recorded as an array or an object, but not more specific than that as of the time this tutorial was written. CSV files will be traversed and the title and Qri will try to guess the correct column names. In this case it's fallen back to numbered column names, so let's fix them!
-
-Let's make a new file called `dataset.yaml`, and write out a new structure component. The correct column titles have been filled in below: 
-
-``` yaml
+```yaml
+qri: ds:0,
 structure:
   checksum: QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj
   entries: 10
@@ -363,7 +440,7 @@ structure:
       items:
       - title: rank
         type: integer
-      - title: team
+      - title: team name
         type: string
       - title: abbreviation
         type: string
@@ -375,14 +452,12 @@ structure:
     type: array
 ```
 
-Next, let's talk metadata. Metadata is super important. It's the place where whoever gathered the data (or whoever is augmenting it) can give background and context on what the data contains, how it was collected, who collected it, and any other details that need recording.
+Next, let's talk metadata. Metadata is super important. It's the place where whomever gathered the data (or whomever is augmenting it) can give background and context on what the data contains, how it was collected, who collected it, and any other details that need recording.
 
-Datasets can be written as `json` or ` yaml` files. Here we will write them in yaml, as that is the Qri default. For more on the structure of yaml files, check out [this page on yaml syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html).
-
-Let's add a dataset title (a human readable title), description, and tags. We record all descriptive metadata in the `meta` component.
-
+Let's add a dataset title (a human readable title), description, and tags to this new `dataset.yaml` file. We record all descriptive metadata in the `meta` component. 
 
 ```yaml
+qri: ds:0,
 structure:
   checksum: QmZx6AwxGgkeZDaZb9NaVxvB8NZVzjo7CiyRMWGwynnNmj
   entries: 10
@@ -421,7 +496,7 @@ Save your new and improved `dataset.yaml` file, and you are ready to go.
 Go back to your trusty terminal. My `dataset.yaml` file still lives in my nalcs_standings folder, along with the body file:`body.csv`. We are going to need both a dataset file and a body file to run this next step:
 
 ```shell
-$ qri save --file /users/home/nalcs_standings/dataset.yaml me/nalcs_standings
+$ qri save --file dataset.yaml --body body.csv me/nalcs_standings
 created new dataset me/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 ```
 
@@ -429,15 +504,15 @@ Note, you can also add a commit message and title using the command line flags `
 
 For example:
 
-```text
-$ qri save --file /users/home/nalcs_standings/dataset.yaml me/nalcs_standings --title 'initial dataset' --message 'week 7 NALCS standings for the 2018 summer split' me/nalcs_standings
+```shell
+$ qri save --file dataset.yaml --body  body.csv me/nalcs_standings --title 'initial dataset' --message 'week 7 NALCS standings for the 2018 summer split' me/nalcs_standings
 ```
 
 ...would give you the same dataset, but with a custom title and message. If no title or message are given, Qri will generate a title for you.
 
 You can also add a commit message and title to the dataset itself by adding a `commit` component to `dataset.yaml`:
 
-```
+```yaml
 commit:
   title: initial dataset
   message: week 7 NALCS standings for the 2018 summer split
@@ -456,7 +531,7 @@ The stats from the sample dataset I gave were the NALCS standings until week 6. 
 
 Save this as a new file `NALCS_Summer_2018_Week_7_Standings.csv` (or you can save over your old file with this new data, since the old version is in Qri, you can export the standings from week 6 any time you like):
 
-```text
+```csv
 1,Team Liquid,TL,10,4
 2,Echo Fox,EF,9,5
 2,100 Thieves,100,9,5
@@ -471,7 +546,7 @@ Save this as a new file `NALCS_Summer_2018_Week_7_Standings.csv` (or you can sav
 
 Now, to make sure we haven't made any silly mistakes let's validate this new body of data against the schema already present in the `nalcs_standings` dataset.
 
-```text
+```shell
 $ qri validate --body NALCS_Summer_2018_Week_7_Standings.csv me/nalcs_standings
 ✔ All good!
 ```
@@ -480,7 +555,7 @@ Notice that, like the `qri save` command or the `qri remove` command, we pass th
 
 Let's say instead, we have a dummy file called `dummy.csv` that we want to validate against the structure of the `nalcs_standings` dataset. Let's say this file contains the following:
 
-```text
+```csv
 Bad,data
 that,doesn't
 make,any
@@ -489,7 +564,7 @@ sense,
 
 We can check to see how well this `dummy.csv` file would work if checked against our `nalcs_standings` dataset with:
 
-```text
+```shell
 $ qri validate --body dummy.csv me/nalcs_standings
 0: /0/0: "Bad" type should be integer
 1: /1/0: "that" type should be integer
@@ -506,28 +581,28 @@ Now that we know the dataset has no validation errors, let's save this version t
 
 I want to update this dataset with new data in the body. I also want to add a title and message to this version of the dataset, which we call a `commit` (those of you familiar with other version control systems, specifically [git](https://git-scm.com/) will recognize that lingo).
 
-We can add a title and message in two ways. We can also add a `dataset.yaml` file that contains a `commit` section with a `title` and a `message` field. Or we can fill in a `title` and `message` using the `--title` and `--message` flags when we run the command.
+We can add a title and message in two ways. We can add a `dataset.yaml` file that contains a `commit` section with a `title` and a `message` field. Or we can fill in a `title` and `message` using the `--title` and `--message` flags when we run the command.
 
 Here is the potential dataset.yaml file:
 
-```
+```yaml
 commit:
   title: body update
   message: dataset has been updated with the week 7 match results
 ```
 
-```text
-$ qri save --file ~/path/to/dataset.yaml --body ~/path/to/NALCS_Summer_2018_Week_7_Standings.csv me/nalcs_standings
+```shell
+$ qri save --file dataset.yaml --body NALCS_Summer_2018_Week_7_Standings.csv me/nalcs_standings
 ```
 
 And without the `dataset.yaml` file:
-```text
-$ qri save --body ~/path/to/NALCS_Summer_2018_Week_7_Standings.csv --title 'body update' --message 'dataset has been updated with the week 7 match results' me/nalcs_standings
+```shell
+$ qri save --body NALCS_Summer_2018_Week_7_Standings.csv --title 'body update' --message 'dataset has been updated with the week 7 match results' me/nalcs_standings
 ```
 
 How do we know that the commit message saved correctly? To check, let's use the `qri get` command (which we will go over in more detail in section 4)  
 
-```text
+```shell
 $ qri get me/nalcs_standings
 tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu:
   bodyPath: /ipfs/QmbZdKCJLF2jRKhbRaRknFjxsPYTwEvE4jGWQfZYu52iFY
@@ -583,7 +658,7 @@ The `commit` section has the `title` and `message` fields adjusted correctly!
 
 Qri is a dataset version control system. That means each time you make an update and `qri save` a dataset, a snapshot is created. It means that even though you have made changes to the dataset, you can always retrieve any previous version you have saved before. Let's take a look at how we can view these previous versions using the `qri log` command.
 
-```text
+```shell
 $ qri log me/nalcs_standings
 Aug  8 19:05:41 - /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
   dataset update
@@ -672,7 +747,7 @@ Now, let's use the dataset reference to explore the dataset.
 
 Let's get some basic info on our qri dataset:
 
-```text
+```shell
 $ qri info me/nalcs_standings
 0  tutorial/nalcs_standings
     /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
@@ -688,7 +763,7 @@ We've looked at `qri get` briefly, but only to get a whole flood of information 
 
 For example, let's say we want to know what the metadata description is for our dataset:
 
-```text
+```shell
 $ qri get meta.description me/nalcs_standings
 tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu: 
   The standings for the North American League Championship Series, the professional League of Legends league. Data taken from Riot Games' esports website.
@@ -696,7 +771,7 @@ tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/Qmf
 
 Okay, now let's look at the commit:
 
-```text
+```shell
 $ qri get commit me/nalcs_standings
 tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmZ8XgfLkM4vwMgTNG1NXmUer5pF5SvsparxSnk37DeBhJ:
   author:
@@ -714,7 +789,7 @@ Great. Now, what if I want to know the title and message of the first commit, or
 In order to do that, we would have to use the hash of the first version of the dataset. We can get that hash by using `qri log`. This command gives us the history of our datasets:
 
 
-```text
+```shell
 $ qri log me/nalcs_standings
 Aug  8 19:05:41 - /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
   dataset update
@@ -728,7 +803,7 @@ As a reminder, the hash of your datasets, even if you name them the same as we d
 
 So, let's get the commit of the previous dataset using its particular hash: `QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW`
 
-```text
+```shell
 $ qri get commit me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW:
   author:
@@ -748,8 +823,8 @@ Now, having to repeatedly copy and paste the same dataset reference every time y
 
 In order to streamline things a bit, we created the `qri use` command. Whatever dataset reference you give to the `qri use` command can be used in any subsequent `qri get` commands, until the `qri use` list is cleared using the `qri use --clear` command.
 
-```text
-$ qri use me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+```shell
+$ qQmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 $ qri get commit.title
@@ -759,7 +834,7 @@ tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/Qmb
 
 You can view the dataset reference stored in use by running the `qri use --list` command
 
-```text
+```shell
 $ qri use --list
 me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 ```
@@ -775,14 +850,14 @@ Like the `qri get` command, you can view the body at different points in time by
 
 Let's use `qri body` to look at the most recent version of `me/nalcs_standings`
 
-```text
+```shell
 $ qri body me/nalcs_standings
 [[1,"Team Liquid","TL",10,4],[2,"Echo Fox","EF",9,5],[2,"100 Thieves","100",9,5],[4,"FlyQuest","FQ",7,7],[4,"Cloud9","C9",7,7],[4,"OpTic Gaming","OG",7,7],[7,"TSM","TSM",6,8],[8,"Counter Logic Gaming","CLG",5,9],[8,"Golden Guardians","GG",5,9],[8,"Clutch Gaming","CG",5,9]]
 ```
 
 You'll notice, that even though the data is correct, that doesn't look much like the csv we imported. That's because the `qri body` command defaults to showing the data in JSON format. Using the `--format` flag, we can print as csv.
 
-```text
+```shell
 $ qri body --format csv me/nalcs_standings
 1,Team Liquid,TL,10,4
 2,Echo Fox,EF,9,5
@@ -798,7 +873,7 @@ $ qri body --format csv me/nalcs_standings
 
 You can use `--limit` and `--offset` to get different parts of the dataset body:
 
-```text
+```shell
 $ qri body --format csv --limit 5 me/nalcs_standings
 1,Team Liquid,TL,10,4
 2,Echo Fox,EF,9,5
@@ -807,7 +882,7 @@ $ qri body --format csv --limit 5 me/nalcs_standings
 4,Cloud9,C9,7,7
 ```
 
-```text
+```shell
 $ qri body --format csv --limit 5 --offset 5 me/nalcs_standings
 4,OpTic Gaming,OG,7,7
 7,TSM,TSM,6,8
@@ -818,7 +893,7 @@ $ qri body --format csv --limit 5 --offset 5 me/nalcs_standings
 
 Now, to see the body of the previous version of the dataset, we will use `qri log` to get the hash, and then use the hash to get the body:
 
-```text
+```shell
 $ qri log me/nalcs_standings
 Aug  8 19:05:41 - /ipfs/QmfWruGxeQZtqy4513G2agKka9GX6f2CuQ88Mjp31wwwtu
   dataset update
@@ -853,7 +928,7 @@ Unfortunately, it will be less straightforward to follow along on this section o
 
 In order for others to view your datasets, or for you to view a peer's dataset, you need to have a Qri node running. This is super easy. All you need to do is open up a terminal window and run the command `qri connect`
 
-```text
+```shell
 $ qri connect
 16:04:36.076  INFO     qrip2p: boostrapping to: QmTZxETL4YCCzB1yFx4GT1te68henVHD1XPQMkHZ1N22mm bootstrap.go:28
 16:04:36.078  INFO     qrip2p: boostrapping to: QmNX9nSos8sRFvqGTwdEme6LQ8R1eJ8EuFgW32F9jjp2Pb bootstrap.go:28
@@ -880,7 +955,7 @@ Now that we have a Qri node running, we can find out what peers we are connected
 
 Using the `qri peers list` command, we will get a list of the currently connected peers. Note, this list will contain different peers than the list printed here.
 
-```text
+```shell
 $ qri peers list
 
 tutorial_peer | online
@@ -905,7 +980,7 @@ Now that we have some peer names and ids, we can take a look at another peer's d
 
 To view the list of datasets currently on a peer's node, use the `qri list <peername>` command. This is the same command we use to list our own datasets! Let's say I want to view the datasets on the `tutorial_peer`:
 
-```text
+```shell
 $ qri list tutorial_peer
 1  tutorial_peer/paris_energy_pledges
     /ipfs/QmbbULznAxYWmq3v5wgD2czb9eQeEfK74pJakN6VE42zCi
@@ -930,7 +1005,7 @@ First, you must still have `qri connect` running in another terminal. This allow
 
 Second, you must have the dataset reference for the dataset you want to add. By running the `qri peers list` command, we found we have a peer called `tutorial_peer`. By running the `qri list tutorial_peer` command, we found that peer has a dataset called `tutorial_peer/paris_energy_pledges`. Let's add that dataset :)
 
-```text
+```shell
 $ qri add tutorial_peer/paris_energy_pledges
 1  tutorial_peer/paris_energy_pledges
     /ipfs/QmbbULznAxYWmq3v5wgD2czb9eQeEfK74pJakN6VE42zCi
@@ -942,7 +1017,7 @@ Successfully added dataset tutorial_peer/paris_energy_pledges
 
 If we run `qri list` to see our datasets, we will see this new dataset in our repository:
 
-```text
+```shell
 $ qri list
 1  tutorial/nalcs_standings
     /ipfs/Qmager6xdesYPTgcgQwUPyPtQVddxCy6fLXKZhnKku9ra2
@@ -965,7 +1040,7 @@ One note: if you make a change or update to a peer's dataset using the `qri save
 
 To get details about a peer, such as their real name, twitter handle, or email address, you can use the `qri peers info` command:
 
-```text
+```shell
 $ qri peers info tutorial_peer
 color: ""
 created: "2018-07-26T14:35:39.614543043-04:00"
@@ -1008,21 +1083,21 @@ Publishing the dataset to the registry determines whether or not the dataset wil
 
 In order to make sure a dataset is published to the registry, use the command `qri registry publish`
 
-```text
+```shell
 $ qri registry publish me/nalcs_standings
 published dataset me/nalcs_standings
 ```
 
 To remove it from the registry:
 
-```text
+```shell
 $ qri registry unpublish me/nalcs_standings
 unpublished dataset me/nalcs_standings
 ```
 
 However, since we are going to use the search command in the next section, I want to make sure that my `nalcs_standings` dataset is published:
 
-```text
+```shell
 $ qri registry publish me/nalcs_standings
 published dataset me/nalcs_standings
 ```
@@ -1032,7 +1107,7 @@ published dataset me/nalcs_standings
 
 Keywords, titles, descriptions, and dataset names are all indexed for search. So, for example, I will try using the search term `nalcs` to look for our sample dataset.
 
-```text
+```shell
 $ qri search nalcs
 showing 1 results for 'nalcs'
 1. tutorial/nalcs_standings
@@ -1052,7 +1127,7 @@ First, however, let's learn how to view the config using `qri config get`!
 
 To view all the config details, run `qri config get`
 
-```yaml
+```shell
 $ qri config get
 API:
   allowedorigins:
@@ -1126,7 +1201,7 @@ Most of these fields you will never care about or change. However, the profile s
 
 Like the `qri get` command, we can use the section names to show only part of the config. So, to get just the profile from the config: `qri config get profile`.
 
-```yaml
+```shell
 $ qri config get profile
 color: ""
 created: "2018-04-25T11:49:15.88838293-04:00"
@@ -1153,7 +1228,7 @@ tutorial
 
 Now, let's say you want to add a name and a description to your profile. I'm going to add 'example peer' as the name and 'This peer was created to teach people how to use Qri' as the description.
 
-```yaml
+```shell
 $ qri config set profile.name 'example peer' profile.description 'This peer was created to teach people how to use Qri'
 config updated
 
