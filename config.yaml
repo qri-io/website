@@ -56,8 +56,8 @@ menu:
       url: /docs/tutorials/cli_quickstart
     - name: Starlark Transformations
       url: /docs/tutorials/starlark_transformations
-    - name: Python & Jupyter
-      url: /docs/tutorials/python_quickstart
+    # - name: Python & Jupyter
+    #   url: /docs/tutorials/python_quickstart
 params:
   IsDev: false
   Author: "qri"

@@ -20,25 +20,25 @@ on the distributed web.
 |[qri config](#qri_config)  | Get and set local configuration information   |
 |[qri connect](#qri_connect)  | Connect to the distributed web by spinning up a Qri node   |
 |[qri diff](#qri_diff)  | Compare differences between two datasets   |
-|[qri export](#qri_export)  | Copy datasets to your local filesystem   |
+|[qri export](#qri_export)  | Copy datasets to your local filenamesystem   |
 |[qri get](#qri_get)  | Get elements of qri datasets   |
 |[qri info](#qri_info)  | Show summarized description of a dataset   |
 |[qri list](#qri_list)  | Show a list of datasets   |
 |[qri log](#qri_log)  | Show log of dataset history   |
-|[qri new](#qri_new)  | Create a new dataset   |
 |[qri peers](#qri_peers)  | Commands for working with peers   |
+|[qri publish](#qri_publish)  | Make your dataset available on the registry and to your connected peers   |
 |[qri registry](#qri_registry)  | Commands for working with a qri registry   |
 |[qri remove](#qri_remove)  | Remove a dataset from your local repository   |
 |[qri rename](#qri_rename)  | Change the name of a dataset   |
 |[qri render](#qri_render)  | Execute a template against a dataset   |
-|[qri save](#qri_save)  | Save changes to a dataset   |
+|[qri save](#qri_save)  | Create a new dataset or save changes to an existing dataset   |
 |[qri search](#qri_search)  | Search qri   |
 |[qri setup](#qri_setup)  | Initialize qri and IPFS repositories, provision a new qri ID   |
 |[qri use](#qri_use)  | Select datasets for use with the qri get command   |
 |[qri validate](#qri_validate)  | Show schema validation errors   |
 |[qri version](#qri_version)  | Print the version number   |
 
-_______
+________
 
 <a id='qri_add'></a>
 ## qri add
@@ -50,17 +50,18 @@ Add a dataset from another peer
 
 Add retrieves a dataset owned by another peer and adds it to your repo. 
 The dataset reference of the dataset will remain the same, including 
-the name of the peer that originally added the dataset.
+the name of the peer that originally added the dataset. You must have 
+`qri connect` running in another terminal to use this command.
 
-```shell
+```
 qri add [flags]
 ```
 
 ### Examples
 
-```shell
-# add a dataset named their_data, owned by other_peer:
-$ qri add other_peer/their_data
+```
+  add a dataset named their_data, owned by other_peer:
+  $ qri add other_peer/their_data
 ```
 
 ### Options
@@ -71,7 +72,7 @@ $ qri add other_peer/their_data
 
 
 
-_______
+________
 
 <a id='qri_body'></a>
 ## qri body
@@ -83,21 +84,21 @@ Get the body of a dataset
 
 `qri body` reads entries from a dataset. Default is 50 entries, starting from the beginning of the body. You can using the `--limit` and `--offset` flags to iterate through the dataset body.
 
-```shell
+```
 qri body [flags]
 ```
 
 ### Examples
 
-```shell
-# show the first 50 rows of a dataset:
-$ qri body me/dataset_name
+```
+  show the first 50 rows of a dataset:
+  $ qri body me/dataset_name
 
-# show the next 50 rows of a dataset:
-$ qri body --offset 50 me/dataset_name
+  show the next 50 rows of a dataset:
+  $ qri body --offset 50 me/dataset_name
 
-# save the body as csv to file
-$ qri body -o new_file.csv -f csv me/dataset_name
+  save the body as csv to file
+  $ qri body -o new_file.csv -f csv me/dataset_name
 ```
 
 ### Options
@@ -113,7 +114,100 @@ $ qri body -o new_file.csv -f csv me/dataset_name
 
 
 
-_______
+________
+
+<a id='qri_config_get'></a>
+## qri config get
+
+get configuration settings
+
+### Synopsis
+
+get outputs your current configuration file with private keys 
+removed by default, making it easier to share your qri configuration settings.
+
+You can get particular parts of the config by using dot notation to
+traverse the config object. For details on each config field checkout: 
+https://github.com/qri-io/qri/blob/master/config/readme.md
+
+The --with-private-keys option will show private keys.
+PLEASE PLEASE PLEASE NEVER SHARE YOUR PRIVATE KEYS WITH ANYONE. EVER.
+Anyone with your private keys can impersonate you on qri.
+
+```
+qri config get [flags]
+```
+
+### Examples
+
+```
+  # get the entire config
+  qri config get
+
+  # get the config profile
+  qri config get profile
+
+  # get the profile description
+  qri config get profile.description
+```
+
+### Options
+
+```
+  -c, --concise             print output without indentation, only applies to json format
+  -f, --format string       data format to export. either json or yaml (default "yaml")
+  -h, --help                help for get
+  -o, --output string       path to export to
+      --with-private-keys   include private keys in export
+```
+
+
+
+________
+
+<a id='qri_config_set'></a>
+## qri config set
+
+Set configuration options
+
+### Synopsis
+
+'qri config set' allows you to set configuration options. You can set 
+particular parts of the config by using dot notation to traverse the 
+config object. 
+
+While the 'qri config get' command allows you to view the whole config,
+or only parts of it, the 'qri config set' command is more specific.
+
+If the config object were a tree and each field a branch, you can only
+set the leaves of the branches. In other words, the you cannot set a 
+field that is itself an object or array. For details on each config 
+field checkout: https://github.com/qri-io/qri/blob/master/config/readme.md
+
+```
+qri config set [flags]
+```
+
+### Examples
+
+```
+  # set a profile description
+  qri config set profile.description "This is my new description that I
+  am very proud of and want displayed in my profile"
+
+  # disable rpc communication
+  qri config set rpc.enabled false
+```
+
+### Options
+
+```
+  -h, --help   help for set
+```
+
+
+
+________
 
 <a id='qri_config'></a>
 ## qri config
@@ -136,15 +230,15 @@ https://github.com/qri-io/qri/blob/master/config/readme.md
 
 ### Examples
 
-```shell
-# get your profile information
-$ qri config get profile
+```
+  # get your profile information
+  $ qri config get profile
 
-# set your api port to 4444
-$ qri config set api.port 4444
+  # set your api port to 4444
+  $ qri config set api.port 4444
 
-# disable rpc connections:
-$ qri config set rpc.enabled false
+  # disable rpc connections:
+  $ qri config set rpc.enabled false
 ```
 
 ### Options
@@ -155,100 +249,7 @@ $ qri config set rpc.enabled false
 
 
 
-_______
-
-<a id='qri_config_get'></a>
-## qri config get
-
-get configuration settings
-
-### Synopsis
-
-get outputs your current configuration file with private keys 
-removed by default, making it easier to share your qri configuration settings.
-
-You can get particular parts of the config by using dot notation to
-traverse the config object. For details on each config field checkout: 
-https://github.com/qri-io/qri/blob/master/config/readme.md
-
-The --with-private-keys option will show private keys.
-PLEASE PLEASE PLEASE NEVER SHARE YOUR PRIVATE KEYS WITH ANYONE. EVER.
-Anyone with your private keys can impersonate you on qri.
-
-```shell
-qri config get [flags]
-```
-
-### Examples
-
-```shell
-# get the entire config
-qri config get
-
-# get the config profile
-qri config get profile
-
-# get the profile description
-qri config get profile.description
-```
-
-### Options
-
-```
-  -c, --concise             print output without indentation, only applies to json format
-  -f, --format string       data format to export. either json or yaml (default "yaml")
-  -h, --help                help for get
-  -o, --output string       path to export to
-      --with-private-keys   include private keys in export
-```
-
-
-
-_______
-
-<a id='qri_config_set'></a>
-## qri config set
-
-Set configuration options
-
-### Synopsis
-
-'qri config set' allows you to set configuration options. You can set 
-particular parts of the config by using dot notation to traverse the 
-config object. 
-
-While the 'qri config get' command allows you to view the whole config,
-or only parts of it, the 'qri config set' command is more specific.
-
-If the config object were a tree and each field a branch, you can only
-set the leaves of the branches. In other words, the you cannot set a 
-field that is itself an object or array. For details on each config 
-field checkout: https://github.com/qri-io/qri/blob/master/config/readme.md
-
-```shell
-qri config set [flags]
-```
-
-### Examples
-
-```shell
-# set a profile description
-qri config set profile.description "This is my new description that I
-am very proud of and want displayed in my profile"
-
-# disable rpc communication
-qri config set rpc.enabled false
-```
-
-### Options
-
-```
-  -h, --help   help for set
-```
-
-
-
-_______
+________
 
 <a id='qri_connect'></a>
 ## qri connect
@@ -270,7 +271,7 @@ things:
 When you run connect you are connecting to the distributed web, interacting with
 peers & swapping data.
 
-```shell
+```
 qri connect [flags]
 ```
 
@@ -279,6 +280,7 @@ qri connect [flags]
 ```
       --api-port int           port to start api on
       --disable-api            disables api, overrides the api-port flag
+      --disable-p2p            disables webapp, overrides the webapp-port flag
       --disable-rpc            disables rpc, overrides the rpc-port flag
       --disable-webapp         disables webapp, overrides the webapp-port flag
       --disconnect-after int   duration to keep connected in seconds, 0 means run indefinitely
@@ -292,7 +294,7 @@ qri connect [flags]
 
 
 
-_______
+________
 
 <a id='qri_diff'></a>
 ## qri diff
@@ -307,19 +309,19 @@ of the differences between them.  You can specifify the datasets
 either by name or by their hash. You can compare different versions of 
 the same dataset.
 
-```shell
+```
 qri diff [flags]
 ```
 
 ### Examples
 
-```shell
-# show diff between two versions of the same dataset:
-$ qri diff me/annual_pop@/ipfs/QmcBZoEQ7ot4UYKn1JM3gwd4LHorj6FJ4Ep19rfLBT3VZ8 
-me/annual_pop@/ipfs/QmVvqsge5wqp4piJbLArwVB6iJSTrdM8ZRpHY7fikASrr8
+```
+  show diff between two versions of the same dataset:
+  $ qri diff me/annual_pop@/ipfs/QmcBZoEQ7ot4UYKn1JM3gwd4LHorj6FJ4Ep19rfLBT3VZ8 
+  me/annual_pop@/ipfs/QmVvqsge5wqp4piJbLArwVB6iJSTrdM8ZRpHY7fikASrr8
 
-# show diff between two different datasets:
-$ qri diff me/population_2016 me/population_2017
+  show diff between two different datasets:
+  $ qri diff me/population_2016 me/population_2017
 ```
 
 ### Options
@@ -331,7 +333,7 @@ $ qri diff me/population_2016 me/population_2017
 
 
 
-_______
+________
 
 <a id='qri_export'></a>
 ## qri export
@@ -341,28 +343,28 @@ Copy datasets to your local filesystem
 ### Synopsis
 
 
-Export gets datasets out of qri. By default it exports only the dataset body. 
+Export gets datasets out of qri. By default it exports the dataset body, as `body.csv`, header as`dataset.json`, and ref, as `ref.txt` files. 
 
 To export to a specific directory, use the --output flag.
 
 If you want an empty dataset that can be filled in with details to create a
 new dataset, use --blank.
 
-```shell
+```
 qri export [flags]
 ```
 
 ### Examples
 
-```shell
-# export dataset
-qri export me/annual_pop
+```
+  # export dataset
+  qri export me/annual_pop
 
-# export without the body of the dataset
-qri export --no-body me/annual_pop
+  # export without the body of the dataset
+  qri export --no-body me/annual_pop
 
-# export to a specific directory
-qri export -o ~/new_directory me/annual_pop
+  # export to a specific directory
+  qri export -o ~/new_directory me/annual_pop
 ```
 
 ### Options
@@ -379,7 +381,7 @@ qri export -o ~/new_directory me/annual_pop
 
 
 
-_______
+________
 
 <a id='qri_get'></a>
 ## qri get
@@ -399,24 +401,24 @@ by supplying more than one dataset reference.
 Check out https://qri.io/docs/reference/dataset/ to learn about each section of the 
 dataset and its fields.
 
-```shell
+```
 qri get [flags]
 ```
 
 ### Examples
 
-```shell
-# print the entire dataset to the console
-qri get me/annual_pop
+```
+  # print the entire dataset to the console
+  qri get me/annual_pop
 
-# print the meta to the console
-qri get meta me/annual_pop
+  # print the meta to the console
+  qri get meta me/annual_pop
 
-# print the dataset body size to the console
-qri get structure.length me/annual_pop
+  # print the dataset body size to the console
+  qri get structure.length me/annual_pop
 
-# print the dataset body size for two different datasets
-qri get structure.length me/annual_pop me/annual_gdp
+  # print the dataset body size for two different datasets
+  qri get structure.length me/annual_pop me/annual_gdp
 ```
 
 ### Options
@@ -429,7 +431,7 @@ qri get structure.length me/annual_pop me/annual_gdp
 
 
 
-_______
+________
 
 <a id='qri_info'></a>
 ## qri info
@@ -449,31 +451,31 @@ representation of the dataset, without the dataset body, identical to
 To get info on a peer's dataset, you must be running `qri connect` in a separate 
 terminal window.
 
-```shell
+```
 qri info [flags]
 ```
 
 ### Examples
 
-```shell
-# get info for my dataset:
-qri info me/annual_pop
+```
+  # get info for my dataset:
+  qri info me/annual_pop
 
-# get info for a dataset at a specific version:
-qri info me@/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
+  # get info for a dataset at a specific version:
+  qri info me@/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
 
-or
+  or
 
-qri info me/comics@/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
+  qri info me/comics@/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
 
-# get info in json format
-qri info -f json me/annual_pop
+  # get info in json format
+  qri info -f json me/annual_pop
 
-# to get info on a peer's dataset, spin up your qri node
-qri connect
+  # to get info on a peer's dataset, spin up your qri node
+  qri connect
 
-# then, in a separate window, request the info from peer b5
-qri info b5/comics
+  # then, in a separate window, request the info from peer b5
+  qri info b5/comics
 ```
 
 ### Options
@@ -485,7 +487,7 @@ qri info b5/comics
 
 
 
-_______
+________
 
 <a id='qri_list'></a>
 ## qri list
@@ -503,22 +505,22 @@ qri repository.
 When used in conjunction with `qri connect`, list can list a peer's dataset. You
 must have `qri connect` running in a separate terminal window.
 
-```shell
+```
 qri list [flags]
 ```
 
 ### Examples
 
-```shell
-# show all of your datasets:
-qri list
+```
+  # show all of your datasets:
+  qri list
 
-# to view the list of your peer's dataset,
-# in one terminal window:
-qri connect
+  # to view the list of your peer's dataset,
+  # in one terminal window:
+  qri connect
 
-# in a separate terminal window, to show all of b5's datasets:
-qri list b5
+  # in a separate terminal window, to show all of b5's datasets:
+  qri list b5
 ```
 
 ### Options
@@ -528,11 +530,12 @@ qri list b5
   -h, --help            help for list
   -l, --limit int       limit results, default 25 (default 25)
   -o, --offset int      offset results, default 0
+  -p, --published       list only published datasets
 ```
 
 
 
-_______
+________
 
 <a id='qri_log'></a>
 ## qri log
@@ -551,15 +554,15 @@ created the version) and a message explaining what changed. Log prints these
 details in order of occurrence, starting with the most recent known version, 
 working backwards in time.
 
-```shell
+```
 qri log [flags]
 ```
 
 ### Examples
 
-```shell
-# show log for the dataset b5/precip:
-$ qri log b5/precip
+```
+  show log for the dataset b5/precip:
+  $ qri log b5/precip
 ```
 
 ### Options
@@ -572,60 +575,178 @@ $ qri log b5/precip
 
 
 
-_______
+________
 
-<a id='qri_new'></a>
-## qri new
+<a id='qri_peers_connect'></a>
+## qri peers connect
 
-Create a new dataset
+Connect to a peer
 
 ### Synopsis
 
 
-New creates a dataset from data you supply. Please note that all data added
-to qri is made public on the distributed web when you run qri connect
+Connect to a peer using a peername, peer ID, or multiaddress. Qri will use this name, id, or address
+to find a peer to which it has not automatically connected. 
 
-When adding data, you can supply metadata and dataset structure, but it’s not
-required. qri does what it can to infer the details you don’t provide.
-qri currently supports three data formats:
-- CSV  (Comma Separated Values)
-- JSON (Javascript Object Notation)
-- CBOR (Concise Binary Object Representation)
+You must have a Qri node running (`qri connect`) in a separate terminal. You will only be able 
+to connect to a peer that also has spun up it's own Qri node.
 
-Once you’ve added data, you can use the export command to pull the data out of
-qri, change the data outside of qri, and use the save command to record those
-changes to qri.
+A multiaddress, or multiaddr, is the most specific way to refer to a peer's location, and is therefore
+the most sure-fire way to connect to a peer. 
 
-```shell
-qri new [flags]
+```
+qri peers connect [flags]
 ```
 
 ### Examples
 
-```shell
-# create a new dataset named annual_pop:
-$ qri new --body data.csv me/annual_pop
+```
+  # spin up a Qri node
+  qri connect
 
-# create a dataset with a dataset data file:
-$ qri new --file dataset.yaml --body comics.csv me/comic_characters
+  # in a separate terminal, connect to a specific peer
+  qri peers connect /ip4/192.168.0.194/tcp/4001/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
 ```
 
 ### Options
 
 ```
-  -b, --body string       path to file or url for contents of dataset
-  -f, --file string       dataset data file in either yaml or json format
-  -h, --help              help for new
-  -m, --message string    commit message
-      --private           make dataset private. WARNING: not yet implemented. Please refer to https://github.com/qri-io/qri/issues/291 for updates
-  -p, --publish           publish this dataset to the registry
-      --secrets strings   transform secrets as comma separated key,value,key,value,... sequence
-  -t, --title string      commit title
+  -h, --help   help for connect
 ```
 
 
 
-_______
+________
+
+<a id='qri_peers_disconnect'></a>
+## qri peers disconnect
+
+Explicitly close a connection to a peer
+
+### Synopsis
+
+
+Explicitly close a connection to a peer using a peername, peer id, or multiaddress. 
+
+You can close all connections to the Qri network by ending your Qri node session. 
+
+Use the disconnect command when you want to stay connected to the network, but want to 
+close your connection to a specific peer. This could be because that connection is hung,
+the connection is pulling too many resources, or because you simply no longer need an
+explicit connection.  This is not the same as blocking a peer or connection.
+
+Once you close a connection to a peer, you or that peer can immediately open another 
+connection.
+
+You must have `qri connect` running in another terminal.
+
+```
+qri peers disconnect [flags]
+```
+
+### Examples
+
+```
+  # disconnect from a peer using a multiaddr
+  qri peers disconnect /ip4/192.168.0.194/tcp/4001/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
+```
+
+### Options
+
+```
+  -h, --help   help for disconnect
+```
+
+
+
+________
+
+<a id='qri_peers_info'></a>
+## qri peers info
+
+Get info on a Qri peer
+
+### Synopsis
+
+
+The peers info command returns a peer's profile information. The default
+format is yaml.
+
+Using the `--verbose` flag, you can also view a peer's network information.
+
+You must have `qri connect` running in another terminal.
+
+```
+qri peers info [flags]
+```
+
+### Examples
+
+```
+  show info on a peer named "b5":
+  $ qri peers info b5
+
+  show info in json:
+  $ qri peers info b5 --format json
+```
+
+### Options
+
+```
+      --format string   output format. formats: yaml, json (default "yaml")
+  -h, --help            help for info
+  -v, --verbose         show verbose profile info
+```
+
+
+
+________
+
+<a id='qri_peers_list'></a>
+## qri peers list
+
+List known qri peers
+
+### Synopsis
+
+
+Lists the peers to which your Qri node is connected. 
+
+You must have `qri connect` running in another terminal.
+
+To find peers that are not online, but to which your node has previously been 
+connected, use the `--cached` flag.
+
+```
+qri peers list [flags]
+```
+
+### Examples
+
+```
+  # spin up a Qri node
+  qri connect
+
+  # thenin a separate terminal, to list qri peers:
+  qri peers list
+
+  # to ensure you get a cached version of the list:
+  qri peers list --cached
+```
+
+### Options
+
+```
+  -c, --cached           show peers that aren't online, but previously seen
+  -h, --help             help for list
+  -l, --limit int        limit max number of peers to show (default 200)
+  -n, --network string   specify network to show peers from [ipfs]
+  -s, --offset int       number of peers to skip during listing
+```
+
+
+
+________
 
 <a id='qri_peers'></a>
 ## qri peers
@@ -650,178 +771,216 @@ the terminal.
 
 
 
-_______
+________
 
-<a id='qri_peers_connect'></a>
-## qri peers connect
+<a id='qri_publish'></a>
+## qri publish
 
-Connect to a peer
+set dataset publicity
 
 ### Synopsis
 
+Publish makes your dataset available to others. While online, peers that connect 
+to you can only see datasets and versions that you've published. Publishing a 
+dataset always makes all previous history entries available, and any updates
+to a published dataset will be immediately visible to connected peers.
 
-Connect to a peer using a peername, peer ID, or multiaddress. Qri will use this name, id, or address
-to find a peer to which it has not automatically connected. 
 
-You must have a Qri node running (`qri connect`) in a separate terminal. You will only be able 
-to connect to a peer that also has spun up it's own Qri node.
-
-A multiaddress, or multiaddr, is the most specific way to refer to a peer's location, and is therefore
-the most sure-fire way to connect to a peer. 
-
-```shell
-qri peers connect [flags]
+```
+qri publish [flags]
 ```
 
 ### Examples
 
-```shell
-# spin up a Qri node
-qri connect
+```
+  # publish a dataset
+  $ qri publish me/dataset
 
-# in a separate terminal, connect to a specific peer
-qri peers connect /ip4/192.168.0.194/tcp/4001/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
+  # publish a few datasets
+  $ qri publish me/dataset me/other_dataset
+
+  # unpublish a dataset
+  $ qri publish -unpublish me/dataset
 ```
 
 ### Options
 
 ```
-  -h, --help   help for connect
+  -h, --help          help for publish
+      --no-registry   don't publish to registry
+      --unpublish     unpublish a dataset
 ```
 
 
 
-_______
+________
 
-<a id='qri_peers_disconnect'></a>
-## qri peers disconnect
+<a id='qri_registry_pin'></a>
+## qri registry pin
 
-Explicitly close a connection to a peer
+pin dataset data to the registry
 
 ### Synopsis
 
 
-Explicitly close a connection to a peer using a peername, peer id, or multiaddress. 
+Pin asks a registry to host a copy of your dataset, making it available for
+others to download on the d.web
 
-You can close all connections to the Qri network by ending your Qri node session. 
-
-Use the disconnect command when you want to stay connected to the network, but want to 
-close your connection to a specific peer. This could be because that connection is hung,
-the connection is pulling too many resources, or because you simply no longer need an
-explicit connection.  This is not the same as blocking a peer or connection.
-
-Once you close a connection to a peer, you or that peer can immediately open another 
-connection.
-
-You must have `qri connect` running in another terminal.
-
-```shell
-qri peers disconnect [flags]
+```
+qri registry pin [flags]
 ```
 
 ### Examples
 
-```shell
-# disconnect from a peer using a multiaddr
-qri peers disconnect /ip4/192.168.0.194/tcp/4001/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
+```
+  Pin a dataset to the registry:
+  $ qri registry pin me/dataset_name
 ```
 
 ### Options
 
 ```
-  -h, --help   help for disconnect
+  -h, --help   help for pin
 ```
 
 
 
-_______
+________
 
-<a id='qri_peers_info'></a>
-## qri peers info
+<a id='qri_registry_publish'></a>
+## qri registry publish
 
-Get info on a Qri peer
+Publish dataset info to the registry
 
 ### Synopsis
 
 
-The peers info command returns a peer's profile information. The default
-format is yaml.
+Publishes the dataset information onto the registry. There will be a record
+of your dataset on the registry, and if your dataset is less than 20mbs, 
+Qri will back your dataset up onto the registry.
 
-Using the `--verbose` flag, you can also view a peer's network information.
+Published datasets can be found by other peers using the `qri search` command.
 
-You must have `qri connect` running in another terminal.
+Datasets are by default published to the registry when they are created.
 
-```shell
-qri peers info [flags]
+```
+qri registry publish [flags]
 ```
 
 ### Examples
 
-```shell
-# show info on a peer named "b5":
-$ qri peers info b5
-
-# show info in json:
-$ qri peers info b5 --format json
+```
+  Publish a dataset you've created to the registry:
+  $ qri registry publish me/dataset_name
 ```
 
 ### Options
 
 ```
-      --format string   output format. formats: yaml, json (default "yaml")
-  -h, --help            help for info
-  -v, --verbose         show verbose profile info
+  -h, --help   help for publish
 ```
 
 
 
-_______
+________
 
-<a id='qri_peers_list'></a>
-## qri peers list
+<a id='qri_registry_status'></a>
+## qri registry status
 
-List known qri peers
+get the status of a reference on the registry
 
 ### Synopsis
 
 
-Lists the peers to which your Qri node is connected. 
+  use status to see what version of a dataset the registry has on-record, if any
 
-You must have `qri connect` running in another terminal.
-
-To find peers that are not online, but to which your node has previously been 
-connected, use the `--cached` flag.
-
-```shell
-qri peers list [flags]
+```
+qri registry status [flags]
 ```
 
 ### Examples
 
-```shell
-# spin up a Qri node
-qri connect
-
-# thenin a separate terminal, to list qri peers:
-qri peers list
-
-# to ensure you get a cached version of the list:
-qri peers list --cached
+```
+  Get status of a dataset reference::
+    $ qri registry status me/dataset_name
 ```
 
 ### Options
 
 ```
-  -c, --cached           show peers that aren't online, but previously seen
-  -h, --help             help for list
-  -l, --limit int        limit max number of peers to show (default 200)
-  -n, --network string   specify network to show peers from [ipfs]
-  -s, --offset int       number of peers to skip during listing
+  -h, --help   help for status
 ```
 
 
 
-_______
+________
+
+<a id='qri_registry_unpin'></a>
+## qri registry unpin
+
+unpin dataset data from the registry
+
+### Synopsis
+
+
+Unpin reverses the pin process, asking a registry to remove it's hosted copy
+of your dataset from the registry
+
+```
+qri registry unpin [flags]
+```
+
+### Examples
+
+```
+  Unpin a dataset from the registry:
+  $ qri registry unpin me/dataset_name
+```
+
+### Options
+
+```
+  -h, --help   help for unpin
+```
+
+
+
+________
+
+<a id='qri_registry_unpublish'></a>
+## qri registry unpublish
+
+remove dataset info from the registry
+
+### Synopsis
+
+
+Unpublish will remove the reference to your dataset from the registry. If 
+you dataset was previously backed up onto the registry, this backup will 
+be removed.
+
+This dataset will no longer show up in search results.
+
+```
+qri registry unpublish [flags]
+```
+
+### Examples
+
+```
+  Remove a dataset from the registry:
+  $ qri registry unpublish me/dataset_name
+```
+
+### Options
+
+```
+  -h, --help   help for unpublish
+```
+
+
+
+________
 
 <a id='qri_registry'></a>
 ## qri registry
@@ -834,8 +993,8 @@ Commands for working with a qri registry
 Registries are federated public records of datasets and peers.
 These records form a public facing central lookup for your datasets, so others
 can find them through search tools and via web links. You can use registry 
-commands to control how your datasets are published to registries, opting in or out
-on a dataset-by-dataset basis.
+commands to control how your datasets are published to registries, opting 
+in or out on a dataset-by-dataset basis.
 
 Unpublished dataset info will be held locally so you can still interact
 with it. And your datasets will be available to others peers when you run 
@@ -858,79 +1017,7 @@ $ qri config set registry.location ""
 
 
 
-_______
-
-<a id='qri_registry_publish'></a>
-## qri registry publish
-
-Publish dataset info to the registry
-
-### Synopsis
-
-
-Publishes the dataset information onto the registry. There will be a record
-of your dataset on the registry, and if your dataset is less than 20mbs, 
-Qri will back your dataset up onto the registry.
-
-Published datasets can be found by other peers using the `qri search` command.
-
-Datasets are by default published to the registry when they are created.
-
-```shell
-qri registry publish [flags]
-```
-
-### Examples
-
-```shell
-# Publish a dataset you've created to the registry:
-$ qri registry publish me/dataset_name
-```
-
-### Options
-
-```
-  -h, --help   help for publish
-```
-
-
-
-_______
-
-<a id='qri_registry_unpublish'></a>
-## qri registry unpublish
-
-remove dataset info from the registry
-
-### Synopsis
-
-
-Unpublish will remove the reference to your dataset from the registry. If 
-you dataset was previously backed up onto the registry, this backup will 
-be removed.
-
-This dataset will no longer show up in search results.
-
-```shell
-qri registry unpublish [flags]
-```
-
-### Examples
-
-```shell
-# Remove a dataset from the registry:
-$ qri registry unpublish me/dataset_name
-```
-
-### Options
-
-```
-  -h, --help   help for unpublish
-```
-
-
-
-_______
+________
 
 <a id='qri_remove'></a>
 ## qri remove
@@ -953,15 +1040,15 @@ adjust this cap using IPFS, qri will respect it.
 In the future we’ll add a flag that’ll force immediate removal of a dataset from
 both qri & IPFS. Promise.
 
-```shell
+```
 qri remove [flags]
 ```
 
 ### Examples
 
-```shell
-# remove a dataset named annual_pop:
-$ qri remove me/annual_pop
+```
+  remove a dataset named annual_pop:
+  $ qri remove me/annual_pop
 ```
 
 ### Options
@@ -972,7 +1059,7 @@ $ qri remove me/annual_pop
 
 
 
-_______
+________
 
 <a id='qri_rename'></a>
 ## qri rename
@@ -990,15 +1077,15 @@ not have the updated name. While this won't break anything, it will
 confuse anyone who has added your dataset before the change. Try to keep
 renames to a minimum.
 
-```shell
+```
 qri rename [flags]
 ```
 
 ### Examples
 
-```shell
-# rename a dataset named annual_pop to annual_population:
-$ qri rename me/annual_pop me/annual_population
+```
+  rename a dataset named annual_pop to annual_population:
+  $ qri rename me/annual_pop me/annual_population
 ```
 
 ### Options
@@ -1009,7 +1096,7 @@ $ qri rename me/annual_pop me/annual_population
 
 
 
-_______
+________
 
 <a id='qri_render'></a>
 ## qri render
@@ -1028,18 +1115,18 @@ Use the `--output` flag to save the rendered html to a file.
 Use the `--template` flag to use a custom template. If no template is
 provided, Qri will render the dataset with a default template.
 
-```shell
+```
 qri render [flags]
 ```
 
 ### Examples
 
-```shell
-# render a dataset called me/schools:
-$ qri render -o=schools.html me/schools
+```
+  render a dataset called me/schools:
+  $ qri render -o=schools.html me/schools
 
-# render a dataset with a custom template:
-$ qri render --template=template.html me/schools
+  render a dataset with a custom template:
+  $ qri render --template=template.html me/schools
 ```
 
 ### Options
@@ -1055,7 +1142,7 @@ $ qri render --template=template.html me/schools
 
 
 
-_______
+________
 
 <a id='qri_save'></a>
 ## qri save
@@ -1067,47 +1154,54 @@ Save changes to a dataset
 
 Save is how you change a dataset, updating one or more of data, metadata, and structure. 
 You can also update your data via url. Every time you run save, an entry is added to 
-your dataset’s log (which you can see by running `qri log <dataset_reference>`). 
+your dataset’s log (which you can see by running `qri log <dataset_reference>`).
 
-Every time you save, you can provide a message about what 
-you changed and why. If you don’t provide a message 
-Qri will automatically generate one for you.
+If the dataset you're changing has defined a transform, running `qri save`
+will re execute the transform. To only re-run the transform, run save with no args.
+
+Every time you save, you can provide a message about what you changed and why. 
+If you don’t provide a message Qri will automatically generate one for you.
 
 When you make an update and save a dataset that you originally added from a different
 peer, the dataset gets renamed from `peers_name/dataset_name` to `my_name/dataset_name`.
 
-The `--message`" and `--title` flags allow you to add a commit message and title 
-to the save.
+The `--message`" and `--title` flags allow you to add a 
+commit message and title to the save.
 
-```shell
+```
 qri save [flags]
 ```
 
 ### Examples
 
-```shell
-# save updated data to dataset annual_pop:
-qri --body /path/to/data.csv me/annual_pop
+```
+  # save updated data to dataset annual_pop:
+  qri save --body /path/to/data.csv me/annual_pop
 
-# save updated dataset (no data) to annual_pop:
-qri --file /path/to/dataset.yaml me/annual_pop
+  # save updated dataset (no data) to annual_pop:
+  qri save --file /path/to/dataset.yaml me/annual_pop
+  
+  # re-execute a dataset that has a transform:
+  qri save me/tf_dataset
 ```
 
 ### Options
 
 ```
       --body string       path to file or url of data to add as dataset contents
+      --dry-run           simulate saving a dataset
   -f, --file string       dataset data file (yaml or json)
   -h, --help              help for save
   -m, --message string    commit message for save
   -p, --publish           publish this dataset to the registry
+      --recall string     restore revisions from dataset history
       --secrets strings   transform secrets as comma separated key,value,key,value,... sequence
   -t, --title string      title of commit message for save
 ```
 
 
 
-_______
+________
 
 <a id='qri_search'></a>
 ## qri search
@@ -1121,15 +1215,16 @@ Search datasets & peers that match your query. Search pings the qri registry.
 
 Any dataset that has been published to the registry is available for search.
 
-```shell
+```
 qri search [flags]
 ```
 
 ### Examples
 
-```shell
-# search 
-$ qri search "annual population"
+```
+
+  # search 
+  $ qri search "annual population"
 ```
 
 ### Options
@@ -1141,7 +1236,7 @@ $ qri search "annual population"
 
 
 
-_______
+________
 
 <a id='qri_setup'></a>
 ## qri setup
@@ -1166,15 +1261,15 @@ overwrite this info.
 Use the `--remove` to remove your Qri repo. This deletes your entire repo, 
 including all your datasets, and de-registers your peername from the registry.
 
-```shell
+```
 qri setup [flags]
 ```
 
 ### Examples
 
-```shell
-# run setup with a peername of your choosing:
-$ qri setup --peername=your_great_peername
+```
+  run setup with a peername of your choosing:
+  $ qri setup --peername=your_great_peername
 ```
 
 ### Options
@@ -1187,13 +1282,66 @@ $ qri setup --peername=your_great_peername
       --ipfs-config string   json-encoded configuration data, specify a filepath with '@' prefix
       --overwrite            overwrite repo if one exists
       --peername string      choose your desired peername
-      --registry string      override default registry URL
+      --registry string      override default registry URL, set to 'none' to remove registry
       --remove               permanently remove qri, overrides all setup options
 ```
 
 
 
-_______
+________
+
+<a id='qri_update'></a>
+## qri update
+
+add/create the lastest version of a dataset
+
+### Synopsis
+
+
+Update fast-forwards your dataset to the latest known version. If the dataset
+is not in your namespace (i.e. dataset name doesn't start with your peername), 
+update will ask the peer for any new versions and download them. Updating a peer
+dataset accepts no arguments other than the dataset name and --dry-run flag.
+
+**For peer update to work, the peer must be online at the time. We know this is
+irritating, we're working on a solution.**
+
+Calling update on a dataset in your namespace will advance your dataset by 
+re-running any specified transform script, creating a new version of your 
+dataset in the process. If your dataset doesn't have a transform script, update 
+will error.
+
+```
+qri update [flags]
+```
+
+### Examples
+
+```
+  # get the freshest version of a dataset from a peer
+  qri update other_person/dataset
+
+  # update your local dataset by re-running the dataset transform
+  qri update me/dataset_with_transform
+
+  # supply secrets to an update, publish on successful run
+  qri update me/dataset_with_transform -p --secrets=keyboard,cat
+```
+
+### Options
+
+```
+      --dry-run           simulate updating a dataset
+  -h, --help              help for update
+  -m, --message string    commit message for update
+      --recall string     restore revisions from dataset history, only 'tf' applies when updating
+      --secrets strings   transform secrets as comma separated key,value,key,value,... sequence
+  -t, --title string      title of commit message for update
+```
+
+
+
+________
 
 <a id='qri_use'></a>
 ## qri use
@@ -1210,25 +1358,25 @@ is explicitly given for those commands.
 We created this command to ease the typing/copy and pasting burden while using
 Qri to explore a dataset.
 
-```shell
+```
 qri use [flags]
 ```
 
 ### Examples
 
-```shell
-# use dataset me/dataset_name, then get meta.title:
-qri use me/dataset_name
-qri get meta.title
+```
+  # use dataset me/dataset_name, then get meta.title:
+  qri use me/dataset_name
+  qri get meta.title
 
-# clear current selection:
-qri use --clear
+  # clear current selection:
+  qri use --clear
 
-# show current selected dataset references:
-qri use --list
+  # show current selected dataset references:
+  qri use --list
 
-# add multiple references to the remembered list
-qri use me/population_2017 me/population_2018
+  # add multiple references to the remembered list
+  qri use me/population_2017 me/population_2018
 ```
 
 ### Options
@@ -1241,7 +1389,7 @@ qri use me/population_2017 me/population_2018
 
 
 
-_______
+________
 
 <a id='qri_validate'></a>
 ## qri validate
@@ -1262,18 +1410,14 @@ stored in qri. When only one of schema or body args are provided, the other
 comes from a dataset reference. For example, to check how a file “data.csv” 
 validates against a dataset "foo”, we would run:
 
-```shell
-$ qri validate --body data.csv me/foo
-```
+  $ qri validate --body data.csv me/foo
 
 In this case, qri will will print any validation as if data.csv was foo’s data.
 
 To see how changes to a schema will validate against a 
 dataset in qri, we would run:
 
-```shell
-$ qri validate --schema schema.json me/foo
-```
+  $ qri validate --schema schema.json me/foo
 
 In this case, qri will print validation errors as if stucture.json was the
 schema for dataset "me/foo"
@@ -1286,21 +1430,21 @@ command.
 
 Note: --body and --schema flags will override the dataset if both flags are provided.
 
-```shell
+```
 qri validate [flags]
 ```
 
 ### Examples
 
-```shell
-# show errors in an existing dataset:
-qri validate b5/comics
+```
+  # show errors in an existing dataset:
+  qri validate b5/comics
 
-# validate a new body against an existing schema
-qri validate --body new_data.csv me/annual_pop
+  # validate a new body against an existing schema
+  qri validate --body new_data.csv me/annual_pop
 
-# validate data against a new schema
-qri validate --body data.csv --schema schema.json
+  # validate data against a new schema
+  qri validate --body data.csv --schema schema.json
 ```
 
 ### Options
@@ -1313,7 +1457,7 @@ qri validate --body data.csv --schema schema.json
 
 
 
-_______
+________
 
 <a id='qri_version'></a>
 ## qri version
@@ -1327,7 +1471,7 @@ Qri uses semantic versioning.
 
 For updates & further information check https://github.com/qri-io/qri/releases
 
-```shell
+```
 qri version [flags]
 ```
 
@@ -1338,4 +1482,6 @@ qri version [flags]
 ```
 
 
+
+________
 
