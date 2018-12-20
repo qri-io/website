@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>starlib reference</title>
+      <link>https://qri.io/docs/reference/starlib/</link>
+      <pubDate>Thu, 20 Dec 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/reference/starlib/</guid>
+      <description>All qri transforms have access to &amp;ldquo;starlib&amp;rdquo;, a community-driven project to bring a standard library to the starlark programming dialect. We here at Qri need a standard library, and we thought it might benefit others to structure this library in a reusable way. We are a little biased towards our needs, and will be shaping the library primarily toward&amp;rsquo;s Qri&amp;rsquo;s use case.
+qri and dataset modules In Qri two &amp;ldquo;nonstandard&amp;rdquo; modules specific to qri are available.</description>
+    </item>
+    
+    <item>
       <title>CLI commands</title>
       <link>https://qri.io/docs/reference/cli_commands/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
@@ -40,38 +50,12 @@
     </item>
     
     <item>
-      <title>skylark function reference</title>
-      <link>https://qri.io/docs/reference/sylark_functions/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/reference/sylark_functions/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>starlark syntax</title>
       <link>https://qri.io/docs/reference/starlark_syntax/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/reference/starlark_syntax/</guid>
       <description>Starlark Syntax Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. Transformations are repeatable scripts for generating a dataset. Starlark is a scripting language from Google that feels a lot like python. This package implements skylark as a transformation syntax. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
-    </item>
-    
-    <item>
-      <title>starlib reference</title>
-      <link>https://qri.io/docs/reference/starlib/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/reference/starlib/</guid>
-      <description>Starlark Standard Library Modules  qri ds or dataset http html time xlsx  
-qri module you can access these methods from the qri module, eg qri.get_config()
- get_config get_secret list_datasets load_dataset_body load_dataset_head  To load:
-load(&amp;#34;qri.sky&amp;#34;, &amp;#34;qri&amp;#34;) Function Definitions: 
-get_config qri.get_config(key)
-returns the value of a config variable, declared in the dataset file:
-# in the dataset.yaml file:transform:scriptpath:transform.skyconfig:key:value 
-get_secret qri.get_secret(key)
-returns the value of a secrets variable, declared in the dataset file:</description>
     </item>
     
   </channel>
