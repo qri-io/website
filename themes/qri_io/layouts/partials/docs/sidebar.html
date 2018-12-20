@@ -5,22 +5,21 @@
       <p class="subhead">docs</p>
     </div>
     <div class="pages">
-      <p><b>{{ .Params.section }}</b></p>
       <ul>
-        {{ $menu := index .Site.Menus .Params.section}}
-        {{ range $menu }}
-          <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ range .Site.Sections }}
+        {{ if eq .Title "docs" }}
+          {{ range .Sections }}
+            <li class="section"><h5>{{ .Title }}</h5></li>
+            <ul>
+              {{ range .Pages }}
+                <li class="page"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+              {{ end }}
+            </ul>
+          {{ end }}
         {{ end }}
+      {{ end }}
       </ul>
     </div>
-    <hr />
-    <p><i>Jump to:</i></p>
-    <ul class="docs_sections">
-      <li><a href="/docs">Docs Home</a></li>
-      <li><a href="/docs/concepts">Concepts</a></li>
-      <li><a href="/docs/reference">Reference</a></li>
-      <li><a href="/docs/tutorials">Tutorials</a></li>
-    </ul>
   </div>
   <br />
 </nav>
