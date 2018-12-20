@@ -388,28 +388,64 @@ footer#page_footer {
 #docs_page #docs_sidebar {
   flex: 1 2 25%;
   overflow: hidden;
-  max-width: 240px;
+  max-width: 300px;
   height: 100%;
   content: "";
+}
+
+#docs_sidebar_toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  border-radius: 100%;
+  text-align: center;
+  padding-top: 8px;
+  color: white;
+  background: #0061A6;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.15);
+  z-index: 10;
+  display: none;
+}
+#docs_sidebar_toggle .icon {
+  width: 15px;
+  margin: 2px auto;
 }
 
 #docs_sidebar .content {
   position: fixed;
   overflow: auto;
-  padding: 20px;
+  padding-bottom: 40px;
   width: 25%;
-  max-width: 200px;
+  max-width: 300px;
   background: #eee;
   box-shadow: inside 0 -4px 6px rgba(0,0,0,0.25);
   height: 100%;
 }
 
 #docs_sidebar .logotype {
+  padding-top: 20px;
   display: block;
   float: none;
 }
+#docs_sidebar .subhead {
+  margin-left: 20px;
+}
 
-#docs_sidebar a { color: black; }
+#docs_sidebar .section { 
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#docs_sidebar a { 
+  display: block;
+  padding: 5px 20px;
+  color: black;
+}
+#docs_sidebar a:hover { 
+  background: rgba(0,0,0,0.1);
+}
 
 #docs_sidebar ul {
   list-style: none;
@@ -421,6 +457,26 @@ footer#page_footer {
 #docs_page #main .content {
   max-width: 650px;
   margin: 60px auto 220px auto;
+}
+
+@media (max-width: 960px) {
+  #docs_page #main .content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  #docs_sidebar_toggle { display: block; }
+  #docs_sidebar {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    transition: all 0.25s;
+    box-shadow: 1 1 6px rgba(0,0,0,0.15);
+  }
+  #docs_sidebar .content {
+    padding-top: 60px;
+    min-width: 300px;
+  }
+  #docs_sidebar.show { left: 0; }
 }
 
 @media (max-width: 750px) {

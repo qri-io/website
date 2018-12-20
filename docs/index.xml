@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>starlib reference</title>
+      <title>Starlark Std. Library</title>
       <link>https://qri.io/docs/reference/starlib/</link>
       <pubDate>Thu, 20 Dec 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/reference/starlib/</guid>
-      <description>All qri transforms have access to &amp;ldquo;starlib&amp;rdquo;, a community-driven project to bring a standard library to the starlark programming dialect. We here at Qri need a standard library, and we thought it might benefit others to structure this library in a reusable way. We are a little biased towards our needs, and will be shaping the library primarily toward&amp;rsquo;s Qri&amp;rsquo;s use case.
+      <description>Starlark Standard Library All qri transforms have access to &amp;ldquo;starlib&amp;rdquo;, a community-driven project to bring a standard library to the starlark programming dialect. We here at Qri need a standard library, and we thought it might benefit others to structure this library in a reusable way. We are a little biased towards our needs, and will be shaping the library primarily toward&amp;rsquo;s Qri&amp;rsquo;s use case.
 qri and dataset modules In Qri two &amp;ldquo;nonstandard&amp;rdquo; modules specific to qri are available.</description>
     </item>
     
@@ -93,12 +93,69 @@ The whole tutorial is divided into six sections. The topics are as follows:
     </item>
     
     <item>
+      <title>Content Addressing</title>
+      <link>https://qri.io/docs/concepts/content-addressing/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/content-addressing/</guid>
+      <description>Content Addressing An address is a uniform, shorthand way of referring to things. Geographic addresses are an obvious example. 1600 Pennsylvania Ave. is the address of the White House. 268 Elizabeth St. is the address of my childhood home. These houses are different in size and function, but they are both locations with addresses that adhere to a (relatively) consistent system. Addresses make it easier to refer to places.</description>
+    </item>
+    
+    <item>
+      <title>Dataset</title>
+      <link>https://qri.io/docs/reference/dataset/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/reference/dataset/</guid>
+      <description>Dataset A Dataset is a document for describing &amp;amp; storing structured data. Dataset documents are designed to satisfy the FAIR principle of being Findable, Accessible, Interoperable, and Reusable, in relation to other dataset documents, and related-but-separate technologies such as data catalogs, HTTP API&amp;rsquo;s, and data package formats Datasets are designed to be stored and distributed on content-addressed (identify-by-hash) systems The dataset document definition is built from a research-first principle, valuing direct interoperability with existing standards over novel definitions or specifications.</description>
+    </item>
+    
+    <item>
+      <title>Datasets</title>
+      <link>https://qri.io/docs/concepts/dataset/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/dataset/</guid>
+      <description>Datasets: Qri&amp;rsquo;s Building Block  #dataset_components { position: relative; margin-bottom: 120px; } .diagram { max-width: 260px; margin: 60px auto; padding: 40px 0; } .descriptions { position: absolute; } .right.descriptions { right: 0; top: 0; text-align: right; } .description { display: block; padding: 5px 8px; margin: 20px 0; border-radius: 6px; background: white; box-shadow: 0 0 3px rgba(0,0,0,0.2); transition: all 0.5s; width: 220px; color: #666; } .description:hover { box-shadow: 0 5px 6px rgba(0,0,0,0.</description>
+    </item>
+    
+    <item>
       <title>Distributed Storage</title>
       <link>https://qri.io/docs/concepts/distributed-storage/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/concepts/distributed-storage/</guid>
       <description>Going Distributed Makes Data Free &amp;amp; Dependable Qri doesn’t need a central server to work, instead it&amp;rsquo;s built in a distributed, peer-2-peer architecture that moves data by connecting computers directly. By connecting computers directly, we make storing data on Qri free, because datasets don&amp;rsquo;t have to be stored in the cloud. Your “payment” is the hard drive space to store the data you want to keep. This frees up datasets to get as big as they need to be, and stored wherever makes the most sense.</description>
+    </item>
+    
+    <item>
+      <title>Naming</title>
+      <link>https://qri.io/docs/concepts/names/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/names/</guid>
+      <description>Names in Qri It’s possible to refer to a dataset in a number of ways. It’s easiest to look at the full definition of a dataset reference, and then show what the “defaults” are to make sense of things. The full definition of a dataset reference is as follows:
+dataset_reference = peer_name/dataset_name@/network/hash  an example of that looks like this:
+b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b5 is the name of a peer, who has a dataset named comics, and it’s hash on the ipfs network at a point in time was QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://qri.io/docs/concepts/overview/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/overview/</guid>
+      <description>What is Qri (&amp;ldquo;query&amp;rdquo;)? Qri is a distributed dataset version control system built with peer-2-peer data exchange. Peers create datasets, which are stored in versions. Qri peers form a distributed network to exchange information about their datasets, which they transmit between each other over the distributed web.
+Datasets are recorded structured data according to a specification that dictates the purpose of each component piece of a dataset. By design, qri can only store datasets.</description>
+    </item>
+    
+    <item>
+      <title>Starlark Language</title>
+      <link>https://qri.io/docs/reference/starlark_syntax/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/reference/starlark_syntax/</guid>
+      <description>Starlark Syntax Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. Transformations are repeatable scripts for generating a dataset. Starlark is a scripting language from Google that feels a lot like python. This package implements skylark as a transformation syntax. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
     </item>
     
     <item>
@@ -110,81 +167,6 @@ The whole tutorial is divided into six sections. The topics are as follows:
       <description>Starlark Transformations Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. A transformation is a repeatable script for generating a dataset. Starlark. This package implements starlark as a transformation syntax. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
 Typical examples of a starlark transformation include:
  combining paginated calls to an API into a single dataset downloading unstructured structured data from the internet to extract  So let&amp;rsquo;s dive in and learn about transforms!</description>
-    </item>
-    
-    <item>
-      <title>content-addressing</title>
-      <link>https://qri.io/docs/concepts/content-addressing/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/concepts/content-addressing/</guid>
-      <description>Content Addressing An address is a uniform, shorthand way of referring to things. Geographic addresses are an obvious example. 1600 Pennsylvania Ave. is the address of the White House. 268 Elizabeth St. is the address of my childhood home. These houses are different in size and function, but they are both locations with addresses that adhere to a (relatively) consistent system. Addresses make it easier to refer to places.</description>
-    </item>
-    
-    <item>
-      <title>dataset</title>
-      <link>https://qri.io/docs/concepts/dataset/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/concepts/dataset/</guid>
-      <description>Datasets: Qri&amp;rsquo;s Building Block  #dataset_components { position: relative; margin-bottom: 120px; } .diagram { max-width: 260px; margin: 60px auto; padding: 40px 0; } .descriptions { position: absolute; } .right.descriptions { right: 0; top: 0; text-align: right; } .description { display: block; padding: 5px 8px; margin: 20px 0; border-radius: 6px; background: white; box-shadow: 0 0 3px rgba(0,0,0,0.2); transition: all 0.5s; width: 220px; color: #666; } .description:hover { box-shadow: 0 5px 6px rgba(0,0,0,0.</description>
-    </item>
-    
-    <item>
-      <title>dataset</title>
-      <link>https://qri.io/docs/reference/dataset/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/reference/dataset/</guid>
-      <description>Dataset A Dataset is a document for describing &amp;amp; storing structured data. Dataset documents are designed to satisfy the FAIR principle of being Findable, Accessible, Interoperable, and Reusable, in relation to other dataset documents, and related-but-separate technologies such as data catalogs, HTTP API&amp;rsquo;s, and data package formats Datasets are designed to be stored and distributed on content-addressed (identify-by-hash) systems The dataset document definition is built from a research-first principle, valuing direct interoperability with existing standards over novel definitions or specifications.</description>
-    </item>
-    
-    <item>
-      <title>html templates</title>
-      <link>https://qri.io/docs/reference/html_templates/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/reference/html_templates/</guid>
-      <description>HTML Templates coming soon!</description>
-    </item>
-    
-    <item>
-      <title>names</title>
-      <link>https://qri.io/docs/concepts/names/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/concepts/names/</guid>
-      <description>Names in Qri It’s possible to refer to a dataset in a number of ways. It’s easiest to look at the full definition of a dataset reference, and then show what the “defaults” are to make sense of things. The full definition of a dataset reference is as follows:
-dataset_reference = peer_name/dataset_name@/network/hash  an example of that looks like this:
-b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b5 is the name of a peer, who has a dataset named comics, and it’s hash on the ipfs network at a point in time was QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y</description>
-    </item>
-    
-    <item>
-      <title>overview</title>
-      <link>https://qri.io/docs/concepts/overview/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/concepts/overview/</guid>
-      <description>What is Qri (&amp;ldquo;query&amp;rdquo;)? Qri is a distributed dataset version control system built with peer-2-peer data exchange. Peers create datasets, which are stored in versions. Qri peers form a distributed network to exchange information about their datasets, which they transmit between each other over the distributed web.
-Datasets are recorded structured data according to a specification that dictates the purpose of each component piece of a dataset. By design, qri can only store datasets.</description>
-    </item>
-    
-    <item>
-      <title>registries</title>
-      <link>https://qri.io/docs/concepts/registries/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/concepts/registries/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>starlark syntax</title>
-      <link>https://qri.io/docs/reference/starlark_syntax/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/reference/starlark_syntax/</guid>
-      <description>Starlark Syntax Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. Transformations are repeatable scripts for generating a dataset. Starlark is a scripting language from Google that feels a lot like python. This package implements skylark as a transformation syntax. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.</description>
     </item>
     
     <item>
@@ -205,15 +187,6 @@ Datasets are recorded structured data according to a specification that dictates
       <description>QRI TERMS OF USE
 Qri, Inc. (“Qri,” “we,” “us,” or “our”) welcomes you. We provide you access to our free to use, peer-to-peer network, that allows users to share and collaborate on datasets (the “Network”) via our website at qri.io (the “Website”), subject to the following terms of use (the “Terms of Use”), which may be updated by us from time to time without notice to you.
 BY ACCESSING THE WEBSITE AND USING THE NETWORK, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE LEGALLY BOUND BY THESE TERMS OF USE AND OUR PRIVACY POLICY, WHICH IS HEREBY INCORPORATED BY REFERENCE (COLLECTIVELY, THIS “AGREEMENT”).</description>
-    </item>
-    
-    <item>
-      <title>version control</title>
-      <link>https://qri.io/docs/concepts/version_control/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/concepts/version_control/</guid>
-      <description></description>
     </item>
     
     <item>
