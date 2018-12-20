@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.44" />
+  <meta name="generator" content="Hugo 0.48-DEV" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,24 +24,8 @@
   <meta property="og:title" content="starlib reference" />
 <meta property="og:description" content="list of all the functions and modules in starlark standard library" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/reference/starlib/" />
-
-
-
-<meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
-
-<meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
-
-
-
-
-
-
-
-
-
-
-
+<meta property="og:url" content="https://qri.io/docs/reference/starlib/" /><meta property="article:published_time" content="2018-12-20T00:00:00-04:00"/>
+<meta property="article:modified_time" content="2018-12-20T00:00:00-04:00"/>
   
 
 
@@ -128,15 +112,27 @@
     <div class="content">
       
 
-<h1 id="starlark-standard-library-modules">Starlark Standard Library Modules</h1>
+<p>All qri transforms have access to &ldquo;starlib&rdquo;, a community-driven project to bring a standard library to the starlark programming dialect. We here at Qri need a standard library, and we thought it might benefit others to structure this library in a reusable way. We are a little biased towards our needs, and will be shaping the library primarily toward&rsquo;s Qri&rsquo;s use case.</p>
+
+<h3 id="qri-and-dataset-modules">qri and dataset modules</h3>
+
+<p>In Qri two &ldquo;nonstandard&rdquo; modules specific to qri are available. these modules are <em>not</em> considered part of the standard library project, and are defined in a <a href="https://github.com/qri-io/startf">different repository</a>. They&rsquo;re described here to keep documentation complete:</p>
 
 <ul>
 <li><a href="#qri_module">qri</a></li>
 <li><a href="#dataset_object">ds or dataset</a></li>
-<li><a href="#http_module">http</a></li>
+</ul>
+
+<h1 id="starlark-standard-library-modules">Starlark Standard Library Modules</h1>
+
+<ul>
 <li><a href="#html_module">html</a></li>
+<li><a href="#http_module">http</a></li>
+<li><a href="#math_module">math</a></li>
+<li><a href="#re_module">re</a></li>
 <li><a href="#time_module">time</a></li>
 <li><a href="#xlsx_module">xlsx</a></li>
+<li><a href="#zipfile_module">zipfile</a></li>
 </ul>
 
 <hr />
@@ -1130,6 +1126,18 @@
 
 <hr />
 
+<p><a id="math_module"></a></p>
+
+<h2 id="math-module">math module</h2>
+
+<p><em>docs coming soon. In the meantime see <a href="https://godoc.org/github.com/qri-io/starlib/math">https://godoc.org/github.com/qri-io/starlib/math</a></em></p>
+
+<p><a id="re_module"></a></p>
+
+<h2 id="re-module">re module</h2>
+
+<p><em>docs coming soon. In the meantime see <a href="https://godoc.org/github.com/qri-io/starlib/re">https://godoc.org/github.com/qri-io/starlib/re</a></em></p>
+
 <p><a id="time_module"></a></p>
 
 <h2 id="time-module">time module</h2>
@@ -1379,6 +1387,12 @@
 <p><code>x.get_rows(sheet_name)</code></p>
 
 <p>returns a 2 dimensional list of data from the specified sheet. See above <code>get_url</code> example for use</p>
+
+<p><a id="zipfile_module"></a></p>
+
+<h2 id="zipfile-module">zipfile module</h2>
+
+<p>_docs coming soon. In the meantime see <a href="https://godoc.org/github.com/qri-io/starlib/zipfile">https://godoc.org/github.com/qri-io/starlib/zipfile</a></p>
 
     </div>
   </section>
