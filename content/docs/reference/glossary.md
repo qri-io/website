@@ -21,3 +21,15 @@ I know, I'm so sorry for doing this to the world, but I'm hoping we can all lear
 #### Peer
 
 #### User
+
+
+<!-- * Profile - 
+* Peer -
+* Node - an active process in a distributed network with a peerId
+* Repo - 
+* File System -
+* Dataset - 
+* DAG - 
+* Link -
+* Path - 
+* Block - -->

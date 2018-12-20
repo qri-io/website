@@ -1,19 +1,27 @@
 ---
 title: "starlib reference"
 description: "list of all the functions and modules in starlark standard library"
-date: 2018-01-30T00:00:00-04:00
+date: 2018-12-20T00:00:00-04:00
 section: reference
 ---
 
+All qri transforms have access to "starlib", a community-driven project to bring a standard library to the starlark programming dialect. We here at Qri need a standard library, and we thought it might benefit others to structure this library in a reusable way. We are a little biased towards our needs, and will be shaping the library primarily toward's Qri's use case.
 
-# Starlark Standard Library Modules
+### qri and dataset modules
+In Qri two "nonstandard" modules specific to qri are available. these modules are _not_ considered part of the standard library project, and are defined in a [different repository](https://github.com/qri-io/startf). They're described here to keep documentation complete:
 
 * [qri](#qri_module)
 * [ds or dataset](#dataset_object)
-* [http](#http_module)
+
+# Starlark Standard Library Modules
+
 * [html](#html_module)
+* [http](#http_module)
+* [math](#math_module)
+* [re](#re_module)
 * [time](#time_module)
 * [xlsx](#xlsx_module)
+* [zipfile](#zipfile_module)
 
 
 ** **
@@ -784,6 +792,16 @@ def download(ds):
 
 ** **
 
+<a id="math_module"></a>
+## math module
+
+_docs coming soon. In the meantime see https://godoc.org/github.com/qri-io/starlib/math_
+
+<a id="re_module"></a>
+## re module
+
+_docs coming soon. In the meantime see https://godoc.org/github.com/qri-io/starlib/re_
+
 <a id="time_module"></a>
 ## time module
   _you can access these methods from the `time` module:_ 
@@ -1020,3 +1038,8 @@ def download(ds):
 `x.get_rows(sheet_name)`
 
   returns a 2 dimensional list of data from the specified sheet. See above `get_url` example for use
+
+<a id="zipfile_module"></a>
+## zipfile module
+
+_docs coming soon. In the meantime see https://godoc.org/github.com/qri-io/starlib/zipfile
