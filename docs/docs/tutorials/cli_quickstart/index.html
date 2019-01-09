@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.48-DEV" />
+  <meta name="generator" content="Hugo 0.44" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,8 +30,24 @@ The whole tutorial is divided into six sections. The topics are as follows:
 1.3 qri setup
 1.4 qri save" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/tutorials/cli_quickstart/" /><meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+<meta property="og:url" content="https://qri.io/docs/tutorials/cli_quickstart/" />
+
+
+
+<meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+
 <meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
+
+
+
+
+
+
+
+
+
+
+
   
 
 
@@ -186,7 +202,7 @@ The whole tutorial is divided into six sections. The topics are as follows:
 2.5 <a href="#2.5"><code>qri log</code></a> - how to find the hash of a previous dataset version</p></li>
 
 <li><p><a href="#3.0">Exploring Datasets</a><br />
-3.1 <a href="#3.1">components of a dataset</a>
+3.1 <a href="#3.1">components of a dataset</a><br />
 3.2 <a href="#3.2">what is a dataset ref and how is it formatted?</a><br />
 3.3 <a href="#3.3"><code>qri info</code></a><br />
 3.4 <a href="#3.4"><code>qri get</code> and <code>qri-use</code></a><br />
@@ -875,7 +891,7 @@ tutorial/nalcs_standings@QmTXF6LzpCFK87Ykq7WR7hjzCvNXWGXZ2ssJZwRiPiMSN9/ipfs/Qmb
 <p>Now, having to repeatedly copy and paste the same dataset reference every time you want to <code>qri get</code> something seems a little tedious. We felt that way, too.</p>
 
 <p>In order to streamline things a bit, we created the <code>qri use</code> command. Whatever dataset reference you give to the <code>qri use</code> command can be used in any subsequent <code>qri get</code> commands, until the <code>qri use</code> list is cleared using the <code>qri use --clear</code> command.</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qQmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ qri use me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 $ qri get commit.title
