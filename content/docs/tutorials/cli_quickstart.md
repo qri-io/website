@@ -28,7 +28,7 @@ The whole tutorial is divided into six sections. The topics are as follows:
   2.5 [`qri log`](#2.5) - how to find the hash of a previous dataset version  
 
 3. [Exploring Datasets](#3.0)  
-  3.1 [components of a dataset](#3.1)
+  3.1 [components of a dataset](#3.1)  
   3.2 [what is a dataset ref and how is it formatted?](#3.2)  
   3.3 [`qri info`](#3.3)  
   3.4 [`qri get` and `qri-use`](#3.4)   
@@ -824,7 +824,7 @@ Now, having to repeatedly copy and paste the same dataset reference every time y
 In order to streamline things a bit, we created the `qri use` command. Whatever dataset reference you give to the `qri use` command can be used in any subsequent `qri get` commands, until the `qri use` list is cleared using the `qri use --clear` command.
 
 ```shell
-$ qQmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
+$ qri use me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 me/nalcs_standings@/ipfs/QmbQqBFc3HLHXwEKssYr4W9AayUJRe8sPZjUtZZ31uNntW
 
 $ qri get commit.title
