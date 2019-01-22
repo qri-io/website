@@ -6,7 +6,7 @@ date: 2018-12-20T00:00:00-04:00
 
 # Starlark Standard Library
 
-All qri transforms have access to "starlib", a community-driven project to bring a standard library to the starlark programming dialect. We here at Qri need a standard library, and we thought it might benefit others to structure this library in a reusable way. We are a little biased towards our needs, and will be shaping the library primarily toward's Qri's use case.
+All qri transforms have access to "starlib", a community-driven project to bring a standard library to the starlark programming dialect. Qri needs a standard library, and we thought it might benefit others to structure this library in a reusable way. starlib is admittedly biased towards Qri's needs.
 
 **Comments, Suggestions & Pull Requests welcome: [https://github.com/qri-io/starlib](https://github.com/qri-io/starlib)**
 
@@ -15,11 +15,13 @@ All qri transforms have access to "starlib", a community-driven project to bring
 | package name | description |
 |--------------|-------------|
 {{ range . -}}
-| [{{ .Name }}](#{{.Name}}) | {{ .Description }} |
+{{- $path := .Name }}
+{{- if ne .Path ""  }}{{ $path = .Path }}{{ end -}}
+| [{{ $path }}](#{{.Name}}) | {{ .Description }} |
 {{ end }}
 
 {{ define "mdFn" }}
-#### `{{ .Signature }}`
+#### `{{ .Receiver }}.{{ .Signature }}`
 {{- if ne .Description "" }}
 {{ .Description }}
 {{- end -}}
@@ -38,8 +40,10 @@ All qri transforms have access to "starlib", a community-driven project to bring
 
 
 {{- range . -}}
+{{- $path := .Name }}
+{{- if ne .Path ""  }}{{ $path = .Path }}{{ end -}}
 ** **
-# <a id="{{.Name}}" href="#{{.Name}}">{{ .Name }}</a>
+# <a id="{{.Name}}" href="#{{.Name}}">{{ $path }}</a>
 {{ if ne .Description "" }}{{ .Description }}{{ end }}
 {{- if gt (len .Functions) 0 }}
 ## Functions
