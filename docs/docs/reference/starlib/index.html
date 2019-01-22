@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Starlark Std. Library </title>
+  <title> Starlark: standard library </title>
 
   
   <meta name="description" content="list of all the functions and modules in starlark standard library"> 
@@ -21,7 +21,7 @@
   <meta name="author" content="qri">
 
 
-  <meta property="og:title" content="Starlark Std. Library" />
+  <meta property="og:title" content="Starlark: standard library" />
 <meta property="og:description" content="list of all the functions and modules in starlark standard library" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://qri.io/docs/reference/starlib/" /><meta property="article:published_time" content="2018-12-20T00:00:00-04:00"/>
@@ -119,7 +119,9 @@
             <li class="section"><a href="../../../docs/reference/"><h5>reference</h5></a></li>
             <ul>
               
-                <li class="page"><a href="../../../docs/reference/starlib/">Starlark Std. Library</a></li>
+                <li class="page"><a href="../../../docs/reference/starlib_qri_ds/">Starlark: qri &amp; ds modules</a></li>
+              
+                <li class="page"><a href="../../../docs/reference/starlib/">Starlark: standard library</a></li>
               
                 <li class="page"><a href="../../../docs/reference/cli_commands/">CLI commands</a></li>
               
@@ -132,7 +134,11 @@
             <li class="section"><a href="../../../docs/tutorials/"><h5>tutorials</h5></a></li>
             <ul>
               
+                <li class="page"><a href="../../../docs/tutorials/starlark_examples/">Starlark Examples</a></li>
+              
                 <li class="page"><a href="../../../docs/tutorials/cli_quickstart/">CLI quickstart</a></li>
+              
+                <li class="page"><a href="../../../docs/tutorials/qri_vs_git/">Qri for Git people</a></li>
               
                 <li class="page"><a href="../../../docs/tutorials/starlark_transformations/">Starlark Transformations</a></li>
               
@@ -157,1287 +163,1681 @@
 
 <h1 id="starlark-standard-library">Starlark Standard Library</h1>
 
-<p>All qri transforms have access to &ldquo;starlib&rdquo;, a community-driven project to bring a standard library to the starlark programming dialect. We here at Qri need a standard library, and we thought it might benefit others to structure this library in a reusable way. We are a little biased towards our needs, and will be shaping the library primarily toward&rsquo;s Qri&rsquo;s use case.</p>
+<p>All qri transforms have access to &ldquo;starlib&rdquo;, a community-driven project to bring a standard library to the starlark programming dialect. Qri needs a standard library, and we thought it might benefit others to structure this library in a reusable way. starlib is admittedly biased towards Qri&rsquo;s needs.</p>
 
-<h3 id="qri-and-dataset-modules">qri and dataset modules</h3>
+<p><strong>Comments, Suggestions &amp; Pull Requests welcome: <a href="https://github.com/qri-io/starlib">https://github.com/qri-io/starlib</a></strong></p>
 
-<p>In Qri two &ldquo;nonstandard&rdquo; modules specific to qri are available. these modules are <em>not</em> considered part of the standard library project, and are defined in a <a href="https://github.com/qri-io/startf">different repository</a>. They&rsquo;re described here to keep documentation complete:</p>
-
-<ul>
-<li><a href="#qri_module">qri</a></li>
-<li><a href="#dataset_object">ds or dataset</a></li>
-</ul>
-
-<h3 id="modules">Modules</h3>
-
-<ul>
-<li><a href="#html_module">html</a></li>
-<li><a href="#http_module">http</a></li>
-<li><a href="#math_module">math</a></li>
-<li><a href="#re_module">re</a></li>
-<li><a href="#time_module">time</a></li>
-<li><a href="#xlsx_module">xlsx</a></li>
-<li><a href="#zipfile_module">zipfile</a></li>
-</ul>
-
-<hr />
-
-<p><a id="qri_module"></a></p>
-
-<h2 id="qri-module">qri module</h2>
-
-<p><em>you can access these methods from the <code>qri</code> module, eg <code>qri.get_config()</code></em></p>
-
-<ul>
-<li><a href="#get_config">get_config</a></li>
-<li><a href="#get_secret">get_secret</a></li>
-<li><a href="#list_datasets">list_datasets</a></li>
-<li><a href="#load_dataset_body">load_dataset_body</a></li>
-<li><a href="#load_dataset_head">load_dataset_head</a></li>
-</ul>
-
-<p>To load:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span></code></pre></div>
-<hr />
-
-<h2 id="function-definitions">Function Definitions:</h2>
-
-<p><a id="get_config"></a></p>
-
-<h4 id="get-config">get_config</h4>
-
-<p><code>qri.get_config(key)</code></p>
-
-<p>returns the value of a config variable, declared in the dataset file:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># in the dataset.yaml file:</span><span class="w">
-</span><span class="w"></span>transform<span class="p">:</span><span class="w">
-</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.sky<span class="w">
-</span><span class="w">  </span>config<span class="p">:</span><span class="w">
-</span><span class="w">    </span>key<span class="p">:</span><span class="w"> </span>value</code></pre></div>
-<p><a id="get_secret"></a></p>
-
-<h4 id="get-secret">get_secret</h4>
-
-<p><code>qri.get_secret(key)</code></p>
-
-<p>returns the value of a secrets variable, declared in the dataset file:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># in the dataset.yaml file:</span><span class="w">
-</span><span class="w"></span>transform<span class="p">:</span><span class="w">
-</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.sky<span class="w">
-</span><span class="w">  </span>secrets<span class="p">:</span><span class="w">
-</span><span class="w">    </span>key<span class="p">:</span><span class="w"> </span>value</code></pre></div>
-<p><a id="list_datasets"></a></p>
-
-<h4 id="list-datasets">list_datasets</h4>
-
-<p><code>qri.list_datasets()</code></p>
-
-<p>returns list of datasets references available on your qri node</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">datasets</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">list_datasets</span><span class="p">()</span>
-  <span class="c1">#</span>
-  <span class="c1"># prints a list of string dataset references</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span> 
-  <span class="c1">#</span>
-  <span class="c1"># create a dataset that contains a list of your datasets:</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="load_dataset_body"></a></p>
-
-<h4 id="load-dataset-body">load_dataset_body</h4>
-
-<p><code>qri.load_dataset_body(dataset_referece)</code></p>
-
-<p>returns the body of the specified dataset as a list or dictionary. <a href="../../../docs/concepts/names">Read more about dataset references</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="c1"># let&#39;s say there is a dataset named &#34;2017_billboard_top_100&#34; and a dataset named &#34;2018_billboard_top_100&#34;</span>
-  <span class="c1"># let&#39;s create a dataset of the artists that are on both lists:</span>
-  <span class="n">billboard_2017</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_dataset_body</span><span class="p">(</span><span class="s2">&#34;me/2017_billboard_top_100&#34;</span><span class="p">)</span>
-  <span class="n">billboard_2018</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_dataset_body</span><span class="p">(</span><span class="s2">&#34;me/2018_billboard_top_100&#34;</span><span class="p">)</span>
-  <span class="c1">#</span>
-  <span class="n">artists</span> <span class="o">=</span> <span class="p">[]</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">billboard_2017</span><span class="p">)):</span>
-    <span class="n">artist</span> <span class="o">=</span> <span class="n">billboard_2017</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;artist&#39;</span><span class="p">]</span>
-    <span class="c1">#</span>
-    <span class="c1"># if we&#39;ve already encountered this artist,</span>
-    <span class="c1"># move on to the next one</span>
-    <span class="k">if</span> <span class="n">artist</span> <span class="ow">in</span> <span class="n">artists</span><span class="p">:</span>
-      <span class="k">continue</span>
-    <span class="c1">#</span>
-    <span class="c1"># iterate through billboard_2018, if this artist</span>
-    <span class="c1"># appears there, add it to the list of artists</span>
-    <span class="c1"># and break out of the for loop</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">billboard_2018</span><span class="p">)):</span>
-      <span class="k">if</span> <span class="n">artist</span> <span class="o">==</span> <span class="n">billboard_2018</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;artist&#39;</span><span class="p">]:</span>
-        <span class="n">artists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">artist</span><span class="p">)</span>
-        <span class="k">break</span>
-  <span class="c1">#</span>
-  <span class="c1"># ensure the list is unique</span>
-  <span class="n">artists</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">artists</span><span class="p">))</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_Body</span><span class="p">(</span><span class="n">artists</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="load_dataset_head"></a></p>
-
-<h4 id="load-dataset-head">load_dataset_head</h4>
-
-<p><code>qri.load_dataset_head()</code></p>
-
-<p>loads all the parts of the dataset, except for the body, as a dictionary with all or some of these keys: <code>meta</code>, <code>structure</code>, <code>commit</code>, <code>transform</code>, <code>viz</code>. If the dataset does not contain a transform, for example, then the dataset head dictionary will not contain a <code>transform</code> field.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="c1"># let&#39;s say you want to create a dataset that contains some</span>
-  <span class="c1"># descriptive elements of a previous dataset</span>
-  <span class="c1"># in this case, the meta, the description, and the format</span>
-  <span class="n">head</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_dataset_head</span><span class="p">(</span><span class="s2">&#34;me/previous_dataset&#34;</span><span class="p">)</span>
-  <span class="c1">#</span>
-  <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-  <span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-  <span class="n">format</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-  <span class="c1">#</span>
-  <span class="k">if</span> <span class="s2">&#34;meta&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">:</span>
-    <span class="k">if</span> <span class="s2">&#34;title&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">]:</span>
-      <span class="n">title</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">][</span><span class="s2">&#34;title&#34;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="s2">&#34;description&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">]:</span>
-      <span class="n">description</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;meta&#34;</span><span class="p">][</span><span class="s2">&#34;description&#34;</span><span class="p">]</span>
-  <span class="c1">#</span>
-  <span class="k">if</span> <span class="s2">&#34;structure&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">:</span>
-    <span class="k">if</span> <span class="s2">&#34;format&#34;</span> <span class="ow">in</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;structure&#34;</span><span class="p">]:</span>
-      <span class="n">format</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="s2">&#34;structure&#34;</span><span class="p">][</span><span class="s2">&#34;format&#34;</span><span class="p">]</span>
-  <span class="c1">#</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">({</span><span class="s2">&#34;title&#34;</span><span class="p">:</span><span class="n">title</span><span class="p">,</span> <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span> <span class="s2">&#34;format&#34;</span><span class="p">:</span> <span class="n">format</span><span class="p">})</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<hr />
-
-<p><a id="dataset_object"></a></p>
-
-<h2 id="dataset-object-ds">dataset object - ds</h2>
-
-<p><em>you can access these methods from the <code>dataset</code> object. A dataset object gets passed into and returned from the <code>transform</code> and <code>download</code> functions, usually referred to as <code>ds</code></em></p>
-
-<ul>
-<li><a href="#set_meta">set_meta</a></li>
-<li><a href="#set_schema">set_schema</a></li>
-<li><a href="#get_body">get_body</a></li>
-<li><a href="#set_body">set_body</a><br /></li>
-</ul>
-
-<hr />
-
-<h2 id="function-definitions-1">Function Definitions:</h2>
-
-<p><a id="get_body"></a></p>
-
-<h4 id="get-body">get_body</h4>
-
-<p><code>ds.get_body()</code></p>
-
-<p>returns the body of the current dataset as a list or dictionary</p>
-
-<p><a id="set_body"></a></p>
-
-<h4 id="set-body">set_body</h4>
-
-<p><code>ds.set_body(body, raw)</code></p>
-
-<p><code>body</code> should usually be a list or a dictionary. <code>raw</code> is a boolean value. If true, it expects <code>body</code> to be a string and will store the body as byte data. Returns <code>None</code>.</p>
-
-<p><a id="set_meta"></a></p>
-
-<h4 id="set-meta">set_meta</h4>
-
-<p><code>ds.set_meta(field, value)</code></p>
-
-<p>Sets a specific field of the meta to the value. <code>field</code> and <code>value</code> are both strings. Returns <code>None</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_meta</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">,</span> <span class="s2">&#34;Reference Transform&#34;</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="set_schema"></a></p>
-
-<h4 id="set-schema">set_schema</h4>
-
-<p><code>ds.set_schema(value)</code></p>
-
-<p><code>value</code> is a dictionary written as a <a href="https://json-schema.org/">json schema</a>. Returns <code>None</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;array&#34;</span><span class="p">,</span>
-    <span class="s2">&#34;items&#34;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;array&#34;</span><span class="p">,</span>
-      <span class="s2">&#34;items&#34;</span><span class="p">:</span> <span class="p">[{</span>
-          <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;type of animal&#34;</span><span class="p">,</span>
-          <span class="s2">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Animal&#34;</span><span class="p">,</span>
-          <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span>
-        <span class="p">},</span> <span class="p">{</span>
-          <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;number of legs this animal has&#34;</span><span class="p">,</span>
-          <span class="s2">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Number of Legs&#34;</span><span class="p">,</span>
-          <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;integer&#34;</span>
-        <span class="p">}</span>
-      <span class="p">]</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_schema</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span>
-    <span class="p">[</span><span class="s2">&#34;cat&#34;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-    <span class="p">[</span><span class="s2">&#34;bird&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-    <span class="p">[</span><span class="s2">&#34;snake&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-  <span class="p">])</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<hr />
-
-<p><a id="html_module"></a></p>
-
-<h2 id="html-module">html module</h2>
-
-<p><em>can only be used in the <code>download</code> function. You must use the <code>html</code> function to parse an html response, to get a document  object that you can traverse</em></p>
-
-<p>To load and parse:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-<span class="n">load</span><span class="p">(</span><span class="s2">&#34;http.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;http&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">res</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://some-website.com&#34;</span><span class="p">)</span>
-  <span class="c1"># parses the response body into something that </span>
-  <span class="c1"># can be traversed using a jquery-like syntax</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="p">())</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><em>The following methods can be used on the document object that gets returned by using the <code>html</code> function:</em></p>
-
-<ul>
-<li><a href="#attr">attr</a></li>
-<li><a href="#children">children</a></li>
-<li><a href="#children_filtered">children_filtered</a></li>
-<li><a href="#contents">contents</a></li>
-<li><a href="#eq">eq</a></li>
-<li><a href="#find">find</a></li>
-<li><a href="#first">first</a></li>
-<li><a href="#filter">filter</a></li>
-<li><a href="#get">get</a></li>
-<li><a href="#has">has</a></li>
-<li><a href="#last">last</a></li>
-<li><a href="#len">len</a></li>
-<li><a href="#parent">parent</a></li>
-<li><a href="#parents_until">parents_until</a></li>
-<li><a href="#siblings">siblings</a></li>
-<li><a href="#html_text">text</a></li>
-</ul>
-
-<hr />
-
-<h2 id="function-definitions-2">Function Definitions:</h2>
-
-<p><a id="attr"></a></p>
-
-<h4 id="attr">attr</h4>
-
-<p><code>selection.attr(attribute)</code></p>
-
-<p>Returns a string of the given attribute for that selection in the document. <code>attribute</code> is a string.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;div title=&#34;hello world&#34; class=&#34;example_class_name&#34;&gt;&lt;p&gt;test&lt;/p&gt;&lt;/div&gt;&#39;</span>
-  <span class="c1">#</span>
-  <span class="c1"># find returns a list of elements that match the search string:</span>
-  <span class="n">divs</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">)</span>
-  <span class="c1">#</span>
-  <span class="c1"># get the first element in the list:</span>
-  <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
-  <span class="c1">#</span>
-  <span class="c1"># get the attr with the key &#34;title&#34;</span>
-  <span class="n">attr</span> <span class="o">=</span> <span class="n">div</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span> <span class="c1"># prints &#34;hello world&#34;</span>
-  <span class="c1">#</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="n">attr</span><span class="p">])</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="children"></a></p>
-
-<h4 id="children">children</h4>
-
-<p><code>selection.children()</code></p>
-
-<p>gets the child elements of each element in the Selection. It returns a new Selection object containing these elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># gives you a selection of the body element</span>
-  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
-  <span class="c1"># gives you a selection made up of the children of body</span>
-  <span class="n">children_len</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="nb">len</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">children_len</span><span class="p">)</span> <span class="c1"># prints 4, specifically the 4 p elements</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="children_filtered"></a></p>
-
-<h4 id="children-filtered">children_filtered</h4>
-
-<p><code>selection.children_filtered(filter)</code></p>
-
-<p>gets the child elements of each element in the selection, filtered by the specified by the <code>filter</code> string. It returns a new Selection object containing these elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># find the body element and select it&#39;s two div element children</span>
-  <span class="n">divs</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
-  <span class="c1"># filter the divs to get the 2 p elements with class name &#34;.A&#34;</span>
-  <span class="n">p_as</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">children_filtered</span><span class="p">(</span><span class="s2">&#34;.A&#34;</span><span class="p">)</span> 
-  <span class="k">print</span><span class="p">(</span><span class="n">p_as</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;aa&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="contents"></a></p>
-
-<h4 id="contents">contents</h4>
-
-<p><code>selection.contents()</code></p>
-
-<p>gets the children of each element in the Selection, including text and comment nodes. It returns a new Selection object containing these elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get the body</span>
-  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">contents</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;2&#34;, the 2 div elements</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;abcd&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="eq"></a></p>
-
-<h4 id="eq">eq</h4>
-
-<p><code>selection.eq(index)</code></p>
-
-<p>returns node i as a new selection</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1">#</span>
-  <span class="c1"># get the body</span>
-  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;4&#34;, the 4 p elements</span>
-  <span class="c1">#</span>
-  <span class="c1"># create list of the text in each element:</span>
-  <span class="n">texts</span> <span class="o">=</span> <span class="p">[]</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">()):</span>
-    <span class="c1"># use `eq` function to access each node</span>
-    <span class="n">texts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span> <span class="c1"># prints [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;, &#34;d&#34;]</span>
-  <span class="c1">#</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="find"></a></p>
-
-<h4 id="find">find</h4>
-
-<p><code>selection.find(selector)</code></p>
-
-<p>gets the descendants of each element in the current set of matched elements, filtered by a given <code>selector</code> string. It returns a new Selection containing these matched elements.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get the elements with the class &#34;.B&#34;</span>
-  <span class="n">p_Bs</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;.B&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;2&#34;, the 2 p elements with class &#34;.B&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;bb&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="first"></a></p>
-
-<h4 id="first">first</h4>
-
-<p><code>selection.first()</code></p>
-
-<p>returns the first element of the selection as a new selection</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get the body</span>
-  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
-  <span class="c1"># get the children of the body, in this case 2 divs</span>
-  <span class="n">divs</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
-  <span class="c1"># get the first div</span>
-  <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">div</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;ab&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="filter"></a></p>
-
-<h4 id="filter">filter</h4>
-
-<p><code>selection.filter(selector)</code></p>
-
-<p>reduces the set of matched elements to those that match the <code>selector</code> string. It returns a new Selection object for this subset of matching elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get a list of all the p tags</span>
-  <span class="n">ps</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">ps</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;4&#34;, the 4 p elements</span>
-  <span class="c1"># filter ps to find elements with class &#34;.B&#34;</span>
-  <span class="n">p_Bs</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="s2">&#34;.B&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;2&#34;, the 2 p elements with class &#34;.B&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;bb&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="has"></a></p>
-
-<h4 id="has">has</h4>
-
-<p><code>selection.has()</code></p>
-
-<p>reduces the set of matched elements to those that have a descendant that matches the <code>selector</code> string. It returns a new Selection object with the matching elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get body element</span>
-  <span class="n">divs</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
-  <span class="c1"># get div that has a child with class &#34;.A&#34;</span>
-  <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">has</span><span class="p">(</span><span class="s2">&#34;.A&#34;</span><span class="p">)</span>
-  <span class="n">ps</span> <span class="o">=</span> <span class="n">div</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">ps</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;ab&#34;, 2 p elements that exist in the div element</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="last"></a></p>
-
-<h4 id="last">last</h4>
-
-<p><code>selection.last()</code></p>
-
-<p>returns the last element of the selection as a new selection</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get the body</span>
-  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
-  <span class="c1"># get the children of the body, in this case 2 divs</span>
-  <span class="n">divs</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
-  <span class="c1"># get the first div</span>
-  <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">last</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">div</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;cd&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="len"></a></p>
-
-<h4 id="len">len</h4>
-
-<p><code>selection.len()</code></p>
-
-<p>returns the length of the nodes in the selection as an integer</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get the body</span>
-  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;4&#34;, the 4 p elements</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="parent}"></a></p>
-
-<h4 id="parent">parent</h4>
-
-<p><code>selection.parent()</code></p>
-
-<p>gets the parent of each element in the Selection. It returns a new Selection object containing the matched elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div title=&#34;hi&#34;&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># select p elements</span>
-  <span class="n">ps</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">)</span>
-  <span class="c1"># get parents of p elements, in this case 2 divs</span>
-  <span class="n">divs</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">divs</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># 2 div parent elements</span>
-  <span class="n">title</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="parents_until"></a></p>
-
-<h4 id="parents-until">parents_until</h4>
-
-<p><code>selection.parents_until(selector)</code></p>
-
-<p>gets the ancestors of each element in the Selection, up to but not including the element matched by the <code>selector</code> string. It returns a new Selection object containing the matched elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div title=&#34;hi&#34;&gt;&lt;span title=&#34;bye&#34;&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;&lt;div title=&#34;woo&#34;&gt;&lt;span title=&#34;weee&#34;&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># select p elements</span>
-  <span class="n">ps</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">)</span>
-  <span class="c1"># get all parents of the p elements, but doesn&#39;t include the body element</span>
-  <span class="n">parents</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">parents_until</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># 4 div parent elements</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;bye&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;hi&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;weee&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;woo&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="siblings"></a></p>
-
-<h4 id="siblings">siblings</h4>
-
-<p><code>selection.siblings()</code></p>
-
-<p>gets the siblings of each element in the Selection. It returns a new Selection object containing the matched elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># select elements with class &#34;.A&#34;</span>
-  <span class="n">a</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;.A&#34;</span><span class="p">)</span>
-  <span class="c1"># get all parents of the p elements, but doesn&#39;t include the body element</span>
-  <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">siblings</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;1&#34;, the p element with class &#34;.B&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;b&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="html_text"></a></p>
-
-<h4 id="text">text</h4>
-
-<p><code>text()</code></p>
-
-<p>gets the combined text contents of each element in the set of matched elements, including their descendants</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="n">a</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="c1"># prints &#34;abcd&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<hr />
-
-<p><a id="http_module"></a></p>
-
-<h2 id="http-module">http module</h2>
-
-<p><em>you can access these methods from the <code>http</code> module</em></p>
-
-<ul>
-<li><a href="#delete">http.delete</a></li>
-<li><a href="#http.get">http.get</a></li>
-<li><a href="#options">http.options</a></li>
-<li><a href="#patch">http.patch</a></li>
-<li><a href="#post">http.post</a></li>
-<li><a href="#put">http.put</a></li>
-</ul>
-
-<h5 id="response-object">response object</h5>
-
-<p><em>you can access these methods from a response object</em></p>
-
-<ul>
-<li><a href="#content">content</a></li>
-<li><a href="#encoding">encoding</a></li>
-<li><a href="#headers">headers</a></li>
-<li><a href="#json">json</a></li>
-<li><a href="#status_code">status_code</a></li>
-<li><a href="#text">text</a></li>
-<li><a href="#url">url</a></li>
-</ul>
-
-<hr />
-
-<h2 id="function-definitions-3">Function Definitions:</h2>
-
-<p><a id="delete"></a></p>
-
-<h4 id="delete">delete</h4>
-
-<p><code>http.delete(url, params, headers, data, jsondata, auth)</code></p>
-
-<p>sends a DELETE request to the given url. Returns a response.</p>
+<h3 id="contents">Contents</h3>
 
 <table>
 <thead>
 <tr>
-<th>param</th>
-<th>type</th>
-<th>optional?</th>
+<th>package name</th>
+<th>description</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>url</td>
-<td>string url</td>
-<td>no</td>
+<td><a href="#base64">encoding/base64</a></td>
+<td>base64 defines base64 encoding &amp; decoding functions, often used to represent binary as text.</td>
 </tr>
 
 <tr>
-<td>params</td>
-<td>dictionary of param names to param values</td>
-<td>yes</td>
+<td><a href="#csv">encoding/csv</a></td>
+<td>csv reads comma-separated values files</td>
 </tr>
 
 <tr>
-<td>headers</td>
-<td>dictionary of header names to header values</td>
-<td>yes</td>
+<td><a href="#geo">geo</a></td>
+<td>geo defines geographic operations in two-dimensional space</td>
 </tr>
 
 <tr>
-<td>data</td>
-<td>dictionary</td>
-<td>yes</td>
+<td><a href="#html">html</a></td>
+<td>html defines a jquery-like html selection &amp; iteration functions for HTML documents</td>
 </tr>
 
 <tr>
-<td>jsondata</td>
-<td>dictionary or list</td>
-<td>yes</td>
+<td><a href="#http">http</a></td>
+<td>http defines an HTTP client implementation</td>
 </tr>
 
 <tr>
-<td>auth</td>
-<td>string</td>
-<td>yes</td>
-</tr>
-</tbody>
-</table>
-
-<p><a id="get"></a></p>
-
-<h4 id="get">get</h4>
-
-<p><code>http.get(url, params, headers, data, jsondata, auth)</code></p>
-
-<p>sends a GET request to the given url. Returns a response.</p>
-
-<table>
-<thead>
-<tr>
-<th>param</th>
-<th>type</th>
-<th>optional?</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>url</td>
-<td>string url</td>
-<td>no</td>
+<td><a href="#math">math</a></td>
+<td>math defines mathimatical functions, it&rsquo;s intented to be a drop-in subset of python&rsquo;s math module for starlark: <a href="https://docs.python.org/3/library/math.html">https://docs.python.org/3/library/math.html</a></td>
 </tr>
 
 <tr>
-<td>params</td>
-<td>dictionary of param names to param values</td>
-<td>yes</td>
+<td><a href="#re">re</a></td>
+<td>re defines regular expression functions, it&rsquo;s intented to be a drop-in subset of python&rsquo;s re module for starlark: <a href="https://docs.python.org/3/library/re.html">https://docs.python.org/3/library/re.html</a></td>
 </tr>
 
 <tr>
-<td>headers</td>
-<td>dictionary of header names to header values</td>
-<td>yes</td>
+<td><a href="#time">time</a></td>
+<td>time defines time primitives for starlark</td>
 </tr>
 
 <tr>
-<td>data</td>
-<td>dictionary</td>
-<td>yes</td>
+<td><a href="#xlsx">xlsx</a></td>
+<td>xlsx implements excel file readers in starlark. currently a highly-experimental package that will definitely change at some point in the future</td>
 </tr>
 
 <tr>
-<td>jsondata</td>
-<td>dictionary or list</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>auth</td>
-<td>string</td>
-<td>yes</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;http.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;http&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">res</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://www.fake-json-response-endpoint.com&#34;</span><span class="p">)</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="options"></a></p>
-
-<h4 id="options">options</h4>
-
-<p><code>http.options(url, params, headers, data, jsondata, auth)</code></p>
-
-<p>Sends an OPTIONS request to the given url. Returns a response.</p>
-
-<table>
-<thead>
-<tr>
-<th>param</th>
-<th>type</th>
-<th>optional?</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>url</td>
-<td>string url</td>
-<td>no</td>
-</tr>
-
-<tr>
-<td>params</td>
-<td>dictionary of param names to param values</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>headers</td>
-<td>dictionary of header names to header values</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>data</td>
-<td>dictionary</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>jsondata</td>
-<td>dictionary or list</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>auth</td>
-<td>string</td>
-<td>yes</td>
-</tr>
-</tbody>
-</table>
-
-<p><a id="patch"></a></p>
-
-<h4 id="patch">patch</h4>
-
-<p><code>http.patch(url, params, headers, data, jsondata, auth)</code></p>
-
-<p>Sends a PATCH request to the given url. Returns a response.</p>
-
-<table>
-<thead>
-<tr>
-<th>param</th>
-<th>type</th>
-<th>optional?</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>url</td>
-<td>string url</td>
-<td>no</td>
-</tr>
-
-<tr>
-<td>params</td>
-<td>dictionary of param names to param values</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>headers</td>
-<td>dictionary of header names to header values</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>data</td>
-<td>dictionary</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>jsondata</td>
-<td>dictionary or list</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>auth</td>
-<td>string</td>
-<td>yes</td>
-</tr>
-</tbody>
-</table>
-
-<p><a id="post"></a></p>
-
-<h4 id="post">post</h4>
-
-<p><code>http.post(url, params, headers, data, jsondata, auth)</code></p>
-
-<p>Sends a POST request to the given url. Returns a response.</p>
-
-<table>
-<thead>
-<tr>
-<th>param</th>
-<th>type</th>
-<th>optional?</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>url</td>
-<td>string url</td>
-<td>no</td>
-</tr>
-
-<tr>
-<td>params</td>
-<td>dictionary of param names to param values</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>headers</td>
-<td>dictionary of header names to header values</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>data</td>
-<td>dictionary</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>jsondata</td>
-<td>dictionary or list</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>auth</td>
-<td>string</td>
-<td>yes</td>
-</tr>
-</tbody>
-</table>
-
-<p><a id="put"></a></p>
-
-<h4 id="put">put</h4>
-
-<p><code>http.put(url, params, headers, data, jsondata, auth)</code></p>
-
-<p>Sends a PUT request to the given url. Returns a response.</p>
-
-<table>
-<thead>
-<tr>
-<th>param</th>
-<th>type</th>
-<th>optional?</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>url</td>
-<td>string url</td>
-<td>no</td>
-</tr>
-
-<tr>
-<td>params</td>
-<td>dictionary of param names to param values</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>headers</td>
-<td>dictionary of header names to header values</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>data</td>
-<td>dictionary</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>jsondata</td>
-<td>dictionary or list</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>auth</td>
-<td>string</td>
-<td>yes</td>
+<td><a href="#zipfile">zipfile</a></td>
+<td>zipfile reads &amp; parses zip archives</td>
 </tr>
 </tbody>
 </table>
 
 <hr />
 
-<h2 id="response">response</h2>
+<h1 id="a-id-base64-href-base64-encoding-base64-a"><a id="base64" href="#base64">encoding/base64</a></h1>
 
-<p><a id="content"></a></p>
+<p>base64 defines base64 encoding &amp; decoding functions, often used to represent binary as text.</p>
 
-<h4 id="content">content</h4>
+<h2 id="functions">Functions</h2>
 
-<p><code>response.content()</code></p>
+<h4 id="base64-decode-src-encoding-standard-string"><code>base64.decode(src,encoding=&quot;standard&quot;) string</code></h4>
 
-<p>returns the raw data as a string. This string can be passed to <code>html(content_string)</code> to return a document that can be parsed by the <code>html</code> functions.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;http.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;http&#34;</span><span class="p">)</span>
-<span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+<p>parse base64 input, giving back the plain string representation</p>
 
-<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">res</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://some-website-to-get-html.com&#34;</span><span class="p">)</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="p">())</span>
-  <span class="c1"># do stuff here with html document</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">(</span><span class="n">some_data</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="encoding"></a></p>
+<p><strong>parameters:</strong></p>
 
-<h4 id="encoding">encoding</h4>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
 
-<p><code>response.encoding</code></p>
+<tbody>
+<tr>
+<td><code>src</code></td>
+<td><code>string</code></td>
+<td>source string of base64-encoded text</td>
+</tr>
 
-<p>a string, the different forms of encoding used in the response.</p>
+<tr>
+<td><code>encoding</code></td>
+<td><code>string</code></td>
+<td>optional. string to set decoding dialect. allowed values are: standard,standard_raw,url,url_raw</td>
+</tr>
+</tbody>
+</table>
 
-<p><a id="headers"></a></p>
+<p><br /></p>
 
-<h4 id="headers">headers</h4>
+<h4 id="base64-encode-src-encoding-standard-string"><code>base64.encode(src,encoding=&quot;standard&quot;) string</code></h4>
 
-<p><code>response.headers</code></p>
+<p>return the base64 encoding of src</p>
 
-<p>a dictionary of the response headers.</p>
+<p><strong>parameters:</strong></p>
 
-<p><a id="json"></a></p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
 
-<h4 id="json">json</h4>
+<tbody>
+<tr>
+<td><code>src</code></td>
+<td><code>string</code></td>
+<td>source string to encode to base64</td>
+</tr>
 
-<p><code>response.json()</code></p>
+<tr>
+<td><code>encoding</code></td>
+<td><code>string</code></td>
+<td>optional. string to set encoding dialect. allowed values are: standard,standard_raw,url,url_raw</td>
+</tr>
+</tbody>
+</table>
 
-<p>attempts the response body as json.</p>
-
-<p><a id="status_code"></a></p>
-
-<h4 id="status-code">status_code</h4>
-
-<p><code>response.status_code</code></p>
-
-<p>an integer, the status code of the response.</p>
-
-<p><a id="text"></a></p>
-
-<h4 id="text-1">text</h4>
-
-<p><code>response.text()</code></p>
-
-<p>returns the raw data as a string. This string can be passed to <code>html(text)</code> to return a document that can be parsed by the <code>html</code> functions.</p>
-
-<p><a id="url"></a></p>
-
-<h4 id="url">url</h4>
-
-<p><code>response.url</code></p>
-
-<p>a string representation of the url</p>
-
-<hr />
-
-<p><a id="math_module"></a></p>
-
-<h2 id="math-module">math module</h2>
-
-<p><em>docs coming soon. In the meantime see <a href="https://godoc.org/github.com/qri-io/starlib/math">https://godoc.org/github.com/qri-io/starlib/math</a></em></p>
-
-<p><a id="re_module"></a></p>
-
-<h2 id="re-module">re module</h2>
-
-<p><em>docs coming soon. In the meantime see <a href="https://godoc.org/github.com/qri-io/starlib/re">https://godoc.org/github.com/qri-io/starlib/re</a></em></p>
-
-<p><a id="time_module"></a></p>
-
-<h2 id="time-module">time module</h2>
-
-<p><em>you can access these methods from the <code>time</code> module:</em></p>
-
-<ul>
-<li><a href="#time">time.time</a></li>
-<li><a href="#duration">time.duration</a><br /></li>
-<li><a href="#location">time.location</a><br /></li>
-<li><a href="#now">time.now</a><br /></li>
-</ul>
-
-<h5 id="time-object">time object</h5>
-
-<p><em>you can access these methods from a <code>time</code> object:</em></p>
-
-<ul>
-<li><a href="#year">year</a><br /></li>
-<li><a href="#month">month</a><br /></li>
-<li><a href="#day">day</a><br /></li>
-<li><a href="#hour">hour</a><br /></li>
-<li><a href="#minute">minute</a><br /></li>
-<li><a href="#second">second</a><br /></li>
-<li><a href="#nanosecond">nanosecond</a><br /></li>
-</ul>
+<p><br /></p>
 
 <hr />
 
-<h2 id="function-definitions-4">Function Definitions:</h2>
+<h1 id="a-id-csv-href-csv-encoding-csv-a"><a id="csv" href="#csv">encoding/csv</a></h1>
 
-<p><a id="time"></a></p>
+<p>csv reads comma-separated values files</p>
 
-<h4 id="time">time</h4>
+<h2 id="functions-1">Functions</h2>
 
-<p><code>time.time(time_string, format_string, location_string)</code></p>
+<h4 id="csv-read-all-source-comma-comment-lazy-quotes-false-trim-leading-space-false-fields-per-record-0-skip-0-string"><code>csv.read_all(source, comma=&quot;,&quot;, comment=&quot;&quot;, lazy_quotes=False, trim_leading_space=False, fields_per_record=0, skip=0) [][]string</code></h4>
 
-<p>converts a time string, that is in format to a time object. Returns a time object. If no format or location are given, it assumes you mean to to use RFC3339: &ldquo;2006-01-02T15:04:05Z07:00&rdquo;. To learn more about format strings checkout to <a href="https://golang.org/src/time/format.go">time/format</a> golang page, or this <a href="https://flaviocopes.com/go-date-time-format/">helpful blog post</a> from flaviocopes</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
+<p>read all rows from a source string, returning a list of string lists</p>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="c1"># an example with no format or location string</span>
-  <span class="n">time_string</span> <span class="o">=</span> <span class="s2">&#34;2018-10-31T00:00:00Z&#34;</span>
-  <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">time_string</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">month</span><span class="p">())</span> <span class="c1"># prints 10</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">day</span><span class="p">())</span> <span class="c1"># prints 31</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">year</span><span class="p">())</span> <span class="c1"># prints 2018</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
+<p><strong>parameters:</strong></p>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="c1"># an example with a format and location string:</span>
-  <span class="c1"># basically, as long as you use the data</span>
-  <span class="c1"># Mon Jan 2 15:04:05 -0700 MST 2006 as a reference, you are good</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">location</span><span class="p">(</span><span class="s2">&#34;America/New_York&#34;</span><span class="p">))</span>
-  <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="s2">&#34;November 15, 2018&#34;</span><span class="p">,</span> <span class="s2">&#34;January 2, 2006&#34;</span><span class="p">,</span> <span class="s2">&#34;America/New_York&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">month</span><span class="p">())</span> <span class="c1"># prints 11</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">day</span><span class="p">())</span> <span class="c1"># prints 15</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">year</span><span class="p">())</span> <span class="c1"># prints 2018</span>
-  <span class="k">return</span> <span class="n">ds</span> </code></pre></div>
-<p><a id="duration"></a></p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
 
-<h4 id="duration">duration</h4>
+<tbody>
+<tr>
+<td><code>source</code></td>
+<td><code>string</code></td>
+<td>input string of csv data</td>
+</tr>
 
-<p><code>time.duration(duration_string)</code></p>
+<tr>
+<td><code>comma</code></td>
+<td><code>string</code></td>
+<td>comma is the field delimiter, defaults to &ldquo;,&rdquo; (a comma). comma must be a valid character and must not be \r, \n, or the Unicode replacement character (0xFFFD).</td>
+</tr>
 
-<p>converts a string in &lsquo;00h0m0s&rsquo; format to a duration object, returns a duration.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
+<tr>
+<td><code>comment</code></td>
+<td><code>string</code></td>
+<td>comment, if not &ldquo;&rdquo;, is the comment character. Lines beginning with the comment character without preceding whitespace are ignored. With leading whitespace the comment character becomes part of the field, even if trim_leading_space is True. comment must be a valid character and must not be \r, \n, or the Unicode replacement character (0xFFFD). It must also not be equal to comma.</td>
+</tr>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">duration_1_str</span> <span class="o">=</span> <span class="s2">&#34;450h79m300s&#34;</span>
-  <span class="n">duration_2_str</span> <span class="o">=</span> <span class="s2">&#34;0h0m1s&#34;</span>
-  <span class="c1">#</span>
-  <span class="n">d1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">duration</span><span class="p">(</span><span class="n">duration_1_str</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span> <span class="c1"># prints &#34;451h24m0s&#34;, notice how it parsed the string and converted 300 seconds into 5 min, and 79 + 5 min into 1hr 24 min</span>
-  <span class="c1">#</span>
-  <span class="n">d2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">duration</span><span class="p">(</span><span class="n">duration_2_str</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span> <span class="c1"># prints &#34;1s&#34;</span>
-  <span class="c1">#</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">d1</span> <span class="o">+</span> <span class="n">d2</span><span class="p">)</span> <span class="c1"># prints &#34;451h24m1s&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">d1</span>
+<tr>
+<td><code>lazy_quotes</code></td>
+<td><code>bool</code></td>
+<td>If lazy_quotes is True, a quote may appear in an unquoted field and a non-doubled quote may appear in a quoted field.</td>
+</tr>
 
-  <span class="n">d2</span><span class="p">)</span> <span class="c1"># prints &#34;451h23m59s&#34;</span>
-  <span class="c1">#</span>
-  <span class="c1"># create another duration, same length as d2</span>
-  <span class="c1">#</span>
-  <span class="n">d3</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">duration</span><span class="p">(</span><span class="n">duration_2_str</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span> <span class="n">d2</span> <span class="o">==</span> <span class="n">d3</span> <span class="p">)</span> <span class="c1"># prints true</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p>You also get a duration when you subtract two times:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
+<tr>
+<td><code>trim_leading_space</code></td>
+<td><code>bool</code></td>
+<td>If trim_leading_space is True, leading white space in a field is ignored. This is done even if the field delimiter, comma, is white space.</td>
+</tr>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">oct_1</span> <span class="o">=</span> <span class="s2">&#34;2018-10-01T00:00:00Z&#34;</span>
-  <span class="n">halloween</span> <span class="o">=</span> <span class="s2">&#34;2018-10-31T00:00:00Z&#34;</span>
-  <span class="n">f</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">oct_1</span><span class="p">)</span>
-  <span class="n">h</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">halloween</span><span class="p">)</span>
-  <span class="n">duration</span> <span class="o">=</span> <span class="n">h</span>
+<tr>
+<td><code>fields_per_record</code></td>
+<td><code>int</code></td>
+<td>fields_per_record is the number of expected fields per record. If fields_per_record is positive, read_all requires each record to have the given number of fields. If fields_per_record is 0, read_all sets it to the number of fields in the first record, so that future records must have the same field count. If fields_per_record is negative, no check is made and records may have a variable number of fields.</td>
+</tr>
 
-  <span class="n">f</span> <span class="c1"># subtracting two time values gives you a duration</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span> <span class="c1"># prints &#34;720h0m0s&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="location"></a></p>
+<tr>
+<td><code>skip</code></td>
+<td><code>int</code></td>
+<td>number of rows to skip, omitting from returned rows</td>
+</tr>
+</tbody>
+</table>
 
-<h4 id="location">location</h4>
-
-<p><code>time.location(location_string)</code></p>
-
-<p>loads location based on string. Empty string returns &ldquo;UTC&rdquo;</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">loc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">location</span><span class="p">(</span><span class="s2">&#34;EST&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span> <span class="c1"># returns &#34;EST&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="now"></a></p>
-
-<h4 id="now">now</h4>
-
-<p><code>time.now()</code></p>
-
-<p>returns the current time</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">now</span><span class="p">)</span> <span class="c1"># returns current time</span>
-  <span class="c1">#</span>
-  <span class="c1"># print date in MM/DD/YYYY format:</span>
-  <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">month</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&#34;/&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">day</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&#34;/&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">year</span><span class="p">()))</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="year"></a></p>
-
-<h4 id="year">year</h4>
-
-<p><code>t.year()</code></p>
-
-<p>returns year as int</p>
-
-<p><a id="month"></a></p>
-
-<h4 id="month">month</h4>
-
-<p><code>t.month()</code></p>
-
-<p>returns month as int</p>
-
-<p><a id="day"></a></p>
-
-<h4 id="day">day</h4>
-
-<p><code>t.day()</code></p>
-
-<p>returns day as int</p>
-
-<p><a id="hour"></a></p>
-
-<h4 id="hour">hour</h4>
-
-<p><code>t.hour()</code></p>
-
-<p>returns hour as int</p>
-
-<p><a id="minute"></a></p>
-
-<h4 id="minute">minute</h4>
-
-<p><code>t.minute()</code></p>
-
-<p>returns minute as int</p>
-
-<p><a id="second"></a></p>
-
-<h4 id="second">second</h4>
-
-<p><code>t.second()</code></p>
-
-<p>returns second as int</p>
-
-<p><a id="nanosecond"></a></p>
-
-<h4 id="nanosecond">nanosecond</h4>
-
-<p><code>t.nanosecond()</code></p>
-
-<p>returns nanosecond as int</p>
+<p><br /></p>
 
 <hr />
 
-<p><a id="xlsx_module"></a></p>
+<h1 id="a-id-geo-href-geo-geo-a"><a id="geo" href="#geo">geo</a></h1>
 
-<h2 id="xlsx-module">xlsx module</h2>
+<p>geo defines geographic operations in two-dimensional space</p>
 
-<p><em>you can access these methods from the <code>xlsx</code> module. <code>xlsx</code> can only be used in the <code>download</code> function:</em></p>
+<h2 id="functions-2">Functions</h2>
 
-<ul>
-<li><a href="#get_url">xlsx.get_url</a></li>
-<li><a href="#get_sheets">get_sheets</a></li>
-<li><a href="#get_rows">get_rows</a></li>
-</ul>
+<h4 id="geo-line-points-line"><code>geo.Line(points) Line</code></h4>
+
+<p>Line constructor. Takes either an array of coordinate pairs or an array of point objects and returns the line that connects them. Points do not need to be collinear, providing a single point returns a line with a length of 0</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>points</code></td>
+<td>`[[]float</td>
+<td>Point]`</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="geo-multipolygon-polygons-multipolygon"><code>geo.MultiPolygon(polygons) MultiPolygon</code></h4>
+
+<p>MultiPolygon constructor. MultiPolygon groups a list of polygons to behave like a single polygon</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>polygons</code></td>
+<td><code>[Polygon]</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="geo-point-x-y-point"><code>geo.Point(x,y) Point</code></h4>
+
+<p>Point constructor, takes an x(longitude) and y(latitude) value and returns a Point object</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>x</code></td>
+<td><code>float</code></td>
+<td>x-dimension value (longitude if using geodesic space)</td>
+</tr>
+
+<tr>
+<td><code>y</code></td>
+<td><code>float</code></td>
+<td>y-dimension value (latitude if using geodesic space)</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="geo-polygon-rings-polygon"><code>geo.Polygon(rings) Polygon</code></h4>
+
+<p>Polygon constructor. Takes a list of lists of coordinate pairs (or point objects) that define the outer boundary and any holes / inner boundaries that represent a polygon. In GIS tradition, lists of coordinates that wind clockwise are filled regions and  anti-clockwise represent holes.</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>rings</code></td>
+<td><code>[Line]</code></td>
+<td>list of closed lines that constitute the polygon</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="geo-parsegeojson-data-geoms-properties"><code>geo.parseGeoJSON(data) (geoms, properties)</code></h4>
+
+<p>Parses string data in IETF-7946 format (<a href="https://tools.ietf.org/html/rfc7946">https://tools.ietf.org/html/rfc7946</a>) returning a list of geometries and equal-length list of properties for each geometry</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td>string of GeoJSON data</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="geo-within-geom-polygon-bool"><code>geo.within(geom,polygon) bool</code></h4>
+
+<p>Returns True if geom is entirely contained by polygon</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>geom</code></td>
+<td><code>[point,line,polygon]</code></td>
+<td>maybe-inner geometry</td>
+</tr>
+
+<tr>
+<td><code>polygon</code></td>
+<td><code>[Polygon,MultiPolygon]</code></td>
+<td>maybe-outer polygon</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="types">Types</h2>
+
+<h3 id="line"><code>Line</code></h3>
+
+<p>an ordered list of points that define a line
+<strong>Methods</strong></p>
+
+<h4 id="line-length-float"><code>Line.length() float</code></h4>
+
+<p>Euclidian Length</p>
+
+<h4 id="line-geodesiclength-float"><code>Line.geodesicLength() float</code></h4>
+
+<p>Line length on the surface of a sphere with the same radius as Earth</p>
+
+<h3 id="multipolygon"><code>MultiPolygon</code></h3>
+
+<p>MultiPolygon groups a list of polygons to behave like a single polygon### <code>Point</code>
+a two-dimensional point in space
+<strong>Methods</strong></p>
+
+<h4 id="point-distance-p2-float"><code>Point.distance(p2) float</code></h4>
+
+<p>Euclidian Distance to the other point</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>p2</code></td>
+<td>``</td>
+<td>point to measure distance to</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="point-distancegeodesic-p2-float"><code>Point.distanceGeodesic(p2) float</code></h4>
+
+<p>Distance on the surface of a sphere with the same radius as Earth</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>p2</code></td>
+<td><code>point</code></td>
+<td>point to measure distance to</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="polygon"><code>Polygon</code></h3>
+
+<p>an ordered list of closed lines (rings) that define a shape. lists of coordinates that wind clockwise are filled regions and  anti-clockwise represent holes.** **</p>
+
+<h1 id="a-id-html-href-html-html-a"><a id="html" href="#html">html</a></h1>
+
+<p>html defines a jquery-like html selection &amp; iteration functions for HTML documents</p>
+
+<h2 id="functions-3">Functions</h2>
+
+<h4 id="html-html-markup-selection"><code>html.html(markup) selection</code></h4>
+
+<p>parse an html document returing a selection at the root of the document</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>markup</code></td>
+<td><code>string</code></td>
+<td>html text to build a document from</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="types-1">Types</h2>
+
+<h3 id="selection"><code>selection</code></h3>
+
+<p>an HTML document for querying
+<strong>Methods</strong></p>
+
+<h4 id="selection-attr-name-string"><code>selection.attr(name) string</code></h4>
+
+<p>gets the specified attribute&rsquo;s value for the first element in the Selection. To get the value for each element individually, use a looping construct such as each or map method</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>attribute name to get the value of</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="selection-children-selection"><code>selection.children() selection</code></h4>
+
+<p>gets the child elements of each element in the Selection</p>
+
+<h4 id="selection-children-filtered-selector-selection"><code>selection.children_filtered(selector) selection</code></h4>
+
+<p>gets the child elements of each element in the Selection, filtered by the specified selector</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>selector</code></td>
+<td><code>string</code></td>
+<td>a query selector string to filter the current selection, returning a new selection</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="selection-contents-selector-selection"><code>selection.contents(selector) selection</code></h4>
+
+<p>gets the children of each element in the Selection, including text and comment nodes</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>selector</code></td>
+<td><code>string</code></td>
+<td>a query selector string to filter the current selection, returning a new selection</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="selection-find-selector-selection"><code>selection.find(selector) selection</code></h4>
+
+<p>gets the descendants of each element in the current set of matched elements, filtered by a selector</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>selector</code></td>
+<td><code>string</code></td>
+<td>a query selector string to filter the current selection, returning a new selection</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="selection-filter-selector-selection"><code>selection.filter(selector) selection</code></h4>
+
+<p>filter reduces the set of matched elements to those that match the selector string</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>selector</code></td>
+<td><code>string</code></td>
+<td>a query selector string to filter the current selection, returning a new selection</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="selection-get-i-selection"><code>selection.get(i) selection</code></h4>
+
+<p>retrieves the underlying node at the specified index. alias: eq</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>i</code></td>
+<td><code>int</code></td>
+<td>numerical index of node to get</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="selection-has-selector-selection"><code>selection.has(selector) selection</code></h4>
+
+<p>reduces the set of matched elements to those that have a descendant that matches the selector</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>selector</code></td>
+<td><code>string</code></td>
+<td>a query selector string to filter the current selection, returning a new selection</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="selection-parent-selector-selection"><code>selection.parent(selector) selection</code></h4>
+
+<p>gets the parent of each element in the Selection</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>selector</code></td>
+<td><code>string</code></td>
+<td>a query selector string to filter the current selection, returning a new selection</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="selection-parents-until-selector-selection"><code>selection.parents_until(selector) selection</code></h4>
+
+<p>gets the ancestors of each element in the Selection, up to but not including the element matched by the selector</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>selector</code></td>
+<td><code>string</code></td>
+<td>a query selector string to filter the current selection, returning a new selection</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="selection-siblings-selection"><code>selection.siblings() selection</code></h4>
+
+<p>gets the siblings of each element in the Selection</p>
+
+<h4 id="selection-text-string"><code>selection.text() string</code></h4>
+
+<p>gets the combined text contents of each element in the set of matched elements, including descendants</p>
+
+<h4 id="selection-first-selector-selection"><code>selection.first(selector) selection</code></h4>
+
+<p>gets the first element of the selection</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>selector</code></td>
+<td><code>string</code></td>
+<td>a query selector string to filter the current selection, returning a new selection</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="selection-last-selection"><code>selection.last() selection</code></h4>
+
+<p>gets the last element of the selection</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>selector</code></td>
+<td><code>string</code></td>
+<td>a query selector string to filter the current selection, returning a new selection</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="selection-len-int"><code>selection.len() int</code></h4>
+
+<p>returns the number of the nodes in the selection</p>
+
+<h4 id="selection-eq-i-selection"><code>selection.eq(i) selection</code></h4>
+
+<p>gets the element at index i of the selection</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>i</code></td>
+<td><code>int</code></td>
+<td>numerical index of node to get</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
 
 <hr />
 
-<h2 id="function-definitions-5">Function Definitions:</h2>
+<h1 id="a-id-http-href-http-http-a"><a id="http" href="#http">http</a></h1>
 
-<p><a id="get_url"></a></p>
+<p>http defines an HTTP client implementation</p>
 
-<h4 id="xlsx-get-url">xlsx.get_url</h4>
+<h2 id="functions-4">Functions</h2>
 
-<p><code>xlsx.get_url(url)</code></p>
+<h4 id="http-delete-url-params-headers-body-form-body-json-body-auth-response"><code>http.delete(url,params={},headers={},body=&quot;&quot;,form_body={},json_body={},auth=()) response</code></h4>
 
-<p>makes a get request of the url, attempts to return the body as a xlsx file. Can only be used in the <code>download</code> function</p>
+<p>perform an HTTP DELETE request, returning a response</p>
 
-<p>This example shows how to use <code>get_url</code>, <code>get_sheets</code>, and <code>get_rows</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;xlsx.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;xlsx&#34;</span><span class="p">)</span>
+<p><strong>parameters:</strong></p>
 
-<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">data</span> <span class="o">=</span> <span class="n">xlsx</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s2">&#34;https://www.ntia.doc.gov/files/ntia/publications/225-5000-composite-inventory_2015-12-16.xlsx&#34;</span><span class="p">)</span>
-  <span class="c1">#</span>
-  <span class="c1"># get the sheets of the xlsx file</span>
-  <span class="c1"># and print. Will print out a map of ints to sheet names:</span>
-  <span class="n">sheets</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get_sheets</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">sheets</span><span class="p">)</span>
-  <span class="c1">#</span>
-  <span class="c1"># get name of first sheet and print:</span>
-  <span class="n">sheet1</span> <span class="o">=</span> <span class="n">sheets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">sheet1</span><span class="p">)</span> <span class="c1"># prints &#34;Sheet1&#34;</span>
-  <span class="c1">#</span>
-  <span class="c1"># get data from sheet 1 and print:</span>
-  <span class="n">rows</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get_rows</span><span class="p">(</span><span class="n">sheet1</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="c1"># prints 2d list of data</span>
-  <span class="c1">#</span>
-  <span class="c1"># set the first 10 rows as the body:</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">(</span><span class="n">rows</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="get_sheets"></a></p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
 
-<h4 id="get-sheets">get_sheets</h4>
+<tbody>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>url to request</td>
+</tr>
 
-<p><code>x.get_sheets()</code></p>
+<tr>
+<td><code>headers</code></td>
+<td><code>dict</code></td>
+<td>optional. dictionary of headers to add to request</td>
+</tr>
 
-<p>returns a map of ints to sheet names, indexing starts with 1. See above <code>get_url</code> example for use.</p>
+<tr>
+<td><code>body</code></td>
+<td><code>string</code></td>
+<td>optional. raw string body to provide to the request</td>
+</tr>
 
-<p><a id="get_rows"></a></p>
+<tr>
+<td><code>form_body</code></td>
+<td><code>dict</code></td>
+<td>optional. dict of values that will be encoded as form data</td>
+</tr>
 
-<h4 id="get-rows">get_rows</h4>
+<tr>
+<td><code>json_body</code></td>
+<td><code>any</code></td>
+<td>optional. json data to supply as a request. handy for working with JSON-API&rsquo;s</td>
+</tr>
 
-<p><code>x.get_rows(sheet_name)</code></p>
+<tr>
+<td><code>auth</code></td>
+<td><code>tuple</code></td>
+<td>optional. (username,password) tuple for http basic authorization</td>
+</tr>
+</tbody>
+</table>
 
-<p>returns a 2 dimensional list of data from the specified sheet. See above <code>get_url</code> example for use</p>
+<p><br /></p>
 
-<p><a id="zipfile_module"></a></p>
+<h4 id="http-get-url-params-headers-auth-response"><code>http.get(url,params={},headers={},auth=()) response</code></h4>
 
-<h2 id="zipfile-module">zipfile module</h2>
+<p>perform an HTTP GET request, returning a response</p>
 
-<p>_docs coming soon. In the meantime see <a href="https://godoc.org/github.com/qri-io/starlib/zipfile">https://godoc.org/github.com/qri-io/starlib/zipfile</a></p>
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>url to request</td>
+</tr>
+
+<tr>
+<td><code>headers</code></td>
+<td><code>dict</code></td>
+<td>optional. dictionary of headers to add to request</td>
+</tr>
+
+<tr>
+<td><code>auth</code></td>
+<td><code>tuple</code></td>
+<td>optional. (username,password) tuple for http basic authorization</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="http-options-url-params-headers-body-form-body-json-body-auth-response"><code>http.options(url,params={},headers={},body=&quot;&quot;,form_body={},json_body={},auth=()) response</code></h4>
+
+<p>perform an HTTP OPTIONS request, returning a response</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>url to request</td>
+</tr>
+
+<tr>
+<td><code>headers</code></td>
+<td><code>dict</code></td>
+<td>optional. dictionary of headers to add to request</td>
+</tr>
+
+<tr>
+<td><code>body</code></td>
+<td><code>string</code></td>
+<td>optional. raw string body to provide to the request</td>
+</tr>
+
+<tr>
+<td><code>form_body</code></td>
+<td><code>dict</code></td>
+<td>optional. dict of values that will be encoded as form data</td>
+</tr>
+
+<tr>
+<td><code>json_body</code></td>
+<td><code>any</code></td>
+<td>optional. json data to supply as a request. handy for working with JSON-API&rsquo;s</td>
+</tr>
+
+<tr>
+<td><code>auth</code></td>
+<td><code>tuple</code></td>
+<td>optional. (username,password) tuple for http basic authorization</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="http-patch-url-params-headers-body-form-body-json-body-auth-response"><code>http.patch(url,params={},headers={},body=&quot;&quot;,form_body={},json_body={},auth=()) response</code></h4>
+
+<p>perform an HTTP PATCH request, returning a response</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>url to request</td>
+</tr>
+
+<tr>
+<td><code>headers</code></td>
+<td><code>dict</code></td>
+<td>optional. dictionary of headers to add to request</td>
+</tr>
+
+<tr>
+<td><code>body</code></td>
+<td><code>string</code></td>
+<td>optional. raw string body to provide to the request</td>
+</tr>
+
+<tr>
+<td><code>form_body</code></td>
+<td><code>dict</code></td>
+<td>optional. dict of values that will be encoded as form data</td>
+</tr>
+
+<tr>
+<td><code>json_body</code></td>
+<td><code>any</code></td>
+<td>optional. json data to supply as a request. handy for working with JSON-API&rsquo;s</td>
+</tr>
+
+<tr>
+<td><code>auth</code></td>
+<td><code>tuple</code></td>
+<td>optional. (username,password) tuple for http basic authorization</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="http-post-url-params-headers-body-form-body-json-body-auth-response"><code>http.post(url,params={},headers={},body=&quot;&quot;,form_body={},json_body={},auth=()) response</code></h4>
+
+<p>perform an HTTP POST request, returning a response</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>url to request</td>
+</tr>
+
+<tr>
+<td><code>headers</code></td>
+<td><code>dict</code></td>
+<td>optional. dictionary of headers to add to request</td>
+</tr>
+
+<tr>
+<td><code>body</code></td>
+<td><code>string</code></td>
+<td>optional. raw string body to provide to the request</td>
+</tr>
+
+<tr>
+<td><code>form_body</code></td>
+<td><code>dict</code></td>
+<td>optional. dict of values that will be encoded as form data</td>
+</tr>
+
+<tr>
+<td><code>json_body</code></td>
+<td><code>any</code></td>
+<td>optional. json data to supply as a request. handy for working with JSON-API&rsquo;s</td>
+</tr>
+
+<tr>
+<td><code>auth</code></td>
+<td><code>tuple</code></td>
+<td>optional. (username,password) tuple for http basic authorization</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="http-put-url-params-headers-body-form-body-json-body-auth-response"><code>http.put(url,params={},headers={},body=&quot;&quot;,form_body={},json_body={},auth=()) response</code></h4>
+
+<p>perform an HTTP PUT request, returning a response</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>url to request</td>
+</tr>
+
+<tr>
+<td><code>headers</code></td>
+<td><code>dict</code></td>
+<td>optional. dictionary of headers to add to request</td>
+</tr>
+
+<tr>
+<td><code>body</code></td>
+<td><code>string</code></td>
+<td>optional. raw string body to provide to the request</td>
+</tr>
+
+<tr>
+<td><code>form_body</code></td>
+<td><code>dict</code></td>
+<td>optional. dict of values that will be encoded as form data</td>
+</tr>
+
+<tr>
+<td><code>json_body</code></td>
+<td><code>any</code></td>
+<td>optional. json data to supply as a request. handy for working with JSON-API&rsquo;s</td>
+</tr>
+
+<tr>
+<td><code>auth</code></td>
+<td><code>tuple</code></td>
+<td>optional. (username,password) tuple for http basic authorization</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="types-2">Types</h2>
+
+<h3 id="response"><code>response</code></h3>
+
+<p>the result of performing a http request
+<strong>Fields</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>url</td>
+<td>string</td>
+<td></td>
+</tr>
+
+<tr>
+<td>the</td>
+<td>url</td>
+<td></td>
+</tr>
+
+<tr>
+<td>status_code</td>
+<td>int</td>
+<td></td>
+</tr>
+
+<tr>
+<td>response</td>
+<td>status</td>
+<td></td>
+</tr>
+
+<tr>
+<td>headers</td>
+<td>dict</td>
+<td></td>
+</tr>
+
+<tr>
+<td>dictionary</td>
+<td>of</td>
+<td></td>
+</tr>
+
+<tr>
+<td>encoding</td>
+<td>string</td>
+<td></td>
+</tr>
+
+<tr>
+<td>transfer</td>
+<td>encoding.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Methods</strong></p>
+
+<h4 id="response-body-string"><code>response.body() string</code></h4>
+
+<p>output response body as a string</p>
+
+<h4 id="response-json"><code>response.json()</code></h4>
+
+<p>attempt to parse resonse body as json, returning a JSON-decoded result</p>
+
+<hr />
+
+<h1 id="a-id-math-href-math-math-a"><a id="math" href="#math">math</a></h1>
+
+<p>math defines mathimatical functions, it&rsquo;s intented to be a drop-in subset of python&rsquo;s math module for starlark: <a href="https://docs.python.org/3/library/math.html">https://docs.python.org/3/library/math.html</a></p>
+
+<h2 id="functions-5">Functions</h2>
+
+<h4 id="math-acos-x"><code>math.acos(x)</code></h4>
+
+<p>Return the arc cosine of x, in radians.</p>
+
+<h4 id="math-acosh-x"><code>math.acosh(x)</code></h4>
+
+<p>Return the inverse hyperbolic cosine of x.</p>
+
+<h4 id="math-asin-x"><code>math.asin(x)</code></h4>
+
+<p>Return the arc sine of x, in radians.</p>
+
+<h4 id="math-asinh-x"><code>math.asinh(x)</code></h4>
+
+<p>Return the inverse hyperbolic sine of x.</p>
+
+<h4 id="math-atan-x"><code>math.atan(x)</code></h4>
+
+<p>Return the arc tangent of x, in radians.</p>
+
+<h4 id="math-atan2-y-x"><code>math.atan2(y, x)</code></h4>
+
+<p>Return atan(y / x), in radians. The result is between -pi and pi. The vector in the plane from the origin to point (x, y) makes this angle with the positive X axis. The point of atan2() is that the signs of both inputs are known to it, so it can compute the correct quadrant for the angle. For example, atan(1) and atan2(1, 1) are both pi/4, but atan2(-1, -1) is -3*pi/4.</p>
+
+<h4 id="math-atanh-x"><code>math.atanh(x)</code></h4>
+
+<p>Return the inverse hyperbolic tangent of x.</p>
+
+<h4 id="math-ceil-x"><code>math.ceil(x)</code></h4>
+
+<p>Return the ceiling of x, the smallest integer greater than or equal to x.</p>
+
+<h4 id="math-cos-x"><code>math.cos(x)</code></h4>
+
+<p>Return the cosine of x radians.</p>
+
+<h4 id="math-cosh-x"><code>math.cosh(x)</code></h4>
+
+<p>Return the hyperbolic cosine of x.</p>
+
+<h4 id="math-degrees-x"><code>math.degrees(x)</code></h4>
+
+<p>Convert angle x from radians to degrees.</p>
+
+<h4 id="math-exp-x"><code>math.exp(x)</code></h4>
+
+<p>Return e raised to the power x, where e = 2.718281… is the base of natural logarithms</p>
+
+<h4 id="math-fabs-x"><code>math.fabs(x)</code></h4>
+
+<p>Return the absolute value of x.</p>
+
+<h4 id="math-floor-x"><code>math.floor(x)</code></h4>
+
+<p>Return the floor of x, the largest integer less than or equal to x.</p>
+
+<h4 id="math-hypot-x-y"><code>math.hypot(x, y)</code></h4>
+
+<p>Return the Euclidean norm, sqrt(x*x + y*y). This is the length of the vector from the origin to point (x, y).</p>
+
+<h4 id="math-radians-x"><code>math.radians(x)</code></h4>
+
+<p>Convert angle x from degrees to radians.</p>
+
+<h4 id="math-sin-x"><code>math.sin(x)</code></h4>
+
+<p>Return the sine of x radians.</p>
+
+<h4 id="math-sinh-x"><code>math.sinh(x)</code></h4>
+
+<p>Return the hyperbolic sine of x.</p>
+
+<h4 id="math-sqrt-x"><code>math.sqrt(x)</code></h4>
+
+<p>Return the square root of x.</p>
+
+<h4 id="math-tan-x"><code>math.tan(x)</code></h4>
+
+<p>Return the tangent of x radians.</p>
+
+<h4 id="math-tanh-x"><code>math.tanh(x)</code></h4>
+
+<p>Return the hyperbolic tangent of x.</p>
+
+<hr />
+
+<h1 id="a-id-re-href-re-re-a"><a id="re" href="#re">re</a></h1>
+
+<p>re defines regular expression functions, it&rsquo;s intented to be a drop-in subset of python&rsquo;s re module for starlark: <a href="https://docs.python.org/3/library/re.html">https://docs.python.org/3/library/re.html</a></p>
+
+<h2 id="functions-6">Functions</h2>
+
+<h4 id="re-findall-pattern-text-flags-0"><code>re.findall(pattern, text, flags=0)</code></h4>
+
+<p>Returns all non-overlapping matches of pattern in string, as a list of strings. The string is scanned left-to-right, and matches are returned in the order found. If one or more groups are present in the pattern, return a list of groups; this will be a list of tuples if the pattern has more than one group. Empty matches are included in the result.</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>pattern</code></td>
+<td><code>string</code></td>
+<td>regular expression pattern string</td>
+</tr>
+
+<tr>
+<td><code>text</code></td>
+<td><code>string</code></td>
+<td>string to find within</td>
+</tr>
+
+<tr>
+<td><code>flags</code></td>
+<td><code>int</code></td>
+<td>integer flags to control regex behaviour. reserved for future use</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="re-split-pattern-text-maxsplit-0-flags-0"><code>re.split(pattern, text, maxsplit=0, flags=0)</code></h4>
+
+<p>Split text by the occurrences of pattern. If capturing parentheses are used in pattern, then the text of all groups in the pattern are also returned as part of the resulting list. If maxsplit is nonzero, at most maxsplit splits occur, and the remainder of the string is returned as the final element of the list.</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>pattern</code></td>
+<td><code>string</code></td>
+<td>regular expression pattern string</td>
+</tr>
+
+<tr>
+<td><code>text</code></td>
+<td><code>string</code></td>
+<td>input string to split</td>
+</tr>
+
+<tr>
+<td><code>maxsplit</code></td>
+<td><code>int</code></td>
+<td>maximum number of splits to make. default 0 splits all matches</td>
+</tr>
+
+<tr>
+<td><code>flags</code></td>
+<td><code>int</code></td>
+<td>integer flags to control regex behaviour. reserved for future use</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="re-sub-pattern-repl-text-count-0-flags-0"><code>re.sub(pattern, repl, text, count=0, flags=0)</code></h4>
+
+<p>Return the string obtained by replacing the leftmost non-overlapping occurrences of pattern in string by the replacement repl. If the pattern isn’t found, string is returned unchanged. repl can be a string or a function; if it is a string, any backslash escapes in it are processed. That is, \n is converted to a single newline character, \r is converted to a carriage return, and so forth.</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>pattern</code></td>
+<td><code>string</code></td>
+<td>regular expression pattern string</td>
+</tr>
+
+<tr>
+<td><code>repl</code></td>
+<td><code>string</code></td>
+<td>string to replace matches with</td>
+</tr>
+
+<tr>
+<td><code>text</code></td>
+<td><code>string</code></td>
+<td>input string to replace</td>
+</tr>
+
+<tr>
+<td><code>count</code></td>
+<td><code>int</code></td>
+<td>number of replacements to make, default 0 means replace all matches</td>
+</tr>
+
+<tr>
+<td><code>flags</code></td>
+<td><code>int</code></td>
+<td>integer flags to control regex behaviour. reserved for future use</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<hr />
+
+<h1 id="a-id-time-href-time-time-a"><a id="time" href="#time">time</a></h1>
+
+<p>time defines time primitives for starlark</p>
+
+<h2 id="functions-7">Functions</h2>
+
+<h4 id="time-duration-string-duration"><code>time.duration(string) duration</code></h4>
+
+<p>parse a duration</p>
+
+<h4 id="time-location-string-location"><code>time.location(string) location</code></h4>
+
+<p>parse a location</p>
+
+<h4 id="time-now-time"><code>time.now() time</code></h4>
+
+<p>implementations would be able to make this a constant</p>
+
+<h4 id="time-time-string-format-location-time"><code>time.time(string, format=..., location=...) time</code></h4>
+
+<p>parse a time</p>
+
+<h4 id="time-zero-time"><code>time.zero() time</code></h4>
+
+<p>a constant</p>
+
+<h2 id="types-3">Types</h2>
+
+<h3 id="duration"><code>duration</code></h3>
+
+<p><strong>Fields</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>hours</td>
+<td>float</td>
+<td></td>
+</tr>
+
+<tr>
+<td>minutes</td>
+<td>float</td>
+<td></td>
+</tr>
+
+<tr>
+<td>nanoseconds</td>
+<td>int</td>
+<td></td>
+</tr>
+
+<tr>
+<td>seconds</td>
+<td>float</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="time"><code>time</code></h3>
+
+<p><strong>Fields</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>year</td>
+<td>int</td>
+<td></td>
+</tr>
+
+<tr>
+<td>month</td>
+<td>int</td>
+<td></td>
+</tr>
+
+<tr>
+<td>day</td>
+<td>int</td>
+<td></td>
+</tr>
+
+<tr>
+<td>hour</td>
+<td>int</td>
+<td></td>
+</tr>
+
+<tr>
+<td>minute</td>
+<td>int</td>
+<td></td>
+</tr>
+
+<tr>
+<td>second</td>
+<td>int</td>
+<td></td>
+</tr>
+
+<tr>
+<td>nanosecond</td>
+<td>int</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h1 id="a-id-xlsx-href-xlsx-xlsx-a"><a id="xlsx" href="#xlsx">xlsx</a></h1>
+
+<p>xlsx implements excel file readers in starlark. currently a highly-experimental package that will definitely change at some point in the future</p>
+
+<h2 id="functions-8">Functions</h2>
+
+<h4 id="xlsx-get-url-url-string"><code>xlsx.get_url(url string)</code></h4>
+
+<p>fetch an excel file from a url</p>
+
+<h2 id="types-4">Types</h2>
+
+<h3 id="file"><code>File</code></h3>
+
+<p>an excel file
+<strong>Methods</strong></p>
+
+<h4 id="file-get-sheets-dict"><code>File.get_sheets() dict</code></h4>
+
+<p>return a dict of sheets in this excel file</p>
+
+<h4 id="file-get-rows-sheetname-list"><code>File.get_rows(sheetname) list</code></h4>
+
+<p>get all populated rows / columns as a list-of-list strings</p>
+
+<hr />
+
+<h1 id="a-id-zipfile-href-zipfile-zipfile-a"><a id="zipfile" href="#zipfile">zipfile</a></h1>
+
+<p>zipfile reads &amp; parses zip archives</p>
+
+<h2 id="functions-9">Functions</h2>
+
+<h4 id="zipfile-zipfile-data"><code>zipfile.ZipFile(data)</code></h4>
+
+<p>opens an archive for reading</p>
+
+<h2 id="types-5">Types</h2>
+
+<h3 id="zipfile"><code>ZipFile</code></h3>
+
+<p>a zip archive object
+<strong>Methods</strong></p>
+
+<h4 id="zipfile-namelist-list"><code>ZipFile.namelist() list</code></h4>
+
+<p>return a list of files in the archive</p>
+
+<h4 id="zipfile-open-filename-string-zipinfo"><code>ZipFile.open(filename string) ZipInfo</code></h4>
+
+<p>open a file for reading</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>filename</code></td>
+<td><code>string</code></td>
+<td>name of the file in the archive to open</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="zipinfo"><code>ZipInfo</code></h3>
+
+<p><strong>Methods</strong></p>
+
+<h4 id="zipinfo-read-string"><code>ZipInfo.read() string</code></h4>
+
+<p>read the file, returning it&rsquo;s string representation</p>
 
     </div>
   </section>

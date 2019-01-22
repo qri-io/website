@@ -12,13 +12,27 @@
     
     
     <item>
-      <title>Starlark Std. Library</title>
+      <title>Starlark: qri &amp; ds modules</title>
+      <link>https://qri.io/docs/reference/starlib_qri_ds/</link>
+      <pubDate>Thu, 20 Dec 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/reference/starlib_qri_ds/</guid>
+      <description>qri and dataset modules In Qri two &amp;ldquo;nonstandard&amp;rdquo; modules specific to qri are available. these modules are not considered part of the standard library project, and are defined in a different repository. They&amp;rsquo;re described here to keep documentation complete:
+ qri ds or dataset  
+qri module access these methods from the qri module, eg qri.get_config()
+ get_config get_secret list_datasets load_dataset_body load_dataset_head  To load:
+load(&amp;#34;qri.sky&amp;#34;, &amp;#34;qri&amp;#34;) Function Definitions:</description>
+    </item>
+    
+    <item>
+      <title>Starlark: standard library</title>
       <link>https://qri.io/docs/reference/starlib/</link>
       <pubDate>Thu, 20 Dec 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/reference/starlib/</guid>
-      <description>Starlark Standard Library All qri transforms have access to &amp;ldquo;starlib&amp;rdquo;, a community-driven project to bring a standard library to the starlark programming dialect. We here at Qri need a standard library, and we thought it might benefit others to structure this library in a reusable way. We are a little biased towards our needs, and will be shaping the library primarily toward&amp;rsquo;s Qri&amp;rsquo;s use case.
-qri and dataset modules In Qri two &amp;ldquo;nonstandard&amp;rdquo; modules specific to qri are available.</description>
+      <description>Starlark Standard Library All qri transforms have access to &amp;ldquo;starlib&amp;rdquo;, a community-driven project to bring a standard library to the starlark programming dialect. Qri needs a standard library, and we thought it might benefit others to structure this library in a reusable way. starlib is admittedly biased towards Qri&amp;rsquo;s needs.
+Comments, Suggestions &amp;amp; Pull Requests welcome: https://github.com/qri-io/starlib
+Contents    package name description     encoding/base64 base64 defines base64 encoding &amp;amp; decoding functions, often used to represent binary as text.</description>
     </item>
     
     <item>

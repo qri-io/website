@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://qri.io/docs/tutorials/starlark_examples/</loc>
+    <lastmod>2018-12-20T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/reference/starlib_qri_ds/</loc>
+    <lastmod>2018-12-20T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://qri.io/docs/reference/starlib/</loc>
     <lastmod>2018-12-20T00:00:00-04:00</lastmod>
   </url>
@@ -64,6 +74,11 @@
   
   <url>
     <loc>https://qri.io/docs/concepts/overview/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/tutorials/qri_vs_git/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
