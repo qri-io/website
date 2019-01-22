@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Starlark Examples</title>
+      <link>https://qri.io/docs/reference/starlark_examples/</link>
+      <pubDate>Thu, 20 Dec 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/reference/starlark_examples/</guid>
+      <description>qri and dataset modules In Qri two &amp;ldquo;nonstandard&amp;rdquo; modules specific to qri are available. these modules are not considered part of the standard library project, and are defined in a different repository. They&amp;rsquo;re described here to keep documentation complete:
+ qri ds or dataset  Modules  html http math re time xlsx zipfile  
+html module can only be used in the download function. You must use the html function to parse an html response, to get a document object that you can traverse</description>
+    </item>
+    
+    <item>
       <title>Starlark: qri &amp; ds modules</title>
       <link>https://qri.io/docs/reference/starlib_qri_ds/</link>
       <pubDate>Thu, 20 Dec 2018 00:00:00 -0400</pubDate>

@@ -2,7 +2,7 @@
 title: "tutorials"
 description: ""
 date: 2018-01-30T00:00:00-04:00
-section: tutorials
+weight: 1
 ---
 
 Before we get started, let's make sure you're in the right place:

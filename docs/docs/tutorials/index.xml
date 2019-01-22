@@ -12,17 +12,6 @@
     
     
     <item>
-      <title>Starlark Examples</title>
-      <link>https://qri.io/docs/tutorials/starlark_examples/</link>
-      <pubDate>Thu, 20 Dec 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/tutorials/starlark_examples/</guid>
-      <description>qri and dataset modules In Qri two &amp;ldquo;nonstandard&amp;rdquo; modules specific to qri are available. these modules are not considered part of the standard library project, and are defined in a different repository. They&amp;rsquo;re described here to keep documentation complete:
- qri ds or dataset  Modules  html http math re time xlsx zipfile  
-html module can only be used in the download function. You must use the html function to parse an html response, to get a document object that you can traverse</description>
-    </item>
-    
-    <item>
       <title>CLI quickstart</title>
       <link>https://qri.io/docs/tutorials/cli_quickstart/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
@@ -36,15 +25,6 @@ The whole tutorial is divided into six sections. The topics are as follows:
 1.2 qri version
 1.3 qri setup
 1.4 qri save</description>
-    </item>
-    
-    <item>
-      <title>Qri for Git people</title>
-      <link>https://qri.io/docs/tutorials/qri_vs_git/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/tutorials/qri_vs_git/</guid>
-      <description>Comparing Workflows: Qri, Git, and GitHub By building off a git metaphor, it&amp;rsquo;s easier for someone familiar with Git to understand how Qri is different. Much of this isn&amp;rsquo;t new, but what should be ratified in this RFC is the quality of the explanation. By reading this someone familiar with git should be able to understand the process Qri undertakes to create a dataset. Hopefully this explanation can be copy-pasted into our docs if this RFC is accepted.</description>
     </item>
     
     <item>

@@ -2,7 +2,7 @@
 title: "concepts"
 description: ""
 date: 2018-01-30T00:00:00-04:00
-section: concepts
+weight: 3
 ---
 
 # Qri Concepts

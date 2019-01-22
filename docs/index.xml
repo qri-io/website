@@ -13,10 +13,10 @@
     
     <item>
       <title>Starlark Examples</title>
-      <link>https://qri.io/docs/tutorials/starlark_examples/</link>
+      <link>https://qri.io/docs/reference/starlark_examples/</link>
       <pubDate>Thu, 20 Dec 2018 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/docs/tutorials/starlark_examples/</guid>
+      <guid>https://qri.io/docs/reference/starlark_examples/</guid>
       <description>qri and dataset modules In Qri two &amp;ldquo;nonstandard&amp;rdquo; modules specific to qri are available. these modules are not considered part of the standard library project, and are defined in a different repository. They&amp;rsquo;re described here to keep documentation complete:
  qri ds or dataset  Modules  html http math re time xlsx zipfile  
 html module can only be used in the download function. You must use the html function to parse an html response, to get a document object that you can traverse</description>
@@ -172,15 +172,6 @@ b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b
       <guid>https://qri.io/docs/concepts/overview/</guid>
       <description>What is Qri (&amp;ldquo;query&amp;rdquo;)? Qri is a distributed dataset version control system built with peer-2-peer data exchange. Peers create datasets, which are stored in versions. Qri peers form a distributed network to exchange information about their datasets, which they transmit between each other over the distributed web.
 Datasets are recorded structured data according to a specification that dictates the purpose of each component piece of a dataset. By design, qri can only store datasets.</description>
-    </item>
-    
-    <item>
-      <title>Qri for Git people</title>
-      <link>https://qri.io/docs/tutorials/qri_vs_git/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/tutorials/qri_vs_git/</guid>
-      <description>Comparing Workflows: Qri, Git, and GitHub By building off a git metaphor, it&amp;rsquo;s easier for someone familiar with Git to understand how Qri is different. Much of this isn&amp;rsquo;t new, but what should be ratified in this RFC is the quality of the explanation. By reading this someone familiar with git should be able to understand the process Qri undertakes to create a dataset. Hopefully this explanation can be copy-pasted into our docs if this RFC is accepted.</description>
     </item>
     
     <item>

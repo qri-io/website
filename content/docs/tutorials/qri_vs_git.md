@@ -3,7 +3,7 @@ title: "Qri for Git people"
 description: "How Qri compares to Git"
 date: 2018-01-30T00:00:00-04:00
 section: tutorials
-draft: false
+draft: true
 ---
 
 # Comparing Workflows: Qri, Git, and GitHub
