@@ -3,9 +3,9 @@
 }
 
 h1 { font-size: 32px; }
-h2 { font-size: 28px; }
-h3 { font-size: 24px; }
-h4 { font-size: 20px; }
+h2 { font-size: 24px; }
+h3 { font-size: 22px; }
+h4 { font-size: 18px; }
 
 body {
   margin: 0;
@@ -33,12 +33,24 @@ td, th {
   border: 1px solid #f3f3f3;
 }
 
+code {
+  background: #f3f3f3;
+  border-radius: 3px;
+  padding: 4px;
+  line-height: 1.3em;
+}
+
+pre code {
+  background: none;
+}
+
 th {
   font-weight: 500;
+  background: #fbfbfb;
 }
 
 tr:nth-child(even) {
-  background: #f8f8f8;
+  background: #fcfcfc;
 }
 
 #main.index {
