@@ -11,6 +11,9 @@ pygmentsUseClassic: true
 pygmentsuseclasses: true
 menu:
   main:
+    - name: "About"
+      url: "/about"
+      weight: -100
     - name: "Blog"
       url: "/blog/"
       weight: -100
