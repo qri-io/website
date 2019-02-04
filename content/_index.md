@@ -85,7 +85,7 @@ bodyClass: index
         </div>
         <div id="meta_specs" class="feature_description">
           <h3>Metadata based on library science</h3>
-          <p>Librarians are better at metadata than developers, so we based our metadata spec on DCAT & Project Open Data, for cleaner integration with existing data catlogs.</p>
+          <p>Librarians are better at metadata than developers, so we based our metadata spec on DCAT & Project Open Data, for cleaner integration with existing data catalogs.</p>
         </div>
         <div id="json_schemas" class="feature_description">
           <h3>JSON-Schemas for validation & OpenAPIs</h3>

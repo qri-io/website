@@ -18,6 +18,11 @@
   </url>
   
   <url>
+    <loc>https://qri.io/about/</loc>
+    <lastmod>2019-02-04T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://qri.io/docs/reference/starlark_examples/</loc>
     <lastmod>2018-12-20T00:00:00-04:00</lastmod>
   </url>
@@ -35,11 +40,6 @@
   <url>
     <loc>https://qri.io/blog/unit_test_performance/</loc>
     <lastmod>2018-10-17T15:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/about/</loc>
-    <lastmod>2018-10-08T00:00:00-04:00</lastmod>
   </url>
   
   <url>
