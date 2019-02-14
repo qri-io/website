@@ -12,6 +12,18 @@
     
     
     <item>
+      <title>Frontend</title>
+      <link>https://qri.io/docs/tutorials/frontend/</link>
+      <pubDate>Thu, 14 Feb 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/tutorials/frontend/</guid>
+      <description>Frontend Screencast Demos We&amp;rsquo;ve filmed and posted screencasts of our teammates demonstrating new qri features. Check out some of them below to get a preview of qri.
+Please note! We&amp;rsquo;re improving qri&amp;rsquo;s frontend and backend every day, so, while useful, some of these videos may not reflect the most current state of the app.
+Screencast Demo - 0.6.1 (filmed Dec 17, 2018)
+What&amp;rsquo;s covered: Navigation, How to add datasets published by other peers, Published vs.</description>
+    </item>
+    
+    <item>
       <title>CLI quickstart</title>
       <link>https://qri.io/docs/tutorials/cli_quickstart/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
