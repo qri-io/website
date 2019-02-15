@@ -11,6 +11,7 @@ description: Some background on how Qri got its start and what we hope to achiev
 
 I’m delighted to introduce a project a few others and I have been working on for the last few years. It's called Qri (pronounced "query". I know, I’m sorry). Qri is about data. Instead of telling you about a bunch of software, I’d like to tell you the story behind why Qri exists. 
 
+Two-ish years ago I came across an article in the *Washington Post* about a group of volunteers getting together for an event at the University of Toronto. My reasons for going were transparent: I was putting together a startup, and hoping to do some user interviews, maybe attract some attention in the process. This plan died the moment I heard what we were there to do:
 
 **Build a crowdsourced archive of the United States Environmental Protection Agency**
 
