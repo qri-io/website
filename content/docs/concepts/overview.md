@@ -9,6 +9,12 @@ section: concepts
 
 Qri is a distributed dataset version control system built with peer-2-peer data exchange. _Peers_ create _datasets_, which are stored in _versions_. Qri peers form a _distributed network_ to exchange information about their datasets, which they transmit between each other over _the distributed web_.
 
+<div class="clear"></div>
+
+<div class="diagram medium right">
+  <img src="/diagrams/qri_venn_diagram_white.png" />
+</div>
+
 _Datasets_ are recorded structured data according to a specification that dictates the purpose of each component piece of a dataset. By design, qri can only store datasets. Unlike general version control systems, all datasets stored in qri can interoperate because they have the same composition. Datasets are stored & transmitted in standard formats, allowing outside systems to bypass qri entirely to interact directly with datasets qri produces & consumes. The Dataset specification is itself a composition of existing specifications, aimed at providing the highest degree of natural agreement possible with existing data catalogs, metadata schemas, and meta-API specifications.
 
 All datasets on qri are immutable. Datasets are identified by their cryptographic hash, and assume they are being stored on a content-addressed file system (content is referred to by cryptographic hash). Changes to datasets are stored by creating a new version of data that references the previous version. All Versions of Qri includes a _naming system_ that connects human-readable names to the latest version ("tip") of a dataset history of qri datasets are tracked & attributed, signed with a keypair associated with the _Peer_.

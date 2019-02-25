@@ -21,7 +21,7 @@ bodyClass: index
     <div class="wrap">
       <div id="web_of_datasets" class="feature_description">
         <h2>A Web of Datasets</h2>
-        <p>Qri is built around datasets. Bigger than a spreadsheet, smaller than a database, datasets are all around us. Use Qri to browse, download, create, fork, and publish datasets with a broad network peers.</p>
+        <p>Qri is built around datasets. Bigger than a spreadsheet, smaller than a database, datasets are all around us. Use Qri to browse, download, create, fork, and publish datasets with a broad network of peers.</p>
         <a href="/docs/concepts/dataset/" id="download_button" class="button">About Qri Datasets</a>
       </div>
       <div id="open_source" class="feature_description">
