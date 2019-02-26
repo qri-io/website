@@ -189,6 +189,16 @@ With a dataset we have the underlying data, its structure which contains the str
 
 <p>Secondly, decentralized storage means that the amount/size of datasets qri can support is limited only by the hard drive space offered to the network by peers. Centralized storage (offered by a company or org) is always limited by the amount they can afford to provide. Qri isn’t limited by this.</p>
 
+<h4 id="Do-you-consider-the-Dat-project-an-alternative-to-IPFS?">Do you consider the Dat project an alternative to IPFS?</h4>
+
+<p>We reviewed both Dat and IPFS white papers at the same time, and keyed in on one major feature of Dat which made it incompatible with the scope and goals we had for Qri out of the gate.</p>
+
+<p>Dat, like git, uses a repository model. So, if a user were to create a dataset containing a certain csv file, and another user had the exact same csv file (because, say, they were both downloaded from the same URL around the same time), the files would not ‘collide’ - meaning both physical files would not deduplicate, and storage costs (and all other complications) would scale as more datasets are added to the network by other users.</p>
+
+<p>In an ideal data commons, identical datasets would collide and deduplicate to a single file on one’s hard drive. That doesn’t happen with Dat, BitTorrent or several others. The only technology that has that key property is IPFS, because of the ‘single swarm’ style of content propagation.</p>
+
+<p>We’re really impressed with the Dat community and the aims of the project as a whole, and eventually we’d like to be able to support exporting to Dat from qri.</p>
+
 <h4 id="can-i-upload-connect-data-directly-to-and-from-my-favorite-app">Can I upload / connect data directly to and from [my favorite app]?</h4>
 
 <p>We plan to support apps and software popular among data folks like… Jupyter Notebook, R, and many others. Be sure to stay in the loop on updates and let us know which apps are most important to you.</p>

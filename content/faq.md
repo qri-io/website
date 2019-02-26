@@ -42,6 +42,17 @@ Data on qri lives *inside an IPFS repository.* I know, that sounds a little scar
 The longer story is the data you add to qri lives on your computer, and is made available on the distributed web.
 
 
+#### Do you consider the Dat project an alternative to IPFS??
+
+We reviewed both Dat and IPFS white papers at the same time, and keyed in on one major feature of Dat which made it incompatible with the scope and goals we had for Qri out of the gate.
+
+Dat, like git, uses a repository model. So, if a user were to create a dataset containing a certain csv file, and another user had the exact same csv file (because, say, they were both downloaded from the same URL around the same time), the files would not ‘collide’ - meaning both physical files would not deduplicate, and storage costs (and all other complications) would scale as more datasets are added to the network by other users.
+
+In an ideal data commons, identical datasets would collide and deduplicate to a single file on one’s hard drive. That doesn’t happen with Dat, BitTorrent or several others. The only technology that has that key property is IPFS, because of the ‘single swarm’ style of content propagation.
+
+We’re really impressed with the Dat community and the aims of the project as a whole, and eventually we’d like to be able to support exporting to Dat from qri.
+
+
 #### What kinds of data does qri support?
 
 ALL kinds of data! We're rapidly building in support for every and any kind of data. Today, qri works best with CSV & JSON files - you can put all kinds of data in CSV & JSON files.
