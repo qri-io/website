@@ -18,6 +18,11 @@
   </url>
   
   <url>
+    <loc>https://qri.io/faq/</loc>
+    <lastmod>2019-02-25T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://qri.io/docs/tutorials/frontend/</loc>
     <lastmod>2019-02-14T00:00:00-04:00</lastmod>
   </url>
@@ -49,11 +54,6 @@
   
   <url>
     <loc>https://qri.io/contact/</loc>
-    <lastmod>2018-10-08T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/faq/</loc>
     <lastmod>2018-10-08T00:00:00-04:00</lastmod>
   </url>
   
