@@ -1,6 +1,6 @@
 ---
 title: "Frequently-Asked Questions"
-date: 2018-10-08T00:00:00-04:00
+date: 2019-02-25T00:00:00-04:00
 draft: false
 layout: faq
 description: we try to answer frequent questions here, tweet @qri_io if you think something's missing!
@@ -42,7 +42,7 @@ Data on qri lives *inside an IPFS repository.* I know, that sounds a little scar
 The longer story is the data you add to qri lives on your computer, and is made available on the distributed web.
 
 
-#### Do you consider the Dat project an alternative to IPFS??
+#### Do you consider the Dat project an alternative to IPFS?
 
 We reviewed both Dat and IPFS white papers at the same time, and keyed in on one major feature of Dat which made it incompatible with the scope and goals we had for Qri out of the gate.
 
