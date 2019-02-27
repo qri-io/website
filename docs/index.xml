@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Frequently-Asked Questions</title>
+      <link>https://qri.io/faq/</link>
+      <pubDate>Mon, 25 Feb 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/faq/</guid>
+      <description>Is qri a blockchain? Nope.
+What’s a dataset? Datasets are a data structure that is broken up in a way that allows us to link changes between parts of that data structure on a content addressed file system, preserving links in certain ways. With a dataset we have the underlying data, its structure which contains the structure &amp;amp; schema of the data.
+All datasets have at most 6 components. The most important ones are:</description>
+    </item>
+    
+    <item>
       <title>Frontend</title>
       <link>https://qri.io/docs/tutorials/frontend/</link>
       <pubDate>Thu, 14 Feb 2019 00:00:00 -0400</pubDate>
@@ -87,17 +98,6 @@ Contents    package name description     encoding/base64 base64 defines base64 e
       <guid>https://qri.io/contact/</guid>
       <description>twitter: @qri_io
 email: hello [at] qri.io</description>
-    </item>
-    
-    <item>
-      <title>Frequently-Asked Questions</title>
-      <link>https://qri.io/faq/</link>
-      <pubDate>Mon, 08 Oct 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/faq/</guid>
-      <description>Is qri a blockchain? Nope.
-What’s a dataset? Datasets are a data structure that is broken up in a way that allows us to link changes between parts of that data structure on a content addressed file system, preserving links in certain ways. With a dataset we have the underlying data, its structure which contains the structure &amp;amp; schema of the data.
-All datasets have at most 6 components. The most important ones are:</description>
     </item>
     
     <item>
@@ -180,7 +180,7 @@ b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b
       
       <guid>https://qri.io/docs/concepts/overview/</guid>
       <description>What is Qri (&amp;ldquo;query&amp;rdquo;)? Qri is a distributed dataset version control system built with peer-2-peer data exchange. Peers create datasets, which are stored in versions. Qri peers form a distributed network to exchange information about their datasets, which they transmit between each other over the distributed web.
-Datasets are recorded structured data according to a specification that dictates the purpose of each component piece of a dataset. By design, qri can only store datasets.</description>
+  Datasets are recorded structured data according to a specification that dictates the purpose of each component piece of a dataset. By design, qri can only store datasets.</description>
     </item>
     
     <item>
