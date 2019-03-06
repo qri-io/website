@@ -47,6 +47,8 @@ Dustin is a full stack developer who makes everything about Qri work better.  He
 In his free time, Dustin designs and builds arcade and video games. Dustin holds a B.A. from the Stevens Institute of Technology.
 
 -------------------------------
+
+
 **<a href="https://github.com/qri-io/qri/graphs/contributors">Qri Contributors</a>**
 
 
