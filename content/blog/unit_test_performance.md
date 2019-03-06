@@ -5,7 +5,10 @@ draft: false
 tags:
 - performance
 - testing
-author: dustmop
+author:
+  given_name: Dustin
+  family_name: Long
+  display_name: dustmop
 description: How we improved our unit test performance by profiling and iterating
 ---
 

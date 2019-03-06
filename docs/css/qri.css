@@ -11,6 +11,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Avenir Next", "Avenir", Helvetica, sans-serif;
+  font-size: 17px;
+  line-height: 2.0em;
 }
 
 a {
@@ -453,6 +455,8 @@ footer#page_footer {
 #docs_sidebar a { 
   display: block;
   padding: 5px 20px;
+  font-size: 16px;
+  line-height: 1.4em;
   color: black;
 }
 #docs_sidebar a:hover { 

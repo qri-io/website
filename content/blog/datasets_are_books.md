@@ -5,7 +5,10 @@ draft: false
 tags:
 - concepts
 - content-addressing
-author: b5
+author:
+  given_name: Brendan
+  family_name: O'Brien
+  display_name: b5
 description: What's content addressing? What does it have to do with datasets? Why am I on this site in the first place? Read on, dear reader. Read on.
 ---
 
