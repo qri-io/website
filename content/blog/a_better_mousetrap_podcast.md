@@ -9,7 +9,7 @@ author:
   given_name: Rico
   family_name: Gardaphe
   display_name: Rico
-description: b5 & Rico sat down with Marcos Dinnerstein of the A Better Mousetrap podcast to chat about open-source, open data, how Qri got its start and where we're headed. Have a listen!
+description: b5 & Rico sat down with Marcos Dinnerstein of the A Better Mousetrap podcast to talk open-source, open data, how Qri got its start and where we're headed. Have a listen!
 
 https://anchor.fm/marcos-dinnerstein/episodes/Qri---with-Brendan-OBrien--Rico-Gardaphe-e3e2j4/a-abhlsl
 
