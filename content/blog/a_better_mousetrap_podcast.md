@@ -5,15 +5,18 @@ draft: false
 tags:
 - Open Data
 - Data Rescue
+- Data Bazaar
 author:
   given_name: Rico
   family_name: Gardaphe
   display_name: Rico
 description: b5 & Rico sat down with Marcos Dinnerstein of the A Better Mousetrap podcast to talk open-source, open data, how Qri got its start and where we're headed. Have a listen!
+---
 
-https://anchor.fm/marcos-dinnerstein/episodes/Qri---with-Brendan-OBrien--Rico-Gardaphe-e3e2j4/a-abhlsl
+During NYC Open Data Week, we sat down with Marcos Dinnerstein who runs the A Better Mousetrap podcast to discuss the revolutions in open-source, open data, how Qri got its start and where we're headed. Here's an excerpt:
 
-https://bettermousetrap.nyc/podcast/qri-talking-data-sets-with-brendan-obrien-rico-gardaphe/
+*“In the ‘bazaar’ model of software development, anybody is free to give & take from this code. As we translate this to open data, people are releasing their data, but there’s not as much working together to improve a dataset.”*
 
+Listen to the full conversation here:
 
-<iframe src="https://anchor.fm/marcos-dinnerstein/embed/episodes/Qri---with-Brendan-OBrien--Rico-Gardaphe-e3e2j4/a-abhlsl" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://anchor.fm/marcos-dinnerstein/embed/episodes/Qri---with-Brendan-OBrien--Rico-Gardaphe-e3e2j4/a-abhlsl" height="300px" width="600px" frameborder="0" scrolling="no"></iframe>
