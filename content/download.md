@@ -37,7 +37,7 @@ draft: false
         <h2>Qri CLI</h2>
         <p>Command-Line Tools for interacting with qri</p>
         <p><i>While we've only prepared an installer for Mac OS X <br />Linux Users, can always build from <a href="https://github.com/qri-io/qri">source</a></i></p>
-        <a href="https://github.com/qri-io/qri/releases/download/v0.7.0/qri_os_x_cli_darwin_amd64.pkg" download="qri_cli.pkg" class="download button">
+        <a href="https://github.com/qri-io/qri/releases/download/v0.7.1/qri_os_x_cli_darwin_amd64.pkg" download="qri_cli.pkg" class="download button">
           <b class="title">Download Qri CLI</b><br />
           <small>For Mac OS X</small>
         </a>
