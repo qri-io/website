@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Bazaar on qri</title>
+    <link>https://qri.io/tags/data-bazaar/</link>
+    <description>Recent content in Data Bazaar on qri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Mar 2019 15:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://qri.io/tags/data-bazaar/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A Better Mousetrap Podcast</title>
+      <link>https://qri.io/blog/a_better_mousetrap_podcast/</link>
+      <pubDate>Mon, 11 Mar 2019 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/blog/a_better_mousetrap_podcast/</guid>
+      <description>During NYC Open Data Week, we sat down with Marcos Dinnerstein who runs the A Better Mousetrap podcast to discuss the revolutions in open-source, open data, how Qri got its start and where we&amp;rsquo;re headed. Here&amp;rsquo;s an excerpt:
+“In the ‘bazaar’ model of software development, anybody is free to give &amp;amp; take from this code. As we translate this to open data, people are releasing their data, but there’s not as much working together to improve a dataset.</description>
+    </item>
+    
+  </channel>
+</rss>
