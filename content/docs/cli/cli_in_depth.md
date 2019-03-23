@@ -1,8 +1,7 @@
 ---
-title: "CLI quickstart"
+title: "CLI in depth"
 description: ""
 date: 2018-01-30T00:00:00-04:00
-section: tutorials
 ---
 
 # CLI Tutorial
@@ -12,7 +11,7 @@ Welcome to the wonderful world of the Qri Command Line Interface. Here we'll get
 
 The whole tutorial is divided into six sections. The topics are as follows:
 
-1. [QLI Quickstart](#1.0)  
+1. [Overview](#1.0)  
   1.1 [`qri help`](#1.1)  
   1.2 [`qri version`](#1.2)  
   1.3 [`qri setup`](#1.3)  
@@ -51,7 +50,7 @@ The whole tutorial is divided into six sections. The topics are as follows:
   6.2 [`qri config set`](#6.2)  
 
 <a id="1.0"></a>
-## 1. QLI Tutorial, Part 1 - Quickstart
+## 1. CLI Tutorial, Part 1 - Overview
 
 Download the latest version of the Qri installer [here.](https://github.com/qri-io/qri/releases/download/v0.6.0/qri_os_x_cli_darwin_amd64.pkg)
 
@@ -65,7 +64,7 @@ Type the command `qri help`
 
 You should see something like this:
 
-```shell
+```
 qri ("query") is a dataset version control system on the distributed web.
 More info: https://qri.io
 
