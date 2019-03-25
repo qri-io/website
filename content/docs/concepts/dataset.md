@@ -29,6 +29,7 @@ section: concepts
     transition: all 0.5s;
     width: 220px;
     color: #666;
+    line-height: 1.2em;
   }
   .description:hover {
     box-shadow: 0 5px 6px rgba(0,0,0,0.2);
