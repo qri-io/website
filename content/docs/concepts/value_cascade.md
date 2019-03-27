@@ -2,7 +2,6 @@
 title: The Source Cascade
 date: 2018-01-30T00:00:00-04:00
 section: concepts
-draft: true
 ---
 
 # Value Cascade

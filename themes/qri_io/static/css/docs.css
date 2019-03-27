@@ -99,6 +99,20 @@
   padding-left: 0;
 }
 
+#docs_sidebar .toggle {
+  float: right;
+  display: block;
+  cursor: pointer;
+  padding: 0 25px 5px 0;
+  padding-right: 20px;
+  color: #ccc;
+}
+
+#docs_sidebar .hidden {
+  display: none;
+  overflow: hidden;
+}
+
 #docs_page #main { flex: 2 1 75%; }
 
 #docs_page #main .content {

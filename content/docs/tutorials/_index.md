@@ -1,8 +1,8 @@
 ---
-title: "CLI"
+title: "Tutorials"
 description: ""
 date: 2018-01-30T00:00:00-04:00
-weight: 1
+weight: 3
 ---
 
 Before we get started, let's make sure you're in the right place:

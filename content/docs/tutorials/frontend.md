@@ -1,5 +1,5 @@
 ---
-title: "Frontend"
+title: "Frontend Tutorials"
 description: ""
 date: 2019-02-14T00:00:00-04:00
 section: tutorials

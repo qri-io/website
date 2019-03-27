@@ -25,12 +25,14 @@
       {{ range .Site.Sections }}
         {{ if eq .Title "docs" }}
           {{ range .Sections }}
-            <li class="section"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-            <ul>
-              {{ range .Pages }}
-                <li class="page"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-              {{ end }}
-            </ul>
+            <span>
+              <li class="section"><span class="toggle">&#9660;</span><a href="{{ .URL }}">{{ .Title }}</a></li>
+              <ul class="pages hidden">
+                {{ range .Pages }}
+                  <li class="page"><a href="{{ .URL }}">{{ .Title }}</a></li>
+                {{ end }}
+              </ul>
+            </span>
           {{ end }}
         {{ end }}
       {{ end }}
