@@ -7,10 +7,11 @@ date: 2018-01-30T00:00:00-04:00
 <section id="docs_sections">
   <div class="wrap">
     <h1>Docs</h1>
-    <p>Qri is a global dataset version control system on the distributed web.</p>
+    <p>Qri is a global dataset version control system on the distributed web. This is it's documentation. You are reading that documentation now.</p>
     <div class="sections">
       <div class="section">
         <a href="/docs/concepts"><h2>Concepts</h2></a>
+        <p>High level ideas that drive the project</p>
         <ul>
           <li><a href="/docs/concepts/overview">Qri Overview</a></li>
           <li><a href="/docs/concepts/dataset">Datasets</a></li>
@@ -18,12 +19,14 @@ date: 2018-01-30T00:00:00-04:00
       </div>
       <!-- <div class="section">
         <a href="/docs/setup"><h2>Setup</h2></a>
+        <p>How Qri integrates with other tools to get things done.</p>
         <ul>
           <li><a href="/docs/setup">Setup</a></li>
         </ul>
       </div> -->
       <div class="section">
         <a a href="/docs/tutorials"><h2>Tutorials</h2></a>
+        <p>Hands-on guides for working with qri</p>
         <ul>
           <li><a href="/docs/tutorials/cli_quickstart">CLI Quickstart</a></li>
           <li><a href="/docs/tutorials/frontend">Frontend Tutorials</a></li>
@@ -31,6 +34,7 @@ date: 2018-01-30T00:00:00-04:00
       </div>
       <div class="section">
         <a href="/docs/reference"><h2>Reference</h2></a>
+        <p>Detailed definitions of Qri features</p>
         <ul>
           <li><a href="/docs/reference/dataset">Dataset Definition</a></li>
           <li><a href="/docs/reference/starlib">Starlark standard library</a></li>
@@ -38,12 +42,14 @@ date: 2018-01-30T00:00:00-04:00
       </div>
       <!-- <div class="section">
         <a a href="/docs/workflows"><h2>Workflows</h2></a>
+        <p>How Qri integrates with other tools to get things done.</p>
         <ul>
           <li><a href="/docs/workflows">index</a></li>
         </ul>
       </div> -->
       <div class="section">
         <a href="/docs/contribute"><h2>Contribute</h2></a>
+        <p>Qri is Open Source! Your help makes all the difference.</p>
         <ul>
           <li><a href="/docs/contribute">Contributing</a></li>
         </ul>

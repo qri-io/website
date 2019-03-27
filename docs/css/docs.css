@@ -103,9 +103,10 @@
   float: right;
   display: block;
   cursor: pointer;
-  padding: 0 25px 5px 0;
-  padding-right: 20px;
-  color: #ccc;
+  padding: 0 25px 5px 10px;
+  color: #aaa;
+  font-size: 14px;
+  margin-top: 0;
 }
 
 #docs_sidebar .hidden {
