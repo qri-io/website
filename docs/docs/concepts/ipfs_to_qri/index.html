@@ -105,19 +105,12 @@
         
           
             <span>
-              <li class="section"><span class="toggle">&#9660;</span><a href="../../../docs/setup/">setup</a></li>
-              <ul class="pages hidden">
-                
-              </ul>
-            </span>
-          
-            <span>
               <li class="section"><span class="toggle">&#9660;</span><a href="../../../docs/concepts/">concepts</a></li>
               <ul class="pages hidden">
                 
                   <li class="page"><a href="../../../docs/concepts/overview/">Overview</a></li>
                 
-                  <li class="page"><a href="../../../docs/concepts/datasets/">Datasets</a></li>
+                  <li class="page"><a href="../../../docs/concepts/dataset/">Datasets</a></li>
                 
                   <li class="page"><a href="../../../docs/concepts/content-addressing/">Content Addressing</a></li>
                 
@@ -205,7 +198,7 @@
 
 <h3 id="qri-is-built-on-top-of-go-ipfs">Qri is built on top of go-ipfs</h3>
 
-<p>Qri imports go-ipfs as a dependency. When we say &ldquo;IPFS&rdquo; in Qri land, we specifically mean the latest version of go-ipfs. We try to keep Qri&rsquo;s behaviour in relation to IPFS as close to standard go-ipfs as possible. Qri is sensitive to the <code>IPFS_PATH</code> enviornment variable (which defaults to <code>$HOME/.ipfs</code>). Qri respects all configuration in <code>$IPFS_PATH/config</code>, so if for example you enable the new <code>quic</code> protocol by changing your ipfs config file, Qri will operate over quic as well.</p>
+<p>Qri imports <a href="https://github.com/ipfs/go-ipfs">go-ipfs</a> as a dependency. When we say &ldquo;IPFS&rdquo; in Qri land, we specifically mean the latest stable version of go-ipfs. We try to keep Qri&rsquo;s behaviour in relation to IPFS as close to standard go-ipfs as possible. Qri is sensitive to the <code>IPFS_PATH</code> environment variable (which defaults to <code>$HOME/.ipfs</code>). Qri respects all configuration in <code>$IPFS_PATH/config</code>, so if for example you enable the new <code>quic</code> protocol by changing your ipfs config file, Qri will operate over quic as well.</p>
 
 <p>If an IPFS repo doesn&rsquo;t exist when you run  <code>qri setup</code>, qri creates one for you, using the default IPFS configuration.</p>
 
@@ -213,7 +206,7 @@
 
 <h4 id="qri-connect-ipfs-daemon-the-qri-protocol"><code>qri connect</code> == (<code>ipfs daemon</code> + the Qri protocol)</h4>
 
-<p>Qri&rsquo;s version of <code>ipfs daemon</code> is <code>qri connect</code>. When you run qri connect, you are creating a standard IPFS node &amp; long-running daemon process that Qri build on top of. As of qri v0.6.2, Qri makes the IPFS HTTP available by default. at the value <code>http://localhost:5001</code>. In addition to p2p communication, <code>qri connect</code> makes JSON &amp; RPC api&rsquo;s availble for doing qri-specific stuff.</p>
+<p>Qri&rsquo;s version of <code>ipfs daemon</code> is <code>qri connect</code>. When you run qri connect, you are creating a standard IPFS node &amp; long-running daemon process that Qri build on top of. As of qri v0.6.2, Qri makes the IPFS HTTP API available by default. If you haven&rsquo;t change your IPFS config, it will be at <code>http://localhost:5001</code>. In addition to p2p communication, <code>qri connect</code> makes JSON &amp; RPC api&rsquo;s available for doing qri-specific stuff.</p>
 
 <p>Thanks to recent changes in go-ipfs, <code>ipfs</code> cli commands operate over HTTP when a daemon is running, which means you can run <code>qri connect</code> and your <code>ipfs</code> CLI will still work by adding the <code>--api</code> flag. eg: <code>ipfs --api /ip4/127.0.0.1/tcp/5001/ [command]</code>.</p>
 
@@ -221,15 +214,19 @@
 
 <p><code>qri peers list</code> will report connected libp2p peers that support the qri protocol. <code>qri peers list --network ipfs</code> will print all connected IPFS peers, as well as their connection manager priorities.</p>
 
-<h3 id="qri-stores-datasets-in-your-local-ipfs-repo">Qri stores datasets in your local IPFS repo</h3>
+<h3 id="qri-stores-datasets-in-ipfs">Qri stores datasets in IPFS</h3>
 
-<p>running <code>qri save --file a.csv me/dataset</code> will add &amp; pin a new hash to the IPFS repo at <code>IPFS_PATH</code> (which defaults to <code>$HOME/.ipfs</code>). As of now this is a standard UnixFSv1 DAG. Qri stores <em>everything</em> related to a dataset &amp; all versions inside of IPFS, except the naming system. <code>me/dataset</code> is simply a <em>reference to the head of a dataset history</em>. Because this reference is mutable &amp; ephemeral, it&rsquo;s stored outside of IPFS.</p>
+<p>running <code>qri save --file a.csv me/dataset</code> will add &amp; pin a new hash to your local IPFS repo at <code>IPFS_PATH</code> (which defaults to <code>$HOME/.ipfs</code>). As of now this is a standard UnixFSv1 DAG. Qri stores <em>everything</em> related to a dataset &amp; all versions inside of IPFS, except the naming system. <code>me/dataset</code> is simply a <em>reference to the head of a dataset history</em>. This name reference is mutable &amp; ephemeral, currently stored outside of IPFS.</p>
 
 <h3 id="qri-profileid-ipfs-peerid-are-different-things">Qri ProfileID &amp; IPFS PeerID are different things</h3>
 
-<p>One important point of departure is your qri &ldquo;ProfileID&rdquo; &amp; IPFS &ldquo;PeerID&rdquo; are both base58-encoded hash-of-publicKey. But they are intentionally <em>different</em> keys. We do this so you can move your qri profile to different IPFS nodes. It&rsquo;s not a good idea to use the same keypair for your IPFS PeerID &amp; qri ProfileID, even though the specs are interchangable.</p>
+<p>One important point of departure is your qri &ldquo;ProfileID&rdquo; &amp; IPFS &ldquo;PeerID&rdquo; are both base58-encoded hash-of-publicKey. But they are intentionally <em>different</em> keys. We do this so you can move your qri profile to different IPFS nodes. It&rsquo;s not a good idea to use the same keypair for your IPFS PeerID &amp; qri ProfileID, even though the specs are interchangeable.</p>
 
 <p>As usual, <em>never, ever, ever</em> disclose either keypair.</p>
+
+<h3 id="qri-isn-t-just-ipfs">Qri isn&rsquo;t <em>just</em> IPFS</h3>
+
+<p>While the <em>default</em> (and only seriously functional) implementation of Qri is on IPFS, many aspects of Qri currently work without touching IPFS at all. Examples include diffing; validation; dataset rendering; and skipping storage entirely with the  <code>--dry-run</code> flag on save. We intended to broaden this picture over time, supporting other content-addressed storage &amp; dissemination formats, ideally including conversion &amp; integration between them. At the moment, Qri is focused on getting production-grade software to work atop IPFS.</p>
 
 <hr />
 

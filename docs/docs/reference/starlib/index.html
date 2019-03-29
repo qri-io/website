@@ -105,19 +105,12 @@
         
           
             <span>
-              <li class="section"><span class="toggle">&#9660;</span><a href="../../../docs/setup/">setup</a></li>
-              <ul class="pages hidden">
-                
-              </ul>
-            </span>
-          
-            <span>
               <li class="section"><span class="toggle">&#9660;</span><a href="../../../docs/concepts/">concepts</a></li>
               <ul class="pages hidden">
                 
                   <li class="page"><a href="../../../docs/concepts/overview/">Overview</a></li>
                 
-                  <li class="page"><a href="../../../docs/concepts/datasets/">Datasets</a></li>
+                  <li class="page"><a href="../../../docs/concepts/dataset/">Datasets</a></li>
                 
                   <li class="page"><a href="../../../docs/concepts/content-addressing/">Content Addressing</a></li>
                 
@@ -225,6 +218,11 @@
 </tr>
 
 <tr>
+<td><a href="#json">encoding/json</a></td>
+<td>json provides functions for working with json data</td>
+</tr>
+
+<tr>
 <td><a href="#geo">geo</a></td>
 <td>geo defines geographic operations in two-dimensional space</td>
 </tr>
@@ -241,12 +239,12 @@
 
 <tr>
 <td><a href="#math">math</a></td>
-<td>math defines mathimatical functions, it&rsquo;s intented to be a drop-in subset of python&rsquo;s math module for starlark: <a href="https://docs.python.org/3/library/math.html">https://docs.python.org/3/library/math.html</a></td>
+<td>math defines mathematical functions, it&rsquo;s intended to be a drop-in subset of python&rsquo;s math module for starlark: <a href="https://docs.python.org/3/library/math.html">https://docs.python.org/3/library/math.html</a></td>
 </tr>
 
 <tr>
 <td><a href="#re">re</a></td>
-<td>re defines regular expression functions, it&rsquo;s intented to be a drop-in subset of python&rsquo;s re module for starlark: <a href="https://docs.python.org/3/library/re.html">https://docs.python.org/3/library/re.html</a></td>
+<td>re defines regular expression functions, it&rsquo;s intended to be a drop-in subset of python&rsquo;s re module for starlark: <a href="https://docs.python.org/3/library/re.html">https://docs.python.org/3/library/re.html</a></td>
 </tr>
 
 <tr>
@@ -408,13 +406,105 @@
 
 <p><br /></p>
 
+<h4 id="csv-write-all-source-comma-string"><code>csv.write_all(source,comma=&quot;,&quot;) string</code></h4>
+
+<p>write all rows from source to a csv-encoded string</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>source</code></td>
+<td><code>[][]string</code></td>
+<td>array of arrays of strings to write to csv</td>
+</tr>
+
+<tr>
+<td><code>comma</code></td>
+<td><code>string</code></td>
+<td>comma is the field delimiter, defaults to &ldquo;,&rdquo; (a comma). comma must be a valid character and must not be \r, \n, or the Unicode replacement character (0xFFFD).</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<hr />
+
+<h1 id="a-id-json-href-json-encoding-json-a"><a id="json" href="#json">encoding/json</a></h1>
+
+<p>json provides functions for working with json data</p>
+
+<h2 id="functions-2">Functions</h2>
+
+<h4 id="json-dumps-obj-string"><code>json.dumps(obj) string</code></h4>
+
+<p>serialize obj to a JSON string</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>obj</code></td>
+<td><code>object</code></td>
+<td>input object</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="json-loads-source-object"><code>json.loads(source) object</code></h4>
+
+<p>read a source JSON string to a starlark object</p>
+
+<p><strong>parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>source</code></td>
+<td><code>string</code></td>
+<td>input string of json data</td>
+</tr>
+</tbody>
+</table>
+
+<p><br /></p>
+
 <hr />
 
 <h1 id="a-id-geo-href-geo-geo-a"><a id="geo" href="#geo">geo</a></h1>
 
 <p>geo defines geographic operations in two-dimensional space</p>
 
-<h2 id="functions-2">Functions</h2>
+<h2 id="functions-3">Functions</h2>
 
 <h4 id="geo-line-points-line"><code>geo.Line(points) Line</code></h4>
 
@@ -593,9 +683,9 @@
 
 <h4 id="line-length-float"><code>Line.length() float</code></h4>
 
-<p>Euclidian Length</p>
+<p>Euclidean Length</p>
 
-<h4 id="line-geodesiclength-float"><code>Line.geodesicLength() float</code></h4>
+<h4 id="line-lengthgeodesic-float"><code>Line.lengthGeodesic() float</code></h4>
 
 <p>Line length on the surface of a sphere with the same radius as Earth</p>
 
@@ -607,7 +697,7 @@ a two-dimensional point in space
 
 <h4 id="point-distance-p2-float"><code>Point.distance(p2) float</code></h4>
 
-<p>Euclidian Distance to the other point</p>
+<p>Euclidean Distance to the other point</p>
 
 <p><strong>parameters:</strong></p>
 
@@ -665,7 +755,7 @@ a two-dimensional point in space
 
 <p>html defines a jquery-like html selection &amp; iteration functions for HTML documents</p>
 
-<h2 id="functions-3">Functions</h2>
+<h2 id="functions-4">Functions</h2>
 
 <h4 id="html-html-markup-selection"><code>html.html(markup) selection</code></h4>
 
@@ -1034,7 +1124,7 @@ a two-dimensional point in space
 
 <p>http defines an HTTP client implementation</p>
 
-<h2 id="functions-4">Functions</h2>
+<h2 id="functions-5">Functions</h2>
 
 <h4 id="http-delete-url-params-headers-body-form-body-json-body-auth-response"><code>http.delete(url,params={},headers={},body=&quot;&quot;,form_body={},json_body={},auth=()) response</code></h4>
 
@@ -1374,49 +1464,25 @@ a two-dimensional point in space
 <tr>
 <td>url</td>
 <td>string</td>
-<td></td>
-</tr>
-
-<tr>
-<td>the</td>
-<td>url</td>
-<td></td>
+<td>the url that was ultimately requested (may change after redirects)</td>
 </tr>
 
 <tr>
 <td>status_code</td>
 <td>int</td>
-<td></td>
-</tr>
-
-<tr>
-<td>response</td>
-<td>status</td>
-<td></td>
+<td>response status code (for example: 200 == OK)</td>
 </tr>
 
 <tr>
 <td>headers</td>
 <td>dict</td>
-<td></td>
-</tr>
-
-<tr>
-<td>dictionary</td>
-<td>of</td>
-<td></td>
+<td>dictionary of response headers</td>
 </tr>
 
 <tr>
 <td>encoding</td>
 <td>string</td>
-<td></td>
-</tr>
-
-<tr>
-<td>transfer</td>
-<td>encoding.</td>
-<td></td>
+<td>transfer encoding. example: &ldquo;octet-stream&rdquo; or &ldquo;application/json&rdquo;</td>
 </tr>
 </tbody>
 </table>
@@ -1435,9 +1501,9 @@ a two-dimensional point in space
 
 <h1 id="a-id-math-href-math-math-a"><a id="math" href="#math">math</a></h1>
 
-<p>math defines mathimatical functions, it&rsquo;s intented to be a drop-in subset of python&rsquo;s math module for starlark: <a href="https://docs.python.org/3/library/math.html">https://docs.python.org/3/library/math.html</a></p>
+<p>math defines mathematical functions, it&rsquo;s intended to be a drop-in subset of python&rsquo;s math module for starlark: <a href="https://docs.python.org/3/library/math.html">https://docs.python.org/3/library/math.html</a></p>
 
-<h2 id="functions-5">Functions</h2>
+<h2 id="functions-6">Functions</h2>
 
 <h4 id="math-acos-x"><code>math.acos(x)</code></h4>
 
@@ -1503,6 +1569,10 @@ a two-dimensional point in space
 
 <p>Convert angle x from degrees to radians.</p>
 
+<h4 id="math-round-x"><code>math.round(x)</code></h4>
+
+<p>Returns the nearest integer, rounding half away from zero.</p>
+
 <h4 id="math-sin-x"><code>math.sin(x)</code></h4>
 
 <p>Return the sine of x radians.</p>
@@ -1527,9 +1597,9 @@ a two-dimensional point in space
 
 <h1 id="a-id-re-href-re-re-a"><a id="re" href="#re">re</a></h1>
 
-<p>re defines regular expression functions, it&rsquo;s intented to be a drop-in subset of python&rsquo;s re module for starlark: <a href="https://docs.python.org/3/library/re.html">https://docs.python.org/3/library/re.html</a></p>
+<p>re defines regular expression functions, it&rsquo;s intended to be a drop-in subset of python&rsquo;s re module for starlark: <a href="https://docs.python.org/3/library/re.html">https://docs.python.org/3/library/re.html</a></p>
 
-<h2 id="functions-6">Functions</h2>
+<h2 id="functions-7">Functions</h2>
 
 <h4 id="re-findall-pattern-text-flags-0"><code>re.findall(pattern, text, flags=0)</code></h4>
 
@@ -1669,7 +1739,7 @@ a two-dimensional point in space
 
 <p>time defines time primitives for starlark</p>
 
-<h2 id="functions-7">Functions</h2>
+<h2 id="functions-8">Functions</h2>
 
 <h4 id="time-duration-string-duration"><code>time.duration(string) duration</code></h4>
 
@@ -1797,7 +1867,7 @@ a two-dimensional point in space
 
 <p>xlsx implements excel file readers in starlark. currently a highly-experimental package that will definitely change at some point in the future</p>
 
-<h2 id="functions-8">Functions</h2>
+<h2 id="functions-9">Functions</h2>
 
 <h4 id="xlsx-get-url-url-string"><code>xlsx.get_url(url string)</code></h4>
 
@@ -1824,7 +1894,7 @@ a two-dimensional point in space
 
 <p>zipfile reads &amp; parses zip archives</p>
 
-<h2 id="functions-9">Functions</h2>
+<h2 id="functions-10">Functions</h2>
 
 <h4 id="zipfile-zipfile-data"><code>zipfile.ZipFile(data)</code></h4>
 
