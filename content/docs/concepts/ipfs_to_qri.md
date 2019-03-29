@@ -4,7 +4,7 @@ description: "How Qri integrates IPFS"
 date: 2018-01-30T00:00:00-04:00
 ---
 
-# I know IPFS, what's the deal with Qri
+# I know IPFS, what's the deal with Qri?
 
 Ooh look at you, smartie pants. You clicked the [IPFS](https://ipfs.io) link.  Assuming you understand the gist of IPFS, this may help connect the dots to how IPFS interacts with Qri.
 

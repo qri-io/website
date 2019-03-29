@@ -48,10 +48,10 @@ date: 2018-01-30T00:00:00-04:00
         </ul>
       </div> -->
       <div class="section">
-        <a href="/docs/contribute"><h2>Contribute</h2></a>
+        <a href="/docs/contributing"><h2>Contribute</h2></a>
         <p>Qri is Open Source! Your help makes all the difference.</p>
         <ul>
-          <li><a href="/docs/contribute">Contributing</a></li>
+          <li><a href="/docs/contributing">Contributing</a></li>
         </ul>
       </div>
     </div>
