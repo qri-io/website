@@ -1,0 +1,150 @@
+
+#docs_sections {
+  padding: 40px 0;
+  min-height: 800px;
+}
+
+#docs_sections .sections {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 200px;
+}
+
+#docs_sections .section {
+  flex: 1 1 200px;
+  padding: 10px 20px 20px 20px;
+  min-height: 200px;
+  border: 2px solid #efefef;
+  /* color: white; */
+  /* border-radius: 5px; */
+  margin: 10px 10px 0 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  /* background: linear-gradient(22deg, #0061A6, #00B4FF); */
+}
+
+#docs_page {
+  display: flex;
+  width: 100%;
+}
+
+#docs_page #docs_sidebar {
+  flex: 1 2 25%;
+  overflow: hidden;
+  max-width: 300px;
+  height: 100%;
+  content: "";
+}
+
+#docs_sidebar_toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  border-radius: 100%;
+  text-align: center;
+  padding-top: 8px;
+  color: white;
+  background: #0061A6;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.15);
+  z-index: 10;
+  display: none;
+}
+#docs_sidebar_toggle .icon {
+  width: 15px;
+  margin: 2px auto;
+}
+
+#docs_sidebar .content {
+  position: fixed;
+  overflow: auto;
+  padding-bottom: 40px;
+  width: 25%;
+  max-width: 300px;
+  background: #eee;
+  box-shadow: inside 0 -4px 6px rgba(0,0,0,0.25);
+  height: 100%;
+}
+
+#docs_sidebar .logotype {
+  padding-top: 20px;
+  display: block;
+  float: none;
+}
+#docs_sidebar .subhead {
+  margin-left: 0;
+}
+
+#docs_sidebar .section { 
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: #444;
+  padding: 20px 0 2px 0;
+}
+
+#docs_sidebar a { 
+  display: block;
+  padding: 2px 20px;
+  font-size: 16px;
+  line-height: 1.4em;
+  color: black;
+}
+#docs_sidebar a:hover { 
+  background: rgba(0,0,0,0.1);
+}
+
+#docs_sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#docs_sidebar .toggle {
+  float: right;
+  display: block;
+  cursor: pointer;
+  padding: 0 25px 5px 10px;
+  color: #aaa;
+  font-size: 14px;
+  margin-top: 0;
+}
+
+#docs_sidebar .hidden {
+  display: none;
+  overflow: hidden;
+}
+
+#docs_page #main { flex: 2 1 75%; }
+
+#docs_page #main .content {
+  max-width: 760px;
+  margin: 60px auto 220px auto;
+}
+
+#docs_page #main ul {
+  padding-left: 1em;
+  margin-bottom: 20px;
+}
+#docs_page #main ul li {
+  margin-bottom: 5px;
+}
+
+@media (max-width: 960px) {
+  #docs_page #main .content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  #docs_sidebar_toggle { display: block; }
+  #docs_sidebar {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    transition: all 0.25s;
+    box-shadow: 1 1 6px rgba(0,0,0,0.15);
+  }
+  #docs_sidebar .content {
+    padding-top: 60px;
+    min-width: 300px;
+  }
+  #docs_sidebar.show { left: 0; }
+}

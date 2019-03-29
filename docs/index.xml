@@ -12,6 +12,36 @@
     
     
     <item>
+      <title>CLI Quickstart</title>
+      <link>https://qri.io/docs/tutorials/cli_quickstart/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/tutorials/cli_quickstart/</guid>
+      <description>Qri CLI Quickstart Let&amp;rsquo;s take a tour through the Qri Command line client.
+Setup Qri First, you&amp;rsquo;ll need the latest CLI binary. head over to our releases page and install the binary somewhere on your $PATH. You should be able to type qri help and see a nice introductory message.
+Before we can do useful things with Qri, we need to set it up. So let&amp;rsquo;s start by running setup:</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://qri.io/docs/concepts/overview/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/overview/</guid>
+      <description>What is Qri (&amp;ldquo;query&amp;rdquo;)? Qri is a distributed dataset version control system built with peer-2-peer data exchange. Peers create datasets, which are stored in versions. Qri peers form a distributed network to exchange information about their datasets, which they transmit between each other over the distributed web.
+  Datasets are recorded structured data according to a specification that dictates the purpose of each component piece of a dataset. By design, qri can only store datasets.</description>
+    </item>
+    
+    <item>
+      <title>Datasets</title>
+      <link>https://qri.io/docs/concepts/dataset/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/dataset/</guid>
+      <description>Datasets: Qri&amp;rsquo;s Building Block  #dataset_components { position: relative; margin-bottom: 120px; } .diagram { max-width: 260px; margin: 60px auto; padding: 40px 0; } .descriptions { position: absolute; } .right.descriptions { right: 0; top: 0; text-align: right; } .description { display: block; padding: 5px 8px; margin: 20px 0; border-radius: 6px; background: white; box-shadow: 0 0 3px rgba(0,0,0,0.2); transition: all 0.5s; width: 220px; color: #666; line-height: 1.2em; } .description:hover { box-shadow: 0 5px 6px rgba(0,0,0,0.</description>
+    </item>
+    
+    <item>
       <title>A Better Mousetrap Podcast</title>
       <link>https://qri.io/blog/a_better_mousetrap_podcast/</link>
       <pubDate>Mon, 11 Mar 2019 15:00:00 -0400</pubDate>
@@ -43,7 +73,7 @@ Two-ish years ago I came across an article in the Washington Post about a group 
     </item>
     
     <item>
-      <title>Frontend</title>
+      <title>Frontend Tutorials</title>
       <link>https://qri.io/docs/tutorials/frontend/</link>
       <pubDate>Thu, 14 Feb 2019 00:00:00 -0400</pubDate>
       
@@ -131,22 +161,6 @@ email: hello [at] qri.io</description>
     </item>
     
     <item>
-      <title>CLI quickstart</title>
-      <link>https://qri.io/docs/tutorials/cli_quickstart/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/tutorials/cli_quickstart/</guid>
-      <description>CLI Tutorial (last updated Nov 12, 2018, using qri version 0.6.0)
-Welcome to the wonderful world of the Qri Command Line Interface. Here we&amp;rsquo;ll get you started with using qri&amp;rsquo;s command-line tools, giving a brief overview of what qri&amp;rsquo;s CLI can do.
-The whole tutorial is divided into six sections. The topics are as follows:
- QLI Quickstart
-1.1 qri help
-1.2 qri version
-1.3 qri setup
-1.4 qri save</description>
-    </item>
-    
-    <item>
       <title>Content Addressing</title>
       <link>https://qri.io/docs/concepts/content-addressing/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
@@ -165,21 +179,22 @@ The whole tutorial is divided into six sections. The topics are as follows:
     </item>
     
     <item>
-      <title>Datasets</title>
-      <link>https://qri.io/docs/concepts/dataset/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/concepts/dataset/</guid>
-      <description>Datasets: Qri&amp;rsquo;s Building Block  #dataset_components { position: relative; margin-bottom: 120px; } .diagram { max-width: 260px; margin: 60px auto; padding: 40px 0; } .descriptions { position: absolute; } .right.descriptions { right: 0; top: 0; text-align: right; } .description { display: block; padding: 5px 8px; margin: 20px 0; border-radius: 6px; background: white; box-shadow: 0 0 3px rgba(0,0,0,0.2); transition: all 0.5s; width: 220px; color: #666; line-height: 1.2em; } .description:hover { box-shadow: 0 5px 6px rgba(0,0,0,0.</description>
-    </item>
-    
-    <item>
       <title>Distributed Storage</title>
       <link>https://qri.io/docs/concepts/distributed-storage/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/docs/concepts/distributed-storage/</guid>
       <description>Going Distributed Makes Data Free &amp;amp; Dependable Qri doesn’t need a central server to work, instead it&amp;rsquo;s built in a distributed, peer-2-peer architecture that moves data by connecting computers directly. By connecting computers directly, we make storing data on Qri free, because datasets don&amp;rsquo;t have to be stored in the cloud. Your “payment” is the hard drive space to store the data you want to keep. This frees up datasets to get as big as they need to be, and stored wherever makes the most sense.</description>
+    </item>
+    
+    <item>
+      <title>IPFS → Qri</title>
+      <link>https://qri.io/docs/concepts/ipfs_to_qri/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/concepts/ipfs_to_qri/</guid>
+      <description>I know IPFS, what&amp;rsquo;s the deal with Qri Ooh look at you, smartie pants. You clicked the IPFS link. Assuming you understand the gist of IPFS, this may help connect the dots to how IPFS interacts with Qri.
+If you&amp;rsquo;re new to IPFS, no worries. You don&amp;rsquo;t need to understand IPFS to work with Qri. But if your curious about what all this IPFS talk is about, definitely start with the IPFS docs introduction.</description>
     </item>
     
     <item>
@@ -194,16 +209,6 @@ b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b
     </item>
     
     <item>
-      <title>Overview</title>
-      <link>https://qri.io/docs/concepts/overview/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/concepts/overview/</guid>
-      <description>What is Qri (&amp;ldquo;query&amp;rdquo;)? Qri is a distributed dataset version control system built with peer-2-peer data exchange. Peers create datasets, which are stored in versions. Qri peers form a distributed network to exchange information about their datasets, which they transmit between each other over the distributed web.
-  Datasets are recorded structured data according to a specification that dictates the purpose of each component piece of a dataset. By design, qri can only store datasets.</description>
-    </item>
-    
-    <item>
       <title>Starlark Language</title>
       <link>https://qri.io/docs/reference/starlark_syntax/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
@@ -213,14 +218,21 @@ b5/comics@/ipfs/QmejvEPop4D7YUadeGqYWmZxHhLc4JBUCzJJHWMzdcMe2y  In a sentence: b
     </item>
     
     <item>
-      <title>Starlark Transformations</title>
-      <link>https://qri.io/docs/tutorials/starlark_transformations/</link>
+      <title>The Source Cascade</title>
+      <link>https://qri.io/docs/concepts/value_cascade/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/docs/tutorials/starlark_transformations/</guid>
-      <description>Starlark Transformations Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. A transformation is a repeatable script for generating a dataset. Starlark. This package implements starlark as a transformation syntax. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
-Typical examples of a starlark transformation include:
- combining paginated calls to an API into a single dataset downloading unstructured structured data from the internet to extract  So let&amp;rsquo;s dive in and learn about transforms!</description>
+      <guid>https://qri.io/docs/concepts/value_cascade/</guid>
+      <description>Value Cascade A good dataset is as complete and accurate as possible. Good datasets have metadata with a concise yet descriptive title, a description that elaborates, a schema with descriptive details, and so on. When it comes to datasets more detail is better, so long as it&amp;rsquo;s accurate. Because of this, qri provides lots of places to set values. We call those &amp;ldquo;places that might set values&amp;rdquo; sources. There are 4 sources of values in qri:</description>
+    </item>
+    
+    <item>
+      <title>html templates</title>
+      <link>https://qri.io/docs/reference/html_templates/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/reference/html_templates/</guid>
+      <description>HTML Templates coming soon!</description>
     </item>
     
     <item>
@@ -273,6 +285,15 @@ An address is a uniform, shorthand way of referring to things. Geographic addres
    Qri Desktop Desktop app for interacting with qri datasets on the distributed web.
 Currently only available for Mac OS X.
 If you&#39;d like to track the status of other installations, check out our progress on github</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://qri.io/docs/tutorials/qri_recipes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://qri.io/docs/tutorials/qri_recipes/</guid>
+      <description></description>
     </item>
     
   </channel>

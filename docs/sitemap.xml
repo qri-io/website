@@ -3,6 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://qri.io/docs/tutorials/cli_quickstart/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/concepts/overview/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/concepts/dataset/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/concepts/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://qri.io/docs/tutorials/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
@@ -13,7 +33,12 @@
   </url>
   
   <url>
-    <loc>https://qri.io/docs/concepts/</loc>
+    <loc>https://qri.io/docs/workflows/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/contributing/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
@@ -73,11 +98,6 @@
   </url>
   
   <url>
-    <loc>https://qri.io/docs/tutorials/cli_quickstart/</loc>
-    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://qri.io/docs/concepts/content-addressing/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
@@ -88,12 +108,12 @@
   </url>
   
   <url>
-    <loc>https://qri.io/docs/concepts/dataset/</loc>
+    <loc>https://qri.io/docs/concepts/distributed-storage/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://qri.io/docs/concepts/distributed-storage/</loc>
+    <loc>https://qri.io/docs/concepts/ipfs_to_qri/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
@@ -103,22 +123,22 @@
   </url>
   
   <url>
-    <loc>https://qri.io/docs/concepts/overview/</loc>
-    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://qri.io/docs/reference/starlark_syntax/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://qri.io/docs/tutorials/starlark_transformations/</loc>
+    <loc>https://qri.io/docs/concepts/value_cascade/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://qri.io/docs/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/reference/html_templates/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
   </url>
   
@@ -150,6 +170,10 @@
   <url>
     <loc>https://qri.io/</loc>
     <lastmod>2017-10-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/tutorials/qri_recipes/</loc>
   </url>
   
   <url>

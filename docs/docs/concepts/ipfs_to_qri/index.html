@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta name="generator" content="Hugo 0.54.0" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> IPFS → Qri </title>
+
+  
+  <meta name="description" content="How Qri integrates IPFS"> 
+  
+  
+  
+  
+  
+
+  
+
+  <meta name="author" content="qri">
+
+
+  <meta property="og:title" content="IPFS → Qri" />
+<meta property="og:description" content="How Qri integrates IPFS" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://qri.io/docs/concepts/ipfs_to_qri/" />
+<meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+<meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
+
+  
+
+
+
+
+  
+  
+  
+  
+  
+
+  <link rel="canonical" href="https://qri.io/docs/concepts/ipfs_to_qri/">  
+
+  <link href="../../../favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="../../../css/font.css" rel="stylesheet" type="text/css">
+  <link href="../../../css/qri.css" rel="stylesheet" type="text/css">
+  <link href="../../../css/docs.css" rel="stylesheet" type="text/css">
+  
+
+  <script src="../../../js/jquery-2.1.4.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../../../css/highlight.default.min.css">
+  <link rel="stylesheet" href="../../../css/highlight.theme.tomorrow.css">
+  <script src="../../../js/highlight.pack.js"></script>
+  <script>
+    window.onload = function(e) {
+      let elements = document.querySelectorAll('.highlight pre')
+      Array.from(elements).forEach((block, i) => {
+        hljs.highlightBlock(block)
+      })
+    }
+  </script>
+
+  <script type="text/javascript" src="../../../js/tocbot.min.js"></script>
+
+  
+    <script type="text/javascript">
+     !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+      analytics.load("b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju");
+      analytics.page()
+    }}();
+    </script>
+  
+</head>
+
+
+<body class="page-kube docs " >
+  <header></header>
+  <main>
+<div id="docs_page" class="docs">
+  <div id="docs_sidebar_toggle">
+  <div class="icon">
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    viewBox="0 0 10 10" style="enable-background:new 0 0 10 10;" xml:space="preserve">
+      <style type="text/css">
+        .st0{fill:#FFFFFF;}
+      </style>
+      <path class="st0" d="M9,2.3H1c-0.44,0-0.8-0.36-0.8-0.8V1.3c0-0.44,0.36-0.8,0.8-0.8H9c0.44,0,0.8,0.36,0.8,0.8V1.5
+        C9.8,1.94,9.44,2.3,9,2.3z"/>
+      <path class="st0" d="M9,5.9H1c-0.44,0-0.8-0.36-0.8-0.8V4.9c0-0.44,0.36-0.8,0.8-0.8H9c0.44,0,0.8,0.36,0.8,0.8V5.1
+        C9.8,5.54,9.44,5.9,9,5.9z"/>
+      <path class="st0" d="M9,9.5H1c-0.44,0-0.8-0.36-0.8-0.8V8.5c0-0.44,0.36-0.8,0.8-0.8H9c0.44,0,0.8,0.36,0.8,0.8V8.7
+        C9.8,9.14,9.44,9.5,9,9.5z"/>
+    </svg>
+  </div>
+</div>
+<nav id="docs_sidebar">
+  <div class="content">
+    <div class="logotype">
+      <a href="../../../" title="home" class="title">qri</a>
+      <p class="subhead"><a href="../../../docs">docs</a></p>
+    </div>
+    <div class="pages">
+      <ul>
+      
+        
+          
+            <span>
+              <li class="section"><span class="toggle">&#9660;</span><a href="../../../docs/concepts/">concepts</a></li>
+              <ul class="pages hidden">
+                
+                  <li class="page"><a href="../../../docs/concepts/overview/">Overview</a></li>
+                
+                  <li class="page"><a href="../../../docs/concepts/dataset/">Datasets</a></li>
+                
+                  <li class="page"><a href="../../../docs/concepts/content-addressing/">Content Addressing</a></li>
+                
+                  <li class="page"><a href="../../../docs/concepts/distributed-storage/">Distributed Storage</a></li>
+                
+                  <li class="page"><a href="../../../docs/concepts/ipfs_to_qri/">IPFS → Qri</a></li>
+                
+                  <li class="page"><a href="../../../docs/concepts/names/">Naming</a></li>
+                
+                  <li class="page"><a href="../../../docs/concepts/value_cascade/">The Source Cascade</a></li>
+                
+              </ul>
+            </span>
+          
+            <span>
+              <li class="section"><span class="toggle">&#9660;</span><a href="../../../docs/tutorials/">Tutorials</a></li>
+              <ul class="pages hidden">
+                
+                  <li class="page"><a href="../../../docs/tutorials/cli_quickstart/">CLI Quickstart</a></li>
+                
+                  <li class="page"><a href="../../../docs/tutorials/frontend/">Frontend Tutorials</a></li>
+                
+                  <li class="page"><a href="../../../docs/tutorials/qri_recipes/"></a></li>
+                
+              </ul>
+            </span>
+          
+            <span>
+              <li class="section"><span class="toggle">&#9660;</span><a href="../../../docs/reference/">reference</a></li>
+              <ul class="pages hidden">
+                
+                  <li class="page"><a href="../../../docs/reference/starlark_examples/">Starlark Examples</a></li>
+                
+                  <li class="page"><a href="../../../docs/reference/starlib_qri_ds/">Starlark: qri &amp; ds modules</a></li>
+                
+                  <li class="page"><a href="../../../docs/reference/starlib/">Starlark: standard library</a></li>
+                
+                  <li class="page"><a href="../../../docs/reference/cli_commands/">CLI commands</a></li>
+                
+                  <li class="page"><a href="../../../docs/reference/dataset/">Dataset</a></li>
+                
+                  <li class="page"><a href="../../../docs/reference/starlark_syntax/">Starlark Language</a></li>
+                
+                  <li class="page"><a href="../../../docs/reference/html_templates/">html templates</a></li>
+                
+              </ul>
+            </span>
+          
+            <span>
+              <li class="section"><span class="toggle">&#9660;</span><a href="../../../docs/workflows/">workflows</a></li>
+              <ul class="pages hidden">
+                
+              </ul>
+            </span>
+          
+            <span>
+              <li class="section"><span class="toggle">&#9660;</span><a href="../../../docs/contributing/">contributing</a></li>
+              <ul class="pages hidden">
+                
+              </ul>
+            </span>
+          
+        
+      
+        
+      
+        
+      
+        
+      
+      </ul>
+    </div>
+  </div>
+  <br />
+</nav>
+  <section id="main">
+    <div class="content">
+      
+
+<h1 id="i-know-ipfs-what-s-the-deal-with-qri">I know IPFS, what&rsquo;s the deal with Qri</h1>
+
+<p>Ooh look at you, smartie pants. You clicked the <a href="https://ipfs.io">IPFS</a> link.  Assuming you understand the gist of IPFS, this may help connect the dots to how IPFS interacts with Qri.</p>
+
+<p>If you&rsquo;re new to IPFS, no worries. <em>You don&rsquo;t need to understand IPFS to work with Qri</em>. But if your curious about what all this IPFS talk is about, definitely start with the <a href="https://docs.ipfs.io/introduction/">IPFS docs introduction</a>.</p>
+
+<h3 id="qri-is-built-on-top-of-go-ipfs">Qri is built on top of go-ipfs</h3>
+
+<p>Qri imports <a href="https://github.com/ipfs/go-ipfs">go-ipfs</a> as a dependency. When we say &ldquo;IPFS&rdquo; in Qri land, we specifically mean the latest stable version of go-ipfs. We try to keep Qri&rsquo;s behaviour in relation to IPFS as close to standard go-ipfs as possible. Qri is sensitive to the <code>IPFS_PATH</code> environment variable (which defaults to <code>$HOME/.ipfs</code>). Qri respects all configuration in <code>$IPFS_PATH/config</code>, so if for example you enable the new <code>quic</code> protocol by changing your ipfs config file, Qri will operate over quic as well.</p>
+
+<p>If an IPFS repo doesn&rsquo;t exist when you run  <code>qri setup</code>, qri creates one for you, using the default IPFS configuration.</p>
+
+<p>There are lots of places where qri &amp; IPFS overlap. generally we see Qri as being an enthusiastic member of the libp2p ecosystem, building atop libp2p &amp; multformats for any custom p2p behaviour. IPFS skills should make it easier to use Qri, and vice versa.</p>
+
+<h4 id="qri-connect-ipfs-daemon-the-qri-protocol"><code>qri connect</code> == (<code>ipfs daemon</code> + the Qri protocol)</h4>
+
+<p>Qri&rsquo;s version of <code>ipfs daemon</code> is <code>qri connect</code>. When you run qri connect, you are creating a standard IPFS node &amp; long-running daemon process that Qri build on top of. As of qri v0.6.2, Qri makes the IPFS HTTP API available by default. If you haven&rsquo;t change your IPFS config, it will be at <code>http://localhost:5001</code>. In addition to p2p communication, <code>qri connect</code> makes JSON &amp; RPC api&rsquo;s available for doing qri-specific stuff.</p>
+
+<p>Thanks to recent changes in go-ipfs, <code>ipfs</code> cli commands operate over HTTP when a daemon is running, which means you can run <code>qri connect</code> and your <code>ipfs</code> CLI will still work by adding the <code>--api</code> flag. eg: <code>ipfs --api /ip4/127.0.0.1/tcp/5001/ [command]</code>.</p>
+
+<p>The big difference between <code>ipfs daemon</code> &amp; <code>qri connect</code> is of course, the &ldquo;Qri&rdquo; part. All Qri peer-to-peer communication is implemented as a custom libp2p protocol (the &ldquo;qri protocol&rdquo;) for peer-to-peer communication, at startup is added to the IPFS node itself.</p>
+
+<p><code>qri peers list</code> will report connected libp2p peers that support the qri protocol. <code>qri peers list --network ipfs</code> will print all connected IPFS peers, as well as their connection manager priorities.</p>
+
+<h3 id="qri-stores-datasets-in-ipfs">Qri stores datasets in IPFS</h3>
+
+<p>running <code>qri save --file a.csv me/dataset</code> will add &amp; pin a new hash to your local IPFS repo at <code>IPFS_PATH</code> (which defaults to <code>$HOME/.ipfs</code>). As of now this is a standard UnixFSv1 DAG. Qri stores <em>everything</em> related to a dataset &amp; all versions inside of IPFS, except the naming system. <code>me/dataset</code> is simply a <em>reference to the head of a dataset history</em>. This name reference is mutable &amp; ephemeral, currently stored outside of IPFS.</p>
+
+<h3 id="qri-profileid-ipfs-peerid-are-different-things">Qri ProfileID &amp; IPFS PeerID are different things</h3>
+
+<p>One important point of departure is your qri &ldquo;ProfileID&rdquo; &amp; IPFS &ldquo;PeerID&rdquo; are both base58-encoded hash-of-publicKey. But they are intentionally <em>different</em> keys. We do this so you can move your qri profile to different IPFS nodes. It&rsquo;s not a good idea to use the same keypair for your IPFS PeerID &amp; qri ProfileID, even though the specs are interchangeable.</p>
+
+<p>As usual, <em>never, ever, ever</em> disclose either keypair.</p>
+
+<h3 id="qri-isn-t-just-ipfs">Qri isn&rsquo;t <em>just</em> IPFS</h3>
+
+<p>While the <em>default</em> (and only seriously functional) implementation of Qri is on IPFS, many aspects of Qri currently work without touching IPFS at all. Examples include diffing; validation; dataset rendering; and skipping storage entirely with the  <code>--dry-run</code> flag on save. We intended to broaden this picture over time, supporting other content-addressed storage &amp; dissemination formats, ideally including conversion &amp; integration between them. At the moment, Qri is focused on getting production-grade software to work atop IPFS.</p>
+
+<hr />
+
+<h2 id="ipfs-ish-command-cheat-sheet">IPFS-ish command cheat sheet:</h2>
+
+<p>All of these commands assume you&rsquo;re running <code>qri connect</code>. All standard <code>ipfs</code> CLI commands should work while <code>qri connect</code> is running by adding the <code>--api</code> flag. eg: <code>ipfs --api /ip4/127.0.0.1/tcp/5001/ [command]</code></p>
+
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>qri peers list</code></td>
+<td>List libp2p peers that support the qri protocol</td>
+</tr>
+
+<tr>
+<td><code>qri peers list --network ipfs</code></td>
+<td>show IPFS network peers</td>
+</tr>
+
+<tr>
+<td><code>qri peers connect [multiaddr]</code></td>
+<td>pass qri peers connect a multiaddr to get the same behaviour as <code>ipfs swarm peers connect</code></td>
+</tr>
+
+<tr>
+<td><code>qri config set store.options.pubsub true</code></td>
+<td>enable IPFS pubsub when running qri connect</td>
+</tr>
+
+<tr>
+<td><code>qri config set store.options.api false</code></td>
+<td>disable IPFS API (this will disable the ipfs CLI when qri connect is running)</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+  </section>
+</div>
+</main>
+  <footer></footer>
+
+
+  <script src="../../../js/kube.js" type="text/javascript">
+  </script>
+  <script src="../../../js/kube.legenda.js" type="text/javascript">
+  </script>
+  <script src="../../../js/master.js" type="text/javascript">
+  </script>
+</body>
+
+</html>

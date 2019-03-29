@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tutorials on qri</title>
+    <title>Tutorials on qri</title>
     <link>https://qri.io/docs/tutorials/</link>
-    <description>Recent content in tutorials on qri</description>
+    <description>Recent content in Tutorials on qri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 30 Jan 2018 00:00:00 -0400</lastBuildDate>
@@ -12,7 +12,18 @@
     
     
     <item>
-      <title>Frontend</title>
+      <title>CLI Quickstart</title>
+      <link>https://qri.io/docs/tutorials/cli_quickstart/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/tutorials/cli_quickstart/</guid>
+      <description>Qri CLI Quickstart Let&amp;rsquo;s take a tour through the Qri Command line client.
+Setup Qri First, you&amp;rsquo;ll need the latest CLI binary. head over to our releases page and install the binary somewhere on your $PATH. You should be able to type qri help and see a nice introductory message.
+Before we can do useful things with Qri, we need to set it up. So let&amp;rsquo;s start by running setup:</description>
+    </item>
+    
+    <item>
+      <title>Frontend Tutorials</title>
       <link>https://qri.io/docs/tutorials/frontend/</link>
       <pubDate>Thu, 14 Feb 2019 00:00:00 -0400</pubDate>
       
@@ -25,30 +36,12 @@ What&amp;rsquo;s covered:
     </item>
     
     <item>
-      <title>CLI quickstart</title>
-      <link>https://qri.io/docs/tutorials/cli_quickstart/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
+      <title></title>
+      <link>https://qri.io/docs/tutorials/qri_recipes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://qri.io/docs/tutorials/cli_quickstart/</guid>
-      <description>CLI Tutorial (last updated Nov 12, 2018, using qri version 0.6.0)
-Welcome to the wonderful world of the Qri Command Line Interface. Here we&amp;rsquo;ll get you started with using qri&amp;rsquo;s command-line tools, giving a brief overview of what qri&amp;rsquo;s CLI can do.
-The whole tutorial is divided into six sections. The topics are as follows:
- QLI Quickstart
-1.1 qri help
-1.2 qri version
-1.3 qri setup
-1.4 qri save</description>
-    </item>
-    
-    <item>
-      <title>Starlark Transformations</title>
-      <link>https://qri.io/docs/tutorials/starlark_transformations/</link>
-      <pubDate>Tue, 30 Jan 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/docs/tutorials/starlark_transformations/</guid>
-      <description>Starlark Transformations Qri (&amp;ldquo;query&amp;rdquo;) is about datasets. A transformation is a repeatable script for generating a dataset. Starlark. This package implements starlark as a transformation syntax. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
-Typical examples of a starlark transformation include:
- combining paginated calls to an API into a single dataset downloading unstructured structured data from the internet to extract  So let&amp;rsquo;s dive in and learn about transforms!</description>
+      <guid>https://qri.io/docs/tutorials/qri_recipes/</guid>
+      <description></description>
     </item>
     
   </channel>

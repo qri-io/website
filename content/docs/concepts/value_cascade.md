@@ -2,7 +2,6 @@
 title: The Source Cascade
 date: 2018-01-30T00:00:00-04:00
 section: concepts
-draft: true
 ---
 
 # Value Cascade
@@ -35,5 +34,3 @@ So let's use an example that outlines:
 
 * The User has specified a `meta.title` property, and that's it
 * The previous version has no title specified
-
-### Removing values

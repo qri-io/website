@@ -1,5 +1,5 @@
 ---
-title: "Qri for Git people"
+title: "Git → Qri"
 description: "How Qri compares to Git"
 date: 2018-01-30T00:00:00-04:00
 section: tutorials
@@ -9,20 +9,23 @@ draft: true
 # Comparing Workflows: Qri, Git, and GitHub
 
 
-By building off a git metaphor, it's easier for someone familiar with Git to understand how Qri is different. Much of this isn't new, but what should be ratified in this RFC is the _quality of the explanation_. By reading this someone familiar with git should be able to understand the process Qri undertakes to create a dataset. Hopefully this explanation can be copy-pasted into our docs if this RFC is accepted.
+By building off a git metaphor, it's easier for someone familiar with Git to understand how Qri is different. Much of this isn't new, but what should be ratified in this RFC is the _quality of the explanation_. By reading this someone familiar with git should be able to understand the process Qri undertakes to create a dataset.
 
 ### Comparing Commits: Qri, GitHub, Git
-Qri builds on ideas popularized in both git and GitHub.
+Qri builds on ideas popularized in both git and GitHub. The following table compares terms between Git, Qri, and Github. Qri is built in a post-github world, beleving that some tools provided by a Version-coordination service like github are vital to the operation of a healthy version control ecosystem. Feel free to mentally replace "GitHub" with "GitLab" or "GitService" if you like.
 
-| Qri        | GitHub       | git        |
-| ---------- | ------------ | ---------- |
-| profile    | profile      | user       |
-| repository | repositories |            |
-| dataset    | repository   | repository |
-|            | branch       | branch     |
-| commit     | commit       | commit     |
+| Git        | GitHub       | Qri        | Notes |
+| ---------- | ------------ | ---------- | ----- |
+| user       | profile      | profile    | |
+|            | repositories | repository | _a qri "repo" has all local datasets (all "repos")_ |
+| repository | repository   | dataset    | _qri versions datasets, not repos_ |
+| branch     | branch       |            | _qri doesn't have branches_ |
+| commit     | commit       | commit     | _commits are the same_ |
+| `git commit`   |              | `qri save`     | _`git commit` ~= `qri save`_ |
+| remote     | "github"     | registry   | _qri uses a registry for usernames, similar to github_ |
+| remote     |              | remote     | _qri can "push" to other places_ |
+| `git push`     |              | `qri publish`  | _`git push` ~= `qri publish`_ |
 
-Qri intentionally has no functionality akin to git branches. Qri is built in a post-GitHub era where the notion of a _profile_ has become an intrensic part of the git experience. Feel free to mentally replace "GitHub" with "GitLab" or "GitService" if you like, but GitHub _did_ popularize these concepts.
 
 With Qri we're making a concerted effort to reduce the complexity associated with version control, getting it into a form that's palettable to an audience that doesn't consider themselves "technical". This is why we use `save` instead of `commit` (if you're all about git, don't worry, `commit` is aliased to `save` on the command line).
 
@@ -38,9 +41,9 @@ With Qri we're making a concerted effort to reduce the complexity associated wit
 | `qri publish`                 | `git push origin master`        |
 
 #### Both Qri and git use the local filesystem & `pwd`
-Before we get started, it's worth noting that both git and qri use the present-working-directory (`pwd`) to dereference filepaths. Git stores commits in a `.git` directory, one for each repo. Qri instead stores commits in a "content-addressed file system", which is stored in one place on your hard drive. Instead of one `.git` directory in each repository, there is one `.qri` directory for your entire file system,
+It's worth noting that both git and qri use the present-working-directory (`pwd`) to dereference filepaths. Git stores commits in a `.git` directory, one for each repo. Qri instead stores commits in a "content-addressed file system", which is stored in one place on your hard drive. Instead of one `.git` directory in each repository, there is one `.qri` directory for your entire file system,
 
-_It is possible to have multiple installations of Qri on your machine at once by manipulating the `$QRI_PATH` value. At time of writing (Oct. 2018), we haven't documented this properly._
+_It is possible to have multiple installations of Qri on your machine at once by manipulating the `$QRI_PATH` value. At time of writing (Oct. 2018), we haven't documented this properly. If you want these docs, [file an issue](https://github.com/qri-io/website/issues/new)_
 
 #### Git Commit Stores a snapshot, Qri Save Computes a snapshot
 while `qri save` and `git commit` are conceptually comparable, they're fairly different animals under the hood.
@@ -53,10 +56,7 @@ Like git, Qri's jobs is to version things. However, Qri is _not_ a generic versi
 
 Through the use of transform scripts, the user has tools to extend & control how a dataset is computed. Qri knows to run the transform in the first place because datasets have exactly one designated place for putting a transform script.
 
-#### Qri has no staging area
+#### Qri doesn't have a staging area
 While it is true that "qri save" is doing one less step than the git variant, git users will quickly point out that `git commit -am "changed stuff"` consolidates `git add` and `git commit` into a single step, so it's not much of a time-saver from a keystrokes perpective. Instead I've broken `git add` and `git commit` into two commands to show that Qri has no concept of a staging area.
 
 Instead of a staging area, Qri uses the concept of a _dry run_ to see what would happen without actually committing anything. 
-
-#### Qri registries are like git remotes
-With Qri it's possible to just run `qri save` and follow that with `qri connect`, and now others will be able to see and consume your dataset.
