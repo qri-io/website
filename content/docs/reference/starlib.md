@@ -16,11 +16,12 @@ All qri transforms have access to "starlib", a community-driven project to bring
 |--------------|-------------|
 | [encoding/base64](#base64) | base64 defines base64 encoding & decoding functions, often used to represent binary as text. |
 | [encoding/csv](#csv) | csv reads comma-separated values files |
+| [encoding/json](#json) | json provides functions for working with json data |
 | [geo](#geo) | geo defines geographic operations in two-dimensional space |
 | [html](#html) | html defines a jquery-like html selection & iteration functions for HTML documents |
 | [http](#http) | http defines an HTTP client implementation |
-| [math](#math) | math defines mathimatical functions, it's intented to be a drop-in subset of python's math module for starlark: https://docs.python.org/3/library/math.html |
-| [re](#re) | re defines regular expression functions, it's intented to be a drop-in subset of python's re module for starlark: https://docs.python.org/3/library/re.html |
+| [math](#math) | math defines mathematical functions, it's intended to be a drop-in subset of python's math module for starlark: https://docs.python.org/3/library/math.html |
+| [re](#re) | re defines regular expression functions, it's intended to be a drop-in subset of python's re module for starlark: https://docs.python.org/3/library/re.html |
 | [time](#time) | time defines time primitives for starlark |
 | [xlsx](#xlsx) | xlsx implements excel file readers in starlark. currently a highly-experimental package that will definitely change at some point in the future |
 | [zipfile](#zipfile) | zipfile reads & parses zip archives |
@@ -72,6 +73,42 @@ read all rows from a source string, returning a list of string lists
 | `trim_leading_space` | `bool` | If trim_leading_space is True, leading white space in a field is ignored. This is done even if the field delimiter, comma, is white space. |
 | `fields_per_record` | `int` | fields_per_record is the number of expected fields per record. If fields_per_record is positive, read_all requires each record to have the given number of fields. If fields_per_record is 0, read_all sets it to the number of fields in the first record, so that future records must have the same field count. If fields_per_record is negative, no check is made and records may have a variable number of fields. |
 | `skip` | `int` | number of rows to skip, omitting from returned rows |
+<br />
+
+#### `csv.write_all(source,comma=",") string`
+write all rows from source to a csv-encoded string
+
+**parameters:**
+
+| name | type | description |
+|------|------|-------------|
+| `source` | `[][]string` | array of arrays of strings to write to csv |
+| `comma` | `string` | comma is the field delimiter, defaults to "," (a comma). comma must be a valid character and must not be \r, \n, or the Unicode replacement character (0xFFFD). |
+<br />
+
+** **
+# <a id="json" href="#json">encoding/json</a>
+json provides functions for working with json data
+## Functions
+
+#### `json.dumps(obj) string`
+serialize obj to a JSON string
+
+**parameters:**
+
+| name | type | description |
+|------|------|-------------|
+| `obj` | `object` | input object |
+<br />
+
+#### `json.loads(source) object`
+read a source JSON string to a starlark object
+
+**parameters:**
+
+| name | type | description |
+|------|------|-------------|
+| `source` | `string` | input string of json data |
 <br />
 
 ** **
@@ -147,9 +184,9 @@ Returns True if geom is entirely contained by polygon
 an ordered list of points that define a line
 **Methods**
 #### `Line.length() float`
-Euclidian Length
+Euclidean Length
 
-#### `Line.geodesicLength() float`
+#### `Line.lengthGeodesic() float`
 Line length on the surface of a sphere with the same radius as Earth
 
 ### `MultiPolygon`
@@ -157,7 +194,7 @@ MultiPolygon groups a list of polygons to behave like a single polygon### `Point
 a two-dimensional point in space
 **Methods**
 #### `Point.distance(p2) float`
-Euclidian Distance to the other point
+Euclidean Distance to the other point
 
 **parameters:**
 
@@ -429,14 +466,10 @@ the result of performing a http request
 
 | name | type | description |
 |------|------|-------------|
-| url | string |  |
-| the | url |  |
-| status_code | int |  |
-| response | status |  |
-| headers | dict |  |
-| dictionary | of |  |
-| encoding | string |  |
-| transfer | encoding. |  |
+| url | string | the url that was ultimately requested (may change after redirects) |
+| status_code | int | response status code (for example: 200 == OK) |
+| headers | dict | dictionary of response headers |
+| encoding | string | transfer encoding. example: "octet-stream" or "application/json" |
 
 **Methods**
 #### `response.body() string`
@@ -447,7 +480,7 @@ attempt to parse resonse body as json, returning a JSON-decoded result
 
 ** **
 # <a id="math" href="#math">math</a>
-math defines mathimatical functions, it's intented to be a drop-in subset of python's math module for starlark: https://docs.python.org/3/library/math.html
+math defines mathematical functions, it's intended to be a drop-in subset of python's math module for starlark: https://docs.python.org/3/library/math.html
 ## Functions
 
 #### `math.acos(x)`
@@ -498,6 +531,9 @@ Return the Euclidean norm, sqrt(x*x + y*y). This is the length of the vector fro
 #### `math.radians(x)`
 Convert angle x from degrees to radians.
 
+#### `math.round(x)`
+Returns the nearest integer, rounding half away from zero.
+
 #### `math.sin(x)`
 Return the sine of x radians.
 
@@ -515,7 +551,7 @@ Return the hyperbolic tangent of x.
 
 ** **
 # <a id="re" href="#re">re</a>
-re defines regular expression functions, it's intented to be a drop-in subset of python's re module for starlark: https://docs.python.org/3/library/re.html
+re defines regular expression functions, it's intended to be a drop-in subset of python's re module for starlark: https://docs.python.org/3/library/re.html
 ## Functions
 
 #### `re.findall(pattern, text, flags=0)`

@@ -88,3 +88,14 @@ Or how about excel:
 ```text
 $ qri export --format=xlsx b5/world_bank_population
 ```
+
+**
+
+## Next Steps
+From here it's worth exploring the other commands `qri` has for examining & working with datasets. We'll work on getting more tutorials up (you should totally [contribute one](https://github.com/qri-io/website)!). But in the meantime there are two great resources to explore:
+
+### `qri help`
+All commands on the CLI have a `--help` flag that explains the command and provides examples. exploring help is a great way to learn about what Qri can do, and how it can help you
+
+### Qri Recipes
+The Qri team often creates "lesson github repos" that walk through the creation of a dataset or a specific Qri workflow. Head over to try out the tutorials in one of those repos! https://github.com/qri-recipes

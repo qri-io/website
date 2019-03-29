@@ -34,5 +34,3 @@ So let's use an example that outlines:
 
 * The User has specified a `meta.title` property, and that's it
 * The previous version has no title specified
-
-### Removing values

@@ -15,7 +15,7 @@ Qri is all about datasets
 
 ### Let's make a dataset
 
-There are lots of ways to make a dataset, but the best place to start is by turning a plain csv file inot 
+There are lots of ways to make a dataset, but the best place to start is by turning a plain csv file into 
 
 <div class="diagram right">
   <img src="/diagrams/introduction/create_dataset.png" />

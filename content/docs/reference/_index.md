@@ -19,7 +19,7 @@ Reference documentation is no-frills explanation of _what stuff is_. If you're c
 * **[qri & ds modules](/docs/reference/starlib_qri_ds)**
 * **[Starlib Standard Library](/docs/reference/starlib)**
 
-### Vizualization
+### Visualization
 * **[HTML Templates](/docs/reference/html_templates)**
 
 ### Programmatic Interfaces
