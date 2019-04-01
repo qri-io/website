@@ -8,7 +8,7 @@ date: 2018-01-30T00:00:00-04:00
 
 Ooh look at you, smartie pants. You clicked the [IPFS](https://ipfs.io) link.  Assuming you understand the gist of IPFS, this may help connect the dots to how IPFS interacts with Qri.
 
-If you're new to IPFS, no worries. _You don't need to understand IPFS to work with Qri_. But if your curious about what all this IPFS talk is about, definitely start with the [IPFS docs introduction](https://docs.ipfs.io/introduction/).
+If you're new to IPFS, no worries. _You don't need to understand IPFS to work with Qri_. But if you're curious about what all this IPFS talk is about, definitely start with the [IPFS docs introduction](https://docs.ipfs.io/introduction/).
 
 ### Qri is built on top of go-ipfs
 Qri imports [go-ipfs](https://github.com/ipfs/go-ipfs) as a dependency. When we say "IPFS" in Qri land, we specifically mean the latest stable version of go-ipfs. We try to keep Qri's behaviour in relation to IPFS as close to standard go-ipfs as possible. Qri is sensitive to the `IPFS_PATH` environment variable (which defaults to `$HOME/.ipfs`). Qri respects all configuration in `$IPFS_PATH/config`, so if for example you enable the new `quic` protocol by changing your ipfs config file, Qri will operate over quic as well.
