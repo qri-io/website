@@ -43,6 +43,11 @@
   </url>
   
   <url>
+    <loc>https://qri.io/blog/qri_out_and_about/</loc>
+    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://qri.io/blog/a_better_mousetrap_podcast/</loc>
     <lastmod>2019-03-11T15:00:00-04:00</lastmod>
   </url>
@@ -178,7 +183,7 @@
   
   <url>
     <loc>https://qri.io/blog/</loc>
-    <lastmod>2019-03-11T15:00:00-04:00</lastmod>
+    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -201,7 +206,7 @@
   
   <url>
     <loc>https://qri.io/tags/data-bazaar/</loc>
-    <lastmod>2019-03-11T15:00:00-04:00</lastmod>
+    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -218,6 +223,12 @@
   </url>
   
   <url>
+    <loc>https://qri.io/tags/distributed-web-summit/</loc>
+    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://qri.io/legal/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
     <priority>0</priority>
@@ -230,6 +241,12 @@
   </url>
   
   <url>
+    <loc>https://qri.io/tags/open-data-week/</loc>
+    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://qri.io/papers/</loc>
     <lastmod>2017-11-20T00:00:00-04:00</lastmod>
     <priority>0</priority>
@@ -238,6 +255,12 @@
   <url>
     <loc>https://qri.io/tags/performance/</loc>
     <lastmod>2018-10-17T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/tags/school-of-data/</loc>
+    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
     <priority>0</priority>
   </url>
   
