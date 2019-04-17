@@ -41,6 +41,7 @@ For example:
 - A player’s Hall of Fame status is signified by a “+ “ appearing next to their name. If you see a "+", they're a Hall of Famer, if you don't, they're not.
 - The number of MLB seasons played is in parentheses next to their name.
 - However! If the player is still active, their name is in bold, and the first number in their parenthesis is their number of seasons, and the second number is their current age.
+- Every 50th row, the table maker introduces a new header row, which you'll have to cut out 20 times in a list of 1,000 names (as this is).
 
 
 ---
@@ -138,6 +139,7 @@ We’ve also set up a [github repo]() to demo how to do all of this from the com
 - I added a Rank value for any rows in which there is no rank value. Those blank rows actually share the same rank as the last listed number. 
 - I took any cell of a player name, and removed the “+” value and the numbers within parentheses next to any player name (e.g, “(14, 36)”)
 - Any player with a “+” next to their name is a hall of famer, so I created a new column, “Hall of Fame (Y/N)” and put a Yes in any row corresponding to a player name cell that had a  “+” value, and a “No” in any row without one
+- Eliminated those pesky header rows.
 - I took bolded names (which are active players), created a new column “Active (Y/N)” and placed a Yes in any row corresponding to a bolded name, and a No in any row without one.
 - Anyone with a bolded name (active player) has two numbers that appear in parentheses next to their name. The first number (for every player in the list) is the number of seasons they’ve played, the second number is their current age (it is only listed if the player is still active). I created two columns for Years in MLB and “Age (if active)”. I moved the first number after each open parenthesis into the “Years in MLB” column, and the second number (if present) into the “Age (if active)” column.
 - Deleted the column “HR Log”*
