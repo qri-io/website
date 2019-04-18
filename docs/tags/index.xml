@@ -6,10 +6,19 @@
     <description>Recent content in Tags on qri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Oct 2017 00:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 17 Apr 2019 15:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://qri.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Baseball Stats</title>
+      <link>https://qri.io/tags/baseball-stats/</link>
+      <pubDate>Wed, 17 Apr 2019 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/tags/baseball-stats/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Concepts</title>
@@ -107,6 +116,24 @@
       <pubDate>Wed, 17 Oct 2018 15:00:00 -0400</pubDate>
       
       <guid>https://qri.io/tags/testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Transform Script</title>
+      <link>https://qri.io/tags/transform-script/</link>
+      <pubDate>Wed, 17 Apr 2019 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/tags/transform-script/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web Scraping</title>
+      <link>https://qri.io/tags/web-scraping/</link>
+      <pubDate>Wed, 17 Apr 2019 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/tags/web-scraping/</guid>
       <description></description>
     </item>
     

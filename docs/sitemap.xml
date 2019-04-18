@@ -43,6 +43,11 @@
   </url>
   
   <url>
+    <loc>https://qri.io/blog/mlb_homeruns/</loc>
+    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://qri.io/blog/qri_out_and_about/</loc>
     <lastmod>2019-04-15T15:00:00-04:00</lastmod>
   </url>
@@ -182,8 +187,14 @@
   </url>
   
   <url>
+    <loc>https://qri.io/tags/baseball-stats/</loc>
+    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://qri.io/blog/</loc>
-    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
+    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -266,13 +277,25 @@
   
   <url>
     <loc>https://qri.io/tags/</loc>
-    <lastmod>2017-10-30T00:00:00-04:00</lastmod>
+    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://qri.io/tags/testing/</loc>
     <lastmod>2018-10-17T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/tags/transform-script/</loc>
+    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/tags/web-scraping/</loc>
+    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
     <priority>0</priority>
   </url>
   
