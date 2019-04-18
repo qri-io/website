@@ -1,5 +1,5 @@
 ---
-title: "MLB Home Runs"
+title: "Leave the Munging to the Machines - MLB Edition"
 date: 2019-04-17T15:00:00-04:00
 draft: false
 tags:
