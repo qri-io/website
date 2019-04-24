@@ -7,13 +7,9 @@ tags:
 - transform script
 - web scraping
 author:
-  given_name: Rico
-  family_name: Gardaphe
-  display_name: Rico
-author:
-  given_name: Kasey
-  family_name: Huizinga
-  display_name: ramfox
+  given_name: Kasey, Rico
+  family_name: Huizinga, Gardaphe
+  display_name: ramfox, Rico
 description: Kasey & Rico created a qri dataset from the MLB Home Run rankings on baseballreference.com
 ---
 
