@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Distributed Web Summit on qri</title>
+    <link>https://qri.io/tags/distributed-web-summit/</link>
+    <description>Recent content in Distributed Web Summit on qri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Apr 2019 15:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://qri.io/tags/distributed-web-summit/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Qri - Out and Aboot</title>
+      <link>https://qri.io/blog/qri_out_and_about/</link>
+      <pubDate>Mon, 15 Apr 2019 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/blog/qri_out_and_about/</guid>
+      <description>Just a running catalog of media featuring our project and the team leading it.
+&amp;ldquo;Where is the Data Bazaar?&amp;rdquo;
+At the AWS Popup Loft in NYC, Brendan presented on the origins of the web, document distribution, Qri, and the data bazaar.
+ &amp;ldquo;A Better Mousetrap Podcast&amp;rdquo;
+During NYC Open Data Week 2019, Brendan and Rico sat down with Marcos Dinnerstein who runs the podcast A Better Mousetrap to discuss the revolutions in open-source, open data, how Qri got its start and where we&amp;rsquo;re headed.</description>
+    </item>
+    
+  </channel>
+</rss>

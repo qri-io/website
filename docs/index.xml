@@ -42,6 +42,29 @@ Before we can do useful things with Qri, we need to set it up. So let&amp;rsquo;
     </item>
     
     <item>
+      <title>Leave the Munging to the Machines - MLB Edition</title>
+      <link>https://qri.io/blog/mlb_homeruns/</link>
+      <pubDate>Wed, 17 Apr 2019 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/blog/mlb_homeruns/</guid>
+      <description>Summary:
+ Create a clean, reusable qri dataset by scraping data stored in an ugly table. Rerun a script to retrieve updated data (however frequently you like) See and have the code I used to create my dataset, and feel free to fork that code and adapt to your liking.  Look up the latest rankings of MLB home run leaders on baseballreference.com (the authority on MLB stats), and you’ll get a table like this:</description>
+    </item>
+    
+    <item>
+      <title>Qri - Out and Aboot</title>
+      <link>https://qri.io/blog/qri_out_and_about/</link>
+      <pubDate>Mon, 15 Apr 2019 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/blog/qri_out_and_about/</guid>
+      <description>Just a running catalog of media featuring our project and the team leading it.
+&amp;ldquo;Where is the Data Bazaar?&amp;rdquo;
+At the AWS Popup Loft in NYC, Brendan presented on the origins of the web, document distribution, Qri, and the data bazaar.
+ &amp;ldquo;A Better Mousetrap Podcast&amp;rdquo;
+During NYC Open Data Week 2019, Brendan and Rico sat down with Marcos Dinnerstein who runs the podcast A Better Mousetrap to discuss the revolutions in open-source, open data, how Qri got its start and where we&amp;rsquo;re headed.</description>
+    </item>
+    
+    <item>
       <title>A Better Mousetrap Podcast</title>
       <link>https://qri.io/blog/a_better_mousetrap_podcast/</link>
       <pubDate>Mon, 11 Mar 2019 15:00:00 -0400</pubDate>
@@ -194,7 +217,7 @@ email: hello [at] qri.io</description>
       
       <guid>https://qri.io/docs/concepts/ipfs_to_qri/</guid>
       <description>I know IPFS, what&amp;rsquo;s the deal with Qri? Ooh look at you, smartie pants. You clicked the IPFS link. Assuming you understand the gist of IPFS, this may help connect the dots to how IPFS interacts with Qri.
-If you&amp;rsquo;re new to IPFS, no worries. You don&amp;rsquo;t need to understand IPFS to work with Qri. But if your curious about what all this IPFS talk is about, definitely start with the IPFS docs introduction.</description>
+If you&amp;rsquo;re new to IPFS, no worries. You don&amp;rsquo;t need to understand IPFS to work with Qri. But if you&amp;rsquo;re curious about what all this IPFS talk is about, definitely start with the IPFS docs introduction.</description>
     </item>
     
     <item>

@@ -6,10 +6,33 @@
     <description>Recent content in Blog on qri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Mar 2019 15:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 17 Apr 2019 15:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://qri.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Leave the Munging to the Machines - MLB Edition</title>
+      <link>https://qri.io/blog/mlb_homeruns/</link>
+      <pubDate>Wed, 17 Apr 2019 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/blog/mlb_homeruns/</guid>
+      <description>Summary:
+ Create a clean, reusable qri dataset by scraping data stored in an ugly table. Rerun a script to retrieve updated data (however frequently you like) See and have the code I used to create my dataset, and feel free to fork that code and adapt to your liking.  Look up the latest rankings of MLB home run leaders on baseballreference.com (the authority on MLB stats), and you’ll get a table like this:</description>
+    </item>
+    
+    <item>
+      <title>Qri - Out and Aboot</title>
+      <link>https://qri.io/blog/qri_out_and_about/</link>
+      <pubDate>Mon, 15 Apr 2019 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/blog/qri_out_and_about/</guid>
+      <description>Just a running catalog of media featuring our project and the team leading it.
+&amp;ldquo;Where is the Data Bazaar?&amp;rdquo;
+At the AWS Popup Loft in NYC, Brendan presented on the origins of the web, document distribution, Qri, and the data bazaar.
+ &amp;ldquo;A Better Mousetrap Podcast&amp;rdquo;
+During NYC Open Data Week 2019, Brendan and Rico sat down with Marcos Dinnerstein who runs the podcast A Better Mousetrap to discuss the revolutions in open-source, open data, how Qri got its start and where we&amp;rsquo;re headed.</description>
+    </item>
     
     <item>
       <title>A Better Mousetrap Podcast</title>
