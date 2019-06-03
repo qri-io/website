@@ -57,6 +57,7 @@
 
 #docs_sidebar .content {
   position: fixed;
+  z-index: 9;
   overflow: auto;
   padding-bottom: 40px;
   width: 25%;
