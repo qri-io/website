@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>HTML Viz</title>
+      <link>https://qri.io/docs/reference/html_viz/</link>
+      <pubDate>Thu, 20 Dec 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/reference/html_viz/</guid>
+      <description>html viz HTML template gives users a number of helper template functions, along with a dataset document at ds. Exposing the dataset document as &amp;ldquo;ds&amp;rdquo; matches our conventions for referring to a dataset elsewhere, and allows access to all defined parts of a dataset. HTML visualization is built atop the go template syntax
+Functions html viz.{{ allBodyEntries }} load the full dataset body
+html viz.{{ block &amp;quot;citation&amp;quot; . }} html citation block, uses styles defined in stylesheet</description>
+    </item>
+    
+    <item>
       <title>Starlark Examples</title>
       <link>https://qri.io/docs/reference/starlark_examples/</link>
       <pubDate>Thu, 20 Dec 2018 00:00:00 -0400</pubDate>
