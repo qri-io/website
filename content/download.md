@@ -36,7 +36,7 @@ draft: false
       <div class="text_block">
         <h2>Qri CLI</h2>
         <p>Command-Line Tools for interacting with qri</p>
-        <p><i>While we've only prepared an installer for Mac OS X <br />Linux Users, can always build from <a href="https://github.com/qri-io/qri">source</a></i></p>
+        <p><i>Latest binaries are precomplied and available at our GitHub repo: <a href="https://github.com/qri-io/qri">source</a></i></p>
         <a href="https://github.com/qri-io/qri/releases/latest" class="download button">
           <b class="title">Download Qri CLI</b><br />
           <small>(github link)</small>
