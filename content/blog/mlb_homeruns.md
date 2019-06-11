@@ -45,8 +45,9 @@ For example, in the baseballreference.com table:
 ---
 
 ---
+**Ew.**
 
-Anyone who regularly plays with data is shaking their head and wondering, “Why not have a column that says Hall of Fame "Yes/No", another column that says, Active "Yes/No” etc.? Before a baseball stats fan can work with this table, she will have to copy it into a spreadsheet and manually clean it to her liking before beginning an analysis. No one gets to see her work, and everyone has to 'redo' that same cleaning on their own. It’s estimated that this kind of work comprises up to [80% of a data scientist’s job](https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/#62fb35096f63). EW! 
+Anyone who regularly plays with data is shaking their head and wondering, “Why not have a column that says Hall of Fame "Yes/No", another column that says, Active "Yes/No” etc.? Before a baseball stats fan can work with this table, she will have to copy it into a spreadsheet and manually clean it to her liking. No one gets to see her work, and everyone has to 'redo' that same cleaning on their own. It’s estimated that this kind of work comprises up to [80% of a data scientist’s job](https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/#62fb35096f63). EW! 
 
 
 **Wouldn’t it be nice…**
@@ -57,10 +58,17 @@ Anyone who regularly plays with data is shaking their head and wondering, “Why
   
   **C.**  Wouldn’t it be nice to know that if I wanted to take a different approach, I could take their work, copy it, and adapt it as I saw fit?
   
-  **D.**  And wouldn’t it be nice to have the script tied to the data, so I could simply re-run it and retrieve updated rankings? [Coming soon: Ability to set a script to retrieve the baseball reference data at a specific frequency, so I could have a new version every day, week, month, or season]
+  **D.**  And wouldn’t it be nice to have the script tied to the data, so I could simply re-run it and retrieve updated rankings? *[Coming soon: Ability to set a script to run by itself, retrieve data at a specific frequency, and update my data itself -- giving me a new version every day, week, month, or season]*
   
+
+
+
  
 I’ve used qri to do each of those. Here’s how:
+
+
+
+
  
 **Transform Scripts: from web scraping to a qri dataset**
 
@@ -177,7 +185,7 @@ And when you rerun the script, here's what an updated table (body) looks like:
 
 **But, what if the source data changed (has updated since I last checked)?**
 
-Okay, last cool thing. I can update this dataset at any time by rerunning the script (aka, saving a new version of the data), which retrieves the updated data from baseballreference.com. *COMING SOON: clicking a simple ‘Update’ button* This comes in handy if you know that the last time I ran my script was during spring training, and you’re wondering what the rankings look like today. 
+Okay, last cool thing. I can update this dataset at any time by rerunning the script (aka, saving a new version of the data), which retrieves the updated data from baseballreference.com. *COMING SOON: clicking a simple ‘Update’ button.* This comes in handy if you know that the last time I ran my script was during spring training, and you’re wondering what the rankings look like today. 
 
 Here’s how, again, from the webapp: 
   

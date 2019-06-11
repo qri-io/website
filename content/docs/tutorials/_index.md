@@ -11,6 +11,7 @@ Tutorials aimed at getting you up & running with Qri:
 
 #### [Frontend Video Tutorials](/docs/tutorials/frontend)
 #### [CLI quickstart](/docs/tutorials/cli_quickstart)
+#### [Building Qri on Windows](/docs/tutorials/windowsbuild)
 
 ** **
 

@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.44" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,15 +18,29 @@
 
   
 
-  <meta name="author" content="map[given_name:Kasey, Rico family_name:Huizinga, Gardaphe display_name:ramfox, Rico]">
+  <meta name="author" content="map[family_name:Huizinga, Gardaphe display_name:ramfox, Rico given_name:Kasey, Rico]">
 
 
   <meta property="og:title" content="Leave the Munging to the Machines - MLB Edition" />
 <meta property="og:description" content="Kasey &amp; Rico created a qri dataset from the MLB Home Run rankings on baseballreference.com" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://qri.io/blog/mlb_homeruns/" />
+
+
+
 <meta property="article:published_time" content="2019-04-17T15:00:00-04:00"/>
+
 <meta property="article:modified_time" content="2019-04-17T15:00:00-04:00"/>
+
+
+
+
+
+
+
+
+
+
 
   
 
@@ -151,7 +165,9 @@
 
 <hr />
 
-<p>Anyone who regularly plays with data is shaking their head and wondering, “Why not have a column that says Hall of Fame &ldquo;Yes/No&rdquo;, another column that says, Active &ldquo;Yes/No” etc.? Before a baseball stats fan can work with this table, she will have to copy it into a spreadsheet and manually clean it to her liking before beginning an analysis. No one gets to see her work, and everyone has to &lsquo;redo&rsquo; that same cleaning on their own. It’s estimated that this kind of work comprises up to <a href="https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/#62fb35096f63">80% of a data scientist’s job</a>. EW!</p>
+<p><strong>Ew.</strong></p>
+
+<p>Anyone who regularly plays with data is shaking their head and wondering, “Why not have a column that says Hall of Fame &ldquo;Yes/No&rdquo;, another column that says, Active &ldquo;Yes/No” etc.? Before a baseball stats fan can work with this table, she will have to copy it into a spreadsheet and manually clean it to her liking. No one gets to see her work, and everyone has to &lsquo;redo&rsquo; that same cleaning on their own. It’s estimated that this kind of work comprises up to <a href="https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/#62fb35096f63">80% of a data scientist’s job</a>. EW!</p>
 
 <p><strong>Wouldn’t it be nice…</strong></p>
 
@@ -161,7 +177,7 @@
 
 <p><strong>C.</strong>  Wouldn’t it be nice to know that if I wanted to take a different approach, I could take their work, copy it, and adapt it as I saw fit?</p>
 
-<p><strong>D.</strong>  And wouldn’t it be nice to have the script tied to the data, so I could simply re-run it and retrieve updated rankings? [Coming soon: Ability to set a script to retrieve the baseball reference data at a specific frequency, so I could have a new version every day, week, month, or season]</p>
+<p><strong>D.</strong>  And wouldn’t it be nice to have the script tied to the data, so I could simply re-run it and retrieve updated rankings? <em>[Coming soon: Ability to set a script to run by itself, retrieve data at a specific frequency, and update my data itself &ndash; giving me a new version every day, week, month, or season]</em></p>
 
 <p>I’ve used qri to do each of those. Here’s how:</p>
 
@@ -269,7 +285,7 @@
 
 <p><strong>But, what if the source data changed (has updated since I last checked)?</strong></p>
 
-<p>Okay, last cool thing. I can update this dataset at any time by rerunning the script (aka, saving a new version of the data), which retrieves the updated data from baseballreference.com. <em>COMING SOON: clicking a simple ‘Update’ button</em> This comes in handy if you know that the last time I ran my script was during spring training, and you’re wondering what the rankings look like today.</p>
+<p>Okay, last cool thing. I can update this dataset at any time by rerunning the script (aka, saving a new version of the data), which retrieves the updated data from baseballreference.com. <em>COMING SOON: clicking a simple ‘Update’ button.</em> This comes in handy if you know that the last time I ran my script was during spring training, and you’re wondering what the rankings look like today.</p>
 
 <p>Here’s how, again, from the webapp:</p>
 
