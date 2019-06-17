@@ -52,7 +52,7 @@ load(&amp;#34;qri.sky&amp;#34;, &amp;#34;qri&amp;#34;) Function Definitions:</de
       <guid>https://qri.io/docs/reference/starlib/</guid>
       <description>Starlark Standard Library All qri transforms have access to &amp;ldquo;starlib&amp;rdquo;, a community-driven project to bring a standard library to the starlark programming dialect. Qri needs a standard library, and we thought it might benefit others to structure this library in a reusable way. starlib is admittedly biased towards Qri&amp;rsquo;s needs.
 Comments, Suggestions &amp;amp; Pull Requests welcome: https://github.com/qri-io/starlib
-Contents    package name description     encoding/base64 base64 defines base64 encoding &amp;amp; decoding functions, often used to represent binary as text.</description>
+Contents    package name description     bsoup bsoup defines a beautiful-soup-like API for working with HTML documents   encoding/base64 base64 defines base64 encoding &amp;amp; decoding functions, often used to represent binary as text.</description>
     </item>
     
     <item>
