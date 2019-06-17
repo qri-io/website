@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.44" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,8 +25,22 @@
 <meta property="og:description" content="list of all the functions and modules in starlark standard library" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://qri.io/docs/reference/starlib/" />
+
+
+
 <meta property="article:published_time" content="2018-12-20T00:00:00-04:00"/>
+
 <meta property="article:modified_time" content="2018-12-20T00:00:00-04:00"/>
+
+
+
+
+
+
+
+
+
+
 
   
 
@@ -212,6 +226,11 @@
 
 <tbody>
 <tr>
+<td><a href="#bsoup">bsoup</a></td>
+<td>bsoup defines a beautiful-soup-like API for working with HTML documents</td>
+</tr>
+
+<tr>
 <td><a href="#base64">encoding/base64</a></td>
 <td>base64 defines base64 encoding &amp; decoding functions, often used to represent binary as text.</td>
 </tr>
@@ -270,11 +289,65 @@
 
 <hr />
 
+<h1 id="a-id-bsoup-href-bsoup-bsoup-a"><a id="bsoup" href="#bsoup">bsoup</a></h1>
+
+<p>bsoup defines a beautiful-soup-like API for working with HTML documents</p>
+
+<h2 id="functions">Functions</h2>
+
+<h4 id="bsoup-parsehtml-html-string-soupnode"><code>bsoup.parseHtml(html string) SoupNode</code></h4>
+
+<p>parseHtml parses html from a string, returning the root SoupNode</p>
+
+<h2 id="types">Types</h2>
+
+<h3 id="soupnode"><code>SoupNode</code></h3>
+
+<p><strong>Methods</strong></p>
+
+<h4 id="soupnode-find-name-attrs-recursive-string-kwargs"><code>SoupNode.find(name, attrs, recursive, string, **kwargs)</code></h4>
+
+<p>retrieve the first occurrence of an element that matches arguments passed to find. works similarly to <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find">node.find()</a></p>
+
+<h4 id="soupnode-find-all-name-attrs-recursive-string-limit-kwargs"><code>SoupNode.find_all(name, attrs, recursive, string, limit, **kwargs)</code></h4>
+
+<p>retrieves all descendants that match arguments passed to find_all. works similarly to <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find-all">node.find_all()</a></p>
+
+<h4 id="soupnode-attrs"><code>SoupNode.attrs()</code></h4>
+
+<p>get a dictionary of element attributes works similarly to <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#attributes">node.attrs</a></p>
+
+<h4 id="soupnode-contents"><code>SoupNode.contents()</code></h4>
+
+<p>gets the list of children of an element works similarly to <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#contents-and-children">soup.contents</a></p>
+
+<h4 id="soupnode-child"><code>SoupNode.child()</code></h4>
+
+<p>gets a single child element with the given tag name works like accessing a node <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-using-tag-names">using its tag name</a></p>
+
+<h4 id="soupnode-parent"><code>SoupNode.parent()</code></h4>
+
+<p>gets the parent node of an element works like <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#parent">node.parent</a></p>
+
+<h4 id="soupnode-next-sibling"><code>SoupNode.next_sibling()</code></h4>
+
+<p>gets the next sibling of an element works like <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#next-sibling-and-previous-sibling">node.next_sibling</a></p>
+
+<h4 id="soupnode-prev-sibling"><code>SoupNode.prev_sibling()</code></h4>
+
+<p>gets the previous sibling of an element works like <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#next-sibling-and-previous-sibling">node.prev_sibling</a></p>
+
+<h4 id="soupnode-get-text"><code>SoupNode.get_text()</code></h4>
+
+<p>all the text in a document or beneath a tag, as a single Unicode string: works like <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#get-text">soup.get_text</a></p>
+
+<hr />
+
 <h1 id="a-id-base64-href-base64-encoding-base64-a"><a id="base64" href="#base64">encoding/base64</a></h1>
 
 <p>base64 defines base64 encoding &amp; decoding functions, often used to represent binary as text.</p>
 
-<h2 id="functions">Functions</h2>
+<h2 id="functions-1">Functions</h2>
 
 <h4 id="base64-decode-src-encoding-standard-string"><code>base64.decode(src,encoding=&quot;standard&quot;) string</code></h4>
 
@@ -346,7 +419,7 @@
 
 <p>csv reads comma-separated values files</p>
 
-<h2 id="functions-1">Functions</h2>
+<h2 id="functions-2">Functions</h2>
 
 <h4 id="csv-read-all-source-comma-comment-lazy-quotes-false-trim-leading-space-false-fields-per-record-0-skip-0-string"><code>csv.read_all(source, comma=&quot;,&quot;, comment=&quot;&quot;, lazy_quotes=False, trim_leading_space=False, fields_per_record=0, skip=0) [][]string</code></h4>
 
@@ -448,7 +521,7 @@
 
 <p>json provides functions for working with json data</p>
 
-<h2 id="functions-2">Functions</h2>
+<h2 id="functions-3">Functions</h2>
 
 <h4 id="json-dumps-obj-string"><code>json.dumps(obj) string</code></h4>
 
@@ -508,7 +581,7 @@
 
 <p>geo defines geographic operations in two-dimensional space</p>
 
-<h2 id="functions-3">Functions</h2>
+<h2 id="functions-4">Functions</h2>
 
 <h4 id="geo-line-points-line"><code>geo.Line(points) Line</code></h4>
 
@@ -678,7 +751,7 @@
 
 <p><br /></p>
 
-<h2 id="types">Types</h2>
+<h2 id="types-1">Types</h2>
 
 <h3 id="line"><code>Line</code></h3>
 
@@ -759,7 +832,7 @@ a two-dimensional point in space
 
 <p>html defines a jquery-like html selection &amp; iteration functions for HTML documents</p>
 
-<h2 id="functions-4">Functions</h2>
+<h2 id="functions-5">Functions</h2>
 
 <h4 id="html-html-markup-selection"><code>html.html(markup) selection</code></h4>
 
@@ -787,7 +860,7 @@ a two-dimensional point in space
 
 <p><br /></p>
 
-<h2 id="types-1">Types</h2>
+<h2 id="types-2">Types</h2>
 
 <h3 id="selection"><code>selection</code></h3>
 
@@ -1128,7 +1201,7 @@ a two-dimensional point in space
 
 <p>http defines an HTTP client implementation</p>
 
-<h2 id="functions-5">Functions</h2>
+<h2 id="functions-6">Functions</h2>
 
 <h4 id="http-delete-url-params-headers-body-form-body-json-body-auth-response"><code>http.delete(url,params={},headers={},body=&quot;&quot;,form_body={},json_body={},auth=()) response</code></h4>
 
@@ -1448,7 +1521,7 @@ a two-dimensional point in space
 
 <p><br /></p>
 
-<h2 id="types-2">Types</h2>
+<h2 id="types-3">Types</h2>
 
 <h3 id="response"><code>response</code></h3>
 
@@ -1507,7 +1580,7 @@ a two-dimensional point in space
 
 <p>math defines mathematical functions, it&rsquo;s intended to be a drop-in subset of python&rsquo;s math module for starlark: <a href="https://docs.python.org/3/library/math.html">https://docs.python.org/3/library/math.html</a></p>
 
-<h2 id="functions-6">Functions</h2>
+<h2 id="functions-7">Functions</h2>
 
 <h4 id="math-acos-x"><code>math.acos(x)</code></h4>
 
@@ -1603,7 +1676,7 @@ a two-dimensional point in space
 
 <p>re defines regular expression functions, it&rsquo;s intended to be a drop-in subset of python&rsquo;s re module for starlark: <a href="https://docs.python.org/3/library/re.html">https://docs.python.org/3/library/re.html</a></p>
 
-<h2 id="functions-7">Functions</h2>
+<h2 id="functions-8">Functions</h2>
 
 <h4 id="re-findall-pattern-text-flags-0"><code>re.findall(pattern, text, flags=0)</code></h4>
 
@@ -1743,7 +1816,7 @@ a two-dimensional point in space
 
 <p>time defines time primitives for starlark</p>
 
-<h2 id="functions-8">Functions</h2>
+<h2 id="functions-9">Functions</h2>
 
 <h4 id="time-duration-string-duration"><code>time.duration(string) duration</code></h4>
 
@@ -1765,7 +1838,7 @@ a two-dimensional point in space
 
 <p>a constant</p>
 
-<h2 id="types-3">Types</h2>
+<h2 id="types-4">Types</h2>
 
 <h3 id="duration"><code>duration</code></h3>
 
@@ -1871,13 +1944,13 @@ a two-dimensional point in space
 
 <p>xlsx implements excel file readers in starlark. currently a highly-experimental package that will definitely change at some point in the future</p>
 
-<h2 id="functions-9">Functions</h2>
+<h2 id="functions-10">Functions</h2>
 
 <h4 id="xlsx-get-url-url-string"><code>xlsx.get_url(url string)</code></h4>
 
 <p>fetch an excel file from a url</p>
 
-<h2 id="types-4">Types</h2>
+<h2 id="types-5">Types</h2>
 
 <h3 id="file"><code>File</code></h3>
 
@@ -1898,13 +1971,13 @@ a two-dimensional point in space
 
 <p>zipfile reads &amp; parses zip archives</p>
 
-<h2 id="functions-10">Functions</h2>
+<h2 id="functions-11">Functions</h2>
 
 <h4 id="zipfile-zipfile-data"><code>zipfile.ZipFile(data)</code></h4>
 
 <p>opens an archive for reading</p>
 
-<h2 id="types-5">Types</h2>
+<h2 id="types-6">Types</h2>
 
 <h3 id="zipfile"><code>ZipFile</code></h3>
 
