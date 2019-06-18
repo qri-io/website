@@ -28,6 +28,12 @@ In this tutorial we'll take a first look at starlark transforms to see how they 
 To write our first transformation we're going to need two files. The first is a `dataset.yaml` file that will define our dataset, the second `transform.star` file will hold our starlark transformation code. Both files should be in the same folder.
 
 Save this in `dataset.yaml`:
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```yaml
 name: hello_world
 
@@ -39,12 +45,26 @@ transform:
 ```
 
 Save this in `transform.star`:
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_body()
+    expect: ["hello", "world"]
+-->
 ```python
 def transform(ds,ctx):
   ds.set_body(["hello","world"])
 ```
 
 From a terminal, navigate to the directory that contains these files, and save the dataset to Qri
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```shell
 $ cd /wherever/you/saved/those/files
 
@@ -53,6 +73,12 @@ $ qri save --file=dataset.yaml
 ```
 
 If everything goes according to plan, qri will see that you've specified a transformation, run it, and save the result as a dataset. We can examine our dataset with the `info` and `data` commands:
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```shell
 # show dataset info. the title "hello world example" comes from the meta we set in our dataset.yaml:
 $ qri info me/hello_world
@@ -74,6 +100,14 @@ $ qri data -s 1 me/hello_world
 The output of `qri info me/hello_world` will look slightly different for you. My peername is "b5", instead of `b5/hello_world`, you'll see your own username followed by `/hello_world`. Also that `/ipfs/Qmbx59VBd9joyP4oLmqPAmL3HGQKeQ2pejXtHRnLQ3N5Za` bit will have different characters, and that's a good thing! For more info on those characters & what they mean, it's worth reading about content-addressing. But for now let's keep going.
 
 Let's dig in on that `transform.star` file a bit:
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_body()
+    expect: ["hello", "world"]
+-->
 ```python
 def transform(ds,ctx):
   ds.set_body(["hello","world"])
@@ -91,13 +125,28 @@ When we ran `qri add` from the terminal qri opened this file, saw that we define
 
 ### 1.1 Using the qri argument to set Metadata
 Let's use the qri argument to do something interesting by adding a line to our `transform.star` that sets dataset metadata for us:
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_meta()
+    expect: {"description": "this is an example dataset to learn about transformations",
+             "qri": "md:0"}
+-->
 ```python
-def transform(qri):
+def transform(ds, ctx):
   ds.set_meta("description", "this is an example dataset to learn about transformations")
   return(["hello","world"])
 ```
 
 Save `transform.star`, and let's update our dataset. From the same directory in a terminal run:
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```shell
 # update our dataset:
 $ qri update --file=dataset.yaml
@@ -113,6 +162,12 @@ $ qri info me/hello_world
 ```
 
 It's worth noting that the first version of your dataset & transform weren't lost. We can see the history of this dataset with `qri log`:
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```shell
 $ qri log me/hello_world
 # Jun  8 14:20:35 - /ipfs/QmScVmhSBkYN99Esh9UE1X6D81QQV6Cg5LQ6WKyr1t38J4
@@ -123,6 +178,17 @@ $ qri log me/hello_world
 
 ### 1.2 Dataset files override transform settings
 While we're here, we might as well point out a potential gotcha, let's add a second call to `ds.set_meta` that sets title:
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_meta()
+    expect: {"title": "I'm a title set by a transformation!",
+             "qri": "md:0",
+             "description": "this is an example dataset"}
+# TODO(dlong): Also test the body?
+-->
 ```python
 # this is an example starlark transformation
 
@@ -134,6 +200,12 @@ def transform(ds, ctx):
 ```
 
 Save that file, and let's update:
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```shell
 # add this dataset to qri
 $ qri update --file=dataset.yaml
@@ -152,16 +224,34 @@ In our transform we called `ds.set_meta("title", ...)`, but the title hasn't cha
 #### 1.3 Deleting a Dataset
 
 Before we go, you may want to delete this tutorial data. Then again, maybe you'd like a copy of the data outside of qri for reference. Or, maybe you don't care. Who knows? You know. That's who. _Anyway_, if you'd like to export the full dataset that qri created feel free to run:
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```shell
 $ qri export me/hello_world
 ```
 
 And Qri will output a zip archive of that dataset named `hello_world.zip`. Then you can delete your data from qri for good with:
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```shell
 $ qri delete me/hello_world
 ```
 
 If you wanted to re-add that datset later you can re-add it with:
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```shell
 $ qri save --file=hello_world.zip
 ```
@@ -171,6 +261,11 @@ $ qri save --file=hello_world.zip
 So far our transformation just produces `["hello", "world"]`, which isn't really that interesting. Let's write a transformation that accepts outside data. First, we're going to need some outside data. 
 
 Let's start fresh create a new directory `continent_populations`. The name of the directory doesn't matter, but, you know, labeling things properly is a bit of a theme here. We're going to be creating three files:
+
+<!--
+docrun:
+  pass: true
+-->
 ```
 continent_populations
 ├── continent_populations.csv
@@ -179,6 +274,11 @@ continent_populations
 ```
 
 First, create a comma-separated values file, `continent_populations.csv`:
+
+<!--
+docrun:
+  pass: true
+-->
 ```
 continent,population
 Asia,4436224000
@@ -191,6 +291,12 @@ Antartica,1106
 ```
 
 Let's also create our dataset file `dataset.yaml`:
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Check: is this valid yaml?
+-->
 ```yaml
 name: continent_populations
 
@@ -220,6 +326,12 @@ body: continent_populations.star
 ```
 
 Finally, create a new `transform.star` file:
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): This code is completely broken.
+-->
 ```python
 # this is an example starlark transformation that adds the percentage
 
@@ -245,19 +357,12 @@ def add_average(data):
 ```
 
 Then let's add it to qri:
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```shell
 $ qri save --file=dataset.yaml
 ```
-
-
-<!-- ### 3.0 Getting data from the web
-Transforms on input data are great, but
-* less auditable
-* 
-
-```python
-
-```
-
-### 4.0 Building Datasets from other datasets
- -->
