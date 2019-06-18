@@ -52,19 +52,34 @@ The dataset reference of the dataset will remain the same, including
 the name of the peer that originally added the dataset. You must have 
 `qri connect` running in another terminal to use this command.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri add [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Mock `add` so that it doesn't require external resources,
+# to test the syntax of this command.
+-->
 ```
-  add a dataset named their_data, owned by other_peer:
+  # add a dataset named their_data, owned by other_peer:
   $ qri add other_peer/their_data
 ```
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for add
 ```
@@ -73,47 +88,6 @@ qri add [flags]
 
 ________
 
-<a id='qri_body'></a>
-## qri body
-
-Get the body of a dataset
-
-### Synopsis
-
-
-`qri body` reads entries from a dataset. Default is 50 entries, starting from the beginning of the body. You can using the `--limit` and `--offset` flags to iterate through the dataset body.
-
-```
-qri body [flags]
-```
-
-### Examples
-
-```
-  show the first 50 rows of a dataset:
-  $ qri body me/dataset_name
-
-  show the next 50 rows of a dataset:
-  $ qri body --offset 50 me/dataset_name
-
-  save the body as csv to file
-  $ qri body -o new_file.csv -f csv me/dataset_name
-```
-
-### Options
-
-```
-  -a, --all             read all dataset entries (overrides limit, offest)
-  -f, --format string   format to export. one of [json,csv,cbor] (default "json")
-  -h, --help            help for body
-  -l, --limit int       max number of records to read (default 50)
-  -s, --offset int      number of records to skip
-  -o, --output string   path to write to, default is stdout
-```
-
-
-
-________
 
 <a id='qri_config_get'></a>
 ## qri config get
@@ -133,12 +107,21 @@ The --with-private-keys option will show private keys.
 PLEASE PLEASE PLEASE NEVER SHARE YOUR PRIVATE KEYS WITH ANYONE. EVER.
 Anyone with your private keys can impersonate you on qri.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri config get [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   # get the entire config
   qri config get
@@ -152,6 +135,11 @@ qri config get [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -c, --concise             print output without indentation, only applies to json format
   -f, --format string       data format to export. either json or yaml (default "yaml")
@@ -183,12 +171,21 @@ set the leaves of the branches. In other words, the you cannot set a
 field that is itself an object or array. For details on each config 
 field checkout: https://github.com/qri-io/qri/blob/master/config/readme.md
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri config set [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   # set a profile description
   qri config set profile.description "This is my new description that I
@@ -200,6 +197,11 @@ qri config set [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for set
 ```
@@ -229,6 +231,11 @@ https://github.com/qri-io/qri/blob/master/config/readme.md
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   # get your profile information
   $ qri config get profile
@@ -242,6 +249,11 @@ https://github.com/qri-io/qri/blob/master/config/readme.md
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for config
 ```
@@ -270,12 +282,21 @@ things:
 When you run connect you are connecting to the distributed web, interacting with
 peers & swapping data.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri connect [flags]
 ```
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
       --api-port int           port to start api on
       --disable-api            disables api, overrides the api-port flag
@@ -308,23 +329,37 @@ of the differences between them.  You can specifify the datasets
 either by name or by their hash. You can compare different versions of 
 the same dataset.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri diff [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Configure this instance to have a mock ipfs repo with these hashes
+-->
 ```
-  show diff between two versions of the same dataset:
-  $ qri diff me/annual_pop@/ipfs/QmcBZoEQ7ot4UYKn1JM3gwd4LHorj6FJ4Ep19rfLBT3VZ8 
+  # show diff between two versions of the same dataset:
+  $ qri diff me/annual_pop@/ipfs/QmcBZoEQ7ot4UYKn1JM3gwd4LHorj6FJ4Ep19rfLBT3VZ8 \
   me/annual_pop@/ipfs/QmVvqsge5wqp4piJbLArwVB6iJSTrdM8ZRpHY7fikASrr8
 
-  show diff between two different datasets:
+  # show diff between two different datasets:
   $ qri diff me/population_2016 me/population_2017
 ```
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -d, --display string   set display format [reg|short|delta|detail]
   -h, --help             help for diff
@@ -349,12 +384,21 @@ To export to a specific directory, use the --output flag.
 If you want an empty dataset that can be filled in with details to create a
 new dataset, use --blank.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri export [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): This is totally out of date.
+-->
 ```
   # export dataset
   qri export me/annual_pop
@@ -368,6 +412,11 @@ qri export [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): This is totally out of date.
+-->
 ```
       --blank                export a blank dataset YAML file, overrides all other flags except output
       --body-format string   format for dataset body. default is the original data format. options: json, csv, cbor
@@ -400,12 +449,20 @@ by supplying more than one dataset reference.
 Check out https://qri.io/docs/reference/dataset/ to learn about each section of the 
 dataset and its fields.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri get [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+-->
 ```
   # print the entire dataset to the console
   qri get me/annual_pop
@@ -418,70 +475,22 @@ qri get [flags]
 
   # print the dataset body size for two different datasets
   qri get structure.length me/annual_pop me/annual_gdp
+
+  # print the body itself for the dataset
+  qri get body me/annual_pop
 ```
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
       --concise         print output without indentation, only applies to json format
   -f, --format string   set output format [json, yaml] (default "yaml")
   -h, --help            help for get
-```
-
-
-
-________
-
-<a id='qri_info'></a>
-## qri info
-
-Show summarized description of a dataset
-
-### Synopsis
-
-Info describes datasets. By default, it will return the peername, dataset name, 
-the network, the dataset hash, the file size, the length of the datasets, 
-and the validation errors.
-
-Using the `--format` flag, you can get output in json. This will return a json
-representation of the dataset, without the dataset body, identical to 
-`qri get --format json`.
-
-To get info on a peer's dataset, you must be running `qri connect` in a separate 
-terminal window.
-
-```
-qri info [flags]
-```
-
-### Examples
-
-```
-  # get info for my dataset:
-  qri info me/annual_pop
-
-  # get info for a dataset at a specific version:
-  qri info me@/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
-
-  or
-
-  qri info me/comics@/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
-
-  # get info in json format
-  qri info -f json me/annual_pop
-
-  # to get info on a peer's dataset, spin up your qri node
-  qri connect
-
-  # then, in a separate window, request the info from peer b5
-  qri info b5/comics
-```
-
-### Options
-
-```
-  -f, --format string   set output format [json]
-  -h, --help            help for info
 ```
 
 
@@ -504,26 +513,43 @@ qri repository.
 When used in conjunction with `qri connect`, list can list a peer's dataset. You
 must have `qri connect` running in a separate terminal window.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri list [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Add mock connection to test looking up peer datasets
+-->
 ```
   # show all of your datasets:
   qri list
+
+  # show your datasets that have "tax" in the name
+  qri list tax
 
   # to view the list of your peer's dataset,
   # in one terminal window:
   qri connect
 
   # in a separate terminal window, to show all of b5's datasets:
-  qri list b5
+  qri list --peer b5
 ```
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -f, --format string   set output format [json]
   -h, --help            help for list
@@ -553,12 +579,21 @@ created the version) and a message explaining what changed. Log prints these
 details in order of occurrence, starting with the most recent known version, 
 working backwards in time.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri log [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   show log for the dataset b5/precip:
   $ qri log b5/precip
@@ -566,6 +601,11 @@ qri log [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help         help for log
   -l, --limit int    limit results, default 25 (default 25)
@@ -593,12 +633,21 @@ to connect to a peer that also has spun up it's own Qri node.
 A multiaddress, or multiaddr, is the most specific way to refer to a peer's location, and is therefore
 the most sure-fire way to connect to a peer. 
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri peers connect [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Add mock peers with given address, to test peer connection
+-->
 ```
   # spin up a Qri node
   qri connect
@@ -609,6 +658,11 @@ qri peers connect [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for connect
 ```
@@ -639,12 +693,21 @@ connection.
 
 You must have `qri connect` running in another terminal.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri peers disconnect [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   # disconnect from a peer using a multiaddr
   qri peers disconnect /ip4/192.168.0.194/tcp/4001/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
@@ -652,6 +715,11 @@ qri peers disconnect [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for disconnect
 ```
@@ -675,12 +743,21 @@ Using the `--verbose` flag, you can also view a peer's network information.
 
 You must have `qri connect` running in another terminal.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri peers info [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   show info on a peer named "b5":
   $ qri peers info b5
@@ -691,6 +768,11 @@ qri peers info [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
       --format string   output format. formats: yaml, json (default "yaml")
   -h, --help            help for info
@@ -716,12 +798,21 @@ You must have `qri connect` running in another terminal.
 To find peers that are not online, but to which your node has previously been 
 connected, use the `--cached` flag.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri peers list [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   # spin up a Qri node
   qri connect
@@ -735,6 +826,11 @@ qri peers list [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -c, --cached           show peers that aren't online, but previously seen
   -h, --help             help for list
@@ -764,6 +860,11 @@ the terminal.
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for peers
 ```
@@ -785,12 +886,21 @@ dataset always makes all previous history entries available, and any updates
 to a published dataset will be immediately visible to connected peers.
 
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri publish [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   # publish a dataset
   $ qri publish me/dataset
@@ -804,6 +914,11 @@ qri publish [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help          help for publish
       --no-registry   don't publish to registry
@@ -825,12 +940,21 @@ pin dataset data to the registry
 Pin asks a registry to host a copy of your dataset, making it available for
 others to download on the d.web
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri registry pin [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Mock registry that can handle this functionality.
+-->
 ```
   Pin a dataset to the registry:
   $ qri registry pin me/dataset_name
@@ -838,6 +962,11 @@ qri registry pin [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for pin
 ```
@@ -862,12 +991,21 @@ Published datasets can be found by other peers using the `qri search` command.
 
 Datasets are by default published to the registry when they are created.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri registry publish [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   Publish a dataset you've created to the registry:
   $ qri registry publish me/dataset_name
@@ -875,6 +1013,11 @@ qri registry publish [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for publish
 ```
@@ -893,12 +1036,21 @@ get the status of a reference on the registry
 
   use status to see what version of a dataset the registry has on-record, if any
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri registry status [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   Get status of a dataset reference::
     $ qri registry status me/dataset_name
@@ -906,6 +1058,11 @@ qri registry status [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for status
 ```
@@ -925,12 +1082,21 @@ unpin dataset data from the registry
 Unpin reverses the pin process, asking a registry to remove it's hosted copy
 of your dataset from the registry
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri registry unpin [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   Unpin a dataset from the registry:
   $ qri registry unpin me/dataset_name
@@ -938,6 +1104,11 @@ qri registry unpin [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for unpin
 ```
@@ -960,12 +1131,21 @@ be removed.
 
 This dataset will no longer show up in search results.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri registry unpublish [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   Remove a dataset from the registry:
   $ qri registry unpublish me/dataset_name
@@ -973,6 +1153,11 @@ qri registry unpublish [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for unpublish
 ```
@@ -1010,6 +1195,11 @@ $ qri config set registry.location ""
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for registry
 ```
@@ -1039,12 +1229,21 @@ adjust this cap using IPFS, qri will respect it.
 In the future we’ll add a flag that’ll force immediate removal of a dataset from
 both qri & IPFS. Promise.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri remove [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   remove a dataset named annual_pop:
   $ qri remove me/annual_pop
@@ -1052,6 +1251,11 @@ qri remove [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for remove
 ```
@@ -1076,12 +1280,21 @@ not have the updated name. While this won't break anything, it will
 confuse anyone who has added your dataset before the change. Try to keep
 renames to a minimum.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri rename [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   rename a dataset named annual_pop to annual_population:
   $ qri rename me/annual_pop me/annual_population
@@ -1089,6 +1302,11 @@ qri rename [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for rename
 ```
@@ -1114,12 +1332,21 @@ Use the `--output` flag to save the rendered html to a file.
 Use the `--template` flag to use a custom template. If no template is
 provided, Qri will render the dataset with a default template.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri render [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   render a dataset called me/schools:
   $ qri render -o=schools.html me/schools
@@ -1130,6 +1357,11 @@ qri render [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -a, --all               read all dataset entries (overrides limit, offest)
   -h, --help              help for render
@@ -1164,28 +1396,42 @@ If you don’t provide a message Qri will automatically generate one for you.
 When you make an update and save a dataset that you originally added from a different
 peer, the dataset gets renamed from `peers_name/dataset_name` to `my_name/dataset_name`.
 
-The `--message`" and `--title` flags allow you to add a 
+The `--message` and `--title` flags allow you to add a 
 commit message and title to the save.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri save [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   # save updated data to dataset annual_pop:
   qri save --body /path/to/data.csv me/annual_pop
 
   # save updated dataset (no data) to annual_pop:
   qri save --file /path/to/dataset.yaml me/annual_pop
-  
+
   # re-execute a dataset that has a transform:
   qri save me/tf_dataset
 ```
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
       --body string       path to file or url of data to add as dataset contents
       --dry-run           simulate saving a dataset
@@ -1214,20 +1460,33 @@ Search datasets & peers that match your query. Search pings the qri registry.
 
 Any dataset that has been published to the registry is available for search.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri search [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
-
-  # search 
+  # search
   $ qri search "annual population"
 ```
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -f, --format string   set output format [json]
   -h, --help            help for search
@@ -1260,12 +1519,21 @@ overwrite this info.
 Use the `--remove` to remove your Qri repo. This deletes your entire repo, 
 including all your datasets, and de-registers your peername from the registry.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri setup [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   run setup with a peername of your choosing:
   $ qri setup --peername=your_great_peername
@@ -1273,6 +1541,11 @@ qri setup [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -a, --anonymous            use an auto-generated peername
       --config-data string   json-encoded configuration data, specify a filepath with '@' prefix
@@ -1310,12 +1583,21 @@ re-running any specified transform script, creating a new version of your
 dataset in the process. If your dataset doesn't have a transform script, update 
 will error.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri update [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   # get the freshest version of a dataset from a peer
   qri update other_person/dataset
@@ -1329,6 +1611,11 @@ qri update [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
       --dry-run           simulate updating a dataset
   -h, --help              help for update
@@ -1357,12 +1644,21 @@ is explicitly given for those commands.
 We created this command to ease the typing/copy and pasting burden while using
 Qri to explore a dataset.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri use [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   # use dataset me/dataset_name, then get meta.title:
   qri use me/dataset_name
@@ -1380,6 +1676,11 @@ qri use [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -c, --clear   clear the current selection
   -h, --help    help for use
@@ -1429,12 +1730,21 @@ command.
 
 Note: --body and --schema flags will override the dataset if both flags are provided.
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri validate [flags]
 ```
 
 ### Examples
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 ```
   # show errors in an existing dataset:
   qri validate b5/comics
@@ -1448,6 +1758,11 @@ qri validate [flags]
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -b, --body string     data file to initialize from
   -h, --help            help for validate
@@ -1470,12 +1785,21 @@ Qri uses semantic versioning.
 
 For updates & further information check https://github.com/qri-io/qri/releases
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 qri version [flags]
 ```
 
 ### Options
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 ```
   -h, --help   help for version
 ```
