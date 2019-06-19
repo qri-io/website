@@ -347,55 +347,36 @@ The dataset reference of the dataset will remain the same, including
 the name of the peer that originally added the dataset. You must have
 <code>qri connect</code> running in another terminal to use this command.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri add [flags]
 </code></pre>
 
 <h3 id="examples">Examples</h3>
 
-<pre><code>  add a dataset named their_data, owned by other_peer:
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Mock `add` so that it doesn't require external resources,
+# to test the syntax of this command.
+-->
+
+<pre><code>  # add a dataset named their_data, owned by other_peer:
   $ qri add other_peer/their_data
 </code></pre>
 
 <h3 id="options">Options</h3>
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
+
 <pre><code>  -h, --help   help for add
-</code></pre>
-
-<hr />
-
-<p><a id='qri_body'></a></p>
-
-<h2 id="qri-body">qri body</h2>
-
-<p>Get the body of a dataset</p>
-
-<h3 id="synopsis-1">Synopsis</h3>
-
-<p><code>qri body</code> reads entries from a dataset. Default is 50 entries, starting from the beginning of the body. You can using the <code>--limit</code> and <code>--offset</code> flags to iterate through the dataset body.</p>
-
-<pre><code>qri body [flags]
-</code></pre>
-
-<h3 id="examples-1">Examples</h3>
-
-<pre><code>  show the first 50 rows of a dataset:
-  $ qri body me/dataset_name
-
-  show the next 50 rows of a dataset:
-  $ qri body --offset 50 me/dataset_name
-
-  save the body as csv to file
-  $ qri body -o new_file.csv -f csv me/dataset_name
-</code></pre>
-
-<h3 id="options-1">Options</h3>
-
-<pre><code>  -a, --all             read all dataset entries (overrides limit, offest)
-  -f, --format string   format to export. one of [json,csv,cbor] (default &quot;json&quot;)
-  -h, --help            help for body
-  -l, --limit int       max number of records to read (default 50)
-  -s, --offset int      number of records to skip
-  -o, --output string   path to write to, default is stdout
 </code></pre>
 
 <hr />
@@ -406,7 +387,7 @@ the name of the peer that originally added the dataset. You must have
 
 <p>get configuration settings</p>
 
-<h3 id="synopsis-2">Synopsis</h3>
+<h3 id="synopsis-1">Synopsis</h3>
 
 <p>get outputs your current configuration file with private keys
 removed by default, making it easier to share your qri configuration settings.</p>
@@ -419,10 +400,21 @@ traverse the config object. For details on each config field checkout:
 PLEASE PLEASE PLEASE NEVER SHARE YOUR PRIVATE KEYS WITH ANYONE. EVER.
 Anyone with your private keys can impersonate you on qri.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri config get [flags]
 </code></pre>
 
-<h3 id="examples-2">Examples</h3>
+<h3 id="examples-1">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  # get the entire config
   qri config get
@@ -434,7 +426,13 @@ Anyone with your private keys can impersonate you on qri.</p>
   qri config get profile.description
 </code></pre>
 
-<h3 id="options-2">Options</h3>
+<h3 id="options-1">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -c, --concise             print output without indentation, only applies to json format
   -f, --format string       data format to export. either json or yaml (default &quot;yaml&quot;)
@@ -451,7 +449,7 @@ Anyone with your private keys can impersonate you on qri.</p>
 
 <p>Set configuration options</p>
 
-<h3 id="synopsis-3">Synopsis</h3>
+<h3 id="synopsis-2">Synopsis</h3>
 
 <p>&lsquo;qri config set&rsquo; allows you to set configuration options. You can set
 particular parts of the config by using dot notation to traverse the
@@ -465,10 +463,21 @@ set the leaves of the branches. In other words, the you cannot set a
 field that is itself an object or array. For details on each config
 field checkout: <a href="https://github.com/qri-io/qri/blob/master/config/readme.md">https://github.com/qri-io/qri/blob/master/config/readme.md</a></p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri config set [flags]
 </code></pre>
 
-<h3 id="examples-3">Examples</h3>
+<h3 id="examples-2">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  # set a profile description
   qri config set profile.description &quot;This is my new description that I
@@ -478,7 +487,13 @@ field checkout: <a href="https://github.com/qri-io/qri/blob/master/config/readme
   qri config set rpc.enabled false
 </code></pre>
 
-<h3 id="options-3">Options</h3>
+<h3 id="options-2">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for set
 </code></pre>
@@ -491,7 +506,7 @@ field checkout: <a href="https://github.com/qri-io/qri/blob/master/config/readme
 
 <p>Get and set local configuration information</p>
 
-<h3 id="synopsis-4">Synopsis</h3>
+<h3 id="synopsis-3">Synopsis</h3>
 
 <p>&lsquo;qri config&rsquo; encapsulates all settings that control the behaviour of qri.
 This includes all kinds of stuff: your profile details; enabling &amp; disabling
@@ -504,7 +519,13 @@ runtime via command a line argument.</p>
 <p>For details on each config field checkout:
 <a href="https://github.com/qri-io/qri/blob/master/config/readme.md">https://github.com/qri-io/qri/blob/master/config/readme.md</a></p>
 
-<h3 id="examples-4">Examples</h3>
+<h3 id="examples-3">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  # get your profile information
   $ qri config get profile
@@ -516,7 +537,13 @@ runtime via command a line argument.</p>
   $ qri config set rpc.enabled false
 </code></pre>
 
-<h3 id="options-4">Options</h3>
+<h3 id="options-3">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for config
 </code></pre>
@@ -529,7 +556,7 @@ runtime via command a line argument.</p>
 
 <p>Connect to the distributed web by spinning up a Qri node</p>
 
-<h3 id="synopsis-5">Synopsis</h3>
+<h3 id="synopsis-4">Synopsis</h3>
 
 <p>While it’s not totally accurate, connect is like starting a server. Running
 connect will start a process and stay there until you exit the process
@@ -543,10 +570,21 @@ things:
 <p>When you run connect you are connecting to the distributed web, interacting with
 peers &amp; swapping data.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri connect [flags]
 </code></pre>
 
-<h3 id="options-5">Options</h3>
+<h3 id="options-4">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>      --api-port int           port to start api on
       --disable-api            disables api, overrides the api-port flag
@@ -570,27 +608,44 @@ peers &amp; swapping data.</p>
 
 <p>Compare differences between two datasets</p>
 
-<h3 id="synopsis-6">Synopsis</h3>
+<h3 id="synopsis-5">Synopsis</h3>
 
 <p>Diff compares two datasets from your repo and prints a representation
 of the differences between them.  You can specifify the datasets
 either by name or by their hash. You can compare different versions of
 the same dataset.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri diff [flags]
 </code></pre>
 
-<h3 id="examples-5">Examples</h3>
+<h3 id="examples-4">Examples</h3>
 
-<pre><code>  show diff between two versions of the same dataset:
-  $ qri diff me/annual_pop@/ipfs/QmcBZoEQ7ot4UYKn1JM3gwd4LHorj6FJ4Ep19rfLBT3VZ8 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Configure this instance to have a mock ipfs repo with these hashes
+-->
+
+<pre><code>  # show diff between two versions of the same dataset:
+  $ qri diff me/annual_pop@/ipfs/QmcBZoEQ7ot4UYKn1JM3gwd4LHorj6FJ4Ep19rfLBT3VZ8 \
   me/annual_pop@/ipfs/QmVvqsge5wqp4piJbLArwVB6iJSTrdM8ZRpHY7fikASrr8
 
-  show diff between two different datasets:
+  # show diff between two different datasets:
   $ qri diff me/population_2016 me/population_2017
 </code></pre>
 
-<h3 id="options-6">Options</h3>
+<h3 id="options-5">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -d, --display string   set display format [reg|short|delta|detail]
   -h, --help             help for diff
@@ -604,7 +659,7 @@ the same dataset.</p>
 
 <p>Copy datasets to your local filesystem</p>
 
-<h3 id="synopsis-7">Synopsis</h3>
+<h3 id="synopsis-6">Synopsis</h3>
 
 <p>Export gets datasets out of qri. By default it exports the dataset body, as <code>body.csv</code>, header as<code>dataset.json</code>, and ref, as <code>ref.txt</code> files.</p>
 
@@ -613,10 +668,21 @@ the same dataset.</p>
 <p>If you want an empty dataset that can be filled in with details to create a
 new dataset, use &ndash;blank.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri export [flags]
 </code></pre>
 
-<h3 id="examples-6">Examples</h3>
+<h3 id="examples-5">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): This is totally out of date.
+-->
 
 <pre><code>  # export dataset
   qri export me/annual_pop
@@ -628,7 +694,13 @@ new dataset, use &ndash;blank.</p>
   qri export -o ~/new_directory me/annual_pop
 </code></pre>
 
-<h3 id="options-7">Options</h3>
+<h3 id="options-6">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): This is totally out of date.
+-->
 
 <pre><code>      --blank                export a blank dataset YAML file, overrides all other flags except output
       --body-format string   format for dataset body. default is the original data format. options: json, csv, cbor
@@ -647,7 +719,7 @@ new dataset, use &ndash;blank.</p>
 
 <p>Get elements of qri datasets</p>
 
-<h3 id="synopsis-8">Synopsis</h3>
+<h3 id="synopsis-7">Synopsis</h3>
 
 <p>Get the qri dataset (except for the body). You can also get portions of
 the dataset: meta, structure, viz, transform, and commit. To narrow down
@@ -660,10 +732,20 @@ by supplying more than one dataset reference.</p>
 <p>Check out <a href="https://qri.io/docs/reference/dataset/">https://qri.io/docs/reference/dataset/</a> to learn about each section of the
 dataset and its fields.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri get [flags]
 </code></pre>
 
-<h3 id="examples-7">Examples</h3>
+<h3 id="examples-6">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+-->
 
 <pre><code>  # print the entire dataset to the console
   qri get me/annual_pop
@@ -676,65 +758,22 @@ dataset and its fields.</p>
 
   # print the dataset body size for two different datasets
   qri get structure.length me/annual_pop me/annual_gdp
+
+  # print the body itself for the dataset
+  qri get body me/annual_pop
 </code></pre>
 
-<h3 id="options-8">Options</h3>
+<h3 id="options-7">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>      --concise         print output without indentation, only applies to json format
   -f, --format string   set output format [json, yaml] (default &quot;yaml&quot;)
   -h, --help            help for get
-</code></pre>
-
-<hr />
-
-<p><a id='qri_info'></a></p>
-
-<h2 id="qri-info">qri info</h2>
-
-<p>Show summarized description of a dataset</p>
-
-<h3 id="synopsis-9">Synopsis</h3>
-
-<p>Info describes datasets. By default, it will return the peername, dataset name,
-the network, the dataset hash, the file size, the length of the datasets,
-and the validation errors.</p>
-
-<p>Using the <code>--format</code> flag, you can get output in json. This will return a json
-representation of the dataset, without the dataset body, identical to
-<code>qri get --format json</code>.</p>
-
-<p>To get info on a peer&rsquo;s dataset, you must be running <code>qri connect</code> in a separate
-terminal window.</p>
-
-<pre><code>qri info [flags]
-</code></pre>
-
-<h3 id="examples-8">Examples</h3>
-
-<pre><code>  # get info for my dataset:
-  qri info me/annual_pop
-
-  # get info for a dataset at a specific version:
-  qri info me@/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
-
-  or
-
-  qri info me/comics@/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
-
-  # get info in json format
-  qri info -f json me/annual_pop
-
-  # to get info on a peer's dataset, spin up your qri node
-  qri connect
-
-  # then, in a separate window, request the info from peer b5
-  qri info b5/comics
-</code></pre>
-
-<h3 id="options-9">Options</h3>
-
-<pre><code>  -f, --format string   set output format [json]
-  -h, --help            help for info
 </code></pre>
 
 <hr />
@@ -745,7 +784,7 @@ terminal window.</p>
 
 <p>Show a list of datasets</p>
 
-<h3 id="synopsis-10">Synopsis</h3>
+<h3 id="synopsis-8">Synopsis</h3>
 
 <p>List shows lists of datasets, including names and current hashes.</p>
 
@@ -755,23 +794,43 @@ qri repository.</p>
 <p>When used in conjunction with <code>qri connect</code>, list can list a peer&rsquo;s dataset. You
 must have <code>qri connect</code> running in a separate terminal window.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri list [flags]
 </code></pre>
 
-<h3 id="examples-9">Examples</h3>
+<h3 id="examples-7">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Add mock connection to test looking up peer datasets
+-->
 
 <pre><code>  # show all of your datasets:
   qri list
+
+  # show your datasets that have &quot;tax&quot; in the name
+  qri list tax
 
   # to view the list of your peer's dataset,
   # in one terminal window:
   qri connect
 
   # in a separate terminal window, to show all of b5's datasets:
-  qri list b5
+  qri list --peer b5
 </code></pre>
 
-<h3 id="options-10">Options</h3>
+<h3 id="options-8">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -f, --format string   set output format [json]
   -h, --help            help for list
@@ -788,7 +847,7 @@ must have <code>qri connect</code> running in a separate terminal window.</p>
 
 <p>Show log of dataset history</p>
 
-<h3 id="synopsis-11">Synopsis</h3>
+<h3 id="synopsis-9">Synopsis</h3>
 
 <p><code>qri log</code> prints a list of changes to a dataset over time. Each entry in the log is a
 snapshot of a dataset taken at the moment it was saved that keeps exact details
@@ -799,16 +858,33 @@ created the version) and a message explaining what changed. Log prints these
 details in order of occurrence, starting with the most recent known version,
 working backwards in time.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri log [flags]
 </code></pre>
 
-<h3 id="examples-10">Examples</h3>
+<h3 id="examples-8">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  show log for the dataset b5/precip:
   $ qri log b5/precip
 </code></pre>
 
-<h3 id="options-11">Options</h3>
+<h3 id="options-9">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help         help for log
   -l, --limit int    limit results, default 25 (default 25)
@@ -823,7 +899,7 @@ working backwards in time.</p>
 
 <p>Connect to a peer</p>
 
-<h3 id="synopsis-12">Synopsis</h3>
+<h3 id="synopsis-10">Synopsis</h3>
 
 <p>Connect to a peer using a peername, peer ID, or multiaddress. Qri will use this name, id, or address
 to find a peer to which it has not automatically connected.</p>
@@ -834,10 +910,21 @@ to connect to a peer that also has spun up it&rsquo;s own Qri node.</p>
 <p>A multiaddress, or multiaddr, is the most specific way to refer to a peer&rsquo;s location, and is therefore
 the most sure-fire way to connect to a peer.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri peers connect [flags]
 </code></pre>
 
-<h3 id="examples-11">Examples</h3>
+<h3 id="examples-9">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Add mock peers with given address, to test peer connection
+-->
 
 <pre><code>  # spin up a Qri node
   qri connect
@@ -846,7 +933,13 @@ the most sure-fire way to connect to a peer.</p>
   qri peers connect /ip4/192.168.0.194/tcp/4001/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
 </code></pre>
 
-<h3 id="options-12">Options</h3>
+<h3 id="options-10">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for connect
 </code></pre>
@@ -859,7 +952,7 @@ the most sure-fire way to connect to a peer.</p>
 
 <p>Explicitly close a connection to a peer</p>
 
-<h3 id="synopsis-13">Synopsis</h3>
+<h3 id="synopsis-11">Synopsis</h3>
 
 <p>Explicitly close a connection to a peer using a peername, peer id, or multiaddress.</p>
 
@@ -875,16 +968,33 @@ connection.</p>
 
 <p>You must have <code>qri connect</code> running in another terminal.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri peers disconnect [flags]
 </code></pre>
 
-<h3 id="examples-12">Examples</h3>
+<h3 id="examples-10">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  # disconnect from a peer using a multiaddr
   qri peers disconnect /ip4/192.168.0.194/tcp/4001/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
 </code></pre>
 
-<h3 id="options-13">Options</h3>
+<h3 id="options-11">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for disconnect
 </code></pre>
@@ -897,7 +1007,7 @@ connection.</p>
 
 <p>Get info on a Qri peer</p>
 
-<h3 id="synopsis-14">Synopsis</h3>
+<h3 id="synopsis-12">Synopsis</h3>
 
 <p>The peers info command returns a peer&rsquo;s profile information. The default
 format is yaml.</p>
@@ -906,10 +1016,21 @@ format is yaml.</p>
 
 <p>You must have <code>qri connect</code> running in another terminal.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri peers info [flags]
 </code></pre>
 
-<h3 id="examples-13">Examples</h3>
+<h3 id="examples-11">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  show info on a peer named &quot;b5&quot;:
   $ qri peers info b5
@@ -918,7 +1039,13 @@ format is yaml.</p>
   $ qri peers info b5 --format json
 </code></pre>
 
-<h3 id="options-14">Options</h3>
+<h3 id="options-12">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>      --format string   output format. formats: yaml, json (default &quot;yaml&quot;)
   -h, --help            help for info
@@ -933,7 +1060,7 @@ format is yaml.</p>
 
 <p>List known qri peers</p>
 
-<h3 id="synopsis-15">Synopsis</h3>
+<h3 id="synopsis-13">Synopsis</h3>
 
 <p>Lists the peers to which your Qri node is connected.</p>
 
@@ -942,10 +1069,21 @@ format is yaml.</p>
 <p>To find peers that are not online, but to which your node has previously been
 connected, use the <code>--cached</code> flag.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri peers list [flags]
 </code></pre>
 
-<h3 id="examples-14">Examples</h3>
+<h3 id="examples-12">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  # spin up a Qri node
   qri connect
@@ -957,7 +1095,13 @@ connected, use the <code>--cached</code> flag.</p>
   qri peers list --cached
 </code></pre>
 
-<h3 id="options-15">Options</h3>
+<h3 id="options-13">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -c, --cached           show peers that aren't online, but previously seen
   -h, --help             help for list
@@ -974,7 +1118,7 @@ connected, use the <code>--cached</code> flag.</p>
 
 <p>Commands for working with peers</p>
 
-<h3 id="synopsis-16">Synopsis</h3>
+<h3 id="synopsis-14">Synopsis</h3>
 
 <p>The <code>peers</code> commands allow you to interact with other peers on the Qri network.
 In order for these commands to work, you must be running a Qri node. This
@@ -983,7 +1127,13 @@ node allows you to communicate on the network. To spin up a Qri node, run
 until you choose to close the connection by ending the session or closing
 the terminal.</p>
 
-<h3 id="options-16">Options</h3>
+<h3 id="options-14">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for peers
 </code></pre>
@@ -996,17 +1146,28 @@ the terminal.</p>
 
 <p>set dataset publicity</p>
 
-<h3 id="synopsis-17">Synopsis</h3>
+<h3 id="synopsis-15">Synopsis</h3>
 
 <p>Publish makes your dataset available to others. While online, peers that connect
 to you can only see datasets and versions that you&rsquo;ve published. Publishing a
 dataset always makes all previous history entries available, and any updates
 to a published dataset will be immediately visible to connected peers.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri publish [flags]
 </code></pre>
 
-<h3 id="examples-15">Examples</h3>
+<h3 id="examples-13">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  # publish a dataset
   $ qri publish me/dataset
@@ -1018,7 +1179,13 @@ to a published dataset will be immediately visible to connected peers.</p>
   $ qri publish -unpublish me/dataset
 </code></pre>
 
-<h3 id="options-17">Options</h3>
+<h3 id="options-15">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help          help for publish
       --no-registry   don't publish to registry
@@ -1033,21 +1200,38 @@ to a published dataset will be immediately visible to connected peers.</p>
 
 <p>pin dataset data to the registry</p>
 
-<h3 id="synopsis-18">Synopsis</h3>
+<h3 id="synopsis-16">Synopsis</h3>
 
 <p>Pin asks a registry to host a copy of your dataset, making it available for
 others to download on the d.web</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri registry pin [flags]
 </code></pre>
 
-<h3 id="examples-16">Examples</h3>
+<h3 id="examples-14">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Mock registry that can handle this functionality.
+-->
 
 <pre><code>  Pin a dataset to the registry:
   $ qri registry pin me/dataset_name
 </code></pre>
 
-<h3 id="options-18">Options</h3>
+<h3 id="options-16">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for pin
 </code></pre>
@@ -1060,7 +1244,7 @@ others to download on the d.web</p>
 
 <p>Publish dataset info to the registry</p>
 
-<h3 id="synopsis-19">Synopsis</h3>
+<h3 id="synopsis-17">Synopsis</h3>
 
 <p>Publishes the dataset information onto the registry. There will be a record
 of your dataset on the registry, and if your dataset is less than 20mbs,
@@ -1070,16 +1254,33 @@ Qri will back your dataset up onto the registry.</p>
 
 <p>Datasets are by default published to the registry when they are created.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri registry publish [flags]
 </code></pre>
 
-<h3 id="examples-17">Examples</h3>
+<h3 id="examples-15">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  Publish a dataset you've created to the registry:
   $ qri registry publish me/dataset_name
 </code></pre>
 
-<h3 id="options-19">Options</h3>
+<h3 id="options-17">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for publish
 </code></pre>
@@ -1092,20 +1293,37 @@ Qri will back your dataset up onto the registry.</p>
 
 <p>get the status of a reference on the registry</p>
 
-<h3 id="synopsis-20">Synopsis</h3>
+<h3 id="synopsis-18">Synopsis</h3>
 
 <p>use status to see what version of a dataset the registry has on-record, if any</p>
+
+<!--
+docrun:
+  pass: true
+-->
 
 <pre><code>qri registry status [flags]
 </code></pre>
 
-<h3 id="examples-18">Examples</h3>
+<h3 id="examples-16">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  Get status of a dataset reference::
     $ qri registry status me/dataset_name
 </code></pre>
 
-<h3 id="options-20">Options</h3>
+<h3 id="options-18">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for status
 </code></pre>
@@ -1118,21 +1336,38 @@ Qri will back your dataset up onto the registry.</p>
 
 <p>unpin dataset data from the registry</p>
 
-<h3 id="synopsis-21">Synopsis</h3>
+<h3 id="synopsis-19">Synopsis</h3>
 
 <p>Unpin reverses the pin process, asking a registry to remove it&rsquo;s hosted copy
 of your dataset from the registry</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri registry unpin [flags]
 </code></pre>
 
-<h3 id="examples-19">Examples</h3>
+<h3 id="examples-17">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  Unpin a dataset from the registry:
   $ qri registry unpin me/dataset_name
 </code></pre>
 
-<h3 id="options-21">Options</h3>
+<h3 id="options-19">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for unpin
 </code></pre>
@@ -1145,7 +1380,7 @@ of your dataset from the registry</p>
 
 <p>remove dataset info from the registry</p>
 
-<h3 id="synopsis-22">Synopsis</h3>
+<h3 id="synopsis-20">Synopsis</h3>
 
 <p>Unpublish will remove the reference to your dataset from the registry. If
 you dataset was previously backed up onto the registry, this backup will
@@ -1153,16 +1388,33 @@ be removed.</p>
 
 <p>This dataset will no longer show up in search results.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri registry unpublish [flags]
 </code></pre>
 
-<h3 id="examples-20">Examples</h3>
+<h3 id="examples-18">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  Remove a dataset from the registry:
   $ qri registry unpublish me/dataset_name
 </code></pre>
 
-<h3 id="options-22">Options</h3>
+<h3 id="options-20">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for unpublish
 </code></pre>
@@ -1175,7 +1427,7 @@ be removed.</p>
 
 <p>Commands for working with a qri registry</p>
 
-<h3 id="synopsis-23">Synopsis</h3>
+<h3 id="synopsis-21">Synopsis</h3>
 
 <p>Registries are federated public records of datasets and peers.
 These records form a public facing central lookup for your datasets, so others
@@ -1196,7 +1448,13 @@ registry entirely is better left to advanced users.</p>
 <p>You can opt out of registries entirely by running:
 $ qri config set registry.location &ldquo;&rdquo;</p>
 
-<h3 id="options-23">Options</h3>
+<h3 id="options-21">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for registry
 </code></pre>
@@ -1209,7 +1467,7 @@ $ qri config set registry.location &ldquo;&rdquo;</p>
 
 <p>Remove a dataset from your local repository</p>
 
-<h3 id="synopsis-24">Synopsis</h3>
+<h3 id="synopsis-22">Synopsis</h3>
 
 <p>Remove gets rid of a dataset from your qri node. After running remove, qri will
 no longer list your dataset as being available locally. By default, remove frees
@@ -1224,16 +1482,33 @@ adjust this cap using IPFS, qri will respect it.</p>
 <p>In the future we’ll add a flag that’ll force immediate removal of a dataset from
 both qri &amp; IPFS. Promise.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri remove [flags]
 </code></pre>
 
-<h3 id="examples-21">Examples</h3>
+<h3 id="examples-19">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  remove a dataset named annual_pop:
   $ qri remove me/annual_pop
 </code></pre>
 
-<h3 id="options-24">Options</h3>
+<h3 id="options-22">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for remove
 </code></pre>
@@ -1246,7 +1521,7 @@ both qri &amp; IPFS. Promise.</p>
 
 <p>Change the name of a dataset</p>
 
-<h3 id="synopsis-25">Synopsis</h3>
+<h3 id="synopsis-23">Synopsis</h3>
 
 <p>Rename changes the name of a dataset.</p>
 
@@ -1256,16 +1531,33 @@ not have the updated name. While this won&rsquo;t break anything, it will
 confuse anyone who has added your dataset before the change. Try to keep
 renames to a minimum.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri rename [flags]
 </code></pre>
 
-<h3 id="examples-22">Examples</h3>
+<h3 id="examples-20">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  rename a dataset named annual_pop to annual_population:
   $ qri rename me/annual_pop me/annual_population
 </code></pre>
 
-<h3 id="options-25">Options</h3>
+<h3 id="options-23">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for rename
 </code></pre>
@@ -1278,7 +1570,7 @@ renames to a minimum.</p>
 
 <p>Execute a template against a dataset</p>
 
-<h3 id="synopsis-26">Synopsis</h3>
+<h3 id="synopsis-24">Synopsis</h3>
 
 <p>You can use html templates, formatted in the go/html template style,
 to render visualizations from your dataset. These visualizations can be charts,
@@ -1289,10 +1581,21 @@ graphs, or just display your dataset in a different format.</p>
 <p>Use the <code>--template</code> flag to use a custom template. If no template is
 provided, Qri will render the dataset with a default template.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri render [flags]
 </code></pre>
 
-<h3 id="examples-23">Examples</h3>
+<h3 id="examples-21">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  render a dataset called me/schools:
   $ qri render -o=schools.html me/schools
@@ -1301,7 +1604,13 @@ provided, Qri will render the dataset with a default template.</p>
   $ qri render --template=template.html me/schools
 </code></pre>
 
-<h3 id="options-26">Options</h3>
+<h3 id="options-24">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -a, --all               read all dataset entries (overrides limit, offest)
   -h, --help              help for render
@@ -1319,7 +1628,7 @@ provided, Qri will render the dataset with a default template.</p>
 
 <p>Save changes to a dataset</p>
 
-<h3 id="synopsis-27">Synopsis</h3>
+<h3 id="synopsis-25">Synopsis</h3>
 
 <p>Save is how you change a dataset, updating one or more of data, metadata, and structure.
 You can also update your data via url. Every time you run save, an entry is added to
@@ -1334,25 +1643,42 @@ If you don’t provide a message Qri will automatically generate one for you.</p
 <p>When you make an update and save a dataset that you originally added from a different
 peer, the dataset gets renamed from <code>peers_name/dataset_name</code> to <code>my_name/dataset_name</code>.</p>
 
-<p>The <code>--message</code>&rdquo; and <code>--title</code> flags allow you to add a
+<p>The <code>--message</code> and <code>--title</code> flags allow you to add a
 commit message and title to the save.</p>
+
+<!--
+docrun:
+  pass: true
+-->
 
 <pre><code>qri save [flags]
 </code></pre>
 
-<h3 id="examples-24">Examples</h3>
+<h3 id="examples-22">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  # save updated data to dataset annual_pop:
   qri save --body /path/to/data.csv me/annual_pop
 
   # save updated dataset (no data) to annual_pop:
   qri save --file /path/to/dataset.yaml me/annual_pop
-  
+
   # re-execute a dataset that has a transform:
   qri save me/tf_dataset
 </code></pre>
 
-<h3 id="options-27">Options</h3>
+<h3 id="options-25">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>      --body string       path to file or url of data to add as dataset contents
       --dry-run           simulate saving a dataset
@@ -1373,23 +1699,39 @@ commit message and title to the save.</p>
 
 <p>Search qri</p>
 
-<h3 id="synopsis-28">Synopsis</h3>
+<h3 id="synopsis-26">Synopsis</h3>
 
 <p>Search datasets &amp; peers that match your query. Search pings the qri registry.</p>
 
 <p>Any dataset that has been published to the registry is available for search.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri search [flags]
 </code></pre>
 
-<h3 id="examples-25">Examples</h3>
+<h3 id="examples-23">Examples</h3>
 
-<pre><code>
-  # search 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
+
+<pre><code>  # search
   $ qri search &quot;annual population&quot;
 </code></pre>
 
-<h3 id="options-28">Options</h3>
+<h3 id="options-26">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -f, --format string   set output format [json]
   -h, --help            help for search
@@ -1403,7 +1745,7 @@ commit message and title to the save.</p>
 
 <p>Initialize qri and IPFS repositories, provision a new qri ID</p>
 
-<h3 id="synopsis-29">Synopsis</h3>
+<h3 id="synopsis-27">Synopsis</h3>
 
 <p>Setup is the first command you run to get a fresh install of Qri. If you’ve
 never run qri before, you’ll need to run setup before you can do anything.</p>
@@ -1420,16 +1762,33 @@ overwrite this info.</p>
 <p>Use the <code>--remove</code> to remove your Qri repo. This deletes your entire repo,
 including all your datasets, and de-registers your peername from the registry.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri setup [flags]
 </code></pre>
 
-<h3 id="examples-26">Examples</h3>
+<h3 id="examples-24">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  run setup with a peername of your choosing:
   $ qri setup --peername=your_great_peername
 </code></pre>
 
-<h3 id="options-29">Options</h3>
+<h3 id="options-27">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -a, --anonymous            use an auto-generated peername
       --config-data string   json-encoded configuration data, specify a filepath with '@' prefix
@@ -1450,7 +1809,7 @@ including all your datasets, and de-registers your peername from the registry.</
 
 <p>add/create the lastest version of a dataset</p>
 
-<h3 id="synopsis-30">Synopsis</h3>
+<h3 id="synopsis-28">Synopsis</h3>
 
 <p>Update fast-forwards your dataset to the latest known version. If the dataset
 is not in your namespace (i.e. dataset name doesn&rsquo;t start with your peername),
@@ -1465,10 +1824,21 @@ re-running any specified transform script, creating a new version of your
 dataset in the process. If your dataset doesn&rsquo;t have a transform script, update
 will error.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri update [flags]
 </code></pre>
 
-<h3 id="examples-27">Examples</h3>
+<h3 id="examples-25">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  # get the freshest version of a dataset from a peer
   qri update other_person/dataset
@@ -1480,7 +1850,13 @@ will error.</p>
   qri update me/dataset_with_transform -p --secrets=keyboard,cat
 </code></pre>
 
-<h3 id="options-30">Options</h3>
+<h3 id="options-28">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>      --dry-run           simulate updating a dataset
   -h, --help              help for update
@@ -1498,7 +1874,7 @@ will error.</p>
 
 <p>Select datasets for use with the qri get command</p>
 
-<h3 id="synopsis-31">Synopsis</h3>
+<h3 id="synopsis-29">Synopsis</h3>
 
 <p>Run the <code>use</code> command to have Qri remember references to a specific datasets.
 These datasets will be referenced for future commands, if no dataset reference
@@ -1507,10 +1883,21 @@ is explicitly given for those commands.</p>
 <p>We created this command to ease the typing/copy and pasting burden while using
 Qri to explore a dataset.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri use [flags]
 </code></pre>
 
-<h3 id="examples-28">Examples</h3>
+<h3 id="examples-26">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  # use dataset me/dataset_name, then get meta.title:
   qri use me/dataset_name
@@ -1526,7 +1913,13 @@ Qri to explore a dataset.</p>
   qri use me/population_2017 me/population_2018
 </code></pre>
 
-<h3 id="options-31">Options</h3>
+<h3 id="options-29">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -c, --clear   clear the current selection
   -h, --help    help for use
@@ -1541,7 +1934,7 @@ Qri to explore a dataset.</p>
 
 <p>Show schema validation errors</p>
 
-<h3 id="synopsis-32">Synopsis</h3>
+<h3 id="synopsis-30">Synopsis</h3>
 
 <p>Validate checks data for errors using a schema and then printing a list of
 issues. By default validate checks a dataset&rsquo;s body against it’s own schema.
@@ -1574,10 +1967,21 @@ command.</p>
 
 <p>Note: &ndash;body and &ndash;schema flags will override the dataset if both flags are provided.</p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri validate [flags]
 </code></pre>
 
-<h3 id="examples-29">Examples</h3>
+<h3 id="examples-27">Examples</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix this stub.
+-->
 
 <pre><code>  # show errors in an existing dataset:
   qri validate b5/comics
@@ -1589,7 +1993,13 @@ command.</p>
   qri validate --body data.csv --schema schema.json
 </code></pre>
 
-<h3 id="options-32">Options</h3>
+<h3 id="options-30">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -b, --body string     data file to initialize from
   -h, --help            help for validate
@@ -1604,16 +2014,27 @@ command.</p>
 
 <p>Print the version number</p>
 
-<h3 id="synopsis-33">Synopsis</h3>
+<h3 id="synopsis-31">Synopsis</h3>
 
 <p>Qri uses semantic versioning.</p>
 
 <p>For updates &amp; further information check <a href="https://github.com/qri-io/qri/releases">https://github.com/qri-io/qri/releases</a></p>
 
+<!--
+docrun:
+  pass: true
+-->
+
 <pre><code>qri version [flags]
 </code></pre>
 
-<h3 id="options-33">Options</h3>
+<h3 id="options-31">Options</h3>
+
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Automatically compare against real command-line flags
+-->
 
 <pre><code>  -h, --help   help for version
 </code></pre>
