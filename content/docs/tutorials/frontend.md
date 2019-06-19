@@ -15,6 +15,18 @@ Please note! We're improving qri every day. Some of these videos, while still us
 -------------------------------
 
 
+**Screencast Demo - 0.7.1** (filmed June 19, 2019)
+
+What's covered: 
+
+* Getting data from app.qri.io to your desktop
+* Exporting data from qri
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xJfBWNSc16A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+-------------------------------
+
+
 **Screencast Demo - 0.6.1** (filmed Dec 17, 2018)
 
 What's covered: 

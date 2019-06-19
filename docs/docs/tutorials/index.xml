@@ -23,6 +23,17 @@ Before we can do useful things with Qri, we need to set it up. So let&amp;rsquo;
     </item>
     
     <item>
+      <title>How to get data from app.qri.io</title>
+      <link>https://qri.io/docs/tutorials/frontend_get_data_from_app_to_desktop/</link>
+      <pubDate>Fri, 14 Jun 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/tutorials/frontend_get_data_from_app_to_desktop/</guid>
+      <description>Get data from app.qri.io to your computer! So, someone is trying to share a dataset with you over Qri!
+That&amp;rsquo;s great. That means that the data you get will be verifiable and auditable. You can trust it, because you can see the source, see the way it&amp;rsquo;s changed over time, and see the scripts used to gather it or change it.
+Here is a video showing how to go from a link someone has sent you to app.</description>
+    </item>
+    
+    <item>
       <title>Frontend Tutorials</title>
       <link>https://qri.io/docs/tutorials/frontend/</link>
       <pubDate>Thu, 14 Feb 2019 00:00:00 -0400</pubDate>
@@ -30,9 +41,9 @@ Before we can do useful things with Qri, we need to set it up. So let&amp;rsquo;
       <guid>https://qri.io/docs/tutorials/frontend/</guid>
       <description>Frontend Screencast Demos We&amp;rsquo;ve filmed screencasts of our teammates demonstrating new features to help you get a feel for qri. Check out some of them below.
 Please note! We&amp;rsquo;re improving qri every day. Some of these videos, while still useful, may not reflect the most current state of the app.
-Screencast Demo - 0.6.1 (filmed Dec 17, 2018)
+Screencast Demo - 0.7.1 (filmed June 19, 2019)
 What&amp;rsquo;s covered:
- Navigation How to add datasets published by other peers Defining published vs.</description>
+ Getting data from app.qri.io to your desktop Exporting data from qri   Screencast Demo - 0.</description>
     </item>
     
     <item>
