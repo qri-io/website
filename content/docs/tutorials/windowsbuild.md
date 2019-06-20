@@ -18,7 +18,7 @@ section: tutorials
   <img src="/graphics/windows_gifs/Step 0.gif" />
 </div>
 
-If developer mode isn’t enabled, you may experience permission errors during building. To prevent this, enable developer mode by typing “Developer mode” into the search bar and enabling it.
+If developer mode isn’t enabled, you may experience permission errors during building. To prevent this, enable developer mode by visiting [Microsoft's Dev Center](https://docs.microsoft.com/en-us/windows/uwp/get-started/enable-your-device-for-development).
 
 ---
 
@@ -42,7 +42,7 @@ Qri requires Go the programming language and its packages to run. You can downlo
   <img src="/graphics/windows_gifs/Step 2.gif" />
 </div>
 
-You can also use your own shell program. However, the creator of the docs tested and used MSYS2. I have also downloaded and used MSYS2 in this example. You can find the MSYS2 download link [here](https://www.msys2.org/).
+You can also use your own shell program. However, we recommend using MSYS2 which is officially supported for building qri. You can find the MSYS2 download link [here](https://www.msys2.org/).
 
 ---
 
@@ -72,7 +72,7 @@ MSYS2_PATH_TYPE=inherit
   <img src="/graphics/windows_gifs/Step 4.gif" />
 </div>
 
-To download both packages simultaneously type
+To download both packages, open an msys2 shell and type
 
 ```
 pacman -S git make

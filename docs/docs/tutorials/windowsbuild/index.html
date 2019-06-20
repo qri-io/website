@@ -23,9 +23,9 @@
   <meta property="og:title" content="FBuilding Qri on Windows" />
 <meta property="og:description" content="Building Qri on Windows This page was adapted from a blog post written by friend of the project Jonathan Butler.
 Step 1: Enable Developer Mode
-  If developer mode isn’t enabled, you may experience permission errors during building. To prevent this, enable developer mode by typing “Developer mode” into the search bar and enabling it.
+  If developer mode isn’t enabled, you may experience permission errors during building. To prevent this, enable developer mode by visiting Microsoft&rsquo;s Dev Center.
 Step 2: Download Go
-  Qri requires Go the programming language and its packages to run." />
+  Qri requires Go the programming language and its packages to run. You can download Go from their official website." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://qri.io/docs/tutorials/windowsbuild/" />
 
@@ -223,7 +223,7 @@ Step 2: Download Go
   <img src="../../../graphics/windows_gifs/Step 0.gif" />
 </div>
 
-<p>If developer mode isn’t enabled, you may experience permission errors during building. To prevent this, enable developer mode by typing “Developer mode” into the search bar and enabling it.</p>
+<p>If developer mode isn’t enabled, you may experience permission errors during building. To prevent this, enable developer mode by visiting <a href="https://docs.microsoft.com/en-us/windows/uwp/get-started/enable-your-device-for-development">Microsoft&rsquo;s Dev Center</a>.</p>
 
 <hr />
 
@@ -247,7 +247,7 @@ Step 2: Download Go
   <img src="../../../graphics/windows_gifs/Step 2.gif" />
 </div>
 
-<p>You can also use your own shell program. However, the creator of the docs tested and used MSYS2. I have also downloaded and used MSYS2 in this example. You can find the MSYS2 download link <a href="https://www.msys2.org/">here</a>.</p>
+<p>You can also use your own shell program. However, we recommend using MSYS2 which is officially supported for building qri. You can find the MSYS2 download link <a href="https://www.msys2.org/">here</a>.</p>
 
 <hr />
 
@@ -276,7 +276,7 @@ MSYS2_PATH_TYPE=inherit
   <img src="../../../graphics/windows_gifs/Step 4.gif" />
 </div>
 
-<p>To download both packages simultaneously type</p>
+<p>To download both packages, open an msys2 shell and type</p>
 
 <pre><code>pacman -S git make
 </code></pre>

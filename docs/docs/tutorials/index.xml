@@ -30,9 +30,9 @@ Before we can do useful things with Qri, we need to set it up. So let&amp;rsquo;
       <guid>https://qri.io/docs/tutorials/windowsbuild/</guid>
       <description>Building Qri on Windows This page was adapted from a blog post written by friend of the project Jonathan Butler.
 Step 1: Enable Developer Mode
-  If developer mode isn’t enabled, you may experience permission errors during building. To prevent this, enable developer mode by typing “Developer mode” into the search bar and enabling it.
+  If developer mode isn’t enabled, you may experience permission errors during building. To prevent this, enable developer mode by visiting Microsoft&amp;rsquo;s Dev Center.
 Step 2: Download Go
-  Qri requires Go the programming language and its packages to run.</description>
+  Qri requires Go the programming language and its packages to run. You can download Go from their official website.</description>
     </item>
     
     <item>

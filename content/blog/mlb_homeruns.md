@@ -59,17 +59,9 @@ Anyone who regularly plays with data is shaking their head and wondering, “Why
   **C.**  Wouldn’t it be nice to know that if I wanted to take a different approach, I could take their work, copy it, and adapt it as I saw fit?
   
   **D.**  And wouldn’t it be nice to have the script tied to the data, so I could simply re-run it and retrieve updated rankings? *[Coming soon: Ability to set a script to run by itself, retrieve data at a specific frequency, and update my data itself -- giving me a new version every day, week, month, or season]*
-  
-
-
-
- 
+   
 I’ve used qri to do each of those. Here’s how:
 
-
-
-
- 
 **Transform Scripts: from web scraping to a qri dataset**
 
 We use a python-like syntax called [Starlark](https://qri.io/docs/reference/starlark_syntax/) to draft a Transform script to pull in data from the wild, and tweak the way it’s represented. For example, I used my script to create new columns for the player’s hall of fame status and active/inactive status. That accomplishes A & B from the list above. 
