@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.44" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,23 +24,8 @@
   <meta property="og:title" content="Starlark Examples" />
 <meta property="og:description" content="example starlark snippits" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/reference/starlark_examples/" />
-
-
-
-<meta property="article:published_time" content="2018-12-20T00:00:00-04:00"/>
-
+<meta property="og:url" content="https://qri.io/docs/reference/starlark_examples/" /><meta property="article:published_time" content="2018-12-20T00:00:00-04:00"/>
 <meta property="article:modified_time" content="2018-12-20T00:00:00-04:00"/>
-
-
-
-
-
-
-
-
-
-
 
   
 
@@ -210,7 +195,7 @@
 
 <h3 id="qri-and-dataset-modules">qri and dataset modules</h3>
 
-<p>In Qri two &ldquo;nonstandard&rdquo; modules specific to qri are available. these modules are <em>not</em> considered part of the standard library project, and are defined in a <a href="https://github.com/qri-io/startf">different repository</a>. They&rsquo;re described here to keep documentation complete:</p>
+<p>In Qri two &ldquo;nonstandard&rdquo; modules specific to qri are available. these modules are <em>not</em> considered part of the standard library project, and are defined in a <a href="https://github.com/qri-io/qri/startf">different repository</a>. They&rsquo;re described here to keep documentation complete:</p>
 
 <ul>
 <li><a href="#qri_module">qri</a></li>
@@ -220,8 +205,9 @@
 <h3 id="modules">Modules</h3>
 
 <ul>
-<li><a href="#html_module">html</a></li>
 <li><a href="#http_module">http</a></li>
+<li><a href="#bsoup_module">bsoup</a></li>
+<li><a href="#html_module">html</a></li>
 <li><a href="#math_module">math</a></li>
 <li><a href="#re_module">re</a></li>
 <li><a href="#time_module">time</a></li>
@@ -231,342 +217,11 @@
 
 <hr />
 
-<p><a id="html_module"></a></p>
-
-<h2 id="html-module">html module</h2>
-
-<p><em>can only be used in the <code>download</code> function. You must use the <code>html</code> function to parse an html response, to get a document  object that you can traverse</em></p>
-
-<p>To load and parse:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-<span class="n">load</span><span class="p">(</span><span class="s2">&#34;http.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;http&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">res</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://some-website.com&#34;</span><span class="p">)</span>
-  <span class="c1"># parses the response body into something that </span>
-  <span class="c1"># can be traversed using a jquery-like syntax</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="p">())</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><em>The following methods can be used on the document object that gets returned by using the <code>html</code> function:</em></p>
-
-<ul>
-<li><a href="#attr">attr</a></li>
-<li><a href="#children">children</a></li>
-<li><a href="#children_filtered">children_filtered</a></li>
-<li><a href="#contents">contents</a></li>
-<li><a href="#eq">eq</a></li>
-<li><a href="#find">find</a></li>
-<li><a href="#first">first</a></li>
-<li><a href="#filter">filter</a></li>
-<li><a href="#get">get</a></li>
-<li><a href="#has">has</a></li>
-<li><a href="#last">last</a></li>
-<li><a href="#len">len</a></li>
-<li><a href="#parent">parent</a></li>
-<li><a href="#parents_until">parents_until</a></li>
-<li><a href="#siblings">siblings</a></li>
-<li><a href="#html_text">text</a></li>
-</ul>
-
-<hr />
-
-<h2 id="function-definitions">Function Definitions:</h2>
-
-<p><a id="attr"></a></p>
-
-<h4 id="attr">attr</h4>
-
-<p><code>selection.attr(attribute)</code></p>
-
-<p>Returns a string of the given attribute for that selection in the document. <code>attribute</code> is a string.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;div title=&#34;hello world&#34; class=&#34;example_class_name&#34;&gt;&lt;p&gt;test&lt;/p&gt;&lt;/div&gt;&#39;</span>
-  <span class="c1">#</span>
-  <span class="c1"># find returns a list of elements that match the search string:</span>
-  <span class="n">divs</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">)</span>
-  <span class="c1">#</span>
-  <span class="c1"># get the first element in the list:</span>
-  <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
-  <span class="c1">#</span>
-  <span class="c1"># get the attr with the key &#34;title&#34;</span>
-  <span class="n">attr</span> <span class="o">=</span> <span class="n">div</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span> <span class="c1"># prints &#34;hello world&#34;</span>
-  <span class="c1">#</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="n">attr</span><span class="p">])</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="children"></a></p>
-
-<h4 id="children">children</h4>
-
-<p><code>selection.children()</code></p>
-
-<p>gets the child elements of each element in the Selection. It returns a new Selection object containing these elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># gives you a selection of the body element</span>
-  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
-  <span class="c1"># gives you a selection made up of the children of body</span>
-  <span class="n">children_len</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="nb">len</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">children_len</span><span class="p">)</span> <span class="c1"># prints 4, specifically the 4 p elements</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="children_filtered"></a></p>
-
-<h4 id="children-filtered">children_filtered</h4>
-
-<p><code>selection.children_filtered(filter)</code></p>
-
-<p>gets the child elements of each element in the selection, filtered by the specified by the <code>filter</code> string. It returns a new Selection object containing these elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># find the body element and select it&#39;s two div element children</span>
-  <span class="n">divs</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
-  <span class="c1"># filter the divs to get the 2 p elements with class name &#34;.A&#34;</span>
-  <span class="n">p_as</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">children_filtered</span><span class="p">(</span><span class="s2">&#34;.A&#34;</span><span class="p">)</span> 
-  <span class="k">print</span><span class="p">(</span><span class="n">p_as</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;aa&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="contents"></a></p>
-
-<h4 id="contents">contents</h4>
-
-<p><code>selection.contents()</code></p>
-
-<p>gets the children of each element in the Selection, including text and comment nodes. It returns a new Selection object containing these elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get the body</span>
-  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">contents</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;2&#34;, the 2 div elements</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;abcd&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="eq"></a></p>
-
-<h4 id="eq">eq</h4>
-
-<p><code>selection.eq(index)</code></p>
-
-<p>returns node i as a new selection</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1">#</span>
-  <span class="c1"># get the body</span>
-  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;4&#34;, the 4 p elements</span>
-  <span class="c1">#</span>
-  <span class="c1"># create list of the text in each element:</span>
-  <span class="n">texts</span> <span class="o">=</span> <span class="p">[]</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">()):</span>
-    <span class="c1"># use `eq` function to access each node</span>
-    <span class="n">texts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span> <span class="c1"># prints [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;, &#34;d&#34;]</span>
-  <span class="c1">#</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="find"></a></p>
-
-<h4 id="find">find</h4>
-
-<p><code>selection.find(selector)</code></p>
-
-<p>gets the descendants of each element in the current set of matched elements, filtered by a given <code>selector</code> string. It returns a new Selection containing these matched elements.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get the elements with the class &#34;.B&#34;</span>
-  <span class="n">p_Bs</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;.B&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;2&#34;, the 2 p elements with class &#34;.B&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;bb&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="first"></a></p>
-
-<h4 id="first">first</h4>
-
-<p><code>selection.first()</code></p>
-
-<p>returns the first element of the selection as a new selection</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get the body</span>
-  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
-  <span class="c1"># get the children of the body, in this case 2 divs</span>
-  <span class="n">divs</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
-  <span class="c1"># get the first div</span>
-  <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">div</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;ab&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="filter"></a></p>
-
-<h4 id="filter">filter</h4>
-
-<p><code>selection.filter(selector)</code></p>
-
-<p>reduces the set of matched elements to those that match the <code>selector</code> string. It returns a new Selection object for this subset of matching elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get a list of all the p tags</span>
-  <span class="n">ps</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">ps</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;4&#34;, the 4 p elements</span>
-  <span class="c1"># filter ps to find elements with class &#34;.B&#34;</span>
-  <span class="n">p_Bs</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="s2">&#34;.B&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;2&#34;, the 2 p elements with class &#34;.B&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;bb&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="has"></a></p>
-
-<h4 id="has">has</h4>
-
-<p><code>selection.has()</code></p>
-
-<p>reduces the set of matched elements to those that have a descendant that matches the <code>selector</code> string. It returns a new Selection object with the matching elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get body element</span>
-  <span class="n">divs</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
-  <span class="c1"># get div that has a child with class &#34;.A&#34;</span>
-  <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">has</span><span class="p">(</span><span class="s2">&#34;.A&#34;</span><span class="p">)</span>
-  <span class="n">ps</span> <span class="o">=</span> <span class="n">div</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">ps</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;ab&#34;, 2 p elements that exist in the div element</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="last"></a></p>
-
-<h4 id="last">last</h4>
-
-<p><code>selection.last()</code></p>
-
-<p>returns the last element of the selection as a new selection</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get the body</span>
-  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
-  <span class="c1"># get the children of the body, in this case 2 divs</span>
-  <span class="n">divs</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
-  <span class="c1"># get the first div</span>
-  <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">last</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">div</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;cd&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="len"></a></p>
-
-<h4 id="len">len</h4>
-
-<p><code>selection.len()</code></p>
-
-<p>returns the length of the nodes in the selection as an integer</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># get the body</span>
-  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;4&#34;, the 4 p elements</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="parent}"></a></p>
-
-<h4 id="parent">parent</h4>
-
-<p><code>selection.parent()</code></p>
-
-<p>gets the parent of each element in the Selection. It returns a new Selection object containing the matched elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div title=&#34;hi&#34;&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># select p elements</span>
-  <span class="n">ps</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">)</span>
-  <span class="c1"># get parents of p elements, in this case 2 divs</span>
-  <span class="n">divs</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">divs</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># 2 div parent elements</span>
-  <span class="n">title</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="parents_until"></a></p>
-
-<h4 id="parents-until">parents_until</h4>
-
-<p><code>selection.parents_until(selector)</code></p>
-
-<p>gets the ancestors of each element in the Selection, up to but not including the element matched by the <code>selector</code> string. It returns a new Selection object containing the matched elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div title=&#34;hi&#34;&gt;&lt;span title=&#34;bye&#34;&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;&lt;div title=&#34;woo&#34;&gt;&lt;span title=&#34;weee&#34;&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># select p elements</span>
-  <span class="n">ps</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">)</span>
-  <span class="c1"># get all parents of the p elements, but doesn&#39;t include the body element</span>
-  <span class="n">parents</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">parents_until</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># 4 div parent elements</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;bye&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;hi&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;weee&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;woo&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="siblings"></a></p>
-
-<h4 id="siblings">siblings</h4>
-
-<p><code>selection.siblings()</code></p>
-
-<p>gets the siblings of each element in the Selection. It returns a new Selection object containing the matched elements</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="c1"># select elements with class &#34;.A&#34;</span>
-  <span class="n">a</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;.A&#34;</span><span class="p">)</span>
-  <span class="c1"># get all parents of the p elements, but doesn&#39;t include the body element</span>
-  <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">siblings</span><span class="p">()</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;1&#34;, the p element with class &#34;.B&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;b&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<p><a id="html_text"></a></p>
-
-<h4 id="text">text</h4>
-
-<p><code>text()</code></p>
-
-<p>gets the combined text contents of each element in the set of matched elements, including their descendants</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
-  <span class="n">a</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="c1"># prints &#34;abcd&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
-<hr />
-
 <p><a id="http_module"></a></p>
 
 <h2 id="http-module">http module</h2>
+
+<p><em>can only be used in the <code>download</code> function</em></p>
 
 <p><em>you can access these methods from the <code>http</code> module</em></p>
 
@@ -584,18 +239,17 @@
 <p><em>you can access these methods from a response object</em></p>
 
 <ul>
-<li><a href="#content">content</a></li>
+<li><a href="#body">body</a></li>
 <li><a href="#encoding">encoding</a></li>
 <li><a href="#headers">headers</a></li>
 <li><a href="#json">json</a></li>
 <li><a href="#status_code">status_code</a></li>
-<li><a href="#text">text</a></li>
 <li><a href="#url">url</a></li>
 </ul>
 
 <hr />
 
-<h2 id="function-definitions-1">Function Definitions:</h2>
+<h2 id="function-definitions">Function Definitions:</h2>
 
 <p><a id="delete"></a></p>
 
@@ -708,12 +362,22 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;http.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;http&#34;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<!--
+docrun:
+  test:
+    webproxy:
+      url: https://www.fake-json-response-endpoint.com
+      response: {"data":[4,5,6]}
+    call: download(ctx)
+    actual: ctx.download
+    expect: {"data":[4.0,5.0,6.0]}
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;http.star&#34;</span><span class="p">,</span> <span class="s2">&#34;http&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
   <span class="n">res</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://www.fake-json-response-endpoint.com&#34;</span><span class="p">)</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+  <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></code></pre></div>
 <p><a id="options"></a></p>
 
 <h4 id="options">options</h4>
@@ -888,76 +552,46 @@
 
 <p><code>http.put(url, params, headers, data, jsondata, auth)</code></p>
 
-<p>Sends a PUT request to the given url. Returns a response.</p>
-
-<table>
-<thead>
-<tr>
-<th>param</th>
-<th>type</th>
-<th>optional?</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>url</td>
-<td>string url</td>
-<td>no</td>
-</tr>
-
-<tr>
-<td>params</td>
-<td>dictionary of param names to param values</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>headers</td>
-<td>dictionary of header names to header values</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>data</td>
-<td>dictionary</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>jsondata</td>
-<td>dictionary or list</td>
-<td>yes</td>
-</tr>
-
-<tr>
-<td>auth</td>
-<td>string</td>
-<td>yes</td>
-</tr>
-</tbody>
-</table>
+<p>Sends a PUT request to the given url. Returns a response.
+I
+| param | type | optional? |
+|&mdash;-|&mdash;&mdash;|&mdash;&mdash;|
+| url | string url | no |
+| params | dictionary of param names to param values | yes |
+| headers | dictionary of header names to header values | yes |
+| data | dictionary | yes |
+| jsondata | dictionary or list | yes |
+| auth | string | yes |</p>
 
 <hr />
 
 <h2 id="response">response</h2>
 
-<p><a id="content"></a></p>
+<p><a id="body"></a></p>
 
-<h4 id="content">content</h4>
+<h4 id="body">body</h4>
 
-<p><code>response.content()</code></p>
+<p><code>response.body()</code></p>
 
-<p>returns the raw data as a string. This string can be passed to <code>html(content_string)</code> to return a document that can be parsed by the <code>html</code> functions.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;http.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;http&#34;</span><span class="p">)</span>
-<span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+<p>returns the raw data as a string. This string can be passed to <code>bsoup(body_string)</code> or <code>html(body_string)</code> to return a parsed document.</p>
 
-<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<!--
+docrun:
+  test:
+    webproxy:
+      url: https://some-website-to-get-html.com
+      response: "<html><body><div id='content'>test</div></body></html>"
+    call: download(ctx)
+    actual: ctx.download
+    expect: "test"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;http.star&#34;</span><span class="p">,</span> <span class="s2">&#34;http&#34;</span><span class="p">)</span>
+<span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
   <span class="n">res</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://some-website-to-get-html.com&#34;</span><span class="p">)</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="p">())</span>
-  <span class="c1"># do stuff here with html document</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">(</span><span class="n">some_data</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">body</span><span class="p">())</span>
+  <span class="k">return</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;#content&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">()</span></code></pre></div>
 <p><a id="encoding"></a></p>
 
 <h4 id="encoding">encoding</h4>
@@ -990,14 +624,6 @@
 
 <p>an integer, the status code of the response.</p>
 
-<p><a id="text"></a></p>
-
-<h4 id="text-1">text</h4>
-
-<p><code>response.text()</code></p>
-
-<p>returns the raw data as a string. This string can be passed to <code>html(text)</code> to return a document that can be parsed by the <code>html</code> functions.</p>
-
 <p><a id="url"></a></p>
 
 <h4 id="url">url</h4>
@@ -1006,6 +632,469 @@
 
 <p>a string representation of the url</p>
 
+<hr />
+
+<p><a id="bsoup_module"></a></p>
+
+<h2 id="bsoup-module">bsoup module</h2>
+
+<p>_docs coming soon. In the meantime see <a href="https://godoc.org/github.com/qri-io/starlib/bsoup">https://godoc.org/github.com/qri-io/starlib/bsoup</a></p>
+
+<hr />
+
+<p><a id="html_module"></a></p>
+
+<h2 id="html-module">html module</h2>
+
+<p><em>Note: You should prefer the newer <code>bsoup</code> module, which is more similar to python&rsquo;s Beautiful Soup library</em></p>
+
+<p><em>You can use the <code>html</code> function to parse an html response, to get a document object that you can traverse</em></p>
+
+<p>To load and parse:</p>
+
+<!--
+docrun:
+  test:
+    webproxy:
+      url: https://some-website.com
+      response: "<html><body><h1>page</h1><div id='content'>test</div></body></html>"
+    call: download(ctx)
+    actual: ctx.download
+    expect: "page"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+<span class="n">load</span><span class="p">(</span><span class="s2">&#34;http.star&#34;</span><span class="p">,</span> <span class="s2">&#34;http&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://some-website.com&#34;</span><span class="p">)</span>
+  <span class="c1"># parses the response body into something that</span>
+  <span class="c1"># can be traversed using a jquery-like syntax</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">body</span><span class="p">())</span>
+  <span class="c1"># get the text of the page header</span>
+  <span class="k">return</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;h1&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">()</span></code></pre></div>
+<p><em>The following methods can be used on the document object that gets returned by using the <code>html</code> function:</em></p>
+
+<ul>
+<li><a href="#attr">attr</a></li>
+<li><a href="#children">children</a></li>
+<li><a href="#children_filtered">children_filtered</a></li>
+<li><a href="#contents">contents</a></li>
+<li><a href="#eq">eq</a></li>
+<li><a href="#find">find</a></li>
+<li><a href="#first">first</a></li>
+<li><a href="#filter">filter</a></li>
+<li><a href="#get">get</a></li>
+<li><a href="#has">has</a></li>
+<li><a href="#last">last</a></li>
+<li><a href="#len">len</a></li>
+<li><a href="#parent">parent</a></li>
+<li><a href="#parents_until">parents_until</a></li>
+<li><a href="#siblings">siblings</a></li>
+<li><a href="#html_text">text</a></li>
+</ul>
+
+<hr />
+
+<h2 id="function-definitions-1">Function Definitions:</h2>
+
+<p><a id="attr"></a></p>
+
+<h4 id="attr">attr</h4>
+
+<p><code>selection.attr(attribute)</code></p>
+
+<p>Returns a string of the given attribute for that selection in the document. <code>attribute</code> is a string.</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_body()
+    expect: ["hello world"]
+# TODO: Test stdout as well.
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;div title=&#34;hello world&#34; class=&#34;example_class_name&#34;&gt;&lt;p&gt;test&lt;/p&gt;&lt;/div&gt;&#39;</span>
+  <span class="c1">#</span>
+  <span class="c1"># find returns a list of elements that match the search string:</span>
+  <span class="n">divs</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">)</span>
+  <span class="c1">#</span>
+  <span class="c1"># get the first element in the list:</span>
+  <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+  <span class="c1">#</span>
+  <span class="c1"># get the attr with the key &#34;title&#34;</span>
+  <span class="n">attr</span> <span class="o">=</span> <span class="n">div</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span> <span class="c1"># prints &#34;hello world&#34;</span>
+  <span class="c1">#</span>
+  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">([</span><span class="n">attr</span><span class="p">])</span></code></pre></div>
+<p><a id="children"></a></p>
+
+<h4 id="children">children</h4>
+
+<p><code>selection.children()</code></p>
+
+<p>gets the child elements of each element in the Selection. It returns a new Selection object containing these elements</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "4"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="c1"># gives you a selection of the body element</span>
+  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
+  <span class="c1"># gives you a selection made up of the children of body</span>
+  <span class="n">children_len</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="nb">len</span><span class="p">()</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">children_len</span><span class="p">)</span> <span class="c1"># prints 4, specifically the 4 p elements</span></code></pre></div>
+<p><a id="children_filtered"></a></p>
+
+<h4 id="children-filtered">children_filtered</h4>
+
+<p><code>selection.children_filtered(filter)</code></p>
+
+<p>gets the child elements of each element in the selection, filtered by the specified by the <code>filter</code> string. It returns a new Selection object containing these elements</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "aa"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="c1"># find the body element and select it&#39;s two div element children</span>
+  <span class="n">divs</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
+  <span class="c1"># filter the divs to get the 2 p elements with class name &#34;.A&#34;</span>
+  <span class="n">p_as</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">children_filtered</span><span class="p">(</span><span class="s2">&#34;.A&#34;</span><span class="p">)</span> 
+  <span class="k">print</span><span class="p">(</span><span class="n">p_as</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;aa&#34;</span></code></pre></div>
+<p><a id="contents"></a></p>
+
+<h4 id="contents">contents</h4>
+
+<p><code>selection.contents()</code></p>
+
+<p>gets the children of each element in the Selection, including text and comment nodes. It returns a new Selection object containing these elements</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "1\nabcd"
+# TODO(dlong): This is broken. Prints 1, but the code expects 2.
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="c1"># get the body</span>
+  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">contents</span><span class="p">()</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;2&#34;, the 2 div elements</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;abcd&#34;</span></code></pre></div>
+<p><a id="eq"></a></p>
+
+<h4 id="eq">eq</h4>
+
+<p><code>selection.eq(index)</code></p>
+
+<p>returns node i as a new selection</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "4\n[\"a\", \"b\", \"c\", \"d\"]"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="c1">#</span>
+  <span class="c1"># get the body</span>
+  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;4&#34;, the 4 p elements</span>
+  <span class="c1">#</span>
+  <span class="c1"># create list of the text in each element:</span>
+  <span class="n">texts</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">()):</span>
+    <span class="c1"># use `eq` function to access each node</span>
+    <span class="n">texts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span> <span class="c1"># prints [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;, &#34;d&#34;]</span>
+  <span class="c1">#</span>
+  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span></code></pre></div>
+<p><a id="find"></a></p>
+
+<h4 id="find">find</h4>
+
+<p><code>selection.find(selector)</code></p>
+
+<p>gets the descendants of each element in the current set of matched elements, filtered by a given <code>selector</code> string. It returns a new Selection containing these matched elements.</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "2\nbb"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="c1"># get the elements with the class &#34;.B&#34;</span>
+  <span class="n">p_Bs</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;.B&#34;</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;2&#34;, the 2 p elements with class &#34;.B&#34;</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;bb&#34;</span></code></pre></div>
+<p><a id="first"></a></p>
+
+<h4 id="first">first</h4>
+
+<p><code>selection.first()</code></p>
+
+<p>returns the first element of the selection as a new selection</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "ab"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="c1"># get the body</span>
+  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
+  <span class="c1"># get the children of the body, in this case 2 divs</span>
+  <span class="n">divs</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
+  <span class="c1"># get the first div</span>
+  <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">div</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;ab&#34;</span></code></pre></div>
+<p><a id="filter"></a></p>
+
+<h4 id="filter">filter</h4>
+
+<p><code>selection.filter(selector)</code></p>
+
+<p>reduces the set of matched elements to those that match the <code>selector</code> string. It returns a new Selection object for this subset of matching elements</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "4\n2\nbb"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="c1"># get a list of all the p tags</span>
+  <span class="n">ps</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">ps</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;4&#34;, the 4 p elements</span>
+  <span class="c1"># filter ps to find elements with class &#34;.B&#34;</span>
+  <span class="n">p_Bs</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="s2">&#34;.B&#34;</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;2&#34;, the 2 p elements with class &#34;.B&#34;</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">p_Bs</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;bb&#34;</span></code></pre></div>
+<p><a id="has"></a></p>
+
+<h4 id="has">has</h4>
+
+<p><code>selection.has()</code></p>
+
+<p>reduces the set of matched elements to those that have a descendant that matches the <code>selector</code> string. It returns a new Selection object with the matching elements</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "ab"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="c1"># get body element</span>
+  <span class="n">divs</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
+  <span class="c1"># get div that has a child with class &#34;.A&#34;</span>
+  <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">has</span><span class="p">(</span><span class="s2">&#34;.A&#34;</span><span class="p">)</span>
+  <span class="n">ps</span> <span class="o">=</span> <span class="n">div</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">ps</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;ab&#34;, 2 p elements that exist in the div element</span></code></pre></div>
+<p><a id="last"></a></p>
+
+<h4 id="last">last</h4>
+
+<p><code>selection.last()</code></p>
+
+<p>returns the last element of the selection as a new selection</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "cd"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="c1"># get the body</span>
+  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
+  <span class="c1"># get the children of the body, in this case 2 divs</span>
+  <span class="n">divs</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
+  <span class="c1"># get the first div</span>
+  <span class="n">div</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">last</span><span class="p">()</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">div</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;cd&#34;</span></code></pre></div>
+<p><a id="len"></a></p>
+
+<h4 id="len">len</h4>
+
+<p><code>selection.len()</code></p>
+
+<p>returns the length of the nodes in the selection as an integer</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "1"
+# TODO(dlong): This is broken
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="c1"># get the body</span>
+  <span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;4&#34;, the 4 p elements</span></code></pre></div>
+<p><a id="parent}"></a></p>
+
+<h4 id="parent">parent</h4>
+
+<p><code>selection.parent()</code></p>
+
+<p>gets the parent of each element in the Selection. It returns a new Selection object containing the matched elements</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "2\nhi"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div title=&#34;hi&#34;&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="c1"># select p elements</span>
+  <span class="n">ps</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">)</span>
+  <span class="c1"># get parents of p elements, in this case 2 divs</span>
+  <span class="n">divs</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">divs</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># 2 div parent elements</span>
+  <span class="n">title</span> <span class="o">=</span> <span class="n">divs</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span></code></pre></div>
+<p><a id="parents_until"></a></p>
+
+<h4 id="parents-until">parents_until</h4>
+
+<p><code>selection.parents_until(selector)</code></p>
+
+<p>gets the ancestors of each element in the Selection, up to but not including the element matched by the <code>selector</code> string. It returns a new Selection object containing the matched elements</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "4\nbye\nhi\nweee\nwoo"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div title=&#34;hi&#34;&gt;&lt;span title=&#34;bye&#34;&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;&lt;div title=&#34;woo&#34;&gt;&lt;span title=&#34;weee&#34;&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="c1"># select p elements</span>
+  <span class="n">ps</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">)</span>
+  <span class="c1"># get all parents of the p elements, but doesn&#39;t include the body element</span>
+  <span class="n">parents</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">parents_until</span><span class="p">(</span><span class="s2">&#34;body&#34;</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># 4 div parent elements</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;bye&#34;</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;hi&#34;</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;weee&#34;</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">parents</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">))</span> <span class="c1"># prints &#34;woo&#34;</span></code></pre></div>
+<p><a id="siblings"></a></p>
+
+<h4 id="siblings">siblings</h4>
+
+<p><code>selection.siblings()</code></p>
+
+<p>gets the siblings of each element in the Selection. It returns a new Selection object containing the matched elements</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "1\nb"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="c1"># select elements with class &#34;.A&#34;</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;.A&#34;</span><span class="p">)</span>
+  <span class="c1"># get all parents of the p elements, but doesn&#39;t include the body element</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">siblings</span><span class="p">()</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="nb">len</span><span class="p">())</span> <span class="c1"># prints &#34;1&#34;, the p element with class &#34;.B&#34;</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;b&#34;</span></code></pre></div>
+<p><a id="html_text"></a></p>
+
+<h4 id="text">text</h4>
+
+<p><code>text()</code></p>
+
+<p>gets the combined text contents of each element in the set of matched elements, including their descendants</p>
+
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "abcd"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;html.star&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+  <span class="n">example_html</span> <span class="o">=</span> <span class="s1">&#39;&lt;body&gt;&lt;div&gt;&lt;p class=&#34;A&#34;&gt;a&lt;/p&gt;&lt;p class=&#34;B&#34;&gt;b&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p class=&#34;C&#34;&gt;c&lt;/p&gt;&lt;p class=&#34;D&#34;&gt;d&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&#39;</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="p">(</span><span class="n">example_html</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="c1"># prints &#34;abcd&#34;</span></code></pre></div>
 <hr />
 
 <p><a id="math_module"></a></p>
@@ -1058,18 +1147,34 @@
 <p><code>time.time(time_string, format_string, location_string)</code></p>
 
 <p>converts a time string, that is in format to a time object. Returns a time object. If no format or location are given, it assumes you mean to to use RFC3339: &ldquo;2006-01-02T15:04:05Z07:00&rdquo;. To learn more about format strings checkout to <a href="https://golang.org/src/time/format.go">time/format</a> golang page, or this <a href="https://flaviocopes.com/go-date-time-format/">helpful blog post</a> from flaviocopes</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "10\n31\n2018"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.star&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
   <span class="c1"># an example with no format or location string</span>
   <span class="n">time_string</span> <span class="o">=</span> <span class="s2">&#34;2018-10-31T00:00:00Z&#34;</span>
   <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">time_string</span><span class="p">)</span>
   <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">month</span><span class="p">())</span> <span class="c1"># prints 10</span>
   <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">day</span><span class="p">())</span> <span class="c1"># prints 31</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">year</span><span class="p">())</span> <span class="c1"># prints 2018</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">year</span><span class="p">())</span> <span class="c1"># prints 2018</span></code></pre></div>
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "11\n15\n2018"
+# TODO(dlong): This is broken
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.star&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
   <span class="c1"># an example with a format and location string:</span>
   <span class="c1"># basically, as long as you use the data</span>
   <span class="c1"># Mon Jan 2 15:04:05 -0700 MST 2006 as a reference, you are good</span>
@@ -1077,8 +1182,7 @@
   <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="s2">&#34;November 15, 2018&#34;</span><span class="p">,</span> <span class="s2">&#34;January 2, 2006&#34;</span><span class="p">,</span> <span class="s2">&#34;America/New_York&#34;</span><span class="p">)</span>
   <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">month</span><span class="p">())</span> <span class="c1"># prints 11</span>
   <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">day</span><span class="p">())</span> <span class="c1"># prints 15</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">year</span><span class="p">())</span> <span class="c1"># prints 2018</span>
-  <span class="k">return</span> <span class="n">ds</span> </code></pre></div>
+  <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">year</span><span class="p">())</span> <span class="c1"># prints 2018</span></code></pre></div>
 <p><a id="duration"></a></p>
 
 <h4 id="duration">duration</h4>
@@ -1086,9 +1190,17 @@
 <p><code>time.duration(duration_string)</code></p>
 
 <p>converts a string in &lsquo;00h0m0s&rsquo; format to a duration object, returns a duration.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "451h24m0s\n1s\n451h24m1s\n451h23m59s\nTrue"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.star&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
   <span class="n">duration_1_str</span> <span class="o">=</span> <span class="s2">&#34;450h79m300s&#34;</span>
   <span class="n">duration_2_str</span> <span class="o">=</span> <span class="s2">&#34;0h0m1s&#34;</span>
   <span class="c1">#</span>
@@ -1099,19 +1211,25 @@
   <span class="k">print</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span> <span class="c1"># prints &#34;1s&#34;</span>
   <span class="c1">#</span>
   <span class="k">print</span><span class="p">(</span><span class="n">d1</span> <span class="o">+</span> <span class="n">d2</span><span class="p">)</span> <span class="c1"># prints &#34;451h24m1s&#34;</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">d1</span>
-
-  <span class="n">d2</span><span class="p">)</span> <span class="c1"># prints &#34;451h23m59s&#34;</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">d1</span> <span class="o">-</span> <span class="n">d2</span><span class="p">)</span> <span class="c1"># prints &#34;451h23m59s&#34;</span>
   <span class="c1">#</span>
   <span class="c1"># create another duration, same length as d2</span>
   <span class="c1">#</span>
   <span class="n">d3</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">duration</span><span class="p">(</span><span class="n">duration_2_str</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span> <span class="n">d2</span> <span class="o">==</span> <span class="n">d3</span> <span class="p">)</span> <span class="c1"># prints true</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+  <span class="k">print</span><span class="p">(</span> <span class="n">d2</span> <span class="o">==</span> <span class="n">d3</span> <span class="p">)</span> <span class="c1"># prints True</span></code></pre></div>
 <p>You also get a duration when you subtract two times:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "2018-10-31 00:00:00 +0000 UTC"
+# TODO(dlong): This is broken
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.star&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
   <span class="n">oct_1</span> <span class="o">=</span> <span class="s2">&#34;2018-10-01T00:00:00Z&#34;</span>
   <span class="n">halloween</span> <span class="o">=</span> <span class="s2">&#34;2018-10-31T00:00:00Z&#34;</span>
   <span class="n">f</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">oct_1</span><span class="p">)</span>
@@ -1119,8 +1237,7 @@
   <span class="n">duration</span> <span class="o">=</span> <span class="n">h</span>
 
   <span class="n">f</span> <span class="c1"># subtracting two time values gives you a duration</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span> <span class="c1"># prints &#34;720h0m0s&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+  <span class="k">print</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span> <span class="c1"># prints &#34;720h0m0s&#34;</span></code></pre></div>
 <p><a id="location"></a></p>
 
 <h4 id="location">location</h4>
@@ -1128,12 +1245,19 @@
 <p><code>time.location(location_string)</code></p>
 
 <p>loads location based on string. Empty string returns &ldquo;UTC&rdquo;</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: stdout.get()
+    expect: "EST"
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.star&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
   <span class="n">loc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">location</span><span class="p">(</span><span class="s2">&#34;EST&#34;</span><span class="p">)</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span> <span class="c1"># returns &#34;EST&#34;</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+  <span class="k">print</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span> <span class="c1"># returns &#34;EST&#34;</span></code></pre></div>
 <p><a id="now"></a></p>
 
 <h4 id="now">now</h4>
@@ -1141,15 +1265,20 @@
 <p><code>time.now()</code></p>
 
 <p>returns the current time</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Need way to mock current time
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;time.star&#34;</span><span class="p">,</span> <span class="s2">&#34;time&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
   <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
   <span class="k">print</span><span class="p">(</span><span class="n">now</span><span class="p">)</span> <span class="c1"># returns current time</span>
   <span class="c1">#</span>
   <span class="c1"># print date in MM/DD/YYYY format:</span>
-  <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">month</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&#34;/&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">day</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&#34;/&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">year</span><span class="p">()))</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+  <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">month</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&#34;/&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">day</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&#34;/&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">year</span><span class="p">()))</span></code></pre></div>
 <p><a id="year"></a></p>
 
 <h4 id="year">year</h4>
@@ -1233,9 +1362,15 @@
 <p>makes a get request of the url, attempts to return the body as a xlsx file. Can only be used in the <code>download</code> function</p>
 
 <p>This example shows how to use <code>get_url</code>, <code>get_sheets</code>, and <code>get_rows</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;xlsx.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;xlsx&#34;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Need to also mock network for xlsx
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;xlsx.star&#34;</span><span class="p">,</span> <span class="s2">&#34;xlsx&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
   <span class="n">data</span> <span class="o">=</span> <span class="n">xlsx</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s2">&#34;https://www.ntia.doc.gov/files/ntia/publications/225-5000-composite-inventory_2015-12-16.xlsx&#34;</span><span class="p">)</span>
   <span class="c1">#</span>
   <span class="c1"># get the sheets of the xlsx file</span>
@@ -1251,9 +1386,8 @@
   <span class="n">rows</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get_rows</span><span class="p">(</span><span class="n">sheet1</span><span class="p">)</span>
   <span class="k">print</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="c1"># prints 2d list of data</span>
   <span class="c1">#</span>
-  <span class="c1"># set the first 10 rows as the body:</span>
-  <span class="n">ds</span><span class="o">.</span><span class="n">set_body</span><span class="p">(</span><span class="n">rows</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
-  <span class="k">return</span> <span class="n">ds</span></code></pre></div>
+  <span class="c1"># return the first 10 rows as the body:</span>
+  <span class="k">return</span> <span class="n">rows</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span></code></pre></div>
 <p><a id="get_sheets"></a></p>
 
 <h4 id="get-sheets">get_sheets</h4>
@@ -1274,7 +1408,7 @@
 
 <h2 id="zipfile-module">zipfile module</h2>
 
-<p>_docs coming soon. In the meantime see <a href="https://godoc.org/github.com/qri-io/starlib/zipfile">https://godoc.org/github.com/qri-io/starlib/zipfile</a></p>
+<p>_docs coming soon. In the meantime see <a href="https://godoc.org/github.com/qri-io/shearlib/zipfile">https://godoc.org/github.com/qri-io/shearlib/zipfile</a></p>
 
     </div>
   </section>

@@ -26,8 +26,12 @@ _access these methods from the `qri` module, eg `qri.get_config()`_
 
 To load:
 
+<!--
+docrun:
+  test:
+-->
 ```python
-load("qri.sky", "qri")
+load("qri.star", "qri")
 ```
 
 ** **
@@ -40,10 +44,14 @@ load("qri.sky", "qri")
 
   returns the value of a config variable, declared in the dataset file:
 
+<!--
+docrun:
+  filltype: dataset.Dataset
+-->
 ```yaml
 # in the dataset.yaml file:
 transform:
-  scriptpath: transform.sky
+  scriptpath: transform.star
   config:
     key: value
 ```
@@ -54,10 +62,14 @@ transform:
 
   returns the value of a secrets variable, declared in the dataset file:
 
+<!--
+docrun:
+  filltype: dataset.Dataset
+-->
 ```yaml
 # in the dataset.yaml file:
 transform:
-  scriptpath: transform.sky
+  scriptpath: transform.star
   secrets:
     key: value
 ```
@@ -68,10 +80,17 @@ transform:
 
   returns list of datasets references available on your qri node
 
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_body()
+    expect: ["test/ds_1@QmExample/ipfs/QmExample", "test/ds_2@QmSample/ipfs/QmSample"]
+-->
 ```python
-load("qri.sky", "qri")
+load("qri.star", "qri")
 
-def transform(ds):
+def transform(ds,ctx):
   datasets = qri.list_datasets()
   #
   # prints a list of string dataset references
@@ -88,10 +107,15 @@ def transform(ds):
 
   returns the body of the specified dataset as a list or dictionary. [Read more about dataset references](/docs/concepts/names)
 
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix me
+-->
 ```python
-load("qri.sky", "qri")
+load("qri.star", "qri")
 
-def transform(ds):
+def transform(ds,ctx):
   # let's say there is a dataset named "2017_billboard_top_100" and a dataset named "2018_billboard_top_100"
   # let's create a dataset of the artists that are on both lists:
   billboard_2017 = qri.load_dataset_body("me/2017_billboard_top_100")
@@ -126,10 +150,17 @@ def transform(ds):
 
   loads all the parts of the dataset, except for the body, as a dictionary with all or some of these keys: `meta`, `structure`, `commit`, `transform`, `viz`. If the dataset does not contain a transform, for example, then the dataset head dictionary will not contain a `transform` field.
 
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_body()
+    expect: {"title":"", "description":"", "format":""}
+-->
 ```python
-load("qri.sky", "qri")
+load("qri.star", "qri")
 
-def transform(ds):
+def transform(ds, ctx):
   # let's say you want to create a dataset that contains some
   # descriptive elements of a previous dataset
   # in this case, the meta, the description, and the format
@@ -186,10 +217,15 @@ def transform(ds):
 
   Sets a specific field of the meta to the value. `field` and `value` are both strings. Returns `None`.
 
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_meta()
+    expect: {"qri": "md:0", "title": "Reference Transform"}
+-->
 ```python
-load("qri.sky", "qri")
-
-def transform(ds):
+def transform(ds,ctx):
   ds.set_meta("title", "Reference Transform")
   return ds
 ```
@@ -200,10 +236,15 @@ def transform(ds):
 
 `value` is a dictionary written as a [json schema](https://json-schema.org/). Returns `None`
 
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_body()
+    expect: [["cat", 4], ["bird", 2], ["snake", 0]]
+-->
 ```python
-load("qri.sky", "qri")
-
-def transform(ds):
+def transform(ds,ctx):
   schema = {
     "type": "array",
     "items": {

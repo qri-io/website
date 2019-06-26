@@ -68,12 +68,23 @@ It's totally ok if that sounds like nonsense for now. We'll be walking through a
 
 Before getting into scripts, let's create a dataset using only manual transformations. Manual transforms work by providing values directly to Qri. Let's start by manually creating a dataset. First we'll create a new (very simple) json file: an array of rational numbers called `body.json`:
 
+<!--
+docrun:
+  save:
+    filename: body.json
+-->
 ```json
 [1,2,3,4,5,6,7,8,9,10]
 ```
 
 Next in the same folder we'll create a new file called `dataset.yaml` with the following contents:
 
+<!--
+docrun:
+  filltype: dataset.Dataset
+  save:
+    filename: dataset.yaml
+-->
 ```yaml
 name: rational_numbers
 meta:
@@ -83,6 +94,10 @@ bodypath: body.json
 
 From a terminal, navigate to the folder that contains that file, and save it to Qri with `qri save`.
 
+<!--
+docrun:
+  pass: true
+-->
 ```text
 $ cd path/to/that_folder
 $ qri save --file=dataset.yaml
@@ -96,8 +111,15 @@ Ok cool, you've just created a new dataset with a manual transformation that lis
 
 We can think of the above manual transform as a series of _assignments_ in a single _function call_. Written out as code, above example is telling Qri to do the following:
 
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_body()
+    expect: [1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0]
+-->
 ```python
-def human_transform(ds):
+def transform(ds, ctx):
   ds.set_meta("title", "rational number series")
   ds.set_body([1,2,3,4,5,6,7,8,9,10])
 ```
@@ -113,6 +135,13 @@ Before we get into what's going on, let's actually try this out.
 
 Transform scripts are written in _starlark_. Starlark is a subset of python, so if you can write python, you can write starlark. If you can't write python (or starlark), that's ok! We'll circle back later & explain the transform function, but for now let's just copy-paste our way to victory. From the same folder, create a new file called `transform.star` and save this into it:
 
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_body()
+    expect: [1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0]
+-->
 ```python
 def transform(ds, ctx):
   ds.set_meta("title", "rational number series")
@@ -125,6 +154,13 @@ def transform(ds, ctx):
 _note: if you're using a text editor and want syntax highlighting (colored text), try setting your editor to 'python' syntax._
 
 This is a script that does the exact same thing as our manual transform from earlier. To use the script, let's modify our `dataset.yaml` use the script, deleting the `meta` and `body` components, and adding a new `transform` component that specifies our script file. Once `dataset.yaml` looks like this, save the file:
+
+<!--
+docrun:
+  filltype: dataset.Dataset
+  save:
+    filename: dataset.yaml
+-->
 ```yaml
 name: rational_numbers
 transform:
@@ -134,6 +170,11 @@ transform:
 You can delete stuff in this file, because it's stored in Qri!
 
 Now let's save a new snapshot to qri:
+
+<!--
+docrun:
+  pass: true
+-->
 ```text
 $ qri save --file dataset.yaml
 error saving: no changes detected
@@ -143,6 +184,10 @@ Wait, we got an error. what gives? This is because the result of running the tra
 
 To get this to work, let's change something! Let's open up our `transform.star` file and write a script that adds more numbers to our body:
 
+<!--
+docrun:
+  pass: true
+-->
 ```python
 def transform(ds, ctx):
   ds.set_meta("title", "rational number series")
@@ -151,6 +196,11 @@ def transform(ds, ctx):
 ```
 
 And re-run save:
+
+<!--
+docrun:
+  pass: true
+-->
 ```text
 $ qri save --file dataset.yaml
 dataset saved: b6/rational_numbers@QmQ7hA8gk...
@@ -163,6 +213,10 @@ Congrats! you've just run a transform with a dataset of the numbers 1 to 1000, w
 
 Ok, we can't avoid the issue any longer, time to understand what's going on in this script:
 
+<!--
+docrun:
+  pass: true
+-->
 ```python
 def transform(ds, ctx):
   ds.set_meta("title", "rational number series")
@@ -204,6 +258,10 @@ This is where the config and secrets comes in. `config` and `secrets` are both p
 
 To illustrate, we'll build an example that grabes the last 100 League of Legends matches a specific player (in this case called `summoner`) has played in a specific region (in this case, North America). Let's create a new folder called `lol_last_100_matches`, and a new `dataset.yaml` file within that folder:
 
+<!--
+docrun:
+  pass: true
+-->
 ```yaml
 # lol_last_100_matches/dataset.yaml
 name: league_player_matches
@@ -218,6 +276,10 @@ transform:
 
 Config is set right on the transform component. Secrets, on the other hand, should be provided when calling the command:
 
+<!--
+docrun:
+  pass: true
+-->
 ```text
 $ qri save --file=dataset.yaml --secrets=api_key,*******************
 ```
@@ -237,6 +299,10 @@ You can also import modules from the starlark standard library ([Starlib](https:
 
 For now, let's look at the `qri` module. Here is how you load a module into a transform:
 
+<!--
+docrun:
+  pass: true
+-->
 ```python
 # lol_last_100_matches/transform.star
 load("qri.star", "qri")
@@ -247,6 +313,10 @@ def download(ctx):
 
 Great, now that we've loaded the `qri` module, let's actually use it to get the summoner name, region, and api_key, from the dataset.
 
+<!--
+docrun:
+  pass: true
+-->
 ```python
 def download(ctx):
   summoner = ctx.get_config("summoner")
@@ -262,6 +332,10 @@ def transform(ds,ctx):
 
 Head over to the terminal. Change directories until you are in your `lol_last_100_matches` folder. We are going to use the `--dry-run` flag. This will allow us to see the output of the transform, without actually saving it to our Qri node.
 
+<!--
+docrun:
+  pass: true
+-->
 ```text
 $ qri save --file dataset.yaml me/lol_last_100_matches --secrets=api_key,******** --dry-run
 ```
@@ -278,6 +352,10 @@ You have access to the `get`, `put`, `post`, `delete`, `patch`, and `options` me
 Note: you can use the `text`, `content`, and `json` methods on a response to get the response body. `text` and `content` will return a string representation, `json` will convert it to json. Please see the [starlib reference page](/docs/reference/starlib) for more info.
 
 
+<!--
+docrun:
+  pass: true
+-->
 ```python
 load("qri.star", "qri")
 load("http.star", "http")
@@ -323,6 +401,10 @@ def transform(ds, ctx):
 
 First double check that this works by running
 
+<!--
+docrun:
+  pass: true
+-->
 ```text
 $ qri save --file dataset.yaml --secrets=api_key,****** --dry-run
 🏃🏽‍♀️ dry run
@@ -347,6 +429,10 @@ Let's go to wikipedia, and get a list of all the languages that you can read wik
 
 We will download the main wikipedia page, parse it using the `html` method, then navigate down to the <a> element, get the language from the 'title' attribute, and add it to the list of languages.
 
+<!--
+docrun:
+  pass: true
+-->
 ```python
 load("html.star", "html")
 load("http.star", "http")
@@ -401,6 +487,13 @@ In the past, this was complicated. We can now simplify the story because it's an
 Here's an example flow:
 
 `dataset.yaml`:
+
+<!--
+docrun:
+  filltype: dataset.Dataset
+  save:
+    filename: dataset.yaml
+-->
 ```yaml
 meta:
   title: Prime Ministers of Canada
@@ -418,6 +511,11 @@ body: body.json
 ```
 
 Let's run that through Qri save:
+
+<!--
+docrun:
+  pass: true
+-->
 ```
 # create a new dataset, dataset.yaml contains no transform
 $ qri save --file=dataset.yaml me/ca_prime_ministers
@@ -427,6 +525,11 @@ created new dataset b5/ca_prime_ministers
 Pretty quickly we realize that manually constructing the body is a pain, so we write a transform script that grabs this data from a trusted source:
 
 `transform.star`:
+
+<!--
+docrun:
+  pass: true
+-->
 ```python
 load("http.star", "http")
 
@@ -441,6 +544,13 @@ def transform(ds, ctx):
 So we update our dataset.yaml to specify the transform script:
 
 `dataset.yaml`:
+
+<!--
+docrun:
+  filltype: dataset.Dataset
+  save:
+    filename: dataset.yaml
+-->
 ```yaml
 meta:
   title: Prime Ministers of Canada
@@ -460,6 +570,11 @@ body: body.json
 ```
 
 But re-running save gives us an error:
+
+<!--
+docrun:
+  pass: true
+-->
 ```shell
 $ qri save --file=dataset.yaml me/ca_prime_ministers
 error: transform script and user-supplied dataset are both trying to set:
@@ -470,6 +585,10 @@ please adjust either the transform script or remove the supplied body
 
 So we do what the error tells us, and remove the `body` field from dataset.yaml, and re-save. This time it works, and the transform runs:
 
+<!--
+docrun:
+  pass: true
+-->
 ```shell
 $ qri save --file=dataset.yaml me/ca_prime_ministers
 🤖 executing transform
@@ -479,6 +598,10 @@ saved dataset b5/ca_prime_ministers
 
 Some time later we want to get fresh data, so we run an update:
 
+<!--
+docrun:
+  pass: true
+-->
 ```shell
 $ qri update me/ca_prime_ministers
 🤖 executing transform
@@ -489,6 +612,11 @@ updated dataset b5/ca_prime_minsters
 Dope. Now we realize that it's important to add themes to our metadata, to classify this info as being about government. In this case we're only trying to set meta, not get a new version of the data. So this time we trust that the data we've already specified is in qri, so we can delete all the stuff about structure in `dataset.yaml`, and just focus on the meta component:
 
 `dataset.yaml`:
+
+<!--
+docrun:
+  filltype: dataset.Dataset
+-->
 ```yaml
 meta:
   title: Prime Ministers of Canada
@@ -503,6 +631,10 @@ meta:
 
 And we save the changes:
 
+<!--
+docrun:
+  pass: true
+-->
 ```shell
 $ qri save --file=dataset.yaml me/ca_prime_ministers
 saved dataset b5/ca_prime_minsters
@@ -510,6 +642,10 @@ saved dataset b5/ca_prime_minsters
 
 The new part here is the transform didn't run, because _save only runs transforms the first time they're provided_. Further proof of this comes from the fact that the transform is now missing from the most recent snapshot:
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 $ qri get transform me/ca_prime_ministers
 null
@@ -517,6 +653,10 @@ null
 
 Also, `qri update` now gives us a new error:
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 $ qri update me/ca_prime_ministers
 error: no transform script in most recent dataset. There is a transform script 2 commits back that adjusts:
@@ -529,6 +669,11 @@ to run an update using the most recent transform, run:
 This missing transform is vital for reproducibility reasons, the missing transform indicates that no transform script was executed to get from the snapshot that had the old meta to the new meta.
 
 Resurrecting the transform is relatively easy, we follow the instructions from the error:
+
+<!--
+docrun:
+  pass: true
+-->
 ```
 $ qri update --recall-tf me/ca_prime_ministers
 🤖 executing transform
@@ -539,6 +684,11 @@ updated dataset b5/ca_prime_minsters
 Finally, if we want to both re-run the existing transform _and_ change things about a dataset in a single commit, we can still do that so long as the transform doesn't affect any fields we're trying to manually change by running `qri save with --recall-tf`. In this example we'll adjust the schema to add more specificity, so we adjust dataset.yaml:
 
 `dataset.yaml`:
+
+<!--
+docrun:
+  pass: true
+-->
 ```yaml
 structure:
   format: json
@@ -556,6 +706,10 @@ structure:
 
 And run save with `--recall-tf`:
 
+<!--
+docrun:
+  pass: true
+-->
 ```
 $ qri save --file=dataset.yaml --recall-tf me/ca_prime_ministers
 🤖 executing transform

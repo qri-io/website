@@ -27,8 +27,9 @@
       
       <guid>https://qri.io/docs/reference/starlark_examples/</guid>
       <description>qri and dataset modules In Qri two &amp;ldquo;nonstandard&amp;rdquo; modules specific to qri are available. these modules are not considered part of the standard library project, and are defined in a different repository. They&amp;rsquo;re described here to keep documentation complete:
- qri ds or dataset  Modules  html http math re time xlsx zipfile  
-html module can only be used in the download function. You must use the html function to parse an html response, to get a document object that you can traverse</description>
+ qri ds or dataset  Modules  http bsoup html math re time xlsx zipfile  
+http module can only be used in the download function
+you can access these methods from the http module</description>
     </item>
     
     <item>
@@ -41,7 +42,7 @@ html module can only be used in the download function. You must use the html fun
  qri ds or dataset  
 qri module access these methods from the qri module, eg qri.get_config()
  get_config get_secret list_datasets load_dataset_body load_dataset_head  To load:
-load(&amp;#34;qri.sky&amp;#34;, &amp;#34;qri&amp;#34;) Function Definitions:</description>
+load(&amp;#34;qri.star&amp;#34;, &amp;#34;qri&amp;#34;) Function Definitions:</description>
     </item>
     
     <item>
