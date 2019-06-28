@@ -42,6 +42,17 @@ Before we can do useful things with Qri, we need to set it up. So let&amp;rsquo;
     </item>
     
     <item>
+      <title>How to get data from app.qri.io</title>
+      <link>https://qri.io/docs/tutorials/frontend_get_data_from_app_to_desktop/</link>
+      <pubDate>Fri, 14 Jun 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/tutorials/frontend_get_data_from_app_to_desktop/</guid>
+      <description>Get data from app.qri.io to your computer! So, someone is trying to share a dataset with you over Qri!
+That&amp;rsquo;s great. That means that the data you get will be verifiable and auditable. You can trust it, because you can see the source, see the way it&amp;rsquo;s changed over time, and see the scripts used to gather it or change it.
+Here is a video showing how to go from a link someone has sent you to app.</description>
+    </item>
+    
+    <item>
       <title>Leave the Munging to the Machines - MLB Edition</title>
       <link>https://qri.io/blog/mlb_homeruns/</link>
       <pubDate>Wed, 17 Apr 2019 15:00:00 -0400</pubDate>
@@ -103,9 +114,9 @@ Two-ish years ago I came across an article in the Washington Post about a group 
       <guid>https://qri.io/docs/tutorials/frontend/</guid>
       <description>Frontend Screencast Demos We&amp;rsquo;ve filmed screencasts of our teammates demonstrating new features to help you get a feel for qri. Check out some of them below.
 Please note! We&amp;rsquo;re improving qri every day. Some of these videos, while still useful, may not reflect the most current state of the app.
-Screencast Demo - 0.6.1 (filmed Dec 17, 2018)
+Screencast Demo - 0.7.1 (filmed June 19, 2019)
 What&amp;rsquo;s covered:
- Navigation How to add datasets published by other peers Defining published vs.</description>
+ Getting data from app.qri.io to your desktop Exporting data from qri   Screencast Demo - 0.</description>
     </item>
     
     <item>
@@ -135,8 +146,9 @@ He helped launch Datatogether.org, a network of communities, data scientists and
       
       <guid>https://qri.io/docs/reference/starlark_examples/</guid>
       <description>qri and dataset modules In Qri two &amp;ldquo;nonstandard&amp;rdquo; modules specific to qri are available. these modules are not considered part of the standard library project, and are defined in a different repository. They&amp;rsquo;re described here to keep documentation complete:
- qri ds or dataset  Modules  html http math re time xlsx zipfile  
-html module can only be used in the download function. You must use the html function to parse an html response, to get a document object that you can traverse</description>
+ qri ds or dataset  Modules  http bsoup html math re time xlsx zipfile  
+http module can only be used in the download function
+you can access these methods from the http module</description>
     </item>
     
     <item>
@@ -149,7 +161,7 @@ html module can only be used in the download function. You must use the html fun
  qri ds or dataset  
 qri module access these methods from the qri module, eg qri.get_config()
  get_config get_secret list_datasets load_dataset_body load_dataset_head  To load:
-load(&amp;#34;qri.sky&amp;#34;, &amp;#34;qri&amp;#34;) Function Definitions:</description>
+load(&amp;#34;qri.star&amp;#34;, &amp;#34;qri&amp;#34;) Function Definitions:</description>
     </item>
     
     <item>
@@ -160,7 +172,7 @@ load(&amp;#34;qri.sky&amp;#34;, &amp;#34;qri&amp;#34;) Function Definitions:</de
       <guid>https://qri.io/docs/reference/starlib/</guid>
       <description>Starlark Standard Library All qri transforms have access to &amp;ldquo;starlib&amp;rdquo;, a community-driven project to bring a standard library to the starlark programming dialect. Qri needs a standard library, and we thought it might benefit others to structure this library in a reusable way. starlib is admittedly biased towards Qri&amp;rsquo;s needs.
 Comments, Suggestions &amp;amp; Pull Requests welcome: https://github.com/qri-io/starlib
-Contents    package name description     encoding/base64 base64 defines base64 encoding &amp;amp; decoding functions, often used to represent binary as text.</description>
+Contents    package name description     bsoup bsoup defines a beautiful-soup-like API for working with HTML documents   encoding/base64 base64 defines base64 encoding &amp;amp; decoding functions, often used to represent binary as text.</description>
     </item>
     
     <item>

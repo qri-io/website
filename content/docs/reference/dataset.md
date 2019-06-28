@@ -65,6 +65,11 @@ _additional data types:_
 #### `User`
 
 _example_
+
+<!--
+docrun:
+  filltype: json
+-->
 ```json
   {
     "id": "user_id_12340584",
@@ -107,6 +112,11 @@ _additional data types:_
 #### `Citation`
 
 _example:_
+
+<!--
+docrun:
+  filltype: json
+-->
 ```json
   { 
     "name" : "sean carter",
@@ -118,6 +128,11 @@ _example:_
 #### `License`
 
 _example:_
+
+<!--
+docrun:
+  filltype: json
+-->
 ```json
   {
     "type" : "CC-BY-2",

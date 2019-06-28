@@ -15,6 +15,7 @@ All qri transforms have access to "starlib", a community-driven project to bring
 
 | package name | description |
 |--------------|-------------|
+| [bsoup](#bsoup) | bsoup defines a beautiful-soup-like API for working with HTML documents |
 | [encoding/base64](#base64) | base64 defines base64 encoding & decoding functions, often used to represent binary as text. |
 | [encoding/csv](#csv) | csv reads comma-separated values files |
 | [encoding/json](#json) | json provides functions for working with json data |
@@ -27,6 +28,46 @@ All qri transforms have access to "starlib", a community-driven project to bring
 | [xlsx](#xlsx) | xlsx implements excel file readers in starlark. currently a highly-experimental package that will definitely change at some point in the future |
 | [zipfile](#zipfile) | zipfile reads & parses zip archives |
 
+
+** **
+# <a id="bsoup" href="#bsoup">bsoup</a>
+bsoup defines a beautiful-soup-like API for working with HTML documents
+## Functions
+
+#### `bsoup.parseHtml(html string) SoupNode`
+parseHtml parses html from a string, returning the root SoupNode
+
+
+## Types
+### `SoupNode`
+
+**Methods**
+#### `SoupNode.find(name, attrs, recursive, string, **kwargs)`
+retrieve the first occurrence of an element that matches arguments passed to find. works similarly to [node.find()](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find)
+
+#### `SoupNode.find_all(name, attrs, recursive, string, limit, **kwargs)`
+retrieves all descendants that match arguments passed to find_all. works similarly to [node.find_all()](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find-all)
+
+#### `SoupNode.attrs()`
+get a dictionary of element attributes works similarly to [node.attrs](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#attributes)
+
+#### `SoupNode.contents()`
+gets the list of children of an element works similarly to [soup.contents](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#contents-and-children)
+
+#### `SoupNode.child()`
+gets a single child element with the given tag name works like accessing a node [using its tag name](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-using-tag-names)
+
+#### `SoupNode.parent()`
+gets the parent node of an element works like [node.parent](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#parent)
+
+#### `SoupNode.next_sibling()`
+gets the next sibling of an element works like [node.next_sibling](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#next-sibling-and-previous-sibling)
+
+#### `SoupNode.prev_sibling()`
+gets the previous sibling of an element works like [node.prev_sibling](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#next-sibling-and-previous-sibling)
+
+#### `SoupNode.get_text()`
+all the text in a document or beneath a tag, as a single Unicode string: works like [soup.get_text](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#get-text)
 
 ** **
 # <a id="base64" href="#base64">encoding/base64</a>
