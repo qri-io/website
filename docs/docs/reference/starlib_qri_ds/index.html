@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.44" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,23 +24,8 @@
   <meta property="og:title" content="Starlark: qri &amp; ds modules" />
 <meta property="og:description" content="list of all the functions and modules in starlark standard library" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/reference/starlib_qri_ds/" />
-
-
-
-<meta property="article:published_time" content="2018-12-20T00:00:00-04:00"/>
-
+<meta property="og:url" content="https://qri.io/docs/reference/starlib_qri_ds/" /><meta property="article:published_time" content="2018-12-20T00:00:00-04:00"/>
 <meta property="article:modified_time" content="2018-12-20T00:00:00-04:00"/>
-
-
-
-
-
-
-
-
-
-
 
   
 
@@ -234,7 +219,12 @@
 </ul>
 
 <p>To load:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span></code></pre></div>
+
+<!--
+docrun:
+  test:
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.star&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span></code></pre></div>
 <hr />
 
 <h2 id="function-definitions">Function Definitions:</h2>
@@ -246,9 +236,14 @@
 <p><code>qri.get_config(key)</code></p>
 
 <p>returns the value of a config variable, declared in the dataset file:</p>
+
+<!--
+docrun:
+  filltype: dataset.Dataset
+-->
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># in the dataset.yaml file:</span><span class="w">
 </span><span class="w"></span>transform<span class="p">:</span><span class="w">
-</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.sky<span class="w">
+</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.star<span class="w">
 </span><span class="w">  </span>config<span class="p">:</span><span class="w">
 </span><span class="w">    </span>key<span class="p">:</span><span class="w"> </span>value</code></pre></div>
 <p><a id="get_secret"></a></p>
@@ -258,9 +253,14 @@
 <p><code>qri.get_secret(key)</code></p>
 
 <p>returns the value of a secrets variable, declared in the dataset file:</p>
+
+<!--
+docrun:
+  filltype: dataset.Dataset
+-->
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># in the dataset.yaml file:</span><span class="w">
 </span><span class="w"></span>transform<span class="p">:</span><span class="w">
-</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.sky<span class="w">
+</span><span class="w">  </span>scriptpath<span class="p">:</span><span class="w"> </span>transform.star<span class="w">
 </span><span class="w">  </span>secrets<span class="p">:</span><span class="w">
 </span><span class="w">    </span>key<span class="p">:</span><span class="w"> </span>value</code></pre></div>
 <p><a id="list_datasets"></a></p>
@@ -270,9 +270,17 @@
 <p><code>qri.list_datasets()</code></p>
 
 <p>returns list of datasets references available on your qri node</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_body()
+    expect: ["test/ds_1@QmExample/ipfs/QmExample", "test/ds_2@QmSample/ipfs/QmSample"]
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.star&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="n">ctx</span><span class="p">):</span>
   <span class="n">datasets</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">list_datasets</span><span class="p">()</span>
   <span class="c1">#</span>
   <span class="c1"># prints a list of string dataset references</span>
@@ -288,9 +296,15 @@
 <p><code>qri.load_dataset_body(dataset_referece)</code></p>
 
 <p>returns the body of the specified dataset as a list or dictionary. <a href="../../../docs/concepts/names">Read more about dataset references</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<!--
+docrun:
+  pass: true
+# TODO(dlong): Fix me
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.star&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="n">ctx</span><span class="p">):</span>
   <span class="c1"># let&#39;s say there is a dataset named &#34;2017_billboard_top_100&#34; and a dataset named &#34;2018_billboard_top_100&#34;</span>
   <span class="c1"># let&#39;s create a dataset of the artists that are on both lists:</span>
   <span class="n">billboard_2017</span> <span class="o">=</span> <span class="n">qri</span><span class="o">.</span><span class="n">load_dataset_body</span><span class="p">(</span><span class="s2">&#34;me/2017_billboard_top_100&#34;</span><span class="p">)</span>
@@ -324,9 +338,17 @@
 <p><code>qri.load_dataset_head()</code></p>
 
 <p>loads all the parts of the dataset, except for the body, as a dictionary with all or some of these keys: <code>meta</code>, <code>structure</code>, <code>commit</code>, <code>transform</code>, <code>viz</code>. If the dataset does not contain a transform, for example, then the dataset head dictionary will not contain a <code>transform</code> field.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_body()
+    expect: {"title":"", "description":"", "format":""}
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.star&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
   <span class="c1"># let&#39;s say you want to create a dataset that contains some</span>
   <span class="c1"># descriptive elements of a previous dataset</span>
   <span class="c1"># in this case, the meta, the description, and the format</span>
@@ -390,9 +412,15 @@
 <p><code>ds.set_meta(field, value)</code></p>
 
 <p>Sets a specific field of the meta to the value. <code>field</code> and <code>value</code> are both strings. Returns <code>None</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_meta()
+    expect: {"qri": "md:0", "title": "Reference Transform"}
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="n">ctx</span><span class="p">):</span>
   <span class="n">ds</span><span class="o">.</span><span class="n">set_meta</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">,</span> <span class="s2">&#34;Reference Transform&#34;</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">ds</span></code></pre></div>
 <p><a id="set_schema"></a></p>
@@ -402,9 +430,15 @@
 <p><code>ds.set_schema(value)</code></p>
 
 <p><code>value</code> is a dictionary written as a <a href="https://json-schema.org/">json schema</a>. Returns <code>None</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">load</span><span class="p">(</span><span class="s2">&#34;qri.sky&#34;</span><span class="p">,</span> <span class="s2">&#34;qri&#34;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+    actual: ds.get_body()
+    expect: [["cat", 4], ["bird", 2], ["snake", 0]]
+-->
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="n">ctx</span><span class="p">):</span>
   <span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;array&#34;</span><span class="p">,</span>
     <span class="s2">&#34;items&#34;</span><span class="p">:</span> <span class="p">{</span>
