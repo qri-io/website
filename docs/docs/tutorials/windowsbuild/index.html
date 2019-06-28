@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.44" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,23 +27,8 @@ Step 1: Enable Developer Mode
 Step 2: Download Go
   Qri requires Go the programming language and its packages to run. You can download Go from their official website." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/tutorials/windowsbuild/" />
-
-
-
-<meta property="article:published_time" content="2019-06-11T00:00:00-04:00"/>
-
+<meta property="og:url" content="https://qri.io/docs/tutorials/windowsbuild/" /><meta property="article:published_time" content="2019-06-11T00:00:00-04:00"/>
 <meta property="article:modified_time" content="2019-06-11T00:00:00-04:00"/>
-
-
-
-
-
-
-
-
-
-
 
   
 
@@ -147,6 +132,8 @@ Step 2: Download Go
               <ul class="pages hidden">
                 
                   <li class="page"><a href="../../../docs/tutorials/cli_quickstart/">CLI Quickstart</a></li>
+                
+                  <li class="page"><a href="../../../docs/tutorials/frontend_get_data_from_app_to_desktop/">How to get data from app.qri.io</a></li>
                 
                   <li class="page"><a href="../../../docs/tutorials/windowsbuild/">FBuilding Qri on Windows</a></li>
                 
@@ -259,12 +246,18 @@ Step 2: Download Go
   <img src="../../../graphics/windows_gifs/Step 3.gif" />
 </div>
 
-<p>In this example, I type “Environment Variable” into the search bar. I add the three paths listed below to my systems environment variables.</p>
+<p>In this example, I type “Environment Variable” into the search bar. I add two new variables:</p>
 
-<pre><code>PATH=C:go\bin
-GOPATH=C:\go\bin
+<pre><code>GOPATH=%USERPROFILE%\go
 MSYS2_PATH_TYPE=inherit
 </code></pre>
+
+<p>and I add my go bin directory to the path:</p>
+
+<pre><code>PATH=%PATH%;%GOPATH%\bin
+</code></pre>
+
+<p>which is done in the settings by adding a new entry to PATH whose value is <code>%GOPATH%\bin</code>.</p>
 
 <hr />
 
@@ -299,13 +292,6 @@ $ cd src/github.com/qri-io
 $ git clone https://github.com/qri-io/qri
 </code></pre>
 
-<p>Note: The default GOPATH is C:\go. So if for any reason the first command fails. You can type</p>
-
-<pre><code>$ cd /c/go
-</code></pre>
-
-<p>and achieve the same result.</p>
-
 <hr />
 
 <p><strong>Step 7: Build Qri</strong></p>
@@ -320,7 +306,7 @@ $ git clone https://github.com/qri-io/qri
 
 <p>If you are not in a folder path that ends in qri, type the command below into the shell.</p>
 
-<pre><code>$ cd /c/go/src/github.com/qri-io/qri
+<pre><code>$ cd $GOPATH/src/github.com/qri-io/qri
 </code></pre>
 
 <p>Once you are in the folder you can then run the commands</p>

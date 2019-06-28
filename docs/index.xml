@@ -53,6 +53,19 @@ Here is a video showing how to go from a link someone has sent you to app.</desc
     </item>
     
     <item>
+      <title>FBuilding Qri on Windows</title>
+      <link>https://qri.io/docs/tutorials/windowsbuild/</link>
+      <pubDate>Tue, 11 Jun 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/docs/tutorials/windowsbuild/</guid>
+      <description>Building Qri on Windows This page was adapted from a blog post written by friend of the project Jonathan Butler.
+Step 1: Enable Developer Mode
+  If developer mode isn’t enabled, you may experience permission errors during building. To prevent this, enable developer mode by visiting Microsoft&amp;rsquo;s Dev Center.
+Step 2: Download Go
+  Qri requires Go the programming language and its packages to run. You can download Go from their official website.</description>
+    </item>
+    
+    <item>
       <title>Leave the Munging to the Machines - MLB Edition</title>
       <link>https://qri.io/blog/mlb_homeruns/</link>
       <pubDate>Wed, 17 Apr 2019 15:00:00 -0400</pubDate>
@@ -125,9 +138,10 @@ What&amp;rsquo;s covered:
       <pubDate>Mon, 04 Feb 2019 00:00:00 -0400</pubDate>
       
       <guid>https://qri.io/about/</guid>
-      <description>Brendan O&amp;rsquo;Brien - Founder &amp;amp; CEO
-Brendan is an open-source software and open data evangelist. He founded Qri during the Data Rescue movement and is responsible for Qri’s code base, road map and growth. He has over a decade of experience in software development, technical due diligence, graphic design and visual arts, having previously founded and led his own successful ventures.
-He helped launch Datatogether.org, a network of communities, data scientists and developers dedicated to promoting collective data stewardship.</description>
+      <description>Qri is leading an open-source project to build software for dataset synching, versioning, storing and collaboration. We help solve super interesting data problems with individual data nerds (pro and not pro), non-profits, and commercial clients. Qri is led by a team in Brooklyn NY, and collaborators everywhere and anywhere.
+Here&amp;rsquo;s more on the core Qri team.
+Brendan O&amp;rsquo;Brien - Founder &amp;amp; Caretaker
+Brendan is an open-source software and open data evangelist.</description>
     </item>
     
     <item>
