@@ -54,13 +54,20 @@ You can also use your own shell program. However, we recommend using MSYS2 which
   <img src="/graphics/windows_gifs/Step 3.gif" />
 </div>
 
-In this example, I type “Environment Variable” into the search bar. I add the three paths listed below to my systems environment variables.
+In this example, I type “Environment Variable” into the search bar. I add two new variables:
 
 ```
-PATH=C:go\bin
-GOPATH=C:\go\bin
+GOPATH=%USERPROFILE%\go
 MSYS2_PATH_TYPE=inherit
 ```
+
+and I add my go bin directory to the path:
+
+```
+PATH=%PATH%;%GOPATH%\bin
+```
+
+which is done in the settings by adding a new entry to PATH whose value is `%GOPATH%\bin`.
 
 ---
 
@@ -97,14 +104,6 @@ $ cd src/github.com/qri-io
 $ git clone https://github.com/qri-io/qri
 ```
 
-Note: The default GOPATH is C:\go. So if for any reason the first command fails. You can type
-
-```
-$ cd /c/go
-```
-
-and achieve the same result.
-
 ---
 
 **Step 7: Build Qri**
@@ -120,7 +119,7 @@ If you are already in the Qri folder you don’t need to change directories into
 If you are not in a folder path that ends in qri, type the command below into the shell.
 
 ```
-$ cd /c/go/src/github.com/qri-io/qri
+$ cd $GOPATH/src/github.com/qri-io/qri
 ```
 
 Once you are in the folder you can then run the commands
