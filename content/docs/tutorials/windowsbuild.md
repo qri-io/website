@@ -1,5 +1,5 @@
 ---
-title: "FBuilding Qri on Windows"
+title: "Building Qri on Windows"
 description: ""
 date: 2019-06-11T00:00:00-04:00
 section: tutorials

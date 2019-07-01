@@ -6,7 +6,7 @@ section: reference
 ---
 
 ### qri and dataset modules
-In Qri two "nonstandard" modules specific to qri are available. these modules are _not_ considered part of the standard library project, and are defined in a [different repository](https://github.com/qri-io/startf). They're described here to keep documentation complete:
+In Qri two "nonstandard" modules specific to qri are available. these modules are _not_ considered part of the standard library project, and are defined in a [different repository](https://github.com/qri-io/qri/tree/master/startf). They're described here to keep documentation complete:
 
 * [qri](#qri_module)
 * [ds or dataset](#dataset_object)
