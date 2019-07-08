@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Baseball stats</title>
+      <title>Baseball Stats</title>
       <link>https://qri.io/tags/baseball-stats/</link>
       <pubDate>Wed, 17 Apr 2019 15:00:00 -0400</pubDate>
       
@@ -21,20 +21,20 @@
     </item>
     
     <item>
-      <title>transform script</title>
-      <link>https://qri.io/tags/transform-script/</link>
-      <pubDate>Wed, 17 Apr 2019 15:00:00 -0400</pubDate>
+      <title>Concepts</title>
+      <link>https://qri.io/tags/concepts/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/tags/transform-script/</guid>
+      <guid>https://qri.io/tags/concepts/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>web scraping</title>
-      <link>https://qri.io/tags/web-scraping/</link>
-      <pubDate>Wed, 17 Apr 2019 15:00:00 -0400</pubDate>
+      <title>Content Addressing</title>
+      <link>https://qri.io/tags/content-addressing/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/tags/web-scraping/</guid>
+      <guid>https://qri.io/tags/content-addressing/</guid>
       <description></description>
     </item>
     
@@ -48,38 +48,29 @@
     </item>
     
     <item>
-      <title>Distributed Web Summit</title>
-      <link>https://qri.io/tags/distributed-web-summit/</link>
-      <pubDate>Mon, 15 Apr 2019 15:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/tags/distributed-web-summit/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Open Data Week</title>
-      <link>https://qri.io/tags/open-data-week/</link>
-      <pubDate>Mon, 15 Apr 2019 15:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/tags/open-data-week/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>School of Data</title>
-      <link>https://qri.io/tags/school-of-data/</link>
-      <pubDate>Mon, 15 Apr 2019 15:00:00 -0400</pubDate>
-      
-      <guid>https://qri.io/tags/school-of-data/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Data Rescue</title>
       <link>https://qri.io/tags/data-rescue/</link>
       <pubDate>Mon, 11 Mar 2019 15:00:00 -0400</pubDate>
       
       <guid>https://qri.io/tags/data-rescue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Datarescue</title>
+      <link>https://qri.io/tags/datarescue/</link>
+      <pubDate>Fri, 15 Feb 2019 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/tags/datarescue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Distributed Web Summit</title>
+      <link>https://qri.io/tags/distributed-web-summit/</link>
+      <pubDate>Mon, 15 Apr 2019 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/tags/distributed-web-summit/</guid>
       <description></description>
     </item>
     
@@ -93,16 +84,16 @@
     </item>
     
     <item>
-      <title>DataRescue</title>
-      <link>https://qri.io/tags/datarescue/</link>
-      <pubDate>Fri, 15 Feb 2019 15:00:00 -0400</pubDate>
+      <title>Open Data Week</title>
+      <link>https://qri.io/tags/open-data-week/</link>
+      <pubDate>Mon, 15 Apr 2019 15:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/tags/datarescue/</guid>
+      <guid>https://qri.io/tags/open-data-week/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>performance</title>
+      <title>Performance</title>
       <link>https://qri.io/tags/performance/</link>
       <pubDate>Wed, 17 Oct 2018 15:00:00 -0400</pubDate>
       
@@ -111,7 +102,16 @@
     </item>
     
     <item>
-      <title>testing</title>
+      <title>School of Data</title>
+      <link>https://qri.io/tags/school-of-data/</link>
+      <pubDate>Mon, 15 Apr 2019 15:00:00 -0400</pubDate>
+      
+      <guid>https://qri.io/tags/school-of-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
       <link>https://qri.io/tags/testing/</link>
       <pubDate>Wed, 17 Oct 2018 15:00:00 -0400</pubDate>
       
@@ -120,20 +120,20 @@
     </item>
     
     <item>
-      <title>concepts</title>
-      <link>https://qri.io/tags/concepts/</link>
-      <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
+      <title>Transform Script</title>
+      <link>https://qri.io/tags/transform-script/</link>
+      <pubDate>Wed, 17 Apr 2019 15:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/tags/concepts/</guid>
+      <guid>https://qri.io/tags/transform-script/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>content-addressing</title>
-      <link>https://qri.io/tags/content-addressing/</link>
-      <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
+      <title>Web Scraping</title>
+      <link>https://qri.io/tags/web-scraping/</link>
+      <pubDate>Wed, 17 Apr 2019 15:00:00 -0400</pubDate>
       
-      <guid>https://qri.io/tags/content-addressing/</guid>
+      <guid>https://qri.io/tags/web-scraping/</guid>
       <description></description>
     </item>
     
