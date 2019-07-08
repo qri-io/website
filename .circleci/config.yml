@@ -3,12 +3,26 @@ jobs:
   build:
     working_directory: "~/website"
     docker:
-      - image: circleci/golang:1.11
+      - image: felicianotech/docker-hugo:0.47.1
     steps:
       - checkout
-      - run: 
+      - run:
           name: install misspell
           command: curl -L -o ./install-misspell.sh https://git.io/misspell && sh ./install-misspell.sh
       - run:
           name: Check Spelling
           command: ./bin/misspell -error ~/website/content/
+      - deploy:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              hugo
+              cd docs
+              git config --global user.email "sparkle_pony_2000@qri.io"
+              git config --global user.name "Qri CI Deployer"
+              git init
+              git checkout -b gh-pages
+              git add .
+              git commit -m "deploy"
+              git remote add origin git@github.com:qri-io/website.git
+              git push -f origin gh-pages
+            fi
