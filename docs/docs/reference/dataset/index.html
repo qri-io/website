@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.55.6" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,8 @@
   <meta property="og:title" content="Dataset" />
 <meta property="og:description" content="dataset definition" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://qri.io/docs/reference/dataset/" /><meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
+<meta property="og:url" content="https://qri.io/docs/reference/dataset/" />
+<meta property="article:published_time" content="2018-01-30T00:00:00-04:00"/>
 <meta property="article:modified_time" content="2018-01-30T00:00:00-04:00"/>
 
   
@@ -100,6 +101,10 @@
     </div>
     <div class="pages">
       <ul>
+      
+        
+      
+        
       
         
           
@@ -182,10 +187,6 @@
       
         
       
-        
-      
-        
-      
       </ul>
     </div>
   </div>
@@ -263,6 +264,7 @@
 <ul>
 <li><code>csv</code> - <em>comma-separated values</em></li>
 <li><code>json</code> - <em>javascript object notation</em></li>
+<li><code>xlsx</code> - <em>microsoft excel open xml spreadsheet</em></li>
 <li><code>cbor</code> - <em>concise binary object representation</em></li>
 </ul>
 
@@ -458,7 +460,7 @@ Well-defined Meta should aid in making datasets Findable by describing a dataset
 docrun:
   filltype: json
 -->
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json">  <span class="p">{</span> 
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json">  <span class="p">{</span>
     <span class="nt">&#34;name&#34;</span> <span class="p">:</span> <span class="s2">&#34;sean carter&#34;</span><span class="p">,</span>
     <span class="nt">&#34;url&#34;</span> <span class="p">:</span> <span class="s2">&#34;https://jayz.com&#34;</span><span class="p">,</span>
     <span class="nt">&#34;email&#34;</span> <span class="p">:</span> <span class="s2">&#34;hova@jayz.com&#34;</span>
@@ -529,7 +531,7 @@ Structure fields are things like the encoding data format (JSON,CSV,etc.), lengt
 <tr>
 <td><code>format</code></td>
 <td><code>string</code></td>
-<td>specifies the format of the raw data type by file extension. Must be one of: <code>json</code></td>
+<td>specifies the format of the raw data type by file extension. Must be one of: <code>json</code> , <code>csv</code> , <code>xlsx</code>, <code>cbor</code></td>
 </tr>
 
 <tr>

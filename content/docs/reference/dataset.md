@@ -19,13 +19,13 @@ A Dataset is broken into several components. Each component has a different purp
 
 
 | component   | purpose  |
-|-------------|----------| 
-| `body`      | location of dataset data. The _subject_ all other componets are about | 
-| `commit`    | versioning information for this dataset at a specific point in time | 
-| `meta`      | descriptive metadata | 
-| `structure` | machine-oriented metadata for interpreting body | 
-| `transform` | description of an executed script that resulted in this dataset | 
-| `viz`       | template details for visually representing this dataset | 
+|-------------|----------|
+| `body`      | location of dataset data. The _subject_ all other componets are about |
+| `commit`    | versioning information for this dataset at a specific point in time |
+| `meta`      | descriptive metadata |
+| `structure` | machine-oriented metadata for interpreting body |
+| `transform` | description of an executed script that resulted in this dataset |
+| `viz`       | template details for visually representing this dataset |
 
 Each component is described in detail below.
 
@@ -40,11 +40,12 @@ Supported Data Formats:
 
 * `csv` - _comma-separated values_
 * `json` - _javascript object notation_
+* `xlsx` - _microsoft excel open xml spreadsheet_
 * `cbor` - _concise binary object representation_
 
 The structure of the data stored is arbitrary, with one important exception: _the top level of body must be either an object or an array_. scalar types like int, bool, float, or strings are not valid types. Keep in mind that it's perfectly valid to wrap a scalar type (for example, a string) in an array to obtain a valid body.
 
-** ** 
+** **
 
 ### <a id="commit">`commit`</a>
 Commit encapsulates information about changes to a dataset in relation to other entries in a given history. Commit is directly analogous to the concept of a Commit Message in the git version control system. A full commit defines the administrative metadata of a dataset, answering _"who made this dataset, when, and why"_.
@@ -78,7 +79,7 @@ docrun:
   }
 ```
 
-** ** 
+** **
 
 ### <a id="meta">`meta`</a>
 Meta contains human-readable descriptive metadata that qualifies and distinguishes a dataset.
@@ -118,7 +119,7 @@ docrun:
   filltype: json
 -->
 ```json
-  { 
+  {
     "name" : "sean carter",
     "url" : "https://jayz.com",
     "email" : "hova@jayz.com"
@@ -140,7 +141,7 @@ docrun:
   }
 ```
 
-** ** 
+** **
 
 ### <a id="structure">`structure`</a>
 Structure defines the characteristics of a dataset document necessary for a machine to interpret the dataset body.
@@ -157,12 +158,12 @@ _structure fields:_
 | `encoding`          | `string`      | specifics character encoding, assumes utf-8 if not specified |
 | `errCount`          | `int`         | the number of errors returned by validating data against schema. |
 | `entries`           | `int`         | number of top-level entries in the dataset. analogous to the number of rows in a table |
-| `format`            | `string`      | specifies the format of the raw data type by file extension. Must be one of: `json`|`csv`|`cbor` |
+| `format`            | `string`      | specifies the format of the raw data type by file extension. Must be one of: `json` , `csv` , `xlsx`, `cbor` |
 | `formatConfig`      | `object`      |  removes as much ambiguity as possible about how to interpret the speficied format. Properties of this object depend on the `format` field |
 | `length`            | `int`         | length of the data object in bytes |
 | `schema`            | `jsonSchema`  | the schema definition for the dataset body, schemas are defined using the IETF json-schema specification. for more info on json-schema see: https://json-schema.org |
 
-** ** 
+** **
 
 ### <a id="transform">`transform`</a>
 Transform is a record of executing a transformation on data. Transforms can theoretically be anything from an SQL query, a jupyter
@@ -179,7 +180,7 @@ _transform fields:_
 | `config`             | `object` | any configuration that would affect the resulting hash. transformations may use values present in config to perform their operations |
 | `resources`          | `object` |  map of all datasets transform depends on with both name and commit paths |
 
-** ** 
+** **
 
 ### <a id="viz">`viz`</a>
 Viz stores configuration data related to representing a dataset as a visualization
@@ -191,4 +192,4 @@ _viz fields:_
 | `format`     | `string` | designates the visualization configuration syntax, currently only `html` is accepted |
 | `scriptPath` | `string` | location of script that generates the visualization |
 
-** ** 
+** **

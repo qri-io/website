@@ -53,8 +53,56 @@
   </url>
   
   <url>
+    <loc>https://qri.io/tags/baseball-stats/</loc>
+    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/blog/</loc>
+    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://qri.io/blog/mlb_homeruns/</loc>
     <lastmod>2019-04-17T15:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/tags/</loc>
+    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/tags/transform-script/</loc>
+    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/tags/web-scraping/</loc>
+    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/tags/data-bazaar/</loc>
+    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/tags/distributed-web-summit/</loc>
+    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/tags/open-data-week/</loc>
+    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -63,13 +111,37 @@
   </url>
   
   <url>
+    <loc>https://qri.io/tags/school-of-data/</loc>
+    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://qri.io/blog/a_better_mousetrap_podcast/</loc>
     <lastmod>2019-03-11T15:00:00-04:00</lastmod>
   </url>
   
   <url>
+    <loc>https://qri.io/tags/data-rescue/</loc>
+    <lastmod>2019-03-11T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/tags/open-data/</loc>
+    <lastmod>2019-03-11T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://qri.io/faq/</loc>
     <lastmod>2019-02-25T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/tags/datarescue/</loc>
+    <lastmod>2019-02-15T15:00:00-04:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -113,6 +185,18 @@
   </url>
   
   <url>
+    <loc>https://qri.io/tags/performance/</loc>
+    <lastmod>2018-10-17T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/tags/testing/</loc>
+    <lastmod>2018-10-17T15:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://qri.io/contact/</loc>
     <lastmod>2018-10-08T00:00:00-04:00</lastmod>
   </url>
@@ -140,6 +224,12 @@
   <url>
     <loc>https://qri.io/docs/concepts/ipfs_to_qri/</loc>
     <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/legal/</loc>
+    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -183,39 +273,14 @@
   </url>
   
   <url>
+    <loc>https://qri.io/papers/</loc>
+    <lastmod>2017-11-20T00:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://qri.io/blog/datasets_are_books/</loc>
     <lastmod>2017-10-30T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/download/</loc>
-    <lastmod>2017-10-30T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/</loc>
-    <lastmod>2017-10-30T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/docs/tutorials/qri_recipes/</loc>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/tags/baseball-stats/</loc>
-    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/blog/</loc>
-    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -231,86 +296,22 @@
   </url>
   
   <url>
-    <loc>https://qri.io/tags/data-bazaar/</loc>
-    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
+    <loc>https://qri.io/download/</loc>
+    <lastmod>2017-10-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/</loc>
+    <lastmod>2017-10-30T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qri.io/docs/tutorials/qri_recipes/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://qri.io/tags/data-rescue/</loc>
-    <lastmod>2019-03-11T15:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/tags/datarescue/</loc>
-    <lastmod>2019-02-15T15:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/tags/distributed-web-summit/</loc>
-    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/legal/</loc>
-    <lastmod>2018-01-30T00:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/tags/open-data/</loc>
-    <lastmod>2019-03-11T15:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/tags/open-data-week/</loc>
-    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/papers/</loc>
-    <lastmod>2017-11-20T00:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/tags/performance/</loc>
-    <lastmod>2018-10-17T15:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/tags/school-of-data/</loc>
-    <lastmod>2019-04-15T15:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/tags/</loc>
-    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/tags/testing/</loc>
-    <lastmod>2018-10-17T15:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/tags/transform-script/</loc>
-    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qri.io/tags/web-scraping/</loc>
-    <lastmod>2019-04-17T15:00:00-04:00</lastmod>
+    <loc>https://qri.io/categories/</loc>
     <priority>0</priority>
   </url>
   
