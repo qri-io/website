@@ -12,12 +12,10 @@ This site is built with [hugo](https://gohugo.io), a static site generator.
 3. Navigate to the site directory & Run `hugo server`
 4. Open a web browser to `https://localhost:1313`
 5. Edit a file in the `content` folder & hit save
-
-### Committing changes:
-
-Once everything looks good in the development server, you must build the site and commit your code changes _and_ the built site.
-
-1. Run `hugo`
-2. Commit your source changes and the built site on a new branch
-3. Submit a Pull request to the `master` branch
+6. Commit your source changes to a new branch
+7. Submit a Pull request to the `master` branch
 8. :money:
+
+### Deployment
+
+New commits to `master` will be deployed to github pages via circleci
