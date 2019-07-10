@@ -51,11 +51,11 @@ In his free time, Dustin designs and builds arcade and video games.
 
 -------------------------------
 
-+**<a href="https://github.com/chriswhong">Christopher Whong</a>** - Community Engineer
-
-Chris is a widely respected leader in the NYC civictech community, known for promoting government adoption of open-source tech, and supporting collaboration between those who generate and those who rely on open data. Most recently, he was the director of NYC Planning Labs, responsible for applying open technology, agile development, and user-centered design to build impactful products with NYC’s Urban Planners. 
+**<a href="https://github.com/chriswhong">Christopher Whong</a>** - Community Engineer
 
 Chris does everything from engaging our base of peers and devs, to writing code and helping us plan and execute our next phases of growth.
+
+Chris is a widely respected leader in the NYC civictech community, known for promoting government adoption of open-source tech, and supporting collaboration between those who generate and those who rely on open data. Most recently, he was the director of NYC Planning Labs, responsible for applying open technology, agile development, and user-centered design to build impactful products with NYC’s Urban Planners. 
 
 In his free time, Chris hacks <a href="https://chriswhong.com/">on personal projects</a> leveraging public data. 
 
