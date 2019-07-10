@@ -2,6 +2,10 @@ version: '2'
 jobs:
   build:
     working_directory: "~/website"
+    filters:
+      branches:
+        ignore:
+          - gh-pages
     docker:
       - image: felicianotech/docker-hugo:0.47.1
     steps:
