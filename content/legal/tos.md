@@ -2,6 +2,7 @@
 title: "terms of service"
 date: 2018-01-30T00:00:00-04:00
 draft: false
+layout: faq
 ---
 
 QRI TERMS OF USE
@@ -13,14 +14,14 @@ BY ACCESSING THE WEBSITE AND USING THE NETWORK, YOU ACKNOWLEDGE THAT YOU HAVE RE
 THE SECTIONS BELOW TITLED “BINDING ARBITRATION” AND “CLASS ACTION WAIVER” CONTAIN A BINDING ARBITRATION AGREEMENT AND CLASS ACTION WAIVER.  THEY AFFECT YOUR LEGAL RIGHTS.  PLEASE READ THEM.
 
 Capitalized terms not defined in these Terms of Use shall have the meaning set forth in our Privacy Policy.
- 
+
 1.	DESCRIPTION AND USE OF THE NETWORK
 
 The Qri Network allows users to share datasets with one another and to collaborate with other users to transform, analyze, aggregate, or otherwise use such datasets.  The Network is an open-source, decentralized, peer-to-peer application, and the most of the data that is input by users is not stored by Qri.  By using the Qri Network you agree to use official Qri releases only.
 
 2.	USER CONTENT; LICENSES
 
-The Network allows you to add datasets and associated materials such as metadata, comments, queries, logos, charts, and graphs to the Network (collectively, “User Content”).  User Content may also include newly created datasets derived from the User Content (derivative datasets) including, without limitation, reports, models, forecasts, or other results derived from your and other users’ collaborations.  You expressly acknowledge and agree that once you add your User Content to the Network, there is no confidentiality or privacy with respect to such User Content unless you make such User Content private, in which case only you and those specific users who you invite to view your User Content will be able to see your User Content.  You can adjust your privacy settings on the Network at any time.  YOU, AND NOT QRI, ARE ENTIRELY RESPONSIBLE FOR ALL YOUR USER CONTENT THAT YOU UPLOAD, POST, E-MAIL, OR OTHERWISE TRANSMIT VIA THE NETWORK. 
+The Network allows you to add datasets and associated materials such as metadata, comments, queries, logos, charts, and graphs to the Network (collectively, “User Content”).  User Content may also include newly created datasets derived from the User Content (derivative datasets) including, without limitation, reports, models, forecasts, or other results derived from your and other users’ collaborations.  You expressly acknowledge and agree that once you add your User Content to the Network, there is no confidentiality or privacy with respect to such User Content unless you make such User Content private, in which case only you and those specific users who you invite to view your User Content will be able to see your User Content.  You can adjust your privacy settings on the Network at any time.  YOU, AND NOT QRI, ARE ENTIRELY RESPONSIBLE FOR ALL YOUR USER CONTENT THAT YOU UPLOAD, POST, E-MAIL, OR OTHERWISE TRANSMIT VIA THE NETWORK.
 
 Each addition of User Content to the Network constitutes a representation and warranty to Qri that such User Content is your original creation (or that you otherwise have the right and license to provide the User Content), and that you have all rights necessary to share the User Content with Qri and other users of the Network.  You shall retain all copyrights and other intellectual property rights in and to your own User Content.  Each time you add User Content to the Network, you will be required to select an appropriate license from a drop-down menu, which license shall contain all terms and conditions that other users of the Network must follow when accessing and using your User Content (each, a “Content License”).  It is your responsibility to ensure that the Content License you are selecting is permitted by any upstream license to the User Content that you may have (i.e., if you are a licensee of User Content that you add to the Network, you must ensure that person or entity that has licensed such User Content to you (i) permits you to disclose it on the Network, and (ii) permits you to sublicense it to other users of the Network for use set forth in the Content License that you select).  You, and not Qri, are solely responsible for ensuring that all users who have accessed and/or used your User Data are in compliance with your Content Licenses.
 
@@ -44,19 +45,19 @@ o	is defamatory, libelous, indecent, obscene, pornographic, sexually explicit, i
 
 •	You will not access or use the Network to collect any market research for a competing business;
 
-•	You will not impersonate any person or entity or falsely state or otherwise misrepresent your affiliation with a person or entity; 
+•	You will not impersonate any person or entity or falsely state or otherwise misrepresent your affiliation with a person or entity;
 
 •	You will not add, post, or share any knowingly false or “hoax” data;
 
-•	You will not interfere with, or attempt to interrupt the proper operation of the Network through the use of any virus, device, information collection or transmission mechanism, software or routine, or access or attempt to gain access to any Content (as defined below) or passwords related to the Network through hacking, password or data mining, or any other means; 
+•	You will not interfere with, or attempt to interrupt the proper operation of the Network through the use of any virus, device, information collection or transmission mechanism, software or routine, or access or attempt to gain access to any Content (as defined below) or passwords related to the Network through hacking, password or data mining, or any other means;
 
 •	You will not decompile, reverse engineer, or disassemble any closed source software or other products or processes accessible through the Network;
 
 •	You will not cover, obscure, block, or in any way interfere with any advertisements and/or safety features on the Network;   
 
-•	You will not use any robot, spider, scraper, or other automated means to access the Network for any purpose without our express written permission; 
+•	You will not use any robot, spider, scraper, or other automated means to access the Network for any purpose without our express written permission;
 
-•	You will not take any action that imposes or may impose (in our sole discretion) an unreasonable or disproportionately large load on our technical infrastructure; and 
+•	You will not take any action that imposes or may impose (in our sole discretion) an unreasonable or disproportionately large load on our technical infrastructure; and
 
 •	If you find something that violates our Community Guidelines, please let us know, and we will review it.
 
@@ -80,7 +81,7 @@ You may view all Qri Content for your own personal, non-commercial use.  No othe
 
 If you violate any part of this Agreement, your permission to access the Content, the Website, and the Network automatically terminates and you must immediately destroy any copies you have made of the Content.
 
-The trademarks, service marks, and logos of Qri (the “Qri Trademarks”) used and displayed on the Network and Website are registered and unregistered trademarks or service marks of Qri.  Other company, product, and service names located on the Network and Website may be trademarks or service marks owned by others (the “Third-Party Trademarks,” and, collectively with Qri Trademarks, the “Trademarks”).  Nothing on the Network or Website should be construed as granting, by implication, estoppel, or otherwise, any license or right to use the Trademarks, without our prior written permission specific for each such use.  Use of the Trademarks as part of a link to or from any site is prohibited unless establishment of such a link is approved in advance by us in writing.  All goodwill generated from the use of Qri Trademarks inures to our benefit. 
+The trademarks, service marks, and logos of Qri (the “Qri Trademarks”) used and displayed on the Network and Website are registered and unregistered trademarks or service marks of Qri.  Other company, product, and service names located on the Network and Website may be trademarks or service marks owned by others (the “Third-Party Trademarks,” and, collectively with Qri Trademarks, the “Trademarks”).  Nothing on the Network or Website should be construed as granting, by implication, estoppel, or otherwise, any license or right to use the Trademarks, without our prior written permission specific for each such use.  Use of the Trademarks as part of a link to or from any site is prohibited unless establishment of such a link is approved in advance by us in writing.  All goodwill generated from the use of Qri Trademarks inures to our benefit.
 
 Elements of the Network and Website are protected by trade dress, trademark, unfair competition, and other state and federal laws and may not be copied or imitated in whole or in part, by any means, including, but not limited to, the use of framing or mirrors.  None of the Qri Content may be retransmitted without our prior written consent in each instance.
 
@@ -88,7 +89,7 @@ Elements of the Network and Website are protected by trade dress, trademark, unf
 
 Although we encourage you to e-mail us, we do not want you to, and you should not, e-mail us any content that contains confidential information.  With respect to all e-mails and communications you send to us, including, but not limited to, ratings, feedback, questions, comments, suggestions, and the like, we shall be free to use any ratings data, ideas, concepts, know-how, or techniques contained in your communications for any purpose whatsoever, including but not limited to, the development, production, and marketing of products and services that incorporate such information without compensation or attribution to you.
 
-8.	NO WARRANTIES; LIMITATION OF LIABILITY 
+8.	NO WARRANTIES; LIMITATION OF LIABILITY
 
 YOU ACKNOWLEDGE THAT QRI DOES NOT REPRESENT OR WARRANT THAT THE CONTENT, INCLUDING ANY USER CONTENT, OR ANY OTHER DATA OR INFORMATION PROVIDED THROUGH THE NETWORK OR THE WEBSITE WILL BE ACCURATE OR COMPLETE.  
 
@@ -146,11 +147,11 @@ If you believe that your work has been copied on the Network or Website in a way
 
 14.	CONTROLLING LAW
 
-This Agreement and any action related thereto will be governed by the laws of the State of New York without regard to its conflict of laws provisions. 
+This Agreement and any action related thereto will be governed by the laws of the State of New York without regard to its conflict of laws provisions.
 
 15.	BINDING ARBITRATION
 
-In the event of a dispute arising under or relating to this Agreement, the Content, the Network, or the Website (each, a “Dispute”), either party may elect to finally and exclusively resolve the dispute by binding arbitration governed by the Federal Arbitration Act (“FAA”).  Any election to arbitrate, at any time, shall be final and binding on the other party. IF EITHER PARTY CHOOSES ARBITRATION, NEITHER PARTY SHALL HAVE THE RIGHT TO LITIGATE SUCH CLAIM IN COURT OR TO HAVE A JURY TRIAL, EXCEPT EITHER PARTY MAY BRING ITS CLAIM IN ITS LOCAL SMALL CLAIMS COURT, IF PERMITTED BY THAT SMALL CLAIMS COURT RULES AND IF WITHIN SUCH COURT’S JURISDICTION.  ARBITRATION IS DIFFERENT FROM COURT, AND DISCOVERY AND APPEAL RIGHTS MAY ALSO BE LIMITED IN ARBITRATION.  All disputes will be resolved before a neutral arbitrator selected jointly by the parties, whose decision will be final, except for a limited right of appeal under the FAA.  The arbitration shall be commenced and conducted by JAMS pursuant to its then current Comprehensive Arbitration Rules and Procedures and in accordance with the Expedited Procedures in those rules, or, where appropriate, pursuant to JAMS’ Streamlined Arbitration Rules and Procedures. All applicable JAMS’ rules and procedures are available at the JAMS website www.jamsadr.com. Each party will be responsible for paying any JAMS filing, administrative, and arbitrator fees in accordance with JAMS rules.  Judgment on the arbitrator’s award may be entered in any court having jurisdiction. This clause shall not preclude parties from seeking provisional remedies in aid of arbitration from a court of appropriate jurisdiction.  The arbitration may be conducted in person, through the submission of documents, by phone, or online. If conducted in person, the arbitration shall take place in the United States county where you reside.  The parties may litigate in court to compel arbitration, to stay a proceeding pending arbitration, or to confirm, modify, vacate, or enter judgment on the award entered by the arbitrator.  The parties shall cooperate in good faith in the voluntary and informal exchange of all non-privileged documents and other information (including electronically stored information) relevant to the Dispute immediately after commencement of the arbitration.  As set forth in Section 17 below, nothing in this Agreement will prevent us from seeking injunctive relief in any court of competent jurisdiction as necessary to protect our proprietary interests. 
+In the event of a dispute arising under or relating to this Agreement, the Content, the Network, or the Website (each, a “Dispute”), either party may elect to finally and exclusively resolve the dispute by binding arbitration governed by the Federal Arbitration Act (“FAA”).  Any election to arbitrate, at any time, shall be final and binding on the other party. IF EITHER PARTY CHOOSES ARBITRATION, NEITHER PARTY SHALL HAVE THE RIGHT TO LITIGATE SUCH CLAIM IN COURT OR TO HAVE A JURY TRIAL, EXCEPT EITHER PARTY MAY BRING ITS CLAIM IN ITS LOCAL SMALL CLAIMS COURT, IF PERMITTED BY THAT SMALL CLAIMS COURT RULES AND IF WITHIN SUCH COURT’S JURISDICTION.  ARBITRATION IS DIFFERENT FROM COURT, AND DISCOVERY AND APPEAL RIGHTS MAY ALSO BE LIMITED IN ARBITRATION.  All disputes will be resolved before a neutral arbitrator selected jointly by the parties, whose decision will be final, except for a limited right of appeal under the FAA.  The arbitration shall be commenced and conducted by JAMS pursuant to its then current Comprehensive Arbitration Rules and Procedures and in accordance with the Expedited Procedures in those rules, or, where appropriate, pursuant to JAMS’ Streamlined Arbitration Rules and Procedures. All applicable JAMS’ rules and procedures are available at the JAMS website www.jamsadr.com. Each party will be responsible for paying any JAMS filing, administrative, and arbitrator fees in accordance with JAMS rules.  Judgment on the arbitrator’s award may be entered in any court having jurisdiction. This clause shall not preclude parties from seeking provisional remedies in aid of arbitration from a court of appropriate jurisdiction.  The arbitration may be conducted in person, through the submission of documents, by phone, or online. If conducted in person, the arbitration shall take place in the United States county where you reside.  The parties may litigate in court to compel arbitration, to stay a proceeding pending arbitration, or to confirm, modify, vacate, or enter judgment on the award entered by the arbitrator.  The parties shall cooperate in good faith in the voluntary and informal exchange of all non-privileged documents and other information (including electronically stored information) relevant to the Dispute immediately after commencement of the arbitration.  As set forth in Section 17 below, nothing in this Agreement will prevent us from seeking injunctive relief in any court of competent jurisdiction as necessary to protect our proprietary interests.
 
 16.	CLASS ACTION WAIVER
 
@@ -169,4 +170,3 @@ Qri is a provider of “interactive computer services” as defined under the Co
 Our failure to act on or enforce any provision of the Agreement shall not be construed as a waiver of that provision or any other provision in this Agreement.  No waiver shall be effective against us unless made in writing, and no such waiver shall be construed as a waiver in any other or subsequent instance.  Except as expressly agreed by us and you in writing, this Agreement constitutes the entire Agreement between you and us with respect to the subject matter, and supersedes all previous or contemporaneous agreements, whether written or oral, between the parties with respect to the subject matter.  The section headings are provided merely for convenience and shall not be given any legal import.  This Agreement will inure to the benefit of our successors, assigns, licensees, and sublicensees.  
 
 Copyright 2018 Qri, Inc.  All rights reserved.
-
