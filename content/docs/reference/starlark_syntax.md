@@ -61,6 +61,10 @@ So far there are two predefined Qri functions, with more planned for future use:
 
 You can inject variables into the transform through the transform config section in the dataset file. For example:
 
+<!--
+docrun:
+  filltype: dataset.Dataset
+-->
 ```yaml
 # dataset.yaml file
 transform:
@@ -72,14 +76,19 @@ transform:
 
 In your transform script, you can get the name and number by loading the `qri.sky` module and using the `get_config` function:
 
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+-->
 ```python
-load("qri.sky", "qri")
+load("qri.star", "qri")
 
-def transform(ds):
-  name = qri.get_config("name")
-  # casting number to an int just in case it was mistaken 
+def transform(ds, ctx):
+  name = ctx.get_config("name")
+  # casting number to an int just in case it was mistaken
   # for a string
-  number = int(qri.get_config("number"))
+  number = int(ctx.get_config("number") or 0)
   return ds
 ```
 
@@ -91,6 +100,10 @@ Sometimes you need special keys or information that you want to exist in your tr
 
 You add secrets much in the same why that you add config variables.
 
+<!--
+docrun:
+  filltype: dataset.Dataset
+-->
 ```yaml
 # in dataset.yaml file
 transform:
@@ -101,11 +114,16 @@ transform:
 
 To get that secret, load the `qri` module and use the `get_secret` method:
 
+<!--
+docrun:
+  test:
+    call: transform(ds, ctx)
+-->
 ```python
-load("qri.sky", "qri")
+load("qri.star", "qri")
 
-def transform(ds):
-  api_key = qri.get_secret("api_key")
+def transform(ds, ctx):
+  api_key = ctx.get_secret("api_key")
   # do something here to add to the dataset body
   return ds
 ```
