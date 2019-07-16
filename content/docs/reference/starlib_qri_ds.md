@@ -1,28 +1,30 @@
 ---
 title: "Starlark: qri & ds modules"
-description: "list of all the functions and modules in starlark standard library"
+description: "descriptions of built-in modules and special objects in qri starlark"
 date: 2018-12-20T00:00:00-04:00
 section: reference
 ---
 
 ### qri and dataset modules
-In Qri two "nonstandard" modules specific to qri are available. these modules are _not_ considered part of the standard library project, and are defined in a [different repository](https://github.com/qri-io/qri/tree/master/startf). They're described here to keep documentation complete:
+In Qri's starlark there are three "nonstandard" modules specific to qri. These modules are _not_ considered part of the standard library project, and are defined in a [different repository](https://github.com/qri-io/qri/tree/master/startf). They're described here to keep documentation complete:
 
 * [qri](#qri_module)
-* [ds or dataset](#dataset_object)
+* [ctx / context](#context_object)
+* [ds / dataset](#dataset_object)
+
+In addition, there are some special built-in functions.
+
+* [built-ins](#builtins)
 
 ** **
 
 <a id="qri_module"></a>
+
 ## qri module
 
-_access these methods from the `qri` module, eg `qri.get_config()`_
+_access this method from the `qri` module, eg `qri.list_datasets()`_
 
-  * [get_config](#get_config)
-  * [get_secret](#get_secret)
   * [list_datasets](#list_datasets)
-  * [load_dataset_body](#load_dataset_body)
-  * [load_dataset_head](#load_dataset_head)
 
 To load:
 
@@ -37,42 +39,6 @@ load("qri.star", "qri")
 ** **
 
 ## Function Definitions:
-
-<a id="get_config"></a>
-#### get_config 
-`qri.get_config(key)`
-
-  returns the value of a config variable, declared in the dataset file:
-
-<!--
-docrun:
-  filltype: dataset.Dataset
--->
-```yaml
-# in the dataset.yaml file:
-transform:
-  scriptpath: transform.star
-  config:
-    key: value
-```
-
-<a id="get_secret"></a>
-#### get_secret 
-`qri.get_secret(key)`
-
-  returns the value of a secrets variable, declared in the dataset file:
-
-<!--
-docrun:
-  filltype: dataset.Dataset
--->
-```yaml
-# in the dataset.yaml file:
-transform:
-  scriptpath: transform.star
-  secrets:
-    key: value
-```
 
 <a id="list_datasets"></a>
 #### list_datasets
@@ -98,100 +64,76 @@ def transform(ds,ctx):
   #
   # create a dataset that contains a list of your datasets:
   ds.set_body(datasets)
-  return ds
 ```
 
-<a id="load_dataset_body"></a>
-#### load_dataset_body
-`qri.load_dataset_body(dataset_referece)`
+** **
 
-  returns the body of the specified dataset as a list or dictionary. [Read more about dataset references](/docs/concepts/names)
+<a id="dataset_object"></a>
+## context object - ctx
+  _you can access these methods from the `context` object. A context object gets passed into the `transform` and `download` functions, and by convention is named `ctx`_
+
+* [get_config](#get_config)
+* [get_secret](#get_secret)  
+
+<a id="get_config"></a>
+#### get_config 
+`ctx.get_config(key)`
+
+  returns the value of a config variable, declared in the dataset file:
 
 <!--
 docrun:
-  pass: true
-# TODO(dlong): Fix me
+  filltype: dataset.Dataset
 -->
-```python
-load("qri.star", "qri")
-
-def transform(ds,ctx):
-  # let's say there is a dataset named "2017_billboard_top_100" and a dataset named "2018_billboard_top_100"
-  # let's create a dataset of the artists that are on both lists:
-  billboard_2017 = qri.load_dataset_body("me/2017_billboard_top_100")
-  billboard_2018 = qri.load_dataset_body("me/2018_billboard_top_100")
-  #
-  artists = []
-  for i in range(0, len(billboard_2017)):
-    artist = billboard_2017[i]['artist']
-    #
-    # if we've already encountered this artist,
-    # move on to the next one
-    if artist in artists:
-      continue
-    #
-    # iterate through billboard_2018, if this artist
-    # appears there, add it to the list of artists
-    # and break out of the for loop
-    for j in range(0, len(billboard_2018)):
-      if artist == billboard_2018[j]['artist']:
-        artists.append(artist)
-        break
-  #
-  # ensure the list is unique
-  artists = list(set(artists))
-  ds.set_Body(artists)
-  return ds
+```yaml
+# in the dataset.yaml file:
+transform:
+  scriptpath: transform.star
+  config:
+    key: value
 ```
 
-<a id="load_dataset_head"></a>
-#### load_dataset_head
-`qri.load_dataset_head()`
-
-  loads all the parts of the dataset, except for the body, as a dictionary with all or some of these keys: `meta`, `structure`, `commit`, `transform`, `viz`. If the dataset does not contain a transform, for example, then the dataset head dictionary will not contain a `transform` field.
+Example usage:
 
 <!--
 docrun:
   test:
     call: transform(ds, ctx)
     actual: ds.get_body()
-    expect: {"title":"", "description":"", "format":""}
+    expect: value
+# TODO(dlong): Currently failing. Need to save the above dataset.yaml, then pass it to this script.
 -->
 ```python
-load("qri.star", "qri")
-
 def transform(ds, ctx):
-  # let's say you want to create a dataset that contains some
-  # descriptive elements of a previous dataset
-  # in this case, the meta, the description, and the format
-  head = qri.load_dataset_head("me/previous_dataset")
-  #
-  title = ""
-  description = ""
-  format = ""
-  #
-  if "meta" in head:
-    if "title" in head["meta"]:
-      title = head["meta"]["title"]
-    if "description" in head["meta"]:
-      description = head["meta"]["description"]
-  #
-  if "structure" in head:
-    if "format" in head["structure"]:
-      format = head["structure"]["format"]
-  #
-  ds.set_body({"title":title, "description": description, "format": format})
-  return ds
+  ds.set_body([ctx.get_config("key")])
+```
+
+<a id="get_secret"></a>
+#### get_secret 
+`qri.get_secret(key)`
+
+  returns the value of a secrets variable, declared in the dataset file:
+
+<!--
+docrun:
+  filltype: dataset.Dataset
+-->
+```yaml
+# in the dataset.yaml file:
+transform:
+  scriptpath: transform.star
+  secrets:
+    key: value
 ```
 
 ** **
 
 <a id="dataset_object"></a>
 ## dataset object - ds
-  _you can access these methods from the `dataset` object. A dataset object gets passed into and returned from the `transform` and `download` functions, usually referred to as `ds`_
+  _you can access these methods from the `dataset` object. A dataset object gets passed into the `transform` function, and by convention is named `ds`_
 
 * [set_meta](#set_meta)
-* [set_schema](#set_schema)
+* [set_structure](#set_structure)
 * [get_body](#get_body)
 * [set_body](#set_body)  
 
@@ -203,7 +145,7 @@ def transform(ds, ctx):
 #### get_body 
 `ds.get_body()`
 
-  returns the body of the current dataset as a list or dictionary
+  returns the body of the previous version of the dataset as a list or dictionary
 
 <a id="set_body"></a>
 #### set_body 
@@ -241,7 +183,7 @@ docrun:
   test:
     call: transform(ds, ctx)
     actual: ds.get_body()
-    expect: [["cat", 4], ["bird", 2], ["snake", 0]]
+    expect: [["cat", 4.0], ["bird", 2.0], ["snake", 0.0]]
 -->
 ```python
 def transform(ds,ctx):
@@ -261,8 +203,12 @@ def transform(ds,ctx):
       ]
     }
   }
+  structure = {
+    "format": "json",
+    "schema": schema
+  }
 
-  ds.set_schema(schema)
+  ds.set_structure(structure)
   ds.set_body([
     ["cat", 4],
     ["bird", 2],
@@ -270,3 +216,29 @@ def transform(ds,ctx):
   ])
   return ds
 ```
+
+** **
+
+<a id="dataset_object"></a>
+## built-ins
+
+
+* [load_dataset](#load_dataset_function)
+* [error](#error_function)
+
+** **
+
+## Function Definitions:
+
+<a id="load_dataset_function"></a>
+#### load_dataset
+`load_dataset(ref)`
+
+  Loads a dataset from your repo or the distributed web using a reference string. Returns it as a [dataset](#dataset_object) object.
+
+<a id="error_function"></a>
+#### error
+`error("message")`
+
+  Halts program execution with an error
+
