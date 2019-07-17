@@ -5,7 +5,7 @@ date: 2018-01-30T00:00:00-04:00
 ---
 
 # Starlark Syntax
-Qri ("query") is about datasets. Transformations are repeatable scripts for generating a dataset. [Starlark](https://github.com/google/skylark/blob/master/doc/spec.md) is a scripting language from Google that feels a lot like python. This package implements skylark as a _transformation syntax_. Starlark transformations are about as close as one can get to the full power of a programming language as a transformation syntax. Often you need this degree of control to generate a dataset.
+Qri ("query") is about datasets. Transformations are runnable scripts for generating datasets. [Starlark](https://github.com/google/skylark/blob/master/doc/spec.md) is a scripting language from Google that is mostly a subset of python. This package implements skylark as a _transformation syntax_. Starlark transformations are about as close as one can get to the full power of a programming language for generating datasets.
 
 Typical examples of a starlark transformation include:
 
@@ -19,41 +19,46 @@ Typical examples of a starlark transformation include:
 
 **No Recursion**
 
-**Set Variables Once**
+**Variables are frozen after mutation**
 
 **Can be run in parallel**
+
+**Strings are not iterable**
+
+There are more, see https://docs.bazel.build/versions/0.23.0/skylark/language.html and https://github.com/google/skylark/blob/master/doc/spec.md
 
 ** **
 
 ### Starlark In Qri:
 
-Starlark transformations have a few rules on top of skylark itself:
+Qri transformations have a few rules on top of starlark itself:
 
-* Qri functions *always* get and return a dataset
-* When you define a Qri function, qri calls it for you
-* All transform functions are optional (you don't _need_ to define them), _but_
-* A transformation must have at least one Qri function
-* Qri functions are always called in the same order
+* Qri defines special functions that act as entry points to the script. Qri will call them, your script does not need to
+* These functions always receive a context
+* The return value of these functions is available as part of the context passed to future functions
+* Special functions are always called in the same order
 
 ** **
 
-### Transform Functions
+### Special Functions
 
 So far there are two predefined Qri functions, with more planned for future use:
 
 * download
 * transform
 
-#### def download(ds):
-  Download is the only function in which you can make an http request or get an http response, or download a xlsx file, aka the only place in a transform where you can get data from a website or server. You must then manipulate the response to get some structured data, which can be set as the body.
+#### def download(ctx):
+  Download is the only function in which you can make an http request or get an http response, or download a xlsx file, aka the only place in a transform where you can get data from a website or server. You must then manipulate the response to get some structured data, which can then be returned.
 
   The download function is always run before the transform function.
 
-  The transform function will receive the dataset returned from the download function.
+  The transform function will receive the dataset returned from the download function as part of its context.
 
 
-#### def transform(ds):
-  The transform function can pull from a body file and config file, as well as set the metadata or schema of a dataset. It can also has access to the dataset returned from a download function.
+#### def transform(ds, ctx):
+  The transform function receives the dataset as its previous version, if one exists. 
+  
+  The transform function can pull from the previous dataset and config file, as well as set the metadata or schema of the dataset. It can also has access to the value returned from a download function as part of the context.
 
 ** **
 
@@ -68,28 +73,27 @@ docrun:
 ```yaml
 # dataset.yaml file
 transform:
-  scriptpath: transform.sky
+  scriptpath: transform.star
   config:
     name: Joe
     number: 5556578909
 ```
 
-In your transform script, you can get the name and number by loading the `qri.sky` module and using the `get_config` function:
+In your transform script, you can get the name and number by using the context:
 
 <!--
 docrun:
   test:
     call: transform(ds, ctx)
+# TODO(dlong): Save the above dataset.yaml and pass it to this transform
 -->
 ```python
 load("qri.star", "qri")
 
 def transform(ds, ctx):
   name = ctx.get_config("name")
-  # casting number to an int just in case it was mistaken
-  # for a string
-  number = int(ctx.get_config("number") or 0)
-  return ds
+  number = ctx.get_config("number")
+  ds.set_body({"name": name, "number": number})
 ```
 
 ** **
@@ -107,25 +111,23 @@ docrun:
 ```yaml
 # in dataset.yaml file
 transform:
-  scriptpath: transform.sky
+  scriptpath: transform.star
   secrets:
     api_key: SOME-PRIVATE-KEY-HERE
 ```
 
-To get that secret, load the `qri` module and use the `get_secret` method:
+To get that secret, use the context:
 
 <!--
 docrun:
   test:
-    call: transform(ds, ctx)
+    call: download(ctx)
 -->
 ```python
-load("qri.star", "qri")
-
-def transform(ds, ctx):
+def download(ctx):
   api_key = ctx.get_secret("api_key")
-  # do something here to add to the dataset body
-  return ds
+  # do something here to fetch from a server
+  return {"webserver": "result"}
 ```
 
 ** **
