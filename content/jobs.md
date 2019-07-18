@@ -2,6 +2,7 @@
 title: "Jobs!"
 date: 2019-07-17T00:00:00-04:00
 draft: false
+layout: faq
 description: a page for listing live Qri job postings.
 ---
 
@@ -12,7 +13,7 @@ description: a page for listing live Qri job postings.
 - Start Date: Immediate
 
 ** **
----
+
 **About**
 
 *Design the world’s first data bazaar.*
