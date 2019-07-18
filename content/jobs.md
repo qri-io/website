@@ -12,10 +12,8 @@ description:
 - Location: Brooklyn, NY (remote work negotiable)
 - Start Date: Immediate
 
-
+** **
 ---
-
-
 **About**
 
 *Design the world’s first data bazaar.*
