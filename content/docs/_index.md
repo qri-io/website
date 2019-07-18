@@ -58,7 +58,7 @@ date: 2018-01-30T00:00:00-04:00
     <footer>
       <h1>Help!</h1>
       <div>
-        <p>Qri uses <a href="https://discord.gg/etap8Gb"><b>discord</b></a> for Qri-related conversations &amp; questions. Best place to start if you're haveing an issue is to jump on there & voice your question.</p>
+        <p>Qri uses <a href="https://discord.gg/etap8Gb"><b>discord</b></a> for Qri-related conversations &amp; questions. Best place to start if you're having an issue is to jump on there & voice your question.</p>
         <div style="text-align: center; margin: 20px">
           <a href="https://discord.gg/etap8Gb" class="button">Chat on Discord</a>
         </div>
