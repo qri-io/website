@@ -2,8 +2,7 @@
 title: "Jobs!"
 date: 2019-07-17T00:00:00-04:00
 draft: false
-layout: faq
-description: 
+description: a page for listing live Qri job postings.
 ---
 
  <h2>UI / UX Designer</h2> 
