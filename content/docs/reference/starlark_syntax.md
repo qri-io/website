@@ -5,7 +5,7 @@ date: 2018-01-30T00:00:00-04:00
 ---
 
 # Starlark Syntax
-Qri ("query") is about datasets. Transformations are runnable scripts for generating datasets. [Starlark](https://github.com/google/skylark/blob/master/doc/spec.md) is a scripting language from Google that is mostly a subset of python. This package implements skylark as a _transformation syntax_. Starlark transformations are about as close as one can get to the full power of a programming language for generating datasets.
+Qri ("query") is about datasets. Transformations are runnable scripts for generating datasets. [Starlark](https://github.com/bazelbuild/starlark/blob/master/spec.md) is a scripting language from Google that is mostly a subset of python. This package implements skylark as a _transformation syntax_. Starlark transformations are about as close as one can get to the full power of a programming language for generating datasets.
 
 Typical examples of a starlark transformation include:
 
