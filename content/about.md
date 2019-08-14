@@ -16,9 +16,9 @@ description:
 
 Brendan is an open-source software and open data evangelist. He founded Qri during the Data Rescue movement and is responsible for Qri’s code base, road map and growth. He has over a decade of experience in software development, technical due diligence, graphic design and visual arts.
 
-Brendan helped launch <a href="https:datatogether.org">Datatogether.org</a>, a network of communities, data scientists, and developers dedicated to promoting collective data stewardship. He is also a leading member the Environmental Data and Governance Initiative (EDGI), founded to preserve at-risk government environmental data. 
+Brendan helped launch <a href="https://datatogether.org">Datatogether.org</a>, a network of communities, data scientists, and developers dedicated to promoting collective data stewardship. He is also a leading member the Environmental Data and Governance Initiative (EDGI), founded to preserve at-risk government environmental data. 
 
-In his free time Brendan codes and competes as a not-so competitive cyclist. 
+In his free time Brendan codes and competes as a not-so-competitive cyclist. 
 
 Follow Brendan <a href="https://twitter.com/b_fiive">on twitter</a>
 
@@ -29,14 +29,14 @@ Follow Brendan <a href="https://twitter.com/b_fiive">on twitter</a>
 
 Rico supports Qri’s user community, client projects, and internal operations. He has over a decade of experience across early-stage tech startups (ML/human-in-the-loop data enrichment), strategy consulting, and politics/government. Rico served in the Obama White House from 2009 - 2013.
 
-In his free time Rico works on his homemade limoncello recipe and plays baseball. 
+In his free time Rico perfects his homemade limoncello recipe and plays baseball. 
 
 -------------------------------
 
 
 **<a href="https://github.com/ramfox">Kasey Huizinga</a>** - Developer
 
-Kasey is a full stack developer, turning qri code into usable UI/UX in Qri's webapp. She maintains the code base, writes and films user tutorials and demos, and kills bugs. She is fluent in Go, python, Javascript, React, electron and p2p connectivity and communication architecture.
+Kasey is a full stack developer, turning qri code into usable UI/UX in Qri's Desktop app. She maintains the code base, writes and films user tutorials and demos, and kills bugs. She is fluent in Go, python, Javascript, React, electron and p2p connectivity and communication architecture.
 
 In her free time, Kasey performs in plays and musical theater acts across New York City. 
 
