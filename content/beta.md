@@ -1,5 +1,5 @@
 ---
-title: "Beta"
+title: "Beta Test Qri"
 date: 2019-09-15T00:00:00-04:00
 draft: false
 layout: faq
@@ -10,7 +10,9 @@ layout: faq
 
 We need your help! If you care about what we make and want to see it work better, we would **LOVE** to have your help as a beta tester for Qri Desktop & Qri Cloud. 
 
-Give us your email and we'll send you instructions on how to download Qri as well as options for sharing your feedback with us. Early users shape how new technology serves humans. If you want Qri to serve you, jumping on as a beta tester will ensure your ideas and opinions guide our work.
+Give us your email and we'll get you setup on Qri and give you options for sharing your feedback with us. Early users shape how new technology serves humans. If you want Qri to serve you, jumping on as a beta tester will ensure your ideas and opinions guide our work.
+
+
 
 
 <!-- Begin Mailchimp Signup Form -->
