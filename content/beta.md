@@ -5,14 +5,14 @@ draft: false
 layout: faq
 ---
 
- <h2>Sign up to Beta Test Qri!</h2> 
+ <h2>Sign up to Beta Test Qri!</h2>
 
 
-We need your help! If you care about what we make and want to see it work better, we would **LOVE** to have your help as a beta tester for Qri Desktop & Qri Cloud. 
+We need your help! If you care about what we make and want to see it work better, we would **LOVE** to have your help as a beta tester for Qri Desktop & Qri Cloud.
 
 Give us your email and we'll get you setup on Qri and give you options for sharing your feedback with us. Early users shape how new technology serves humans. If you want Qri to serve you, jumping on as a beta tester will ensure your ideas and opinions guide our work.
 
-
+We'll reach out to the first cohort of beta testers during the first week of October 2019.  Sign up and stay tuned!
 
 
 <!-- Begin Mailchimp Signup Form -->
@@ -25,10 +25,10 @@ Give us your email and we'll get you setup on Qri and give you options for shari
 <div id="mc_embed_signup">
 <form action="https://qri.us19.list-manage.com/subscribe/post?u=54a6a8c1171101850b8576277&amp;id=9fc5ce3233" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <div id="mc_embed_signup_scroll">
-  <h2>Beta test Qri</h2>
-<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+  <h2>Sign up to be a Qri Beta Tester</h2>
+<div class="indicates-required"><span class="asterisk">&ast;</span> indicates required</div>
 <div class="mc-field-group">
-  <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+  <label for="mce-EMAIL">Email Address  <span class="asterisk">&ast;</span>
 </label>
   <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
 </div>
