@@ -6,7 +6,7 @@ date: 2018-01-30T00:00:00-04:00
 
 # I know IPFS, what's the deal with Qri?
 
-Ooh look at you, smartie pants. You clicked the [IPFS](https://ipfs.io) link.  Assuming you understand the gist of IPFS, this may help connect the dots to how IPFS interacts with Qri.
+Ooh look at you, smarty-pants. You clicked the [IPFS](https://ipfs.io) link.  Assuming you understand the gist of IPFS, this may help connect the dots to how IPFS interacts with Qri.
 
 If you're new to IPFS, no worries. _You don't need to understand IPFS to work with Qri_. But if you're curious about what all this IPFS talk is about, definitely start with the [IPFS docs introduction](https://docs.ipfs.io/introduction/).
 
