@@ -20,7 +20,7 @@ draft: false
         <h2>Qri Desktop</h2>
         <p>Desktop app for interacting with qri datasets on the distributed web.</p>
         <p>Currently only available for Mac OS X.</p>
-        <p><i>If you'd like to track the status of other installations, check out our progress on <a href="https://github.com/qri-io/frontend">github</a></i></p>
+        <p><i>If you'd like to track the status of other installations, check out our progress on <a href="https://github.com/qri-io/desktop">github</a></i></p>
         <br />
         <a href="https://github.com/qri-io/desktop/releases/download/v0.1.0/Qri-Desktop-0.1.0.dmg" download="qri.dmg" class="download button">
           <b class="title">Download Qri Desktop</b><br />
