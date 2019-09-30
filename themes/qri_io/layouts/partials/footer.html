@@ -1,21 +1,24 @@
 <footer id="page_footer">
-  <div class="wrap">
-    <nav class="links">
-      <div class="site_links">
-        <a href="/contact/">Contact</a>
-        <a href="/jobs/">Jobs</a>
-        <a href="/faq/">FAQ</a>
-        <a href="/blog/">Blog</a>
-        <a href="/docs/">Docs</a>
-        <a href="/download/">Download</a>
+  <div class="wrap container">
+    <div class="row">
+        <div class="site_links col-sm-9 mb-5">
+          <a href="/contact/">Contact</a>
+          <a href="/jobs/">Jobs</a>
+          <a href="/faq/">FAQ</a>
+          <a href="/blog/">Blog</a>
+          <a href="/docs/">Docs</a>
+          <a href="/desktop/">Desktop App</a>
+        </div>
+        <div class="social_links col-sm-3 text-md-right mb-5">
+          <a href="https://github.com/{{.Site.Params.github}}"><i class="fab fa-github fa-lg"></i></a>
+          &nbsp;
+          <a href="https://twitter.com/{{.Site.Params.twitter}}"><i class="fab fa-twitter fa-lg"></i></a>
+        </div>
+    </div>
+    <div class="row">
+      <div class="copyright text-center col-12">
+        <small>&copy; 2019 qri, inc.</small>
       </div>
-      <div class="social_links">
-        <a href="https://github.com/{{.Site.Params.github}}">github</a>
-        <a href="https://twitter.com/{{.Site.Params.twitter}}">twitter</a>
-      </div>
-    </nav>
-    <div class="copyright">
-      <p>&copy; 2018 qri, inc.</p>
     </div>
   </div>
 </footer>
