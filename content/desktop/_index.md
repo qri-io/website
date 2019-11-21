@@ -31,10 +31,10 @@ layout: desktop_splash
           <p class="col-md-8 mx-auto mb-4">
             As an open-source project, Qri is both the resource and product of a community of contributors and data enthusiasts - many of whom share feature ideas, help find and squash bugs, or contribute code and datasets.
           </p>
-          <a class="mx-1 my-3 btn btn-qri btn-qri-magenta btn-qri-big" href="https://github.com/qri-io/desktop/releases/download/v0.1.0/Qri-Desktop-0.1.0-mac.zip" data-os="mac">Download for macOS</a>
-          <p><small><a href="https://github.com/qri-io/desktop/releases/download/v0.1.0/Qri-Desktop-Setup.0.1.0-win.exe" data-os="mac">Download for Windows</a></small></p>
-          <a class="mx-1 my-3 btn btn-qri btn-qri-magenta btn-qri-big" href="https://github.com/qri-io/desktop/releases/download/v0.1.0/Qri-Desktop-Setup.0.1.0-win.exe" data-os="windows">Download for Windows</a>
-          <p><small><a href="https://github.com/qri-io/desktop/releases/download/v0.1.0/Qri-Desktop-0.1.0-mac.zip" data-os="windows">Download for Mac</a></small></p>
+          <a class="mx-1 my-3 btn btn-qri btn-qri-magenta btn-qri-big" href="https://github.com/qri-io/desktop/releases/download/v0.2.1/Qri-Desktop-0.2.1-mac.zip" data-os="mac">Download for macOS</a>
+          <p><small><a href="https://github.com/qri-io/desktop/releases/download/v0.2.1/Qri.Desktop.Setup.0.2.1.exe" data-os="mac">Download for Windows</a></small></p>
+          <a class="mx-1 my-3 btn btn-qri btn-qri-magenta btn-qri-big" href="https://github.com/qri-io/desktop/releases/download/v0.2.1/Qri.Desktop.Setup.0.2.1.exe" data-os="windows">Download for Windows</a>
+          <p><small><a href="https://github.com/qri-io/desktop/releases/download/v0.2.1/Qri-Desktop-0.2.1-mac.zip" data-os="windows">Download for Mac</a></small></p>
         </div>
       </div>
       <div class="row mb-5">
