@@ -114,5 +114,8 @@ layout: desktop_splash
     if (navigator.platform.match(/(Mac)/i)) {
       el.className = 'mac'
     }
+    if (navigator.platform.match(/(Win)/i)) {
+      el.className = 'windows'
+    }
   </script>
 </div>
