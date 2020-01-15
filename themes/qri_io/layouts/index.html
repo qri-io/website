@@ -1,9 +1,0 @@
-{{ define "title"}} {{ .Site.Title}} {{end}}
-{{ define "header"}} {{ partial "header" . }} {{end}}
-{{ define "main"}}
-{{.Content}}
-{{ end }}
-{{ define "footer"}}
-  {{ partial "mailing-list-signup" .}}
-  {{ partial "footer" .}}
-{{end}}

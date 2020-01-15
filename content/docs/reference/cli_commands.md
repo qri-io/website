@@ -1,14 +1,12 @@
 ---
-title: "CLI commands"
-description: "qri command line reference"
-date: 2018-01-30T00:00:00-04:00
-draft: false
+title: "CLI Commands"
+metaTitle: ""
+metaDescription: ""
+weight: 1
 ---
 
-# Qri CLI command line reference 
 
-
-Qri ("query") is a global dataset version control system 
+Qri ("query") is a global dataset version control system
 on the distributed web.
 
 
@@ -44,12 +42,12 @@ ________
 
 Add a dataset from another peer
 
-### Synopsis
+#### Synopsis
 
 
-Add retrieves a dataset owned by another peer and adds it to your repo. 
-The dataset reference of the dataset will remain the same, including 
-the name of the peer that originally added the dataset. You must have 
+Add retrieves a dataset owned by another peer and adds it to your repo.
+The dataset reference of the dataset will remain the same, including
+the name of the peer that originally added the dataset. You must have
 `qri connect` running in another terminal to use this command.
 
 <!--
@@ -60,7 +58,7 @@ docrun:
 qri add [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -73,7 +71,7 @@ docrun:
   $ qri add other_peer/their_data
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -89,18 +87,18 @@ docrun:
 ________
 
 
-<a id='qri_config_get'></a>
+
 ## qri config get
 
 get configuration settings
 
-### Synopsis
+#### Synopsis
 
-get outputs your current configuration file with private keys 
+get outputs your current configuration file with private keys
 removed by default, making it easier to share your qri configuration settings.
 
 You can get particular parts of the config by using dot notation to
-traverse the config object. For details on each config field checkout: 
+traverse the config object. For details on each config field checkout:
 https://github.com/qri-io/qri/blob/master/config/readme.md
 
 The --with-private-keys option will show private keys.
@@ -115,7 +113,7 @@ docrun:
 qri config get [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -133,7 +131,7 @@ docrun:
   qri config get profile.description
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -152,23 +150,23 @@ docrun:
 
 ________
 
-<a id='qri_config_set'></a>
+
 ## qri config set
 
 Set configuration options
 
-### Synopsis
+#### Synopsis
 
-'qri config set' allows you to set configuration options. You can set 
-particular parts of the config by using dot notation to traverse the 
-config object. 
+'qri config set' allows you to set configuration options. You can set
+particular parts of the config by using dot notation to traverse the
+config object.
 
 While the 'qri config get' command allows you to view the whole config,
 or only parts of it, the 'qri config set' command is more specific.
 
 If the config object were a tree and each field a branch, you can only
-set the leaves of the branches. In other words, the you cannot set a 
-field that is itself an object or array. For details on each config 
+set the leaves of the branches. In other words, the you cannot set a
+field that is itself an object or array. For details on each config
 field checkout: https://github.com/qri-io/qri/blob/master/config/readme.md
 
 <!--
@@ -179,7 +177,7 @@ docrun:
 qri config set [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -195,7 +193,7 @@ docrun:
   qri config set rpc.enabled false
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -210,26 +208,26 @@ docrun:
 
 ________
 
-<a id='qri_config'></a>
+
 ## qri config
 
 Get and set local configuration information
 
-### Synopsis
+#### Synopsis
 
 
 'qri config' encapsulates all settings that control the behaviour of qri.
-This includes all kinds of stuff: your profile details; enabling & disabling 
-different services; what kind of output qri logs to; 
+This includes all kinds of stuff: your profile details; enabling & disabling
+different services; what kind of output qri logs to;
 which ports on qri serves on; etc.
 
-Configuration is stored as a .yaml file kept at $QRI_PATH, or provided at CLI 
+Configuration is stored as a .yaml file kept at $QRI_PATH, or provided at CLI
 runtime via command a line argument.
 
-For details on each config field checkout: 
+For details on each config field checkout:
 https://github.com/qri-io/qri/blob/master/config/readme.md
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -247,7 +245,7 @@ docrun:
   $ qri config set rpc.enabled false
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -262,18 +260,18 @@ docrun:
 
 ________
 
-<a id='qri_connect'></a>
+
 ## qri connect
 
 Connect to the distributed web by spinning up a Qri node
 
-### Synopsis
+#### Synopsis
 
 
-While it’s not totally accurate, connect is like starting a server. Running 
-connect will start a process and stay there until you exit the process 
-(ctrl+c from the terminal, or killing the process using tools like activity 
-monitor on the mac, or the aptly-named “kill” command). Connect does three main 
+While it’s not totally accurate, connect is like starting a server. Running
+connect will start a process and stay there until you exit the process
+(ctrl+c from the terminal, or killing the process using tools like activity
+monitor on the mac, or the aptly-named “kill” command). Connect does three main
 things:
 - Connect to the qri distributed network
 - Connect to IPFS
@@ -290,7 +288,7 @@ docrun:
 qri connect [flags]
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -316,17 +314,17 @@ docrun:
 
 ________
 
-<a id='qri_diff'></a>
+
 ## qri diff
 
 Compare differences between two datasets
 
-### Synopsis
+#### Synopsis
 
 
-Diff compares two datasets from your repo and prints a representation 
+Diff compares two datasets from your repo and prints a representation
 of the differences between them.  You can specifify the datasets
-either by name or by their hash. You can compare different versions of 
+either by name or by their hash. You can compare different versions of
 the same dataset.
 
 <!--
@@ -337,7 +335,7 @@ docrun:
 qri diff [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -353,7 +351,7 @@ docrun:
   $ qri diff me/population_2016 me/population_2017
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -369,15 +367,15 @@ docrun:
 
 ________
 
-<a id='qri_export'></a>
+
 ## qri export
 
 Copy datasets to your local filesystem
 
-### Synopsis
+#### Synopsis
 
 
-Export gets datasets out of qri. By default it exports the dataset body, as `body.csv`, header as`dataset.json`, and ref, as `ref.txt` files. 
+Export gets datasets out of qri. By default it exports the dataset body, as `body.csv`, header as`dataset.json`, and ref, as `ref.txt` files.
 
 To export to a specific directory, use the --output flag.
 
@@ -392,7 +390,7 @@ docrun:
 qri export [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -410,7 +408,7 @@ docrun:
   qri export -o ~/new_directory me/annual_pop
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -431,22 +429,22 @@ docrun:
 
 ________
 
-<a id='qri_get'></a>
+
 ## qri get
 
 Get elements of qri datasets
 
-### Synopsis
+#### Synopsis
 
-Get the qri dataset (except for the body). You can also get portions of 
+Get the qri dataset (except for the body). You can also get portions of
 the dataset: meta, structure, viz, transform, and commit. To narrow down
-further to specific fields in each section, use dot notation. The get 
+further to specific fields in each section, use dot notation. The get
 command prints to the console in yaml format, by default.
 
 You can get pertinent information on multiple datasets at the same time
 by supplying more than one dataset reference.
 
-Check out https://qri.io/docs/reference/dataset/ to learn about each section of the 
+Check out https://qri.io/docs/reference/dataset/ to learn about each section of the
 dataset and its fields.
 
 <!--
@@ -457,7 +455,7 @@ docrun:
 qri get [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -480,7 +478,7 @@ docrun:
   qri get body me/annual_pop
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -497,17 +495,17 @@ docrun:
 
 ________
 
-<a id='qri_list'></a>
+
 ## qri list
 
 Show a list of datasets
 
-### Synopsis
+#### Synopsis
 
 
-List shows lists of datasets, including names and current hashes. 
+List shows lists of datasets, including names and current hashes.
 
-The default list is the latest version of all datasets you have on your local 
+The default list is the latest version of all datasets you have on your local
 qri repository.
 
 When used in conjunction with `qri connect`, list can list a peer's dataset. You
@@ -521,7 +519,7 @@ docrun:
 qri list [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -543,7 +541,7 @@ docrun:
   qri list --peer b5
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -562,21 +560,21 @@ docrun:
 
 ________
 
-<a id='qri_log'></a>
+
 ## qri log
 
 Show log of dataset history
 
-### Synopsis
+#### Synopsis
 
 
-`qri log` prints a list of changes to a dataset over time. Each entry in the log is a 
-snapshot of a dataset taken at the moment it was saved that keeps exact details 
-about how that dataset looked at at that point in time. 
+`qri log` prints a list of changes to a dataset over time. Each entry in the log is a
+snapshot of a dataset taken at the moment it was saved that keeps exact details
+about how that dataset looked at at that point in time.
 
-We call these snapshots versions. Each version has an author (the peer that 
-created the version) and a message explaining what changed. Log prints these 
-details in order of occurrence, starting with the most recent known version, 
+We call these snapshots versions. Each version has an author (the peer that
+created the version) and a message explaining what changed. Log prints these
+details in order of occurrence, starting with the most recent known version,
 working backwards in time.
 
 <!--
@@ -587,7 +585,7 @@ docrun:
 qri log [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -599,7 +597,7 @@ docrun:
   $ qri log b5/precip
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -616,22 +614,22 @@ docrun:
 
 ________
 
-<a id='qri_peers_connect'></a>
+
 ## qri peers connect
 
 Connect to a peer
 
-### Synopsis
+#### Synopsis
 
 
 Connect to a peer using a peername, peer ID, or multiaddress. Qri will use this name, id, or address
-to find a peer to which it has not automatically connected. 
+to find a peer to which it has not automatically connected.
 
-You must have a Qri node running (`qri connect`) in a separate terminal. You will only be able 
+You must have a Qri node running (`qri connect`) in a separate terminal. You will only be able
 to connect to a peer that also has spun up it's own Qri node.
 
 A multiaddress, or multiaddr, is the most specific way to refer to a peer's location, and is therefore
-the most sure-fire way to connect to a peer. 
+the most sure-fire way to connect to a peer.
 
 <!--
 docrun:
@@ -641,7 +639,7 @@ docrun:
 qri peers connect [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -656,7 +654,7 @@ docrun:
   qri peers connect /ip4/192.168.0.194/tcp/4001/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -671,24 +669,24 @@ docrun:
 
 ________
 
-<a id='qri_peers_disconnect'></a>
+
 ## qri peers disconnect
 
 Explicitly close a connection to a peer
 
-### Synopsis
+#### Synopsis
 
 
-Explicitly close a connection to a peer using a peername, peer id, or multiaddress. 
+Explicitly close a connection to a peer using a peername, peer id, or multiaddress.
 
-You can close all connections to the Qri network by ending your Qri node session. 
+You can close all connections to the Qri network by ending your Qri node session.
 
-Use the disconnect command when you want to stay connected to the network, but want to 
+Use the disconnect command when you want to stay connected to the network, but want to
 close your connection to a specific peer. This could be because that connection is hung,
 the connection is pulling too many resources, or because you simply no longer need an
 explicit connection.  This is not the same as blocking a peer or connection.
 
-Once you close a connection to a peer, you or that peer can immediately open another 
+Once you close a connection to a peer, you or that peer can immediately open another
 connection.
 
 You must have `qri connect` running in another terminal.
@@ -701,7 +699,7 @@ docrun:
 qri peers disconnect [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -713,7 +711,7 @@ docrun:
   qri peers disconnect /ip4/192.168.0.194/tcp/4001/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -728,12 +726,12 @@ docrun:
 
 ________
 
-<a id='qri_peers_info'></a>
+
 ## qri peers info
 
 Get info on a Qri peer
 
-### Synopsis
+#### Synopsis
 
 
 The peers info command returns a peer's profile information. The default
@@ -751,7 +749,7 @@ docrun:
 qri peers info [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -766,7 +764,7 @@ docrun:
   $ qri peers info b5 --format json
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -783,19 +781,19 @@ docrun:
 
 ________
 
-<a id='qri_peers_list'></a>
+
 ## qri peers list
 
 List known qri peers
 
-### Synopsis
+#### Synopsis
 
 
-Lists the peers to which your Qri node is connected. 
+Lists the peers to which your Qri node is connected.
 
 You must have `qri connect` running in another terminal.
 
-To find peers that are not online, but to which your node has previously been 
+To find peers that are not online, but to which your node has previously been
 connected, use the `--cached` flag.
 
 <!--
@@ -806,7 +804,7 @@ docrun:
 qri peers list [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -824,7 +822,7 @@ docrun:
   qri peers list --cached
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -843,22 +841,22 @@ docrun:
 
 ________
 
-<a id='qri_peers'></a>
+
 ## qri peers
 
 Commands for working with peers
 
-### Synopsis
+#### Synopsis
 
 
 The `peers` commands allow you to interact with other peers on the Qri network.
-In order for these commands to work, you must be running a Qri node. This 
+In order for these commands to work, you must be running a Qri node. This
 node allows you to communicate on the network. To spin up a Qri node, run
-`qri connect` in a separate terminal. This will connect you to the network, 
-until you choose to close the connection by ending the session or closing 
+`qri connect` in a separate terminal. This will connect you to the network,
+until you choose to close the connection by ending the session or closing
 the terminal.
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -873,15 +871,15 @@ docrun:
 
 ________
 
-<a id='qri_publish'></a>
+
 ## qri publish
 
 set dataset publicity
 
-### Synopsis
+#### Synopsis
 
-Publish makes your dataset available to others. While online, peers that connect 
-to you can only see datasets and versions that you've published. Publishing a 
+Publish makes your dataset available to others. While online, peers that connect
+to you can only see datasets and versions that you've published. Publishing a
 dataset always makes all previous history entries available, and any updates
 to a published dataset will be immediately visible to connected peers.
 
@@ -894,7 +892,7 @@ docrun:
 qri publish [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -912,7 +910,7 @@ docrun:
   $ qri publish -unpublish me/dataset
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -929,12 +927,12 @@ docrun:
 
 ________
 
-<a id='qri_registry_pin'></a>
+
 ## qri registry pin
 
 pin dataset data to the registry
 
-### Synopsis
+#### Synopsis
 
 
 Pin asks a registry to host a copy of your dataset, making it available for
@@ -948,7 +946,7 @@ docrun:
 qri registry pin [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -960,7 +958,7 @@ docrun:
   $ qri registry pin me/dataset_name
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -975,16 +973,16 @@ docrun:
 
 ________
 
-<a id='qri_registry_publish'></a>
+
 ## qri registry publish
 
 Publish dataset info to the registry
 
-### Synopsis
+#### Synopsis
 
 
 Publishes the dataset information onto the registry. There will be a record
-of your dataset on the registry, and if your dataset is less than 20mbs, 
+of your dataset on the registry, and if your dataset is less than 20mbs,
 Qri will back your dataset up onto the registry.
 
 Published datasets can be found by other peers using the `qri search` command.
@@ -999,7 +997,7 @@ docrun:
 qri registry publish [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -1011,7 +1009,7 @@ docrun:
   $ qri registry publish me/dataset_name
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1026,12 +1024,12 @@ docrun:
 
 ________
 
-<a id='qri_registry_status'></a>
+
 ## qri registry status
 
 get the status of a reference on the registry
 
-### Synopsis
+#### Synopsis
 
 
   use status to see what version of a dataset the registry has on-record, if any
@@ -1044,7 +1042,7 @@ docrun:
 qri registry status [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -1056,7 +1054,7 @@ docrun:
     $ qri registry status me/dataset_name
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1071,12 +1069,12 @@ docrun:
 
 ________
 
-<a id='qri_registry_unpin'></a>
+
 ## qri registry unpin
 
 unpin dataset data from the registry
 
-### Synopsis
+#### Synopsis
 
 
 Unpin reverses the pin process, asking a registry to remove it's hosted copy
@@ -1090,7 +1088,7 @@ docrun:
 qri registry unpin [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -1102,7 +1100,7 @@ docrun:
   $ qri registry unpin me/dataset_name
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1117,16 +1115,16 @@ docrun:
 
 ________
 
-<a id='qri_registry_unpublish'></a>
+
 ## qri registry unpublish
 
 remove dataset info from the registry
 
-### Synopsis
+#### Synopsis
 
 
-Unpublish will remove the reference to your dataset from the registry. If 
-you dataset was previously backed up onto the registry, this backup will 
+Unpublish will remove the reference to your dataset from the registry. If
+you dataset was previously backed up onto the registry, this backup will
 be removed.
 
 This dataset will no longer show up in search results.
@@ -1139,7 +1137,7 @@ docrun:
 qri registry unpublish [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -1151,7 +1149,7 @@ docrun:
   $ qri registry unpublish me/dataset_name
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1166,23 +1164,23 @@ docrun:
 
 ________
 
-<a id='qri_registry'></a>
+
 ## qri registry
 
 Commands for working with a qri registry
 
-### Synopsis
+#### Synopsis
 
 
 Registries are federated public records of datasets and peers.
 These records form a public facing central lookup for your datasets, so others
-can find them through search tools and via web links. You can use registry 
-commands to control how your datasets are published to registries, opting 
+can find them through search tools and via web links. You can use registry
+commands to control how your datasets are published to registries, opting
 in or out on a dataset-by-dataset basis.
 
 Unpublished dataset info will be held locally so you can still interact
-with it. And your datasets will be available to others peers when you run 
-"qri connect", but will not show up in search results, and will not be 
+with it. And your datasets will be available to others peers when you run
+"qri connect", but will not show up in search results, and will not be
 displayed on lists of registry datasets.
 
 Qri is designed to work without a registry should you want to opt out of
@@ -1193,7 +1191,7 @@ registry entirely is better left to advanced users.
 You can opt out of registries entirely by running:
 $ qri config set registry.location ""
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1208,20 +1206,20 @@ docrun:
 
 ________
 
-<a id='qri_remove'></a>
+
 ## qri remove
 
 Remove a dataset from your local repository
 
-### Synopsis
+#### Synopsis
 
 
-Remove gets rid of a dataset from your qri node. After running remove, qri will 
+Remove gets rid of a dataset from your qri node. After running remove, qri will
 no longer list your dataset as being available locally. By default, remove frees
-up the space taken up by the dataset, but not right away. The IPFS repo that’s 
-storing the data will need to garbage-collect that data when it’s good & ready, 
-which could be anytime. If you’re running low on space, garbage collection will 
-be sooner. 
+up the space taken up by the dataset, but not right away. The IPFS repo that’s
+storing the data will need to garbage-collect that data when it’s good & ready,
+which could be anytime. If you’re running low on space, garbage collection will
+be sooner.
 
 Keep in mind that by default your IPFS repo is capped at 10GB in size, if you
 adjust this cap using IPFS, qri will respect it.
@@ -1237,7 +1235,7 @@ docrun:
 qri remove [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -1249,7 +1247,7 @@ docrun:
   $ qri remove me/annual_pop
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1264,12 +1262,12 @@ docrun:
 
 ________
 
-<a id='qri_rename'></a>
+
 ## qri rename
 
 Change the name of a dataset
 
-### Synopsis
+#### Synopsis
 
 
 Rename changes the name of a dataset.
@@ -1288,7 +1286,7 @@ docrun:
 qri rename [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -1300,7 +1298,7 @@ docrun:
   $ qri rename me/annual_pop me/annual_population
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1315,16 +1313,16 @@ docrun:
 
 ________
 
-<a id='qri_render'></a>
+
 ## qri render
 
 Execute a template against a dataset
 
-### Synopsis
+#### Synopsis
 
 
-You can use html templates, formatted in the go/html template style, 
-to render visualizations from your dataset. These visualizations can be charts, 
+You can use html templates, formatted in the go/html template style,
+to render visualizations from your dataset. These visualizations can be charts,
 graphs, or just display your dataset in a different format.
 
 Use the `--output` flag to save the rendered html to a file.
@@ -1340,7 +1338,7 @@ docrun:
 qri render [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -1355,7 +1353,7 @@ docrun:
   $ qri render --template=template.html me/schools
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1375,28 +1373,28 @@ docrun:
 
 ________
 
-<a id='qri_save'></a>
+
 ## qri save
 
 Save changes to a dataset
 
-### Synopsis
+#### Synopsis
 
 
-Save is how you change a dataset, updating one or more of data, metadata, and structure. 
-You can also update your data via url. Every time you run save, an entry is added to 
+Save is how you change a dataset, updating one or more of data, metadata, and structure.
+You can also update your data via url. Every time you run save, an entry is added to
 your dataset’s log (which you can see by running `qri log <dataset_reference>`).
 
 If the dataset you're changing has defined a transform, running `qri save`
 will re execute the transform. To only re-run the transform, run save with no args.
 
-Every time you save, you can provide a message about what you changed and why. 
+Every time you save, you can provide a message about what you changed and why.
 If you don’t provide a message Qri will automatically generate one for you.
 
 When you make an update and save a dataset that you originally added from a different
 peer, the dataset gets renamed from `peers_name/dataset_name` to `my_name/dataset_name`.
 
-The `--message` and `--title` flags allow you to add a 
+The `--message` and `--title` flags allow you to add a
 commit message and title to the save.
 
 <!--
@@ -1407,7 +1405,7 @@ docrun:
 qri save [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -1425,7 +1423,7 @@ docrun:
   qri save me/tf_dataset
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1448,15 +1446,15 @@ docrun:
 
 ________
 
-<a id='qri_search'></a>
+
 ## qri search
 
 Search qri
 
-### Synopsis
+#### Synopsis
 
 
-Search datasets & peers that match your query. Search pings the qri registry. 
+Search datasets & peers that match your query. Search pings the qri registry.
 
 Any dataset that has been published to the registry is available for search.
 
@@ -1468,7 +1466,7 @@ docrun:
 qri search [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -1480,7 +1478,7 @@ docrun:
   $ qri search "annual population"
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1496,27 +1494,27 @@ docrun:
 
 ________
 
-<a id='qri_setup'></a>
+
 ## qri setup
 
 Initialize qri and IPFS repositories, provision a new qri ID
 
-### Synopsis
+#### Synopsis
 
 
-Setup is the first command you run to get a fresh install of Qri. If you’ve 
-never run qri before, you’ll need to run setup before you can do anything. 
+Setup is the first command you run to get a fresh install of Qri. If you’ve
+never run qri before, you’ll need to run setup before you can do anything.
 
 Setup does a few things:
 - create a qri repository to keep all of your data
 - provisions a new qri ID
 - create an IPFS repository if one doesn’t exist
 
-This command is automatically run if you invoke any Qri command without first 
-running setup. If setup has already been run, by default Qri won’t let you 
+This command is automatically run if you invoke any Qri command without first
+running setup. If setup has already been run, by default Qri won’t let you
 overwrite this info.
 
-Use the `--remove` to remove your Qri repo. This deletes your entire repo, 
+Use the `--remove` to remove your Qri repo. This deletes your entire repo,
 including all your datasets, and de-registers your peername from the registry.
 
 <!--
@@ -1527,7 +1525,7 @@ docrun:
 qri setup [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -1539,7 +1537,7 @@ docrun:
   $ qri setup --peername=your_great_peername
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1562,25 +1560,25 @@ docrun:
 
 ________
 
-<a id='qri_update'></a>
+
 ## qri update
 
 add/create the lastest version of a dataset
 
-### Synopsis
+#### Synopsis
 
 
 Update fast-forwards your dataset to the latest known version. If the dataset
-is not in your namespace (i.e. dataset name doesn't start with your peername), 
+is not in your namespace (i.e. dataset name doesn't start with your peername),
 update will ask the peer for any new versions and download them. Updating a peer
 dataset accepts no arguments other than the dataset name and --dry-run flag.
 
 **For peer update to work, the peer must be online at the time. We know this is
 irritating, we're working on a solution.**
 
-Calling update on a dataset in your namespace will advance your dataset by 
-re-running any specified transform script, creating a new version of your 
-dataset in the process. If your dataset doesn't have a transform script, update 
+Calling update on a dataset in your namespace will advance your dataset by
+re-running any specified transform script, creating a new version of your
+dataset in the process. If your dataset doesn't have a transform script, update
 will error.
 
 <!--
@@ -1591,7 +1589,7 @@ docrun:
 qri update [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -1609,7 +1607,7 @@ docrun:
   qri update me/dataset_with_transform -p --secrets=keyboard,cat
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1629,16 +1627,16 @@ docrun:
 
 ________
 
-<a id='qri_use'></a>
+
 ## qri use
 
 Select datasets for use with the qri get command
 
-### Synopsis
+#### Synopsis
 
 
-Run the `use` command to have Qri remember references to a specific datasets. 
-These datasets will be referenced for future commands, if no dataset reference 
+Run the `use` command to have Qri remember references to a specific datasets.
+These datasets will be referenced for future commands, if no dataset reference
 is explicitly given for those commands.
 
 We created this command to ease the typing/copy and pasting burden while using
@@ -1652,7 +1650,7 @@ docrun:
 qri use [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -1674,7 +1672,7 @@ docrun:
   qri use me/population_2017 me/population_2018
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1691,30 +1689,30 @@ docrun:
 
 ________
 
-<a id='qri_validate'></a>
+
 ## qri validate
 
 Show schema validation errors
 
-### Synopsis
+#### Synopsis
 
 
-Validate checks data for errors using a schema and then printing a list of 
-issues. By default validate checks a dataset's body against it’s own schema. 
-Validate is a flexible command that works with data and schemas either 
-inside or outside of qri by providing one or both of --body and --schema 
-arguments. 
+Validate checks data for errors using a schema and then printing a list of
+issues. By default validate checks a dataset's body against it’s own schema.
+Validate is a flexible command that works with data and schemas either
+inside or outside of qri by providing one or both of --body and --schema
+arguments.
 
-Providing --schema and --body is an “external validation" that uses nothing 
-stored in qri. When only one of schema or body args are provided, the other 
-comes from a dataset reference. For example, to check how a file “data.csv” 
+Providing --schema and --body is an “external validation" that uses nothing
+stored in qri. When only one of schema or body args are provided, the other
+comes from a dataset reference. For example, to check how a file “data.csv”
 validates against a dataset "foo”, we would run:
 
   $ qri validate --body data.csv me/foo
 
 In this case, qri will will print any validation as if data.csv was foo’s data.
 
-To see how changes to a schema will validate against a 
+To see how changes to a schema will validate against a
 dataset in qri, we would run:
 
   $ qri validate --schema schema.json me/foo
@@ -1738,7 +1736,7 @@ docrun:
 qri validate [flags]
 ```
 
-### Examples
+#### Examples
 
 <!--
 docrun:
@@ -1756,7 +1754,7 @@ docrun:
   qri validate --body data.csv --schema schema.json
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1773,12 +1771,12 @@ docrun:
 
 ________
 
-<a id='qri_version'></a>
+
 ## qri version
 
 Print the version number
 
-### Synopsis
+#### Synopsis
 
 
 Qri uses semantic versioning.
@@ -1793,7 +1791,7 @@ docrun:
 qri version [flags]
 ```
 
-### Options
+#### Options
 
 <!--
 docrun:
@@ -1803,8 +1801,3 @@ docrun:
 ```
   -h, --help   help for version
 ```
-
-
-
-________
-
