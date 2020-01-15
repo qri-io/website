@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "standard",
+    "plugin:react/recommended"
+  ],
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "graphql": false
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 10,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "react/prop-types": "off",
+    "template-tag-spacing": "off",
+    "no-unexpected-multiline": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

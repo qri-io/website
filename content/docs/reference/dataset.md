@@ -1,18 +1,16 @@
 ---
-title: "Dataset"
-description: "dataset definition"
-date: 2018-01-30T00:00:00-04:00
-section: reference
+title: "Dataset Specification"
+metaTitle: ""
+metaDescription: ""
+weight: 1
 ---
 
-# Dataset
+## Overview
 A Dataset is a document for describing & storing structured data. Dataset documents are designed to satisfy the **FAIR** principle of being
 _Findable, Accessible, Interoperable, and Reusable_, in relation to other dataset documents, and related-but-separate technologies such as data catalogs, HTTP API's, and data package formats Datasets are designed to be stored and distributed on content-addressed
 (identify-by-hash) systems The dataset document definition is built from a research-first principle, valuing direct interoperability with existing standards over novel definitions or specifications.
 
 _The main implementation of dataset is available at https://github.com/qri-io/dataset. If you have any concerns or questions, We'd be delighted if you filed an [issue](https://github.com/qri-io/dataset/issues)._
-
-** **
 
 ### Dataset Components:
 A Dataset is broken into several components. Each component has a different purpose:
@@ -20,20 +18,17 @@ A Dataset is broken into several components. Each component has a different purp
 
 | component   | purpose  |
 |-------------|----------|
-| `body`      | location of dataset data. The _subject_ all other componets are about |
+| `body`      | location of dataset data. The _subject_ all other components are about |
+| `readme`    | free-form text describing the dataset, supports markdown |
 | `commit`    | versioning information for this dataset at a specific point in time |
 | `meta`      | descriptive metadata |
 | `structure` | machine-oriented metadata for interpreting body |
 | `transform` | description of an executed script that resulted in this dataset |
-| `viz`       | template details for visually representing this dataset |
 
 Each component is described in detail below.
 
 
-** **
-
-
-### <a id="body">`body`</a>
+## Body
 Body is the principle content of a dataset. A dataset body is the subject which all other fields describe and qualify.
 
 Supported Data Formats:
@@ -45,9 +40,7 @@ Supported Data Formats:
 
 The structure of the data stored is arbitrary, with one important exception: _the top level of body must be either an object or an array_. scalar types like int, bool, float, or strings are not valid types. Keep in mind that it's perfectly valid to wrap a scalar type (for example, a string) in an array to obtain a valid body.
 
-** **
-
-### <a id="commit">`commit`</a>
+## Commit
 Commit encapsulates information about changes to a dataset in relation to other entries in a given history. Commit is directly analogous to the concept of a Commit Message in the git version control system. A full commit defines the administrative metadata of a dataset, answering _"who made this dataset, when, and why"_.
 
 _commit fields:_
@@ -79,9 +72,8 @@ docrun:
   }
 ```
 
-** **
+## Meta
 
-### <a id="meta">`meta`</a>
 Meta contains human-readable descriptive metadata that qualifies and distinguishes a dataset.
 Well-defined Meta should aid in making datasets Findable by describing a dataset in generalizable taxonomies that can aggregate across other dataset documents. Because dataset documents are intended to interoperate with many other data storage and cataloging systems, meta fields and conventions are derived from existing metadata formats whenever possible.
 
@@ -141,9 +133,8 @@ docrun:
   }
 ```
 
-** **
 
-### <a id="structure">`structure`</a>
+## Structure
 Structure defines the characteristics of a dataset document necessary for a machine to interpret the dataset body.
 Structure fields are things like the encoding data format (JSON,CSV,etc.), length of the dataset body in bytes, stored in a rigid form intended for machine use. A well defined structure & accompanying software should allow the end user to spend more time focusing on the data itself.
 
@@ -163,9 +154,7 @@ _structure fields:_
 | `length`            | `int`         | length of the data object in bytes |
 | `schema`            | `jsonSchema`  | the schema definition for the dataset body, schemas are defined using the IETF json-schema specification. for more info on json-schema see: https://json-schema.org |
 
-** **
-
-### <a id="transform">`transform`</a>
+## Transform
 Transform is a record of executing a transformation on data. Transforms can theoretically be anything from an SQL query, a jupyter
 notebook, the state of an ETL pipeline, etc, so long as the input is zero or more datasets, and the output is a single dataset
 Ideally, transforms should contain all the machine-necessary bits to deterministicly execute the algorithm referenced in "ScriptPath".
@@ -179,17 +168,3 @@ _transform fields:_
 | `syntaxVersion`      | `string` | an identifier for the application and version number that produced the result |
 | `config`             | `object` | any configuration that would affect the resulting hash. transformations may use values present in config to perform their operations |
 | `resources`          | `object` |  map of all datasets transform depends on with both name and commit paths |
-
-** **
-
-### <a id="viz">`viz`</a>
-Viz stores configuration data related to representing a dataset as a visualization
-
-_viz fields:_
-
-| name         | type     | description |
-|--------------|----------|-------------|
-| `format`     | `string` | designates the visualization configuration syntax, currently only `html` is accepted |
-| `scriptPath` | `string` | location of script that generates the visualization |
-
-** **
