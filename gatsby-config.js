@@ -65,7 +65,13 @@ const plugins = [
       anonymize: false
     }
   },
-  'gatsby-plugin-catch-links'
+  'gatsby-plugin-catch-links',
+  {
+    resolve: 'gatsby-plugin-google-analytics',
+    options: {
+      trackingId: 'UA-78635332-1'
+    }
+  }
 ]
 // check and add algolia
 if (config.header.search && config.header.search.enabled && config.header.search.algoliaAppId && config.header.search.algoliaAdminKey) {
