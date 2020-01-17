@@ -386,3 +386,36 @@ $light-blue-hr: 2px solid #4fc6f3;
     }
   }
 }
+
+.team-member-bio {
+  .name {
+    margin-bottom: 0
+  }
+
+  .title {
+    font-size: .85rem;
+    margin-bottom: 8px;
+  }
+
+  .team-member-photo:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  .social {
+    svg {
+      color: #cdcdcd;
+      margin: 0 6px;
+    }
+  }
+
+  .bio {
+    font-size: 0.9rem;
+  }
+
+  .image-col {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+}
