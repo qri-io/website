@@ -67,6 +67,6 @@ That’s it!  Once the dataset is transferred, your dataset will have a shiny ne
 Here are some things to try now that you’re up and running:
 
 - Browse the full [Qri Desktop Manual](/docs/qri-desktop-manual/overview)
-- Find other users’ datasets on [Qri Cloud](https://qri.io/cloud)
+- Find other users’ datasets on [Qri Cloud](https://qri.cloud)
 - Try out the [Qri CLI](/docs/qri-cli-manual/overview)
 - Drop into [our discord server](https://discordapp.com/invite/thkJHKj) to chat about Qri

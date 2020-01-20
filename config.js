@@ -45,7 +45,7 @@ const config = {
     title: 'Qri.io',
     description: 'Qri Website and Documentation',
     ogImage: null,
-    docsLocation: 'https://github.com/qri-io/website-refresh/blob/master/content',
+    docsLocation: 'https://github.com/qri-io/website/blob/master/content',
     favicon: 'https://graphql-engine-cdn.hasura.io/img/hasura_icon_black.svg'
   },
   pwa: {
