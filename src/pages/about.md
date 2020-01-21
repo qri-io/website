@@ -61,7 +61,7 @@ Qri is leading an open-source project to build software for dataset synching, ve
   photo='dustmop.jpg'
   github='dustmop'
 >
-  Dustin is a full stack developer who makes everything about Qri work better.  He has over a decade of software engineering experience, the bulk of which coming during his time at Google (focusing on compiler and high performance code). He also has deep experience in node.js, python, Go (contributor lis) C++, and other languages.
+  Dustin is a full stack developer who makes everything about Qri work better.  He has over a decade of software engineering experience, the bulk of which coming during his time at Google (focusing on compiler and high performance code). He also has deep experience in node.js, python, Go (contributor list) C++, and other languages.
 
   In his free time, Dustin designs and builds arcade and video games.
 </TeamMemberBio>
