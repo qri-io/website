@@ -7,15 +7,14 @@ import JobRow from '../components/JobRow'
 
 # Jobs
 
+A running list of job openings at Qri. Join our team! If you see it here, the job's still open.
+
 <JobRow
-  title='Full-Stack Engineer'
-  location='New York, NY'
-  team='Engineering'
-  link='https://chriswhong.com'
+  title='Data Research Assistant'
+  location='New York, NY (remote OK)'
+  team='Community'
+  link='https://www.linkedin.com/jobs/cap/view/1659228994/'
 />
-<JobRow
-  title='Engineering Intern'
-  location='New York, NY'
-  team='Engineering'
-  link='https://chriswhong.com'
-/>
+
+
+(engineering job postings coming soon!)
