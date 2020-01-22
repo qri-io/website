@@ -9,7 +9,7 @@ const JobRow = ({ title, location, team, link }) => {
         <div className='details'>{location} &nbsp; {team}</div>
       </div>
       <div className='col-3 text-right'>
-        <ExternalLink href={link}>
+        <ExternalLink to={link}>
           <div className='btn btn-primary'>APPLY</div>
         </ExternalLink>
       </div>
