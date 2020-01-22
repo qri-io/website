@@ -12,9 +12,10 @@ A running list of job openings at Qri. Join our team! If you see it here, the jo
 <JobRow
   title='Data Research Assistant'
   location='New York, NY (remote OK)'
-  team='Community'
+  team=''
   link='https://www.linkedin.com/jobs/cap/view/1659228994/'
 />
 
 
-(engineering job postings coming soon!)
+
+*Engineering job postings coming soon!*
