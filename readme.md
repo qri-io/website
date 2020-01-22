@@ -8,7 +8,12 @@ This site is built with [gatsby](https://www.gatsbyjs.org/), a javascript static
 
 ## Development
 
-- Install gatsby `npm install -g gatsby-cli`
+You should have `node` and `yarn` already installed on your machine.
+
+You'll also need `gatsby-cli`, which you can install with `npm install -g gatsby-cli`
+
+To run the dev server:
+
 - Clone this repository
 - cd to the project directory
 - Install dependencies `yarn`
