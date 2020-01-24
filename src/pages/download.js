@@ -4,12 +4,21 @@ import { Link } from 'gatsby'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons'
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics'
 
 import ExternalLink from '../components/ExternalLink'
 
 const latestVersion = '0.3.2'
 const macDownloadUrl = `https://github.com/qri-io/desktop/releases/download/v${latestVersion}/Qri-Desktop-${latestVersion}.dmg`
 const windowsDownloadUrl = `https://github.com/qri-io/desktop/releases/download/v${latestVersion}/Qri.Desktop.Setup.${latestVersion}.exe`
+
+const handleDownloadClick = (os) => {
+  trackCustomEvent({
+    category: 'Qri Desktop',
+    action: 'Download',
+    label: `Download - ${os}`
+  })
+}
 
 const DownloadPage = () => (
   <>
@@ -33,10 +42,33 @@ const DownloadPage = () => (
               <p className="col-md-8 mx-auto mb-4">
               As an open-source project, Qri is both the resource and product of a community of contributors and data enthusiasts - many of whom share feature ideas, help find and squash bugs, or contribute code and datasets.
               </p>
-              <ExternalLink to={macDownloadUrl}><button className="mx-1 my-3 btn btn-qri btn-qri-magenta btn-qri-big" data-os="mac">Download for macOS</button></ExternalLink>
-              <p data-os="mac"><small><ExternalLink to={windowsDownloadUrl}>Download for Windows</ExternalLink></small></p>
-              <ExternalLink to={windowsDownloadUrl}><button className="mx-1 my-3 btn btn-qri btn-qri-magenta btn-qri-big" data-os="windows">Download for Windows</button></ExternalLink>
-              <p data-os="windows"><small><ExternalLink to={macDownloadUrl}>Download for Mac</ExternalLink></small></p>
+              <ExternalLink to={macDownloadUrl} onClick={() => { handleDownloadClick('mac') }}>
+                <button
+                  className="mx-1 my-3 btn btn-qri btn-qri-magenta btn-qri-big"
+                  data-os="mac"
+                >
+                  Download for macOS
+                </button>
+              </ExternalLink>
+              <p data-os="mac">
+                <small>
+                  <ExternalLink to={windowsDownloadUrl} onClick={() => { handleDownloadClick('windows') }}>
+                    Download for Windows
+                  </ExternalLink>
+                </small>
+              </p>
+              <ExternalLink to={windowsDownloadUrl} onClick={() => { handleDownloadClick('windows') }}>
+                <button className="mx-1 my-3 btn btn-qri btn-qri-magenta btn-qri-big" data-os="windows">
+                  Download for Windows
+                </button>
+              </ExternalLink>
+              <p data-os="windows">
+                <small>
+                  <ExternalLink to={macDownloadUrl} onClick={() => { handleDownloadClick('mac') }}>
+                    Download for Mac
+                  </ExternalLink>
+                </small>
+              </p>
             </div>
           </div>
           <div className="row mb-5">
