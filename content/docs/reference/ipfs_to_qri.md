@@ -16,7 +16,7 @@ Qri imports [go-ipfs](https://github.com/ipfs/go-ipfs) as a dependency. When we 
 
 If an IPFS repo doesn't exist when you run  `qri setup`, qri creates one for you, using the default IPFS configuration.
 
-There are lots of places where qri & IPFS overlap. generally we see Qri as being an enthusiastic member of the libp2p ecosystem, building atop libp2p & multformats for any custom p2p behaviour. IPFS skills should make it easier to use Qri, and vice versa.
+There are lots of places where qri & IPFS overlap. Generally we see Qri as being an enthusiastic member of the libp2p ecosystem, building atop libp2p & multformats for any custom p2p behaviour. IPFS skills should make it easier to use Qri, and vice versa.
 
 #### `qri connect` == (`ipfs daemon` + the Qri protocol)
 Qri's version of `ipfs daemon` is `qri connect`. When you run qri connect, you are creating a standard IPFS node & long-running daemon process that Qri build on top of. As of qri v0.6.2, Qri makes the IPFS HTTP API available by default. If you haven't change your IPFS config, it will be at `http://localhost:5001`. In addition to p2p communication, `qri connect` makes JSON & RPC api's available for doing qri-specific stuff.
