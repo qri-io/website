@@ -13,7 +13,7 @@ const Footer = () => {
             <h5>Download</h5>
             <ul>
               <li><Link to='/download'>Qri Desktop</Link></li>
-              <li><Link to='/download'>Qri CLI</Link></li>
+              <li><ExternalLink to='https://github.com/qri-io/qri/releases'>Qri CLI</ExternalLink></li>
             </ul>
           </div>
           <div className='col-12 col-sm-4 col-md-2'>
