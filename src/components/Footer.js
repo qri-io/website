@@ -19,7 +19,7 @@ const Footer = () => {
           <div className='col-12 col-sm-4 col-md-2'>
             <h5>Learn</h5>
             <ul>
-              <li><Link to='/docs'>Tutuorials</Link></li>
+              <li><Link to='/docs'>Tutorials</Link></li>
               <li><Link to='/docs'>Docs</Link></li>
               <li><Link to='/faq'>FAQs</Link></li>
             </ul>
