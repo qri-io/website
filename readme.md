@@ -54,3 +54,7 @@ metaTitle: "Frequently Asked Questions"
 metaDescription: "Frequently Asked Questions about Qri"
 ---
 ```
+
+## the `.cache` directory
+
+If you move around existing pages (such as moving a page down into a directory) you may have issues rebuilding in development.  You can safely delete the `.cache` directory, which will be rebuilt the next time you run `gatsby develop`

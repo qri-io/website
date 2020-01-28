@@ -1,5 +1,5 @@
 import React from 'react'
-import ExternalLink from './ExternalLink'
+import { Link } from 'gatsby'
 
 const JobRow = ({ title, location, team, link }) => {
   return (
@@ -9,9 +9,9 @@ const JobRow = ({ title, location, team, link }) => {
         <div className='details'>{location} &nbsp; {team}</div>
       </div>
       <div className='col-3 text-right'>
-        <ExternalLink to={link}>
-          <div className='btn btn-primary'>APPLY</div>
-        </ExternalLink>
+        <Link to={link}>
+          <div className='btn btn-primary'>VIEW JOB</div>
+        </Link>
       </div>
     </div>
   )
