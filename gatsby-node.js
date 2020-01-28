@@ -140,5 +140,20 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       node,
       value: node.frontmatter.weight
     })
+
+    // make additional frontmatter fields for jobs
+    if (node.fileAbsolutePath.match(/jobs\/job-/)) {
+      createNodeField({
+        name: 'jobTitle',
+        node,
+        value: node.frontmatter.jobTitle
+      })
+
+      createNodeField({
+        name: 'jobLocation',
+        node,
+        value: node.frontmatter.jobLocation
+      })
+    }
   }
 }
