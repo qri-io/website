@@ -2,7 +2,7 @@
 title: "Qri Job Posting - Frontend Software Engineer"
 metaTitle: "Qri Job Posting - Frontend Software Engineer"
 metaDescription: ""
-jobTitle: "Research Assistant"
+jobTitle: "Frontend Software Engineer"
 jobLocation: "New York, NY (Remote OK)"
 ---
 

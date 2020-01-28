@@ -1,8 +1,8 @@
 ---
-title: "Qri Job Posting - Research Assistant"
-metaTitle: "Qri Job Posting - Research Assistant"
+title: "Qri Job Posting - Backend Software Engineer"
+metaTitle: "Qri Job Posting - Backend Software Engineer"
 metaDescription: ""
-jobTitle: "Research Assistant"
+jobTitle: "Backend Software Engineeer"
 jobLocation: "New York, NY (Remote OK)"
 ---
 
