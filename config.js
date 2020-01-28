@@ -14,6 +14,7 @@ const config = {
     tweetText: '',
     links: [
       { text: 'About', link: '/about' },
+      { text: 'Jobs', link: '/jobs' },
       { text: 'Blog', link: 'https://medium.com/qri-io' },
       { text: 'Docs', link: '/docs' },
       { text: 'Download', link: '/download' }
