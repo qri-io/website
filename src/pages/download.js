@@ -4,7 +4,6 @@ import { Link } from 'gatsby'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons'
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics'
 
 import ExternalLink from '../components/ExternalLink'
 
@@ -12,10 +11,10 @@ const latestVersion = '0.3.3'
 const macDownloadUrl = `https://github.com/qri-io/desktop/releases/download/v${latestVersion}/Qri-Desktop-${latestVersion}.dmg`
 const windowsDownloadUrl = `https://github.com/qri-io/desktop/releases/download/v${latestVersion}/Qri.Desktop.Setup.${latestVersion}.exe`
 
+// the first argument in track() becomes the google analytics 'Action' property after passing through segment
 const handleDownloadClick = (os) => {
-  trackCustomEvent({
+  window.analytics.track('Download', {
     category: 'Qri Desktop',
-    action: 'Download',
     label: `Download - ${os}`
   })
 }
