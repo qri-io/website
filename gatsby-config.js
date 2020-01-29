@@ -67,9 +67,9 @@ const plugins = [
   },
   'gatsby-plugin-catch-links',
   {
-    resolve: 'gatsby-plugin-google-analytics',
+    resolve: 'gatsby-plugin-segment-analytics',
     options: {
-      trackingId: 'UA-78635332-1'
+      writeKey: 'b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju'
     }
   }
 ]
