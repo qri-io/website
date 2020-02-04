@@ -24,6 +24,7 @@ const redirects = [
   ['/docs/tutorials/cli-quickstart', '/docs/getting-started/qri-cli-quickstart'],
   ['/docs/tutorials/*', '/docs'],
   ['/docs/tutorials', '/docs'],
+  ['/docs/reference/dataset-specification/', '/docs/reference/dataset'],
   ['/docs/reference/starlark_syntax', '/docs/starlark/syntax'],
   ['/docs/reference/starlark_examples', '/docs/starlark/examples'],
   ['/docs/reference/starlib', '/docs/starlark/starlib'],
