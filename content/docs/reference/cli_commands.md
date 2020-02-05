@@ -37,7 +37,7 @@ on the distributed web.
 
 ________
 
-<a id='qri_add'></a>
+
 ## qri add
 
 Add a dataset from another peer
