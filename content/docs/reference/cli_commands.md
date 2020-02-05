@@ -12,28 +12,28 @@ on the distributed web.
 
 |Command | Description |
 |--------|-------------|
-|[qri add](#qri_add)  | Add a dataset from another peer   |
-|[qri body](#qri_body)  | Get the body of a dataset   |
-|[qri config](#qri_config)  | Get and set local configuration information   |
-|[qri connect](#qri_connect)  | Connect to the distributed web by spinning up a Qri node   |
-|[qri diff](#qri_diff)  | Compare differences between two datasets   |
-|[qri export](#qri_export)  | Copy datasets to your local filenamesystem   |
-|[qri get](#qri_get)  | Get elements of qri datasets   |
-|[qri info](#qri_info)  | Show summarized description of a dataset   |
-|[qri list](#qri_list)  | Show a list of datasets   |
-|[qri log](#qri_log)  | Show log of dataset history   |
-|[qri peers](#qri_peers)  | Commands for working with peers   |
-|[qri publish](#qri_publish)  | Make your dataset available on the registry and to your connected peers   |
-|[qri registry](#qri_registry)  | Commands for working with a qri registry   |
-|[qri remove](#qri_remove)  | Remove a dataset from your local repository   |
-|[qri rename](#qri_rename)  | Change the name of a dataset   |
-|[qri render](#qri_render)  | Execute a template against a dataset   |
-|[qri save](#qri_save)  | Create a new dataset or save changes to an existing dataset   |
-|[qri search](#qri_search)  | Search qri   |
-|[qri setup](#qri_setup)  | Initialize qri and IPFS repositories, provision a new qri ID   |
-|[qri use](#qri_use)  | Select datasets for use with the qri get command   |
-|[qri validate](#qri_validate)  | Show schema validation errors   |
-|[qri version](#qri_version)  | Print the version number   |
+|[qri add](#qri-add)  | Add a dataset from another peer   |
+|[qri body](#qri-body)  | Get the body of a dataset   |
+|[qri config](#qri-config)  | Get and set local configuration information   |
+|[qri connect](#qri-connect)  | Connect to the distributed web by spinning up a Qri node   |
+|[qri diff](#qri-diff)  | Compare differences between two datasets   |
+|[qri export](#qri-export)  | Copy datasets to your local filenamesystem   |
+|[qri get](#qri-get)  | Get elements of qri datasets   |
+|[qri info](#qri-info)  | Show summarized description of a dataset   |
+|[qri list](#qri-list)  | Show a list of datasets   |
+|[qri log](#qri-log)  | Show log of dataset history   |
+|[qri peers](#qri-peers)  | Commands for working with peers   |
+|[qri publish](#qri-publish)  | Make your dataset available on the registry and to your connected peers   |
+|[qri registry](#qri-registry)  | Commands for working with a qri registry   |
+|[qri remove](#qri-remove)  | Remove a dataset from your local repository   |
+|[qri rename](#qri-rename)  | Change the name of a dataset   |
+|[qri render](#qri-render)  | Execute a template against a dataset   |
+|[qri save](#qri-save)  | Create a new dataset or save changes to an existing dataset   |
+|[qri search](#qri-search)  | Search qri   |
+|[qri setup](#qri-setup)  | Initialize qri and IPFS repositories, provision a new qri ID   |
+|[qri use](#qri-use)  | Select datasets for use with the qri get command   |
+|[qri validate](#qri-validate)  | Show schema validation errors   |
+|[qri version](#qri-version)  | Print the version number   |
 
 ________
 
