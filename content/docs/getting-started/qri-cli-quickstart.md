@@ -232,7 +232,7 @@ Qri lets you know that it sees the changes to the readme in the working director
 ## Make another Commit
 
 This time try using `qri save` with the `--title` flag.  The title will let future you and your collaborators know what changed in this commit.
-`qri save --title ‘added a readme’`
+`qri save --title 'added a readme'`
 
 ```bash
 $ qri save --title 'added a readme with download info'
