@@ -31,9 +31,19 @@ choose a peername: [persimmon_cane_corso]:
 set up qri repo at: ~/.qri
 ```
 
+## Connect your keypair to your Qri Cloud account
+
+If you already have a Qri Cloud account, you need to connect your username with your CLI keypair.
+
+If you do not have an account, [sign up](#sign-up-for-a-qri-account). Your new credentials will be stored for CLI use.
+
+```
+$ qri registry prove --username foo --password applesauce
+```
+
 ## Sign up for a Qri account
 
-While its possible to use Qri without an account, signing up ensures that your username is unique and gives you access to Qri Cloud for one-click data publishing.  Choose a good username, it will be used to reference each of your datasets on the Qri network.  
+While it’s possible to use Qri without an account, signing up ensures that your username is unique and gives you access to Qri Cloud for one-click data publishing.  Choose a good username, it will be used to reference each of your datasets on the Qri network.  
 
 ```
 $ qri registry signup --username foo --email foo@qri.io --password applesauce
@@ -79,7 +89,7 @@ initialized working directory for new dataset foo/usgs_earthquakes
 Voila! Qri has created a new dataset! It has also created a working directory, where changes you make to the dataset can be staged.  You can confirm this with `qri list`, which will show your dataset's name and working directory path.
 
 ```bash
-$qri list
+$ qri list
 
 1   foo/usgs_earthquakes
     linked: ~/datasets/usgs_earthquakes
@@ -222,7 +232,7 @@ Qri lets you know that it sees the changes to the readme in the working director
 ## Make another Commit
 
 This time try using `qri save` with the `--title` flag.  The title will let future you and your collaborators know what changed in this commit.
-`qri save --title ‘added a readme’`
+`qri save --title 'added a readme'`
 
 ```bash
 $ qri save --title 'added a readme with download info'
