@@ -429,3 +429,121 @@ $light-blue-hr: 2px solid #4fc6f3;
     margin-bottom: 0.5rem;
   }
 }
+
+// data story layout
+
+.data-story-header {
+  color: #fff;
+  min-height: 600px;
+  background-position: 50%;
+  background-size: cover;
+  width: 100%;
+  padding: 21em 30px 2em;
+  margin-bottom: 60px;
+
+  .title {
+    margin: 22px 0px;
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    margin: 15px 0px;
+    color: #ccc;
+  }
+
+  .byline {
+    color: #ccc;
+    margin: 15px 0px;
+    font-size: .9rem;
+    font-weight: 600;
+  }
+}
+
+.data-story {
+  font-size: 1.3rem;
+  line-height: 2rem;
+  margin-bottom: 60px;
+}
+
+
+.sticky-scroller {
+  position: relative;
+  margin: 0;
+
+  .sticky-content {
+    position: absolute;
+    transform: translate(0px, 0px);
+    width: 965px;
+    z-index: 1;
+    height: 100vh;
+    width: 100%;
+    min-height: 300px;
+    max-height: 720px;
+    margin: auto 0;
+  }
+
+  .scroller-filler {
+    height: 136px;
+  }
+
+  .scroller-text {
+    position: relative;
+    right: 15px;
+    margin: 70vh 0;
+    z-index: 3;
+    border: 1px solid #ccc;
+    padding: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: #363636;
+    color: #FFF;
+    max-width: 300px;
+  }
+}
+
+#brooklyn-bus-times {
+  .legend {
+    font-size: .8rem;
+    text-align: right;
+
+    .legend-item {
+      line-height: 22px;
+    }
+
+    .legend-item-text {
+      text-align: left;
+      padding-left: 5px;
+      width: 58px;
+      display: inline-block;
+    }
+  }
+
+  // bus animation chart
+  .axis path, .axis line {
+    stroke: #aaa;
+  }
+
+  .axis text {
+    fill: #aaa;
+  }
+}
+
+// ImageWithCaption Component
+
+.image-with-caption {
+  text-align: center;
+
+  .image-container {
+    background-image: url(/data-stories-resources/brooklyn-bus-times/img/real-time-examples.png);
+    min-height: 500px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin-bottom: 13px;
+  }
+
+  .caption {
+    font-size: .8rem;
+    font-weight: 600;
+  }
+}

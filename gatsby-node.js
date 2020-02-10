@@ -88,8 +88,8 @@ exports.createPages = ({ graphql, actions }) => {
   })
 }
 
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+  const config = {
     resolve: {
       modules: [path.resolve(__dirname, 'src'), 'node_modules'],
       alias: {
@@ -97,7 +97,20 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         buble: '@philpl/buble' // to reduce bundle size
       }
     }
-  })
+  }
+
+  if (stage === 'build-html' || stage === 'develop-html') {
+    config.module = {
+      rules: [
+        {
+          test: /mapbox-gl/,
+          use: loaders.null()
+        }
+      ]
+    }
+  }
+
+  actions.setWebpackConfig(config)
 }
 
 exports.onCreateBabelConfig = ({ actions }) => {
@@ -153,6 +166,33 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         name: 'jobLocation',
         node,
         value: node.frontmatter.jobLocation
+      })
+    }
+
+    // make additional frontmatter fields for data stories
+    if (node.fileAbsolutePath.match(/data-stories/)) {
+      createNodeField({
+        name: 'subtitle',
+        node,
+        value: node.frontmatter.subtitle
+      })
+
+      createNodeField({
+        name: 'by',
+        node,
+        value: node.frontmatter.by
+      })
+
+      createNodeField({
+        name: 'date',
+        node,
+        value: node.frontmatter.date
+      })
+
+      createNodeField({
+        name: 'heroImage',
+        node,
+        value: node.frontmatter.heroImage
       })
     }
   }
