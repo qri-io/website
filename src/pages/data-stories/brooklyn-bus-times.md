@@ -46,7 +46,7 @@ The data spans from 6am to 9am on Tuesday, January 28th. (There's nothing specia
 
 - __Estimated Next Arrival Time for Each Stop__ - There are about 40 stops in each direction on the B67. For every minute of the study period, we logged the estimated arrival time of the next bus _at each stop_.
 
-To automate the data collection, we used a node.js script that was set to run once a minute. Code here. 
+To automate the data collection, we used a node.js script that was set to run once a minute. [Data logging code here](https://github.com/qri-io/data-stories-scripts/tree/master/brooklyn-bus-times). 
 We consolidated the raw data into two CSVs, one for vehicle locations and one for stop arrival times. We published both datasets on Qri if you'd like to pick up where we left off.
 
 <QriDatasetWidget
