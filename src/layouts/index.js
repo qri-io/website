@@ -2,6 +2,7 @@ import React from 'react'
 
 import DocsLayout from './docs'
 import StandardLayout from './standard'
+import DataStoryLayout from './data-story'
 import Header from '../components/Header'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -16,6 +17,13 @@ const IndexLayout = (props) => {
   const { children, location, pageContext } = props
   const isDocs = pageContext.layout === 'docs'
   let mainContent = <StandardLayout {...props}>{children}</StandardLayout>
+
+  if (location.pathname.match(/data-stories/)) {
+    return (
+      <DataStoryLayout {...props}>{children}</DataStoryLayout>
+    )
+  }
+
   if (isDocs) {
     mainContent = <DocsLayout {...props}>{children}</DocsLayout>
   }
