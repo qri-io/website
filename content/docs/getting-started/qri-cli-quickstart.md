@@ -17,7 +17,9 @@ Follow these steps to get started with Qri’s Command Line Interface.  To see t
 
 For `qri` commands to be available in your terminal, you must have the Qri binary installed through one of the following methods:
 
-- [Install a Mac, Windows, or Linux build of Qri](/download)
+- [Install a Mac, Windows, or Linux build of Qri](https://github.com/qri-io/qri/releases)
+- Homebrew installation (macOS only): `brew install qri-io/qri/qri`
+- [Install a Windows or Linux build of Qri](/download)
 - [Build Qri from source](https://github.com/qri-io/qri)
 
 ## Setup your Qri instance
