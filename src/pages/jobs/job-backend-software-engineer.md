@@ -1,5 +1,4 @@
 ---
-title: "Qri Job Posting - Backend Software Engineer"
 metaTitle: "Qri Job Posting - Backend Software Engineer"
 metaDescription: ""
 jobTitle: "Backend Software Engineeer"

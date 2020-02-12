@@ -1,5 +1,4 @@
 ---
-title: "Qri CLI Quickstart"
 metaTitle: "Qri CLI Quickstart"
 metaDescription: "Getting started with Qri's Command Line Interface. Qri is a distributed dataset version control and sharing system"
 ---

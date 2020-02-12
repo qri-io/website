@@ -1,7 +1,6 @@
 ---
-title: "Readme"
-metaTitle: "The Qri Readme Component"
-metaDescription: "The readme component is free-form text used to describe a dataset.
+metaTitle: "Readme"
+metaDescription: "The Readme component is free-form text used to describe a dataset.
 "
 weight: 4
 ---

@@ -146,7 +146,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       name: 'title',
       node,
-      value: node.frontmatter.title || startCase(parent.name)
+      value: node.frontmatter.metaTitle || startCase(parent.name)
     })
 
     createNodeField({

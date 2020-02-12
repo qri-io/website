@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import styled from '@emotion/styled'
+
+import Head from '../components/Head'
 import DocsColumns from '../components/docs-columns'
 import ExternalLink from '../components/ExternalLink'
 // import NextPrevious from '../components/NextPrevious'
-import config from '../../config'
 
 const Edit = styled('div')`
   padding: 1rem 1.5rem;
@@ -43,7 +43,7 @@ export default class MDXRuntimeTest extends Component {
     const {
       mdx,
       site: {
-        siteMetadata: { docsLocation, title }
+        siteMetadata: { docsLocation }
       }
     } = data
     const gitHub = require('../components/images/github.svg')
@@ -51,22 +51,16 @@ export default class MDXRuntimeTest extends Component {
     // meta tags
     const metaTitle = mdx.frontmatter.metaTitle
     const metaDescription = mdx.frontmatter.metaDescription
-    let canonicalUrl = config.gatsby.siteUrl
-    canonicalUrl = config.gatsby.pathPrefix !== '/' ? canonicalUrl + config.gatsby.pathPrefix : canonicalUrl
-    canonicalUrl = canonicalUrl + mdx.fields.slug
+    // let canonicalUrl = config.gatsby.siteUrl
+    // canonicalUrl = config.gatsby.pathPrefix !== '/' ? canonicalUrl + config.gatsby.pathPrefix : canonicalUrl
+    // canonicalUrl = canonicalUrl + mdx.fields.slug
 
     return (
       <DocsColumns {...this.props}>
-        <Helmet>
-          {metaTitle ? <title>{metaTitle}</title> : null }
-          {metaTitle ? <meta name="title" content={metaTitle} /> : null}
-          {metaDescription ? <meta name="description" content={metaDescription} /> : null}
-          {metaTitle ? <meta property="og:title" content={metaTitle} /> : null}
-          {metaDescription ? <meta property="og:description" content={metaDescription} /> : null}
-          {metaTitle ? <meta property="twitter:title" content={metaTitle} /> : null}
-          {metaDescription ? <meta property="twitter:description" content={metaDescription} /> : null}
-          <link rel="canonical" href={canonicalUrl} />
-        </Helmet>
+        <Head data={{
+          title: metaTitle,
+          description: metaDescription
+        }} />
         <div className={'titleWrapper'}>
           <h1 className={'title'}>
             {mdx.fields.title}

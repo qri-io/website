@@ -1,7 +1,6 @@
 ---
-title: "Components Overview"
-metaTitle: "Overview of Qri Dataset Components"
-metaDescription: "Qri defines a __dataset__ as a set of _components_, each with its own format and requirements."
+metaTitle: "Components Overview"
+metaDescription: "Qri defines a dataset as a set of components, each with its own format and requirements."
 weight: 1
 ---
 

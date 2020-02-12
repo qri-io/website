@@ -1,7 +1,6 @@
 ---
-title: "Content Addressing"
-metaTitle: ""
-metaDescription: ""
+metaTitle: "Content Addressing"
+metaDescription: "An overview of the problems of location-based addressing and the benefits of content-based addressing"
 weight: 1
 ---
 

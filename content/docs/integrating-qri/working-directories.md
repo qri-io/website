@@ -1,7 +1,6 @@
 ---
-title: "Working Directories"
-metaTitle: ""
-metaDescription: ""
+metaTitle: "Working Directories"
+metaDescription: "An overview of Qri working directories; How to integrate qri datasets with your filesystem"
 ---
 
 QRI uses an internal datastore, so interacting with your datasets requires using Qri Desktop or using the command line interface (CLI).

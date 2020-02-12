@@ -1,7 +1,6 @@
 ---
-title: "Versioning Datasets"
-metaTitle: ""
-metaDescription: ""
+metaTitle: "Versioning Datasets"
+metaDescription: "How versioning works in the Qri Dataset Version Control System"
 ---
 
 Qri Datasets are versioned using a process similar to git.  A user can make changes to a working copy of a dataset’s components, and commit those changes once an important milestone is reached. A commit creates a new version of the dataset which is immutable, timestamped, and identified by a hash.

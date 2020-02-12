@@ -1,7 +1,6 @@
 ---
-title: "Structure"
-metaTitle: "The Qri Structure Component"
-metaDescription: "The structure component defines the characteristics of a dataset document necessary for a machine to interpret the dataset body"
+metaTitle: "Structure"
+metaDescription: "The Structure component defines the characteristics of a dataset document necessary for a machine to interpret the dataset body"
 weight: 5
 ---
 

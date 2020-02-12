@@ -1,7 +1,6 @@
 ---
-title: "Publishing Datasets"
-metaTitle: ""
-metaDescription: ""
+metaTitle: "Publishing Datasets"
+metaDescription: "How to publish a dataset to Qri Cloud"
 ---
 
 import InfoBlock from '../../../src/components/InfoBlock.js'

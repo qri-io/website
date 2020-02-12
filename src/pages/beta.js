@@ -1,14 +1,15 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+
+import Head from '../components/Head'
 
 const BetaPage = () => (
   <div className='container'>
-    <Helmet>
-      <title>Qri Beta Program</title>
-      <meta name="title" content='Qri Beta Program' />
-      <meta name="description" content={'Join the Qri beta program to try out new features'} />
+    <Head data={{
+      title: 'Qri Beta Program',
+      description: 'Join the Qri beta program to try out new features'
+    }} >
       <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css" />
-    </Helmet>
+    </Head>
     <h2>Sign up to Beta Test Qri!</h2>
 
     <p>We need your help! If you care about what we make and want to see it work better, we would **LOVE** to have your help as a beta tester for Qri Desktop & Qri Cloud.</p>

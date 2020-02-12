@@ -1,7 +1,6 @@
 ---
-title: "Commit"
-metaTitle: "The Qri Commit Component"
-metaDescription: "The commit component contains details about the creation of a new version of a Qri dataset. "
+metaTitle: "Commit"
+metaDescription: "The Commit component contains details about the creation of a new version of a Qri dataset. "
 weight: 6
 ---
 
