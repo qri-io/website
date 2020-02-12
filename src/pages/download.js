@@ -1,10 +1,10 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import { Link } from 'gatsby'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons'
 
+import Head from '../components/Head'
 import ExternalLink from '../components/ExternalLink'
 
 const latestVersion = '0.3.5'
@@ -21,12 +21,12 @@ const handleDownloadClick = (os) => {
 
 const DownloadPage = () => (
   <>
-    <Helmet>
-      <title>Download Qri</title>
-      <meta name="title" content='Download Qri' />
-      <meta name="description" content={'Download Qri Desktop for Mac or Windows'} />
+    <Head data={{
+      title: 'Download Qri',
+      description: 'Download Qri Desktop for Mac or Windows'
+    }} >
       <script src='/js/download.js' />
-    </Helmet>
+    </Head>
     <div id="splash" className="windows">
       <div className="hero">
         <div className="container text-center">

@@ -1,7 +1,6 @@
 ---
-title: "Starlark Syntax"
-metaTitle: ""
-metaDescription: ""
+metaTitle: "Starlark Syntax"
+metaDescription: "Syntax rules and examples for the Starlark Scripting Language"
 weight: 1
 ---
 

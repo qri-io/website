@@ -1,5 +1,5 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import Head from '../components/Head'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import Tree from '../components/sidebar/tree'
 
@@ -36,11 +36,10 @@ const ContentLayout = ({ location }) => (
 
 const DocsPage = () => (
   <div className='container docs-page'>
-    <Helmet>
-      <title>Qri Docs</title>
-      <meta name="title" content='Qri Docs' />
-      <meta name="description" content={'Documentation for Qri Desktop and Qri CLI'} />
-    </Helmet>
+    <Head data={{
+      title: 'Qri Docs',
+      description: 'Documentation for Qri Desktop and Qri CLI'
+    }} />
     <div className='docs-hero'>
       <div className='row'>
         <div className='col-12 col-md-6 col-lg-3 docs-title'>

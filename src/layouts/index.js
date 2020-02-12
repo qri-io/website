@@ -3,6 +3,7 @@ import React from 'react'
 import DocsLayout from './docs'
 import StandardLayout from './standard'
 import DataStoryLayout from './data-story'
+import Head from '../components/Head'
 import Header from '../components/Header'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -15,14 +16,16 @@ import '../scss/style.scss'
 
 const IndexLayout = (props) => {
   const { children, location, pageContext } = props
-  const isDocs = pageContext.layout === 'docs'
-  let mainContent = <StandardLayout {...props}>{children}</StandardLayout>
 
+  // data stories are special and need a fixed header
   if (location.pathname.match(/data-stories/)) {
     return (
       <DataStoryLayout {...props}>{children}</DataStoryLayout>
     )
   }
+
+  const isDocs = pageContext.layout === 'docs'
+  let mainContent = <StandardLayout {...props}>{children}</StandardLayout>
 
   if (isDocs) {
     mainContent = <DocsLayout {...props}>{children}</DocsLayout>
@@ -30,6 +33,13 @@ const IndexLayout = (props) => {
 
   return (
     <div className='main-container'>
+      <Head data={{
+        title: 'Qri',
+        description: 'Qri is an open source version control and sharing system for datasets',
+        image: 'https://qri.io/img/twitter_card_image.png',
+        imageAlt: 'The Qri Logo',
+        url: location.href
+      }}/>
       <Header location={location} showSidebar={isDocs} />
       <div className='main-content'>
         {mainContent}

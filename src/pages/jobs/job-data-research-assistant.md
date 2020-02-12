@@ -1,5 +1,4 @@
 ---
-title: "Qri Job Posting - Data Research Assistant"
 metaTitle: "Qri Job Posting - Data Research Assistant"
 metaDescription: ""
 jobTitle: "Data Research Assistant"
@@ -19,7 +18,7 @@ For examples of the kind of work you'd be doing, review this recent [blog post](
 
 - You have proficiency in one or more popular data science applications: R Studio / Jupyter Notebooks / Tableau, others.
 - You have done some projects in the past with data (which required basic data mining work of your own), and be you’d be willing to show us what you did.
-- You’re familiar with and good at web scraping 
+- You’re familiar with and good at web scraping
 - You’ve got some basic programming skills (enough to write the code to get the data).
 
 **Start Date:** ASAP
@@ -30,4 +29,4 @@ This will be an ongoing need for us in 2020, so we’re flexible when it comes t
 
 **Compensation:** Somewhere between $30 - $50 per hour, depending on skills.
 
-The rate we settle on will be commensurate with your skills and experience. We’ll negotiate this with you. The more powerful your skills, the more we can pay you per hour. 
+The rate we settle on will be commensurate with your skills and experience. We’ll negotiate this with you. The more powerful your skills, the more we can pay you per hour.

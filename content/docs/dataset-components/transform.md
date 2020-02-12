@@ -1,7 +1,6 @@
 ---
-title: "Transform"
-metaTitle: "The Transform Component"
-metaDescription: "The transform component allows users to attach scripting to Qri datasets."
+metaTitle: "Transform"
+metaDescription: "Transform component allows users to attach scripting to Qri datasets."
 weight: 5
 ---
 

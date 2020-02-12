@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import config from '../config'
 
 export default class HTML extends React.Component {
   render () {
@@ -13,16 +12,6 @@ export default class HTML extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
-          {config.siteMetadata.ogImage
-            ? (<meta property="og:image" content={config.siteMetadata.ogImage} />) : null
-          }
-          <meta property="twitter:card" content="summary_large_image" />
-          {config.siteMetadata.ogImage
-            ? (<meta property="twitter:image" content={config.siteMetadata.ogImage} />) : null
-          }
-          {config.siteMetadata.favicon
-            ? (<link rel="shortcut icon" type="image/svg" href={config.siteMetadata.favicon} />) : null
-          }
           <noscript key="noscript"></noscript>
           {this.props.headComponents}
           <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />

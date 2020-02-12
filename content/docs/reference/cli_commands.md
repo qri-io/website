@@ -1,7 +1,6 @@
 ---
-title: "CLI Commands"
-metaTitle: ""
-metaDescription: ""
+metaTitle: "CLI Commands"
+metaDescription: "An Overview of Qri Command Line Interface Commands"
 weight: 1
 ---
 

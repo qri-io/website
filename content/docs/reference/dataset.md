@@ -1,7 +1,6 @@
 ---
-title: "Dataset Specification"
-metaTitle: ""
-metaDescription: ""
+metaTitle: "Dataset Specification"
+metaDescription: "The Qri Dataset Specification"
 weight: 1
 ---
 

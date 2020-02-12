@@ -1,5 +1,4 @@
 ---
-title: "What is Qri?"
 metaTitle: "What is Qri?"
 metaDescription: "Qri is a distributed dataset version control and sharing system"
 weight: 1

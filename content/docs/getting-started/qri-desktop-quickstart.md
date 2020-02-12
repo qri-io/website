@@ -1,5 +1,4 @@
 ---
-title: "Qri Desktop Quickstart"
 metaTitle: "Qri Desktop Quickstart"
 metaDescription: "Getting started with Qri Desktop, a distributed dataset version control and sharing system"
 weight: 2

@@ -1,6 +1,5 @@
 ---
-title: "Body"
-metaTitle: "The Qri Body Component"
+metaTitle: "Body"
 metaDescription: "A Qri dataset's Body is *the data itself*.  It's the rows and columns of values that came from a CSV file, and now live in a Qri dataset along with other components."
 weight: 2
 ---

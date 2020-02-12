@@ -4,8 +4,6 @@ subtitle: "We logged real-time bus data for the B67 in Brooklyn to see how the b
 by: "Chris Whong"
 heroImage: "/data-stories-resources/brooklyn-bus-times/img/bus-in-traffic.jpg"
 date: "2020-02-05"
-metaTitle: "Tracking a Bus Route's Data Footprint"
-metaDescription: ""
 ---
 
 import ImageWithCaption from '../../components/ImageWithCaption'

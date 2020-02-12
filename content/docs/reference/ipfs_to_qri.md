@@ -1,7 +1,6 @@
 ---
-title: "IPFS -> Qri"
-metaTitle: ""
-metaDescription: ""
+metaTitle: "IPFS -> Qri"
+metaDescription: "How the Qri Dataset Version Control System interoperates with the InterPlanetary File System"
 weight: 1
 ---
 

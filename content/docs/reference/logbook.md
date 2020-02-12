@@ -1,7 +1,6 @@
 ---
-title: "Logbook"
-metaTitle: ""
-metaDescription: ""
+metaTitle: "Logbook"
+metaDescription: "An overview of Qri Logbook, the technology that keeps track of versions for a given dataset"
 weight: 1
 ---
 

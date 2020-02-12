@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import moment from 'moment'
 
+import Head from '../components/Head'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
@@ -31,6 +32,13 @@ const DataStoryLayout = ({ children, location, pageContext }) => {
   const { title, subtitle, by, date, heroImage } = frontmatter
   return (
     <div className='data-story-layout-wrapper flex-column'>
+      <Head data={{
+        title,
+        description: subtitle,
+        image: `${location.origin}/img/twitter_card_image.png`,
+        imageAlt: 'The Qri Logo',
+        url: location.href
+      }}/>
       <Header location={location} showSidebar={false} />
       <div className='data-story-header text-left' style={{
         backgroundImage: `url(${heroImage})`

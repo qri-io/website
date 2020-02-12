@@ -1,7 +1,6 @@
 ---
-title: "Naming Datasets"
 metaTitle: "Naming Datasets in Qri"
-metaDescription: "This page describes the various notations for referencing a specific dataset on the Qri network."
+metaDescription: "Describes the various notations for referencing a specific dataset on the Qri network."
 ---
 
 What's in a name?  There are several ways of referring to datasets in Qri.  Here are some examples of each.

@@ -1,19 +1,17 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import MailingList from '../components/MailingList'
 import ExternalLink from '../components/ExternalLink'
 
 import Highlight from 'react-highlight.js'
 import { Link } from 'gatsby'
 
+import Head from '../components/Head'
+
 const IndexPage = () => (
   <div id="main" className="index">
-    <Helmet>
-      <title>Qri - A distributed dataset version control system</title>
-      <meta name="title" content='Qri - A distributed dataset version control system' />
-      <meta name="description" content={'Website for Qri, Inc.'} />
+    <Head data={{}}>
       <script src='/js/download.js' />
-    </Helmet>
+    </Head>
     <header id="hero">
       <div className="wrap">
         <div id="blob_trio"></div>

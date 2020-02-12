@@ -1,7 +1,6 @@
 ---
-title: "Meta"
-metaTitle: "The Qri Meta Component"
-metaDescription: "The __meta__ component contains human-readable descriptive metadata that qualifies and distinguishes a dataset."
+metaTitle: "Meta"
+metaDescription: "The Meta component contains human-readable descriptive metadata that qualifies and distinguishes a dataset."
 weight: 4
 ---
 

@@ -1,7 +1,6 @@
 ---
-title: "Qri Glossary"
-metaTitle: ""
-metaDescription: ""
+metaTitle: "Qri Glossary"
+metaDescription: "A glossary of key terms used in Qri Software and Services"
 weight: 1
 ---
 

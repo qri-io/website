@@ -1,7 +1,6 @@
 ---
-title: "Qri System Files"
-metaTitle: ""
-metaDescription: ""
+metaTitle: "Qri System Files"
+metaDescription: "Special files and directories used by Qri"
 weight: 1
 ---
 
