@@ -7,7 +7,7 @@ import { faFileExcel } from '@fortawesome/free-solid-svg-icons'
 
 import ExternalLink from '../components/ExternalLink'
 
-const latestVersion = '0.3.3'
+const latestVersion = '0.3.5'
 const macDownloadUrl = `https://github.com/qri-io/desktop/releases/download/v${latestVersion}/Qri-Desktop-${latestVersion}.dmg`
 const windowsDownloadUrl = `https://github.com/qri-io/desktop/releases/download/v${latestVersion}/Qri.Desktop.Setup.${latestVersion}.exe`
 
