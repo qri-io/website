@@ -18,7 +18,6 @@ For `qri` commands to be available in your terminal, you must have the Qri binar
 
 - [Install a Mac, Windows, or Linux build of Qri](https://github.com/qri-io/qri/releases)
 - Homebrew installation (macOS only): `brew install qri-io/qri/qri`
-- [Install a Windows or Linux build of Qri](/download)
 - [Build Qri from source](https://github.com/qri-io/qri)
 
 ## Setup your Qri instance
@@ -77,7 +76,7 @@ mkdir ~/datasets/usgs_earthquakes
 </InfoBlock>
 
 
-Navigate to your empty dataset directory and run `qri init` with the `--source-body-path` flag to import your CSV and create a new dataset.  Qri will ask you to name your dataset.  The dataset name may consist only of lowercase letters, numbers, and underscores/hyphens, and must be 100 characters or fewer. See [Naming Datasets](/docs/working-with-datasets) for more on Qri naming conventions.
+Navigate to your empty dataset directory and run `qri init` with the `--source-body-path` flag to import your CSV and create a new dataset.  Qri will ask you to name your dataset.  The dataset name may consist only of lowercase letters, numbers, and underscores/hyphens, and must be 100 characters or fewer. See [Naming Datasets](/docs/working-with-datasets/naming) for more on Qri naming conventions.
 
 ```bash
 $ cd ~/datasets/usgs_earthquakes
