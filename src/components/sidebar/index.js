@@ -1,7 +1,9 @@
 import React from 'react'
 import Tree from './tree'
-import { StaticQuery, graphql } from 'gatsby'
+import { StaticQuery, Link, graphql } from 'gatsby'
 import styled from '@emotion/styled'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 // eslint-disable-next-line no-unused-vars
 const ListItem = styled(({ className, active, level, ...props }) => {
@@ -101,7 +103,17 @@ const SidebarLayout = ({ location }) => (
     render={({ allMdx }) => {
       return (
         <Sidebar>
+
           <ul className={'sideBarUL'}>
+            <li className='hideFrontLine firstLevel item'>
+              <Link to='/docs'>
+                <FontAwesomeIcon icon={faHome} style={{
+                  position: 'relative',
+                  top: '-2px'
+                }}/> &nbsp;
+                DOCS HOME
+              </Link>
+            </li>
             <Tree
               edges={allMdx.edges}
             />
