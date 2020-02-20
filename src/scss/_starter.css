@@ -769,6 +769,7 @@ img {
 }
 
 .prism-code {
+  margin: 0;
   padding: 16px;
 }
 
