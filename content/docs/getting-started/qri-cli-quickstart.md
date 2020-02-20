@@ -4,6 +4,7 @@ metaDescription: "Getting started with Qri's Command Line Interface. Qri is a di
 ---
 
 import InfoBlock from '../../../src/components/InfoBlock.js'
+import ImageWithCaption from '../../../src/components/ImageWithCaption.js'
 
 Follow these steps to get started with Qri’s Command Line Interface.  To see the same workflow using a GUI, see [Qri Desktop Quickstart](/docs/getting-started/qri-desktop-quickstart)
 
