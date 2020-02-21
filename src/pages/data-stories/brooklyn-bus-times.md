@@ -19,6 +19,7 @@ For several years, real-time bus arrival data has been available system-wide in 
 <ImageWithCaption
   src='/data-stories-resources/brooklyn-bus-times/img/real-time-examples.png'
   caption='The Bus Time API provides the data that powers physical countdown clocks and mobile transit apps (Google Maps for iOS pictured here).  The same data are useful for research into bus performance.'
+  minHeight={500}
 />
 
 The [Bus Time API](http://bustime.mta.info/wiki/Developers/Index) is free and open (as long as you register for an API key). While the data are clearly useful to straphangers, they're also important resource for deeper analysis of bus activity and timeliness for transit planners, businesses, community groups, journalists, and researchers. Here are some basic questions we can ask of the data:
@@ -36,6 +37,7 @@ We collected three hours of data for a single route, [the B67](http://web.mta.in
 <ImageWithCaption
   src='/data-stories-resources/brooklyn-bus-times/img/b67_map.png'
   caption='The B67 runs from Kensington to DUMBO, with weekday service to the Brooklyn Navy Yard. Source: MTA B67/B69 Bus Schedule'
+  minHeight={500}
 />
 
 The data spans from 6am to 9am on Tuesday, January 28th. (There's nothing special about this period, we simply wanted a "typical" weekday morning rush hour.) We collected two types of data from the Bus Time API:
@@ -97,6 +99,7 @@ Under ideal circumstances, a bus that arrives regularly every X minutes should y
   src='/data-stories-resources/brooklyn-bus-times/img/b67_schedule.png'
   caption='The weekday northbound schedule for the B67 has buses departing about every 10 minutes with some additional runs around 8am.  The 3-hour observation period of this analysis is outlined in red.  Source: Source: MTA B67/B69 Bus Schedule'
   shadow
+  minHeight={500}
 />
 
 In reality, delays cause the triangles to have different sizes and irregular slopes. Small and large triangles mixed in with the normal sized triangles represent bus-bunching and delays. Irregular slopes represent inaccurate arrival estimates (due to delays)
@@ -107,6 +110,7 @@ On their own, these burn-down charts tell a single stop's story over our study t
   src='/data-stories-resources/brooklyn-bus-times/img/bus_wait_times@2x.png'
   caption='Estimated wait times for each minute of the 3-hour observation period for each stop shows a clear pattern of exacerbated delays and bunching as delays compound along the route'
   shadow
+  minHeight={500}
 />
 
 One observation that we didn't think about until seeing this series of charts is that the estimated arrival times can't be calculated until a bus begins its trip. We can see that the earlier stops don't have as much information on when the next bus is coming, and each subsequent trip has fewer minutes of "no data".  About halfway through he route we see all of the gaps disappear and have continuous estimates over the observation period.
