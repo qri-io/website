@@ -8,17 +8,38 @@ import InfoBlock from '../../../src/components/InfoBlock.js'
 
 Qri (pronounced "query") is a distributed dataset version control and sharing system.  Our software helps to alleviate many of the pain points of working with datasets.
 
+* [__Qri CLI__](/docs/getting-started/qri-cli-quickstart) - Our command line interface allows you to quickly create, manage, and share versioned datasets from your terminal.
+
+
+* [__Qri Desktop__](/download) - Our desktop app for MacOS and Windows, which makes creating, managing, and sharing versioned datasets a breeze.
+
+
+* [__Qri Cloud__](https://qri.cloud) - Our cloud-based data publishing platform.  When you're done crafting and organizing datasets locally, you can push them to Qri Cloud for archival, sharing, and discovery.
+
+
 ## The Qri Dataset Format
 
 What's a dataset? Qri's definition of "dataset" contains _more than just data_.
 
-Qri's dataset format combines tabular data with all of the things that are missing from normal CSVs.  These include metadata, user identity, column types, validation rules, update scripts, and more.  We refer to these parts as __components__.  
+Qri datasets combine tabular data with all of the things that are missing from normal CSVs.  These include metadata, user identity, column types, validation rules, update scripts, and more.  We refer to these parts as __components__.  
 
-All of these components live together under a single structure. More importantly, they are all versioned together.
+All of these components live together under a single structure. More importantly, they are all _versioned_ together.
 
 <InfoBlock>
   See <a href="/docs/dataset-components/overview/">Dataset Components</a> for more info on the building blocks of a Qri dataset.
 </InfoBlock>
+
+## Naming
+
+In Qri, datasets are most commonly referred to by a combination of username and dataset name separated by a slash, e.g. `b5/comics`.  This _dataset reference_ is unique across the Qri Network, similar to the username and repository name used to describe a github repository.  
+
+See [Naming Datasets](/docs/working-with-datasets/naming/) for more info on versioning in Qri.
+
+## Your Collection of Datasets
+
+Qri uses a local datastore built on top of IPFS.  Your _collection_ consists of all of the Qri datasets you have locally.  These can be _your_ datasets or those you have cloned from other Qri users.
+
+See [Your Collection of Datasets](/docs/working-with-datasets/collection/) for more info on interacting with your collection.
 
 ## Versioning
 

@@ -75,14 +75,17 @@ $secondary-color: #EDF0F2;
   }
 }
 
+.mainWrapper > .pre {
+  margin: 32px 0 32px;
+}
 
 /* Info block, Warning Block */
 
 /* based on https://render.com/docs/configure-cloudflare-dns */
 
 .info-block {
-  margin-top: 12px;
-  margin-bottom: 12px;
+  margin-top: 32px;
+  margin-bottom: 32px;
   padding: 12px 12px 12px 40px;
   border-style: solid;
   border-width: 1px;

@@ -12,7 +12,9 @@ import InfoBlock from '../../../src/components/InfoBlock.js'
 
 The __body__ component is a *single table* of data. The other components of a dataset are information that complements that table (metadata, structure information, column types and descriptions, etc.), but _body_ is the table itself.
 
-Body is a required component, a Qri Dataset cannot exist without a body.
+<InfoBlock>
+  Body is a required component. A Qri Dataset cannot exist without a body.
+</InfoBlock>
 
 ## Relationship to Structure
 
