@@ -1,23 +1,15 @@
 ---
-metaTitle: "Starlark Syntax"
-metaDescription: "Syntax rules and examples for the Starlark Scripting Language"
-weight: 1
+metaTitle: "Runtime"
+metaDescription: "Syntax and execution details for Starlark"
 ---
 
-Qri ("query") is about datasets. Transformations are runnable scripts for generating datasets. [Starlark](https://github.com/bazelbuild/starlark/blob/master/spec.md) is a scripting language from Google that is mostly a subset of python. This package implements skylark as a _transformation syntax_. Starlark transformations are about as close as one can get to the full power of a programming language for generating datasets.
+Qri ("query") is about datasets. Transformations are runnable scripts for generating datasets.  is a scripting language from Google that is mostly a subset of python. This package implements skylark as a _transformation syntax_. Starlark transformations are about as close as one can get to the full power of a programming language for generating datasets.
 
-Typical examples of a starlark transformation include:
-
-* combining paginated calls to an API into a single dataset
-* downloading unstructured structured data from the internet to extract
-* re-shaping raw input data before saving a dataset
-
-### Differences from Python
+### Key Differences from Python
 
 - No While Loops
 - No Recursion
 - Variables are frozen after mutation
-- Can be run in parallel
 - Strings are not iterable
 
 There are more, see https://docs.bazel.build/versions/0.23.0/skylark/language.html and https://github.com/google/skylark/blob/master/doc/spec.md
@@ -34,25 +26,22 @@ Qri transformations have a few rules on top of starlark itself:
 
 ## Special Functions
 
-So far there are two predefined Qri functions, with more planned for future use:
+There are two functions that qri will call if defined:
 
-* download
-* transform
+* `download(ctx)`
+* `transform(ds,ctx)`
 
-#### def download(ctx):
-  Download is the only function in which you can make an http request or get an http response, or download a xlsx file, aka the only place in a transform where you can get data from a website or server. You must then manipulate the response to get some structured data, which can then be returned.
+#### download(ctx):
+Download is the only function in which you can make an http request or get an http response, or download a xlsx file, aka the only place in a transform where you can get data from a website or server. The download function is always run before the transform function.
 
-  The download function is always run before the transform function.
+The transform function will receive the dataset returned from the download function as part of its context, set at `ctx.download`.
 
-  The transform function will receive the dataset returned from the download function as part of its context.
+#### transform(ds, ctx):
+The transform function receives the dataset as its previous version, if one exists. If no prior version exists, `ds` will be an _empty dataset_, which is, a dataset with no fields set.
 
+The transform function can pull from the previous dataset and transform context, and call any function defined within the script. Internet access is disabled while `transform` is executing.
 
-#### def transform(ds, ctx):
-  The transform function receives the dataset as its previous version, if one exists.
-
-  The transform function can pull from the previous dataset and config file, as well as set the metadata or schema of the dataset. It can also has access to the value returned from a download function as part of the context.
-
-## Transform Configuration
+## Configuration
 
 You can inject variables into the transform through the transform config section in the dataset file. For example:
 
@@ -86,8 +75,7 @@ def transform(ds, ctx):
   ds.set_body({"name": name, "number": number})
 ```
 
-
-## Transform Secrets
+## Secrets
 
 Sometimes you need special keys or information that you want to exist in your transform, but you don't want anyone else to see or have access to. This is where transform secrets come in. You can add a private api key, for example, and not be worried that when another use looks at your dataset, that they will have access to your secret key.
 
