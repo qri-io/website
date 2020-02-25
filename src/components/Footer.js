@@ -33,7 +33,14 @@ const Footer = () => {
               <li><Link to='/contact'>Contact</Link></li>
             </ul>
           </div>
-          <div className='col-12 col-md-6 text-md-right'>
+          <div className='col-12 col-sm-4 col-md-2'>
+            <h5>Explore</h5>
+            <ul>
+              <li><ExternalLink to='https://qri.cloud'>Dataset Search</ExternalLink></li>
+              <li><ExternalLink to='https://qri.cloud'>Qri.cloud</ExternalLink></li>
+            </ul>
+          </div>
+          <div className='col-12 col-md-4 text-md-right'>
             <ul className='list-inline social'>
               <li className='list-inline-item'>
                 <ExternalLink to='https://github.com/qri-io'><FontAwesomeIcon icon={faGithub}/></ExternalLink>
