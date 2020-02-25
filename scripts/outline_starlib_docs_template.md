@@ -42,7 +42,7 @@ All qri transforms have access to "starlib", a community-driven project to bring
 {{- $path := .Name }}
 {{- if ne .Path ""  }}{{ $path = .Path }}{{ end -}}
 ** **
-# <a id="{{.Name}}" href="#{{.Name}}">{{ $path }}</a>
+# {{ $path }}
 {{ if ne .Description "" }}{{ .Description }}{{ end }}
 {{- if gt (len .Functions) 0 }}
 ## Functions

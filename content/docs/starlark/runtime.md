@@ -10,7 +10,6 @@ Qri ("query") is about datasets. Transformations are runnable scripts for genera
 - No While Loops
 - No Recursion
 - Variables are frozen after mutation
-- Can be run in parallel
 - Strings are not iterable
 
 There are more, see https://docs.bazel.build/versions/0.23.0/skylark/language.html and https://github.com/google/skylark/blob/master/doc/spec.md

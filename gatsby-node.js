@@ -25,7 +25,7 @@ const redirects = [
   ['/docs/tutorials/*', '/docs'],
   ['/docs/tutorials', '/docs'],
   ['/docs/reference/dataset-specification/', '/docs/reference/dataset'],
-  ['/docs/reference/starlark_syntax', '/docs/starlark/syntax'],
+  ['/docs/reference/starlark_syntax', '/docs/starlark/runtime'],
   ['/docs/reference/starlark_examples', '/docs/starlark/examples'],
   ['/docs/reference/starlib', '/docs/starlark/starlib'],
   ['/docs/reference', '/docs'],

@@ -15,7 +15,7 @@ echo "cloning starlib..."
 git clone https://github.com/qri-io/starlib
 
 # run outline against starlib docs
-echo "replacing ../content/docs/reference/starlib.md ..."
+echo "replacing ../content/docs/starlark/starlib.md ..."
 outline template \
   -t outline_starlib_docs_template.md $(find ./starlib | grep doc.go | tr '\n' ' ') \
   > ../content/docs/reference/starlib.md

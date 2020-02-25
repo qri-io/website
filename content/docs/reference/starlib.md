@@ -9,7 +9,7 @@ All qri transforms have access to "starlib", a community-driven project to bring
 
 **Comments, Suggestions & Pull Requests welcome: [https://github.com/qri-io/starlib](https://github.com/qri-io/starlib)**
 
-### Contents
+### Starlib Packages
 
 | package name | description |
 |--------------|-------------|
@@ -28,7 +28,7 @@ All qri transforms have access to "starlib", a community-driven project to bring
 
 
 ** **
-# <a id="base64" href="#base64">encoding/base64</a>
+# encoding/base64
 base64 defines base64 encoding & decoding functions, often used to represent binary as text.
 ## Functions
 
@@ -55,7 +55,7 @@ return the base64 encoding of src
 <br />
 
 ** **
-# <a id="csv" href="#csv">encoding/csv</a>
+# encoding/csv
 csv reads comma-separated values files
 ## Functions
 
@@ -87,7 +87,7 @@ write all rows from source to a csv-encoded string
 <br />
 
 ** **
-# <a id="json" href="#json">encoding/json</a>
+# encoding/json
 json provides functions for working with json data
 ## Functions
 
@@ -112,7 +112,7 @@ read a source JSON string to a starlark object
 <br />
 
 ** **
-# <a id="yaml" href="#yaml">encoding/yaml</a>
+# encoding/yaml
 yaml provides functions for working with yaml data
 ## Functions
 
@@ -137,7 +137,7 @@ read a source yaml string to a starlark object
 <br />
 
 ** **
-# <a id="geo" href="#geo">geo</a>
+# geo
 geo defines geographic operations in two-dimensional space
 ## Functions
 
@@ -240,7 +240,7 @@ Distance on the surface of a sphere with the same radius as Earth
 
 ### `Polygon`
 an ordered list of closed lines (rings) that define a shape. lists of coordinates that wind clockwise are filled regions and  anti-clockwise represent holes.** **
-# <a id="html" href="#html">html</a>
+# html
 html defines a jquery-like html selection & iteration functions for HTML documents
 ## Functions
 
@@ -392,7 +392,7 @@ gets the element at index i of the selection
 <br />
 
 ** **
-# <a id="http" href="#http">http</a>
+# http
 http defines an HTTP client implementation
 ## Functions
 
@@ -504,7 +504,7 @@ output response body as a string
 attempt to parse resonse body as json, returning a JSON-decoded result
 
 ** **
-# <a id="math" href="#math">math</a>
+# math
 math defines mathematical functions, it's intended to be a drop-in subset of python's math module for starlark: https://docs.python.org/3/library/math.html
 ## Functions
 
@@ -575,7 +575,7 @@ Return the tangent of x radians.
 Return the hyperbolic tangent of x.
 
 ** **
-# <a id="re" href="#re">re</a>
+# re
 re defines regular expression functions, it's intended to be a drop-in subset of python's re module for starlark: https://docs.python.org/3/library/re.html
 ## Functions
 
@@ -619,7 +619,7 @@ Return the string obtained by replacing the leftmost non-overlapping occurrences
 <br />
 
 ** **
-# <a id="time" href="#time">time</a>
+# time
 time defines time primitives for starlark
 ## Functions
 
@@ -671,7 +671,7 @@ get time representing the same instant but in a different location### `layout st
 #### `time.nanosecond() int`
 
 ** **
-# <a id="xlsx" href="#xlsx">xlsx</a>
+# xlsx
 xlsx implements excel file readers in starlark. currently a highly-experimental package that will definitely change at some point in the future
 ## Functions
 
@@ -690,7 +690,7 @@ return a dict of sheets in this excel file
 get all populated rows / columns as a list-of-list strings
 
 ** **
-# <a id="zipfile" href="#zipfile">zipfile</a>
+# zipfile
 zipfile reads & parses zip archives
 ## Functions
 
