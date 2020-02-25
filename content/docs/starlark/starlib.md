@@ -1,6 +1,6 @@
 ---
 metaTitle: "Standard Library"
-metaDescription: "About the Starlark Standard Libary"
+metaDescription: "About the Starlark Standard Library"
 weight: 1
 ---
 
@@ -748,4 +748,3 @@ open a file for reading
 **Methods**
 #### `ZipInfo.read() string`
 read the file, returning it's string representation
-

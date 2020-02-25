@@ -1,6 +1,6 @@
 ---
 metaTitle: "Standard Library"
-metaDescription: "About the Starlark Standard Libary"
+metaDescription: "About the Starlark Standard Library"
 weight: 1
 ---
 
