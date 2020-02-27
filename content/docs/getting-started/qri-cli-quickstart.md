@@ -282,7 +282,6 @@ It will also show up on your public profile page, which lists all of your publis
 
 Here are some things to try now that you’re up and running:
 
-- Browse the full [Qri CLI Manual](/docs/qri-cli-manual/overview)
 - Find interesting datasets on [Qri Cloud](https://qri.cloud)
 - Try out [Qri Desktop](/docs/getting-started/qri-desktop-quickstart)
 - Drop into [our discord server](https://discordapp.com/invite/thkJHKj) to chat about Qri
