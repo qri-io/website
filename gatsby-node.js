@@ -31,7 +31,9 @@ const redirects = [
   ['/docs/reference', '/docs'],
   ['/docs/workflows', '/docs'],
 
-  ['/papers/deterministic_querying', '/deterministic-querying']
+  ['/papers/deterministic_querying', '/deterministic-querying'],
+
+  ['/install.sh', 'https://raw.githubusercontent.com/qri-io/qri_install/master/install.sh']
 ]
 
 exports.createPages = ({ graphql, actions }) => {
