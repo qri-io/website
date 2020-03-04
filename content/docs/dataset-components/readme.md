@@ -2,7 +2,7 @@
 metaTitle: "Readme"
 metaDescription: "The Readme component is free-form text used to describe a dataset.
 "
-weight: 4
+weight: 3
 ---
 
 import InfoBlock from '../../../src/components/InfoBlock.js'

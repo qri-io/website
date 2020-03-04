@@ -1,7 +1,7 @@
 ---
 metaTitle: "Structure"
 metaDescription: "The Structure component defines the characteristics of a dataset document necessary for a machine to interpret the dataset body"
-weight: 5
+weight: 6
 ---
 
 import InfoBlock from '../../../src/components/InfoBlock.js'

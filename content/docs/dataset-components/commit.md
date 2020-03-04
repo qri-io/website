@@ -1,7 +1,7 @@
 ---
 metaTitle: "Commit"
 metaDescription: "The Commit component contains details about the creation of a new version of a Qri dataset. "
-weight: 6
+weight: 7
 ---
 
 import InfoBlock from '../../../src/components/InfoBlock.js'

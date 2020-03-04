@@ -1,7 +1,7 @@
 ---
 metaTitle: "IPFS -> Qri"
 metaDescription: "How the Qri Dataset Version Control System interoperates with the InterPlanetary File System"
-weight: 1
+weight: 5
 ---
 
 ## I know IPFS, what's the deal with Qri?

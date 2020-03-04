@@ -1,7 +1,7 @@
 ---
 metaTitle: "Qri Glossary"
 metaDescription: "A glossary of key terms used in Qri Software and Services"
-weight: 1
+weight: 7
 ---
 
 This page contains a glossary of commonly used terms in Qri's tools and documentation.  If you aren't able to find the term you're looking here, feel free to ask in our Discord.

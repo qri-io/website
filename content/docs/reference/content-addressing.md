@@ -1,7 +1,7 @@
 ---
 metaTitle: "Content Addressing"
 metaDescription: "An overview of the problems of location-based addressing and the benefits of content-based addressing"
-weight: 1
+weight: 8
 ---
 
 An address is a uniform, shorthand way of referring to things. Geographic addresses are an obvious example. 1600 Pennsylvania Ave. is the address of the White House. 268 Elizabeth St. is the address of my childhood home. These houses are different in size and function, but they are both locations with addresses that adhere to a (relatively) consistent system. Addresses make it easier to refer to places.

@@ -1,7 +1,7 @@
 ---
 metaTitle: "Qri System Files"
 metaDescription: "Special files and directories used by Qri"
-weight: 1
+weight: 4
 ---
 
 By default, Qri stores data in two hidden directories in your user's home directory.  These directories are created the first time a user runs Qri Desktop, or when a CLI user runs `qri setup`.

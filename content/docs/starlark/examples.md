@@ -1,7 +1,7 @@
 ---
 metaTitle: "Examples"
 metaDescription: "Example Starlark Transforms"
-weight: 2
+weight: 3
 ---
 
 import InfoBlock from '../../../src/components/InfoBlock.js'
@@ -57,16 +57,16 @@ def transform(ds, ctx):
 
   # dict of complaint-counts, keyed by borough name
   boro_counts = dict(zip(boro_names, [0]*len(boro_names)))
-  
+
   for complaint in complaints:
     # only use complaints that have lat & lng values
     if 'latitude' in complaint and 'longitude' in complaint:
       point = geo.Point(float(complaint['longitude']), float(complaint['latitude']))
-      
+
       for boro_name, geom in zip(boro_names, geoms):
         if geo.within(point, geom):
           boro_counts[boro_name] += 1
-  
+
   ds.set_body(boro_counts)
 
 
@@ -115,7 +115,7 @@ def download(ctx):
 # transform is a special function called automatically by Qri if defined
 def transform(ds, ctx):
   countryCodes = [cc[7] for cc in country_codes.get_body()]
-  
+
   # assign csv data from download to a variable
   rawCsvData = ctx.download
   # data comes with two citation-oriented header rows, let's lop them off by reading csv data
@@ -138,7 +138,7 @@ def transform(ds, ctx):
 def structure(header_row):
   items = [{ 'title': title, 'type': 'integer' } for title in header_row]
   for i in range(0,4):
-    items[i]['type'] = 'string' 
+    items[i]['type'] = 'string'
 
   return {
     'format': 'csv',
