@@ -1,7 +1,7 @@
 ---
 metaTitle: "Logbook"
 metaDescription: "An overview of Qri Logbook, the technology that keeps track of versions for a given dataset"
-weight: 1
+weight: 3
 ---
 
 Qri’s logbook is a service for keeping track of changes to datasets over time.  Logbook allows Qri users to exchange information about changes to datasets (tiny!) without transferring the full content of the dataset (potentially huge!).  This facilitates collaboration, as qri users can grant logbook access to other users, allowing them to stay apprised of changes to a dataset that happen elsewhere.

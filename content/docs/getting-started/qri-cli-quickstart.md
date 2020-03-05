@@ -1,6 +1,7 @@
 ---
 metaTitle: "Qri CLI Quickstart"
 metaDescription: "Getting started with Qri's Command Line Interface. Qri is a distributed dataset version control and sharing system"
+weight: 3
 ---
 
 import InfoBlock from '../../../src/components/InfoBlock.js'

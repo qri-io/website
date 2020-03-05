@@ -1,7 +1,7 @@
 ---
 metaTitle: "Dataset Specification"
 metaDescription: "The Qri Dataset Specification"
-weight: 1
+weight: 2
 ---
 
 ## Overview

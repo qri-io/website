@@ -2,7 +2,7 @@
 title: "Installing the Qri CLI"
 metaTitle: "Installing the Qri CLI"
 metaDescription: "Instructions for installing the Qri Command Line Interface"
-weight: 1
+weight: 6
 ---
 
 The Qri CLI allows you to run [qri commands](/docs/reference/cli_commands) from the terminal.
