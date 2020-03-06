@@ -16,7 +16,7 @@ const IndexPage = () => (
       <div className="wrap">
         <div id="blob_trio"></div>
         <div className="text_block">
-          <h1>A New Tool For Data Science</h1>
+          <h1>Data is better when we work together.</h1>
           <h4 className="subhead">qri (“query”) is versioned, scriptable, exportable, collaborative datasets</h4>
           <Link to='/download'><button id="download_button" className="button">Download</button></Link>
         </div>
