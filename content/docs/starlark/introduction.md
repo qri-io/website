@@ -14,7 +14,7 @@ The __transform__ component binds code to a dataset. A transform _script_ is exe
 
 Qri executes transforms in a sandbox, with no access to the local filesystem and staged internet access. The Qri sandbox is intended to make scripts portable. In Qri you can fetch a dataset that someone else has written a transform for, and _recall_ that script, re-execute the transform to produce new deataset versions.
 
-Scripts are written in [_starlark_](https://github.com/bazelbuild/starlark/blob/master/spec.md), which is a python syntax (python version 3 to be exact) with a number of features removed.
+Scripts are written in [_starlark_](https://github.com/bazelbuild/starlark/blob/master/spec.md), which is a dialect of Python 3 with a number of features removed.
 
 A transform script *must* define a function called `transform`. Qri will call this function as the "main function" of a script. Here's an example of a transform script that does nothing:
 
