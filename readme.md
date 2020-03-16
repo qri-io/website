@@ -63,3 +63,11 @@ If you move around existing pages (such as moving a page down into a directory) 
 ### Scripts
 
 There are a few one-off scripts that programmatically generate content. They live in the `/scripts` directory. each one-off is a `.sh` script. Read the comments in each file for instructions on running, and what the script does.
+
+### Jobs
+
+To add a job listing, create a markdown file in `src/pages/jobs` with a filename that starts with `jobs-`.  This will be picked up by the graphql query in `src/pages/jobs/index` and will show up in the list.
+
+If no markdown files match the query, a message saying there are no current openings is shown instead.
+
+You can archive a job posting by changing its filename to not start with `jobs-`, for example: `archive-job-backend-software-engineer`.  Keeping these around will make it easier to turn them back on or adapt them for future positions.
