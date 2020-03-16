@@ -41,12 +41,13 @@ This script would output `[1,2,3]`.
 
 | package name | description |
 |--------------|-------------|
+| [bsoup](#bsoup) | bsoup defines a beautiful-soup-like API for working with HTML documents |
 | [encoding/base64](#base64) | base64 defines base64 encoding & decoding functions, often used to represent binary as text. |
 | [encoding/csv](#csv) | csv reads comma-separated values files |
 | [encoding/json](#json) | json provides functions for working with json data |
 | [encoding/yaml](#yaml) | yaml provides functions for working with yaml data |
 | [geo](#geo) | geo defines geographic operations in two-dimensional space |
-| [html](#html) | html defines a jquery-like html selection & iteration functions for HTML documents |
+| [html](#html) | html defines jquery-like html selection & iteration functions for HTML documents |
 | [http](#http) | http defines an HTTP client implementation |
 | [math](#math) | math defines mathematical functions, it's intended to be a drop-in subset of python's math module for starlark: https://docs.python.org/3/library/math.html |
 | [re](#re) | re defines regular expression functions, it's intended to be a drop-in subset of python's re module for starlark: https://docs.python.org/3/library/re.html |
@@ -54,6 +55,46 @@ This script would output `[1,2,3]`.
 | [xlsx](#xlsx) | xlsx implements excel file readers in starlark. currently a highly-experimental package that will definitely change at some point in the future |
 | [zipfile](#zipfile) | zipfile reads & parses zip archives |
 
+
+** **
+# bsoup
+bsoup defines a beautiful-soup-like API for working with HTML documents
+## Functions
+
+#### `bsoup.parseHtml(html string) SoupNode`
+parseHtml parses html from a string, returning the root SoupNode
+
+
+## Types
+### `SoupNode`
+
+**Methods**
+#### `SoupNode.find(name, attrs, recursive, string, **kwargs)`
+retrieve the first occurance of an element that matches arguments passed to find. works similarly to [node.find()](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find)
+
+#### `SoupNode.find_all(name, attrs, recursive, string, limit, **kwargs)`
+retrieves all descendants that match arguments passed to find_all. works similarly to [node.find_all()](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find-all)
+
+#### `SoupNode.attrs()`
+get a dictionary of element attributes works similarly to [node.attrs](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#attributes)
+
+#### `SoupNode.contents()`
+gets the list of children of an element works similarly to [soup.contents](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#contents-and-children)
+
+#### `SoupNode.child()`
+gets a single child element with the given tag name works like accessing a node [using its tag name](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-using-tag-names)
+
+#### `SoupNode.parent()`
+gets the parent node of an element works like [node.parent](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#parent)
+
+#### `SoupNode.next_sibling()`
+gets the next sibling of an element works like [node.next_sibling](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#next-sibling-and-previous-sibling)
+
+#### `SoupNode.prev_sibling()`
+gets the previous sibling of an element works like [node.prev_sibling](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#next-sibling-and-previous-sibling)
+
+#### `SoupNode.get_text()`
+all the text in a document or beneath a tag, as a single Unicode string: works like [soup.get_text](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#get-text)
 
 ** **
 # encoding/base64
@@ -269,11 +310,11 @@ Distance on the surface of a sphere with the same radius as Earth
 ### `Polygon`
 an ordered list of closed lines (rings) that define a shape. lists of coordinates that wind clockwise are filled regions and  anti-clockwise represent holes.** **
 # html
-html defines a jquery-like html selection & iteration functions for HTML documents
+html defines jquery-like html selection & iteration functions for HTML documents
 ## Functions
 
 #### `html.html(markup) selection`
-parse an html document returing a selection at the root of the document
+parse an html document returning a selection at the root of the document
 
 **parameters:**
 
@@ -748,3 +789,5 @@ open a file for reading
 **Methods**
 #### `ZipInfo.read() string`
 read the file, returning it's string representation
+
+
