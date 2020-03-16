@@ -200,3 +200,16 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     }
   }
 }
+
+// defines types for jobs frontmatter.  When there are no jobs markdown pages,
+// this makes sure there is no error when rendering jobs/index
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type MdxFields implements Node {
+      jobTitle: String
+      jobLocation: String
+    }
+  `
+  createTypes(typeDefs)
+}
