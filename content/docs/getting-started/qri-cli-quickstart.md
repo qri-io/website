@@ -215,7 +215,7 @@ Use a text editor to create a `readme.md` file in your dataset's working directo
 After saving changes to readme.md in your working directory, qri will be aware of the changes.  Use `qri status` to see the current status of the working directory:
 
 <InfoBlock>
-  To use <span class='inline-code'>qri status</span>, either specify the dataset as an argument __or__ run the command after navigating to the working directory
+  To use <span class='inline-code'>qri status</span>, either specify the dataset as an argument <strong>or</strong> run the command after navigating to the working directory
 </InfoBlock>
 
 `qri status`
