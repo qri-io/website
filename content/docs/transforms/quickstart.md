@@ -13,9 +13,8 @@ This docs page will give you example commands to get started with qri transform 
 Create an empty directory using `mkdir`, `cd` into the new directory.
 
 ```bash
-[~/datasets]$ mkdir example-transform
-[~/datasets]$ cd example-transform
-[~/datasets/example-transform]$
+$ mkdir example-transform
+$ cd example-transform
 ```
 
 ## Add a transform.star File
@@ -23,8 +22,7 @@ Create an empty directory using `mkdir`, `cd` into the new directory.
 In your new directory, add a file called `transform.star` to hold the code.  Open the file in your text editor.
 
 ```bash
-[~/datasets/example-transform]$ touch transform.star
-[~/datasets/example-transform]$
+$ touch transform.star
 ```
 
 ## Add Your Transform Code
@@ -60,7 +58,7 @@ It will execute the code in `transform.star`, which results in setting the CSV b
 `qri save --dry-run --file transform.star me/earthquakes`
 
 ```bash
-[~/datasets/example-transform]$ qri save --dry-run --file transform.star me/earthquakes
+$ qri save --dry-run --file transform.star me/earthquakes
 🏃🏽‍dry run
 ✅ transform complete
 dataset saved: fred/earthquakes@/map/QmNUR3GDYcWQbTbSLBDQsp1A1qt8neG9bHT4AqNqfQkAY3
@@ -81,7 +79,7 @@ this dataset has 3013 validation errors
     "scriptPath": "/map/QmZkRmrbqHnw8zs48ApogHswSWPXwg5Qc2TT5ZdKYUiJrH"
   }
 }
-[~/datasets/example-transform]$
+$
 ```
 
 ## Run Qri Save
@@ -89,17 +87,16 @@ this dataset has 3013 validation errors
 Now for the main event!  Run the same `qri save` command without the `--dry-run` flag, and qri will create a new dataset called `earthquakes` in your local qri collection.
 
 ```bash
-[~/datasets/example-transform]$ qri save --dry-run --file transform.star me/earthquakes
+$ qri save --dry-run --file transform.star me/earthquakes
 ✅ transform complete
 dataset saved: fred/earthquake@/ipfs/QmSx8CKD2ojZyhyWB1s4RXAcPeM7bUeKTjrsxP55adYXnr
 this dataset has 3012 validation errors
-[ ~/datasets/example-transform]$
 ```
 
 If you run `qri list`, you'll see your new dataset.  
 
 ```bash
-[~/datasets/example-transform]$ qri list
+$ qri list
 1   fred/earthquakes
     /ipfs/QmSx8CKD2ojZyhyWB1s4RXAcPeM7bUeKTjrsxP55adYXnr
     435 kB, 2329 entries, 3012 errors
@@ -107,11 +104,21 @@ If you run `qri list`, you'll see your new dataset.
 (END)
 ```
 
-## Save Again in the Future
+## Run the Transform Again in the Future
 
-Each time you run the above `qri save` command, the transform script will pull the CSV of earthquakes.  If the downloaded CSV is different from the latest version of the dataset, qri will add a new version that supersedes it.  
+Each time you run `qri save` command, the transform script will pull the CSV of earthquakes.  If the downloaded CSV is different from the latest version of the dataset, qri will add a new version that supersedes it.  
 
 Don't worry, all of the older versions are still there, and you can review them with `qri list` and interact with them using other CLI commands.
+
+### Re-execute the existing transform
+
+If you aren't making any changes to the transform's code and just want to re-execute it to create another version of your dataset, use the `--recall` flag.  With this method, you don't need to keep track of the `transform.star` file you created, qri will just use the transform that is stored in the dataset.
+
+```
+qri save me/earthquakes --recall transform
+```
+
+Firing `qri save` with the `--recall` flag is the basis for automatic updates.  You can use a cron job or other scheduler to run this command periodically to keep your data fresh!
 
 ## Delete the Example Dataset (optional)
 
