@@ -34,6 +34,7 @@ Open `transform.star` in your favorite text editor, and add some code.  You can 
 ```python
 load("http.star", "http")
 
+# qri will call the download function first
 def download(ctx):
   # Download CSV of all earthquakes in the past 7 days from the U.S. Geological Survey
   res = http.get("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.csv")
