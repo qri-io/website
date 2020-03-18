@@ -42,6 +42,7 @@ def download(ctx):
   # res.body() yields the CSV as a string
   return res.body()
 
+# all transform scripts have a transform function, qri calls transform after download
 def transform(ds, ctx):
   # set the dataset's body to the CSV string
   ds.set_body(ctx.download, parse_as='csv')
