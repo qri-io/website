@@ -6,7 +6,7 @@ weight: 2
 
 import InfoBlock from '../../../src/components/InfoBlock.js'
 
-This docs page will give you example commands to get started with qri transform scripts using qri CLI.  
+Follow these steps to run your first transform script with qri CLI.
 
 ## Create a Directory to Work From
 
