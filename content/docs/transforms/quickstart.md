@@ -6,7 +6,7 @@ weight: 2
 
 import InfoBlock from '../../../src/components/InfoBlock.js'
 
-This docs page will give you example commands to get started with qri transform scripts using qri CLI.  
+Follow these steps to run your first transform script with qri CLI.
 
 ## Create a Directory to Work From
 
@@ -32,6 +32,7 @@ Open `transform.star` in your favorite text editor, and add some code.  You can 
 ```python
 load("http.star", "http")
 
+# qri will call the download function first
 def download(ctx):
   # Download CSV of all earthquakes in the past 7 days from the U.S. Geological Survey
   res = http.get("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.csv")
@@ -39,6 +40,7 @@ def download(ctx):
   # res.body() yields the CSV as a string
   return res.body()
 
+# all transform scripts have a transform function, qri calls transform after download
 def transform(ds, ctx):
   # set the dataset's body to the CSV string
   ds.set_body(ctx.download, parse_as='csv')
