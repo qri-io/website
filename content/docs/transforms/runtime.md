@@ -1,10 +1,10 @@
 ---
-metaTitle: "Runtime"
+metaTitle: "Starlark Runtime"
 metaDescription: "Syntax and execution details for Starlark"
-weight: 4
+weight: 5
 ---
 
-Qri ("query") is about datasets. Transformations are runnable scripts for generating datasets.  is a scripting language from Google that is mostly a subset of python. This package implements skylark as a _transformation syntax_. Starlark transformations are about as close as one can get to the full power of a programming language for generating datasets.
+Starlark is a scripting language from Google that is mostly a subset of python. This package implements starlark as a _transformation syntax_. Starlark transformations are about as close as one can get to the full power of a programming language for generating datasets.
 
 ### Key Differences from Python
 
@@ -108,4 +108,4 @@ def download(ctx):
   return {"webserver": "result"}
 ```
 
-For information on the different modules of our starlark standard library, checkout our [starlib reference page](/docs/reference/starlib).
+For information on the different modules of our starlark standard library, checkout our [starlib reference page](/docs/transforms/starlib).
