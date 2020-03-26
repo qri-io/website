@@ -18,6 +18,29 @@ Below are several examples of transform scripts that demonstrate various approac
 
 -- --
 
+## NYC Open Data (Simple CSV Download)
+
+In this common transform, we download a CSV from the internet and set it to the qri dataset's `body`.  The script does not parse the CSV into memory, it simply takes the downloaded file and writes it directly to the new dataset version.  This is useful for versioning and/or archiving a published CSV that changes regularly.
+
+```python
+# load dependencies
+load("http.star", "http")
+load("encoding/csv.star", "csv")
+
+# get the popular baby names dataset as a csv
+def download(ctx):
+  csvDownloadUrl = "https://data.cityofnewyork.us/api/views/25th-nujf/rows.csv?accessType=DOWNLOAD"
+  return http.get(csvDownloadUrl).body()
+
+# set the body
+def transform(ds, ctx):
+  # ctx.download is whatever download() returned
+  csv = ctx.download
+
+  # set the dataset body
+  ds.set_body(csv, parse_as='csv')
+```
+
 ## MTA Elevator Outages (Web Scraping)
 
 
