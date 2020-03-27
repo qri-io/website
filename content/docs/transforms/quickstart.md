@@ -89,7 +89,7 @@ $
 Now for the main event!  Run the same `qri save` command without the `--dry-run` flag, and qri will create a new dataset called `earthquakes` in your local qri collection.
 
 ```bash
-$ qri save --dry-run --file transform.star me/earthquakes
+$ qri save --file transform.star me/earthquakes
 ✅ transform complete
 dataset saved: fred/earthquake@/ipfs/QmSx8CKD2ojZyhyWB1s4RXAcPeM7bUeKTjrsxP55adYXnr
 this dataset has 3012 validation errors
