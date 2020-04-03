@@ -543,23 +543,118 @@ $light-blue-hr: 2px solid #4fc6f3;
   }
 }
 
-// ImageWithCaption Component
-
-.image-with-caption {
-  text-align: center;
-
-  .image-container {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    margin-bottom: 13px;
-    width: 100%;
-    height: auto;
+#the-local-scene-map {
+  .mapboxgl-popup-content {
+    padding: 0;
   }
 
-  .caption {
-    font-size: .8rem;
+  .popup-city-header {
+    background: #4fc7f3;
+    color: #FFF;
     font-weight: 600;
+    padding: 4px 13px;
+    font-size: 1rem;
+  }
+
+  .popup-city-content {
+    padding: 4px 10px 8px 10px;
+  }
+
+  .popup-city-label {
+    color: #686868;
+    font-size: .6rem;
+    font-weight: normal;
+  }
+
+  .popup-city-genre {
+    line-height: 1rem;
+    color: #5e5e5e;
+    text-transform: capitalize;
+  }
+
+  .top-genres-label {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.7rem;
+  }
+
+  .city {
+    text-transform: capitalize;
+  }
+
+  .count {
+    float: right;
+  }
+
+  .overlay {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    background: #c4c4c4;
+    font-size: small;
+    color: #595959;
+    padding: 0 11px;
+    margin: auto;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+
+  .artist-list {
+    position: absolute;
+    top: 0;
+    left: calc(-50vw + 50% - 320px);
+    bottom: 0;
+    z-index: 5;
+    background: #FFF;
+    width: 320px;
+    -webkit-box-shadow: 1px 0px 2px 0px rgba(164, 164, 164, 0.75);
+    -moz-box-shadow: 1px 0px 2px 0px rgba(164, 164, 164, 0.75);
+    box-shadow: 1px 0px 2px 0px rgba(164, 164, 164, 0.75);
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+
+    .message {
+      font-size: .8rem;
+      text-align: center;
+    }
+
+    &.visible {
+      left: calc(-50vw + 50%);
+    }
+
+    .cityName {
+      text-transform: capitalize;
+    }
+
+    .header {
+      padding: 15px;
+      background: #4fc7f3;
+      color: #FFF;
+      font-weight: 500;
+    }
+
+    .close-button {
+      float: right;
+      height: 34px;
+      color: #FFF;
+
+      &:hover {
+        filter: brightness(85%);
+        cursor: pointer;
+      }
+    }
+
+    .list-group-item {
+      padding: 0 11px;
+      font-size: .8rem;
+    }
+
+    .sidebar-scrolling {
+      flex: 1;
+      overflow-y: scroll;
+    }
   }
 }
 

@@ -49,7 +49,7 @@ const DataStoryLayout = ({ children, location, pageContext }) => {
           <div className='byline'><span>by {by}</span> &nbsp; &nbsp;<span className='date'>{moment(date).format('MMMM Do YYYY')}</span></div>
         </div>
       </div>
-      <div className='container data-story'>
+      <div className='data-story'>
         {children}
       </div>
       <Footer />
