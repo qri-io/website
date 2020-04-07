@@ -205,11 +205,12 @@ a:hover {
   font-size: 14px;
 }
 .headerTitle {
+  font-family: "Rubik", sans-serif;
   height: auto;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1.5;
   font-weight: 500;
-  color: #595959 !important;
+  color: #000 !important;
 }
 .headerTitle a {
   color: #595959;
@@ -259,7 +260,7 @@ a:hover {
 }
 
 .navBarBrand img {
-  width: 40px;
+  width: 38px;
   margin-right: 16px;
   display: inline-block;
 }
@@ -270,8 +271,8 @@ a:hover {
   -webkit-overflow-scrolling: touch;
 }
 .navBarUL li a {
-  color: #595959 !important;
-  font-size: 18px;
+  color: #6D6D6D !important;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1em;
   opacity: 1;
@@ -281,7 +282,7 @@ a:hover {
 .navBarNav {
   display: flex;
   align-items: center;
-  font-family: "Anteb-Regular";
+  font-family: "Rubik", sans-serif;
   text-transform: uppercase;
   margin: 0;
 }
@@ -943,7 +944,7 @@ img {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   #navbar {
     margin: 0;
     background: #EDF0F2;

@@ -20,6 +20,7 @@ export default class HTML extends React.Component {
           <link rel='manifest' href='/site.webmanifest' />
           <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
           <link rel='shortcut icon' href='/favicon.ico' />
+          <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
           <meta name='msapplication-TileColor' content='#da532c' />
           <meta name='msapplication-config' content='/browserconfig.xml' />
           <meta name='theme-color' content='#ffffff' />

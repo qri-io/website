@@ -28,7 +28,7 @@ const DownloadPage = () => (
       <script src='/js/download.js' />
     </Head>
     <div id="splash" className="windows">
-      <div className="hero">
+      <div>
         <div className="container text-center">
           <div className="row">
             <div className="logo">
@@ -77,7 +77,7 @@ const DownloadPage = () => (
           </div>
           <div className="row">
             <div className="col-12">
-              <img className="screenshot img-fluid" src="/img/screenshots/history_with_commits_mac.png" style={{ borderRadius: '5px' }}/>
+              <img className="screenshot img-fluid" src="/img/homepage/desktop_screenshot.png" style={{ borderRadius: '5px' }}/>
             </div>
           </div>
         </div>

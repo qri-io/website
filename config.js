@@ -6,7 +6,7 @@ const config = {
     gaTrackingId: null
   },
   header: {
-    logo: 'https://qri.cloud/assets/qri-blob-logo-tiny.png',
+    logo: 'https://qri.cloud/assets/apple-touch-icon.png',
     logoLink: '/',
     title: 'qri',
     githubUrl: '',

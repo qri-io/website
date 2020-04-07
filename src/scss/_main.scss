@@ -57,6 +57,8 @@ $secondary-color: #EDF0F2;
 
 .btn {
   font-family: 'Anteb-Regular';
+  font-weight: 600;
+  font-size: 22px;
   border: none !important;
   border-radius: 8px;
   -webkit-box-shadow: 0px 1px 7px 0px rgba(0,0,0,0.28);
@@ -192,106 +194,6 @@ $secondary-color: #EDF0F2;
   list-style-type: none;
 }
 
-/*   HOME PAGE   */
-
-.index-page {
-  h2 {
-    font-family: 'AntebAlt-Black';
-    margin: 16px 0 8px 0;
-  }
-
-  p {
-    font-size: 1.2rem;
-  }
-}
-
-.index-row {
-  padding: 120px 0;
-
-  @media screen and (max-width: 991px) {
-    padding: 30px 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    padding: 30px 0;
-    background-image: none !important;
-  }
-
-  p {
-    font-weight: 500;
-    margin-bottom: 32px;
-  }
-}
-
-.index-image-col {
-  min-height: 330px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  @media screen and (max-width: 575px) {
-    height: 154px;
-    min-height: auto;
-  }
-}
-
-.index-feature-blurb {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  svg {
-    font-size: 40px;
-    color: #a7a7a7;
-  }
-}
-
-.hero-table {
-  font-size: 3.4rem;
-  font-family: "AntebAlt-Black";
-  margin-bottom: 20px;
-
-  tr:nth-child(2n) {
-    background-color: #e1f8ff;
-  }
-
-  td {
-    letter-spacing: 1px;
-    border: 2px solid #D8D8D8;
-    line-height: 3rem;
-
-    &.highlighted {
-      border-color: #4FCAF37D;
-    }
-
-    &.highlighted-border-bottom {
-      border-bottom-color: #4FCAF37D;
-    }
-  }
-
-  @media screen and (max-width: 575px) {
-    font-size: 2.4rem;
-  }
-}
-
-$light-blue-hr: 2px solid #4fc6f3;
-
-.info-row {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  border-top: $light-blue-hr;
-}
-
-.newsletter-form {
-  margin-bottom: 15px;
-}
-
-#navbar {
-  flex: 1;
-
-  .navBarNav {
-    justify-content: flex-end;
-  }
-}
 
 /*   Docs Page   */
 
@@ -369,6 +271,7 @@ $light-blue-hr: 2px solid #4fc6f3;
       }
     }
   }
+
   // override css for the docs sidebar menu
   .sideBarUL {
     display: flex;
