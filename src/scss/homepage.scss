@@ -27,12 +27,16 @@
   h3 {
     font-size: 25px;
     font-family: 'Anteb-Regular';
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.5rem 0;
   }
 
   p {
     font-size: 16px;
   }
+}
+
+.feature-col {
+  margin-bottom: 60px;
 }
 
 
@@ -240,8 +244,8 @@ $light-blue-hr: 2px solid #4fc6f3;
 
 .more-link {
   font-family: "Rubik", sans-serif;
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: 400;
 }
 
 .spotlight {
@@ -270,16 +274,16 @@ $light-blue-hr: 2px solid #4fc6f3;
 
 .blob-trees-container {
   background-image: url('/img/homepage/blob-trees.png');
-  height: 500px;
-  width: 500px;
+  height: 325px;
+  width: 325px;
   position: absolute;
   right: 10px;
-  top: 166px;
+  top: 221px;
   background-size: contain;
   background-repeat: no-repeat;
 
   @media screen and (max-width: 767px) {
-    top: 361px;
+    top: 542px;
   }
 }
 
@@ -311,6 +315,11 @@ $light-blue-hr: 2px solid #4fc6f3;
 
 /*   Featured Dataset   */
 
+.featured-dataset-col {
+  margin-bottom: -99999px;
+  padding-bottom: 99999px;
+}
+
 .featured-dataset {
   .dataset-description {
     font-size: 14px;
@@ -322,11 +331,33 @@ $light-blue-hr: 2px solid #4fc6f3;
   }
 
   .dataset-reference {
-    font-size: 13px;
-    font-weight: 500;
-    font-family: monospace;
-    color: #656565;
-    display: inline-block;
+    line-height: 16px;
+    margin-bottom: 8px;
+
+    .dataset-reference-item {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: monospace;
+      color: #656565;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .dataset-keywords {
+    height: 48px;
+  }
+
+  .dataset-title {
+    height: 48px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #595959;
   }
 
   .dataset-details {
@@ -365,11 +396,6 @@ $light-blue-hr: 2px solid #4fc6f3;
     color: #B1B1B1;
   }
 
-  .title {
-    font-weight: 700;
-    font-size: 18px;
-    color: #595959;
-  }
 
   a {
     color: black;

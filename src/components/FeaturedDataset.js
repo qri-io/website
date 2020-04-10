@@ -28,16 +28,20 @@ const FeaturedDataset = ({ dataset }) => {
         <div className='card-body px-3'>
           <div className='row'>
             <div className='col-12'>
-              <div className='title mb-2'>{ title }</div>
-              <div className='dataset-description'>{ description }</div>
-              <hr className='my-1'/>
-              <div className='dataset-reference'>{peername}/</div><div className='dataset-reference'>{name}</div>
+              <div className='dataset-reference'>
+                <p className='dataset-reference-item'>{peername}/</p>
+                <p className='dataset-reference-item'>{name}</p>
+              </div>
               <div className='pb-1'>
                 <span className='details mr-2'>{moment(timestamp).fromNow()}</span>
                 <span className='details mr-2'>{numeral(length).format('0.0b')}</span>
                 <span className='details mr-2'>{numeral(entries).format('0,0')} entries</span>
               </div>
-              { keywordElements }
+              <div className='dataset-keywords mb-3'>
+                { keywordElements }
+              </div>
+              <div className='dataset-title mb-2'>{ title }</div>
+              <div className='dataset-description'>{ description }</div>
             </div>
           </div>
         </div>

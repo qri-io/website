@@ -31,7 +31,7 @@ const IndexPage = () => (
                 </tbody>
               </table>
               <p style={{ width: '75%', marginBottom: '1.5rem' }}>Qri helps you clean, version, organize, and share datasets.  Free & Open Source</p>
-              <Link to='/download'><div className='btn btn-lg btn-primary mr-4'>download</div></Link>
+              <Link to='/download'><div className='btn btn-lg btn-primary mr-4' style={{ backgroundColor: '#5ED1E6' }}>download</div></Link>
               <Link to='/docs'><div className='btn btn-lg btn-secondary'>learn more</div></Link>
             </div>
           </div>
@@ -55,7 +55,7 @@ const IndexPage = () => (
       <div className='index-row' style={{ paddingBottom: '80px' }}>
         <div className='container'>
           <div className='row'>
-            <div className='col-12 col-sm-6 col-md-4'>
+            <div className='col-12 col-sm-6 col-md-4 feature-col'>
               <div className='index-feature-image' style={{
                 backgroundImage: 'url("/img/homepage/feature_01_version.svg")'
               }}>
@@ -63,7 +63,7 @@ const IndexPage = () => (
               <h3>Version</h3>
               <p>Compare one version to any other. Understand how datasets evolve with commit histories and diffing tools.</p>
             </div>
-            <div className='col-12 col-sm-6 col-md-4'>
+            <div className='col-12 col-sm-6 col-md-4 feature-col'>
               <div className='index-feature-image' style={{
                 backgroundImage: 'url("/img/homepage/feature_02_share.svg")'
               }}>
@@ -71,7 +71,7 @@ const IndexPage = () => (
               <h3>Share</h3>
               <p>Qri is your personal data portal. Publishing makes your work easy for others to discover and use.</p>
             </div>
-            <div className='col-12 col-sm-6 col-md-4'>
+            <div className='col-12 col-sm-6 col-md-4 feature-col'>
               <div className='index-feature-image' style={{
                 backgroundImage: 'url("/img/homepage/feature_03_automate.svg")'
               }}>
@@ -79,7 +79,7 @@ const IndexPage = () => (
               <h3>Automate</h3>
               <p>Bind code to data with transform scripts, and let your datasets update themselves.</p>
             </div>
-            <div className='col-12 col-sm-6 col-md-4'>
+            <div className='col-12 col-sm-6 col-md-4 feature-col'>
               <div className='index-feature-image' style={{
                 backgroundImage: 'url("/img/homepage/feature_04_query.svg")'
               }}>
@@ -87,7 +87,7 @@ const IndexPage = () => (
               <h3>Query</h3>
               <p>Your entire collection of datasets works like a SQL database.</p>
             </div>
-            <div className='col-12 col-sm-6 col-md-4'>
+            <div className='col-12 col-sm-6 col-md-4 feature-col'>
               <div className='index-feature-image' style={{
                 backgroundImage: 'url("/img/homepage/feature_05_integrate.svg")'
               }}>
@@ -115,7 +115,7 @@ const IndexPage = () => (
           </div>
         </div>
         <div className='row'>
-          <div className='col-12 col-md-4 px-md-1'>
+          <div className='col-12 col-md-4 px-md-1 d-flex align-items-stretch'>
             <FeaturedDataset
               dataset={{
                 peername: 'b5',
@@ -136,7 +136,7 @@ const IndexPage = () => (
               }}
             />
           </div>
-          <div className='col-12 col-md-4 px-md-1'>
+          <div className='col-12 col-md-4 px-md-1 d-flex align-items-stretch'>
             <FeaturedDataset
               dataset={{
                 peername: 'nyc-transit-data',
@@ -157,7 +157,7 @@ const IndexPage = () => (
               }}
             />
           </div>
-          <div className='col-12 col-md-4 px-md-1'>
+          <div className='col-12 col-md-4 px-md-1 d-flex align-items-stretch'>
             <FeaturedDataset
               dataset={{
                 peername: 'chriswhong',
