@@ -4,7 +4,7 @@ import moment from 'moment'
 
 import ExternalLink from './ExternalLink'
 
-const FeaturedDataset = ({ dataset }) => {
+const FeaturedDataset = ({ dataset, onClick }) => {
   const { peername, name, meta, structure, commit } = dataset
 
   const description = meta && meta.description ? meta.description : 'No description'
@@ -23,7 +23,7 @@ const FeaturedDataset = ({ dataset }) => {
   }
 
   return (
-    <div className='card featured-dataset index-card index-shadow' >
+    <div className='card featured-dataset index-card index-shadow' onClick={onClick}>
       <ExternalLink to={`https://qri.cloud/${peername}/${name}`}>
         <div className='card-body px-3'>
           <div className='row'>

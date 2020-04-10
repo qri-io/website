@@ -9,11 +9,12 @@ const BlogCard = (props) => {
     link,
     image,
     by,
-    date
+    date,
+    onClick
   } = props
 
   return (
-    <div className='card blog-card index-shadow index-card' >
+    <div className='card blog-card index-shadow index-card' onClick={onClick}>
       <ExternalLink to={link}>
         <div className='card-img' style={{ backgroundImage: `url('${image}')` }} />
         <div className='card-body px-3'>
