@@ -1,123 +1,318 @@
 import React from 'react'
-import MailingList from '../components/MailingList'
-import ExternalLink from '../components/ExternalLink'
-
-import Highlight from 'react-highlight.js'
 import { Link } from 'gatsby'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch, faEnvelope, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-import Head from '../components/Head'
+import ExternalLink from '../components/ExternalLink'
+import FeaturedDataset from '../components/FeaturedDataset'
+import BlogCard from '../components/BlogCard'
 
 const IndexPage = () => (
-  <div id="main" className="index">
-    <Head data={{}}>
-      <script src='/js/download.js' />
-    </Head>
-    <header id="hero">
-      <div className="wrap">
-        <div id="blob_trio"></div>
-        <div className="text_block">
-          <h1>Data is better when we work together.</h1>
-          <h4 className="subhead">qri (“query”) is versioned, scriptable, exportable, collaborative datasets</h4>
-          <Link to='/download'><button id="download_button" className="button">Download</button></Link>
+  <div className='index-page'>
+    <div className='index-blue'>
+      <div className='index-row hero'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-12 col-md-8 col-lg-6'>
+              <table className='hero-table'>
+                <tbody>
+                  <tr>
+                    <td className='highlighted-border-bottom'><span>DATA</span></td>
+                    <td><span>WITH</span></td>
+                  </tr>
+                  <tr>
+                    <td className='highlighted'>
+                      <span>FRIENDS</span>
+                      <div className='plus-horizontal'/>
+                      <div className='plus-vertical'/>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p style={{ width: '75%', marginBottom: '1.5rem' }}>Qri helps you clean, version, organize, and share datasets.  Free & Open Source</p>
+              <Link to='/download'><div className='btn btn-lg btn-primary mr-4' style={{ backgroundColor: '#5ED1E6' }}>download</div></Link>
+              <Link to='/docs'><div className='btn btn-lg btn-secondary'>learn more</div></Link>
+            </div>
+          </div>
         </div>
       </div>
-    </header>
-
-    <section id="feature_descriptions">
-      <div className="wrap">
-        <div id="web_of_datasets" className="feature_description">
-          <h2>A Web of Datasets</h2>
-          <p>Qri is built around datasets. Bigger than a spreadsheet, smaller than a database, datasets are all around us. Use Qri to browse, download, create, fork, and publish datasets with a broad network of peers.</p>
-          <Link to='/docs/dataset-components/overview'><button id="download_button" className="button">About Qri Datasets</button></Link>
-        </div>
-        <div id="open_source" className="feature_description">
-          <h2>This Party is Free and Open Source</h2>
-          <p>Data is better when we work together. Qri costs nothing to use, and is built as an open source project under a GPL license.</p>
-        </div>
-        <div id="datasets_you_can_use" className="feature_description">
-          <h2>Datasets You Can Actually Use</h2>
-          <p>Every dataset change is tracked & attributed to an author, so you can audit whether the data you’re looking at meets your standards, and track changes as they happen.</p>
-        </div>
-        <div id="any_skill_level" className="feature_description">
-          <h2>Tools for Any Skill Level</h2>
-          <p>Whether you&apos;re a data scientist, or have only ever touched excel, we have tools for you.</p>
+      <div className='white-triangle'></div>
+    </div>
+    <div className='index-blue'>
+      <div style={{ padding: '75px 0px 38px 0' }}>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-12 col-sm-9 offset-sm-0 col-md-6'>
+              <h1 className='col-12 col-md-9 text-center text-md-right m-0 mb-2'>Let&apos;s rethink what datasets can do</h1>
+              <p className='col-12 col-md-8 text-center text-md-left offset-md-4'>Qri is an all new suite of tools for doing more with datasets</p>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-
-    <section id="distributed_web">
-      <div className="wrap">
-        <div className="text_block">
-          <h3>Built on the Distributed Web</h3>
-          <p>Qri is built from the ground up as a distributed network on top of IPFS. We chose IPFS because it’s both global and content-addressed — perfect for datasets.</p>
-          <p>Data you’ve downloaded stays local. Content-addressing lets data be stored anywhere without sacrificing security. All this adds up to a web of datasets that is faster, more secure, and free.</p>
+    </div>
+    <div className='index-blue'>
+      <div className='index-row' style={{ paddingBottom: '80px' }}>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-12 col-sm-6 col-md-4 feature-col'>
+              <div className='index-feature-image' style={{
+                backgroundImage: 'url("/img/homepage/feature_01_version.svg")'
+              }}>
+              </div>
+              <h3>Version</h3>
+              <p>Compare one version to any other. Understand how datasets evolve with commit histories and diffing tools.</p>
+            </div>
+            <div className='col-12 col-sm-6 col-md-4 feature-col'>
+              <div className='index-feature-image' style={{
+                backgroundImage: 'url("/img/homepage/feature_02_share.svg")'
+              }}>
+              </div>
+              <h3>Share</h3>
+              <p>Qri is your personal data portal. Publishing makes your work easy for others to discover and use.</p>
+            </div>
+            <div className='col-12 col-sm-6 col-md-4 feature-col'>
+              <div className='index-feature-image' style={{
+                backgroundImage: 'url("/img/homepage/feature_03_automate.svg")'
+              }}>
+              </div>
+              <h3>Automate</h3>
+              <p>Bind code to data with transform scripts, and let your datasets update themselves.</p>
+            </div>
+            <div className='col-12 col-sm-6 col-md-4 feature-col'>
+              <div className='index-feature-image' style={{
+                backgroundImage: 'url("/img/homepage/feature_04_query.svg")'
+              }}>
+              </div>
+              <h3>Query</h3>
+              <p>Your entire collection of datasets works like a SQL database.</p>
+            </div>
+            <div className='col-12 col-sm-6 col-md-4 feature-col'>
+              <div className='index-feature-image' style={{
+                backgroundImage: 'url("/img/homepage/feature_05_integrate.svg")'
+              }}>
+              </div>
+              <h3>Integrate</h3>
+              <p>Export any version to a format you can use, or wire Qri up to your workflow with command line tools & language interations.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section id="app_and_cli">
-      <div className="wrap">
-        <h2>Works With Both <br />Mouse and Keyboard</h2>
-        <div id="app_screenshot"></div>
-        <div id="terminal_window">
-          <div id="window_chrome">
-            <div className="red circle"></div>
-            <div className="yellow circle"></div>
-            <div className="green circle"></div>
+    <div className='index-row'>
+      <div className='container mb-5'>
+        <div className='row mb-4'>
+          <div className='col-12 col-md-4 px-md-1'>
+            <h2 className='my-2'>Featured Datasets</h2>
           </div>
-          <Highlight language='bash'>
-            <span className="white">$ qri add --file=dataset.yaml me/data</span><span className="green">dataset created!</span><br /><span className="white">$ qri connect</span><span className="gray">connecting to IPFS and qri P2P… <br />peername: b5 <br />JSON API port: 2503 <br />Webapp port: 2505</span>
-          </Highlight>
+          <div className='col-12 col-md-8 px-md-1'>
+            <form method="GET" action="https://qri.cloud/search" className="input-container">
+              <input type="text" className="text-input index-shadow" name="q" placeholder="Search for datasets" />
+              <FontAwesomeIcon icon={faSearch} />
+              <input type="submit" style={{ display: 'none' }} />
+            </form>
+          </div>
         </div>
-        <div className="text_block">
-          <p>Qri has a desktop app and command line tools. Both are free and open source.<br /><Link to="/download">Download</Link></p>
+        <div className='row'>
+          <div className='col-12 col-md-4 px-md-1 d-flex align-items-stretch'>
+            <FeaturedDataset
+              dataset={{
+                peername: 'b5',
+                name: 'world_bank_population',
+                meta: {
+                  title: 'World Bank Global Population by Year',
+                  description: '( 1 ) United Nations Population Division. World Population Prospects: 2017 Revision. ( 2 ) Census reports and other statistical publications from national statistical offices, ( 3 ) Eurostat: Demographic Statistics, ( 4 ) United Nations Statistical Division. Population and Vital Statistics Reprot ( various years ), ( 5 ) U.S. Census Bureau: International Database, and ( 6 ) Secretariat of the Pacific Community: Statistics and Demography Programme.',
+                  keywords: ['demographics']
+                },
+                structure: {
+                  entries: 214,
+                  format: 'csv',
+                  length: 109700
+                },
+                commit: {
+                  timestamp: '2020-03-24T20:59:19.315549Z'
+                }
+              }}
+            />
+          </div>
+          <div className='col-12 col-md-4 px-md-1 d-flex align-items-stretch'>
+            <FeaturedDataset
+              dataset={{
+                peername: 'nyc-transit-data',
+                name: 'turnstile_daily_counts_2020',
+                meta: {
+                  title: 'NYC Subway Turnstile Counts - 2020',
+                  description: 'NYC Subway Turnstile Counts Data aggregated by day and station complex for the year 2020. Updated weekly.',
+                  keywords: ['NYC', 'transit', 'subway', 'turnstiles', 'mobility']
+                },
+                structure: {
+                  entries: 38111,
+                  format: 'csv',
+                  length: 41000000
+                },
+                commit: {
+                  timestamp: '2020-04-04T11:22:51.657606Z'
+                }
+              }}
+            />
+          </div>
+          <div className='col-12 col-md-4 px-md-1 d-flex align-items-stretch'>
+            <FeaturedDataset
+              dataset={{
+                peername: 'chriswhong',
+                name: 'nyc_bridge_bike_counts_2019',
+                meta: {
+                  title: 'NYC Bridge Bike Counts 2019',
+                  description: "A filtered set of observations from NYC's [Bicycle Counts dataset](https://data.cityofnewyork.us/Transportation/Bicycle-Counts/uczf-rk3c). More specifically, it includes observations during the year 2019 for the three Manhattan to Brooklyn East River Bridges",
+                  keywords: []
+                },
+                structure: {
+                  entries: 35343,
+                  format: 'csv',
+                  length: 1234631
+                },
+                commit: {
+                  timestamp: '2020-02-26T18:46:17.159963Z'
+                }
+              }}
+            />
+          </div>
         </div>
       </div>
-    </section>
-
-    <section id="tech_features">
-      <div className="wrap">
-        <div className="features_list">
-          <div id="existing_specs" className="feature_description">
-            <h3>Qri Uses Existing Specs</h3>
-            <p>Wherever possible, we aim to use specifications & technologies that already exist. The end result is a natural set of integration points that makes qri less about being a “data platform” and more a series of integrations between platforms.</p>
+      <div className='container'>
+        <div className='col-9 offset-2 col-sm-12 offset-sm-0'>
+          <div className='text-center more-link'>
+            <ExternalLink to='https://qri.cloud'>explore more datasets on qri.cloud &nbsp;<FontAwesomeIcon icon={faChevronRight} /></ExternalLink>
           </div>
-          <div id="git_style" className="feature_description">
-            <h3>Git-style version control</h3>
-            <p>Qri’s dataset versioning system is inspired by git, and signs each commit with your identifying keypair. Because qri is only about datasets, qri generates commit messages for you.</p>
-          </div>
-          <div id="data_formats" className="feature_description">
-            <h3>Native support for JSON, CSV, CBOR data formats</h3>
-            <p>Mix & match any format as you need, import from and export to any format.</p>
-          </div>
-          <div id="meta_specs" className="feature_description">
-            <h3>Metadata based on library science</h3>
-            <p>Librarians are better at metadata than developers, so we based our metadata spec on DCAT & Project Open Data, for cleaner integration with existing data catalogs.</p>
-          </div>
-          <div id="json_schemas" className="feature_description">
-            <h3>JSON-Schemas for validation & OpenAPIs</h3>
-            <p>Dataset schemas are defined with the same spec that drives OpenAPIs. Datasets automatically generate a JSON API & accompanying OpenAPI documentation.</p>
-          </div>
-          <div id="transformations" className="feature_description">
-            <h3>Automate data munging with Python’s cousin: Starlark</h3>
-            <p>Write configurable, repeatable transformations that can build on remote sources and other qri datasets, in a syntax that feels like Python.</p>
-          </div>
-        </div>
-        <div className="action_buttons">
-          <ExternalLink to="https://github.com/qri-io"><button className="button outline big" onClick={() => { window._gaq.push(['_trackEvent', 'qri', 'github']) }}>Gimmie Github</button></ExternalLink>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section id="work_together">
-      <div className="wrap">
-        <div className="text_block">
-          <h1>Data is Better When We Work Together</h1>
+    <div className='index-row spotlight' style={{ position: 'relative', paddingBottom: '160px' }}>
+      <div className='blob-diff-container' />
+      <div className='container'>
+        <div className='row'>
+          <div className='col-12 col-md-6'>
+            <img src="/img/homepage/desktop_screenshot.png" className="img-fluid" />
+          </div>
+          <div className='col-12 col-md-6'>
+            <h2 className='mt-0 mb-4'>Build & Manage Datasets<br/> With Qri Desktop</h2>
+            <div className='mb-4'>
+              Discover and clone others&apos; data;<br/>
+              Author commits & track versions of your own.
+            </div>
+            <Link to='/download'><div className='btn btn-lg btn-primary mr-4'>download</div></Link>
+            <Link to='/docs'><div className='btn btn-lg btn-secondary'>learn more</div></Link>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <MailingList />
+    <div className='index-row spotlight' style={{ paddingBottom: '140px' }}>
+      <div className='container' style={{ position: 'relative' }}>
+        <div className='row'>
+          <div className='col-12 col-md-6 offset-md-2' style={{ zIndex: 5 }}>
+            <h2 className='mt-0 mb-4'>Integrate Anywhere with Qri CLI</h2>
+            <div className='mb-3'>
+              Full programmatic access to qri tools to customize & integrate with your workflow.<br/>
+              Get started now with:
+            </div>
+            <div className='inline-code-highlight'>
+              curl -fsSL https://qri.io/install.sh | sh
+            </div>
+          </div>
+          <div className='col-12 col-md-4 p-0' style={{ zIndex: 5 }}>
+            <img src="/img/homepage/cli_screenshot.png" className="img-fluid" />
+          </div>
+        </div>
+        <div className='blob-trees-container' />
+      </div>
+    </div>
+
+    <div className='index-row spotlight' style={{ paddingBottom: 0 }}>
+      <div className='container mb-5'>
+        <div className='row'>
+          <div className='col-12'>
+            <h1 className='mt-0 mb-1'>Data Tells a Story</h1>
+            <div className='mb-4'>
+              Select data-driven publications from the Qri Blog
+            </div>
+          </div>
+          <div className='col-12 col-md-4'>
+            <BlogCard
+              title="Tracking a Bus Route's Data Footprint"
+              link='https://qri.io/data-stories/brooklyn-bus-times'
+              image='/data-stories-resources/brooklyn-bus-times/img/bus-in-traffic.jpg'
+              by='Chris Whong'
+              date='2020-02-05'
+            />
+          </div>
+          <div className='col-12 col-md-4'>
+            <BlogCard
+              title="Taming the MTA's Unruly Turnstile Data"
+              link='https://medium.com/qri-io/taming-the-mtas-unruly-turnstile-data-c945f5f96ba0?source=post_stats_page---------------------------'
+              image='https://miro.medium.com/max/1400/1*xrm0PedCpul1HpNqNMwcZw.png'
+              by='Chris Whong'
+              date='2020-03-31'
+            />
+          </div>
+          <div className='col-12 col-md-4'>
+            <BlogCard
+              title="Which NYC Bridge Has The Most Bike Traffic?"
+              link='https://medium.com/qri-io/which-nyc-bridge-has-the-most-bike-traffic-6bb291eb74ef'
+              image='https://miro.medium.com/max/4800/1*VP-Y10SbaBxok_ONXifo2g@2x.png'
+              by='Chris Whong'
+              date='2020-02-24'
+            />
+          </div>
+        </div>
+      </div>
+      <div className='container'>
+        <div className='col-9 offset-2 col-sm-12 offset-sm-0'>
+          <div className='text-center more-link'>
+            <ExternalLink to='https://medium.com/qri-io'>read more stories on the qri blog &nbsp;<FontAwesomeIcon icon={faChevronRight} /></ExternalLink>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div className='index-row spotlight'>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-12 col-md-8'>
+            <h2>Sign up for the Qri Newsletter</h2>
+            <form className='form-inline newsletter-form input-container' action='https://qri.us19.list-manage.com/subscribe/post?u=54a6a8c1171101850b8576277&amp;id=b41eb6f58e' method='post' id='mc-embedded-subscribe-form' name='mc-embedded-subscribe-form' target='_blank' noValidate>
+              <div className='form-group mr-sm-3 mb-2'>
+                <input type='email' name='EMAIL' className='text-input index-shadow' placeholder='Your Email' id='mce-EMAIL' />
+                <FontAwesomeIcon icon={faEnvelope} />
+              </div>
+              <button type='submit' value='Subscribe' name='subscribe' id='mc-embedded-subscribe' className='btn btn-primary btn-lg mb-2' style={{ height: '57px' }}>Subscribe</button>
+
+              <div style={{
+                position: 'absolute',
+                left: '-5000px'
+              }} aria-hidden='true'>
+                <input type='text' name='b_54a6a8c1171101850b8576277_b41eb6f58e' tabIndex='-1' />
+              </div>
+              <div id='mce-responses' className='clear'>
+                <div className='response' id='mce-error-response' style={{ display: 'none' }}></div>
+                <div className='response' id='mce-success-response' style={{ display: 'none' }}></div>
+              </div>
+            </form>
+            <div>Receive updates on our progress and product releases</div>
+          </div>
+          <div className='col-12 col-md-4 my-4 my-md-0 text-center'>
+            <h2 style={{
+              fontFamily: 'Rubik',
+              fontWeight: 700
+            }}>QRI ♥️ FOSS</h2>
+            <div className='mb-4'>This Data Party is Open Source</div>
+            <ExternalLink to='https://github.com/qri-io'><FontAwesomeIcon icon={faGithub} /> github.com/qri-io</ExternalLink>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 )
 

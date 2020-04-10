@@ -1,0 +1,414 @@
+
+/*   HOME PAGE   */
+
+.index-page {
+  overflow-x: hidden;
+
+  a {
+    color: #4FC7F3;
+  }
+
+  a:hover {
+    color: darken(#4FC7F3, 10%);
+    text-decoration: underline;
+  }
+
+  h1 {
+    font-size: 36px;
+    font-family: 'AntebAlt-Black';
+  }
+
+  h2 {
+    font-size: 32px;
+    font-family: 'AntebAlt-Black';
+    margin-bottom: 1.5rem
+  }
+
+  h3 {
+    font-size: 25px;
+    font-family: 'Anteb-Regular';
+    margin: 0 0 0.5rem 0;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+
+.feature-col {
+  margin-bottom: 60px;
+}
+
+
+.input-container {
+  position: relative;
+
+  .text-input {
+    height: 57px;
+    width: 100%;
+    border: 1px solid #E6E6E6;
+    border-radius: 5px;
+    padding-left: 74px;
+  }
+
+  input[type="text"], input[type="email"] {
+    font-size: 20px;
+    font-weight: 600;
+
+    &:focus {
+      outline:none;
+    }
+  }
+
+  svg {
+    position: absolute;
+    color: #979797;
+    left: 24px;
+    top: 15px;
+    font-size: 28px;
+  }
+}
+
+.white-triangle {
+  position: relative;
+  transform: translate(70vw, -640px) scale(900) skew(61deg, -29deg);
+  height: 1px;
+  width: 2px;
+  background: #ffffff;
+
+  // lots of media queries to make the white trangle fit between the hero and the "rethink" message
+  @media screen and (max-width: 1800px) {
+    transform: translate(70vw, -700px) scale(900) skew(61deg, -29deg);
+  }
+
+  @media screen and (max-width: 1199px) {
+    transform: translate(70vw, -746px) scale(900) skew(61deg, -29deg);
+  }
+
+  @media screen and (max-width: 991px) {
+    transform: translate(78vw, -760px) scale(900) skew(61deg, -29deg);
+  }
+
+  @media screen and (max-width: 767px) {
+    transform: translate(78vw, -890px) scale(900) skew(61deg, -29deg);
+  }
+
+  @media screen and (max-width: 479px) {
+    transform: translate(78vw, -904px) scale(900) skew(61deg, -29deg);
+  }
+}
+
+.index-row {
+  padding: 56px 0;
+
+  @media screen and (max-width: 991px) {
+    padding: 30px 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 30px 0;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 16px;
+  }
+}
+
+.hero {
+  position: relative;
+  z-index: 5;
+  color: #000;
+  background: url('/img/homepage/home_hero.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 80%;
+  padding: 83px 0;
+
+  @media screen and (max-width: 998px) {
+    background-size: 50%;
+    background-position: 88% 70px;
+  }
+
+  @media screen and (max-width: 767px) {
+    background: none;
+  }
+
+  @media screen and (min-width: 1200px) {
+    background-position: 70%;
+  }
+}
+
+.index-blue {
+  color: #FFF;
+  background-color: #1B3456;
+}
+
+.index-feature-image {
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  @media screen and (max-width: 575px) {
+    height: 154px;
+    min-height: auto;
+  }
+}
+
+.index-feature-blurb {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  svg {
+    font-size: 40px;
+    color: #a7a7a7;
+  }
+}
+
+
+
+.hero-table {
+  font-size: 3.4rem;
+  font-family: "AntebAlt-Black";
+  margin-bottom: 20px;
+  color: #434343;
+
+  tr:nth-child(2n) {
+    background-color: #FFF;
+  }
+
+  td {
+    letter-spacing: 1px;
+    border: 1px solid #979797;
+    line-height: 3rem;
+
+    &.highlighted {
+      border-color: #4FCAF3;
+      background-color: #4fcaf321;
+    }
+
+    &.highlighted-border-bottom {
+      border-bottom-color: #4FCAF3;
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    font-size: 3rem;
+  }
+
+  .highlighted {
+    position: relative;
+  }
+
+  .plus-horizontal {
+    height: 5px;
+    width: 24px;
+    background: #4ecaf3;
+    position: absolute;
+    bottom: -3px;
+    right: -12px;
+    border-radius: 3px;
+  }
+
+  .plus-vertical {
+    height: 24px;
+    width: 5px;
+    background: #4ecaf3;
+    position: absolute;
+    bottom: -12px;
+    right: -3px;
+    border-radius: 3px;
+  }
+}
+
+$light-blue-hr: 2px solid #4fc6f3;
+
+.info-row {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-top: $light-blue-hr;
+}
+
+.newsletter-form {
+  margin-bottom: 15px;
+}
+
+#navbar {
+  flex: 1;
+
+  .navBarNav {
+    justify-content: flex-end;
+  }
+}
+
+.more-link {
+  font-family: "Rubik", sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.spotlight {
+  font-size: 18px;
+  line-height: 29px;
+
+  h1 {
+    font-size: 55px;
+  }
+
+  .tool-image {
+    height: 100%;
+    background-size: cover;
+  }
+}
+
+.inline-code-highlight {
+  font-family: monospace;
+  background: #D8D8D8;
+  padding: 6px 12px;
+  font-size: 15px;
+  border-radius: 4px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.blob-trees-container {
+  background-image: url('/img/homepage/blob-trees.png');
+  height: 325px;
+  width: 325px;
+  position: absolute;
+  right: 10px;
+  top: 221px;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  @media screen and (max-width: 767px) {
+    top: 542px;
+  }
+}
+
+.blob-diff-container {
+  background-image: url('/img/homepage/blob-diff.png');
+  height: 575px;
+  width: 575px;
+  position: absolute;
+  left: -50px;
+  top: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  @media screen and (max-width: 767px) {
+    top: 390px;
+  }
+}
+
+.newsletter-form>.form-group {
+  @media screen and (max-width: 576px) {
+    flex: 1 1 50%;
+    padding-bottom: 15px;
+  }
+}
+
+/*   End HOME PAGE   */
+
+
+
+/*   Featured Dataset   */
+
+.featured-dataset-col {
+  margin-bottom: -99999px;
+  padding-bottom: 99999px;
+}
+
+.featured-dataset {
+  .dataset-description {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+
+  .dataset-reference {
+    line-height: 16px;
+    margin-bottom: 8px;
+
+    .dataset-reference-item {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: monospace;
+      color: #656565;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .dataset-keywords {
+    height: 48px;
+  }
+
+  .dataset-title {
+    height: 48px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #595959;
+  }
+
+  .dataset-details {
+    font-size: 14px;
+    display: inline-block;
+    font-weight: 400;
+    color: #B1B1B1;
+  }
+
+  .keyword {
+    color: #F8AB31;
+    background-color: #F2F2F2;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+.index-shadow {
+  border: 1px solid #E6E6E6;
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.08);
+}
+
+.index-card {
+  margin-bottom: 15px;
+
+  .card-img {
+    height: 175px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .details {
+    font-size: 14px;
+    display: inline-block;
+    font-weight: 400;
+    color: #B1B1B1;
+  }
+
+
+  a {
+    color: black;
+  }
+
+  &:hover {
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    background: #f6f6f6;
+  }
+}
+
+
+/*   End Featured Dataset   */
