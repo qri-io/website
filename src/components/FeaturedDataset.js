@@ -40,7 +40,7 @@ const FeaturedDataset = ({ dataset }) => {
               <div className='dataset-keywords mb-3'>
                 { keywordElements }
               </div>
-              <div className='dataset-title mb-2'>{ title }</div>
+              <div className='dataset-title title mb-2'>{ title }</div>
               <div className='dataset-description'>{ description }</div>
             </div>
           </div>
