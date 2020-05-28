@@ -49,7 +49,7 @@ dataset saved: foo/my_dataset@/ipfs/QmXciFZ7CZj3PfauaXSpKd6amyUpWh4qiPhPGywFbzjh
 
 ### Running Transforms
 
-See [introduction](../starlark/introduction) for an introduction to starlark transforms.
+See [the Starlark Overview](/docs/transforms/overview) for an introduction to starlark transforms.
 
 <InfoBlock>
   See <a href="/docs/reference/dataset-specification/">Dataset Specification</a> for detailed documentation of Qri dataset components.
