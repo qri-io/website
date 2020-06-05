@@ -41,7 +41,7 @@ const IndexPage = () => {
                     </tr>
                   </tbody>
                 </table>
-                <p style={{ width: '75%', marginBottom: '1.5rem' }}>Qri helps you clean, version, organize, and share datasets.  Free & Open Source</p>
+                <p style={{ width: '75%', marginBottom: '1.5rem', backgroundColor: '#FFFFFFDD', border: '0.2rem solid transparent', borderRadius: '0.2rem' }}>Qri helps you clean, version, organize, and share datasets.  Free & Open Source</p>
                 <Link to='/download'>
                   <div
                     className='btn btn-lg btn-primary mr-4'
