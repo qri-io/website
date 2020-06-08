@@ -40,7 +40,7 @@ If you already have a Qri Cloud account, you need to connect your username with 
 If you do not have an account, [sign up](#sign-up-for-a-qri-account). Your new credentials will be stored for CLI use.
 
 ```
-$ qri registry prove --username foo --password applesauce
+$ qri registry prove --username foo --email foo@qri.io
 ```
 
 ## Sign up for a Qri account
