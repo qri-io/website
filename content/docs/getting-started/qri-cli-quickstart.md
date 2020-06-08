@@ -40,7 +40,7 @@ If you already have a Qri Cloud account, you need to connect your username with 
 If you do not have an account, [sign up](#sign-up-for-a-qri-account). Your new credentials will be stored for CLI use.
 
 ```
-$ qri registry prove --username foo --password applesauce
+$ qri registry prove --username foo --email foo@qri.io
 ```
 
 ## Sign up for a Qri account
@@ -48,7 +48,7 @@ $ qri registry prove --username foo --password applesauce
 While it’s possible to use Qri without an account, signing up ensures that your username is unique and gives you access to Qri Cloud for one-click data publishing.  Choose a good username, it will be used to reference each of your datasets on the Qri network.  
 
 ```
-$ qri registry signup --username foo --email foo@qri.io --password applesauce
+$ qri registry signup --username foo --email foo@qri.io
 ```
 
 ## Create your first Qri Dataset
