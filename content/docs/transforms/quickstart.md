@@ -129,5 +129,5 @@ When you're finished, you can delete the dataset with `qri remove --all me/earth
 
 ## More Examples
 
-Examples of more complex transform scripts are available in [Example Transform Scripts](http://localhost:8000/docs/transforms/examples).
+Examples of more complex transform scripts are available in [Example Transform Scripts](examples).
 -- --
