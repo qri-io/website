@@ -70,7 +70,7 @@ const IndexPage = () => {
           <div className='container'>
             <div className='row'>
               <div className='col-12 col-sm-9 offset-sm-0 col-md-6'>
-                <h1 className='col-12 col-md-9 text-center text-md-right m-0 mb-2'>Let&apos;s rethink what datasets can do</h1>
+                <h1 className='col-12 col-md-9 text-center text-md-right m-0 mb-2'>Let’s rethink what datasets can do</h1>
                 <p className='col-12 col-md-8 text-center text-md-left offset-md-4'>Qri is an all new suite of tools for doing more with datasets</p>
               </div>
             </div>
@@ -236,7 +236,7 @@ const IndexPage = () => {
             <div className='col-12 col-md-6'>
               <h2 className='mt-0 mb-4'>Build & Manage Datasets<br/> With Qri Desktop</h2>
               <div className='mb-4'>
-              Discover and clone others&apos; data;<br/>
+              Discover and clone others’ data;<br/>
               Author commits & track versions of your own.
               </div>
               <Link to='/download'>
@@ -292,32 +292,32 @@ const IndexPage = () => {
             </div>
             <div className='col-12 col-md-4'>
               <BlogCard
-                title="Tracking a Bus Route's Data Footprint"
-                link='https://qri.io/data-stories/brooklyn-bus-times'
-                image='/data-stories-resources/brooklyn-bus-times/img/bus-in-traffic.jpg'
-                by='Chris Whong'
-                date='2020-02-05'
-                onClick={ () => { fireEvent('blog-card-click', 'brooklyn-bus-times') }}
+                title="Policing in the Pandemic"
+                link='https://medium.com/qri-io/policing-in-the-pandemic-45448687714b'
+                image='https://miro.medium.com/fit/t/1600/480/1*ubE7BXWQmWXCyn4yzlhvLw.png'
+                by='Xristos Katsaros'
+                date='2020-06-08'
+                onClick={ () => { fireEvent('blog-card-click', 'policing-pandemic') }}
               />
             </div>
             <div className='col-12 col-md-4'>
               <BlogCard
-                title="Taming the MTA's Unruly Turnstile Data"
-                link='https://medium.com/qri-io/taming-the-mtas-unruly-turnstile-data-c945f5f96ba0?source=post_stats_page---------------------------'
+                title="Four Simple Steps to Improve U.S. Census Data CSVs"
+                link='https://medium.com/qri-io/four-simple-steps-to-improve-u-s-census-data-csvs-b7358ee1b18'
+                image='https://miro.medium.com/fit/t/2400/720/1*4fxONIjv9fV64KgMV0dZDw.png'
+                by='Chris Whong'
+                date='2020-06-12'
+                onClick={ () => { fireEvent('blog-card-click', 'improve-census-data') }}
+              />
+            </div>
+            <div className='col-12 col-md-4'>
+              <BlogCard
+                title="Taming the MTA’s Unruly Turnstile Data"
+                link='https://medium.com/qri-io/taming-the-mtas-unruly-turnstile-data-c945f5f96ba0'
                 image='https://miro.medium.com/max/1400/1*xrm0PedCpul1HpNqNMwcZw.png'
                 by='Chris Whong'
                 date='2020-03-31'
                 onClick={ () => { fireEvent('blog-card-click', 'mta-turnstile-data') }}
-              />
-            </div>
-            <div className='col-12 col-md-4'>
-              <BlogCard
-                title="Which NYC Bridge Has The Most Bike Traffic?"
-                link='https://medium.com/qri-io/which-nyc-bridge-has-the-most-bike-traffic-6bb291eb74ef'
-                image='https://miro.medium.com/max/4800/1*VP-Y10SbaBxok_ONXifo2g@2x.png'
-                by='Chris Whong'
-                date='2020-02-24'
-                onClick={ () => { fireEvent('blog-card-click', 'nyc-bridge-bike-counts') }}
               />
             </div>
           </div>
