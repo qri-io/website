@@ -1,6 +1,8 @@
 ---
 metaTitle: "Starlark Runtime"
 metaDescription: "Syntax and execution details for Starlark"
+qriVersion: "0.9.9"
+qriDesktop: "0.4.2"
 weight: 5
 ---
 
