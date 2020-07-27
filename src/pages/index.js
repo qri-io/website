@@ -5,7 +5,7 @@ import { faSearch, faEnvelope, faChevronRight } from '@fortawesome/free-solid-sv
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 import ExternalLink from '../components/ExternalLink'
-import FeaturedDataset from '../components/FeaturedDataset'
+import FeaturedDatasets from '../components/FeaturedDatasets'
 import BlogCard from '../components/BlogCard'
 
 // the first argument in track() becomes the google analytics 'Action' property after passing through segment
@@ -145,74 +145,7 @@ const IndexPage = () => {
               </form>
             </div>
           </div>
-          <div className='row'>
-            <div className='col-12 col-md-4 px-md-1 d-flex align-items-stretch'>
-              <FeaturedDataset
-                dataset={{
-                  peername: 'b5',
-                  name: 'world_bank_population',
-                  meta: {
-                    title: 'World Bank Global Population by Year',
-                    description: '( 1 ) United Nations Population Division. World Population Prospects: 2017 Revision. ( 2 ) Census reports and other statistical publications from national statistical offices, ( 3 ) Eurostat: Demographic Statistics, ( 4 ) United Nations Statistical Division. Population and Vital Statistics Reprot ( various years ), ( 5 ) U.S. Census Bureau: International Database, and ( 6 ) Secretariat of the Pacific Community: Statistics and Demography Programme.',
-                    keywords: ['demographics']
-                  },
-                  structure: {
-                    entries: 214,
-                    format: 'csv',
-                    length: 109700
-                  },
-                  commit: {
-                    timestamp: '2020-03-24T20:59:19.315549Z'
-                  }
-                }}
-                onClick={ () => { fireEvent('featured-dataset-click', 'b5/world_bank_population') }}
-              />
-            </div>
-            <div className='col-12 col-md-4 px-md-1 d-flex align-items-stretch'>
-              <FeaturedDataset
-                dataset={{
-                  peername: 'nyc-transit-data',
-                  name: 'turnstile_daily_counts_2020',
-                  meta: {
-                    title: 'NYC Subway Turnstile Counts - 2020',
-                    description: 'NYC Subway Turnstile Counts Data aggregated by day and station complex for the year 2020. Updated weekly.',
-                    keywords: ['NYC', 'transit', 'subway', 'turnstiles', 'mobility']
-                  },
-                  structure: {
-                    entries: 38111,
-                    format: 'csv',
-                    length: 41000000
-                  },
-                  commit: {
-                    timestamp: '2020-04-04T11:22:51.657606Z'
-                  }
-                }}
-                onClick={ () => { fireEvent('featured-dataset-click', 'nyc-transit-data/turnstile_daily_counts_2020') }}
-              />
-            </div>
-            <div className='col-12 col-md-4 px-md-1 d-flex align-items-stretch'>
-              <FeaturedDataset
-                dataset={{
-                  peername: 'chriswhong',
-                  name: 'nyc_bridge_bike_counts_2019',
-                  meta: {
-                    title: 'NYC Bridge Bike Counts 2019',
-                    description: "A filtered set of observations from NYC's [Bicycle Counts dataset](https://data.cityofnewyork.us/Transportation/Bicycle-Counts/uczf-rk3c). More specifically, it includes observations during the year 2019 for the three Manhattan to Brooklyn East River Bridges",
-                    keywords: []
-                  },
-                  structure: {
-                    entries: 35343,
-                    format: 'csv',
-                    length: 1234631
-                  },
-                  commit: {
-                    timestamp: '2020-02-26T18:46:17.159963Z'
-                  }
-                }}
-                onClick={ () => { fireEvent('featured-dataset-click', 'chriswhong/nyc_bridge_bike_counts_2019') }}
-              />
-            </div>
-          </div>
+          <FeaturedDatasets />
         </div>
         <div className='container'>
           <div className='col-9 offset-2 col-sm-12 offset-sm-0'>
