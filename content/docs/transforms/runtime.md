@@ -1,8 +1,12 @@
 ---
 metaTitle: "Starlark Runtime"
 metaDescription: "Syntax and execution details for Starlark"
+qriVersion: "0.9.9"
+qriDesktop: "0.4.2"
 weight: 5
 ---
+
+import InfoBlock from '../../../src/components/InfoBlock.js'
 
 Starlark is a scripting language from Google that is mostly a subset of python. This package implements starlark as a _transformation syntax_. Starlark transformations are about as close as one can get to the full power of a programming language for generating datasets.
 
@@ -78,20 +82,16 @@ def transform(ds, ctx):
 
 ## Secrets
 
-Sometimes you need special keys or information that you want to exist in your transform, but you don't want anyone else to see or have access to. This is where transform secrets come in. You can add a private api key, for example, and not be worried that when another use looks at your dataset, that they will have access to your secret key.
+Sometimes you need special keys or information in your transform, but you don’t want anyone else to see. This is where transform secrets come in. You can add a private api key, for example, and not be worried that another user will have access to your secret key if they look at your dataset.
 
-You add secrets much in the same why that you add config variables.
+<InfoBlock type='warning'>
+  Providing secrets to a script is always a risk. Qri will warn you whenever you provide a secret to a transform.
+</InfoBlock>
 
-<!--
-docrun:
-  filltype: dataset.Dataset
--->
-```yaml
-# in dataset.yaml file
-transform:
-  scriptpath: transform.star
-  secrets:
-    api_key: SOME-PRIVATE-KEY-HERE
+You add secrets using the `--secrets` flag on `qri save`.
+
+```
+qri save --file transform.star --secrets api_key,SOME-PRIVATE-KEY-HERE
 ```
 
 To get that secret, use the context:
