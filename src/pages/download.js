@@ -7,9 +7,12 @@ import { faFileExcel } from '@fortawesome/free-solid-svg-icons'
 import Head from '../components/Head'
 import ExternalLink from '../components/ExternalLink'
 
-const latestVersion = '0.4.2'
+const latestVersion = '0.4.3'
 const macDownloadUrl = `https://github.com/qri-io/desktop/releases/download/v${latestVersion}/Qri-Desktop-${latestVersion}.dmg`
-const windowsDownloadUrl = `https://github.com/qri-io/desktop/releases/download/v${latestVersion}/Qri.Desktop.Setup.${latestVersion}.exe`
+
+// TODO (ramfox): need to restore this after the windows release on monday:
+// const windowsDownloadUrl = `https://github.com/qri-io/desktop/releases/download/v${latestVersion}/Qri.Desktop.Setup.${latestVersion}.exe`
+const windowsDownloadUrl = 'https://github.com/qri-io/desktop/releases/download/v0.4.2/Qri.Desktop.Setup.0.4.2.exe'
 // the first argument in track() becomes the google analytics 'Action' property after passing through segment
 const handleDownloadClick = (os) => {
   window.analytics.track('Download', {
