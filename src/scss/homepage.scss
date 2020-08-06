@@ -315,6 +315,45 @@ $light-blue-hr: 2px solid #4fc6f3;
   color: #595959;
 }
 
+/*   Featured Data-stories   */
+
+.index-shadow {
+  border: 1px solid #E6E6E6;
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.08);
+}
+
+.index-card {
+  margin-bottom: 15px;
+
+  .card-img {
+    height: 175px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .details {
+    font-size: 14px;
+    display: inline-block;
+    font-weight: 400;
+    color: #B1B1B1;
+  }
+		
+
+  a {
+    color: black;
+  }
+
+  &:hover {
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    background: #f6f6f6;
+  }
+}
+
+/*   End Featured Data-stories   */
+
 /*   End HOME PAGE   */
 
 
