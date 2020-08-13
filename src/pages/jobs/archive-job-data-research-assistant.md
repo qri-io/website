@@ -7,7 +7,7 @@ jobLocation: "New York, NY (Remote OK)"
 
 **Roles and Responsibilities**
 
-- Create and publish interesting datasets and projects onto Qri (we’ll show you how).
+- Create and share interesting datasets and projects on Qri (we’ll show you how).
 - Promote your work (write tutorials, blog posts, post to social media, record demo videos, etc. Sky’s the limit).
 - Help us make Qri better for others (share your ideas, flag bugs, give us feedback on our roadmap).
 
