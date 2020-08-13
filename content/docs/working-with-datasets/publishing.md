@@ -1,8 +1,8 @@
 ---
 metaTitle: "Pushing Datasets"
 metaDescription: "How to push a dataset to Qri Cloud"
-qriVersion: "0.9.9"
-qriDesktop: "0.4.2"
+qriVersion: "0.9.11"
+qriDesktop: "0.4.4"
 ---
 
 import InfoBlock from '../../../src/components/InfoBlock.js'
@@ -22,7 +22,7 @@ _Pushing_ a qri dataset from your local machine makes use of [Qri Cloud](https:/
 Use the command `qri push` to push the latest version of a dataset.
 
 <InfoBlock type='warning'>
-  Qri Cloud is currently in alpha status and is experimental.  All data on Qri Cloud is public. Be careful when pushing your datasets.
+  All data on Qri Cloud is public. Keep that in mind when pushing your datasets. Contact hello@qri.io to learn how Qri plans to support private, encrypted data repositories.
 </InfoBlock>
 
 ```

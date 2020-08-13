@@ -269,12 +269,12 @@ for linked dataset [foo/usgs_earthquakes]
     created dataset
 ```
 
-You can continue making changes this way, committing new versions whenever you reach a critical point.  All the older versions are intact in Qri, and you can inspect and export them at any time.  
+You can continue making changes this way, committing new versions whenever you reach a critical point.  All the older versions remain intact in Qri, and you can inspect and export them at any time.
 
 ## Push to Qri Cloud
 
 <InfoBlock type='warning'>
-  All data on Qri Cloud is public. Keep that in mind when pushing your datasets.
+  All data on Qri Cloud is public. Keep that in mind when pushing your datasets. Contact hello@qri.io to learn how Qri plans to support private, encrypted data repositories.
 </InfoBlock>
 
 
