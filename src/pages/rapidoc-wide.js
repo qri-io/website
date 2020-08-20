@@ -49,8 +49,7 @@ const RapidocPage = () => (
       allow-server-selection = 'true'
       show-header="false"
       render-style="view"
-      allow-try="true"
-      allow-api-list-style-selection ='false'
+      allow-try="false"
     > </rapi-doc>
 
     <hr/>
