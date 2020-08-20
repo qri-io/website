@@ -6,7 +6,7 @@ weight: 1
 
 The dynamic examples are under pages that was the quickest way to get them to work. Will figure out how to move to `/docs` once one is chosen.
 
-There are several more available, but they are Vue based. I don’t see a reason to drag another framework in if one of these is good.
+There are [several more available](https://openapi.tools/#documentation), but they are Vue based. I don’t see a reason to drag another framework in if one of these is good.
 
 ## [ascanius](https://github.com/mDuo13/ascanius)
 

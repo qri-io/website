@@ -6,8 +6,8 @@ info:
 
 servers:
   - url: 'http://localhost:2503'
-    description: localhost, dynamic examples in the page won’t work because CORS, but curl copy paste does.
- 
+    description: server description
+
 
 paths:
   /{peername}:
@@ -30,7 +30,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/peername'
         - name: datasetName
-          in: path
+          in: pathi
           description: Dataset name
           required: true
           schema:
@@ -71,7 +71,7 @@ paths:
                     minItems: 0
                     maxItems: 0
   /me:
-    get: 
+    get:
       summary: Get this Qri node’s profile
       operationId: getMyProfile
       responses:
@@ -101,9 +101,9 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError' 
+          $ref: '#/components/responses/StatusInternalServerError'
   /profile:
-    get: 
+    get:
       summary: Get this Qri node’s profile
       operationId: getProfile
       responses:
@@ -133,7 +133,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError' 
+          $ref: '#/components/responses/StatusInternalServerError'
   /peers:
     get:
       summary: Get the list of this node’s peers
@@ -146,7 +146,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError'  
+          $ref: '#/components/responses/StatusInternalServerError'
   /peers/{datasetRef}:
     parameters:
       - $ref: '#/components/parameters/datasetRef'
@@ -161,7 +161,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError'  
+          $ref: '#/components/responses/StatusInternalServerError'
   /list:
     get:
       summary: Get the list of this peer’s datasets
@@ -174,7 +174,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError'   
+          $ref: '#/components/responses/StatusInternalServerError'
   /list/{peername}:
     parameters:
       - name: peername
@@ -194,7 +194,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError'  
+          $ref: '#/components/responses/StatusInternalServerError'
   /save:
     post:
       summary: Save and update to a dataset head
@@ -205,7 +205,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Dataset'       
+              $ref: '#/components/schemas/Dataset'
       responses:
         '200':
           $ref: '#/components/responses/DatasetResponse'
@@ -227,7 +227,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Dataset'       
+              $ref: '#/components/schemas/Dataset'
       responses:
         '200':
           $ref: '#/components/responses/DatasetResponse'
@@ -380,7 +380,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError'  
+          $ref: '#/components/responses/StatusInternalServerError'
   /render/{datasetRef}:
     parameters:
       - $ref: '#/components/parameters/datasetRef'
@@ -419,7 +419,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError'        
+          $ref: '#/components/responses/StatusInternalServerError'
   /ipfs/{hash}/{filename}:
     parameters:
       - $ref: '#/components/parameters/hash'
@@ -448,7 +448,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError' 
+          $ref: '#/components/responses/StatusInternalServerError'
   /ipns/{hash}:
     parameters:
       - $ref: '#/components/parameters/hash'
@@ -476,7 +476,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError' 
+          $ref: '#/components/responses/StatusInternalServerError'
   /profile/photo:
     get:
       parameters:
@@ -500,7 +500,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError'  
+          $ref: '#/components/responses/StatusInternalServerError'
     put:
       summary: Set your profile photo
       operationId: setProfilePhotoPut
@@ -540,7 +540,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError' 
+          $ref: '#/components/responses/StatusInternalServerError'
   /profile/poster:
     get:
       parameters:
@@ -564,7 +564,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError'  
+          $ref: '#/components/responses/StatusInternalServerError'
     put:
       summary: Set your profile poster
       operationId: setProfilePosterPut
@@ -604,7 +604,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError' 
+          $ref: '#/components/responses/StatusInternalServerError'
   /diff:
     post:
       summary: Get the diff between two datasets
@@ -636,7 +636,7 @@ paths:
                   description: a dataset reference
                 format:
                   type: string
-                  enum: [simple, listKeys, plusMinusColor, plusMinus] 
+                  enum: [simple, listKeys, plusMinusColor, plusMinus]
       responses:
         '200':
           $ref: '#/components/responses/DiffResponse'
@@ -645,7 +645,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError' 
+          $ref: '#/components/responses/StatusInternalServerError'
   /export/{datasetRef}:
     parameters:
       - $ref: '#/components/parameters/datasetRef'
@@ -735,7 +735,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError' 
+          $ref: '#/components/responses/StatusInternalServerError'
     post:
       summary: Create a new dataset
       operationId: newDatasetPost
@@ -767,7 +767,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError' 
+          $ref: '#/components/responses/StatusInternalServerError'
   /connections:
     get:
       summary: Get list of connections available to this Qri node
@@ -780,7 +780,7 @@ paths:
         '404':
           $ref: '#/components/responses/StatusNotFound'
         '500':
-          $ref: '#/components/responses/StatusInternalServerError' 
+          $ref: '#/components/responses/StatusInternalServerError'
   /search:
     get:
       summary: Search the Qri registry for datasets
@@ -811,7 +811,7 @@ paths:
           $ref: '#/components/responses/StatusNotFound'
         '500':
           $ref: '#/components/responses/StatusInternalServerError'
-          
+
 components:
   schemas:
     Dataset:
@@ -833,7 +833,7 @@ components:
           $ref: '#/components/schemas/ID'
         meta:
           $ref: '#/components/schemas/Meta'
-        previousPath: 
+        previousPath:
           type: string
           description: PreviousPath connects datasets to form a historical merkle-DAG of snapshots of this document, creating a version history
         qri:
@@ -1004,7 +1004,7 @@ components:
         formatConfig:
           description: FormatConfig removes as much ambiguity as possible about how to interpret the specified format.
           type: object
-        length: 
+        length:
           description: Length is the length of the data object in bytes. Must always match & be present.
           type: integer
         path:
@@ -1111,7 +1111,7 @@ components:
     Schema:
       type: object
       description: Schema contains the schema definition for the underlying data, schemas are defined using the IETF json-schema specification. for more info on json-schema see https://json-schema.org
-      properties: 
+      properties:
         type:
           type: string
           description: dataset body’s top level structure, either object or array
@@ -1143,7 +1143,7 @@ components:
           oneOf:
             - $ref: '#/components/schemas/Dataset'
             - $ref: '#/components/schemas/Profile'
-      
+
   parameters:
     datasetRef:
       name: datasetRef
@@ -1179,7 +1179,7 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/ID'
-          
+
   responses:
     StatusInternalServerError:
       description: Server error.
@@ -1235,7 +1235,7 @@ components:
               meta:
                 $ref: '#/components/schemas/MetaResponse'
     DatasetsResponse:
-      description: Response with list of datasets 
+      description: Response with list of datasets
       content:
         application/json:
           schema:
@@ -1273,7 +1273,7 @@ components:
       description: Publish and unpublish dataset to registry response
       content:
         application/json:
-          schema: 
+          schema:
             type: object
             properties:
               data:
@@ -1333,5 +1333,5 @@ components:
               meta:
                 $ref: '#/components/schemas/MetaResponse'
               pagination:
-                $ref: '#/components/schemas/Pagination' 
+                $ref: '#/components/schemas/Pagination'
 
