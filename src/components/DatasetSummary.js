@@ -24,7 +24,7 @@ const DatasetSummary = ({ dataset }) => {
   }
 
   return (
-    <ListItem key={path} link={`/${peername}/${name}`}>
+    <ListItem key={path} link={`https://qri.cloud/${peername}/${name}`}>
 
       <div className='row dataset-summary'>
         <div className='col-12 pb-1'>

@@ -44,7 +44,7 @@ const RedocPage = () => (
     <Helmet>
       <script src="https://cdn.jsdelivr.net/npm/redoc/bundles/redoc.standalone.js"> </script>
     </Helmet>
-    <redoc spec-url="/open_api_3_cut_errors.yaml"></redoc>
+    <redoc spec-url="/open_api_3_cut_errors.yaml" hide-download-button></redoc>
 
     <hr/>
     <div className='docs-contents'>
