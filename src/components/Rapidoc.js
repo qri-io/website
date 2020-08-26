@@ -7,9 +7,13 @@ const Rapidoc = () => {
       <Helmet>
         <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
         <style type="text/css">{`
+        .main-content-inner--view-mode{
+            outline: 10px solid red;
+        }
         rapi-doc{
             width: 100%;
             padding: 0em;
+            margin: 0em;
         }
     `}</style>
       </Helmet>
