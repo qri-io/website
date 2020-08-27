@@ -16,7 +16,9 @@ https://github.com/qri-io/website/blob/master/scripts/update_openapi.sh
 
 import Rapidoc from '../../../src/components/Rapidoc.js'
 
-### Starting a local OpenAPI server
+### Starting the API locally
+
+qri connect is configured to start the API server on port `2503` by default:
 
 ```
 $ qri connect
@@ -40,7 +42,6 @@ $ curl -X GET "http://localhost:2503/me" \
 Stay tuned, public OpenAPI server coming soon.
 
 <Rapidoc />
-
 
 
 
