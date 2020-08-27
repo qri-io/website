@@ -31,7 +31,7 @@ API address:	/ip4/127.0.0.1/tcp/2503
 ...
 ```
 
-### Connecting locally with curl
+### Testing your local connection with curl
 
 ```
 $ curl -X GET "http://localhost:2503/me" \
@@ -42,7 +42,6 @@ $ curl -X GET "http://localhost:2503/me" \
 Stay tuned, public OpenAPI server coming soon.
 
 <Rapidoc />
-
 
 
 
