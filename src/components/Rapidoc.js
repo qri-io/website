@@ -16,11 +16,13 @@ const Rapidoc = () => {
       </Helmet>
       <rapi-doc
         spec-url="/open_api_3.yaml"
-        allow-server-selection = 'true'
+        allow-server-selection = "true"
         show-header="false"
         render-style="view"
         allow-try="false"
         allow-authentication ="false"
+        regular-font = 'apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif'
+        mono-font = 'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
       > </rapi-doc>
 
       <hr/>
