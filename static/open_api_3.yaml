@@ -4,11 +4,6 @@ info:
   description: Qri API used to communicate with a Qri node.
   version: 0.5.1
 
-servers:
-  - url: 'http://localhost:2503'
-    description: localhost, dynamic examples in the page won’t work because CORS, but curl copy paste does.
- 
-
 paths:
   /{peername}:
     get:

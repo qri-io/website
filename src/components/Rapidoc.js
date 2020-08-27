@@ -5,16 +5,13 @@ const Rapidoc = () => {
   return (
     <div className='container docs-page'>
       <Helmet>
-        <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
+        <script type="module" src="/js/rapidoc-min.js"></script>
         <style type="text/css">{`
-        .main-content-inner--view-mode{
-            outline: 10px solid red;
+        .docs-page{
+            padding: 0;
+            margin: 4em 0 0 0;
         }
-        rapi-doc{
-            width: 100%;
-            padding: 0em;
-            margin: 0em;
-        }
+
     `}</style>
       </Helmet>
       <rapi-doc
