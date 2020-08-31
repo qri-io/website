@@ -44,7 +44,7 @@ const DocsPage = () => (
       <div className='row'>
         <div className='col-12 col-md-6 col-lg-3 docs-title'>
           <h1>QRI DOCS</h1>
-          <p>Version & publish datasets for great good!</p>
+          <p>Version & share datasets for great good!</p>
         </div>
       </div>
       <div className='row'>
@@ -57,7 +57,7 @@ const DocsPage = () => (
                 </div>
                 <div className='col-8'>
                   <h2>QRI DESKTOP QUICKSTART</h2>
-                  <p>create, clone, and publish your first dataset using qri desktop</p>
+                  <p>create, clone, and share your first dataset using qri desktop</p>
                 </div>
               </div>
             </div>
@@ -72,7 +72,7 @@ const DocsPage = () => (
                 </div>
                 <div className='col-8'>
                   <h2>COMMAND LINE QUICKSTART</h2>
-                  <p>take a tour of qri&apos;s command line interface</p>
+                  <p>take a tour of qri’s command line interface</p>
                 </div>
               </div>
             </div>

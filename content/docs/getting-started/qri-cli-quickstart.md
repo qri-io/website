@@ -1,6 +1,8 @@
 ---
 metaTitle: "Qri CLI Quickstart"
-metaDescription: "Getting started with Qri's Command Line Interface. Qri is a distributed dataset version control and sharing system"
+metaDescription: "Getting started with Qri’s Command Line Interface. Qri is a distributed dataset version control and sharing system"
+qriVersion: "0.9.11"
+qriDesktop: "0.4.4"
 weight: 3
 ---
 
@@ -45,7 +47,7 @@ $ qri registry prove --username foo --email foo@qri.io
 
 ## Sign up for a Qri account
 
-While it’s possible to use Qri without an account, signing up ensures that your username is unique and gives you access to Qri Cloud for one-click data publishing.  Choose a good username, it will be used to reference each of your datasets on the Qri network.  
+While it’s possible to use Qri without an account, signing up ensures that your username is unique and gives you access to Qri Cloud to share and collaborate with one click.  Choose a good username, it will be used to reference each of your datasets on the Qri network.  
 
 ```
 $ qri registry signup --username foo --email foo@qri.io
@@ -67,7 +69,7 @@ Let’s add some data!
 
 To create your first dataset, start with a CSV.  If you don’t have one handy you can use this [dataset of all earthquakes in the last week](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.csv) from the U.S. Geological Survey.
 
-First, create an empty directory on your filesystem to store the dataset's working files. Give the directory a descriptive name for the dataset.
+First, create an empty directory on your filesystem to store the dataset’s working files. Give the directory a descriptive name for the dataset.
 
 ```bash
 mkdir ~/datasets/usgs_earthquakes
@@ -88,7 +90,7 @@ Name of new dataset [usgs_earthquakes]: usgs_earthquakes
 initialized working directory for new dataset foo/usgs_earthquakes
 ```
 
-Voila! Qri has created a new dataset! It has also created a working directory, where changes you make to the dataset can be staged.  You can confirm this with `qri list`, which will show your dataset's name and working directory path.
+Voila! Qri has created a new dataset! It has also created a working directory, where changes you make to the dataset can be staged.  You can confirm this with `qri list`, which will show your dataset’s name and working directory path.
 
 ```bash
 $ qri list
@@ -203,13 +205,13 @@ schema:
     - title: type
 ```
 
-The `schema` property in structure contains a JSONSchema document showing the `title` and `type` Qri has applied to our CSV's columns.  These will come in handy later for [schema validation](/docs/tutorials/schema-validation).
+The `schema` property in structure contains a JSONSchema document showing the `title` and `type` Qri has applied to our CSV’s columns.  These will come in handy later for [schema validation](/docs/tutorials/schema-validation).
 
 ## Add a Readme
 
 At this point you’ve created a dataset and made a single commit containing [body](/docs/dataset-components/body) and [structure](/docs/dataset-components/structure) components.  Now you can add more components, starting with a [readme](/docs/dataset-components/readme).
 
-Use a text editor to create a `readme.md` file in your dataset's working directory. Describe the dataset and help future you or your collaborators know what this dataset is all about.  You know, readme stuff.
+Use a text editor to create a `readme.md` file in your dataset’s working directory. Describe the dataset and help future you or your collaborators know what this dataset is all about.  You know, readme stuff.
 
 <img src="/img/cli-readme.png"/>
 
@@ -267,28 +269,28 @@ for linked dataset [foo/usgs_earthquakes]
     created dataset
 ```
 
-You can continue making changes this way, committing new versions whenever you reach a critical point.  All of the older versions are intact in Qri, and you can inspect and export them at any time.  
+You can continue making changes this way, committing new versions whenever you reach a critical point.  All the older versions remain intact in Qri, and you can inspect and export them at any time.
 
-## Publish to Qri Cloud
+## Push to Qri Cloud
 
 <InfoBlock type='warning'>
-  Qri Cloud is currently in alpha status and is experimental.  All data on Qri Cloud is public. Be careful when publishing your datasets.
+  All data on Qri Cloud is public. Keep that in mind when pushing your datasets. Contact hello@qri.io to learn how Qri plans to support private, encrypted data repositories.
 </InfoBlock>
 
 
-Qri Cloud allows you to share your Qri Datasets publicly.  Use `qri publish` to push your dataset versions to the cloud.
+Qri Cloud allows you to share your Qri Datasets publicly.  Use `qri push` to push your dataset versions to the cloud.
 
 ```bash
-$ qri publish foo/usgs_earthquakes
+$ qri push foo/usgs_earthquakes
 
-published dataset foo/usgs_earthquakes@/ipfs/QmQTA7NY1Kbk7btVsjZttQmzUM8UrixaAJfU9H5A6WCGio
+pushed dataset foo/usgs_earthquakes@/ipfs/QmQTA7NY1Kbk7btVsjZttQmzUM8UrixaAJfU9H5A6WCGio
 ```
 
 That’s it!  Once the dataset is transferred, your dataset will have a shiny new preview page on qri.cloud, where other users will be able to find it.  
 
 <img src="/img/cli-cloud-publish.png"/>
 
-It will also show up on your public profile page, which lists all of your published datasets.  Other users can now add your datasets to their Qri collections!
+It will also show up on your public profile page, which lists all of your public datasets.  Other users can now add your datasets to their Qri collections!
 
 ## Next Steps
 

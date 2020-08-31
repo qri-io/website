@@ -72,7 +72,7 @@ const DownloadPage = () => (
           </div>
           <div className="row mb-5">
             <div className="col-12">
-            Once you&apos;ve downloaded Qri Desktop, take a look at our <Link to="/docs/getting-started/qri-desktop-quickstart">Quickstart Documentation</Link>.
+            Once you’ve downloaded Qri Desktop, take a look at our <Link to="/docs/getting-started/qri-desktop-quickstart">Quickstart Documentation</Link>.
             </div>
           </div>
           <div className="row">
@@ -91,7 +91,7 @@ const DownloadPage = () => (
             </div>
             <div className="col-md-4 mb-5 text-center text-md-left">
               <h4>Surf Thru Time</h4>
-              <p>Don&apos;t <i>guess</i> what changed, <i>Know</i> what changed, and who changed it.</p>
+              <p>Don’t <i>guess</i> what changed, <i>Know</i> what changed, and who changed it.</p>
             </div>
             <div className="col-md-4 mb-5 text-center text-md-left">
               <h4>Data Formats You Know</h4>
@@ -123,8 +123,8 @@ const DownloadPage = () => (
               <img className="img-fluid" src="/img/graphics/getting_started/cloud.png"/>
             </div>
             <div className="flex-auto col-md-6 col-sm-12 p-4 text-center text-md-left">
-              <h3>One Click Publishing</h3>
-              <p>Qri Desktop lets you to easily publish datasets on <a href="https://qri.cloud">qri.cloud</a>, our dataset discovery and collaboration service. Go from data file on your computer to published qri dataset in under a minute.</p>
+              <h3>One Click Sharing</h3>
+              <p>Qri Desktop lets you to easily share datasets on <a href="https://qri.cloud">qri.cloud</a>, our dataset discovery and collaboration service. Go from data file on your computer to public qri dataset in under a minute.</p>
             </div>
           </div>
           <div className="row align-items-center">

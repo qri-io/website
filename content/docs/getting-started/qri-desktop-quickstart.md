@@ -1,9 +1,12 @@
 ---
 metaTitle: "Qri Desktop Quickstart"
 metaDescription: "Getting started with Qri Desktop, a distributed dataset version control and sharing system"
+qriVersion: "0.9.11"
+qriDesktop: "0.4.4"
 weight: 2
 ---
 import ImageWithCaption from '../../../src/components/ImageWithCaption.js'
+import InfoBlock from '../../../src/components/InfoBlock.js'
 
 Follow these steps to get started using Qri Desktop, our graphical interface for versioning and sharing datasets.  To see the same workflow in CLI, see [Qri CLI Quickstart](/docs/getting-started/qri-cli-quickstart)
 
@@ -13,7 +16,7 @@ First, [download Qri Desktop](/download) for Mac or Windows.  Complete the insta
 
 <ImageWithCaption src='/img/screenshots/tos.png' caption='You will be greeted with a Terms of Service screen.' shadow/>
 
-Clicking 'accept' will bring you to the sign up page.
+Clicking ‘accept’ will bring you to the sign up page.
 
 <ImageWithCaption src='/img/screenshots/signup.png' caption='Choose a good username, it will be used to reference each of your datasets on the Qri network.' shadow/>
 
@@ -25,7 +28,7 @@ After creating a your username, you will be sent to the *Collections* Pane. This
 
 <ImageWithCaption src='/img/screenshots/no-datasets-collection.png' shadow/>
 
-To create your first dataset, start with a CSV.  If you don’t have one handy you can use this [dataset of all earthquakes in the last week](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.csv) from the U.S. Geological Survey. Make sure you are on the *Collections* Pane and drag and drop the CSV into Qri Desktop to kick off the import (you can also click the 'Create a Dataset' link to open a modal where you may specify the csv file location).
+To create your first dataset, start with a CSV.  If you don’t have one handy you can use this [dataset of all earthquakes in the last week](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.csv) from the U.S. Geological Survey. Make sure you are on the *Collections* Pane and drag and drop the CSV into Qri Desktop to kick off the import (you can also click the ‘Create a Dataset’ link to open a modal where you may specify the csv file location).
 
 The new dataset is named based on your username and the filename of the CSV you dragged in.   
 
@@ -35,14 +38,14 @@ You’re now looking at Qri Desktop’s *Dataset* Pane, where you can explore ve
 
 You can see the commit message that was automatically added when the dataset was created, along with indications that the [body](/docs/dataset-components/body) and [structure](/docs/dataset-components/structure) components were added in this first commit.
 
-Before moving on, let's explore the dataset *body* a bit. Click on a column header in the body view to see column stats and type information.  Qri has guessed the column data types (string, number, boolean, etc) in your original CSV. This can give you a quick overview of what exists in the column without having to inspect each row.
+Before moving on, let’s explore the dataset *body* a bit. Click on a column header in the body view to see column stats and type information.  Qri has guessed the column data types (string, number, boolean, etc) in your original CSV. This can give you a quick overview of what exists in the column without having to inspect each row.
 
 
 ## Edit your Qri Dataset inside the app
 
 You’ve been viewing the automatically-generated first commit, but now you’re ready to modify your new dataset.  Before you can add more components such as Meta or Readme, you must checkout the dataset, creating a working directory on your computer where working changes will be stored.
 
-Click __Checkout Dataset__ in Qri Desktop’s header, and tell Qri where to create the working folder ("save path").
+Click __Checkout Dataset__ in Qri Desktop’s header, and tell Qri where to create the working folder (‘save path’).
 
 <ImageWithCaption src='/img/screenshots/checkout-modal.png' shadow/>
 
@@ -77,29 +80,33 @@ Renaming your dataset is simple! Just click on the dataset name Qri has generate
 
 ## Search for other datasets on the Qri network
 
-Click on the 'Network' icon (the globe in the top left of the screen) to checkout other datasets that are on the Qri network without having to leave the app. These datasets can also be found if you head over to to the [Qri Cloud](https://qri.cloud) website.
+Click on the ‘Network’ icon (the globe in the top left of the screen) to checkout other datasets that are on the Qri network without having to leave the app. These datasets can also be found if you head over to to the [Qri Cloud](https://qri.cloud) website.
 
-You can also use the search bar at the top of each page to search on the network or among your local datasets. Type into the search bar and hit 'Enter', or just hit 'Enter' after you have clicked the search bar in order to open the search modal.
+You can also use the search bar at the top of each page to search on the network or among your local datasets. Type into the search bar and hit ‘Enter’, or just hit ‘Enter’ after you have clicked the search bar in order to open the search modal.
 
-<ImageWithCaption src='/img/screenshots/search.png' shadow caption='Here we are searching for datasets that have to do with "synths" on the Qri network'/>
+<ImageWithCaption src='/img/screenshots/search.png' shadow caption='Here we are searching for datasets that have to do with ‘synths’ on the Qri network'/>
 
-Clicking this dataset will allow us to view a *Dataset Preview* on the Network Pane. This lets you explore a dataset before deciding whether or not it is useful for your purposes. If you decide you want to explore the entire dataset, just click the 'Clone Dataset' button, and Qri will add this dataset from the network to your computer. There, you will have access to the entire body of the dataset.
+Clicking this dataset will allow us to view a *Dataset Preview* on the Network Pane. This lets you explore a dataset before deciding whether or not it is useful for your purposes. If you decide you want to explore the entire dataset, just click the ‘Clone Dataset’ button, and Qri will add this dataset from the network to your computer. There, you will have access to the entire body of the dataset.
 
 <ImageWithCaption src='/img/screenshots/network-preview.png' shadow caption='Qri allows you to explore a dataset from the network.'/>
 
-Let's look at search again. You can also use the search modal to search through your own collection of datasets.  You can toggle between searching the network and searching locally by clicking the 'Local Only' switch at the top right of the search modal:
+Let’s look at search again. You can also use the search modal to search through your own collection of datasets.  You can toggle between searching the network and searching locally by clicking the ‘Local Only’ switch at the top right of the search modal:
 
-<ImageWithCaption src='/img/screenshots/local-search.png' shadow caption='We clicked the "Local Only" switch and are searching for our local dataset about "earthquakes"'/>
+<ImageWithCaption src='/img/screenshots/local-search.png' shadow caption='We clicked the ‘Local Only’ switch and are searching for our local dataset about ‘earthquakes’'/>
 
-## Publish to the Qri Network & Qri Cloud
+## Push to the Qri Network & Qri Cloud
 
-Publishing your dataset to the Qri Network allows anyone on Qri to add and explore your dataset. But that's not all, the [Qri Cloud](https://qri.cloud) webside allows anyone to view your dataset in their browser.  Click the “Publish to Cloud” button on any commit to push it to Qri cloud.
+<InfoBlock type='warning'>
+  All data on Qri Cloud is public. Keep that in mind when pushing your datasets. Contact hello@qri.io to learn how Qri plans to support private, encrypted data repositories.
+</InfoBlock>
 
-<ImageWithCaption src='/img/screenshots/publish.png' shadow caption='From the collection page, or from the search modal, click on the dataset you want to publish. You will be sent to the Workbench Page. Clicking "Publish" makes the dataset available to the network and creates a dataset preview page on Qri Cloud'/>
+Pushing your dataset to the Qri Network allows anyone on Qri to add and explore your dataset. But that’s not all, the [Qri Cloud](https://qri.cloud) website allows anyone to view your dataset in their browser.  Click the “Push” button on any commit to push it to Qri cloud.
 
-That’s it!  Once the dataset is transferred, your dataset will have a shiny new preview page on qri.cloud as well as sending the dataset to the Qri network, where other users will be able to find it.  It will also show up on your profile page, which lists all of your published datasets.  Other users can now add your datasets to their Qri collection!
+<ImageWithCaption src='/img/screenshots/publish.png' shadow caption='From the collection page, or from the search modal, click on the dataset you want to push. You will be sent to the Workbench Page. Clicking ‘Push’ makes the dataset available to the network and creates a dataset preview page on Qri Cloud'/>
 
-<ImageWithCaption src='/img/screenshots/network-with-published-dataset.png' shadow caption='The Network Pane has a feed of recently published datasets. Once you have published your dataset, you can view it on the network. This screenshot was taken using a test network, which is why it is so sparsely populated :)'/>
+That’s it!  Once the dataset is transferred, your dataset will have a shiny new preview page on qri.cloud as well as sending the dataset to the Qri network, where other users will be able to find it.  It will also show up on your profile page, which lists all of your public datasets.  Other users can now add your datasets to their Qri collection!
+
+<ImageWithCaption src='/img/screenshots/network-with-published-dataset.png' shadow caption='The Network Pane has a feed of recently pushed datasets. Once you have pushed your dataset, you can view it on the network. This screenshot was taken using a test network, which is why it is so sparsely populated :)'/>
 
 
 ## Next Steps

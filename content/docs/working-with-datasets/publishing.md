@@ -1,11 +1,17 @@
 ---
-metaTitle: "Publishing Datasets"
-metaDescription: "How to publish a dataset to Qri Cloud"
+metaTitle: "Pushing Datasets"
+metaDescription: "How to push a dataset to Qri Cloud"
+qriVersion: "0.9.11"
+qriDesktop: "0.4.4"
 ---
-
+import ImageWithCaption from '../../../src/components/ImageWithCaption.js'
 import InfoBlock from '../../../src/components/InfoBlock.js'
 
-_Publishing_ a qri dataset from your local machine makes use of [Qri Cloud](https://qri.cloud), our global platform for finding and sharing datasets.  Publishing does a couple of things:
+<InfoBlock type='warning'>
+  All data on Qri Cloud is public. Keep that in mind when pushing your datasets. Contact hello@qri.io to learn how Qri plans to support private, encrypted data repositories.
+</InfoBlock>
+
+_Pushing_ a qri dataset from your local machine makes use of [Qri Cloud](https://qri.cloud), our global platform for finding and sharing datasets. Pushing does a couple of things:
 
 - It copies the bytes for a dataset to Qri Cloud, effectively backing up and serving the dataset on the Qri network
 - It creates a _dataset preview_ page at `https://qri.cloud/{username}/{datasetname}`, where other users can preview the dataset before downloading it.
@@ -13,18 +19,17 @@ _Publishing_ a qri dataset from your local machine makes use of [Qri Cloud](http
 
 <img src="/img/cli-cloud-publish.png"/>
 
-## Publishing in Qri Desktop
+## Pushing in Qri Desktop
 
-## Publishing in Qri CLI
+From the Workbench page, click “Push” to push the latest version of that dataset. More details in [the quickstart](https://qri.io/docs/getting-started/qri-desktop-quickstart#push-to-the-qri-network--qri-cloud).
 
-Use the command `qri publish` to publish the latest version of a dataset.
+<ImageWithCaption src='/img/screenshots/publish.png' shadow/>
 
-<InfoBlock type='warning'>
-  Qri Cloud is currently in alpha status and is experimental.  All data on Qri Cloud is public. Be careful when publishing your datasets.
-</InfoBlock>
+## Pushing in Qri CLI
+
+Use the command `qri push` to push the latest version of a dataset. More details in [the quickstart](https://qri.io/docs/getting-started/qri-cli-quickstart#push-to-qri-cloud).
 
 ```
-$ qri publish foo/simple_csv
-published dataset foo/simple_csv@/ipfs/Qme1KedPB7assGKfznH5jQb1vGsZyNkcwVkkGpuhrq2XYp
-
+$ qri push foo/simple_csv
+pushed dataset foo/simple_csv@/ipfs/Qme1KedPB7assGKfznH5jQb1vGsZyNkcwVkkGpuhrq2XYp
 ```
