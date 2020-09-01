@@ -121,6 +121,14 @@ const IndexPage = () => {
                 <h3>Integrate</h3>
                 <p>Export any version to a format you can use, or wire Qri up to your workflow with command line tools & language integrations.</p>
               </div>
+              <div className='col-12 col-sm-6 col-md-4 feature-col'>
+                <div className='index-feature-image' style={{
+                  backgroundImage: 'url("/img/homepage/feature_06_collaborate.svg")'
+                }}>
+                </div>
+                <h3>Collaborate</h3>
+                <p>Open a discussion about your data, collect feedback, and discover new applications for it with the qri community.</p>
+              </div>
             </div>
           </div>
         </div>
