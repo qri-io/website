@@ -10,10 +10,7 @@ import ExternalLink from '../components/ExternalLink'
 const latestVersion = '0.4.5'
 const macDownloadUrl = `https://github.com/qri-io/desktop/releases/download/v${latestVersion}/Qri-Desktop-${latestVersion}.dmg`
 
-// TODO (ramfox): when we add the windows release to the desktop releases page, remove line 14 & 15 and
-// uncomment line 16
-const windowsDownloadUrl = 'https://github.com/qri-io/desktop/releases/download/v0.4.4/Qri.Desktop.Setup.0.4.4.exe'
-// const windowsDownloadUrl = `https://github.com/qri-io/desktop/releases/download/v${latestVersion}/Qri.Desktop.Setup.${latestVersion}.exe`
+const windowsDownloadUrl = `https://github.com/qri-io/desktop/releases/download/v${latestVersion}/Qri.Desktop.Setup.${latestVersion}.exe`
 
 // the first argument in track() becomes the google analytics 'Action' property after passing through segment
 const handleDownloadClick = (os) => {
