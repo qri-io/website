@@ -596,3 +596,11 @@ $secondary-color: #EDF0F2;
   }
 
 }
+
+// docs image
+.image-with-caption {
+  .caption {
+    text-align: center;
+    font-size: 0.8rem;
+  }
+}

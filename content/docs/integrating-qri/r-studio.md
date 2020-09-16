@@ -174,7 +174,7 @@ fig
 
 ## Saving an R dataframe to a new qri dataset
 
-After filtering, mutating, and summarizing, you may have a new dataframe to share with the world.  You could export a CSV, but where would you put it?  Github maybe, but qri is a better option for publishing versioned datasets.  
+After filtering, mutating, and summarizing, you may have a new dataframe to share with the world.  You could export a CSV, but where would you put it? Let's see how to turn a dataframe into a new qri dataset, where it can be easily versioned and pushed to qri.cloud.
 
 First, let's define another helper function, `saveQriDataset()`.  It writes the dataframe to a CSV and then calls `qri save`.
 
