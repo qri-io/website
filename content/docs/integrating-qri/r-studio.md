@@ -121,7 +121,7 @@ $ exits          <int> 6659, 14307, 14500, 9161, 7743, 14919, 14765, 15340, 1511
 
 There it is, and all the columns got their types from the qri dataset!
 
-## Get your R on
+## Explore, Munge, and Analyze in RStudio
 
 Now that the dataframe is imported, we can do some filtering and make a quick chart.
 
