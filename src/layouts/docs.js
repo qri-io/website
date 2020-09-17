@@ -3,6 +3,9 @@ import { graphql } from 'gatsby'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import styled from '@emotion/styled'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+
 import Head from '../components/Head'
 import DocsColumns from '../components/docs-columns'
 import ExternalLink from '../components/ExternalLink'
@@ -27,7 +30,7 @@ const Edit = styled('div')`
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(116, 129, 141, 0.1) 0px 1px 1px 0px;
     height: 30px;
-    padding: 5px 16px;
+    padding: 3px 16px;
     &:hover {
       background-color: rgb(245, 247, 249);
     }
@@ -46,7 +49,6 @@ export default class MDXRuntimeTest extends Component {
         siteMetadata: { docsLocation }
       }
     } = data
-    const gitHub = require('../components/images/github.svg')
 
     // meta tags
     const metaTitle = mdx.frontmatter.metaTitle
@@ -67,7 +69,8 @@ export default class MDXRuntimeTest extends Component {
           </h1>
           <Edit className={'mobileView'}>
             <ExternalLink className={'gitBtn'} to={`${docsLocation}/${mdx.parent.relativePath}`}>
-              <img src={gitHub} alt={'Github logo'} /> Edit on GitHub
+              <FontAwesomeIcon icon={faGithub} className='align-middle' />
+              <span className='gitBtnText align-middle'>Edit on GitHub</span>
             </ExternalLink>
           </Edit>
         </div>

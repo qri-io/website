@@ -6,7 +6,7 @@ weight: 1
 
 
 Qri ("query") is a global dataset version control system
-on the distributed web.
+on the distributed web.  To get started, see [Qri CLI Quickstart](https://qri.io/docs/getting-started/qri-cli-quickstart)
 
 
 |Command | Description |

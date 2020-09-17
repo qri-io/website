@@ -465,19 +465,29 @@ pre {
   display: flex;
   align-items: baseline;
   margin-bottom: 32px;
+
+  .title {
+    flex-grow: 1;
+  }
 }
 
 .gitBtn {
   height: 30px;
   min-height: 30px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-}
 
-.gitBtn img {
-  width: 15px;
-  display: inline-block;
-  margin-right: 5px;
+  svg {
+    width: 15px;
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  .gitBtnText {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+  }
 }
 
 .addPaddTopBottom {
@@ -861,10 +871,6 @@ img {
   .titleWrapper {
     padding: 0 15px;
     display: block;
-  }
-
-  .gitBtn {
-    display: inline-block;
   }
 
   .mainWrapper {
