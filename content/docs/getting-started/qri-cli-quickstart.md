@@ -80,11 +80,11 @@ mkdir ~/datasets/usgs_earthquakes
 </InfoBlock>
 
 
-Navigate to your empty dataset directory and run `qri init` with the `--source-body-path` flag to import your CSV and create a new dataset.  Qri will ask you to name your dataset.  The dataset name may consist only of lowercase letters, numbers, and underscores/hyphens, and must be 100 characters or fewer. See [Naming Datasets](/docs/working-with-datasets/naming) for more on Qri naming conventions.
+Navigate to your empty dataset directory and run `qri init` with the `--body` flag to import your CSV and create a new dataset.  Qri will ask you to name your dataset.  The dataset name may consist only of lowercase letters, numbers, and underscores/hyphens, and must be 100 characters or fewer. See [Naming Datasets](/docs/working-with-datasets/naming) for more on Qri naming conventions.
 
 ```bash
 $ cd ~/datasets/usgs_earthquakes
-$ qri init --source-body-path ~/downloads/earthquakes.csv
+$ qri init --body ~/downloads/earthquakes.csv
 Name of new dataset [usgs_earthquakes]: usgs_earthquakes
 
 initialized working directory for new dataset foo/usgs_earthquakes
