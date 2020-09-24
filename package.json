@@ -56,7 +56,7 @@
     "lodash.startcase": "4.4.0",
     "mapbox-gl": "1.7.0",
     "moment": "2.24.0",
-    "node-sass": "4.13.0",
+    "node-sass": "4.13.1",
     "numeral": "2.0.6",
     "papaparse": "5.2.0",
     "react": "16.12.0",
