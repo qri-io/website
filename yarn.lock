@@ -8955,7 +8955,7 @@ gatsby-remark-images@3.1.37:
     unist-util-select "^1.5.0"
     unist-util-visit-parents "^2.1.2"
 
-gatsby-source-apiserver@^2.1.7:
+gatsby-source-apiserver@2.1.7:
   version "2.1.7"
   resolved "https://registry.yarnpkg.com/gatsby-source-apiserver/-/gatsby-source-apiserver-2.1.7.tgz#175b66c89f033b387857354084fe34442062258e"
   integrity sha512-XHCmhhj1b9m30tPYd2QdgHl/kjjCA/bU6jhx3CUdAbJeU/FVc/bwDJ3YcHBDal07hsMwiY48fmHp2iamRhbasw==
@@ -13322,10 +13322,10 @@ pako@^1.0.5, pako@~1.0.5:
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.10.tgz#4328badb5086a426aa90f541977d4955da5c9732"
   integrity sha512-0DTvPVU3ed8+HNXOu5Bs+o//Mbdj9VNQMUOe9oKCwh8l0GNwpTDMKCWbRjgtD291AWnkAgkqA/LOnQS8AmS1tw==
 
-papaparse@5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/papaparse/-/papaparse-5.1.1.tgz#1da66a039f80e2db43a1226b0bf44106451e9a2d"
-  integrity sha512-KPkW4GNQxunmYTeJIjHFrvilcNuHBWrfgbyvmagEmfGOA4hnP1WIkPbv4yABhj1Nam3as4w+7MBiI27BntwqVg==
+papaparse@5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/papaparse/-/papaparse-5.2.0.tgz#97976a1b135c46612773029153dc64995caa3b7b"
+  integrity sha512-ylq1wgUSnagU+MKQtNeVqrPhZuMYBvOSL00DHycFTCxownF95gpLAk1HiHdUW77N8yxRq1qHXLdlIPyBSG9NSA==
 
 parallel-transform@^1.1.0:
   version "1.2.0"
