@@ -30,7 +30,7 @@ const DownloadPage = () => (
     </Head>
     <div id="splash" className="windows">
       <div>
-        <div className="container text-center">
+        <div className="container text-center pt-5">
           <div className="row">
             <div className="logo">
               <img className="img-fluid" src="/img/graphics/qri_data_snuggle_icon.png"/>
@@ -38,9 +38,9 @@ const DownloadPage = () => (
           </div>
           <div className="row pb-3">
             <div className="col-12">
-              <h1 className="mb-4">Introducing Qri Desktop</h1>
-              <p className="col-md-8 mx-auto mb-4">
-              As an open-source project, Qri is both the resource and product of a community of contributors and data enthusiasts - many of whom share feature ideas, help find and squash bugs, or contribute code and datasets.
+              <h1 className="mb-4">Qri Desktop</h1>
+              <p className="col-md-8 mx-auto mb-4 sub-title">
+                Manage, version, and share your data; find and use datasets shared by others.  Qri Desktop puts a world of first class open data at your fingertips.
               </p>
               <ExternalLink to={macDownloadUrl} onClick={() => { handleDownloadClick('mac') }}>
                 <button
@@ -87,16 +87,16 @@ const DownloadPage = () => (
         <div className="container">
           <div className="row">
             <div className="col-md-4 mb-5 text-center text-md-left">
-              <h4>See Your Data Change</h4>
-              <p>Craft new versions with visual feedback on how your dataset has changed</p>
+              <h3>Explore Dataset History</h3>
+              <p>See git-style change logs for datasets. Explore and export older versions.</p>
             </div>
             <div className="col-md-4 mb-5 text-center text-md-left">
-              <h4>Surf Thru Time</h4>
-              <p>Don’t <i>guess</i> what changed, <i>Know</i> what changed, and who changed it.</p>
+              <h3>Keep Your Data in Sync</h3>
+              <p>Know when you have the latest changes.  When you don&apos;t, sync your datasets and get the fresh stuff!</p>
             </div>
             <div className="col-md-4 mb-5 text-center text-md-left">
-              <h4>Data Formats You Know</h4>
-              <p>Version common data formats like CSV, JSON, and XLSX. Qri understands each and can convert between formats for you.</p>
+              <h3>Pull Datasets with Ease</h3>
+              <p>New data is published on qri every day. Quickly pull and explore datasets shared by other qri users.</p>
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@ const DownloadPage = () => (
               }} src="/img/screenshots/commit_section.png"/>
             </div>
             <div className="col-md-6 col-sm-12 p-4 text-center text-md-left">
-              <h3>Goodbye, Filename Versioning</h3>
+              <h3>Quit Playing the Filename Game</h3>
               <div className="d-flex filename justify-content-center">
                 <div className="align-self-center"><FontAwesomeIcon icon={faFileExcel} size='2x'/></div>
                 <div className="align-self-center"><pre> report_data_final_FINAL.xlsx</pre></div>
@@ -124,8 +124,8 @@ const DownloadPage = () => (
               <img className="img-fluid" src="/img/graphics/getting_started/cloud.png"/>
             </div>
             <div className="flex-auto col-md-6 col-sm-12 p-4 text-center text-md-left">
-              <h3>One Click Sharing</h3>
-              <p>Qri Desktop lets you to easily share datasets on <a href="https://qri.cloud">qri.cloud</a>, our dataset discovery and collaboration service. Go from data file on your computer to public qri dataset in under a minute.</p>
+              <h3>One-Click Data Publishing</h3>
+              <p>Qri Desktop lets you to easily share datasets on <a href="https://qri.cloud">qri.cloud</a>, our global community dataset catalog. Go from data file on your computer to public qri dataset in under a minute.</p>
             </div>
           </div>
           <div className="row align-items-center">
@@ -133,7 +133,7 @@ const DownloadPage = () => (
               <img className="img-fluid" src="/img/diagrams/data_exchange_2.svg"/>
             </div>
             <div className="col-md-6 col-sm-12 p-4 text-center text-md-left">
-              <h4>Distributed Data is Healthy Data</h4>
+              <h3>Distributed Data is Healthy Data</h3>
               <p>Qri is a data commons, where many people exchange many datasets.  More eyeballs on your dataset means spotting errors sooner, discovering new use cases, and a feedback loop between data publishers and consumers.</p>
             </div>
           </div>
