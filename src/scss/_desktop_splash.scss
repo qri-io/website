@@ -15,7 +15,21 @@
   color: white;
   text-shadow: 1px 1px rgba(0,0,0, .1);
   background: #F0A22F;
+  font-size: 18px;
   font-family: "Avenir Next", "Avenir", Helvetica, sans-serif;
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h1, h2, h3, h4 {
+    text-shadow: 1px 1px 1px #494949;
+  }
+
+  .sub-title {
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+  }
 }
 
 #splash .hero {
