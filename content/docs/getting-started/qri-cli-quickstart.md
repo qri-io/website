@@ -1,7 +1,7 @@
 ---
 metaTitle: "Qri CLI Quickstart"
 metaDescription: "Getting started with Qri’s Command Line Interface. Qri is a distributed dataset version control and sharing system"
-qriVersion: "0.9.11"
+qriVersion: "0.9.13"
 qriDesktop: "0.4.4"
 weight: 3
 ---
@@ -84,7 +84,7 @@ Navigate to your empty dataset directory and run `qri init` with the `--source-b
 
 ```bash
 $ cd ~/datasets/usgs_earthquakes
-$ qri init --source-body-path ~/downloads/earthquakes.csv
+$ qri init --body ~/downloads/earthquakes.csv
 Name of new dataset [usgs_earthquakes]: usgs_earthquakes
 
 initialized working directory for new dataset foo/usgs_earthquakes
