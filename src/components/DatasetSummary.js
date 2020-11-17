@@ -19,7 +19,7 @@ const DatasetSummary = ({ dataset }) => {
 
   if (meta && meta.keywords) {
     keywordElements = meta.keywords.map((keyword) => (
-      <div key='keyword' className='keyword badge badge-secondary'>{keyword}</div>
+      <div key={keyword} className='keyword badge badge-secondary'>{keyword}</div>
     ))
   }
 

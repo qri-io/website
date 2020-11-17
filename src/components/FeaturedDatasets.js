@@ -7,49 +7,43 @@ const FeaturedDatasets = () => (
     query={
       graphql`
       query CloudFeaturedQuery {
-        allCloudFeatured(filter: {id: {ne: "dummy"}}) {
+        allFeatured(filter: {id: {ne: "dummy"}}) {
           edges {
              node {
-               data {
-                 featured {
-                   path
-                   peername
-                   name
-                   meta {
-                     description
-                     downloadURL
-                     homeURL
-                     qri
-                     title
-                     keywords
-                   }
-                   structure {
-                     checksum
-                     depth
-                     entries
-                     errCount
-                     format
-                     length
-                     qri
-                   }
-                   commit {
-                     message
-                     path
-                     qri
-                     signature
-                     timestamp
-                     title
-                   }
-                   stats {
-                     download_count
-                     pull_count
-                     view_count
-                   }
-                   issue_stats {
-                     open_issues
-                     closed_issues
-                   }
-                 }
+               path
+               peername
+               name
+               meta {
+                 description
+                 qri
+                 title
+                 keywords
+               }
+               structure {
+                 checksum
+                 depth
+                 entries
+                 errCount
+                 format
+                 length
+                 qri
+               }
+               commit {
+                 message
+                 path
+                 qri
+                 signature
+                 timestamp
+                 title
+               }
+               stats {
+                 download_count
+                 pull_count
+                 view_count
+               }
+               issue_stats {
+                 open_issues
+                 closed_issues
                }
              }
            }
@@ -57,11 +51,11 @@ const FeaturedDatasets = () => (
       }
     `}
     render={(data) => {
-      const datasets = data.allCloudFeatured.edges[0].node.data.featured
+      const datasets = data.allFeatured.edges
 
       const listItems = datasets.map((dataset) => (
         <div key={dataset.path} className='card-col col-12 col-md-6'>
-          <DatasetSummary dataset={dataset}/>
+          <DatasetSummary dataset={dataset.node}/>
         </div>
       ))
 
