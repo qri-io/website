@@ -18,6 +18,42 @@ const fireEvent = (category, label) => {
   })
 }
 
+const featuredVideoId = 'GXNfxbKYLHM'
+
+const videos = [
+  {
+    id: 'dhdorFezaEc',
+    title: 'Qri Desktop Demo: Exploring the Collection View'
+  },
+  {
+    id: 'WKayeh0OAes',
+    title: 'Qri Desktop Demo - Pull and Sync With Qri.Cloud'
+  },
+  {
+    id: 'L5ud3kwI4OY',
+    title: 'Webinar: Smarter Dataset Management with Qri'
+  },
+  {
+    id: 'P2qeY2nPK3Q',
+    title: 'Demo: Using the work-in-progress Qri Python client in Jupyter Notebooks'
+  }
+]
+
+const videoList = videos.map(({ id, title }) => {
+  return (
+    <ExternalLink key={id} to={`https://www.youtube.com/watch?v=${id}`}>
+      <div className='p-2 row video-thumbnail'>
+        <div className='col-3 col-md-4 p-0'>
+          <img src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`} />
+        </div>
+        <div className='col-9 col-md-8 pl-2 my-auto'>
+          <span className=''>{title}</span>
+        </div>
+      </div>
+    </ExternalLink>
+  )
+})
+
 const IndexPage = () => {
   return (
     <div className='index-page'>
@@ -167,6 +203,38 @@ const IndexPage = () => {
         </div>
       </div>
 
+      <div className='index-row'>
+        <div className='container mb-5'>
+          <div className='row mb-4'>
+            <div className='col-12 col-md-4 px-md-1'>
+              <h2 className='my-2'>Videos</h2>
+            </div>
+          </div>
+          <div className='list row d-flex align-items-stretch'>
+            <div className='video-card card-col col-12 col-md-7 col-lg-8 p-2 my-auto'>
+              <div className='list-item card'>
+                <div className='card-body video-iframe-container'>
+                  <iframe className='responsive-iframe' src={`https://www.youtube.com/embed/${featuredVideoId}`} frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen />
+                </div>
+              </div>
+            </div>
+            <div className='card-col col-12 col-md-5 col-lg-4'>
+              {videoList}
+            </div>
+          </div>
+        </div>
+        <div className='container'>
+          <div className='col-9 offset-2 col-sm-12 offset-sm-0'>
+            <div
+              className='text-center more-link'
+              onClick={ () => { fireEvent('more-link-click', 'cloud') }}
+            >
+              <ExternalLink to='https://www.youtube.com/channel/UC7E3_hURgFO2mVCLDwPSyOQ'>see more videos on our YouTube channel &nbsp;<FontAwesomeIcon icon={faChevronRight} /></ExternalLink>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className='index-row spotlight' style={{ position: 'relative', paddingBottom: '160px' }}>
         <div className='blob-diff-container' />
         <div className='container'>
@@ -233,32 +301,32 @@ const IndexPage = () => {
             </div>
             <div className='col-12 col-md-4'>
               <BlogCard
-                title="Policing in the Pandemic"
-                link='https://medium.com/qri-io/policing-in-the-pandemic-45448687714b'
-                image='https://miro.medium.com/fit/t/1600/480/1*ubE7BXWQmWXCyn4yzlhvLw.png'
+                title="Smarter Data Publishing with Qri"
+                link='https://medium.com/qri-io/smarter-data-publishing-with-qri-4addb6917df8'
+                image='https://miro.medium.com/max/1400/0*PJP0nq16C6bOQRXM.png'
+                by='Chris Whong'
+                date='2020-10-14'
+                onClick={ () => { fireEvent('blog-card-click', 'smarter-data-publishing') }}
+              />
+            </div>
+            <div className='col-12 col-md-4'>
+              <BlogCard
+                title="We Built This City on Bots & Trolls"
+                link='https://medium.com/qri-io/we-built-this-city-on-bots-trolls-905065758fd4'
+                image='https://miro.medium.com/max/1400/1*R1MPJA3ugQJxSyWWEl2Olw.png'
                 by='Xristos Katsaros'
-                date='2020-06-08'
-                onClick={ () => { fireEvent('blog-card-click', 'policing-pandemic') }}
+                date='2020-10-19'
+                onClick={ () => { fireEvent('blog-card-click', 'bots-and-trolls') }}
               />
             </div>
             <div className='col-12 col-md-4'>
               <BlogCard
-                title="Four Simple Steps to Improve U.S. Census Data CSVs"
-                link='https://medium.com/qri-io/four-simple-steps-to-improve-u-s-census-data-csvs-b7358ee1b18'
-                image='https://miro.medium.com/fit/t/2400/720/1*4fxONIjv9fV64KgMV0dZDw.png'
+                title="Archiving your Google Sheets Data with Qri"
+                link='https://medium.com/qri-io/archiving-your-google-sheets-data-with-qri-f84efda4bf3f'
+                image='https://miro.medium.com/max/1400/1*5QPlYzKWhwnQ8PYxvUeeJg.png'
                 by='Chris Whong'
-                date='2020-06-12'
-                onClick={ () => { fireEvent('blog-card-click', 'improve-census-data') }}
-              />
-            </div>
-            <div className='col-12 col-md-4'>
-              <BlogCard
-                title="Taming the MTA’s Unruly Turnstile Data"
-                link='https://medium.com/qri-io/taming-the-mtas-unruly-turnstile-data-c945f5f96ba0'
-                image='https://miro.medium.com/max/1400/1*xrm0PedCpul1HpNqNMwcZw.png'
-                by='Chris Whong'
-                date='2020-03-31'
-                onClick={ () => { fireEvent('blog-card-click', 'mta-turnstile-data') }}
+                date='2020-10-29'
+                onClick={ () => { fireEvent('blog-card-click', 'archive-google-sheets') }}
               />
             </div>
           </div>
