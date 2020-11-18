@@ -127,5 +127,5 @@ The top level `items` describes the rows of the CSV, whereas the lower level `it
 
 
 <InfoBlock>
-  See <a href="/docs/reference/dataset-specification/">Dataset Specification</a> for detailed documentation of Qri dataset components.
+  See <a href="/docs/reference/dataset/">Dataset Specification</a> for detailed documentation of Qri dataset components.
 </InfoBlock>
