@@ -71,17 +71,6 @@ const plugins = [
     options: {
       writeKey: 'b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju'
     }
-  },
-  {
-    resolve: 'gatsby-source-apiserver',
-    options: {
-      typePrefix: 'cloud__',
-      name: 'featured',
-      url: 'https://registry.qri.cloud/dataset_summary/splash',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
   }
 ]
 // check and add algolia

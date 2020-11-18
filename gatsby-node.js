@@ -1,4 +1,5 @@
 const path = require('path')
+const fetch = require('node-fetch')
 const startCase = require('lodash.startcase')
 
 // [ fromPath, toPath ]
@@ -216,4 +217,31 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
   `
   createTypes(typeDefs)
+}
+
+exports.sourceNodes = async ({
+  actions: { createNode },
+  createContentDigest
+}) => {
+  // get data from qri cloud at build time to populate featured datasets
+  const result = await fetch('https://registry.qri.cloud/dataset_summary/splash')
+  const resultData = await result.json()
+
+  const featuredDatasets = resultData.data.featured
+
+  featuredDatasets.forEach((dataset) => {
+    // hack, leaving this a number causes createNode() to fail with a heap error
+    dataset.structure.length = dataset.structure.length.toString()
+
+    createNode({
+      id: `${dataset.peername}/${dataset.name}`,
+      parent: null,
+      children: [],
+      internal: {
+        type: 'featured',
+        contentDigest: createContentDigest(dataset)
+      },
+      ...dataset
+    })
+  })
 }
