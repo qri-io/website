@@ -4,6 +4,7 @@ const startCase = require('lodash.startcase')
 
 // [ fromPath, toPath ]
 const redirects = [
+  ['/ODW2021', 'https://us02web.zoom.us/meeting/register/tZwuf-mvqjojGNfpfgJmRTH1KQ3uC3kniOBE'],
   ['/blog', 'https://medium.com/qri-io'],
   ['/blog/a_better_mousetrap_podcast/', 'https://medium.com/qri-io/a-better-mousetrap-podcast-6cd068aba347'],
   ['/blog/datasets_are_books/', 'https://medium.com/qri-io/datasets-are-books-not-houses-760bd4736229'],
