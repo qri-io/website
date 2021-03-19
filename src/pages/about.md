@@ -83,9 +83,32 @@ Qri is leading an open-source project to build software for dataset synching, ve
   In his free time, Chris hacks on [personal projects](https://chriswhong.com/) leveraging public data, and is a reef aquarium hobbyist.
 </TeamMemberBio>
 
+-------------------------------
 
+<TeamMemberBio
+  name='Asmir Avdicevic'
+  title='Developer'
+  photo='asmir.jpg'
+  github='arqu'
+  linkedin='asmiravdicevic'
+>
+  Asmir is a full stack developer with a strong focus on cloud services and metrics. He makes sure our byte pipes are deployed and working. He navigates well around many codebases and languages and finds pleasure in being a generalist.
+
+  In his free time, Asmir likes going on road trips and hacking on side projects.
+</TeamMemberBio>
 
 -------------------------------
+
+<TeamMemberBio
+  name='Estefania Zambrano Rivas'
+  title='Designer'
+  photo='tefy.jpg'
+  linkedin='estefanía-zambrano-rivas-a28b28116'
+>
+  Estefanía does all things related to design and UX/UI for Qri's product suite, including building a cohesive brand and making layouts, illustrations and animations. She brings ideas to life, and makes every aspect of Qri more joyful to use.
+
+  In her free time, Estefania likes to roller skate, tap dance and bake some delicious desserts.
+</TeamMemberBio>
 
 
 
