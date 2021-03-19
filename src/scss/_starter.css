@@ -819,10 +819,6 @@ img {
   .hiddenMobile {
     display: none !important;
   }
-  hr {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
   .navBarParent {
     display: block;
   }
