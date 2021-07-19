@@ -98,29 +98,41 @@ exports.createPages = ({ graphql, actions }) => {
   })
 }
 
-exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
-  const config = {
-    resolve: {
-      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-      alias: {
-        $components: path.resolve(__dirname, 'src/components'),
-        buble: '@philpl/buble' // to reduce bundle size
-      }
-    }
-  }
+exports.onCreateWebpackConfig = ({ stage, loaders, actions, getConfig }) => {
+  const config = getConfig()
+
+  config.resolve.modules = [path.resolve(__dirname, 'src'), 'node_modules']
+  config.resolve.alias.$components = path.resolve(__dirname, 'src/components')
+  config.resolve.alias.buble = '@philpl/buble'
 
   if (stage === 'build-html' || stage === 'develop-html') {
-    config.module = {
-      rules: [
-        {
-          test: /mapbox-gl/,
-          use: loaders.null()
-        }
-      ]
-    }
+    config.module.rules.push({
+      test: /mapbox-gl/,
+      use: loaders.null()
+    })
   }
 
-  actions.setWebpackConfig(config)
+  // required for using redoc after the upgrade to gatsby v3
+  config.resolve.fallback = {
+    buffer: require.resolve('buffer/'),
+    events: require.resolve('events/'),
+    fs: require.resolve('browserify-fs'),
+    http: require.resolve('http-browserify'),
+    path: require.resolve('path-browserify'),
+    stream: require.resolve('stream-browserify'),
+    util: require.resolve('util/')
+  }
+
+  // this is needed for redoc, which uses a different version of core-js from gatsby
+  // see https://github.com/gatsbyjs/gatsby/issues/17136#issuecomment-568036690
+  const coreJs2config = config.resolve.alias['core-js']
+  delete config.resolve.alias['core-js']
+  config.resolve.alias['core-js/modules'] = `${coreJs2config}/modules`
+  try {
+    config.resolve.alias['core-js/es'] = path.dirname(require.resolve('core-js/es'))
+  } catch (err) { console.error(err) }
+
+  actions.replaceWebpackConfig(config)
 }
 
 exports.onCreateBabelConfig = ({ actions }) => {

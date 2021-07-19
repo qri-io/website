@@ -2,8 +2,23 @@ require('dotenv').config()
 const queries = require('./src/utils/algolia')
 const config = require('./config')
 const plugins = [
-  'gatsby-plugin-eslint',
-  'gatsby-plugin-sass',
+  {
+    resolve: 'gatsby-plugin-eslint',
+    options: {
+      stages: ['develop'],
+      extensions: ['js', 'jsx'],
+      exclude: ['node_modules', '.cache', 'public']
+    }
+  },
+  {
+    resolve: 'gatsby-plugin-sass',
+    options: {
+      postCssPlugins: [
+        require('tailwindcss'),
+        require('./tailwind.config.js')
+      ]
+    }
+  },
   'gatsby-plugin-netlify',
   'gatsby-plugin-sitemap',
   'gatsby-plugin-sharp',

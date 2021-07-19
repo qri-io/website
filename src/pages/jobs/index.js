@@ -1,6 +1,5 @@
 import React from 'react'
-import { StaticQuery } from 'gatsby'
-
+import { StaticQuery, graphql } from 'gatsby'
 import JobRow from '../../components/JobRow'
 import Head from '../../components/Head'
 import ExternalLink from '../../components/ExternalLink'
