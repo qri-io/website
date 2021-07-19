@@ -1,6 +1,9 @@
 import React from 'react'
-import config from '../../../config'
 import { Link } from 'gatsby'
+import classNames from 'classnames'
+
+import config from '../../../config'
+import DocsRingIcon from '../DocsRingIcon'
 
 const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, ...rest }) => {
   const isCollapsed = collapsed[url]
@@ -11,7 +14,6 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, 
   }
   const active =
     location && (location.pathname === url || location.pathname === (config.gatsby.pathPrefix + url))
-  const calculatedClassName = `${className} item ${active ? 'active' : ''}`
 
   let titleContent
 
@@ -34,19 +36,28 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, 
   if (url) {
     titleContent = (
       <Link to={url}>
-        {titleContent}
+        <div className={classNames('flex items-center mb-2', {
+          'text-qripink': active
+        })}>
+          <DocsRingIcon className='mr-2'/>
+          {titleContent}
+        </div>
       </Link>
     )
   } else {
     titleContent = (
-      <div className='section-header'>
+      <div className={classNames('font-semibold text-black mb-2', {
+        'text-qripink': active
+      })}>
         {titleContent}
       </div>
     )
   }
   return (
     <li
-      className={calculatedClassName}
+      className={classNames({
+        'mb-4': !url
+      })}
     >
       {titleContent}
       {!isCollapsed && hasChildren ? (

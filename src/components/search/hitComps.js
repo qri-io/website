@@ -12,3 +12,5 @@ export const PageHit = clickHandler => ({ hit }) => (
     <Snippet attribute="excerpt" hit={hit} tagName="mark" />
   </div>
 )
+
+PageHit.displayName = 'PageHit'

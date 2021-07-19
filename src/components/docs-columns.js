@@ -1,59 +1,32 @@
 import React from 'react'
-import styled from '@emotion/styled'
 import { MDXProvider } from '@mdx-js/react'
+
 import mdxComponents from './mdxComponents'
 import Sidebar from './sidebar'
-import RightSidebar from './rightSidebar'
+import RightSidebar from './RightSidebar'
 
-const Wrapper = styled('div')`
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
+// docs is a two-column layout, with the sidebar and main content area overflowing vertically
+// the right sidebar for jumping to content within an article lives in the main content area
 
-  @media only screen and (max-width: 767px) {
-    display: block;
-  }
-`
-
-const Content = styled('main')`
-  overflow: auto;
-  padding: 0px 88px;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-
-  @media only screen and (max-width: 1023px) {
-    padding: 0 10px;
-    padding-top: 3rem;
-  }
-`
-
-const MaxWidth = styled('div')`
-
-  @media only screen and (max-width: 50rem) {
-    width: 100%;
-    position: relative;
-  }
-`
-const LeftSideBarWidth = styled('div')`
-  flex: 0 0 220px;
-  overflow: auto;
-`
-const RightSideBarWidth = styled('div')`
-  flex: 0 0 220px;
-`
 const DocsColumns = ({ children, location }) => (
   <MDXProvider components={mdxComponents}>
-    <Wrapper>
-      <LeftSideBarWidth className={'hiddenMobile'}>
+    <div className='flex-grow overflow-hidden flex'>
+      <div className={'hidden sm:block overflow-y-scroll flex-shrink-0'} style={{
+        width: 296
+      }}>
         <Sidebar location={location} />
-      </LeftSideBarWidth>
-      <Content key={location.pathname}>
-        <MaxWidth>{children}</MaxWidth>
-      </Content>
-      <RightSideBarWidth className={'hiddenMobile'}>
-        <RightSidebar location={location} />
-      </RightSideBarWidth>
-    </Wrapper>
+      </div>
+      <div className='flex-grow overflow-y-scroll overflow-x-hidden flex relative'>
+        <div className='flex-grow flex-shrink'>
+          {children}
+        </div>
+        <div className='h-full border-l border-separator sticky top-0 ml-16' style={{
+          minWidth: 222
+        }}>
+          <RightSidebar location={location} />
+        </div>
+      </div>
+    </div>
   </MDXProvider>
 )
 

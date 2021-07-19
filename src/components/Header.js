@@ -1,6 +1,5 @@
 import React from 'react'
 import { StaticQuery, graphql, Link } from 'gatsby'
-import GitHubButton from 'react-github-btn'
 import config from '../../config.js'
 
 import Loadable from 'react-loadable'
@@ -8,7 +7,6 @@ import LoadingProvider from './mdxComponents/loading'
 
 import Sidebar from './sidebar'
 
-const help = require('./images/help.svg')
 const isSearchEnabled = !!(config.header.search && config.header.search.enabled)
 
 const searchIndices = []
@@ -57,14 +55,9 @@ const Header = ({ location, showSidebar }) => (
         `}
     render={(data) => {
       const logoImg = require('./images/logo.svg')
-      const twitter = require('./images/twitter.svg')
       const {
         site: {
           siteMetadata: {
-            headerTitle,
-            githubUrl,
-            helpUrl,
-            tweetText,
             logo,
             headerLinks
           }
@@ -72,73 +65,52 @@ const Header = ({ location, showSidebar }) => (
       } = data
       const finalLogoLink = logo.link !== '' ? logo.link : '/'
       return (
-        <div className={'navBarWrapper'}>
-          <nav className={'navBarDefault'}>
-            <div className={'navBarHeader'}>
-              <Link to={finalLogoLink} className={'navBarBrand'}>
-                <img className={'img-responsive displayInline'} src={(logo.image !== '') ? logo.image : logoImg} alt={'logo'} />
-              </Link>
-              <div className={'headerTitle displayInline'} dangerouslySetInnerHTML={{ __html: headerTitle }} />
-              <span onClick={myFunction} className={'navBarToggle'}>
-                <span className={'iconBar'}></span>
-                <span className={'iconBar'}></span>
-                <span className={'iconBar'}></span>
-              </span>
+        <nav className={'flex px-10 py-4 items-center border-b border-separator'}>
+          <Link to={finalLogoLink} className={'mr-3'}>
+            <img className={'img-responsive displayInline'} src={(logo.image !== '') ? logo.image : logoImg} alt={'logo'} />
+          </Link>
+          <div className='text-xl'><span className='font-extrabold'>Qri</span><span className='text-xl'> /</span><span className='text-qriturquoise'>Docs</span></div>
+          <span onClick={myFunction} className={'navBarToggle'}>
+            <span className={'iconBar'}></span>
+            <span className={'iconBar'}></span>
+            <span className={'iconBar'}></span>
+          </span>
+          {isSearchEnabled ? (
+            <div className={'searchWrapper hiddenMobile navBarUL'}>
+              <LoadableComponent collapse={true} indices={searchIndices} />
             </div>
-            {isSearchEnabled ? (
-              <div className={'searchWrapper hiddenMobile navBarUL'}>
-                <LoadableComponent collapse={true} indices={searchIndices} />
-              </div>
-            ) : null}
-            <div id="navbar" className={'topnav'}>
-              <div className={'visibleMobile'}>
-                {showSidebar && <><Sidebar location={location} /> <hr/></>}
-                {isSearchEnabled ? (
-                  <div className={'searchWrapper'}>
-                    <LoadableComponent collapse={true} indices={searchIndices} />
-                  </div>
-                ) : null}
-              </div>
-              <ul className={'navBarUL navBarNav navBarULRight'}>
-                {headerLinks.map((link, key) => {
-                  if (link.link !== '' && link.text !== '') {
-                    // internal links get a <Link/>
-                    if (link.link.charAt(0) === '/') {
-                      return (
-                        <li key={key}>
-                          <Link className="sidebarLink" to={link.link}>{link.text}</Link>
-                        </li>
-                      )
-                    }
-
+          ) : null}
+          <div id="navbar" className={'flex-grow text-right'}>
+            <div className={'sm:hidden'}>
+              {showSidebar && <><Sidebar location={location} /> <hr/></>}
+              {isSearchEnabled ? (
+                <div className={'searchWrapper'}>
+                  <LoadableComponent collapse={true} indices={searchIndices} />
+                </div>
+              ) : null}
+            </div>
+            <ul className={'flex justify-end text-sm font-bold'}>
+              {headerLinks.map((link, key) => {
+                if (link.link !== '' && link.text !== '') {
+                  // internal links get a <Link/>
+                  if (link.link.charAt(0) === '/') {
                     return (
                       <li key={key}>
-                        <a className="sidebarLink" href={link.link} target="_blank" rel="noopener noreferrer" dangerouslySetInnerHTML={{ __html: link.text }} />
+                        <Link className="ml-12" to={link.link}>{link.text}</Link>
                       </li>
                     )
                   }
-                })}
-                {helpUrl !== ''
-                  ? (<li><a href={helpUrl}><img src={help} alt={'Help icon'}/></a></li>) : null
+
+                  return (
+                    <li key={key}>
+                      <a className="ml-12" href={link.link} target="_blank" rel="noopener noreferrer" dangerouslySetInnerHTML={{ __html: link.text }} />
+                    </li>
+                  )
                 }
-                {(tweetText !== '' || githubUrl !== '')
-                  ? (<li className="divider hiddenMobile"></li>) : null
-                }
-                {tweetText !== ''
-                  ? (<li>
-                    <a href={'https://twitter.com/intent/tweet?&text=' + tweetText} target="_blank" rel="noopener noreferrer">
-                      <img className={'shareIcon'} src={twitter} alt={'Twitter'} />
-                    </a>
-                  </li>) : null
-                }
-                {githubUrl !== ''
-                  ? (<li className={'githubBtn'}>
-                    <GitHubButton href={githubUrl} data-show-count="true" aria-label="Star on GitHub">Star</GitHubButton>
-                  </li>) : null}
-              </ul>
-            </div>
-          </nav>
-        </div>
+              })}
+            </ul>
+          </div>
+        </nav>
       )
     }}
   />

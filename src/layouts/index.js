@@ -4,9 +4,7 @@ import DocsLayout from './docs'
 import StandardLayout from './standard'
 import DataStoryLayout from './data-story'
 import Head from '../components/Head'
-import Header from '../components/Header'
 
-import 'bootstrap/dist/css/bootstrap.css'
 import '../../static/css/highlight.default.min.css'
 import '../scss/style.scss'
 
@@ -40,7 +38,6 @@ const IndexLayout = (props) => {
         imageAlt: 'The Qri Logo',
         url: location.href
       }}/>
-      <Header location={location} showSidebar={isDocs} />
       <div className='main-content'>
         {mainContent}
       </div>

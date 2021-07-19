@@ -6,19 +6,17 @@ const config = {
     gaTrackingId: null
   },
   header: {
-    logo: 'https://qri.cloud/assets/apple-touch-icon.png',
+    logo: '/img/new-docs/logo.svg',
     logoLink: '/',
     title: 'qri',
     githubUrl: '',
     helpUrl: '',
     tweetText: '',
     links: [
-      { text: 'About', link: '/about' },
-      { text: 'Datasets', link: 'https://qri.cloud' },
-      { text: 'Jobs', link: '/jobs' },
-      { text: 'Blog', link: 'https://medium.com/qri-io' },
       { text: 'Docs', link: '/docs' },
-      { text: 'Download', link: '/download' }
+      { text: 'Reference', link: 'https://qri.cloud' },
+      { text: 'Transform Snippets', link: '/jobs' },
+      { text: 'FAQ', link: 'https://medium.com/qri-io' }
     ],
     search: {
       enabled: false,
