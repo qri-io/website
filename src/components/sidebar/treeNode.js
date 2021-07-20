@@ -35,18 +35,34 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, 
 
   if (url) {
     titleContent = (
-      <Link to={url}>
-        <div className={classNames('flex items-center mb-2', {
-          'text-qripink': active
-        })}>
-          <DocsRingIcon className='mr-2'/>
-          {titleContent}
+      <div className='flex'>
+        <div className='flex-grow'>
+          <Link to={url}>
+            <div className={classNames('flex items-center my-1', {
+              'text-qripink': active
+            })}>
+              <DocsRingIcon className='mr-2'/>
+              {titleContent}
+            </div>
+          </Link>
         </div>
-      </Link>
+        <div className='py-0.5 ml-6'>
+          <div
+            className={classNames('bg-qripink h-full', {
+              visble: active,
+              invisible: !active
+            })}
+            style={{
+              width: 5,
+              borderRadius: 2.5
+            }}
+          />
+        </div>
+      </div>
     )
   } else {
     titleContent = (
-      <div className={classNames('font-semibold text-black mb-2', {
+      <div className={classNames('font-semibold text-black my-1', {
         'text-qripink': active
       })}>
         {titleContent}

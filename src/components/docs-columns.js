@@ -12,7 +12,7 @@ const DocsColumns = ({ children, location }) => (
   <MDXProvider components={mdxComponents}>
     <div className='flex-grow overflow-hidden flex'>
       <div className={'hidden sm:block overflow-y-scroll flex-shrink-0'} style={{
-        width: 296
+        maxWidth: 300
       }}>
         <Sidebar location={location} />
       </div>
