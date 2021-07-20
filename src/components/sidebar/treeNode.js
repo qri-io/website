@@ -38,7 +38,7 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, 
       <div className='flex'>
         <div className='flex-grow'>
           <Link to={url}>
-            <div className={classNames('flex items-center my-1', {
+            <div className={classNames('flex items-center my-1 hover:text-qripink transition-all transition-100', {
               'text-qripink': active
             })}>
               <DocsRingIcon className='mr-2'/>
@@ -46,11 +46,12 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, 
             </div>
           </Link>
         </div>
+        {/* selected item "pill" */}
         <div className='py-0.5 ml-6'>
           <div
-            className={classNames('bg-qripink h-full', {
-              visble: active,
-              invisible: !active
+            className={classNames('bg-qripink h-full transition-all transition-100', {
+              'opacity-100': active,
+              'opacity-0': !active
             })}
             style={{
               width: 5,
