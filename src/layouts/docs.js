@@ -39,9 +39,9 @@ export default class MDXRuntimeTest extends Component {
             title: metaTitle,
             description: metaDescription
           }} />
-          <div className='py-14 pl-16 text-contentgray font-light'>
+          <div className='py-14 pl-16 text-qrigray-600 font-light'>
             <div className={''}>
-              <h1 className={'text-turquoise font-bold text-2xl mb-6'}>
+              <h1 className={'text-qritile-600 font-bold text-2xl mb-6'}>
                 {mdx.fields.title}
               </h1>
               {/*

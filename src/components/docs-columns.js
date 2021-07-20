@@ -20,7 +20,7 @@ const DocsColumns = ({ children, location }) => (
         <div className='flex-grow flex-shrink'>
           {children}
         </div>
-        <div className='h-full border-l border-separator sticky top-0 ml-16' style={{
+        <div className='h-full border-l border-qrigray-200 sticky top-0 ml-16' style={{
           minWidth: 222
         }}>
           <RightSidebar location={location} />

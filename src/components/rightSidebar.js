@@ -29,7 +29,7 @@ const RightSidebar = ({ location }) => (
                 innerItems = item.node.tableOfContents.items.map((innerItem, i) => {
                   const { url, title } = innerItem
                   return (
-                    <li className='text-contentgray mb-2' key={i}>
+                    <li className='text-qrigray-600 mb-2' key={i}>
                       <a href={url}>
                         {title}
                       </a>
@@ -56,7 +56,7 @@ const RightSidebar = ({ location }) => (
         )
       } else {
         return (
-          <div className='border-l border-separator'>
+          <div className='border-l qrigray-100'>
             <ul></ul>
           </div>
         )

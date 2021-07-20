@@ -37,10 +37,6 @@ const Header = ({ location, showSidebar }) => (
         query headerTitleQuery {
           site {
             siteMetadata {
-              headerTitle
-              githubUrl
-              helpUrl
-              tweetText
               logo {
                 link
                 image
@@ -65,11 +61,11 @@ const Header = ({ location, showSidebar }) => (
       } = data
       const finalLogoLink = logo.link !== '' ? logo.link : '/'
       return (
-        <nav className={'flex px-10 py-4 items-center border-b border-separator'}>
+        <nav className={'flex px-10 py-4 items-center border-b border-qrigray-200'}>
           <Link to={finalLogoLink} className={'mr-3'}>
             <img className={'img-responsive displayInline'} src={(logo.image !== '') ? logo.image : logoImg} alt={'logo'} />
           </Link>
-          <div className='text-xl'><span className='font-extrabold'>Qri</span><span className='text-xl'> /</span><span className='text-qriturquoise'>Docs</span></div>
+          <div className='text-xl'><span className='font-extrabold'>Qri</span><span className='text-xl'> /</span><span className='text-qriqritile-600'>Docs</span></div>
           <span onClick={myFunction} className={'navBarToggle'}>
             <span className={'iconBar'}></span>
             <span className={'iconBar'}></span>
@@ -89,7 +85,7 @@ const Header = ({ location, showSidebar }) => (
                 </div>
               ) : null}
             </div>
-            <ul className={'flex justify-end text-sm font-bold'}>
+            <ul className={'flex justify-end text-sm font-semibold tracking-wide'}>
               {headerLinks.map((link, key) => {
                 if (link.link !== '' && link.text !== '') {
                   // internal links get a <Link/>

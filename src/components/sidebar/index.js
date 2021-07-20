@@ -21,7 +21,7 @@ const Sidebar = ({ location }) => (
     `}
     render={({ allMdx }) => {
       return (
-        <div className='bg-backgroundgray py-10 pl-10 text-xs text-contentgray font-light border-r border-separator'>
+        <div className='bg-qrigray-100 py-10 pl-10 text-xs text-qrigray-600 font-light border-r qrigray-100'>
           <ul>
             <li className='mb-5'>
               <Link to='/docs'>
