@@ -1,6 +1,7 @@
 const path = require('path')
 const fetch = require('node-fetch')
 const startCase = require('lodash.startcase')
+const webpack = require('webpack')
 
 // [ fromPath, toPath ]
 const redirects = [
@@ -120,8 +121,19 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions, getConfig }) => {
     http: require.resolve('http-browserify'),
     path: require.resolve('path-browserify'),
     stream: require.resolve('stream-browserify'),
+    'readable-stream': require.resolve('stream-browserify'),
     util: require.resolve('util/')
   }
+
+  config.plugins = [
+    ...config.plugins,
+    new webpack.ProvidePlugin({
+      process: 'process/browser'
+    }),
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer']
+    })
+  ]
 
   // this is needed for redoc, which uses a different version of core-js from gatsby
   // see https://github.com/gatsbyjs/gatsby/issues/17136#issuecomment-568036690
