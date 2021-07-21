@@ -4,12 +4,18 @@ import { RedocStandalone } from 'redoc'
 const specUrl = 'https://raw.githubusercontent.com/qri-io/qri/master/api/open_api_3.yaml'
 
 const ApiDocs = () => (
-  <div className='redoc-container'>
+  <div className='h-full w-full overflow-y-scroll'>
     <RedocStandalone
       specUrl={specUrl}
       options={{
-        nativeScrollbars: true,
-        theme: { colors: { primary: { main: 'rgb(59, 69, 78)' } } }
+        theme: {
+          typography: {
+            fontFamily: 'Poppins, sans-serif',
+            headings: {
+              fontFamily: 'Poppins, sans-serif'
+            }
+          }
+        }
       }}
     />
   </div>

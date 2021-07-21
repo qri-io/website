@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import config from '../../../config'
 import TreeNode from './treeNode'
 
@@ -48,7 +48,7 @@ const sortEntries = (tree) => {
   return tree
 }
 
-const calculateTreeData = edges => {
+const calculateTreeData = (edges, skipFirstLevel) => {
   const originalData = config.sidebar.ignoreIndex ? edges.filter(({ node: { fields: { slug } } }) => slug !== '/') : edges
   let tree = originalData.reduce((accu, { node: { fields: { slug, title, weight } } }) => {
     const parts = slug.split('/')
@@ -89,13 +89,15 @@ const calculateTreeData = edges => {
   // sort the entries within group based on weight frontmatter
   tree = sortEntries(tree)
 
-  return tree
+  return skipFirstLevel ? tree.items[0] : tree
 }
 
-const Tree = ({ edges }) => {
-  const [treeData] = useState(() => {
-    return calculateTreeData(edges)
-  })
+const Tree = ({ edges, skipFirstLevel = false }) => {
+  const [treeData, setTreeData] = useState(calculateTreeData(edges, skipFirstLevel))
+
+  useEffect(() => {
+    setTreeData(calculateTreeData(edges, skipFirstLevel))
+  }, [edges])
 
   const defaultCollapsed = {}
   treeData.items.forEach(item => {
@@ -119,7 +121,8 @@ const Tree = ({ edges }) => {
           key={i}
           className={`${config.sidebar.frontLine ? 'showFrontLine' : 'hideFrontLine'} firstLevel`}
           setCollapsed={toggle}
-          collapsed={false}
+          collapsed={collapsed}
+          firstLevel
           {...item}
         />
       ))}

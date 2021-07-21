@@ -1,14 +1,14 @@
 import React from 'react'
-import Head from '../components/Head'
+import Head from '../../components/Head'
 
-const DocsPage = () => (
+const ConceptsPage = () => (
   <div className='container docs-page'>
     <Head data={{
-      title: 'Qri Docs',
+      title: 'Qri Concepts',
       description: 'Documentation for Qri Desktop and Qri CLI'
     }} />
-    <div>DOCS LANDING PAGE</div>
+    <div>Concepts LANDING PAGE</div>
   </div>
 )
 
-export default DocsPage
+export default ConceptsPage

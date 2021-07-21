@@ -65,7 +65,14 @@ const Header = ({ location, showSidebar }) => (
           <Link to={finalLogoLink} className={'mr-3'}>
             <img className={'img-responsive displayInline'} src={(logo.image !== '') ? logo.image : logoImg} alt={'logo'} />
           </Link>
-          <div className='text-xl'><span className='font-extrabold'>Qri</span><span className='text-xl'> /</span><span className='text-qriqritile-600'>Docs</span></div>
+          <div className='text-xl'>
+            <Link to='/'>
+              <span className='font-extrabold'>Qri</span>
+            </Link>
+            <span className='text-xl'> /</span>
+            <Link to='/docs'>
+              <span className='text-qriqritile-600'>Docs</span>
+            </Link></div>
           <span onClick={myFunction} className={'navBarToggle'}>
             <span className={'iconBar'}></span>
             <span className={'iconBar'}></span>

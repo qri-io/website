@@ -5,8 +5,8 @@ qriVersion: "0.9.11"
 qriDesktop: "0.4.4"
 weight: 2
 ---
-import ImageWithCaption from '../../../src/components/ImageWithCaption.js'
-import InfoBlock from '../../../src/components/InfoBlock.js'
+import ImageWithCaption from '../../../../src/components/ImageWithCaption.js'
+import InfoBlock from '../../../../src/components/InfoBlock.js'
 
 Follow these steps to get started using Qri Desktop, our graphical interface for versioning and sharing datasets.  To see the same workflow in CLI, see [Qri CLI Quickstart](/docs/getting-started/qri-cli-quickstart)
 

@@ -9,14 +9,13 @@ const config = {
     logo: '/img/new-docs/logo.svg',
     logoLink: '/',
     title: 'qri',
-    githubUrl: '',
-    helpUrl: '',
-    tweetText: '',
     links: [
-      { text: 'Docs', link: '/docs' },
-      { text: 'Reference', link: 'https://qri.cloud' },
-      { text: 'Transform Snippets', link: '/jobs' },
-      { text: 'FAQ', link: 'https://medium.com/qri-io' }
+      { text: 'Tutorials', link: '/docs/tutorials' },
+      { text: 'Guides', link: '/docs/guides' },
+      { text: 'Concepts ', link: '/docs/concepts' },
+      { text: 'Reference', link: '/docs/reference' },
+      { text: 'Transform Snippets', link: '/docs/transform-snippets' },
+      { text: 'FAQ', link: '/docs/faq' }
     ],
     search: {
       enabled: false,

@@ -5,13 +5,25 @@ import classNames from 'classnames'
 import config from '../../../config'
 import DocsRingIcon from '../DocsRingIcon'
 
-const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, ...rest }) => {
-  const isCollapsed = collapsed[url]
+const TreeNode = (props) => {
+  const { className = '', setCollapsed, collapsed, url, label, title, items, firstLevel, ...rest } = props
+  // TODO(chriswhong): there is potential for name conflicts here when using the
+  // label field to determine collapsed state, but nodes with children won't
+  // necessarily have a URL
+  const isCollapsed = collapsed[url] || collapsed[label]
+
+  const collapse = () => {
+    setCollapsed(url || label)
+  }
+
   const hasChildren = items.length !== 0
+
   let location
+
   if (typeof (document) !== 'undefined') {
     location = document.location
   }
+
   const active =
     location && (location.pathname === url || location.pathname === (config.gatsby.pathPrefix + url))
 
@@ -21,14 +33,15 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, 
     titleContent = (
       <>
         {title}
-        {/* !config.sidebar.frontLine && title && hasChildren ? (
+        {/* uncomment to restore collapsible sections
+          {!config.sidebar.frontLine && title && hasChildren ? (
           <button
             onClick={collapse}
             aria-label='collapse'
             className='collapser'>
-            {!isCollapsed ? <OpenedSvg /> : <ClosedSvg />}
+            {!isCollapsed ? <>&#9660;</> : '>'}
           </button>
-        ) : null */}
+        ) : null } */}
       </>
     )
   }
@@ -47,7 +60,7 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, 
           </Link>
         </div>
         {/* selected item "pill" */}
-        <div className='py-0.5 ml-6'>
+        <div className='py-0.5 ml-10'>
           <div
             className={classNames('bg-qripink h-full transition-all transition-100', {
               'opacity-100': active,
@@ -63,8 +76,10 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, 
     )
   } else {
     titleContent = (
-      <div className={classNames('font-semibold text-black my-1', {
-        'text-qripink': active
+      <div className={classNames('my-1', {
+        'text-qripink': active,
+        'font-semibold text-black': firstLevel,
+        'font-medium text-qrigray-700': !firstLevel
       })}>
         {titleContent}
       </div>
@@ -73,7 +88,8 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, 
   return (
     <li
       className={classNames({
-        'mb-4': !url
+        'mb-4': !url,
+        'ml-4': !firstLevel && !url
       })}
     >
       {titleContent}
@@ -84,6 +100,7 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, 
               key={item.url}
               setCollapsed={setCollapsed}
               collapsed={collapsed}
+              firstLevel={false}
               {...item}
             />
           ))}

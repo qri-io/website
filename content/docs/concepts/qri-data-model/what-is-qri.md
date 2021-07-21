@@ -4,7 +4,7 @@ metaDescription: "Qri is a distributed dataset version control and sharing syste
 weight: 1
 ---
 
-import InfoBlock from '../../../src/components/InfoBlock.js'
+import InfoBlock from '../../../../src/components/InfoBlock.js'
 
 Qri (pronounced "query") is a distributed dataset version control and sharing system.  Our software helps to alleviate many of the pain points of working with datasets.
 

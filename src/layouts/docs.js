@@ -1,67 +1,39 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
-import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import DocsColumns from '../components/DocsColumns'
+import DocsContent from '../components/DocsContent'
+import ApiDocs from '../components/ApiDocs'
 
-import Head from '../components/Head'
-import DocsColumns from '../components/docs-columns'
-import ExternalLink from '../components/ExternalLink'
 import Header from '../components/Header'
 // import NextPrevious from '../components/NextPrevious'
 
-export default class MDXRuntimeTest extends Component {
-  render () {
-    const { data } = this.props
-    if (!data) {
-      return null
-    }
-    const {
-      mdx,
-      site: {
-        siteMetadata: { docsLocation }
-      }
-    } = data
+const DocsLayout = (props) => {
+  let content = props.children
+  let showSidebar = true
 
-    // meta tags
-    const metaTitle = mdx.frontmatter.metaTitle
-    const metaDescription = mdx.frontmatter.metaDescription
-    // let canonicalUrl = config.gatsby.siteUrl
-    // canonicalUrl = config.gatsby.pathPrefix !== '/' ? canonicalUrl + config.gatsby.pathPrefix : canonicalUrl
-    // canonicalUrl = canonicalUrl + mdx.fields.slug
-
-    return (
-      <div className='flex flex-col h-screen'>
-        <Header location={location} />
-        <DocsColumns {...this.props}>
-          <Head data={{
-            title: metaTitle,
-            description: metaDescription
-          }} />
-          <div className='py-14 pl-16 text-qrigray-600 font-light'>
-            <div className={''}>
-              <h1 className={'text-qritile-600 font-bold text-2xl mb-6'}>
-                {mdx.fields.title}
-              </h1>
-              {/*
-                Edit on github button
-                <div className={'mobileView'}>
-                  <ExternalLink className={'gitBtn'} to={`${docsLocation}/${mdx.parent.relativePath}`}>
-                    <FontAwesomeIcon icon={faGithub} className='align-middle' />
-                    <span className='gitBtnText align-middle'>Edit on GitHub</span>
-                  </ExternalLink>
-                </div>
-              */}
-            </div>
-            <div className={'mainWrapper'}>
-              <MDXRenderer>{mdx.body}</MDXRenderer>
-            </div>
-          </div>
-        </DocsColumns>
-      </div>
-    )
+  if (props.pageContext.layout === 'docs') {
+    content = <DocsContent {...props} />
   }
+
+  // special handling for API docs (redoc)
+  if (props.path === '/docs/reference/qri-http-api') {
+    content = <ApiDocs/>
+  }
+
+  // special handling for FAQ, a markdown docs page with no sidebar
+  if (props.path === '/docs/faq') {
+    showSidebar = false
+  }
+
+  return (
+    <div className='flex flex-col h-screen'>
+      <Header {...props} />
+      <DocsColumns {...props} sidebar={showSidebar}>
+        {content}
+      </DocsColumns>
+    </div>
+  )
 }
 
 export const pageQuery = graphql`
@@ -90,15 +62,7 @@ export const pageQuery = graphql`
         metaDescription
       }
     }
-    allMdx {
-      edges {
-        node {
-          fields {
-            slug
-            title
-          }
-        }
-      }
-    }
   }
 `
+
+export default DocsLayout

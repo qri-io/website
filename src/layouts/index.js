@@ -22,7 +22,7 @@ const IndexLayout = (props) => {
     )
   }
 
-  const isDocs = pageContext.layout === 'docs'
+  const isDocs = location.pathname.match(/docs/)
   let mainContent = <StandardLayout {...props}>{children}</StandardLayout>
 
   if (isDocs) {
