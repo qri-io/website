@@ -1,11 +1,12 @@
 import React from 'react'
 import { StaticQuery, graphql, Link } from 'gatsby'
-import config from '../../config.js'
-
 import Loadable from 'react-loadable'
-import LoadingProvider from './mdxComponents/loading'
+import classNames from 'classnames'
 
+import config from '../../config.js'
+import LoadingProvider from './mdxComponents/loading'
 import Sidebar from './sidebar'
+import Icon from './Icon'
 
 const isSearchEnabled = !!(config.header.search && config.header.search.enabled)
 
@@ -44,6 +45,7 @@ const Header = ({ location, showSidebar }) => (
               headerLinks {
                 link
                 text
+                iconColorClass
               }
             }
           }
@@ -93,20 +95,23 @@ const Header = ({ location, showSidebar }) => (
               ) : null}
             </div>
             <ul className={'flex justify-end text-sm font-semibold tracking-wide'}>
-              {headerLinks.map((link, key) => {
-                if (link.link !== '' && link.text !== '') {
+              {headerLinks.map((headerLink, key) => {
+                const { link, text, iconColorClass } = headerLink
+
+                if (link !== '' && text !== '') {
                   // internal links get a <Link/>
-                  if (link.link.charAt(0) === '/') {
+                  if (link.charAt(0) === '/') {
                     return (
-                      <li key={key}>
-                        <Link className="ml-12" to={link.link}>{link.text}</Link>
+                      <li key={key} className='ml-10'>
+                        {iconColorClass && (<Icon icon='docsRing' size='2xs' className={classNames(iconColorClass, 'mr-2')}/>)}
+                        <Link to={link}>{text}</Link>
                       </li>
                     )
                   }
 
                   return (
                     <li key={key}>
-                      <a className="ml-12" href={link.link} target="_blank" rel="noopener noreferrer" dangerouslySetInnerHTML={{ __html: link.text }} />
+                      <a className="ml-10" href={link.link} target="_blank" rel="noopener noreferrer" dangerouslySetInnerHTML={{ __html: link.text }} />
                     </li>
                   )
                 }

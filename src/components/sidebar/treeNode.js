@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import classNames from 'classnames'
 
 import config from '../../../config'
-import DocsRingIcon from '../DocsRingIcon'
+import Icon from '../Icon'
 
 const TreeNode = (props) => {
   const { className = '', setCollapsed, collapsed, url, label, title, items, firstLevel, ...rest } = props
@@ -54,7 +54,6 @@ const TreeNode = (props) => {
             <div className={classNames('flex items-center my-1 hover:text-qripink transition-all transition-100', {
               'text-qripink': active
             })}>
-              <DocsRingIcon className='mr-2'/>
               {titleContent}
             </div>
           </Link>

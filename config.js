@@ -10,12 +10,34 @@ const config = {
     logoLink: '/',
     title: 'qri',
     links: [
-      { text: 'Tutorials', link: '/docs/tutorials' },
-      { text: 'Guides', link: '/docs/guides' },
-      { text: 'Concepts ', link: '/docs/concepts' },
-      { text: 'Reference', link: '/docs/reference' },
-      { text: 'Transform Snippets', link: '/docs/transform-snippets' },
-      { text: 'FAQ', link: '/docs/faq' }
+      {
+        text: 'Tutorials',
+        link: '/docs/tutorials',
+        iconColorClass: 'text-qriorange-600'
+      },
+      {
+        text: 'Guides',
+        link: '/docs/guides',
+        iconColorClass: 'text-qripink-600'
+      },
+      {
+        text: 'Concepts ',
+        link: '/docs/concepts',
+        iconColorClass: 'text-qrigreen-600'
+      },
+      {
+        text: 'Reference',
+        link: '/docs/reference',
+        iconColorClass: 'text-qrinavy-300'
+      },
+      {
+        text: 'Transform Snippets',
+        link: '/docs/transform-snippets'
+      },
+      {
+        text: 'FAQ',
+        link: '/docs/faq'
+      }
     ],
     search: {
       enabled: false,
