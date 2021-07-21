@@ -2,7 +2,7 @@ import React from 'react'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import { MDXProvider } from '@mdx-js/react'
 
-import mdxComponents from './mdxComponents'
+import outlineMdxComponents from './mdxComponents/outline-docs'
 import RightSidebar from './RightSidebar'
 
 import Head from '../components/Head'
@@ -23,15 +23,15 @@ const DocsContent = (props) => {
   const metaDescription = mdx.frontmatter.metaDescription
 
   return (
-    <MDXProvider components={mdxComponents}>
-      <div className='flex-grow flex-shrink'>
+    <MDXProvider components={outlineMdxComponents}>
+      <div className='flex-grow min-w-0'>
         <Head data={{
           title: metaTitle,
           description: metaDescription
         }} />
         <div className='py-14 pl-16 text-qrigray-600 font-light'>
           <div className={''}>
-            <h1 className={'text-qritile-600 font-bold text-2xl mb-6'}>
+            <h1 className={'text-qritile-600 font-bold text-3xl mb-6'}>
               {mdx.fields.title}
             </h1>
           </div>

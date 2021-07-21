@@ -102,7 +102,7 @@ const Header = ({ location, showSidebar }) => (
                   // internal links get a <Link/>
                   if (link.charAt(0) === '/') {
                     return (
-                      <li key={key} className='ml-10'>
+                      <li key={key} className='ml-10 flex items-center'>
                         {iconColorClass && (<Icon icon='docsRing' size='2xs' className={classNames(iconColorClass, 'mr-2')}/>)}
                         <Link to={link}>{text}</Link>
                       </li>

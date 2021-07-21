@@ -80,12 +80,17 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create docs pages
         result.data.allMdx.edges.forEach(({ node }) => {
+          // alternate context.layout for starlark docs
+          let layout = 'docs'
+          if (node.fields.slug.includes('starlark-standard-library')) {
+            layout = 'outline-docs'
+          }
           createPage({
             path: node.fields.slug ? node.fields.slug : '/',
             component: path.resolve('./src/layouts/docs.js'),
             context: {
               id: node.fields.id,
-              layout: 'docs'
+              layout
             }
           })
         })

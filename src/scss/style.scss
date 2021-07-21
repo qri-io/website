@@ -130,3 +130,12 @@
 body {
   font-family: 'Poppins', sans-serif;
 }
+
+.pre {
+  border-radius: 6px;
+  font-size: 14px;
+  margin: 0;
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}

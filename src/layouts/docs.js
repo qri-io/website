@@ -3,6 +3,8 @@ import { graphql } from 'gatsby'
 
 import DocsColumns from '../components/DocsColumns'
 import DocsContent from '../components/DocsContent'
+import OutlineDocsContent from '../components/OutlineDocsContent'
+
 import ApiDocs from '../components/ApiDocs'
 
 import Header from '../components/Header'
@@ -14,6 +16,10 @@ const DocsLayout = (props) => {
 
   if (props.pageContext.layout === 'docs') {
     content = <DocsContent {...props} />
+  }
+
+  if (props.pageContext.layout === 'outline-docs') {
+    content = <OutlineDocsContent {...props} />
   }
 
   // special handling for API docs (redoc)
