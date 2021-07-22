@@ -45,7 +45,7 @@ const Header = ({ location, showSidebar }) => (
               headerLinks {
                 link
                 text
-                iconColorClass
+                colorClass
               }
             }
           }
@@ -96,14 +96,14 @@ const Header = ({ location, showSidebar }) => (
             </div>
             <ul className={'flex justify-end text-sm font-semibold tracking-wide'}>
               {headerLinks.map((headerLink, key) => {
-                const { link, text, iconColorClass } = headerLink
+                const { link, text, colorClass } = headerLink
 
                 if (link !== '' && text !== '') {
                   // internal links get a <Link/>
                   if (link.charAt(0) === '/') {
                     return (
                       <li key={key} className='ml-10 flex items-center'>
-                        {iconColorClass && (<Icon icon='docsRing' size='2xs' className={classNames(iconColorClass, 'mr-2')}/>)}
+                        {colorClass && (<Icon icon='docsRing' size='2xs' className={classNames(colorClass, 'mr-2')}/>)}
                         <Link to={link}>{text}</Link>
                       </li>
                     )

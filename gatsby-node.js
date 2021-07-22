@@ -57,6 +57,17 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
+            site {
+              siteMetadata {
+                docsSections {
+                  text
+                  link
+                  subtitle
+                  description
+                  colorClass
+                }
+              }
+            }
             allMdx(filter: {fileAbsolutePath: {regex: "\\/docs/"}}) {
               edges {
                 node {
@@ -91,6 +102,16 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               id: node.fields.id,
               layout
+            }
+          })
+        })
+
+        result.data.site.siteMetadata.docsSections.forEach((docsSectionInfo) => {
+          createPage({
+            path: docsSectionInfo.link,
+            component: path.resolve('./src/layouts/DocsSectionLandingPageLayout.js'),
+            context: {
+              filePathRegex: '\/'.concat(docsSectionInfo.link).concat('\/') // eslint-disable-line
             }
           })
         })

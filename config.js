@@ -1,4 +1,36 @@
 // config for all the things
+
+const docsSections = [
+  {
+    text: 'Tutorials',
+    link: '/docs/tutorials',
+    subtitle: 'Learn how Qri Works',
+    description: 'Welcome!  These tutorials are aimed at beginners and will break things down so you can get started quickly.',
+    colorClass: 'text-qriorange-600'
+  },
+  {
+    text: 'Guides',
+    link: '/docs/guides',
+    subtitle: 'Learn how to do things in Qri',
+    description: 'These step-by-step guides will help you perform specific tasks. Refer to them when you need to do one thing well.',
+    colorClass: 'text-qripink-600'
+  },
+  {
+    text: 'Concepts',
+    link: '/docs/concepts',
+    subtitle: 'Dive Deeper into Qri',
+    description: 'These docs will help explain Qri\'s core concepts and underlying technology',
+    colorClass: 'text-qrigreen-600'
+  },
+  {
+    text: 'Reference',
+    link: '/docs/reference',
+    subtitle: 'Get the specs',
+    description: 'These technical reference docs will help you use Qri\'s APIs and write custom data transform scripts',
+    colorClass: 'text-qrinavy-300'
+  }
+]
+
 const config = {
   gatsby: {
     pathPrefix: '/',
@@ -10,26 +42,11 @@ const config = {
     logoLink: '/',
     title: 'qri',
     links: [
-      {
-        text: 'Tutorials',
-        link: '/docs/tutorials',
-        iconColorClass: 'text-qriorange-600'
-      },
-      {
-        text: 'Guides',
-        link: '/docs/guides',
-        iconColorClass: 'text-qripink-600'
-      },
-      {
-        text: 'Concepts ',
-        link: '/docs/concepts',
-        iconColorClass: 'text-qrigreen-600'
-      },
-      {
-        text: 'Reference',
-        link: '/docs/reference',
-        iconColorClass: 'text-qrinavy-300'
-      },
+      ...docsSections.map((d) => ({
+        text: d.text,
+        link: d.link,
+        colorClass: d.colorClass
+      })),
       {
         text: 'Transform Snippets',
         link: '/docs/transform-snippets'
@@ -87,7 +104,8 @@ const config = {
         }
       ]
     }
-  }
+  },
+  docsSections
 }
 
 module.exports = config

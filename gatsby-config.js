@@ -130,7 +130,8 @@ module.exports = {
     helpUrl: config.header.helpUrl,
     tweetText: config.header.tweetText,
     headerLinks: config.header.links,
-    siteUrl: config.gatsby.siteUrl
+    siteUrl: config.gatsby.siteUrl,
+    docsSections: config.docsSections
   },
   plugins: plugins
 }

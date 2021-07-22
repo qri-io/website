@@ -9,6 +9,17 @@ const Sidebar = ({ location }) => (
   <StaticQuery
     query={graphql`
       query {
+        site {
+          siteMetadata {
+            docsSections {
+              text
+              link
+              subtitle
+              description
+              colorClass
+            }
+          }
+        }
         allMdx {
           edges {
             node {
@@ -22,40 +33,21 @@ const Sidebar = ({ location }) => (
         }
       }
     `}
-    render={({ allMdx }) => {
+    render={({ allMdx, site }) => {
       // here we can
       let edges = allMdx.edges
       let skipFirstLevel = false
       let title = 'DOCS'
       let colorClass = 'text-gray'
 
-      // filter the edges based on the current docs section
-      if (location.pathname.includes('/guides')) {
-        edges = allMdx.edges.filter(d => d.node.fields.slug.includes('/guides/'))
-        title = 'GUIDES'
-        skipFirstLevel = true
-        colorClass = 'text-qripink-600'
-      }
+      const match = site.siteMetadata.docsSections.find(d => location.pathname.includes(d.link))
 
-      if (location.pathname.includes('/tutorials')) {
-        edges = allMdx.edges.filter(d => d.node.fields.slug.includes('/tutorials/'))
-        title = 'TUTORIALS'
+      // filter edges, set title, color based on current section
+      if (match) {
+        edges = allMdx.edges.filter(d => d.node.fields.slug.includes(match.link))
+        title = match.text.toUpperCase()
         skipFirstLevel = true
-        colorClass = 'text-qriorange-600'
-      }
-
-      if (location.pathname.includes('/concepts')) {
-        edges = allMdx.edges.filter(d => d.node.fields.slug.includes('/concepts/'))
-        title = 'CONCEPTS'
-        skipFirstLevel = true
-        colorClass = 'text-qrigreen-600'
-      }
-
-      if (location.pathname.includes('/reference')) {
-        edges = allMdx.edges.filter(d => d.node.fields.slug.includes('/reference/'))
-        title = 'REFERENCE'
-        skipFirstLevel = true
-        colorClass = 'text-qrinavy-300'
+        colorClass = match.colorClass
       }
 
       return (

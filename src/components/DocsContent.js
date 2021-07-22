@@ -4,6 +4,7 @@ import { MDXProvider } from '@mdx-js/react'
 
 import mdxComponents from './mdxComponents'
 import RightSidebar from './RightSidebar'
+import DocsFooter from './DocsFooter'
 
 import Head from '../components/Head'
 
@@ -39,6 +40,7 @@ const DocsContent = (props) => {
             <MDXRenderer>{mdx.body}</MDXRenderer>
           </div>
         </div>
+        <DocsFooter />
       </div>
       <div className='h-full border-l border-qrigray-200 sticky top-0 ml-16' style={{
         minWidth: 222
