@@ -127,6 +127,34 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: 'CourierPrime';
+  src: url('../../static/font/CourierPrimeRegular.ttf') format('ttf');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CourierPrime';
+  src: url('../../static/font/CourierPrimeItalic.ttf') format('ttf');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CourierPrime';
+  src: url('../../static/font/CourierPrimeBold.ttf') format('ttf');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CourierPrime';
+  src: url('../../static/font/CourierPrimeBoldItalic.ttf') format('ttf');
+  font-weight: 700;
+  font-style: italic;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
 }

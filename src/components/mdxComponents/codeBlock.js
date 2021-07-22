@@ -4,6 +4,12 @@ import prismTheme from 'prism-react-renderer/themes/github'
 import Loadable from 'react-loadable'
 import LoadingProvider from './loading'
 
+// override background and default text color
+prismTheme.plain = {
+  backgroundColor: '#EFF3F5',
+  color: '#545F66'
+}
+
 /** Removes the last token from a code example if it's empty. */
 function cleanTokens (tokens) {
   const tokensLength = tokens.length
@@ -30,7 +36,7 @@ const CodeBlock = ({ children: exampleCode, ...props }) => {
     )
   } else {
     return (
-      <div className='mb-2'>
+      <div className='mb-4'>
         <Highlight
           {...defaultProps}
           code={exampleCode}
@@ -38,7 +44,7 @@ const CodeBlock = ({ children: exampleCode, ...props }) => {
           theme={prismTheme}
         >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
-            <pre className={className + ' pre p-4'} style={style} p={3}>
+            <pre className={className + ' pre px-3 py-2'} style={style} p={3}>
               {cleanTokens(tokens).map((line, i) => {
                 let lineClass = {}
                 let isDiff = false

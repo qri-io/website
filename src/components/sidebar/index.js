@@ -51,7 +51,7 @@ const Sidebar = ({ location }) => (
       }
 
       return (
-        <div className='bg-qrigray-100 py-10 pl-10 text-xs text-qrigray-600 font-light border-r qrigray-200 h-full'>
+        <div className='bg-qrigray-100 py-10 pl-10 text-xs text-qrigray-600 font-light border-r qrigray-200 min-h-full'>
           <ul>
             <li className='mb-5'>
               <Link to='/docs' className='flex items-center'>

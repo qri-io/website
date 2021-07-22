@@ -28,7 +28,7 @@ const DocsContent = (props) => {
         }} />
         <div className='py-14 px-16 text-qrigray-600 font-light'>
           <div className={''}>
-            <h1 className={'text-qritile-600 font-bold text-3xl mb-6'}>
+            <h1 className={'text-qritile-600 font-bold text-2xl mb-6'}>
               {mdx.fields.title}
             </h1>
           </div>

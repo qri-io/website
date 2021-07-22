@@ -59,7 +59,7 @@ const TreeNode = (props) => {
           </Link>
         </div>
         {/* selected item "pill" */}
-        <div className='py-0.5 ml-10'>
+        <div className='py-0.5 ml-9'>
           <div
             className={classNames('bg-qripink h-full transition-all transition-100', {
               'opacity-100': active,
@@ -75,7 +75,7 @@ const TreeNode = (props) => {
     )
   } else {
     titleContent = (
-      <div className={classNames('my-1', {
+      <div className={classNames('my-1 pr-10', {
         'text-qripink': active,
         'font-semibold text-black': firstLevel,
         'font-medium text-qrigray-700': !firstLevel

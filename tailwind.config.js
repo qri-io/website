@@ -1,3 +1,5 @@
+const { fontFamily } = require('tailwindcss/defaultTheme')
+
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
@@ -77,7 +79,7 @@ module.exports = {
           500: '#889096',
           DEFAULT: '#889096',
           600: '#6E787E',
-          700: '#444D53',
+          700: '#545F66',
           800: '#444D53',
           900: '#343C40',
           1000: '#242A2D'
@@ -118,6 +120,10 @@ module.exports = {
           DEFAULT: '#B91C1C',
           600: '#991B1B'
         }
+      },
+      fontFamily: {
+        ...fontFamily,
+        mono: ['CourierPrime', 'monospace']
       }
     }
   },
