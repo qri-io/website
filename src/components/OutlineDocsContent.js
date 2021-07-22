@@ -4,8 +4,8 @@ import { MDXProvider } from '@mdx-js/react'
 
 import outlineMdxComponents from './mdxComponents/outline-docs'
 import RightSidebar from './RightSidebar'
-
-import Head from '../components/Head'
+import DocsFooter from './DocsFooter'
+import Head from './Head'
 
 const DocsContent = (props) => {
   const { data, location } = props
@@ -29,7 +29,7 @@ const DocsContent = (props) => {
           title: metaTitle,
           description: metaDescription
         }} />
-        <div className='py-14 pl-16 text-qrigray-600 font-light'>
+        <div className='py-14 px-16 text-qrigray-600 font-light'>
           <div className={''}>
             <h1 className={'text-qritile-600 font-bold text-3xl mb-6'}>
               {mdx.fields.title}
@@ -39,8 +39,9 @@ const DocsContent = (props) => {
             <MDXRenderer>{mdx.body}</MDXRenderer>
           </div>
         </div>
+        <DocsFooter />
       </div>
-      <div className='h-full border-l border-qrigray-200 sticky top-0 ml-16' style={{
+      <div className='h-full border-l border-qrigray-200 sticky top-0' style={{
         minWidth: 222
       }}>
         <RightSidebar location={location} />

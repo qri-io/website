@@ -9,7 +9,7 @@ const DocsColumns = ({ children, location, sidebar = true }) => (
   <div className='flex-grow overflow-hidden flex'>
     { sidebar && (
       <div className={'hidden sm:block overflow-y-scroll flex-shrink-0'} style={{
-        maxWidth: 275
+        width: 250
       }}>
         <Sidebar location={location} />
       </div>

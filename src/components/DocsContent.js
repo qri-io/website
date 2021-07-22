@@ -30,7 +30,7 @@ const DocsContent = (props) => {
           title: metaTitle,
           description: metaDescription
         }} />
-        <div className='py-14 pl-16 text-qrigray-600 font-light'>
+        <div className='py-14 px-16 text-qrigray-600 font-light'>
           <div className={''}>
             <h1 className={'text-qritile-600 font-bold text-2xl mb-6'}>
               {mdx.fields.title}
@@ -42,7 +42,7 @@ const DocsContent = (props) => {
         </div>
         <DocsFooter />
       </div>
-      <div className='h-full border-l border-qrigray-200 sticky top-0 ml-16' style={{
+      <div className='h-full border-l border-qrigray-200 sticky top-0' style={{
         minWidth: 222
       }}>
         <RightSidebar location={location} />

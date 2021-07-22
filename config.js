@@ -28,6 +28,13 @@ const docsSections = [
     subtitle: 'Get the specs',
     description: 'These technical reference docs will help you use Qri\'s APIs and write custom data transform scripts',
     colorClass: 'text-qrinavy-300'
+  },
+  {
+    text: 'Transform Snippets',
+    link: '/docs/transform-snippets',
+    subtitle: 'Automate your Datasets',
+    description: 'These snippets of Starlark Code can help you learn the syntax and quickly use common patterns in your Qri workflows',
+    colorClass: 'text-qrinavy-300'
   }
 ]
 
@@ -47,10 +54,6 @@ const config = {
         link: d.link,
         colorClass: d.colorClass
       })),
-      {
-        text: 'Transform Snippets',
-        link: '/docs/transform-snippets'
-      },
       {
         text: 'FAQ',
         link: '/docs/faq'
