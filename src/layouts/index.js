@@ -13,7 +13,7 @@ import '../scss/style.scss'
 // docs pages have context.layout === 'docs' and will use the docs layout with sidebars
 
 const IndexLayout = (props) => {
-  const { children, location, pageContext } = props
+  const { children, location } = props
 
   // data stories are special and need a fixed header
   if (location.pathname.match(/data-stories/)) {

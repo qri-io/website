@@ -13,10 +13,7 @@ const DocsContent = (props) => {
     return null
   }
   const {
-    mdx,
-    site: {
-      siteMetadata: { docsLocation }
-    }
+    mdx
   } = data
 
   const metaTitle = mdx.frontmatter.metaTitle

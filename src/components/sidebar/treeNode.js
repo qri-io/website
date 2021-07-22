@@ -3,18 +3,18 @@ import { Link } from 'gatsby'
 import classNames from 'classnames'
 
 import config from '../../../config'
-import Icon from '../Icon'
 
 const TreeNode = (props) => {
-  const { className = '', setCollapsed, collapsed, url, label, title, items, firstLevel, ...rest } = props
+  const { setCollapsed, collapsed, url, label, title, items, firstLevel } = props
   // TODO(chriswhong): there is potential for name conflicts here when using the
   // label field to determine collapsed state, but nodes with children won't
   // necessarily have a URL
   const isCollapsed = collapsed[url] || collapsed[label]
 
-  const collapse = () => {
-    setCollapsed(url || label)
-  }
+  // uncomment to restore collapsible sections
+  // const collapse = () => {
+  //   setCollapsed(url || label)
+  // }
 
   const hasChildren = items.length !== 0
 
