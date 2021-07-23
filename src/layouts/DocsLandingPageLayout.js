@@ -1,9 +1,12 @@
 import React from 'react'
 
-const DocsLandingPageLayout = ({ children }) => {
+const DocsLandingPageLayout = (props) => {
+  // necessary so we can pass onSearchClick to the <Header/> that lives in the docs landing page
+    React.cloneElement(child, { ...props })
+  )
   return (
     <>
-      {children}
+      {childrenWithProps}
     </>
   )
 }

@@ -9,17 +9,29 @@ const CustomLink = ({
   size = 'sm',
   className,
   colorClassName = defaultColorClassName,
+  onClick,
   children
 }) => {
-  const combinedClassNames = classNames('hover:cursor-pointer transition-all duration-100', colorClassName)
+  const combinedClassNames = classNames('cursor-pointer transition-all duration-100', colorClassName)
 
+  // use a div by default
   let theLink = (
-    <Link to={to} className={combinedClassNames}>
+    <div onClick={onClick} className={combinedClassNames}>
       {children}
-    </Link>
+    </div>
   )
 
-  if (to.includes('http')) {
+  // if to exists, make it a gatsby <Link>
+  if (to) {
+    theLink = (
+      <Link to={to} className={combinedClassNames}>
+        {children}
+      </Link>
+    )
+  }
+
+  // if to contains http:// or https:// make it an <a>
+  if (to?.match(/^https?:\/\//)) {
     theLink = (
       <a
         href={to}

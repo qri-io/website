@@ -1,12 +1,11 @@
 import React from 'react'
-import { StaticQuery, graphql, Link } from 'gatsby'
-import Loadable from 'react-loadable'
+import { StaticQuery, graphql } from 'gatsby'
 import classNames from 'classnames'
 
 import config from '../../config.js'
-import LoadingProvider from './mdxComponents/loading'
 import Sidebar from './sidebar'
 import Icon from './Icon'
+import Link from './Link'
 
 const isSearchEnabled = !!(config.header.search && config.header.search.enabled)
 
@@ -17,11 +16,6 @@ if (isSearchEnabled && config.header.search.indexName) {
   )
 }
 
-const LoadableComponent = Loadable({
-  loader: () => import('./search/index'), //eslint-disable-line
-  loading: LoadingProvider
-})
-
 function myFunction () {
   var x = document.getElementById('navbar')
   if (x.className === 'topnav') {
@@ -31,7 +25,12 @@ function myFunction () {
   }
 }
 
-const Header = ({ location, showSidebar, border = true }) => (
+const Header = ({
+  location,
+  showSidebar,
+  border = true,
+  onSearchClick
+}) => (
   <StaticQuery
     query={
       graphql`
@@ -66,15 +65,15 @@ const Header = ({ location, showSidebar, border = true }) => (
         <nav className={classNames('flex px-10 py-4 items-center z-10 relative', {
           'border-b border-qrigray-200': border
         })}>
-          <Link to={finalLogoLink} className={'mr-3'}>
+          <Link colorClassName={'text-black'} to={finalLogoLink} className={'mr-3'}>
             <img className={'img-responsive displayInline'} src={(logo.image !== '') ? logo.image : logoImg} alt={'logo'} />
           </Link>
-          <div className='text-xl'>
-            <Link to='/'>
+          <div className='text-xl flex'>
+            <Link colorClassName={'text-black'} to='/'>
               <span className='font-extrabold'>Qri</span>
             </Link>
             <span className='text-xl'> /</span>
-            <Link to='/docs'>
+            <Link colorClassName={'text-black'} to='/docs'>
               <span className='text-qriqritile-600'>Docs</span>
             </Link></div>
           <span onClick={myFunction} className={'navBarToggle'}>
@@ -82,31 +81,20 @@ const Header = ({ location, showSidebar, border = true }) => (
             <span className={'iconBar'}></span>
             <span className={'iconBar'}></span>
           </span>
-          {isSearchEnabled ? (
-            <div className={'searchWrapper hiddenMobile navBarUL'}>
-              <LoadableComponent collapse={true} indices={searchIndices} />
-            </div>
-          ) : null}
           <div id="navbar" className={'flex-grow text-right'}>
             <div className={'sm:hidden'}>
               {showSidebar && <><Sidebar location={location} /> <hr/></>}
-              {isSearchEnabled ? (
-                <div className={'searchWrapper'}>
-                  <LoadableComponent collapse={true} indices={searchIndices} />
-                </div>
-              ) : null}
             </div>
             <ul className={'flex justify-end text-sm font-semibold tracking-wide'}>
               {headerLinks.map((headerLink, key) => {
                 const { link, text, colorClass } = headerLink
 
                 if (link !== '' && text !== '') {
-                  // internal links get a <Link/>
                   if (link.charAt(0) === '/') {
                     return (
                       <li key={key} className='ml-10 flex items-center'>
                         {colorClass && (<Icon icon='docsRing' size='2xs' className={classNames(colorClass, 'mr-2')}/>)}
-                        <Link to={link}>{text}</Link>
+                        <Link colorClassName={'text-black'} to={link}>{text}</Link>
                       </li>
                     )
                   }
@@ -118,6 +106,9 @@ const Header = ({ location, showSidebar, border = true }) => (
                   )
                 }
               })}
+              <li className='ml-10 flex items-center'>
+                <Link colorClassName={'text-black'} onClick={onSearchClick}><Icon icon='search' size='md'/></Link>
+              </li>
             </ul>
           </div>
         </nav>

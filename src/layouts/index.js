@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import SearchModal from '../components/SearchModal'
 
 import DocsLayout from './docs'
 import DocsLandingPageLayout from './DocsLandingPageLayout'
@@ -23,16 +24,24 @@ const IndexLayout = (props) => {
     )
   }
 
-  const isDocs = location.pathname.match(/docs/)
   let mainContent = <StandardLayout {...props}>{children}</StandardLayout>
 
+  // documentation layout
+  const isDocs = location.pathname.match(/docs/)
   if (isDocs) {
-    mainContent = <DocsLayout {...props}>{children}</DocsLayout>
+    mainContent = <DocsLayout onSearchClick={() => { setShowSearch(true) }} {...props}>{children}</DocsLayout>
   }
 
-  if (location.pathname === '/docs') {
-    mainContent = <DocsLandingPageLayout {...props}>{children}</DocsLandingPageLayout>
+  // special handling for docs landing page
+  if (location.pathname.match(/\/docs\/?$/)) {
+    mainContent = (
+      <DocsLandingPageLayout onSearchClick={() => { setShowSearch(true) }} {...props}>
+        {children}
+      </DocsLandingPageLayout>
+    )
   }
+
+  const [showSearch, setShowSearch] = useState(false)
 
   return (
     <div className='main-container'>
@@ -43,6 +52,7 @@ const IndexLayout = (props) => {
         imageAlt: 'The Qri Logo',
         url: location.href
       }}/>
+      {showSearch && <SearchModal onClose={() => { setShowSearch(false) }} />}
       <div className='main-content'>
         {mainContent}
       </div>

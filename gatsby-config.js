@@ -1,5 +1,4 @@
 require('dotenv').config()
-const queries = require('./src/utils/algolia')
 const config = require('./config')
 const plugins = [
   {
@@ -86,21 +85,17 @@ const plugins = [
     options: {
       writeKey: 'b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju'
     }
-  }
-]
-// check and add algolia
-if (config.header.search && config.header.search.enabled && config.header.search.algoliaAppId && config.header.search.algoliaAdminKey) {
-  plugins.push({
+  },
+  {
     resolve: 'gatsby-plugin-algolia',
     options: {
-      appId: config.header.search.algoliaAppId, // algolia application id
-      apiKey: config.header.search.algoliaAdminKey, // algolia admin key to index
-      queries,
-      chunkSize: 10000 // default: 1000
+      appId: process.env.GATSBY_ALGOLIA_APP_ID,
+      apiKey: process.env.ALGOLIA_ADMIN_KEY,
+      queries: require('./src/utils/algolia-queries')
     }
   }
-  )
-}
+]
+
 // check and add pwa functionality
 if (config.pwa && config.pwa.enabled && config.pwa.manifest) {
   plugins.push({
