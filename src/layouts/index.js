@@ -1,6 +1,7 @@
 import React from 'react'
 
 import DocsLayout from './docs'
+import DocsLandingPageLayout from './DocsLandingPageLayout'
 import StandardLayout from './standard'
 import DataStoryLayout from './data-story'
 import Head from '../components/Head'
@@ -27,6 +28,10 @@ const IndexLayout = (props) => {
 
   if (isDocs) {
     mainContent = <DocsLayout {...props}>{children}</DocsLayout>
+  }
+
+  if (location.pathname === '/docs') {
+    mainContent = <DocsLandingPageLayout {...props}>{children}</DocsLandingPageLayout>
   }
 
   return (

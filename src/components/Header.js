@@ -31,7 +31,7 @@ function myFunction () {
   }
 }
 
-const Header = ({ location, showSidebar }) => (
+const Header = ({ location, showSidebar, border = true }) => (
   <StaticQuery
     query={
       graphql`
@@ -63,7 +63,9 @@ const Header = ({ location, showSidebar }) => (
       } = data
       const finalLogoLink = logo.link !== '' ? logo.link : '/'
       return (
-        <nav className={'flex px-10 py-4 items-center border-b border-qrigray-200'}>
+        <nav className={classNames('flex px-10 py-4 items-center z-10 relative', {
+          'border-b border-qrigray-200': border
+        })}>
           <Link to={finalLogoLink} className={'mr-3'}>
             <img className={'img-responsive displayInline'} src={(logo.image !== '') ? logo.image : logoImg} alt={'logo'} />
           </Link>
