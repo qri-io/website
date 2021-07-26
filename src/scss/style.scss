@@ -167,3 +167,8 @@ body {
   word-wrap: normal;
   white-space: pre;
 }
+
+// docs search result highlighting
+.ais-Highlight-highlighted {
+  @apply not-italic text-black;
+}

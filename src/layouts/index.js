@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SearchModal from '../components/SearchModal'
+import SearchModal from '../components/search/SearchModal'
 
 import DocsLayout from './docs'
 import DocsLandingPageLayout from './DocsLandingPageLayout'

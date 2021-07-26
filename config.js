@@ -2,6 +2,7 @@
 
 const docsSections = [
   {
+    id: 'tutorials',
     text: 'Tutorials',
     link: '/docs/tutorials',
     subtitle: 'Learn how Qri Works',
@@ -9,6 +10,7 @@ const docsSections = [
     colorClass: 'text-qriorange-600'
   },
   {
+    id: 'guides',
     text: 'Guides',
     link: '/docs/guides',
     subtitle: 'Learn how to do things in Qri',
@@ -16,6 +18,7 @@ const docsSections = [
     colorClass: 'text-qripink-600'
   },
   {
+    id: 'concepts',
     text: 'Concepts',
     link: '/docs/concepts',
     subtitle: 'Dive Deeper into Qri',
@@ -23,6 +26,7 @@ const docsSections = [
     colorClass: 'text-qrigreen-600'
   },
   {
+    id: 'reference',
     text: 'Reference',
     link: '/docs/reference',
     subtitle: 'Get the specs',
@@ -30,6 +34,7 @@ const docsSections = [
     colorClass: 'text-qrinavy-300'
   },
   {
+    id: 'transform-snippets',
     text: 'Transform Snippets',
     link: '/docs/transform-snippets',
     subtitle: 'Automate your Datasets',

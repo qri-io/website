@@ -38,7 +38,7 @@ const DocsHeader = (props) => (
               <HeaderLink key={i} data={headerLink} />
             ))}
             <li className='ml-10 flex items-center'>
-              <Link colorClassName={'text-black'} onClick={props.onSearchClick}><Icon icon='search' size='md'/></Link>
+              <Link colorClassName={'text-black'} onClick={props.onSearchClick}><Icon icon='search' size='sm'/></Link>
             </li>
           </>
         </Header>
