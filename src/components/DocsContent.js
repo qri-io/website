@@ -22,12 +22,12 @@ const DocsContent = (props) => {
 
   return (
     <MDXProvider components={mdxComponents}>
-      <div className='flex-grow flex-shrink'>
+      <div className='flex-grow flex-shrink flex flex-col'>
         <Head data={{
           title: metaTitle,
           description: metaDescription
         }} />
-        <div className='py-14 px-16 text-qrigray-600 font-light'>
+        <div className='py-14 px-16 text-qrigray-600 font-light flex-grow flex-shrink-0'>
           <div className={''}>
             <h1 className={'text-qritile-600 font-bold text-2xl mb-6'}>
               {mdx.fields.title}
@@ -37,7 +37,9 @@ const DocsContent = (props) => {
             <MDXRenderer>{mdx.body}</MDXRenderer>
           </div>
         </div>
-        <DocsFooter />
+        <div className='flex-grow-0'>
+          <DocsFooter />
+        </div>
       </div>
       <div className='h-full border-l border-qrigray-200 sticky top-0' style={{
         minWidth: 222
