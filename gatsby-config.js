@@ -124,7 +124,8 @@ module.exports = {
     githubUrl: config.header.githubUrl,
     helpUrl: config.header.helpUrl,
     tweetText: config.header.tweetText,
-    headerLinks: config.header.links,
+    mainHeaderLinks: config.header.mainLinks,
+    docsHeaderLinks: config.header.docsLinks,
     siteUrl: config.gatsby.siteUrl,
     docsSections: config.docsSections
   },

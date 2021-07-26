@@ -1,10 +1,10 @@
 import React from 'react'
 import ThemeProvider from './themeProvider'
-import Header from './header'
+import DocsHeader from './DocsHeader'
 
 const StandardLayout = ({ children, location }) => (
   <ThemeProvider location={location}>
-    <Header location={location} />
+    <DocsHeader location={location} />
     <div>{children}</div>
   </ThemeProvider>
 )

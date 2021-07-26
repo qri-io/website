@@ -7,7 +7,7 @@ import OutlineDocsContent from '../components/OutlineDocsContent'
 
 import ApiDocs from '../components/ApiDocs'
 
-import Header from '../components/Header'
+import DocsHeader from '../components/DocsHeader'
 // import NextPrevious from '../components/NextPrevious'
 
 const DocsLayout = (props) => {
@@ -34,7 +34,7 @@ const DocsLayout = (props) => {
 
   return (
     <div className='flex flex-col h-screen'>
-      <Header {...props} />
+      <DocsHeader {...props} />
       <DocsColumns {...props} sidebar={showSidebar}>
         {content}
       </DocsColumns>

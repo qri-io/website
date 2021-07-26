@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import moment from 'moment'
 
 import Head from '../components/Head'
-import Header from '../components/Header'
+import DocsHeader from '../components/DocsHeader'
 import Footer from '../components/Footer'
 
 export const Wrapper = styled('div')`
@@ -39,7 +39,7 @@ const DataStoryLayout = ({ children, location, pageContext }) => {
         imageAlt: 'The Qri Logo',
         url: location.href
       }}/>
-      <Header location={location} showSidebar={false} />
+      <DocsHeader location={location} showSidebar={false} />
       <div className='data-story-header text-left' style={{
         backgroundImage: `url(${heroImage})`
       }}>

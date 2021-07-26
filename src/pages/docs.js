@@ -1,10 +1,10 @@
 import React from 'react'
 
 import Head from '../components/Head'
-import Header from '../components/Header'
+import DocsHeader from '../components/DocsHeader'
 import Footer from '../components/Footer'
 
-const DocsPage = ({ onSearchClick }) => (
+const DocsPage = ({ onSearchClick, location }) => (
   <div className='flex flex-col h-screen' style={{
     background: 'url("/img/new-docs/dot.svg")'
   }}>
@@ -14,7 +14,7 @@ const DocsPage = ({ onSearchClick }) => (
     }} />
     <div className='flex-grow flex-shrink-0'>
       <img src='/img/new-docs/yellow-aura.svg' className='absolute z-0'/>
-      <Header border={false} onSearchClick={onSearchClick} />
+      <DocsHeader border={false} onSearchClick={onSearchClick} location={location} />
       <div className='z-10 relative'>
         <div className='py-24'>
           <div className='font-bold text-6xl text-qritile-600 text-center'>How can we <span className='text-qripink-600'>help</span> you?</div>

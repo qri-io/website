@@ -45,10 +45,29 @@ const config = {
     gaTrackingId: null
   },
   header: {
-    logo: '/img/new-docs/logo.svg',
-    logoLink: '/',
-    title: 'qri',
-    links: [
+    mainLinks: [
+      {
+        text: 'Datasets',
+        link: 'https://qri.cloud'
+      },
+      {
+        text: 'Documentation',
+        link: '/docs'
+      },
+      {
+        text: 'Blog',
+        link: 'https://medium.com/qri-io'
+      },
+      {
+        text: 'Jobs',
+        link: 'https://jobs.lever.co/Qri'
+      },
+      {
+        text: 'FAQ',
+        link: '/docs/faq'
+      }
+    ],
+    docsLinks: [
       ...docsSections.map((d) => ({
         text: d.text,
         link: d.link,
