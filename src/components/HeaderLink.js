@@ -9,8 +9,6 @@ const HeaderLink = ({
 }) => {
   const { link, text, colorClass } = data
 
-  console.log(link)
-
   if (link !== '' && text !== '') {
     return (
       <li className='ml-10 flex items-center'>

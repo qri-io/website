@@ -6,7 +6,7 @@ const RightSidebar = ({ location }) => (
   <StaticQuery
     query={graphql`
       query {
-        allMdx {
+        allMdx(filter: {fileAbsolutePath: {regex: "\\/docs/"}}) {
           edges {
             node {
               fields {

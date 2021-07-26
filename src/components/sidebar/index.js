@@ -20,7 +20,7 @@ const Sidebar = ({ location }) => (
             }
           }
         }
-        allMdx {
+        allMdx(filter: {fileAbsolutePath: {regex: "\\/docs/"}}) {
           edges {
             node {
               fields {
