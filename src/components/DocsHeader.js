@@ -6,7 +6,6 @@ import Link from './Link'
 import Icon from './Icon'
 import HeaderLink from './HeaderLink'
 
-
 const DocsHeader = (props) => (
   <StaticQuery
     query={

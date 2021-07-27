@@ -32,7 +32,7 @@ const Header = ({
   <nav className={classNames('flex px-10 py-4 items-center z-10 relative', {
     'border-b border-qrigray-200': border
   })}>
-    <Link colorClassName={'text-black'} to='/' className={'mr-3'}>
+    <Link colorClassName={'text-black'} to='/' className={'mr-3 flex'}>
       <img className={'img-responsive displayInline'} src='/img/new-docs/logo.svg' alt={'logo'} />
     </Link>
     <div className='text-xl flex'>
@@ -42,8 +42,8 @@ const Header = ({
       {location.pathname.match(/\/docs\/?/) && (
         <>
           <span className='text-xl'> /</span>
-          <Link colorClassName={'text-black'} to='/docs'>
-            <span className='text-qriqritile-600'>Docs</span>
+          <Link colorClassName={'text-qritile-600'} to='/docs'>
+            <span>Docs</span>
           </Link>
         </>
       )}

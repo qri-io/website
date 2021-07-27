@@ -12,7 +12,7 @@ const CustomLink = ({
   onClick,
   children
 }) => {
-  const combinedClassNames = classNames('cursor-pointer transition-all duration-100', className, colorClassName)
+  const combinedClassNames = classNames('cursor-pointer transition-all duration-100', colorClassName)
 
   // use a div by default
   let theLink = (
