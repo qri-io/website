@@ -41,6 +41,7 @@ import {
   faFile
 } from '@fortawesome/free-regular-svg-icons'
 
+import CaretRight from './icon/CaretRight'
 import Discord from './icon/Discord'
 import DocsRing from './icon/DocsRing'
 import Github from './icon/Github'
@@ -107,6 +108,7 @@ const Icon = ({
   const faIconsList = Object.keys(faIcons)
 
   const customIcons = {
+    caretRight: <CaretRight className={className} size={size} />,
     discord: <Discord className={className} size={size} />,
     docsRing: <DocsRing className={className} size={size} />,
     github: <Github className={className} size={size} />,
