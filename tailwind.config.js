@@ -128,7 +128,9 @@ module.exports = {
     }
   },
   variants: {
-    extend: {}
+    extend: {
+      borderWidth: ['hover']
+    }
   },
   plugins: []
 }

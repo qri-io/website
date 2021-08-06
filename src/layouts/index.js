@@ -24,7 +24,13 @@ const IndexLayout = (props) => {
     )
   }
 
-  let mainContent = <StandardLayout {...props}>{children}</StandardLayout>
+  let style = {}
+  // special background on StandardLayout for the landing page
+  if (location.pathname === '/') {
+    style = { background: 'url("/img/new-docs/dot.svg")' }
+  }
+
+  let mainContent = <StandardLayout style={style} {...props}>{children}</StandardLayout>
 
   // documentation layout
   const isDocs = location.pathname.match(/docs/)

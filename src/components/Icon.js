@@ -41,12 +41,14 @@ import {
   faFile
 } from '@fortawesome/free-regular-svg-icons'
 
+import Automate from './icon/Automate'
 import CaretRight from './icon/CaretRight'
 import Discord from './icon/Discord'
 import DocsRing from './icon/DocsRing'
 import Github from './icon/Github'
 import Search from './icon/Search'
 import Twitter from './icon/Twitter'
+import Version from './icon/Version'
 import Youtube from './icon/Youtube'
 
 const faIcons = {
@@ -108,12 +110,14 @@ const Icon = ({
   const faIconsList = Object.keys(faIcons)
 
   const customIcons = {
+    automate: <Automate className={className} size={size} />,
     caretRight: <CaretRight className={className} size={size} />,
     discord: <Discord className={className} size={size} />,
     docsRing: <DocsRing className={className} size={size} />,
     github: <Github className={className} size={size} />,
     search: <Search className={className} size={size} />,
     twitter: <Twitter className={className} size={size} />,
+    version: <Version className={className} size={size} />,
     youtube: <Youtube className={className} size={size} />
   }
 

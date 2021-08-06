@@ -5,7 +5,9 @@ import Footer from '../components/Footer'
 
 const StandardLayout = (props) => {
   return (
-    <div className='standard-layout-wrapper flex-column'>
+    <div className='standard-layout-wrapper flex-column' style={{
+      ...props.style
+    }}>
       <MainHeader {...props} />
       <div style={{ flex: '1 0 auto' }}>
         {props.children}

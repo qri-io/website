@@ -28,7 +28,7 @@ const MainHeader = (props) => (
         }
       } = data
       return (
-        <Header {...props}>
+        <Header border={false} {...props}>
           <>
             {mainHeaderLinks.map((headerLink, i) => (
               <HeaderLink key={i} data={headerLink} />
