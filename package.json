@@ -83,6 +83,7 @@
     "readable-stream": "3.6.0",
     "redoc": "2.0.0-rc.55",
     "stream-browserify": "3.0.0",
+    "styled-components": "^5.3.0",
     "tailwindcss": "2.2.4",
     "util": "0.12.4",
     "yaml": "1.10.2"
