@@ -1,8 +1,10 @@
 import React from 'react'
 
 import Automate from './icon/Automate'
+import Bars from './icon/Bars'
 import CaretRight from './icon/CaretRight'
 import Clock from './icon/Clock'
+import Close from './icon/Close'
 import Discord from './icon/Discord'
 import DocsRing from './icon/DocsRing'
 import Github from './icon/Github'
@@ -21,8 +23,10 @@ const sizes = {
 const Icon = (props) => {
   const customIcons = {
     automate: <Automate {...props} />,
+    bars: <Bars {...props} />,
     caretRight: <CaretRight {...props} />,
     clock: <Clock {...props} />,
+    close: <Close {...props} />,
     discord: <Discord {...props} />,
     docsRing: <DocsRing {...props} />,
     github: <Github {...props} />,

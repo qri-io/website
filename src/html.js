@@ -25,7 +25,7 @@ export default class HTML extends React.Component {
           <meta name='msapplication-config' content='/browserconfig.xml' />
           <meta name='theme-color' content='#ffffff' />
         </head>
-        <body {...this.props.bodyAttributes}>
+        <body className='overflow-x-hidden'{...this.props.bodyAttributes}>
           {this.props.preBodyComponents}
           <div
             key={'body'}

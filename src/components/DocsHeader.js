@@ -31,16 +31,7 @@ const DocsHeader = (props) => (
         }
       } = data
       return (
-        <Header {...props}>
-          <>
-            {docsHeaderLinks.map((headerLink, i) => (
-              <HeaderLink key={i} data={headerLink} />
-            ))}
-            <li className='ml-10 flex items-center'>
-              <Link colorClassName={'text-black'} onClick={props.onSearchClick}><Icon icon='search' size='sm'/></Link>
-            </li>
-          </>
-        </Header>
+        <Header headerLinks={docsHeaderLinks} {...props}/>
       )
     }}
   />

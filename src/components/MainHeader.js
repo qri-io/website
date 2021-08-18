@@ -2,7 +2,6 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 
 import Header from './Header'
-import HeaderLink from './HeaderLink'
 
 const MainHeader = (props) => (
   <StaticQuery
@@ -28,13 +27,7 @@ const MainHeader = (props) => (
         }
       } = data
       return (
-        <Header border={false} {...props}>
-          <>
-            {mainHeaderLinks.map((headerLink, i) => (
-              <HeaderLink key={i} data={headerLink} />
-            ))}
-          </>
-        </Header>
+        <Header border={false} headerLinks={mainHeaderLinks} {...props} />
       )
     }}
   />
