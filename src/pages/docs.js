@@ -47,10 +47,10 @@ const recommendedTutorials = [
 
 const DocsPage = ({ onSearchClick, location }) => (
   <div style={{
-    background: 'url("/img/new-docs/yellow-aura-bubble.svg")'
+    background: 'url("/img/new-docs/dot.svg")'
   }}>
     <div className='flex flex-col' style={{
-      backgroundImage: 'url("/img/new-docs/dot.svg")',
+      backgroundImage: 'url("/img/new-docs/yellow-aura-bubble.svg")',
       backgroundRepeat: 'no-repeat',
       backgroundPositionY: 1200,
       backgroundPositionX: 'right'

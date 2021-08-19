@@ -32,15 +32,15 @@ const docsSections = [
     subtitle: 'Get the specs',
     description: 'These technical reference docs will help you use Qri\'s APIs and write custom data transform scripts',
     colorClass: 'text-qrinavy-300'
-  },
-  {
-    id: 'transform-snippets',
-    text: 'Transform Snippets',
-    link: '/docs/transform-snippets',
-    subtitle: 'Automate your Datasets',
-    description: 'These snippets of Starlark Code can help you learn the syntax and quickly use common patterns in your Qri workflows',
-    colorClass: 'text-qrinavy-300'
   }
+  // {
+  //   id: 'transform-snippets',
+  //   text: 'Transform Snippets',
+  //   link: '/docs/transform-snippets',
+  //   subtitle: 'Automate your Datasets',
+  //   description: 'These snippets of Starlark Code can help you learn the syntax and quickly use common patterns in your Qri workflows',
+  //   colorClass: 'text-qrinavy-300'
+  // }
 ]
 
 const config = {
@@ -51,6 +51,10 @@ const config = {
   },
   header: {
     mainLinks: [
+      {
+        text: 'About',
+        link: '/about'
+      },
       {
         text: 'Datasets',
         link: 'https://qri.cloud'
