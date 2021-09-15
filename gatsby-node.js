@@ -91,21 +91,17 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create docs pages
         result.data.allMdx.edges.forEach(({ node }) => {
-          // alternate context.layout for starlark docs
-          let layout = 'docs'
-          if (node.fields.slug.includes('starlark-standard-library')) {
-            layout = 'outline-docs'
-          }
           createPage({
             path: node.fields.slug ? node.fields.slug : '/',
             component: path.resolve('./src/layouts/docs.js'),
             context: {
               id: node.fields.id,
-              layout
+              layout: 'docs'
             }
           })
         })
 
+        // create the top-level docs section pages
         result.data.site.siteMetadata.docsSections.forEach((docsSectionInfo) => {
           createPage({
             path: docsSectionInfo.link,
@@ -188,7 +184,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       name: 'slug',
       node,
-      value: `/${value}`
+      // trim leading number and hyphen from filename
+      value: `/${value.replace(/\d{2}-/, '')}`
     })
 
     createNodeField({

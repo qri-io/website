@@ -27,7 +27,7 @@ const MainHeader = (props) => (
         }
       } = data
       return (
-        <Header border={false} headerLinks={mainHeaderLinks} {...props} />
+        <Header transparent headerLinks={mainHeaderLinks} {...props} />
       )
     }}
   />

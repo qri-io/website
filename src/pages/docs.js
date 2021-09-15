@@ -61,7 +61,7 @@ const DocsPage = ({ onSearchClick, location }) => (
       }} />
       <div className='flex-grow flex-shrink-0'>
         <img src='/img/new-docs/yellow-aura.svg' className='absolute z-0'/>
-        <DocsHeader border={false} onSearchClick={onSearchClick} location={location} />
+        <DocsHeader onSearchClick={onSearchClick} location={location} transparent sticky={false} border={false} />
         <div className='z-10 relative'>
           <div className='py-24 max-w-screen-lg mx-auto'>
             {/* Start Splash */}

@@ -73,7 +73,7 @@ const SearchModal = ({ onClose }) => {
       render={({ site }) => {
         const { docsSections } = site.siteMetadata
         return (
-          <div className='fixed z-20 inset-0 min-h-screen'>
+          <div className='fixed z-30 inset-0 min-h-screen'>
             <div className='flex items-end justify-center h-full pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
               <div className="fixed inset-0 transition-opacity" aria-hidden="true">
                 <div className="absolute inset-0 p-8" onClick={onClose} style={{
