@@ -5,13 +5,13 @@ import Icon from './Icon'
 
 const DocsFooter = (props) => {
   return (
-    <div className='flex text-qrigray-400 text-xs p-6 border-t border-qrigray-200 font-light'>
-      <div className='flex flex-grow'>
-        <div className='mr-6'>&copy; 2020 qri, inc.</div>
-        <Link className='mr-6' colorClassName='text-qrigray-400' to='/tos'>Terms of Service</Link>
-        <Link className='mr-6' colorClassName='text-qrigray-400' to='/privacy'>Privacy Policy</Link>
+    <div className='flex flex-col md:flex-row text-qrigray-400 text-xs px-5 py-10 md:p-6 border-t border-qrigray-200 font-light'>
+      <div className='flex flex-grow justify-between mb-5 md:mb-0'>
+        <div className='md:mr-6'>&copy; 2021 qri, inc.</div>
+        <Link className='md:mr-6' colorClassName='text-qrigray-400' to='/tos'>Terms of Service</Link>
+        <Link className='md:mr-6' colorClassName='text-qrigray-400' to='/privacy'>Privacy Policy</Link>
       </div>
-      <div className='flex'>
+      <div className='flex mx-auto'>
         {
           [
             {
@@ -31,7 +31,7 @@ const DocsFooter = (props) => {
               link: 'https://discordapp.com/invite/thkJHKj'
             }
           ].map(({ icon, link }, i) => (
-            <Link to={link} key={i} className='ml-5' colorClassName='text-qrigray-400'>
+            <Link to={link} key={i} className='mx-2 md:ml-5' colorClassName='text-qrigray-400'>
               <Icon
                 icon={icon}
                 size='sm'

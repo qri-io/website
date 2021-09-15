@@ -4,7 +4,6 @@ import MainHeader from '../components/MainHeader'
 import Footer from '../components/Footer'
 
 const StandardLayout = (props) => {
-  console.log(props.location.pathname)
   return (
     <div className='standard-layout-wrapper flex-column relative' style={{
       ...props.style

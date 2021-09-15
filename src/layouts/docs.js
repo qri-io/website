@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 
 import DocsColumns from '../components/DocsColumns'
 import DocsContent from '../components/DocsContent'
-import OutlineDocsContent from '../components/OutlineDocsContent'
 
 import ApiDocs from '../components/ApiDocs'
 
@@ -18,10 +17,6 @@ const DocsLayout = (props) => {
     content = <DocsContent {...props} />
   }
 
-  if (props.pageContext.layout === 'outline-docs') {
-    content = <OutlineDocsContent {...props} />
-  }
-
   // special handling for API docs (redoc)
   if (props.path === '/docs/reference/qri-http-api') {
     content = <ApiDocs/>
@@ -33,12 +28,12 @@ const DocsLayout = (props) => {
   }
 
   return (
-    <div className='flex flex-col h-screen'>
+    <>
       <DocsHeader {...props} />
       <DocsColumns {...props} sidebar={showSidebar}>
         {content}
       </DocsColumns>
-    </div>
+    </>
   )
 }
 

@@ -32,9 +32,15 @@ Documentation pages can be added by creating markdown files in the `/docs` direc
 
 Group ordering is config-driven using `config.sidebar.forcedNavOrder`
 
+### Grouping Documentation Articles
+
+Articles can be grouped by adding them to a directory.  The directory name will be used for the title unless a markdown file with the same name as the directory exists at the same level as the directory (in this case, the `metaTitle` frontmatter will be used.)
+
 ### Ordering Documentation Articles
 
-Docs articles will list in alphabetical order by default, but can be ordered manually by specifying a `weight` (number) property in the markdown frontmatter.  Lower weight will be given higher priority
+Docs articles will be displayed in the table of contents in filename order.  You can prepend a number like `01-overview.md` to coerce the ordering.
+
+There is a frontmatter item `weight` which used to be used for ordering but is now deprecated
 
 ## Redirects
 

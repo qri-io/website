@@ -3,6 +3,7 @@ import classNames from 'classnames'
 
 import config from '../../config.js'
 import Link from './Link'
+import IconButton from './IconButton'
 import Icon from './Icon'
 import HeaderLink from './HeaderLink'
 
@@ -37,9 +38,11 @@ export const useDisableBodyScroll = (open) => {
 const Header = ({
   location,
   showSidebar,
-  border = true,
+  border = false,
   headerLinks,
   onSearchClick,
+  transparent = false,
+  sticky = false,
   children
 }) => {
   const [showMobileNav, setShowMobileNav] = useState(false)
@@ -50,8 +53,10 @@ const Header = ({
   }
 
   const Nav = ({ mobileMenu }) => (
-    <nav className={classNames('flex px-5 md:px-10 py-4 items-center z-10 relative transition-all duration-100', {
-      'border-b border-qrigray-200': border || mobileMenu
+    <nav className={classNames('flex px-5 md:px-10 py-4 items-center z-10 relative transition-all duration-100 z-20', {
+      'border-b border-qrigray-200': border || mobileMenu,
+      'bg-white': !transparent,
+      'sticky top-0': sticky
     })}>
       <div className="flex-shrink-0 flex items-center">
         <Link colorClassName={'text-black'} to='/' className={'mr-3 flex'}>
@@ -77,7 +82,7 @@ const Header = ({
         <div className={'justify-end flex md:hidden'}>
           <div>
             <Link onClick={toggleMobileNav}>
-              <Icon icon={mobileMenu ? 'close' : 'bars'} />
+              <IconButton icon={mobileMenu ? 'close' : 'bars'} />
             </Link>
           </div>
         </div>

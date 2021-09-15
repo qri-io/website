@@ -10,7 +10,6 @@ import DatasetCard from '../components/DatasetCard'
 // the first argument in track() becomes the google analytics 'Action' property after passing through segment
 // all events are of Action 'Homepage'
 const fireEvent = (category, label) => {
-  console.log('!', category, label)
   window.analytics.track('Homepage', {
     category,
     label
@@ -40,7 +39,6 @@ const IndexPage = () => {
   const [selectedFeatureId, setSelectedFeatureId] = useState('version')
 
   const selectedFeature = features.find(d => d.id === selectedFeatureId)
-  console.log('selectedFeature', selectedFeature)
 
   return (
     <>

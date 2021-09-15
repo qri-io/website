@@ -6,6 +6,7 @@ import config from '../../../config'
 
 const TreeNode = (props) => {
   const { setCollapsed, collapsed, url, label, title, items, firstLevel } = props
+
   // TODO(chriswhong): there is potential for name conflicts here when using the
   // label field to determine collapsed state, but nodes with children won't
   // necessarily have a URL
@@ -88,7 +89,7 @@ const TreeNode = (props) => {
     <li
       className={classNames({
         'mb-4': !url,
-        'ml-4': !firstLevel && !url
+        'ml-2': !firstLevel
       })}
     >
       {titleContent}

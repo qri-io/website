@@ -2,7 +2,7 @@ import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 
 import Head from '../components/Head'
-import mdxComponents from '../components/mdxComponents/outline-docs'
+import mdxComponents from '../components/mdxComponents'
 
 const MarkdownPageLayout = (props) => {
   const { children, pageContext } = props
@@ -14,7 +14,7 @@ const MarkdownPageLayout = (props) => {
         title: metaTitle,
         description: metaDescription
       }} />
-      <div className='py-14 px-16 text-qrigray-600 font-light flex-grow flex-shrink-0'>
+      <div className='px-5 py-8 md:py-14 md:px-16 text-qrigray-600 font-light flex-grow flex-shrink-0'>
         <div className={''}>
           <h1 className={'text-qritile-600 font-bold text-2xl mb-6'}>
             {metaTitle}
