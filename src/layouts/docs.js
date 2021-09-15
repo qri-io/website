@@ -18,7 +18,7 @@ const DocsLayout = (props) => {
   }
 
   // special handling for API docs (redoc)
-  if (props.path === '/docs/reference/qri-http-api') {
+  if (props.path === '/docs/reference/qri-http-api/json-api-spec') {
     content = <ApiDocs/>
   }
 

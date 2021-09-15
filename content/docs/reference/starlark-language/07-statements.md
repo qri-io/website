@@ -1,5 +1,6 @@
 ---
 metaTitle: "Statements"
+metaDescription: "Understand Statements in the Starlark Language"
 ---
 ```grammar {.good}
 Statement  = DefStmt | IfStmt | ForStmt | SimpleStmt .

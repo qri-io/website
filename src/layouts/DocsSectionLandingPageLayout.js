@@ -35,10 +35,8 @@ export const pageQuery = graphql`
           fields {
             id
             slug
-          }
-          frontmatter {
-            metaTitle
-            metaDescription
+            title
+            description
           }
         }
       }

@@ -26,7 +26,6 @@ const Sidebar = ({ location, mobile = false }) => (
               fields {
                 slug
                 title
-                weight
               }
             }
           }
@@ -34,14 +33,12 @@ const Sidebar = ({ location, mobile = false }) => (
       }
     `}
     render={({ allMdx, site }) => {
-      // here we can
       let edges = allMdx.edges
       let skipFirstLevel = false
       let title = 'DOCS'
       let colorClass = 'text-gray'
 
       const match = site.siteMetadata.docsSections.find(d => location.pathname.includes(d.link))
-
       // filter edges, set title, color based on current section
       if (match) {
         edges = allMdx.edges.filter(d => d.node.fields.slug.includes(match.link))

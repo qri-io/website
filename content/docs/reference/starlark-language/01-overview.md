@@ -1,5 +1,6 @@
 ---
 metaTitle: "Overview"
+metaDescription: "What is Starlark, and why are we using it?"
 ---
 Starlark is an untyped dynamic language with high-level data types,
 first-class functions with lexical scope, and automatic memory

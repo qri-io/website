@@ -1,5 +1,6 @@
 ---
 metaTitle: "Built-in Constants and Functions"
+metaDescription: "Low-level Starlark constants and functions with simple examples"
 ---
 The outermost block of the Starlark environment is known as the "predeclared" block.
 It defines a number of fundamental values and functions needed by all Starlark programs,

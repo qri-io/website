@@ -1,5 +1,6 @@
 ---
 metaTitle: "string"
+metaDescription: "All methods for the string type (capitalize(), format(), find(), etc.)"
 ---
 
 This section lists the methods of the built-in type `string`.  Methods are selected

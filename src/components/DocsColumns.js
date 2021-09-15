@@ -40,16 +40,7 @@ const DocsColumns = ({ children, location, sidebar = true }) => {
         <div className='flex-grow overflow-x-hidden flex flex-col md:flex-row relative'>
           {children}
         </div>
-        <div className='border-l border-qrigray-200 hidden lg:block flex-grow' style={{
-          minWidth: 160
-        }}>
-          <div className='sticky overflow-y-scroll' style={{
-            height: 'calc(100vh - 75px)',
-            top: 75
-          }}>
-            <RightSidebar location={location} />
-          </div>
-        </div>
+        <RightSidebar location={location} />
       </div>
     </>
   )

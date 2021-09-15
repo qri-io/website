@@ -1,5 +1,7 @@
 ---
 metaTitle: "set"
+metaDescription: "All methods for the set type"
+
 ---
 
 This section lists the methods of the built-in type `set`.  Methods are selected

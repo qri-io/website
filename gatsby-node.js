@@ -201,9 +201,9 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     })
 
     createNodeField({
-      name: 'weight',
+      name: 'description',
       node,
-      value: node.frontmatter.weight
+      value: node.frontmatter.metaDescription
     })
 
     // make additional frontmatter fields for jobs

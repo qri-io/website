@@ -48,9 +48,9 @@ const sortEntries = (tree) => {
   return tree
 }
 
-const calculateTreeData = (edges, skipFirstLevel) => {
+export const calculateTreeData = (edges, skipFirstLevel) => {
   const originalData = config.sidebar.ignoreIndex ? edges.filter(({ node: { fields: { slug } } }) => slug !== '/') : edges
-  let tree = originalData.reduce((accu, { node: { fields: { slug, title, weight } } }) => {
+  let tree = originalData.reduce((accu, { node: { fields: { slug, title, description, weight } } }) => {
     const parts = slug.split('/')
     let { items: prevItems } = accu
     for (const part of parts.slice(1, -1)) {
@@ -75,8 +75,8 @@ const calculateTreeData = (edges, skipFirstLevel) => {
         label: parts[parts.length - 1],
         url: slug,
         items: [],
-        weight,
-        title
+        title,
+        description
       })
     }
     return accu
@@ -86,8 +86,6 @@ const calculateTreeData = (edges, skipFirstLevel) => {
 
   // sort groups by order specified in config.sidebar.forcedNavOrder
   tree = sortGroups(tree, forcedNavOrder, 'label')
-  // sort the entries within group based on weight frontmatter
-  tree = sortEntries(tree)
 
   return skipFirstLevel ? tree.items[0] : tree
 }

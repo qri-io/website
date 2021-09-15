@@ -23,7 +23,6 @@ const JobsPage = () => (
             node {
               fields {
                 slug
-                weight
                 jobTitle
                 jobLocation
               }

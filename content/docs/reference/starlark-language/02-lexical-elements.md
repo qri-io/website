@@ -1,5 +1,6 @@
 ---
 metaTitle: "Lexical Elements"
+metaDescription: "Whitespaces, comments, punctuation, keywords, etc."
 ---
 A Starlark program consists of one or more modules.
 Each module is defined by a single UTF-8-encoded text file.

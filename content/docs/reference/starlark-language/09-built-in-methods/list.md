@@ -1,5 +1,6 @@
 ---
 metaTitle: "list"
+metaDescription: "All methods for the list type (append(), clear(), extend(), etc.)"
 ---
 
 This section lists the methods of the built-in type `list`.  Methods are selected
