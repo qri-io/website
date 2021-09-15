@@ -1,5 +1,6 @@
 ---
 metaTitle: "Data Types"
+metaDescription: "Float, string, int, bool, None, etc"
 ---
 These are the main data types built in to the interpreter:
 

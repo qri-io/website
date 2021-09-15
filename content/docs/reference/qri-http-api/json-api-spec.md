@@ -1,4 +1,4 @@
 ---
 metaTitle: "JSON API Spec"
-metaDescription: "Interactive API docs"
+metaDescription: "Interactive docs for interacting with Qri via API"
 ---

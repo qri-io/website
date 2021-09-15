@@ -1,5 +1,6 @@
 ---
 metaTitle: "Value Concepts"
+metaDescription: "Learn what why starlark is well-suited for our use case"
 ---
 Starlark has eleven core [data types](#data-types).  An application
 that embeds the Starlark intepreter may define additional types that

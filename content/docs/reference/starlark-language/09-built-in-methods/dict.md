@@ -1,5 +1,6 @@
 ---
 metaTitle: "dict"
+metaDescription: "All methods for the dict type (get(), clear(), pop(), etc.)"
 ---
 
 This section lists the methods of the built-in type `dict`.  Methods are selected
