@@ -201,9 +201,15 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     })
 
     createNodeField({
-      name: 'weight',
+      name: 'description',
       node,
-      value: node.frontmatter.weight
+      value: node.frontmatter.metaDescription
+    })
+
+    createNodeField({
+      name: 'filename',
+      node,
+      value: node.fileAbsolutePath.split('/').at(-1)
     })
 
     // make additional frontmatter fields for jobs
