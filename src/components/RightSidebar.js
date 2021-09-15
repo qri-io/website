@@ -57,22 +57,28 @@ const RightSidebar = ({ location }) => (
 
       if (finalNavItems && finalNavItems.length) {
         return (
-          <div className='py-10 px-4 text-xs'>
-            <ul className={'rightSideBarUL'}>
-              <li className={'font-semibold text-black mb-4'}>CONTENTS</li>
-              {finalNavItems}
-            </ul>
+          <div className='border-l border-qrigray-200 hidden lg:block flex-grow' style={{
+            minWidth: 160
+          }}>
+            <div className='sticky overflow-y-scroll' style={{
+              height: 'calc(100vh - 75px)',
+              top: 75
+            }}>
+              <div className='py-10 px-4 text-xs'>
+                <ul className={'rightSideBarUL'}>
+                  <li className={'font-semibold text-black mb-4'}>CONTENTS</li>
+                  {finalNavItems}
+                </ul>
+              </div>
+            </div>
           </div>
         )
       } else {
-        return (
-          <div className='border-l qrigray-100'>
-            <ul></ul>
-          </div>
-        )
+        return null
       }
     }}
   />
+
 )
 
 export default RightSidebar
