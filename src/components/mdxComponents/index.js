@@ -13,10 +13,12 @@ export default {
   code: CodeBlock,
   inlineCode: props => <code className='rounded px-1.5 py-1 bg-qrigray-100' {...props} />,
   li: props => <li className='mb-3' {...props} />,
-  p: props => <p className='mb-6 leading-7' {...props} />,
+  p: props => <p className='mb-6 leading-7 last:mb-0' {...props} />,
   pre: props => <pre className='pre' {...props} />,
   strong: props => <strong className='font-semibold' {...props} />,
-  ul: props => <ul className='mb-6' {...props} />,
+  ul: props => <ul className='list-disc mb-6 ml-6' {...props} />,
+  ol: props => <ul className='list-decimal mb-6 ml-6' {...props} />,
+  blockquote: props => <blockquote className='ml-0 border-l-2 border-qritile px-5 py-4 text-sm' {...props} />,
   // a: AnchorTag
   // TODO add `img`
   // TODO add `blockquote`
