@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "dependencies": {
     "@babel/helper-builder-react-jsx": "^7.15.4",
+    "@babel/helper-regex": "^7.10.5",
     "@babel/plugin-proposal-export-default-from": "7.7.4",
     "@emotion/core": "10.0.22",
     "@emotion/react": "11.4.0",

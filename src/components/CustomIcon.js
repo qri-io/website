@@ -9,6 +9,10 @@ const CustomIcon = ({
 }) => {
   let dimension = 22
 
+  if (size === '3xs') {
+    dimension = 10
+  }
+
   if (size === '2xs') {
     dimension = 12
   }

@@ -13,13 +13,6 @@ import Twitter from './icon/Twitter'
 import Version from './icon/Version'
 import Youtube from './icon/Youtube'
 
-const sizes = {
-  xs: 'xs',
-  sm: 'sm',
-  md: 'lg',
-  lg: '2x'
-}
-
 const Icon = (props) => {
   const customIcons = {
     automate: <Automate {...props} />,
