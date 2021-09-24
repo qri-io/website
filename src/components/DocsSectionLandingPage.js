@@ -13,11 +13,11 @@ const DocsSectionLandingPage = ({ docsSectionInfo, allMdx }) => {
     <DocsContentWide>
       { docsSectionInfo && (
         <div className='text-qrigray-600 font-light'>
-          <div className={classNames('font-bold text-2xl mb-6', docsSectionInfo.colorClass)}>{docsSectionInfo.text}</div>
-          <div className={classNames('mb-4')}>{docsSectionInfo.description}</div>
+          <div className={classNames('font-black text-3xl mb-6', docsSectionInfo.colorClass)}>{docsSectionInfo.text}</div>
+          <div className={classNames('mb-4 text-sm')}>{docsSectionInfo.description}</div>
           {groups.map(({ label, items, title }) => (
             <div className='' key={label}>
-              <div className='mt-6 mb-3 font-semibold'>{title}</div>
+              <div className='mt-6 mb-5 font-semibold text-qrigray-400 text-xs'>{title}</div>
               <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 <DocsCards docsSectionInfo={docsSectionInfo} items={items} />
               </div>

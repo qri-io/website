@@ -48,7 +48,7 @@ const Sidebar = ({ location, mobile = false }) => (
       }
 
       return (
-        <div className={classNames('bg-qrigray-100 py-5 md:py-10 px-5 md:pr-0 md:pl-10  text-qrigray-600 font-light border-r qrigray-200 sticky overflow-y-scroll', {
+        <div className={classNames('bg-qrigray-100 py-5 md:py-10 px-5 md:pr-0 md:pl-10  text-qrigray-600 border-r qrigray-200 sticky overflow-y-scroll', {
           'text-xs': !mobile,
           'text-base': mobile
         })} style={{
@@ -58,7 +58,7 @@ const Sidebar = ({ location, mobile = false }) => (
         }}>
           <ul>
             <li className='mb-5'>
-              <Link to='/docs' className='flex items-center'>
+              <Link to='/docs' className='flex items-center font-bold text-black' style={{ fontSize: 13 }}>
                 <Icon icon='docsRing' size='2xs' className={classNames('mr-2', colorClass)}/>
                 {title}
               </Link>

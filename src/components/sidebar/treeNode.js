@@ -4,6 +4,19 @@ import classNames from 'classnames'
 
 import config from '../../../config'
 
+const MiniNumber = ({ children }) => (
+  <div
+    className='font-semibold bg-qrigray-200 text-qrigray-700 inline-block ml-2 rounded-sm'
+    style={{
+      fontSize: 8,
+      padding: '4px 3px 2px 3px',
+      lineHeight: 0.75
+    }}
+  >
+    {children}
+  </div>
+)
+
 const TreeNode = (props) => {
   const { setCollapsed, collapsed, url, label, title, items, firstLevel } = props
 
@@ -76,12 +89,12 @@ const TreeNode = (props) => {
     )
   } else {
     titleContent = (
-      <div className={classNames('my-1 pr-10', {
+      <div className={classNames('my-1 pr-10 flex items-center', {
         'text-qripink': active,
         'font-semibold text-black': firstLevel,
-        'font-medium text-qrigray-700': !firstLevel
+        'font-bold text-qrigray-700': !firstLevel
       })}>
-        {titleContent}
+        {titleContent} <MiniNumber>{items.length}</MiniNumber>
       </div>
     )
   }
