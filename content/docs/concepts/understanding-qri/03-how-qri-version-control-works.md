@@ -11,7 +11,7 @@ Likewise, two Qri users in different locations can know with certainty that they
 
 ## Where Versions Come From
 
-Versions are created when:
+Versions can be created when:
 
 - Qri.cloud runs a user's automated workflow
 - A Qri.cloud user makes a manual change via the UI

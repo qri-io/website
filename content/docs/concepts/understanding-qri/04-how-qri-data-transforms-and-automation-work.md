@@ -3,7 +3,7 @@ metaTitle: "How Qri Data Transforms and Automation Work"
 metaDescription: "Learn about \"Datasets that update themselves\" are possible with a bit of code and the Qri data platform"
 ---
 
-Qri has engineered a way to bind a dataset with the code it needs to produce new versions of itself.  We call these `transform` scripts, and they are a bona-fide member of the Qri data model.  This means the code lives with the data it modifies, providing a clear audit trail for changes and demystifying the data provenance.
+Qri has engineered a way to bind a dataset with the code it needs to produce new versions of itself.  We call these `transform` scripts, and they are a bona-fide member of the [Qri dataset model](/docs/concepts/understanding-qri/how-qri-defines-a-dataset/).  This means the code lives with the data it modifies, providing a clear audit trail for changes and demystifying the data provenance.
 
 Transforms are not required in Qri datasets, but when they are clearly written and set to run at specific times, they can yield powerful automated data flows.  Qri transforms give users the power of a complex ETL environment with much lower setup time and costs.
 
