@@ -171,3 +171,7 @@ body {
 .ais-Highlight-highlighted {
   @apply not-italic text-black;
 }
+
+.docs-content p, .docs-content ul {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",  Helvetica, Arial, "Lucida Grande", sans-serif;
+}

@@ -37,7 +37,7 @@ const DocsColumns = ({ children, location, sidebar = true }) => {
             <Sidebar location={location} />
           </div>
         )}
-        <div className='flex-grow overflow-x-hidden flex flex-col md:flex-row relative'>
+        <div className='flex-grow overflow-x-hidden flex flex-col md:flex-row relative docs-content'>
           {children}
         </div>
         <RightSidebar location={location} />
