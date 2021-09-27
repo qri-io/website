@@ -59,16 +59,6 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
-            site {
-              siteMetadata {
-                docsSections {
-                  title
-                  path
-                  description
-                  colorClass
-                }
-              }
-            }
             allMdx(filter: {fileAbsolutePath: {regex: "\\/docs/"}}) {
               edges {
                 node {
