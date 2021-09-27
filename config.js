@@ -1,37 +1,128 @@
 // config for all the things
-
+// docsSections defines the docs tree.  Items are either a path to a markdown file,
+// or a group object with title, path, description, items
+// top-level group objects also have colorClass
 const docsSections = [
   {
-    id: 'tutorials',
-    text: 'Tutorials',
-    link: '/docs/tutorials',
-    subtitle: 'Learn how Qri Works',
+    title: 'Tutorials',
+    path: '/docs/tutorials',
     description: 'Welcome!  These tutorials are aimed at beginners and will break things down so you can get started quickly.',
-    colorClass: 'text-qriorange-600'
+    colorClass: 'text-qriorange-600',
+    items: []
   },
   {
-    id: 'guides',
-    text: 'Guides',
-    link: '/docs/guides',
-    subtitle: 'Learn how to do things in Qri',
+    title: 'Guides',
+    path: '/docs/guides',
     description: 'These step-by-step guides will help you perform specific tasks. Refer to them when you need to do one thing well.',
-    colorClass: 'text-qripink-600'
+    colorClass: 'text-qripink-600',
+    items: []
   },
   {
-    id: 'concepts',
-    text: 'Concepts',
-    link: '/docs/concepts',
-    subtitle: 'Dive Deeper into Qri',
+    title: 'Concepts',
+    path: '/docs/concepts',
     description: 'These docs will help explain Qri\'s core concepts and underlying technology',
-    colorClass: 'text-qrigreen-600'
+    colorClass: 'text-qrigreen-600',
+    items: [
+      {
+        title: 'Understanding Qri',
+        path: '/docs/concepts/understanding-qri',
+        description: 'This section provides detailed explanations of core Qri concepts',
+        items: [
+          '/docs/concepts/understanding-qri/what-is-qri',
+          '/docs/concepts/understanding-qri/how-qri-defines-a-dataset',
+          '/docs/concepts/understanding-qri/how-qri-version-control-works',
+          '/docs/concepts/understanding-qri/how-qri-data-transforms-and-automation-work'
+        ]
+      },
+      {
+        title: 'Under the Hood',
+        path: '/docs/concepts/under-the-hood',
+        description: 'Dive deeper into underlying Qri concepts',
+        items: [
+          '/docs/concepts/under-the-hood/content-addressing',
+          '/docs/concepts/under-the-hood/how-qri-uses-ipfs',
+          '/docs/concepts/under-the-hood/why-starlark'
+        ]
+      }
+    ]
   },
   {
-    id: 'reference',
-    text: 'Reference',
-    link: '/docs/reference',
-    subtitle: 'Get the specs',
+    title: 'Reference',
+    path: '/docs/reference',
     description: 'These technical reference docs will help you use Qri\'s APIs and write custom data transform scripts',
-    colorClass: 'text-qrinavy-300'
+    colorClass: 'text-qrinavy-300',
+    items: [
+      {
+        title: 'Starlark Language',
+        path: '/docs/reference/starlark-language',
+        description: 'Starlark is an untyped dynamic language with high-level data types, first-class functions with lexical scope, and automatic memory management or garbage collection.',
+        items: [
+          '/docs/reference/starlark-language/overview',
+          '/docs/reference/starlark-language/lexical-elements',
+          '/docs/reference/starlark-language/data-types',
+          '/docs/reference/starlark-language/value-concepts',
+          '/docs/reference/starlark-language/expressions',
+          '/docs/reference/starlark-language/statements',
+          '/docs/reference/starlark-language/built-in-constants-and-functions',
+          {
+            title: 'Built-in Methods',
+            path: '/docs/reference/starlark-language/built-in-methods',
+            description: 'Built-in methods for the Starlark data types',
+            items: [
+              '/docs/reference/starlark-language/built-in-methods/dict',
+              '/docs/reference/starlark-language/built-in-methods/list',
+              '/docs/reference/starlark-language/built-in-methods/set',
+              '/docs/reference/starlark-language/built-in-methods/string'
+            ]
+          }
+        ]
+      },
+      {
+        title: 'Qri HTTP API',
+        path: '/docs/reference/qri-http-api',
+        description: 'You can interacto with qri.cloud or with your local qri node via HTTP requests',
+        items: [
+          '/docs/reference/qri-http-api/json-api-spec'
+        ]
+      },
+      {
+        title: 'Starlark Libraries',
+        path: '/docs/reference/starlark-libraries',
+        description: 'These packages extend Starlark\'s core functionality, and can turbo-charge your Qri transform scripts',
+        items: [
+          '/docs/reference/starlark-libraries/overview',
+          '/docs/reference/starlark-libraries/bsoup',
+          {
+            title: 'compress',
+            path: '/docs/reference/starlark-libraries/compress',
+            description: 'A set of Starlark packages for various types of compression/decompression',
+            items: [
+              '/docs/reference/starlark-libraries/compress/gzip'
+            ]
+          },
+          {
+            title: 'encoding',
+            path: '/docs/reference/starlark-libraries/encoding',
+            description: 'A set of Starlark packages for various types of encoding/decoding',
+            items: [
+              '/docs/reference/starlark-libraries/encoding/base64',
+              '/docs/reference/starlark-libraries/encoding/csv',
+              '/docs/reference/starlark-libraries/encoding/json',
+              '/docs/reference/starlark-libraries/encoding/yaml'
+            ]
+          },
+          '/docs/reference/starlark-libraries/geo',
+          '/docs/reference/starlark-libraries/hash',
+          '/docs/reference/starlark-libraries/html',
+          '/docs/reference/starlark-libraries/http',
+          '/docs/reference/starlark-libraries/math',
+          '/docs/reference/starlark-libraries/re',
+          '/docs/reference/starlark-libraries/time',
+          '/docs/reference/starlark-libraries/xlsx',
+          '/docs/reference/starlark-libraries/zipfile'
+        ]
+      }
+    ]
   }
   // {
   //   id: 'transform-snippets',
@@ -78,8 +169,8 @@ const config = {
     ],
     docsLinks: [
       ...docsSections.map((d) => ({
-        text: d.text,
-        link: d.link,
+        text: d.title,
+        link: d.path,
         colorClass: d.colorClass
       })),
       {

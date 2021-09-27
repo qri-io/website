@@ -59,10 +59,8 @@ const SearchModal = ({ onClose }) => {
           site {
             siteMetadata {
               docsSections {
-                id
-                text
-                link
-                subtitle
+                title
+                path
                 description
                 colorClass
               }

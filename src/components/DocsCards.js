@@ -2,25 +2,20 @@ import React from 'react'
 
 import DocsCard from './DocsCard'
 
-const DocsCards = ({ docsSectionInfo, items, titlePrefix = '' }) => {
+const DocsCards = ({ title, description, items, colorClass }) => {
   return (
-    <>
-      {items.map(({ url, title, description, items: childItems }) => {
-        if (childItems.length) {
-          return <DocsCards docsSectionInfo={docsSectionInfo} items={childItems} titlePrefix={title} />
-        }
-        return (
+    <div>
+      <div className='mt-6 mb-5 font-semibold text-qrigray-400 text-xs uppercase'>{title}</div>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+        {items?.map((d) => (
           <DocsCard
-            key={title}
-            docsSectionInfo={docsSectionInfo}
-            title={title}
-            description={description}
-            url={url}
-            titlePrefix={titlePrefix}
+            key={d.title}
+            colorClass={colorClass}
+            {...d}
           />
-        )
-      })}
-    </>
+        ))}
+      </div>
+    </div>
   )
 }
 
