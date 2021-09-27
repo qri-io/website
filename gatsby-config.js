@@ -130,8 +130,7 @@ module.exports = {
     tweetText: config.header.tweetText,
     mainHeaderLinks: config.header.mainLinks,
     docsHeaderLinks: config.header.docsLinks,
-    siteUrl: config.gatsby.siteUrl,
-    docsSections: config.docsSections
+    siteUrl: config.gatsby.siteUrl
   },
   plugins: plugins
 }
