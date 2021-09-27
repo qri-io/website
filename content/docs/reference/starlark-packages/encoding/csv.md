@@ -1,12 +1,24 @@
-# csv
-csv reads comma-separated values files
+---
+metaTitle: "csv"
+metaDescription: "csv parses and writes comma-separated values files"
+weight: 2
+---
+
+csv parses and writes comma-separated values files
 
 ## Functions
 
-#### `read_all(source, comma=",", comment="", lazy_quotes=False, trim_leading_space=False, fields_per_record=0, skip=0) [][]string`
+
+
+### read_all
+
+```
+read_all(source, comma=",", comment="", lazy_quotes=False, trim_leading_space=False, fields_per_record=0, skip=0) [][]string
+```
+
 read all rows from a source string, returning a list of string lists
 
-**parameters:**
+#### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -19,14 +31,21 @@ read all rows from a source string, returning a list of string lists
 | `skip` | `int` | number of rows to skip, omitting from returned rows |
 
 
-#### `write_all(source,comma=",") string`
+
+### write_all
+
+```
+write_all(source,comma=",") string
+```
+
 write all rows from source to a csv-encoded string
 
-**parameters:**
+#### parameters:
 
 | name | type | description |
 |------|------|-------------|
 | `source` | `[][]string` | array of arrays of strings to write to csv |
 | `comma` | `string` | comma is the field delimiter, defaults to "," (a comma). comma must be a valid character and must not be \r, \n, or the Unicode replacement character (0xFFFD). |
+
 
 

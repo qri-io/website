@@ -7,14 +7,16 @@ import Icon from '../components/Icon'
 import Link from '../components/Link'
 import Button from '../components/Button'
 
-const PageTile = ({ title, subtitle, image }) => (
-  <div className='bg-white shadow-md rounded-lg text-center p-8' style={{
-    boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.15)'
-  }}>
-    <img src={image} className='mx-auto mb-4'/>
-    <div className='font-bold text-3xl mb-2'>{title}</div>
-    <div className='font-light text-qrigray-400'>{subtitle}</div>
-  </div>
+const PageTile = ({ title, subtitle, image, link }) => (
+  <Link to={link}>
+    <div className='bg-white shadow-md rounded-lg text-center p-8' style={{
+      boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.15)'
+    }}>
+      <img src={image} className='mx-auto mb-4'/>
+      <div className='font-bold text-3xl mb-2'>{title}</div>
+      <div className='font-light text-qrigray-400'>{subtitle}</div>
+    </div>
+  </Link>
 )
 
 const recommendedTutorials = [
@@ -109,8 +111,9 @@ const DocsPage = ({ onSearchClick, location }) => (
                   <div className="my-3 px-6 py-3 w-1/3 overflow-hidden">
                     <PageTile
                       image='/img/new-docs/page-cloud.svg'
-                      title='How Qri Works'
+                      title='What is Qri?'
                       subtitle='Learn Qri Core Concepts and Terms'
+                      link='/docs/concepts/understanding-qri/what-is-qri'
                     />
                   </div>
                   <div className="my-3 px-6 py-3 w-1/3 overflow-hidden">
@@ -118,6 +121,7 @@ const DocsPage = ({ onSearchClick, location }) => (
                       image='/img/new-docs/page-reference.svg'
                       title='Reference'
                       subtitle='Explore technical docs and APIs'
+                      link='/docs/reference'
                     />
                   </div>
                 </div>

@@ -4,12 +4,13 @@ import { graphql } from 'gatsby'
 import DocsSectionLandingPage from '../components/DocsSectionLandingPage'
 
 const DocsSectionLandingPageLayout = (props) => {
-  const { location, data } = props
-  const { site, allMdx } = data
+  const { data, pageContext } = props
+  const { allMdx } = data
 
-  const docsSectionInfo = site.siteMetadata.docsSections.find((d) => d.link === location.pathname)
+  const { sectionInfo, colorClass } = pageContext
+  // traverse config.docsSections to locate the match
   return (
-    <DocsSectionLandingPage docsSectionInfo={docsSectionInfo} allMdx={allMdx} />
+    <DocsSectionLandingPage docsSectionInfo={sectionInfo} allMdx={allMdx} colorClass={colorClass} />
   )
 }
 
@@ -17,23 +18,11 @@ export default DocsSectionLandingPageLayout
 
 // pagequery to get data for this section
 export const pageQuery = graphql`
-  query($filePathRegex: String!) {
-    site {
-      siteMetadata {
-        docsSections {
-          text
-          link
-          subtitle
-          description
-          colorClass
-        }
-      }
-    }
-    allMdx(filter: { fileAbsolutePath: { regex: $filePathRegex }}) {
+  query {
+    allMdx(filter: {fileAbsolutePath: {regex: "\\/docs/"}}) {
       edges {
         node {
           fields {
-            id
             slug
             title
             description

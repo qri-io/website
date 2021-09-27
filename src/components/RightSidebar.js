@@ -60,7 +60,7 @@ const RightSidebar = ({ location }) => (
           <div className='border-l border-qrigray-200 hidden lg:block flex-grow' style={{
             minWidth: 160
           }}>
-            <div className='sticky overflow-y-scroll' style={{
+            <div className='hide-scrollbars sticky overflow-y-scroll' style={{
               height: 'calc(100vh - 75px)',
               top: 75
             }}>

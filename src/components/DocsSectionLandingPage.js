@@ -5,24 +5,26 @@ import DocsContentWide from './DocsContentWide'
 import { calculateTreeData } from './sidebar/tree'
 import DocsCards from './DocsCards'
 
-const DocsSectionLandingPage = ({ docsSectionInfo, allMdx }) => {
-  const tree = calculateTreeData(allMdx.edges)
-  const groups = tree.items[0].items[0].items
+const DocsSectionLandingPage = ({ docsSectionInfo, allMdx, colorClass }) => {
+  const tree = calculateTreeData(docsSectionInfo.items, allMdx.edges)
+
+  const topLevelItems = tree.filter(d => !d.items)
+  const groups = tree.filter(d => d.items)
 
   return (
     <DocsContentWide>
       { docsSectionInfo && (
         <div className='text-qrigray-600 font-light'>
-          <div className={classNames('font-bold text-2xl mb-6', docsSectionInfo.colorClass)}>{docsSectionInfo.text}</div>
-          <div className={classNames('mb-4')}>{docsSectionInfo.description}</div>
-          {groups.map(({ label, items, title }) => (
-            <div className='' key={label}>
-              <div className='mt-6 mb-3 font-semibold'>{title}</div>
-              <div className='grid grid-cols-3 gap-4'>
-                <DocsCards docsSectionInfo={docsSectionInfo} items={items} />
-              </div>
-            </div>
-          ))}
+          <div className={classNames('font-black text-3xl mb-6', colorClass)}>{docsSectionInfo.title}</div>
+          <div className={classNames('mb-4 text-sm text-qrigray-700')}>{docsSectionInfo.description}</div>
+          {
+            topLevelItems && <DocsCards items={topLevelItems} colorClass={colorClass} />
+          }
+          {
+            groups.map((d) => (
+              <DocsCards key={d} {...d} colorClass={colorClass} />
+            ))
+          }
         </div>
       )}
     </DocsContentWide>

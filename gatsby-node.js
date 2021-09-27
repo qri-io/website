@@ -3,6 +3,8 @@ const fetch = require('node-fetch')
 const startCase = require('lodash.startcase')
 const webpack = require('webpack')
 
+const config = require('./config')
+
 // [ fromPath, toPath ]
 const redirects = [
   ['/odw2021', 'https://us02web.zoom.us/meeting/register/tZwuf-mvqjojGNfpfgJmRTH1KQ3uC3kniOBE'],
@@ -60,9 +62,8 @@ exports.createPages = ({ graphql, actions }) => {
             site {
               siteMetadata {
                 docsSections {
-                  text
-                  link
-                  subtitle
+                  title
+                  path
                   description
                   colorClass
                 }
@@ -101,16 +102,31 @@ exports.createPages = ({ graphql, actions }) => {
           })
         })
 
-        // create the top-level docs section pages
-        result.data.site.siteMetadata.docsSections.forEach((docsSectionInfo) => {
-          createPage({
-            path: docsSectionInfo.link,
-            component: path.resolve('./src/layouts/DocsSectionLandingPageLayout.js'),
-            context: {
-              filePathRegex: '\/'.concat(docsSectionInfo.link).concat('\/') // eslint-disable-line
+        let colorClass = ''
+
+        const createDocsSectionPages = (sections) => {
+          sections.forEach((d) => {
+            // save the top level colorClass to pass to section pages
+            if (d.colorClass) {
+              colorClass = d.colorClass
+            }
+            if (d.items) {
+              createPage({
+                path: d.path,
+                component: path.resolve('./src/layouts/DocsSectionLandingPageLayout.js'),
+                context: {
+                  sectionInfo: d,
+                  colorClass
+                }
+              })
+
+              createDocsSectionPages(d.items)
             }
           })
-        })
+        }
+
+        // create the docs section pages
+        createDocsSectionPages(config.docsSections)
       })
     )
   })
@@ -184,8 +200,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       name: 'slug',
       node,
-      // trim leading number and hyphen from filename
-      value: `/${value.replace(/\d{2}-/, '')}`
+      value: `/${value}`
     })
 
     createNodeField({

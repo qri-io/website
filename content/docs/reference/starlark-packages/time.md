@@ -1,10 +1,10 @@
 ---
 metaTitle: "time"
-metaDescription: "*/ package time import "go.starlark.net/lib/time" // ModuleName declares the intended load import string // eg: load("time.star", "time") const ModuleName = "time.star" // Module exposes the time module. Implementation located at // https://github.com/google/starlark-go/tree/master/lib/time var Module = time.Module"
+metaDescription: "time is a Starlark module of time-related functions and constants."
 weight: 2
 ---
 
-*/ package time import "go.starlark.net/lib/time" // ModuleName declares the intended load import string // eg: load("time.star", "time") const ModuleName = "time.star" // Module exposes the time module. Implementation located at // https://github.com/google/starlark-go/tree/master/lib/time var Module = time.Module
+time is a Starlark module of time-related functions and constants.
 
 ## Functions
 

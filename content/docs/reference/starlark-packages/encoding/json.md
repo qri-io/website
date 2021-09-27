@@ -1,10 +1,10 @@
 ---
 metaTitle: "json"
-metaDescription: "*/ package json import "go.starlark.net/starlarkjson" // ModuleName declares the intended load import string // eg: load("encoding/json.star", "json") const ModuleName = "encoding/json.star" // Module exposes the starlarkjson module. Implementation located at // https://github.com/google/starlark-go/tree/master/starlarkjson var Module = starlarkjson.Module"
+metaDescription: "json provides functions for working with json data"
 weight: 2
 ---
 
-*/ package json import "go.starlark.net/starlarkjson" // ModuleName declares the intended load import string // eg: load("encoding/json.star", "json") const ModuleName = "encoding/json.star" // Module exposes the starlarkjson module. Implementation located at // https://github.com/google/starlark-go/tree/master/starlarkjson var Module = starlarkjson.Module
+json provides functions for working with json data
 
 ## Functions
 
