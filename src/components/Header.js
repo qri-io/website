@@ -16,15 +16,6 @@ if (isSearchEnabled && config.header.search.indexName) {
   )
 }
 
-function myFunction () {
-  var x = document.getElementById('navbar')
-  if (x.className === 'topnav') {
-    x.className += ' responsive'
-  } else {
-    x.className = 'topnav'
-  }
-}
-
 export const useDisableBodyScroll = (open) => {
   useEffect(() => {
     if (open) {
