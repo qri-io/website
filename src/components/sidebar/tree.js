@@ -30,7 +30,7 @@ const Tree = ({ items, edges }) => {
 
   useEffect(() => {
     setTreeData(calculateTreeData(items, edges))
-  }, [edges])
+  }, [items, edges])
 
   const [collapsed, setCollapsed] = useState({})
   const toggle = (url) => {

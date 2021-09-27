@@ -86,40 +86,40 @@ const docsSections = [
         ]
       },
       {
-        title: 'Starlark Libraries',
-        path: '/docs/reference/starlark-libraries',
-        description: 'These packages extend Starlark\'s core functionality, and can turbo-charge your Qri transform scripts',
+        title: 'Starlark Packages',
+        path: '/docs/reference/starlark-packages',
+        description: 'These packages extend Starlark\'s core functionality, and can be easily imported and used in your Qri transform scripts',
         items: [
-          '/docs/reference/starlark-libraries/overview',
-          '/docs/reference/starlark-libraries/bsoup',
+          '/docs/reference/starlark-packages/overview',
+          '/docs/reference/starlark-packages/bsoup',
           {
             title: 'compress',
-            path: '/docs/reference/starlark-libraries/compress',
+            path: '/docs/reference/starlark-packages/compress',
             description: 'A set of Starlark packages for various types of compression/decompression',
             items: [
-              '/docs/reference/starlark-libraries/compress/gzip'
+              '/docs/reference/starlark-packages/compress/gzip'
             ]
           },
           {
             title: 'encoding',
-            path: '/docs/reference/starlark-libraries/encoding',
+            path: '/docs/reference/starlark-packages/encoding',
             description: 'A set of Starlark packages for various types of encoding/decoding',
             items: [
-              '/docs/reference/starlark-libraries/encoding/base64',
-              '/docs/reference/starlark-libraries/encoding/csv',
-              '/docs/reference/starlark-libraries/encoding/json',
-              '/docs/reference/starlark-libraries/encoding/yaml'
+              '/docs/reference/starlark-packages/encoding/base64',
+              '/docs/reference/starlark-packages/encoding/csv',
+              '/docs/reference/starlark-packages/encoding/json',
+              '/docs/reference/starlark-packages/encoding/yaml'
             ]
           },
-          '/docs/reference/starlark-libraries/geo',
-          '/docs/reference/starlark-libraries/hash',
-          '/docs/reference/starlark-libraries/html',
-          '/docs/reference/starlark-libraries/http',
-          '/docs/reference/starlark-libraries/math',
-          '/docs/reference/starlark-libraries/re',
-          '/docs/reference/starlark-libraries/time',
-          '/docs/reference/starlark-libraries/xlsx',
-          '/docs/reference/starlark-libraries/zipfile'
+          '/docs/reference/starlark-packages/geo',
+          '/docs/reference/starlark-packages/hash',
+          '/docs/reference/starlark-packages/html',
+          '/docs/reference/starlark-packages/http',
+          '/docs/reference/starlark-packages/math',
+          '/docs/reference/starlark-packages/re',
+          '/docs/reference/starlark-packages/time',
+          '/docs/reference/starlark-packages/xlsx',
+          '/docs/reference/starlark-packages/zipfile'
         ]
       }
     ]
