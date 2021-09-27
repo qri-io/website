@@ -3,13 +3,12 @@ import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import { MDXProvider } from '@mdx-js/react'
 
 import mdxComponents from './mdxComponents'
-import RightSidebar from './RightSidebar'
 import DocsFooter from './DocsFooter'
 
 import Head from '../components/Head'
 
 const DocsContent = (props) => {
-  const { data, location } = props
+  const { data } = props
   if (!data) {
     return null
   }

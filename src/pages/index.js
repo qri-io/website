@@ -7,15 +7,6 @@ import VideoContainer from '../components/VideoContainer'
 import SearchInput from '../components/SearchInput'
 import DatasetCard from '../components/DatasetCard'
 
-// the first argument in track() becomes the google analytics 'Action' property after passing through segment
-// all events are of Action 'Homepage'
-const fireEvent = (category, label) => {
-  window.analytics.track('Homepage', {
-    category,
-    label
-  })
-}
-
 const IndexPage = () => {
   const features = [
     {

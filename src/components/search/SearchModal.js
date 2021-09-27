@@ -12,6 +12,8 @@ import CustomSearchBox from './CustomSearchBox'
 import CustomResults from './CustomResults'
 import Icon from '../Icon'
 
+import config from '../../../config'
+
 const algoliaClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_APP_ID,
   process.env.GATSBY_ALGOLIA_SEARCH_KEY
@@ -69,7 +71,7 @@ const SearchModal = ({ onClose }) => {
         }
       `}
       render={({ site }) => {
-        const { docsSections } = site.siteMetadata
+        const { docsSections } = config
         return (
           <div className='fixed z-30 inset-0 min-h-screen'>
             <div className='flex items-end justify-center h-full pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
