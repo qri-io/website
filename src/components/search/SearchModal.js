@@ -58,14 +58,14 @@ const SearchModal = ({ onClose }) => {
 
   return (
     <div className='fixed z-30 inset-0 min-h-screen'>
-      <div className='flex items-end justify-center h-full pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
+      <div className='flex items-start md:items-end justify-center h-full pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
         <div className="fixed inset-0 transition-opacity" aria-hidden="true">
           <div className="absolute inset-0 p-8" onClick={onClose} style={{
             background: 'rgba(0, 0, 0, 0.25)'
           }}></div>
         </div>
         <div
-          className='shadow-xl transform transition-all inline-block bg-white rounded-lg text-left flex flex-col p-5 mx-auto max-w-xl my-8'
+          className='shadow-xl transform transition-all inline-block bg-white rounded-lg text-left flex flex-col p-5 w-full md:w-auto mx-0 md:mx-auto max-w-xl my-8'
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-headline"

@@ -71,11 +71,12 @@ const Header = ({
 
       <div id="navbar" className={'flex-grow text-right'}>
         <div className={'justify-end flex md:hidden'}>
-          <div>
-            <Link onClick={toggleMobileNav}>
-              <IconButton icon={mobileMenu ? 'close' : 'bars'} />
-            </Link>
-          </div>
+          <Link colorClassName={'text-black'} onClick={onSearchClick}>
+            <Icon icon='search' className='mr-3'/>
+          </Link>
+          <Link onClick={toggleMobileNav}>
+            <IconButton icon={mobileMenu ? 'close' : 'bars'} />
+          </Link>
         </div>
         <ul className={'justify-end text-sm font-semibold tracking-wide hidden md:flex'}>
           {headerLinks.map((headerLink, i) => (
