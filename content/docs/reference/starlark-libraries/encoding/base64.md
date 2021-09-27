@@ -41,3 +41,6 @@ return the base64 encoding of src
 |------|------|-------------|
 | `src` | `string` | source string to encode to base64 |
 | `encoding` | `string` | optional. string to set encoding dialect. allowed values are: standard,standard_raw,url,url_raw |
+
+
+

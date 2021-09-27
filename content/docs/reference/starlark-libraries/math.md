@@ -1,10 +1,10 @@
 ---
 metaTitle: "math"
-metaDescription: "*/ package math import "go.starlark.net/lib/math" // ModuleName declares the intended load import string // eg: load("math.star", "math") const ModuleName = "math.star" // Module exposes the time module. Implementation located at // https://github.com/google/starlark-go/tree/master/lib/math var Module = math.Module"
+metaDescription: "math defines a Starlark module of mathematical functions. All functions accept both int and float values as arguments."
 weight: 2
 ---
 
-*/ package math import "go.starlark.net/lib/math" // ModuleName declares the intended load import string // eg: load("math.star", "math") const ModuleName = "math.star" // Module exposes the time module. Implementation located at // https://github.com/google/starlark-go/tree/master/lib/math var Module = math.Module
+math defines a Starlark module of mathematical functions. All functions accept both int and float values as arguments.
 
 ## Functions
 

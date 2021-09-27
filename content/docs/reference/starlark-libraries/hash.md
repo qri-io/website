@@ -1,10 +1,10 @@
 ---
-metaTitle: "hash defines hash primitives for starlark."
-metaDescription: ""
+metaTitle: "hash"
+metaDescription: "hash defines hash primitives for starlark."
 weight: 2
 ---
 
-
+hash defines hash primitives for starlark.
 
 ## Functions
 
