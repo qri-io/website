@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react'
-import { navigate, StaticQuery, graphql } from 'gatsby'
+import { navigate } from 'gatsby'
 
 import {
   InstantSearch,
@@ -54,65 +54,45 @@ const SearchModal = ({ onClose }) => {
     onClose()
   }
 
+  const { docsSections } = config
+
   return (
-    <StaticQuery
-      query={graphql`
-        query {
-          site {
-            siteMetadata {
-              docsSections {
-                title
-                path
-                description
-                colorClass
-              }
-            }
-          }
-        }
-      `}
-      render={({ site }) => {
-        const { docsSections } = config
-        return (
-          <div className='fixed z-30 inset-0 min-h-screen'>
-            <div className='flex items-end justify-center h-full pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
-              <div className="fixed inset-0 transition-opacity" aria-hidden="true">
-                <div className="absolute inset-0 p-8" onClick={onClose} style={{
-                  background: 'rgba(0, 0, 0, 0.25)'
-                }}></div>
-              </div>
-              <div
-                className='shadow-xl transform transition-all inline-block bg-white rounded-lg text-left flex flex-col p-5 mx-auto max-w-xl my-8'
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="modal-headline"
-                style={{
-                  maxHeight: 'calc(100vh - 64px)'
-                }}
-              >
-                <InstantSearch
-                  indexName="Docs"
-                  searchClient={searchClient}
-                >
-                  <Configure hitsPerPage={5} />
-                  <div className='flex items-center'>
-                    <Icon icon='search' className='mr-3' size='sm'/>
-                    <div className='flex-grow'>
-                      <CustomSearchBox/>
-                    </div>
-                  </div>
-                  <div className='flex-shrink flex min-h-0'>
-                    <CustomResults>
-                      <CustomHits docsSections={docsSections} onClickHit={handleClickHit} />
-                    </CustomResults>
-                  </div>
-                </InstantSearch>
+    <div className='fixed z-30 inset-0 min-h-screen'>
+      <div className='flex items-end justify-center h-full pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
+        <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+          <div className="absolute inset-0 p-8" onClick={onClose} style={{
+            background: 'rgba(0, 0, 0, 0.25)'
+          }}></div>
+        </div>
+        <div
+          className='shadow-xl transform transition-all inline-block bg-white rounded-lg text-left flex flex-col p-5 mx-auto max-w-xl my-8'
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-headline"
+          style={{
+            maxHeight: 'calc(100vh - 64px)'
+          }}
+        >
+          <InstantSearch
+            indexName="Docs"
+            searchClient={searchClient}
+          >
+            <Configure hitsPerPage={5} />
+            <div className='flex items-center'>
+              <Icon icon='search' className='mr-3' size='sm'/>
+              <div className='flex-grow'>
+                <CustomSearchBox/>
               </div>
             </div>
-          </div>
-        )
-      }}
-    />
-
+            <div className='flex-shrink flex min-h-0'>
+              <CustomResults>
+                <CustomHits docsSections={docsSections} onClickHit={handleClickHit} />
+              </CustomResults>
+            </div>
+          </InstantSearch>
+        </div>
+      </div>
+    </div>
   )
 }
 
