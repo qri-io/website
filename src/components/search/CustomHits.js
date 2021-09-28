@@ -5,7 +5,6 @@ import {
   connectHits
 } from 'react-instantsearch-dom'
 
-import Link from '../Link'
 import Icon from '../Icon'
 
 const CustomHits = connectHits(({ hits, docsSections, onClickHit }) => {
@@ -15,7 +14,7 @@ const CustomHits = connectHits(({ hits, docsSections, onClickHit }) => {
   const groupedHits = {}
 
   // make an array of the section ids
-  const docsSectionIds = docsSections.map(d => d.id)
+  const docsSectionIds = docsSections.map(d => d.path.split('/')[2])
 
   // make an empty array in groupedHits for each section
   docsSectionIds.forEach((id) => {
@@ -41,18 +40,16 @@ const CustomHits = connectHits(({ hits, docsSections, onClickHit }) => {
       {
         docsSectionIds.map((docsSectionId) => {
           const hits = groupedHits[docsSectionId]
-          const { colorClass } = docsSections.find(d => d.id === docsSectionId)
+          const { colorClass } = docsSections.find(d => d.path.split('/')[2] === docsSectionId)
 
           if (hits.length) {
             return (
               <div key={docsSectionId} className='mb-3'>
-                <div className='mb-1'>
-                  <Link to='/docs' className='flex items-center'>
-                    <Icon icon='docsRing' size='2xs' className={classNames('mr-2', colorClass)}/>
-                    <div className='uppercase text-qrigray-600 font-bold tracking-wider' style={{
-                      fontSize: 10
-                    }}>{docsSectionId}</div>
-                  </Link>
+                <div className='mb-1 flex items-center'>
+                  <Icon icon='docsRing' size='2xs' className={classNames('mr-1.5', colorClass)}/>
+                  <div className='uppercase text-qrigray-600 font-bold tracking-wider' style={{
+                    fontSize: 10
+                  }}>{docsSectionId}</div>
                 </div>
                 <ol>
                   {hits.map((hit, i) => (
