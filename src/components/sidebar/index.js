@@ -54,7 +54,7 @@ const Sidebar = ({ location, mobile = false }) => (
             height: 'calc(100vh - 75px)'
           }}>
             <ul>
-              <li className='mb-4'>
+              <li className='mb-4 tracking-wide'>
                 <Link to={currentSection.path} className='flex items-center font-bold text-black' style={{ fontSize: 13 }}>
                   <Icon icon='docsRing' size='2xs' className={classNames('mr-2', colorClass)}/>
                   {title}

@@ -7,7 +7,8 @@ import LoadingProvider from './loading'
 // override background and default text color
 prismTheme.plain = {
   backgroundColor: '#EFF3F5',
-  color: '#545F66'
+  color: '#545F66',
+  fontSize: 14
 }
 
 /** Removes the last token from a code example if it's empty. */
@@ -40,7 +41,7 @@ const CodeBlock = ({ children: exampleCode, ...props }) => {
         <Highlight
           {...defaultProps}
           code={exampleCode}
-          language="bash"
+          language="python"
           theme={prismTheme}
         >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (

@@ -2,21 +2,9 @@ import React from 'react'
 import { Link } from 'gatsby'
 import classNames from 'classnames'
 
+import MiniNumber from '../MiniNumber'
 import ExpansionArrow from '../ExpansionArrow'
 import config from '../../../config'
-
-const MiniNumber = ({ children }) => (
-  <div
-    className='font-semibold bg-qrigray-200 text-qrigray-700 inline-block ml-2 rounded-sm'
-    style={{
-      fontSize: 8,
-      padding: '4px 3px 2px 3px',
-      lineHeight: 0.75
-    }}
-  >
-    {children}
-  </div>
-)
 
 const TreeNode = (props) => {
   const { setCollapsed, collapsed, url, title, items = [], level } = props
@@ -60,13 +48,13 @@ const TreeNode = (props) => {
             ) : <div className='w-2'>&nbsp;</div> }
           </div>
           <Link to={url}>
-            <div className={classNames('flex items-center my-1 hover:text-qripink transition-all transition-100', {
+            <div className={classNames('flex items-center my-1.5 hover:text-qripink transition-all transition-100', {
               'font-semibold text-black uppercase': level === 0,
               'text-qrigray-700': (level === 1) && !active,
               'text-qrigray-400': (level === 2) && !active,
               'text-qripink': active
             })}>
-              {titleContent} {!!items.length && <MiniNumber>{items.length}</MiniNumber>}
+              {titleContent} {!!items.length && <MiniNumber className='ml-2'>{items.length}</MiniNumber>}
             </div>
           </Link>
         </div>
