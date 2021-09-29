@@ -8,7 +8,7 @@ import Link from '../components/Link'
 import Button from '../components/Button'
 
 const PageTile = ({ title, subtitle, image, link }) => (
-  <Link to={link}>
+  <Link to={link} colorClassName="text-black hover:text-qripink">
     <div className='bg-white shadow-md rounded-lg text-center p-8' style={{
       boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.15)'
     }}>

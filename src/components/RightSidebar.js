@@ -29,13 +29,13 @@ const RightSidebar = ({ location }) => (
                 innerItems = item.node.tableOfContents.items.map((innerItem, i) => {
                   const { url, title, items } = innerItem
                   return (
-                    <li className='text-qrigray-600 mb-2' key={i}>
+                    <li className='text-qrigray-600 my-3' key={i}>
                       <a href={url}>
                         {title}
                       </a>
                       <ul>
                         {items && items.map(({ url, title, items }) => (
-                          <li className='text-qrigray-500 mb-2 ml-2 mt-1' key={title}>
+                          <li className='text-qrigray-400 mb-2 ml-2 mt-1' key={title}>
                             <a href={url}>
                               {title}
                             </a>
