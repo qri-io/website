@@ -134,6 +134,47 @@ const docsSections = [
   // }
 ]
 
+const processSection = ({ title, path, items }) => {
+  if (title && path) {
+    flattenedGroups.push({
+      title,
+      path
+    })
+  }
+
+  if (items) {
+    items.forEach(processSection)
+  }
+}
+
+// flatten groups in docsSections to allow for easier lookups for breacrumbs, etc
+const flattenedGroups = []
+docsSections.forEach(processSection)
+
+// takes crumbs array from gatsby-plugin-breadcrumb
+// replaces crumbLabel with descriptions from docsSections
+const processCrumbs = (crumbs) => {
+  const newCrumbs = crumbs.map((crumb) => {
+    let newCrumbLabel = crumb.crumbLabel
+
+    // capitalize docs
+    if (crumb.crumbLabel === 'docs') {
+      newCrumbLabel = 'Docs'
+    }
+
+    // for all others, lookup path
+    const match = flattenedGroups.find(d => d.path === crumb.pathname)
+    if (match) { newCrumbLabel = match.title }
+
+    return {
+      ...crumb,
+      crumbLabel: newCrumbLabel
+    }
+  })
+
+  return newCrumbs
+}
+
 const config = {
   gatsby: {
     pathPrefix: '/',
@@ -220,7 +261,8 @@ const config = {
       ]
     }
   },
-  docsSections
+  docsSections,
+  processCrumbs
 }
 
 module.exports = config

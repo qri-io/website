@@ -38,6 +38,7 @@
     "gatsby-cli": "2.8.26",
     "gatsby-link": "2.2.27",
     "gatsby-plugin-algolia": "^0.22.0",
+    "gatsby-plugin-breadcrumb": "12.1.1",
     "gatsby-plugin-catch-links": "3.9.0",
     "gatsby-plugin-emotion": "6.9.0",
     "gatsby-plugin-eslint": "3.0.0",
