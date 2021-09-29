@@ -8,7 +8,7 @@ import RightSidebar from './RightSidebar'
 // docs is a two-column layout, with the sidebar and main content area overflowing vertically
 // the right sidebar for jumping to content within an article lives in the main content area
 
-const DocsColumns = ({ children, location, sidebar = true }) => {
+const DocsColumns = ({ children, location, sidebar = true, pageContext }) => {
   const [showMobileSidebar, setShowMobileSidebar] = useState(false)
   return (
     <>

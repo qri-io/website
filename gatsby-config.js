@@ -97,6 +97,12 @@ const plugins = [
       apiKey: process.env.ALGOLIA_ADMIN_KEY,
       queries: require('./src/utils/algolia-queries')
     }
+  },
+  {
+    resolve: 'gatsby-plugin-breadcrumb',
+    options: {
+      useAutoGen: true
+    }
   }
 ]
 

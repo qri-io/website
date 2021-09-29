@@ -4,8 +4,9 @@ import classNames from 'classnames'
 import DocsContentWide from './DocsContentWide'
 import { calculateTreeData } from './sidebar/tree'
 import DocsCards from './DocsCards'
+import BreadCrumbs from '../components/BreadCrumbs'
 
-const DocsSectionLandingPage = ({ docsSectionInfo, allMdx, colorClass }) => {
+const DocsSectionLandingPage = ({ docsSectionInfo, allMdx, colorClass, crumbs }) => {
   const tree = calculateTreeData(docsSectionInfo.items, allMdx.edges)
 
   const topLevelItems = tree.filter(d => !d.items)
@@ -15,6 +16,7 @@ const DocsSectionLandingPage = ({ docsSectionInfo, allMdx, colorClass }) => {
     <DocsContentWide>
       { docsSectionInfo && (
         <div className='text-qrigray-600 font-light'>
+          <BreadCrumbs crumbs={crumbs} />
           <div className={classNames('font-black text-3xl mb-6 tracking-wide', colorClass)}>{docsSectionInfo.title}</div>
           <div className={classNames('mb-4 text-sm text-qrigray-700')}>{docsSectionInfo.description}</div>
           {

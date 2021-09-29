@@ -7,10 +7,11 @@ const DocsSectionLandingPageLayout = (props) => {
   const { data, pageContext } = props
   const { allMdx } = data
 
-  const { sectionInfo, colorClass } = pageContext
+  const { sectionInfo, colorClass, breadcrumb } = pageContext
+  const { crumbs } = breadcrumb
   // traverse config.docsSections to locate the match
   return (
-    <DocsSectionLandingPage docsSectionInfo={sectionInfo} allMdx={allMdx} colorClass={colorClass} />
+    <DocsSectionLandingPage docsSectionInfo={sectionInfo} allMdx={allMdx} colorClass={colorClass} crumbs={crumbs} />
   )
 }
 
