@@ -15,7 +15,16 @@ const docsSections = [
     path: '/docs/guides',
     description: 'These step-by-step guides will help you perform specific tasks. Refer to them when you need to do one thing well.',
     colorClass: 'text-qripink-600',
-    items: []
+    items: [
+      {
+        title: 'Qri Transforms',
+        path: '/docs/guides/transforms',
+        description: 'These guides will cover various techniques for using Qri transforms to keep your datasets fresh',
+        items: [
+          '/docs/guides/transforms/scrape-data-from-a-website'
+        ]
+      }
+    ]
   },
   {
     title: 'Concepts',
