@@ -7,9 +7,10 @@ import DocsFooter from './DocsFooter'
 
 import Head from '../components/Head'
 import BreadCrumbs from '../components/BreadCrumbs'
+import RightSidebar from '../components/RightSidebar'
 
 const DocsContent = (props) => {
-  const { data } = props
+  const { data, location } = props
   if (!data) {
     return null
   }
@@ -35,6 +36,9 @@ const DocsContent = (props) => {
             <h1 className={'text-qritile-600 font-bold text-2xl mb-6'}>
               {mdx.fields.title}
             </h1>
+          </div>
+          <div className='lg:hidden text-sm mb-10'>
+            <RightSidebar location={location} />
           </div>
           <div className={'mainWrapper'}>
             <MDXRenderer>{mdx.body}</MDXRenderer>
