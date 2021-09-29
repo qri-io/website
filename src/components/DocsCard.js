@@ -19,9 +19,9 @@ const DocsCard = ({ title, description, url, titlePrefix = '', colorClass, items
         <div className="flex-shrink-0">
           <Icon icon='docsRing' size='3xs' className={classNames('mb-1 mr-2.5', colorClass)} />
         </div>
-        <div className="flex-grow flex flex-col">
+        <div className="flex-grow flex flex-col min-w-0">
           <div className='font-bold text-sm text-black mb-2 flex items-center tracking-wide'>{titleContent} {items && <MiniNumber className='ml-3'>{items.length}</MiniNumber>}</div>
-          <div className='text-xs overflow-hidden' style={{
+          <div className='text-xs overflow-hidden break-word' style={{
             display: '-webkit-box',
             WebkitLineClamp: 2,
             WebkitBoxOrient: 'vertical'
