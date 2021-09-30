@@ -24,7 +24,7 @@ const DocsSectionLandingPage = ({ docsSectionInfo, allMdx, colorClass, crumbs })
           }
           {
             groups.map((d) => (
-              <DocsCards key={d} {...d} colorClass={colorClass} />
+              <DocsCards key={d.title} {...d} colorClass={colorClass} />
             ))
           }
         </div>

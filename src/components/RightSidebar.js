@@ -35,7 +35,7 @@ const RightSidebar = ({ location }) => (
                       </a>
                       <ul>
                         {items && items.map(({ url, title, items }) => (
-                          <li className='text-qrigray-400 mb-2 ml-2 mt-1' key={title}>
+                          <li className='text-qrigray-400 hover:text-qripink transition-all duration-200 mb-2 ml-2 mt-1' key={title}>
                             <a href={url}>
                               {title}
                             </a>
@@ -57,21 +57,10 @@ const RightSidebar = ({ location }) => (
 
       if (finalNavItems && finalNavItems.length) {
         return (
-          <div className='border-l border-qrigray-200 hidden lg:block flex-grow' style={{
-            minWidth: 160
-          }}>
-            <div className='hide-scrollbars sticky overflow-y-scroll' style={{
-              height: 'calc(100vh - 75px)',
-              top: 75
-            }}>
-              <div className='py-10 px-4 text-xs'>
-                <ul className={'rightSideBarUL'}>
-                  <li className={'font-semibold text-black mb-4'}>CONTENTS</li>
-                  {finalNavItems}
-                </ul>
-              </div>
-            </div>
-          </div>
+          <ul className={'rightSideBarUL'}>
+            <li className={'font-semibold text-black mb-4'}>CONTENTS</li>
+            {finalNavItems}
+          </ul>
         )
       } else {
         return null

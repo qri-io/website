@@ -18,6 +18,7 @@ export const calculateTreeData = (items, edges) => {
     return {
       url: d.path,
       title: d.title,
+      description: d.description,
       items: d.items?.map(treeDataFromItem)
     }
   }
