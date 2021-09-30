@@ -14,11 +14,11 @@ const CustomLink = ({
 }) => {
   const combinedClassNames = classNames('cursor-pointer transition-all duration-100', colorClassName)
 
-  // use a div by default
+  // use a span by default
   let theLink = (
-    <div onClick={onClick} className={combinedClassNames}>
+    <span onClick={onClick} className={combinedClassNames}>
       {children}
-    </div>
+    </span>
   )
 
   // if to exists, make it a gatsby <Link>
@@ -45,9 +45,9 @@ const CustomLink = ({
   }
 
   return (
-    <div className={className}>
+    <span className={className}>
       {theLink}
-    </div>
+    </span>
   )
 }
 
