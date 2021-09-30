@@ -5,7 +5,7 @@ metaDescription: "Use Starlark's html package to extract data from HTML"
 
 ## Introduction
 
-Qri transforms can scrape data from websites by using the [`html` Starlark package](/docs/reference/starlark-packages/html).  
+Qri transforms can scrape data from websites by using the [`html` Starlark package](/docs/reference/starlark-packages/html).  In this guide, we'll provide example Starlark code for scraping a website to create a [Qri Dataset](/docs/concepts/understanding-qri/how-qri-defines-a-dataset).
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ This example will pull down [this list of weekend street closures](https://www1.
 ```python
 # make the http request for the page we want to scrape
 sitetoscrape = "https://www1.nyc.gov/html/dot/html/motorist/wkndtraf.shtml"
-res = http.get(sitetoscrape).body()
+res_body = http.get(sitetoscrape).body()
 ```
 
 ### Step 3: Extract text from specific elements
@@ -55,28 +55,27 @@ For good measure, we can also grab the borough from the `<h2>` elements found on
 
 ```python
 # use html() to parse the raw html
-root = html(res)
+root = html(res_body)
 # get all child nodes of the div with id="content"
 content = root.find('#content').children()
 
-# create an empty list with a list as header row
-rows = [['borough', 'streets_closed', 'description']]
-# when we encounter an h2, we will set currentBoro so we can add a boro to each event row
-currentBoro = ''
+# create an empty list to hold each row of data that we scrape
+rows = []
+# when we encounter an h2, we will set current_boro so we can add a boro to each event row
+current_boro = ''
 
 # iterate over the children of #content
-for i in range(0,content.len()):
+for i, element in enumerate(content):
     # set up variables for the current node and the next node
-    currentElement = content.eq(i)
-    nextElement = content.eq(i+1)
+    next_element = content.eq(i + 1)
 
-    # check for h2, if true, get the node's text and set currentBoro
-    if currentElement.is_selector('h2'):
-        currentBoro = currentElement.text()
+    # check for h2, if true, get the node's text and set current_boro
+    if element.is_selector('h2'):
+        current_boro = element.text()
 
     # check for <strong> followed immediately by <p>
-    if currentElement.is_selector('strong') and nextElement.is_selector('p'):
-        rows.append([currentBoro, currentElement.text(), nextElement.text()])
+    if element.is_selector('strong') and next_element.is_selector('p'):
+        rows.append([current_boro, element.text(), next_element.text()])
 
 ```
 
@@ -93,25 +92,17 @@ This code yields a nice list of lists containing the borough, streets_closed, an
 
 ```
 
-### Step 4: Convert the data into a Starlark dataframe
-
-To commit this as the body of the dataset, we convert the list of lists to Starlark dataframe using `dataframe.Dataframe()`
-
-```
-# create a new dataframe from the list of lists
-newBody = dataframe.DataFrame(rows)
-```
-
-`newBody` is now a `dataframe`, which can be used to create the next version of a Qri dataset.
-
-### Step 5: Commit a new dataset version
+### Step 4: Commit a new dataset version
 
 With the dataframe, we can assign the `body` property of `dataset.latest()`.  The mutated dataset is now ready to commit, and will become the next version of the dataset.
 
-```
+```python
 # get the latest version of the dataset, mutate the body
 ds = dataset.latest()
-ds.body = newBody
+
+# `new_body` is now a `DataFrame`, which can be used to create the next version of the dataset
+new_body = dataframe.DataFrame(rows, columns=['borough', 'streets_closed', 'description'])
+ds.body = new_body
 
 # commit the new version of the dataset
 dataset.commit(ds)
