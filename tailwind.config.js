@@ -1,7 +1,13 @@
 const { fontFamily } = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  purge: ['./src/**/*.{js,jsx}'],
+  purge: {
+    content: ['./src/**/*.{js,jsx}'],
+    options: {
+      // these are used in config but not defined in the jsx
+      safelist: ['text-qrigreen-600', 'text-qrinavy-300']
+    }
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
