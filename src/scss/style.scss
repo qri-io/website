@@ -186,3 +186,21 @@ body {
 .hide-scrollbars::-webkit-scrollbar {
   display: none;
 }
+
+// gatsby-remark-autolink-headers should have an offsetY option to accomplish this,
+// but we couldn't get it working.  This will make sure that when jumping to an anchor, it appears below the header
+:target::before {
+  content: "";
+  display: block;
+  height: 85px; /* fixed header height*/
+  margin: -85px 0 0; /* negative fixed header height */
+}
+
+@media only screen and (max-width:40em) {
+  :target::before {
+    content: "";
+    display: block;
+    height: 170px; /* fixed header height*/
+    margin: -170px 0 0; /* negative fixed header height */
+  }
+}
