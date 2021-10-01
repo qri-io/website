@@ -64,7 +64,6 @@ const plugins = [
         {
           resolve: 'gatsby-remark-autolink-headers',
           options: {
-            offsetY: '200',
             icon: false
           }
         }
