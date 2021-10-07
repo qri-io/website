@@ -6,7 +6,6 @@ import LoadingProvider from './loading'
 
 // override background and default text color
 prismTheme.plain = {
-  backgroundColor: '#EFF3F5',
   color: '#545F66',
   fontSize: 14
 }
@@ -30,18 +29,31 @@ const LoadableComponent = Loadable({
 })
 
 /* eslint-disable react/jsx-key */
-const CodeBlock = ({ children: exampleCode, ...props }) => {
+const CodeBlock = ({ children: exampleCode, className, ...props }) => {
+  let language = 'text'
+  language = className?.replace(/language-/, '').replace(/:.*/, '')
+
+  let title = ''
+  if (className?.includes('title=')) {
+    title = className.split('title=')[1]
+  }
+
   if (props['react-live']) {
     return (
       <LoadableComponent code={exampleCode} />
     )
   } else {
     return (
-      <div className='mb-4'>
+      <div className='mb-4 bg-qrigray-100 rounded-md'>
+        {title && (
+          <div className='border-b px-4 py-2 text-xs'>
+            {title}
+          </div>
+        )}
         <Highlight
           {...defaultProps}
           code={exampleCode}
-          language="python"
+          language={language}
           theme={prismTheme}
         >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
