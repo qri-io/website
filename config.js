@@ -23,6 +23,17 @@ const docsSections = [
         items: [
           '/docs/guides/transforms/scrape-data-from-a-website'
         ]
+      },
+      {
+        title: 'Qri CLI',
+        path: '/docs/guides/qri-cli',
+        description: 'These guides will cover tasks you can perform with a local Qri repository and our Command Line Interface',
+        items: [
+          '/docs/guides/qri-cli/install-qri-cli',
+          '/docs/guides/qri-cli/setup-your-local-qri-repository',
+          '/docs/guides/qri-cli/create-a-dataset-from-a-csv',
+          '/docs/guides/qri-cli/push-a-dataset-to-qri-cloud'
+        ]
       }
     ]
   },
