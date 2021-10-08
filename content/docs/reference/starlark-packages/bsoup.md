@@ -22,7 +22,7 @@ parseHtml parses html from a string, returning the root SoupNode
 
 ## Types
 
-### 'SoupNode'
+### SoupNode
 
 
 
@@ -34,7 +34,8 @@ parseHtml parses html from a string, returning the root SoupNode
 find(name, attrs, recursive, string, **kwargs)
 ```
 
-retrieve the first occurance of an element that matches arguments passed to find. works similarly to [node.find()](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find)
+retrieve the first occurrence of an element that matches arguments passed to find.
+works similarly to [node.find()](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find)
 
 
 ### find_all
@@ -43,7 +44,8 @@ retrieve the first occurance of an element that matches arguments passed to find
 find_all(name, attrs, recursive, string, limit, **kwargs)
 ```
 
-retrieves all descendants that match arguments passed to find_all. works similarly to [node.find_all()](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find-all)
+retrieves all descendants that match arguments passed to find_all.
+works similarly to [node.find_all()](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find-all)
 
 
 ### attrs
@@ -52,7 +54,8 @@ retrieves all descendants that match arguments passed to find_all. works similar
 attrs()
 ```
 
-get a dictionary of element attributes works similarly to [node.attrs](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#attributes)
+get a dictionary of element attributes
+works similarly to [node.attrs](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#attributes)
 
 
 ### contents
@@ -61,7 +64,8 @@ get a dictionary of element attributes works similarly to [node.attrs](https://w
 contents()
 ```
 
-gets the list of children of an element works similarly to [soup.contents](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#contents-and-children)
+gets the list of children of an element
+works similarly to [soup.contents](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#contents-and-children)
 
 
 ### child
@@ -70,7 +74,8 @@ gets the list of children of an element works similarly to [soup.contents](https
 child()
 ```
 
-gets a single child element with the given tag name works like accessing a node [using its tag name](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-using-tag-names)
+gets a single child element with the given tag name
+works like accessing a node [using its tag name](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-using-tag-names)
 
 
 ### parent
@@ -79,7 +84,8 @@ gets a single child element with the given tag name works like accessing a node 
 parent()
 ```
 
-gets the parent node of an element works like [node.parent](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#parent)
+gets the parent node of an element
+works like [node.parent](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#parent)
 
 
 ### next_sibling
@@ -88,7 +94,8 @@ gets the parent node of an element works like [node.parent](https://www.crummy.c
 next_sibling()
 ```
 
-gets the next sibling of an element works like [node.next_sibling](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#next-sibling-and-previous-sibling)
+gets the next sibling of an element
+works like [node.next_sibling](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#next-sibling-and-previous-sibling)
 
 
 ### prev_sibling
@@ -97,7 +104,8 @@ gets the next sibling of an element works like [node.next_sibling](https://www.c
 prev_sibling()
 ```
 
-gets the previous sibling of an element works like [node.prev_sibling](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#next-sibling-and-previous-sibling)
+gets the previous sibling of an element
+works like [node.prev_sibling](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#next-sibling-and-previous-sibling)
 
 
 ### get_text
@@ -106,6 +114,7 @@ gets the previous sibling of an element works like [node.prev_sibling](https://w
 get_text()
 ```
 
-all the text in a document or beneath a tag, as a single Unicode string: works like [soup.get_text](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#get-text)
+all the text in a document or beneath a tag, as a single Unicode string:
+works like [soup.get_text](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#get-text)
 
 

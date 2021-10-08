@@ -22,7 +22,7 @@ fetch an excel file from a url
 
 ## Types
 
-### 'File'
+### File
 
 an excel file
 

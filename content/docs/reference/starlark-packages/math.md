@@ -61,7 +61,7 @@ Return the arc tangent of x, in radians.
 atan2(y, x)
 ```
 
-Return atan(y / x), in radians. The result is between -pi and pi. The vector in the plane from the origin to point (x, y) makes this angle with the positive X axis. The point of atan2() is that the signs of both inputs are known to it, so it can compute the correct quadrant for the angle. For example, atan(1) and atan2(1, 1) are both pi/4, but atan2(-1, -1) is -3*pi/4.
+Return atan(y / x), in radians. The result is between -pi and pi. The vector in the plane from the origin to point (x, y) makes this angle with the positive X axis. The atan2() function can compute the correct quadrant for the angle since it knows the sign of both inputs. For example, atan(1) and atan2(1, 1) are both pi/4, but atan2(-1, -1) is -3*pi/4.
 
 
 ### atanh
@@ -143,6 +143,19 @@ floor(x)
 ```
 
 Return the floor of x, the largest integer less than or equal to x.
+#### examples:
+**basic**
+
+calculate the floor of 2.9
+
+```
+load("math.star", "math")
+x = math.floor(2.9)
+print(x)
+# Output: 2
+```
+
+
 
 
 ### gamma
@@ -160,7 +173,8 @@ Returns the Gamma function of x.
 hypot(x, y)
 ```
 
-Return the Euclidean norm, sqrt(x*x + y*y). This is the length of the vector from the origin to point (x, y).
+Return the Euclidean norm, sqrt(x*x + y*y). This is the length of the
+vector from the origin to point (x, y).
 
 
 ### log
@@ -169,7 +183,8 @@ Return the Euclidean norm, sqrt(x*x + y*y). This is the length of the vector fro
 log(x, base)
 ```
 
-Returns the logarithm of x in the given base, or natural logarithm by default.
+Returns the logarithm of x in the given base, or natural logarithm by
+default.
 
 
 ### mod
@@ -188,6 +203,19 @@ pow(x, y)
 ```
 
 Returns x**y, the base-x exponential of y.
+#### examples:
+**basic**
+
+raise 4 to the power of 3
+
+```
+load("math.star", "math")
+x = math.pow(4,5)
+print(x)
+# Output: 1024.0
+```
+
+
 
 
 ### radians
@@ -217,6 +245,15 @@ round(x)
 Returns the nearest integer, rounding half away from zero.
 
 
+### sqrt
+
+```
+sqrt(x)
+```
+
+Return the square root of x.
+
+
 ### sin
 
 ```
@@ -233,15 +270,6 @@ sinh(x)
 ```
 
 Return the hyperbolic sine of x.
-
-
-### sqrt
-
-```
-sqrt(x)
-```
-
-Return the square root of x.
 
 
 ### tan

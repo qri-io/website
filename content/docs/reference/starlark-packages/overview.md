@@ -3,9 +3,9 @@ metaTitle: "Overview"
 metaDescription: "Learn how we've extended the core functionality of the Starlark language with these helpful packages"
 ---
 
-The section title says "libraries", but what we're really talking about are "packages" that can be imported into your Qri transform scripts to provide more functionality.  You can do things like parse and write CSVs, handle timestamps, regular expressions, etc.
+Starlark Packages are like code libraries which can be imported into your Qri transform scripts to provide more functionality.  You can do things like parse and write CSVs, handle timestamps, use regular expressions, etc.
 
-To that end, we've created a standard library of packages that extend Starlak, and they are known collectively as "Starlib".  We're constantly improving Starlib to make Qri transforms more flexible and powerful.
+To that end, we've created a open source standard library of packages that extend Starlark, known collectively as "Starlib".  We're constantly improving Starlib to make Qri transforms more flexible and powerful.
 
 ## Starlib: Starlark's missing standard library
 

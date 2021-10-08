@@ -10,30 +10,111 @@ json provides functions for working with json data
 
 
 
-### decode
-
-```
-decode(string) obj
-```
-
-The decode function accepts one positional parameter, a JSON string. It returns the Starlark value that the string denotes. - Numbers are parsed as int or float, depending on whether they contain a decimal point. - JSON objects are parsed as new unfrozen Starlark dicts. - JSON arrays are parsed as new unfrozen Starlark lists. Decoding fails if x is not a valid JSON string.
-
-
 ### encode
 
 ```
 encode(obj) string
 ```
 
-The encode function accepts one required positional argument, which it converts to JSON by cases: - A Starlark value that implements Go's standard json.Marshal interface defines its own JSON encoding. - None, True, and False are converted to null, true, and false, respectively. - Starlark int values, no matter how large, are encoded as decimal integers. Some decoders may not be able to decode very large integers. - Starlark float values are encoded using decimal point notation, even if the value is an integer. It is an error to encode a non-finite floating-point value. - Starlark strings are encoded as JSON strings, using UTF-16 escapes. - a Starlark IterableMapping (e.g. dict) is encoded as a JSON object. It is an error if any key is not a string. - any other Starlark Iterable (e.g. list, tuple) is encoded as a JSON array. - a Starlark HasAttrs (e.g. struct) is encoded as a JSON object. It an application-defined type matches more than one the cases describe above, (e.g. it implements both Iterable and HasFields), the first case takes precedence. Encoding any other value yields an error.
+Return a JSON string representation of a Starlark data structure
+
+#### parameters:
+
+| name | type | description |
+|------|------|-------------|
+| `obj` | `any` | obj is a valid Starlark data structure |
+
+#### examples:
+**encode object**
+
+encode a simple object as a JSON string
+
+```
+load("encoding/json.star", "json")
+x = json.encode({"foo": ["bar", "baz"]})
+print(x)
+# Output: {"foo":["bar","baz"]}
+```
+
+
+
+
+### decode
+
+```
+decode(src) obj
+```
+
+Return the Starlark representation of a string instance containing a JSON document. Decoding fails if src is not a valid JSON string.
+
+#### parameters:
+
+| name | type | description |
+|------|------|-------------|
+| `src` | `string` | source string, must be valid JSON string |
+
+#### examples:
+**decode JSON string**
+
+decode a JSON string into a Starlark structure
+
+```
+load("encoding/json.star", "json")
+x = json.decode('{"foo": ["bar", "baz"]}')
+```
+
+
 
 
 ### indent
 
 ```
-indent(string) string
+indent(src, prefix="", indent="\t") string
 ```
 
 The indent function pretty-prints a valid JSON encoding, and returns a string containing the indented form. It accepts one required positional parameter, the JSON string, and two optional keyword-only string parameters, prefix and indent, that specify a prefix of each new line, and the unit of indentation.
+
+#### parameters:
+
+| name | type | description |
+|------|------|-------------|
+| `src` | `string` | source JSON string to encode |
+| `prefix` | `string` | optional. string prefix that will be prepended to each line. default is "" |
+| `indent` | `string` | optional. string that will be used to represent indentations. default is "\t" |
+
+#### examples:
+**basic**
+
+"pretty print" a valid JSON encoding
+
+```
+load("encoding/json.star", "json")
+x = json.indent('{"foo": ["bar", "baz"]}')
+# print(x)
+# {
+#    "foo": [
+#      "bar",
+#      "baz"
+#    ]
+# }
+```
+
+**using prefix & indent**
+
+"pretty print" a valid JSON encoding, including optional prefix and indent parameters
+
+```
+load("encoding/json.star", "json")
+x = json.indent('{"foo": ["bar", "baz"]}', prefix='....', indent="____")
+# print(x)
+# {
+# ....____"foo": [
+# ....________"bar",
+# ....________"baz"
+# ....____]
+# ....}
+```
+
+
 
 

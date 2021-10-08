@@ -29,7 +29,7 @@ parse an html document returning a selection at the root of the document
 
 ## Types
 
-### 'selection'
+### selection
 
 an HTML document for querying
 
@@ -41,7 +41,8 @@ an HTML document for querying
 attr(name) string
 ```
 
-gets the specified attribute's value for the first element in the Selection. To get the value for each element individually, use a looping construct such as each or map method
+gets the specified attribute's value for the first element in the Selection.
+To get the value for each element individually, use a looping construct such as each or map method
 
 #### parameters:
 
@@ -147,6 +148,22 @@ has(selector) selection
 ```
 
 reduces the set of matched elements to those that have a descendant that matches the selector
+
+#### parameters:
+
+| name | type | description |
+|------|------|-------------|
+| `selector` | `string` | a query selector string to filter the current selection, returning a new selection |
+
+
+
+### isSelector
+
+```
+isSelector(selector) bool
+```
+
+checks the current matched set of elements against a selector and returns true if at least one of these elements matches
 
 #### parameters:
 
