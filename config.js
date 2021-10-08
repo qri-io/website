@@ -112,6 +112,7 @@ const docsSections = [
         items: [
           '/docs/reference/starlark-packages/overview',
           '/docs/reference/starlark-packages/bsoup',
+          '/docs/reference/starlark-packages/dataframe',
           {
             title: 'compress',
             path: '/docs/reference/starlark-packages/compress',
