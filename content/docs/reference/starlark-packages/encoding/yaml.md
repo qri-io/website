@@ -24,6 +24,18 @@ serialize obj to a yaml string
 |------|------|-------------|
 | `obj` | `object` | input object |
 
+#### examples:
+**basic**
+
+encode to yaml
+
+```
+load("encoding/yaml.star", "yaml")
+data = {"foo": "bar", "baz": True}
+res = yaml.dumps(data)
+```
+
+
 
 
 ### loads
@@ -39,6 +51,22 @@ read a source yaml string to a starlark object
 | name | type | description |
 |------|------|-------------|
 | `source` | `string` | input string of yaml data |
+
+#### examples:
+**basic**
+
+load a yaml string
+
+```
+load("encoding/yaml.star", "yaml")
+data = """foo: bar
+baz: true
+"""
+d = yaml.loads(data)
+print(d)
+# Output: {"foo": "bar", "baz": True}
+```
+
 
 
 
