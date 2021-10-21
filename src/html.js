@@ -48,6 +48,7 @@ export default class HTML extends React.Component {
             `
             }}
           />
+          <script src="https://cdn.usefathom.com/script.js" data-site="WPTDNOAK" data-included-domains="qri.io, netlify.app" defer></script>
         </body>
       </html>
     )
