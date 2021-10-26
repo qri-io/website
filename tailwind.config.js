@@ -1,16 +1,22 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
+const {
+  borderRadius,
+  boxShadow,
+  fontFamily,
+  fontSize
+} = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  purge: {
-    content: ['./src/**/*.{js,jsx}'],
-    options: {
-      // these are used in config but not defined in the jsx
-      safelist: ['text-qrigreen-600', 'text-qrinavy-300']
-    }
-  },
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      keyframes: {
+        appear: {
+          '0%': { maxHeight: 0 },
+          '99%': { maxHeight: 1000 },
+          '100%': { maxHeight: 'none' }
+        }
+      },
       colors: {
         qripink: {
           100: '#FFD9E5',
@@ -125,35 +131,67 @@ module.exports = {
           500: '#B91C1C',
           DEFAULT: '#B91C1C',
           600: '#991B1B'
+        },
+        black: {
+          DEFAULT: '#000000'
         }
       },
       fontFamily: {
         ...fontFamily,
         mono: ['CourierPrime', 'monospace']
+      },
+      boxShadow: {
+        ...boxShadow,
+        even: '0px 0px 5px rgba(0, 0, 0, 0.1)'
+      },
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+        appear: 'appear 0.8s ease-in-out',
+        disappear: 'appear 0.8s ease-in-out reverse'
+      },
+      borderRadius: {
+        ...borderRadius,
+        md: '4.5px',
+        lg: '6px',
+        xl: '8px',
+        '2xl': '10px'
+      },
+      fontSize: {
+        ...fontSize,
+        xs: '10px',
+        sm: '12px',
+        DEFAULT: '14px',
+        base: '14px',
+        lg: '16px',
+        xl: '18px',
+        '2xl': '20px',
+        '3xl': '30px',
+        '4xl': ['40px', {
+          lineHeight: '2.75rem'
+        }],
+        '5xl': ['48px', {
+          lineHeight: '2.9rem'
+        }],
+        '6xl': ['56px', {
+          lineHeight: '3.9rem'
+        }],
+        '7xl': '64px',
+        '8xl': '72px',
+        '9xl': '80px'
       }
-    },
-    scale: {
-      0: '0',
-      25: '.25',
-      50: '.5',
-      60: '.6',
-      75: '.75',
-      90: '.9',
-      95: '.95',
-      100: '1',
-      105: '1.05',
-      110: '1.1',
-      125: '1.25',
-      150: '1.5',
-      200: '2'
     }
   },
   variants: {
     extend: {
-      borderWidth: ['hover'],
+      fontWeight: ['hover'],
+      cursor: ['hover'],
+      borderWidth: ['last'],
       margin: ['last'],
-      scale: ['group-hover']
+      padding: ['first', 'last']
     }
   },
-  plugins: []
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/line-clamp')
+  ]
 }

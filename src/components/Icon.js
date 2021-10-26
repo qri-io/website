@@ -9,6 +9,7 @@ import Discord from './icon/Discord'
 import DocsRing from './icon/DocsRing'
 import Github from './icon/Github'
 import Search from './icon/Search'
+import SkinnySearch from './icon/SkinnySearch'
 import Twitter from './icon/Twitter'
 import Version from './icon/Version'
 import Youtube from './icon/Youtube'
@@ -24,6 +25,7 @@ const Icon = (props) => {
     docsRing: <DocsRing {...props} />,
     github: <Github {...props} />,
     search: <Search {...props} />,
+    skinnySearch: <SkinnySearch {...props} />,
     twitter: <Twitter {...props} />,
     version: <Version {...props} />,
     youtube: <Youtube {...props} />
