@@ -71,24 +71,7 @@ const plugins = [
       extensions: ['.mdx', '.md']
     }
   },
-  {
-    resolve: 'gatsby-plugin-gtag',
-    options: {
-      // your google analytics tracking id
-      trackingId: config.gatsby.gaTrackingId,
-      // Puts tracking script in the head instead of the body
-      head: true,
-      // enable ip anonymization
-      anonymize: false
-    }
-  },
   'gatsby-plugin-catch-links',
-  {
-    resolve: 'gatsby-plugin-segment-analytics',
-    options: {
-      writeKey: 'b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju'
-    }
-  },
   {
     resolve: 'gatsby-plugin-algolia',
     options: {
