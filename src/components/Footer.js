@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import Link from './Link'
 import Icon from './Icon'
 import QriLogo from './QriLogo'
@@ -52,7 +51,6 @@ const Footer = () => {
           </div>
         </div>
         <div className='my-2 px-10 w-full overflow-hidden lg:w-auto flex flex-col'>
-          <h5 className='text-qritile-600 font-semibold mb-5'>Subscribe</h5>
           <div className='flex'>
             <div className='inline mr-4'>
               <Link onClick={fireAnalyticsEvent} colorClassName='text-qritile-600' to='https://github.com/qri-io'><Icon icon='github'/></Link>

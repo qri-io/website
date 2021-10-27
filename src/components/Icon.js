@@ -2,12 +2,14 @@ import React from 'react'
 
 import Automate from './icon/Automate'
 import Bars from './icon/Bars'
+import Behance from './icon/Behance'
 import CaretRight from './icon/CaretRight'
 import Clock from './icon/Clock'
 import Close from './icon/Close'
 import Discord from './icon/Discord'
 import DocsRing from './icon/DocsRing'
 import Github from './icon/Github'
+import Linkedin from './icon/Linkedin'
 import Search from './icon/Search'
 import SkinnySearch from './icon/SkinnySearch'
 import Twitter from './icon/Twitter'
@@ -18,12 +20,14 @@ const Icon = (props) => {
   const customIcons = {
     automate: <Automate {...props} />,
     bars: <Bars {...props} />,
+    behance: <Behance {...props} />,
     caretRight: <CaretRight {...props} />,
     clock: <Clock {...props} />,
     close: <Close {...props} />,
     discord: <Discord {...props} />,
     docsRing: <DocsRing {...props} />,
     github: <Github {...props} />,
+    linkedin: <Linkedin {...props} />,
     search: <Search {...props} />,
     skinnySearch: <SkinnySearch {...props} />,
     twitter: <Twitter {...props} />,
