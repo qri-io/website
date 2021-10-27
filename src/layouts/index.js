@@ -25,8 +25,8 @@ const IndexLayout = (props) => {
   }
 
   let style = {}
-  // dots background for landing page and about page
-  if (location.pathname === '/' || location.pathname === '/about') {
+  // dots background for home, about, and contact-us
+  if (['/', '/about', '/contact'].includes(location.pathname)) {
     style = { background: 'url("/img/new-docs/dot.svg")' }
   }
 

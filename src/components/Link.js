@@ -2,7 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import { Link } from 'gatsby'
 
-const defaultColorClassName = 'text-qrinavy hover:text-qripink'
+const defaultColorClassName = 'text-qritile-600 hover:text-qritile-700'
 
 const CustomLink = ({
   to,

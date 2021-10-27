@@ -78,7 +78,7 @@ const Header = ({
             <IconButton icon={mobileMenu ? 'close' : 'bars'} />
           </Link>
         </div>
-        <ul className={'justify-end text-sm font-semibold tracking-wide hidden md:flex'}>
+        <ul className={'justify-end text-base font-bold tracking-wide hidden md:flex'}>
           {headerLinks.map((headerLink, i) => (
             <HeaderLink key={i} data={headerLink} className='ml-6 lg:ml-10' mobile />
           ))}
