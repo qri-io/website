@@ -25,8 +25,8 @@ const IndexLayout = (props) => {
   }
 
   let style = {}
-  // special background on StandardLayout for the landing page
-  if (location.pathname === '/') {
+  // dots background for landing page and about page
+  if (location.pathname === '/' || location.pathname === '/about') {
     style = { background: 'url("/img/new-docs/dot.svg")' }
   }
 
