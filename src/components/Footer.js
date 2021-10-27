@@ -12,7 +12,7 @@ const Footer = () => {
   }
 
   return (
-    <div className='bg-qrigray-1000 text-white py-14 px-5 md:px-10 lg:px-20 text-base w-full overflow-hidden'>
+    <div className='bg-qrigray-1000 text-white py-14 px-5 md:px-10 lg:px-20 text-base w-full overflow-hidden flex-shrink-0 z-20'>
       <div className='flex flex-wrap -mx-10'>
         <div className='mb-10 px-10 w-full overflow-hidden lg:w-auto flex items-center self-start'>
           <QriLogo size='lg'/>

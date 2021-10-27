@@ -24,10 +24,10 @@ const IndexLayout = (props) => {
     )
   }
 
-  let style = {}
-  // dots background for home, about, and contact-us
-  if (['/', '/about', '/contact'].includes(location.pathname)) {
-    style = { background: 'url("/img/new-docs/dot.svg")' }
+  let style = { background: 'url("/img/new-docs/dot.svg")' }
+  // dots background pattern is the default, don't show for legal pages
+  if (location.pathname.includes('/legal')) {
+    style = {}
   }
 
   let mainContent = <StandardLayout style={style} {...props}>{children}</StandardLayout>

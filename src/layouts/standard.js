@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 
 const StandardLayout = (props) => {
   return (
-    <div className='standard-layout-wrapper flex-column relative' style={{
+    <div className='standard-layout-wrapper flex flex-col relative min-h-screen' style={{
       ...props.style
     }}>
       {/* this needs to be here for this background blob to show up in the correct spot/z-index */}
