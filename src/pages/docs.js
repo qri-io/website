@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import Icon from '../components/Icon'
 import Link from '../components/Link'
 import Button from '../components/Button'
+import SearchBox from '../components/SearchBox'
 
 const PageTile = ({ title, subtitle, image, link }) => (
   <Link to={link} colorClassName="text-black hover:text-qripink">
@@ -19,31 +20,24 @@ const PageTile = ({ title, subtitle, image, link }) => (
   </Link>
 )
 
-const recommendedTutorials = [
+const featuredTutorials = [
   {
-    title: 'Qri Desktop Quickstart',
-    description: 'Get Started with Qri',
-    slug: '/docs/tutorials/qri-desktop-quickstart'
+    title: 'How Qri Defines a Dataset',
+    description: 'Qri is a distributed version control and sharing platform for datasets',
+    slug: '/docs/concepts/understanding-qri/what-is-qri',
+    colorClass: 'text-qripink-600'
   },
   {
-    title: 'Qri Desktop Quickstart',
-    description: 'Get Started with Qri',
-    slug: '/docs/tutorials/qri-desktop-quickstart'
+    title: 'How Qri Dataset Version Control Works',
+    description: 'In Qri, \'Dataset\' means more than just the data.  Learn more about the Qri Data Model',
+    slug: '/docs/concepts/understanding-qri/how-qri-defines-a-dataset',
+    colorClass: 'text-qrigreen-600'
   },
   {
-    title: 'Qri Desktop Quickstart',
-    description: 'Get Started with Qri',
-    slug: '/docs/tutorials/qri-desktop-quickstart'
-  },
-  {
-    title: 'Qri Desktop Quickstart',
-    description: 'Get Started with Qri',
-    slug: '/docs/tutorials/qri-desktop-quickstart'
-  },
-  {
-    title: 'Qri Desktop Quickstart',
-    description: 'Get Started with Qri',
-    slug: '/docs/tutorials/qri-desktop-quickstart'
+    title: 'Scrape Data from a Website',
+    description: 'Use Starlark\'s html package to extract data from HTML',
+    slug: '/docs/guides',
+    colorClass: 'text-qrigreen-600'
   }
 ]
 
@@ -78,16 +72,8 @@ const DocsPage = ({ onSearchClick, location }) => (
                   </div>
                 How can we <span className='text-qripink-600'>help</span> you?
                 </div>
-                <div className='relative' onClick={onSearchClick}>
-                  <input
-                    className='w-full rounded-lg outline-none text-xs font-medium tracking-wider border border-qrigray-200 p-3 block'
-                    type="text"
-                    placeholder="Search Qri Docs"
-                    autoFocus
-                  />
-                  <div className='absolute right-2 top-0 h-full flex items-center'>
-                    <Icon icon='search' size='sm' className='text-qrigray-400'/>
-                  </div>
+                <div onClick={onSearchClick} >
+                  <SearchBox size='lg' disabled/>
                 </div>
                 <div className='absolute h-0 bottom-20 -right-16'>
                   <img src='/img/new-docs/blob-orange.svg'/>
@@ -106,6 +92,7 @@ const DocsPage = ({ onSearchClick, location }) => (
                       image='/img/new-docs/page-clock.svg'
                       title='Quickstart'
                       subtitle='Dive in and start making datasets'
+                      link='/docs/guides/transforms/scrape-data-from-a-website'
                     />
                   </div>
                   <div className="my-3 px-6 py-3 w-1/3 overflow-hidden">
@@ -136,18 +123,18 @@ const DocsPage = ({ onSearchClick, location }) => (
             <div className='mx-auto relative'>
               <div className='w-1/2 mb-16'>
                 <div className='font-bold text-4xl text-qritile-600 mb-4'>
-                Recommended Tutorials
+                Featured Docs
                 </div>
                 <div className='text-lg text-qrigray-1000'>
-                Once you&apos;ve learned the basics, these tutorials can help you accomplish specific tasks with Qri
+                Start with these pages to learn more about the value of versioned datasets and how Qri works.
                 </div>
               </div>
-              {recommendedTutorials.map(({ title, description, slug }) => (
+              {featuredTutorials.map(({ title, description, slug, colorClass }) => (
                 <Link key={slug} to={slug}>
                   <div
                     className='text-qrigray-400 bg-white rounded-lg border-solid border-2 border-qrigray-100 box-border px-6 py-6 flex mb-6'
                   >
-                    <Icon icon='docsRing' size='xs' className='text-qriorange-600 mt-1.5 mr-3' />
+                    <Icon icon='docsRing' size='xs' className={`mt-1.5 mr-3 ${colorClass}`} />
                     <div className='flex-grow'>
                       <div className='font-bold text-lg text-black mb-1'>{title}</div>
                       <div className='text-sm'>{description}</div>
@@ -167,7 +154,9 @@ const DocsPage = ({ onSearchClick, location }) => (
                 <div className='w-3/5'>
                   <div className='font-bold text-4xl mb-5'>Still have questions?</div>
                   <div className='font-base text-lg mb-5'>If you need answers, come join our community chat on Discord. Our staff and other Qri users can help you get going!.</div>
-                  <Button type='secondary'>Come Hang Out!</Button>
+                  <Link to='https://discordapp.com/invite/thkJHKj'>
+                    <Button size='lg' type='secondary'>Come Hang Out!</Button>
+                  </Link>
                 </div>
                 <div className=''>
                   <div className='absolute h-0'>
