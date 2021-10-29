@@ -65,7 +65,7 @@ const SearchModal = ({ onClose }) => {
           }}></div>
         </div>
         <div
-          className='shadow-xl transform transition-all inline-block bg-white rounded-lg text-left flex flex-col p-5 w-full md:w-auto mx-0 md:mx-auto max-w-xl my-8'
+          className='shadow-xl transform transition-all inline-block bg-white rounded-lg text-left flex flex-col px-5 py-2 w-full md:w-auto mx-0 md:mx-auto max-w-xl my-8'
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-headline"

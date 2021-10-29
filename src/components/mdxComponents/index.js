@@ -57,7 +57,7 @@ export default {
   blockquote: props => <blockquote className='ml-0 border-l-2 border-qritile px-5 py-4 text-sm' {...props} />,
   a: AnchorTag,
   // TODO add `img`
-  table: props => <table className='text-xs table-auto mb-6' {...props} />,
+  table: props => <table className='text-sm table-auto mb-6' {...props} />,
   thead: props => <thead className='text-left' {...props} />,
   th: props => <th className='border border-qrigray-100 p-2 font-medium' {...props} />,
   tbody: props => <tbody className='' {...props} />,

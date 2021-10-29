@@ -47,7 +47,7 @@ const DocsColumns = ({ children, location, sidebar = true, pageContext }) => {
             height: 'calc(100vh - 75px)',
             top: 75
           }}>
-            <div className='py-10 px-4 text-xs'>
+            <div className='py-10 px-4 text-sm'>
               <RightSidebar location={location} />
             </div>
           </div>

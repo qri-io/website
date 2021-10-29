@@ -46,7 +46,7 @@ const Sidebar = ({ location, mobile = false }) => (
 
         return (
           <div className={classNames('hide-scrollbars bg-qrigray-100 py-5 md:py-10 px-5 md:pr-0 md:pl-10  text-qrigray-600 border-r qrigray-200 sticky overflow-y-scroll', {
-            'text-xs': !mobile,
+            'text-sm': !mobile,
             'text-base': mobile
           })} style={{
             width: !mobile && 250,

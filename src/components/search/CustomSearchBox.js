@@ -6,7 +6,7 @@ import {
 const CustomSearchBox = connectSearchBox(({ currentRefinement, refine }) => {
   return (
     <input
-      className='w-full outline-none text-xs font-bold tracking-wider'
+      className='w-full focus:ring-transparent border-0 outline-none text-sm font-bold tracking-wider'
       type="text"
       placeholder="Search Qri Docs"
       value={currentRefinement}
