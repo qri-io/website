@@ -46,7 +46,7 @@ const CodeBlock = ({ children: exampleCode, className, ...props }) => {
     return (
       <div className='mb-4 bg-qrigray-100 rounded-md'>
         {title && (
-          <div className='border-b px-4 py-2 text-xs'>
+          <div className='border-b px-4 py-2 text-sm'>
             {title}
           </div>
         )}

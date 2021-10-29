@@ -13,7 +13,7 @@ const DatasetCard = ({ title, description, updatedAt, username, userAvatar, clas
     <div className='flex flex-wrap'>
       <div className='text-qrigray-1000 flex items-center mr-3 my-1.5'>
         <Icon icon='clock' size='sm' className='mr-1.5'/>
-        <div className='text-xs font-light'>
+        <div className='text-sm font-light'>
           <RelativeTimestamp timestamp={updatedAt}/>
         </div>
       </div>
@@ -23,7 +23,7 @@ const DatasetCard = ({ title, description, updatedAt, username, userAvatar, clas
           width: 18,
           backgroundImage: `url(${userAvatar})`
         }}></div>
-        <div className='text-xs  font-light'>
+        <div className='text-sm font-light'>
           {username}
         </div>
       </div>

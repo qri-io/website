@@ -54,7 +54,7 @@ const CustomHits = connectHits(({ hits, docsSections, onClickHit }) => {
                 <ol>
                   {hits.map((hit, i) => (
                     <div key={i} onClick={() => { onClickHit(hit.slug) }}>
-                      <div className='text-xs font-bold rounded px-3 py-3 hover:bg-qrigray-100 cursor-pointer'>
+                      <div className='text-sm font-bold rounded px-3 py-3 hover:bg-qrigray-100 cursor-pointer'>
                         <div className='text-qrigray-600 font-bold mb-1 tracking-wider hit-title'><Highlight attribute="metaTitle" hit={hit} /></div>
                         <div className='text-qrigray-400 font-light hit-description'><Highlight attribute="metaDescription" hit={hit} /></div>
                       </div>

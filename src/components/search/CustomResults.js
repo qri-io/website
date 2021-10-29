@@ -14,7 +14,7 @@ const CustomResults = connectStateResults(
     }
 
     return (
-      <div className='border-t border-qrigray-200 mt-4 pt-4 flex-grow overflow-scroll'>
+      <div className='border-t border-qrigray-200 mt-2 pt-4 flex-grow overflow-scroll'>
         {content}
       </div>
     )

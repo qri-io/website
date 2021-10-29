@@ -18,7 +18,7 @@ const DocsSectionLandingPage = ({ docsSectionInfo, allMdx, colorClass, crumbs })
         <div className='text-qrigray-600 font-light'>
           <BreadCrumbs crumbs={crumbs} />
           <div className={classNames('font-black text-3xl mb-6 tracking-wide', colorClass)}>{docsSectionInfo.title}</div>
-          <div className={classNames('mb-4 text-sm text-qrigray-700')}>{docsSectionInfo.description}</div>
+          <div className={classNames('mb-4 text-qrigray-700')}>{docsSectionInfo.description}</div>
           {
             topLevelItems && <DocsCards items={topLevelItems} colorClass={colorClass} />
           }
