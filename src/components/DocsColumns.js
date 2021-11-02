@@ -41,9 +41,8 @@ const DocsColumns = ({ children, location, leftSidebar = true, rightSidebar = tr
           {children}
         </div>
         { rightSidebar && (
-          <div className='border-l border-qrigray-200 hidden lg:block flex-grow' style={{
-            minWidth: 160
-          }}>
+
+          <div className='border-l border-qrigray-200 hidden lg:block w-48 xl:w-64 flex-shrink-0'>
             <div className='hide-scrollbars sticky overflow-y-scroll' style={{
               height: 'calc(100vh - 75px)',
               top: 75

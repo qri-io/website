@@ -14,7 +14,7 @@ const MarkdownPageLayout = (props) => {
         title: metaTitle,
         description: metaDescription
       }} />
-      <div className='px-5 py-8 md:py-14 md:px-16 text-qrigray-600 font-light flex-grow flex-shrink-0'>
+      <div className='px-5 py-8 md:py-14 md:px-16 text-qrigray-600 font-light flex-grow w-full max-w-3xl mx-auto'>
         <div className={''}>
           <h1 className={'text-qritile-600 font-bold text-2xl mb-6'}>
             {metaTitle}

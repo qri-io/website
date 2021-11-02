@@ -7,8 +7,11 @@ const config = require('./config')
 
 // [ fromPath, toPath ]
 const redirects = [
-  ['/odw2021', 'https://us02web.zoom.us/meeting/register/tZwuf-mvqjojGNfpfgJmRTH1KQ3uC3kniOBE'],
-  ['/ODW2021', 'https://us02web.zoom.us/meeting/register/tZwuf-mvqjojGNfpfgJmRTH1KQ3uC3kniOBE'],
+  ['/beta', '/'],
+  ['/download', '/'],
+  ['/data-stories/*', '/'],
+  ['/download', '/'],
+
   ['/blog', 'https://medium.com/qri-io'],
   ['/blog/a_better_mousetrap_podcast/', 'https://medium.com/qri-io/a-better-mousetrap-podcast-6cd068aba347'],
   ['/blog/datasets_are_books/', 'https://medium.com/qri-io/datasets-are-books-not-houses-760bd4736229'],
@@ -18,27 +21,14 @@ const redirects = [
   ['/blog/unit_test_performance/', 'https://medium.com/qri-io'],
   ['/blog/*', 'https://medium.com/qri-io'],
 
-  ['/desktop', '/download'],
-  ['/desktop/getting-started', '/docs/getting-started/qri-desktop-quickstart'],
+  ['/docs/*', '/docs'],
 
-  ['/docs/concepts/content-addressing', '/docs/reference/content-addressing'],
-  ['/docs/concepts/dataset', '/docs/dataset-components/overview'],
-  ['/docs/concepts/ipfs_to_qri', '/docs/reference/ipfs_to_qri'],
-  ['/docs/concepts/overview', '/docs/getting-started/what-is-qri'],
-  ['/docs/starlark/introduction', '/docs/transforms/overview'],
-  ['/docs/starlark/starlib', '/docs/transforms/starlib'],
-  ['/docs/starlark/examples', '/docs/transforms/examples'],
-  ['/docs/starlark/runtime', '/docs/transforms/runtime'],
-  ['/docs/tutorials/cli-quickstart', '/docs/getting-started/qri-cli-quickstart'],
-  ['/docs/reference/dataset-specification/', '/docs/reference/dataset'],
-  ['/docs/reference/starlark_syntax', '/docs/starlark/runtime'],
-  ['/docs/reference/starlark_examples', '/docs/starlark/examples'],
-  ['/docs/reference/starlib', '/docs/starlark/starlib'],
-  ['/docs/workflows', '/docs'],
+  ['/jobs', 'https://jobs.lever.co/Qri'],
+  ['/jobs/*', 'https://jobs.lever.co/Qri'],
 
-  ['/papers/deterministic_querying', '/deterministic-querying'],
+  ['/install.sh', 'https://raw.githubusercontent.com/qri-io/qri_install/master/install.sh'],
 
-  ['/install.sh', 'https://raw.githubusercontent.com/qri-io/qri_install/master/install.sh']
+  ['/faq', '/docs/faq']
 ]
 
 exports.createPages = ({ graphql, actions }) => {
