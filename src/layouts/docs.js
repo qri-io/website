@@ -11,7 +11,8 @@ import DocsHeader from '../components/DocsHeader'
 
 const DocsLayout = (props) => {
   let content = props.children
-  let showSidebar = true
+  let leftSidebar = true
+  let rightSidebar = true
 
   if (props.pageContext.layout === 'docs') {
     content = <DocsContent {...props} />
@@ -20,17 +21,23 @@ const DocsLayout = (props) => {
   // special handling for API docs (redoc)
   if (props.path === '/docs/reference/qri-http-api/json-api-spec') {
     content = <ApiDocs/>
+    rightSidebar = false
   }
 
   // special handling for FAQ, a markdown docs page with no sidebar
   if (props.path === '/docs/faq') {
-    showSidebar = false
+    leftSidebar = false
+  }
+
+  // don't show right sidebar on docs section landing pages
+  if (props.pageContext.sectionInfo) {
+    rightSidebar = false
   }
 
   return (
     <>
       <DocsHeader {...props} />
-      <DocsColumns {...props} sidebar={showSidebar}>
+      <DocsColumns {...props} leftSidebar={leftSidebar} rightSidebar={rightSidebar}>
         {content}
       </DocsColumns>
     </>

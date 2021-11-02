@@ -46,7 +46,7 @@ const IndexPage = () => {
       <div className='pt-0 md:pt-16 overflow-x-hidden'>
         <div className='px-5 md:px-10 lg:px-20 z-10'>
           <div className='flex flex-col sm:flex-row -mx-6'>
-            <div className='inline-block mx-6'>
+            <div className='inline-block mx-6 flex-grow'>
               <div className='-mx-1.5'>
                 <img className='relative left-40 transform scale-75 md:transform-none md:-left-10' src='/img/new-docs/homepage/nodes-1.svg'/>
                 <div className='text-qritile-600 font-extrabold text-5xl md:text-6xl px-1.5 py-0 border-0 md:border-2 border-qrigray-100 bg-none md:bg-white inline-block relative mb-5'>
@@ -77,7 +77,7 @@ const IndexPage = () => {
                 </div>
               </div>
             </div>
-            <div className='flex-grow text-right mx-6 flex items-center'>
+            <div className='text-right mx-6 flex items-center'>
               <img className='inline' src='/img/new-docs/homepage/splash-data-snuggle.svg'/>
             </div>
           </div>

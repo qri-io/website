@@ -8,11 +8,11 @@ import RightSidebar from './RightSidebar'
 // docs is a two-column layout, with the sidebar and main content area overflowing vertically
 // the right sidebar for jumping to content within an article lives in the main content area
 
-const DocsColumns = ({ children, location, sidebar = true, pageContext }) => {
+const DocsColumns = ({ children, location, leftSidebar = true, rightSidebar = true, pageContext }) => {
   const [showMobileSidebar, setShowMobileSidebar] = useState(false)
   return (
     <>
-      { sidebar && (
+      { leftSidebar && (
         <div className='block sm:hidden sticky z-10 h-full flex flex-col' style={{
           top: 75
         }}>
@@ -30,7 +30,7 @@ const DocsColumns = ({ children, location, sidebar = true, pageContext }) => {
         </div>
       )}
       <div className='flex-grow flex flex-row'>
-        { sidebar && (
+        { leftSidebar && (
           <div className={'hidden sm:block flex-shrink-0'} style={{
             width: 250
           }}>
@@ -40,18 +40,20 @@ const DocsColumns = ({ children, location, sidebar = true, pageContext }) => {
         <div className='flex-grow overflow-x-hidden flex flex-col md:flex-row relative docs-content'>
           {children}
         </div>
-        <div className='border-l border-qrigray-200 hidden lg:block flex-grow' style={{
-          minWidth: 160
-        }}>
-          <div className='hide-scrollbars sticky overflow-y-scroll' style={{
-            height: 'calc(100vh - 75px)',
-            top: 75
+        { rightSidebar && (
+          <div className='border-l border-qrigray-200 hidden lg:block flex-grow' style={{
+            minWidth: 160
           }}>
-            <div className='py-10 px-4 text-sm'>
-              <RightSidebar location={location} />
+            <div className='hide-scrollbars sticky overflow-y-scroll' style={{
+              height: 'calc(100vh - 75px)',
+              top: 75
+            }}>
+              <div className='py-10 px-4 text-sm'>
+                <RightSidebar location={location} />
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   )
