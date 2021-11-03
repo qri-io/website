@@ -264,22 +264,19 @@ const config = {
     favicon: 'https://graphql-engine-cdn.hasura.io/img/hasura_icon_black.svg'
   },
   pwa: {
-    enabled: false, // disabling this will also remove the existing service worker.
+    enabled: true, // disabling this will also remove the existing service worker.
     manifest: {
-      name: 'Gatsby Gitbook Starter',
-      short_name: 'GitbookStarter',
+      name: 'Qri.io',
+      short_name: 'Qri.io',
       start_url: '/',
-      background_color: '#6b37bf',
-      theme_color: '#6b37bf',
-      display: 'standalone',
+      background_color: '#ffffff',
+      theme_color: '#ffffff',
+      display: 'fullscreen',
       crossOrigin: 'use-credentials',
-      icons: [
-        {
-          src: 'src/pwa-512.png',
-          sizes: '512x512',
-          type: 'image/png'
-        }
-      ]
+      icons: [{
+        src: 'google-touch-icon.png',
+        sizes: '512x512'
+      }]
     }
   },
   docsSections,
