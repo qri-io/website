@@ -1,7 +1,7 @@
 import theme from './theme'
 import mdxComponents from './mdxComponents'
 import ThemeProvider from './themeProvider'
-import DocsColumns from './docs-columns'
+import DocsColumns from './DocsColumns'
 
 export default {
   theme,

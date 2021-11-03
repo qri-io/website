@@ -1,11 +1,17 @@
 const path = require('path')
 const fetch = require('node-fetch')
 const startCase = require('lodash.startcase')
+const webpack = require('webpack')
+
+const config = require('./config')
 
 // [ fromPath, toPath ]
 const redirects = [
-  ['/odw2021', 'https://us02web.zoom.us/meeting/register/tZwuf-mvqjojGNfpfgJmRTH1KQ3uC3kniOBE'],
-  ['/ODW2021', 'https://us02web.zoom.us/meeting/register/tZwuf-mvqjojGNfpfgJmRTH1KQ3uC3kniOBE'],
+  ['/beta', '/'],
+  ['/download', '/'],
+  ['/data-stories/*', '/'],
+  ['/download', '/'],
+
   ['/blog', 'https://medium.com/qri-io'],
   ['/blog/a_better_mousetrap_podcast/', 'https://medium.com/qri-io/a-better-mousetrap-podcast-6cd068aba347'],
   ['/blog/datasets_are_books/', 'https://medium.com/qri-io/datasets-are-books-not-houses-760bd4736229'],
@@ -15,32 +21,14 @@ const redirects = [
   ['/blog/unit_test_performance/', 'https://medium.com/qri-io'],
   ['/blog/*', 'https://medium.com/qri-io'],
 
-  ['/desktop', '/download'],
-  ['/desktop/getting-started', '/docs/getting-started/qri-desktop-quickstart'],
+  ['/docs/*', '/docs'],
 
-  ['/docs/concepts/content-addressing', '/docs/reference/content-addressing'],
-  ['/docs/concepts/dataset', '/docs/dataset-components/overview'],
-  ['/docs/concepts/ipfs_to_qri', '/docs/reference/ipfs_to_qri'],
-  ['/docs/concepts/overview', '/docs/getting-started/what-is-qri'],
-  ['/docs/concepts/*', '/docs'],
-  ['/docs/concepts', '/docs'],
-  ['/docs/starlark/introduction', '/docs/transforms/overview'],
-  ['/docs/starlark/starlib', '/docs/transforms/starlib'],
-  ['/docs/starlark/examples', '/docs/transforms/examples'],
-  ['/docs/starlark/runtime', '/docs/transforms/runtime'],
-  ['/docs/tutorials/cli-quickstart', '/docs/getting-started/qri-cli-quickstart'],
-  ['/docs/tutorials/*', '/docs'],
-  ['/docs/tutorials', '/docs'],
-  ['/docs/reference/dataset-specification/', '/docs/reference/dataset'],
-  ['/docs/reference/starlark_syntax', '/docs/starlark/runtime'],
-  ['/docs/reference/starlark_examples', '/docs/starlark/examples'],
-  ['/docs/reference/starlib', '/docs/starlark/starlib'],
-  ['/docs/reference', '/docs'],
-  ['/docs/workflows', '/docs'],
+  ['/jobs', 'https://jobs.lever.co/Qri'],
+  ['/jobs/*', 'https://jobs.lever.co/Qri'],
 
-  ['/papers/deterministic_querying', '/deterministic-querying'],
+  ['/install.sh', 'https://raw.githubusercontent.com/qri-io/qri_install/master/install.sh'],
 
-  ['/install.sh', 'https://raw.githubusercontent.com/qri-io/qri_install/master/install.sh']
+  ['/faq', '/docs/faq']
 ]
 
 exports.createPages = ({ graphql, actions }) => {
@@ -93,34 +81,83 @@ exports.createPages = ({ graphql, actions }) => {
             }
           })
         })
+
+        let colorClass = ''
+
+        const createDocsSectionPages = (sections) => {
+          sections.forEach((d) => {
+            // save the top level colorClass to pass to section pages
+            if (d.colorClass) {
+              colorClass = d.colorClass
+            }
+            if (d.items) {
+              createPage({
+                path: d.path,
+                component: path.resolve('./src/layouts/DocsSectionLandingPageLayout.js'),
+                context: {
+                  sectionInfo: d,
+                  colorClass
+                }
+              })
+
+              createDocsSectionPages(d.items)
+            }
+          })
+        }
+
+        // create the docs section pages
+        createDocsSectionPages(config.docsSections)
       })
     )
   })
 }
 
-exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
-  const config = {
-    resolve: {
-      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-      alias: {
-        $components: path.resolve(__dirname, 'src/components'),
-        buble: '@philpl/buble' // to reduce bundle size
-      }
-    }
-  }
+exports.onCreateWebpackConfig = ({ stage, loaders, actions, getConfig }) => {
+  const config = getConfig()
+
+  config.resolve.modules = [path.resolve(__dirname, 'src'), 'node_modules']
+  config.resolve.alias.$components = path.resolve(__dirname, 'src/components')
+  config.resolve.alias.buble = '@philpl/buble'
 
   if (stage === 'build-html' || stage === 'develop-html') {
-    config.module = {
-      rules: [
-        {
-          test: /mapbox-gl/,
-          use: loaders.null()
-        }
-      ]
-    }
+    config.module.rules.push({
+      test: /mapbox-gl/,
+      use: loaders.null()
+    })
   }
 
-  actions.setWebpackConfig(config)
+  // required for using redoc after the upgrade to gatsby v3
+  config.resolve.fallback = {
+    buffer: require.resolve('buffer/'),
+    events: require.resolve('events/'),
+    fs: require.resolve('browserify-fs'),
+    http: require.resolve('http-browserify'),
+    path: require.resolve('path-browserify'),
+    stream: require.resolve('stream-browserify'),
+    'readable-stream': require.resolve('stream-browserify'),
+    util: require.resolve('util/')
+  }
+
+  config.plugins = [
+    ...config.plugins,
+    new webpack.ProvidePlugin({
+      process: 'process/browser'
+    }),
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer']
+    })
+  ]
+
+  // this is needed for redoc, which uses a different version of core-js from gatsby
+  // see https://github.com/gatsbyjs/gatsby/issues/17136#issuecomment-568036690
+  const coreJs2config = config.resolve.alias['core-js']
+  delete config.resolve.alias['core-js']
+  config.resolve.alias['core-js/modules'] = `${coreJs2config}/modules`
+  try {
+    config.resolve.alias['core-js/es'] = path.dirname(require.resolve('core-js/es'))
+  } catch (err) { console.error(err) }
+
+  actions.replaceWebpackConfig(config)
 }
 
 exports.onCreateBabelConfig = ({ actions }) => {
@@ -159,9 +196,9 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     })
 
     createNodeField({
-      name: 'weight',
+      name: 'description',
       node,
-      value: node.frontmatter.weight
+      value: node.frontmatter.metaDescription
     })
 
     // make additional frontmatter fields for jobs

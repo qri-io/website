@@ -1,9 +1,23 @@
 require('dotenv').config()
-const queries = require('./src/utils/algolia')
 const config = require('./config')
 const plugins = [
-  'gatsby-plugin-eslint',
-  'gatsby-plugin-sass',
+  {
+    resolve: 'gatsby-plugin-eslint',
+    options: {
+      stages: ['develop'],
+      extensions: ['js', 'jsx'],
+      exclude: ['node_modules', '.cache', 'public']
+    }
+  },
+  {
+    resolve: 'gatsby-plugin-sass',
+    options: {
+      postCssPlugins: [
+        require('tailwindcss'),
+        require('./tailwind.config.js')
+      ]
+    }
+  },
   'gatsby-plugin-netlify',
   'gatsby-plugin-sitemap',
   'gatsby-plugin-sharp',
@@ -48,44 +62,32 @@ const plugins = [
           resolve: 'gatsby-remark-copy-linked-files'
         },
         {
-          resolve: 'gatsby-remark-autolink-headers'
+          resolve: 'gatsby-remark-autolink-headers',
+          options: {
+            icon: false
+          }
         }
       ],
       extensions: ['.mdx', '.md']
     }
   },
-  {
-    resolve: 'gatsby-plugin-gtag',
-    options: {
-      // your google analytics tracking id
-      trackingId: config.gatsby.gaTrackingId,
-      // Puts tracking script in the head instead of the body
-      head: true,
-      // enable ip anonymization
-      anonymize: false
-    }
-  },
   'gatsby-plugin-catch-links',
   {
-    resolve: 'gatsby-plugin-segment-analytics',
+    resolve: 'gatsby-plugin-algolia',
     options: {
-      writeKey: 'b4iAxJT8ISitRFQ6qZGS9w7RTnaOpvju'
+      appId: process.env.GATSBY_ALGOLIA_APP_ID,
+      apiKey: process.env.ALGOLIA_ADMIN_KEY,
+      queries: require('./src/utils/algolia-queries')
+    }
+  },
+  {
+    resolve: 'gatsby-plugin-breadcrumb',
+    options: {
+      useAutoGen: true
     }
   }
 ]
-// check and add algolia
-if (config.header.search && config.header.search.enabled && config.header.search.algoliaAppId && config.header.search.algoliaAdminKey) {
-  plugins.push({
-    resolve: 'gatsby-plugin-algolia',
-    options: {
-      appId: config.header.search.algoliaAppId, // algolia application id
-      apiKey: config.header.search.algoliaAdminKey, // algolia admin key to index
-      queries,
-      chunkSize: 10000 // default: 1000
-    }
-  }
-  )
-}
+
 // check and add pwa functionality
 if (config.pwa && config.pwa.enabled && config.pwa.manifest) {
   plugins.push({
@@ -114,7 +116,8 @@ module.exports = {
     githubUrl: config.header.githubUrl,
     helpUrl: config.header.helpUrl,
     tweetText: config.header.tweetText,
-    headerLinks: config.header.links,
+    mainHeaderLinks: config.header.mainLinks,
+    docsHeaderLinks: config.header.docsLinks,
     siteUrl: config.gatsby.siteUrl
   },
   plugins: plugins

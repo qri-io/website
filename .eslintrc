@@ -20,7 +20,10 @@
   "rules": {
     "react/prop-types": "off",
     "template-tag-spacing": "off",
-    "no-unexpected-multiline": "off"
+    "no-unexpected-multiline": "off",
+    "react/display-name": "off",
+    "no-unused-vars": "warn",
+    "no-multiple-empty-lines": "warn"
   },
   "settings": {
     "react": {

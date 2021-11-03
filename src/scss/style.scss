@@ -1,8 +1,209 @@
-@import "variables";
-@import "hugo";
-@import "desktop_splash";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import "starter";
-@import "main";
-@import "fonts";
-@import "homepage";
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsThin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsExtraLightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsLight.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsLightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsRegular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsMedium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsMediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsSemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsSemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsBoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsBlack.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../static/font/PoppinsBlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CourierPrime';
+  src: url('../../static/font/CourierPrimeRegular.ttf') format('ttf');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CourierPrime';
+  src: url('../../static/font/CourierPrimeItalic.ttf') format('ttf');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CourierPrime';
+  src: url('../../static/font/CourierPrimeBold.ttf') format('ttf');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CourierPrime';
+  src: url('../../static/font/CourierPrimeBoldItalic.ttf') format('ttf');
+  font-weight: 700;
+  font-style: italic;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+}
+
+.pre {
+  border-radius: 6px;
+  margin: 0;
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+
+// docs search result highlighting
+.ais-Highlight-highlighted {
+  @apply not-italic text-black;
+}
+
+.docs-content p, .docs-content ul {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",  Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+/* hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbars {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* hide scrollbar for chrome, safari and opera */
+.hide-scrollbars::-webkit-scrollbar {
+  display: none;
+}
+
+// gatsby-remark-autolink-headers should have an offsetY option to accomplish this,
+// but we couldn't get it working.  This will make sure that when jumping to an anchor, it appears below the header
+:target::before {
+  content: "";
+  display: block;
+  height: 85px; /* fixed header height*/
+  margin: -85px 0 0; /* negative fixed header height */
+}
+
+@media only screen and (max-width:40em) {
+  :target::before {
+    content: "";
+    display: block;
+    height: 170px; /* fixed header height*/
+    margin: -170px 0 0; /* negative fixed header height */
+  }
+}

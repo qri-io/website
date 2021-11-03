@@ -1,80 +1,69 @@
 import React from 'react'
-import { Link } from 'gatsby'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub, faYoutube, faTwitter, faDiscord } from '@fortawesome/free-brands-svg-icons'
-import ExternalLink from './ExternalLink'
+
+import Link from './Link'
+import Icon from './Icon'
+import QriLogo from './QriLogo'
+import { trackGoal } from '../utils/analytics'
 
 const Footer = () => {
-  // the first argument in track() becomes the google analytics 'Action' property after passing through segment
-  // all events are of Action 'Homepage'
-  const fireEvent = (category, label) => {
-    window.analytics.track('Footer', {
-      category,
-      label
-    })
+  const fireAnalyticsEvent = () => {
+    // home-click-footer-link event
+    trackGoal('L6ZTBPVH', 0)
   }
 
   return (
-    <div className='footer flex-shrink-0'>
-      <div className='container'>
-        <div className='row' style={{ minHeight: '200px' }}>
-          <div className='col-12 col-sm-4 col-md-2'>
-            <h5>Download</h5>
+    <div className='bg-qrigray-1000 text-white py-14 px-5 md:px-10 lg:px-20 text-base w-full overflow-hidden flex-shrink-0 z-20'>
+      <div className='flex flex-wrap -mx-10'>
+        <div className='mb-10 px-10 w-full overflow-hidden lg:w-auto flex items-center self-start'>
+          <QriLogo size='lg'/>
+          <div className='text-4xl inline font-black ml-5'>Qri</div>
+        </div>
+        <div className='my-2 px-10 w-full overflow-hidden lg:w-auto flex-grow flex flex-wrap justify-start' >
+          <div className='mr-16 mb-5'>
+            <h5 className='text-qritile-600 font-bold mb-5'>Learn</h5>
             <ul>
-              <li><Link to='/download'>Qri Desktop</Link></li>
-              <li><ExternalLink to='https://github.com/qri-io/qri/releases'>Qri CLI</ExternalLink></li>
+              <li className='text-sm mb-3'><Link onClick={fireAnalyticsEvent} colorClassName='text-white' to='/docs'>Docs</Link></li>
+              <li className='text-sm mb-3'><Link onClick={fireAnalyticsEvent} colorClassName='text-white' to='/docs/tutorials'>Tutorials</Link></li>
+              <li className='text-sm mb-3'><Link onClick={fireAnalyticsEvent} colorClassName='text-white' to='/faq'>FAQs</Link></li>
             </ul>
           </div>
-          <div className='col-12 col-sm-4 col-md-2'>
-            <h5>Learn</h5>
+          <div className='mr-16'>
+            <h5 className='text-qritile-600 font-bold mb-5'>Company</h5>
             <ul>
-              <li><Link to='/docs'>Tutorials</Link></li>
-              <li><Link to='/docs'>Docs</Link></li>
-              <li><Link to='/faq'>FAQs</Link></li>
+              <li className='text-sm mb-3'><Link onClick={fireAnalyticsEvent} colorClassName='text-white' to='/about'>About</Link></li>
+              <li className='text-sm mb-3'><Link onClick={fireAnalyticsEvent} colorClassName='text-white' to='https://medium.com/qri-io'>Blog</Link></li>
+              <li className='text-sm mb-3'><Link onClick={fireAnalyticsEvent} colorClassName='text-white' to='/jobs'>Jobs</Link></li>
+              <li className='text-sm mb-3'><Link onClick={fireAnalyticsEvent} colorClassName='text-white' to='/contact'>Contact</Link></li>
             </ul>
           </div>
-          <div className='col-12 col-sm-4 col-md-2'>
-            <h5>Company</h5>
+          <div className='mr-16'>
+            <h5 className='text-qritile-600 font-bold mb-5'>Explore</h5>
             <ul>
-              <li><Link to='/about'>About</Link></li>
-              <li><ExternalLink to='https://medium.com/qri-io'>Blog</ExternalLink></li>
-              <li><Link to='/jobs'>Jobs</Link></li>
-              <li><Link to='/contact'>Contact</Link></li>
+              <li className='text-sm mb-3'><Link onClick={fireAnalyticsEvent} colorClassName='text-white' to='https://qri.cloud/search'>Dataset Search</Link></li>
+              <li className='text-sm mb-3'><Link onClick={fireAnalyticsEvent} colorClassName='text-white' to='https://qri.cloud'>Qri.cloud</Link></li>
             </ul>
           </div>
-          <div className='col-12 col-sm-4 col-md-2'>
-            <h5>Explore</h5>
+          <div>
+            <h5 className='text-qritile-600 font-bold mb-5'>Install</h5>
             <ul>
-              <li><ExternalLink to='https://qri.cloud'>Dataset Search</ExternalLink></li>
-              <li><ExternalLink to='https://qri.cloud'>Qri.cloud</ExternalLink></li>
-            </ul>
-          </div>
-          <div className='col-12 col-md-4 text-md-right'>
-            <ul className='list-inline social'>
-              <li className='list-inline-item' onClick={ () => { fireEvent('social-link-click', 'github') }}>
-                <ExternalLink to='https://github.com/qri-io'><FontAwesomeIcon icon={faGithub}/></ExternalLink>
-              </li>
-              <li className='list-inline-item' onClick={ () => { fireEvent('social-link-click', 'youtube') }}>
-                <ExternalLink to='https://www.youtube.com/channel/UC7E3_hURgFO2mVCLDwPSyOQ'><FontAwesomeIcon icon={faYoutube}/></ExternalLink>
-              </li>
-              <li className='list-inline-item' onClick={ () => { fireEvent('social-link-click', 'twitter') }}>
-                <ExternalLink to='https://twitter.com/qri_io'><FontAwesomeIcon icon={faTwitter}/></ExternalLink>
-              </li>
-              <li className='list-inline-item' onClick={ () => { fireEvent('social-link-click', 'discord') }}>
-                <ExternalLink to='https://discordapp.com/invite/thkJHKj'><FontAwesomeIcon icon={faDiscord}/></ExternalLink>
-              </li>
+              <li className='text-sm mb-3'><Link onClick={fireAnalyticsEvent} colorClassName='text-white' to='https://github.com/qri-io/qri/releases'>Qri CLI</Link></li>
             </ul>
           </div>
         </div>
-        <div className='row'>
-          <div className='col-12 col-sm-6 sub-footer'>
-            <span className='sub-footer-item'>&copy; 2020 qri, inc.</span>
-          </div>
-          <div className='col-12 col-sm-6 sub-footer text-sm-right'>
-            <ul className='list-inline'>
-              <li className='list-inline-item'><Link to='/legal/tos'>Terms of Service</Link></li>
-              <li className='list-inline-item'><Link to='/legal/privacy-policy'>Privacy Policy</Link></li>
-            </ul>
+        <div className='my-2 px-10 w-full overflow-hidden lg:w-auto flex flex-col'>
+          <div className='flex'>
+            <div className='inline mr-4'>
+              <Link onClick={fireAnalyticsEvent} colorClassName='text-qritile-600' to='https://github.com/qri-io'><Icon icon='github'/></Link>
+            </div>
+            <div className='inline mr-4'>
+              <Link onClick={fireAnalyticsEvent} colorClassName='text-qritile-600' to='https://www.youtube.com/channel/UC7E3_hURgFO2mVCLDwPSyOQ'><Icon icon='youtube'/></Link>
+            </div>
+            <div className='inline mr-4'>
+              <Link onClick={fireAnalyticsEvent} colorClassName='text-qritile-600' to='https://twitter.com/qri_io'><Icon icon='twitter'/></Link>
+            </div>
+            <div className='inline mr-4'>
+              <Link onClick={fireAnalyticsEvent} colorClassName='text-qritile-600' to='https://discordapp.com/invite/thkJHKj'><Icon icon='discord'/></Link>
+            </div>
           </div>
         </div>
       </div>

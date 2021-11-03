@@ -28,13 +28,15 @@ Things such as the site title, navbar links, docs group ordering, etc are all co
 
 Documentation pages can be added by creating markdown files in the `/docs` directory.  Directories in `/docs` become groups, and each documentation article must belong to a group.
 
-### Ordering Groups
+### Docs Article Ordering
 
-Group ordering is config-driven using `config.sidebar.forcedNavOrder`
+Ordering and Grouping of Docs are driven by `docsSections` in `config.js`.  This array includes the full hierarchy used in the docs table of contents (left sidebar).  Entries can either be a path to a markdown file (equivalent to that article's url) or an object with `title`, `path`, `description`, and `items` defining a group.  The sidebar items will be displayed in whatever order the strings or objects appear in the array.
 
-### Ordering Documentation Articles
+Groups need a `path` because we auto-generate an index page for groups, and they are clickable in the sidebar.
 
-Docs articles will list in alphabetical order by default, but can be ordered manually by specifying a `weight` (number) property in the markdown frontmatter.  Lower weight will be given higher priority
+Gatsby will create a page for every markdown file it finds, but only articles included in `docsSections` will show up in the sidebar.
+
+There is a frontmatter item `weight` which used to be used for ordering but is now deprecated
 
 ## Redirects
 

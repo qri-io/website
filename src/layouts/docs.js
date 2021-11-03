@@ -1,85 +1,47 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
-import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
-import styled from '@emotion/styled'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import DocsColumns from '../components/DocsColumns'
+import DocsContent from '../components/DocsContent'
 
-import Head from '../components/Head'
-import DocsColumns from '../components/docs-columns'
-import ExternalLink from '../components/ExternalLink'
+import ApiDocs from '../components/ApiDocs'
+
+import DocsHeader from '../components/DocsHeader'
 // import NextPrevious from '../components/NextPrevious'
 
-const Edit = styled('div')`
-  padding: 1rem 1.5rem;
-  text-align: right;
+const DocsLayout = (props) => {
+  let content = props.children
+  let leftSidebar = true
+  let rightSidebar = true
 
-  a {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1em;
-    text-decoration: none;
-    color: #555;
-    border: 1px solid rgb(211, 220, 228);
-    cursor: pointer;
-    border-radius: 3px;
-    transition: all 0.2s ease-out 0s;
-    text-decoration: none;
-    color: rgb(36, 42, 49);
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgba(116, 129, 141, 0.1) 0px 1px 1px 0px;
-    height: 30px;
-    padding: 3px 16px;
-    &:hover {
-      background-color: rgb(245, 247, 249);
-    }
+  if (props.pageContext.layout === 'docs') {
+    content = <DocsContent {...props} />
   }
-`
 
-export default class MDXRuntimeTest extends Component {
-  render () {
-    const { data } = this.props
-    if (!data) {
-      return null
-    }
-    const {
-      mdx,
-      site: {
-        siteMetadata: { docsLocation }
-      }
-    } = data
+  // special handling for API docs (redoc)
+  if (props.path === '/docs/reference/qri-http-api/json-api-spec') {
+    content = <ApiDocs/>
+    rightSidebar = false
+  }
 
-    // meta tags
-    const metaTitle = mdx.frontmatter.metaTitle
-    const metaDescription = mdx.frontmatter.metaDescription
-    // let canonicalUrl = config.gatsby.siteUrl
-    // canonicalUrl = config.gatsby.pathPrefix !== '/' ? canonicalUrl + config.gatsby.pathPrefix : canonicalUrl
-    // canonicalUrl = canonicalUrl + mdx.fields.slug
+  // special handling for FAQ, a markdown docs page with no sidebar
+  if (props.path === '/docs/faq') {
+    leftSidebar = false
+  }
 
-    return (
-      <DocsColumns {...this.props}>
-        <Head data={{
-          title: metaTitle,
-          description: metaDescription
-        }} />
-        <div className={'titleWrapper'}>
-          <h1 className={'title'}>
-            {mdx.fields.title}
-          </h1>
-          <Edit className={'mobileView'}>
-            <ExternalLink className={'gitBtn'} to={`${docsLocation}/${mdx.parent.relativePath}`}>
-              <FontAwesomeIcon icon={faGithub} className='align-middle' />
-              <span className='gitBtnText align-middle'>Edit on GitHub</span>
-            </ExternalLink>
-          </Edit>
-        </div>
-        <div className={'mainWrapper'}>
-          <MDXRenderer>{mdx.body}</MDXRenderer>
-        </div>
+  // don't show right sidebar on docs section landing pages
+  if (props.pageContext.sectionInfo) {
+    rightSidebar = false
+  }
+
+  return (
+    <>
+      <DocsHeader {...props} />
+      <DocsColumns {...props} leftSidebar={leftSidebar} rightSidebar={rightSidebar}>
+        {content}
       </DocsColumns>
-    )
-  }
+    </>
+  )
 }
 
 export const pageQuery = graphql`
@@ -108,15 +70,7 @@ export const pageQuery = graphql`
         metaDescription
       }
     }
-    allMdx {
-      edges {
-        node {
-          fields {
-            slug
-            title
-          }
-        }
-      }
-    }
   }
 `
+
+export default DocsLayout

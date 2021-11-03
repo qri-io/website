@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
+import SearchModal from '../components/search/SearchModal'
 
 import DocsLayout from './docs'
+import DocsLandingPageLayout from './DocsLandingPageLayout'
 import StandardLayout from './standard'
 import DataStoryLayout from './data-story'
 import Head from '../components/Head'
-import Header from '../components/Header'
 
-import 'bootstrap/dist/css/bootstrap.css'
 import '../../static/css/highlight.default.min.css'
 import '../scss/style.scss'
 
@@ -15,7 +15,7 @@ import '../scss/style.scss'
 // docs pages have context.layout === 'docs' and will use the docs layout with sidebars
 
 const IndexLayout = (props) => {
-  const { children, location, pageContext } = props
+  const { children, location } = props
 
   // data stories are special and need a fixed header
   if (location.pathname.match(/data-stories/)) {
@@ -24,12 +24,30 @@ const IndexLayout = (props) => {
     )
   }
 
-  const isDocs = pageContext.layout === 'docs'
-  let mainContent = <StandardLayout {...props}>{children}</StandardLayout>
-
-  if (isDocs) {
-    mainContent = <DocsLayout {...props}>{children}</DocsLayout>
+  let style = { background: 'url("/img/new-docs/dot.svg")' }
+  // dots background pattern is the default, don't show for legal pages
+  if (location.pathname.includes('/legal')) {
+    style = {}
   }
+
+  let mainContent = <StandardLayout style={style} {...props}>{children}</StandardLayout>
+
+  // documentation layout
+  const isDocs = location.pathname.match(/docs/)
+  if (isDocs) {
+    mainContent = <DocsLayout onSearchClick={() => { setShowSearch(true) }} {...props}>{children}</DocsLayout>
+  }
+
+  // special handling for docs landing page
+  if (location.pathname.match(/\/docs\/?$/)) {
+    mainContent = (
+      <DocsLandingPageLayout onSearchClick={() => { setShowSearch(true) }} {...props}>
+        {children}
+      </DocsLandingPageLayout>
+    )
+  }
+
+  const [showSearch, setShowSearch] = useState(false)
 
   return (
     <div className='main-container'>
@@ -40,7 +58,7 @@ const IndexLayout = (props) => {
         imageAlt: 'The Qri Logo',
         url: location.href
       }}/>
-      <Header location={location} showSidebar={isDocs} />
+      {showSearch && <SearchModal onClose={() => { setShowSearch(false) }} />}
       <div className='main-content'>
         {mainContent}
       </div>

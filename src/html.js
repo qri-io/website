@@ -14,18 +14,12 @@ export default class HTML extends React.Component {
           />
           <noscript key="noscript"></noscript>
           {this.props.headComponents}
-          <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
-          <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
-          <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
-          <link rel='manifest' href='/site.webmanifest' />
-          <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
-          <link rel='shortcut icon' href='/favicon.ico' />
-          <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
-          <meta name='msapplication-TileColor' content='#da532c' />
-          <meta name='msapplication-config' content='/browserconfig.xml' />
-          <meta name='theme-color' content='#ffffff' />
+          <link rel="icon" href="favicon.svg"/>
+          <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+          <link rel="manifest" href="manifest.json"/>
+          <meta name="theme-color" content="#ffffff"/>
         </head>
-        <body {...this.props.bodyAttributes}>
+        <body className='overflow-x-hidden'{...this.props.bodyAttributes}>
           {this.props.preBodyComponents}
           <div
             key={'body'}
@@ -48,6 +42,7 @@ export default class HTML extends React.Component {
             `
             }}
           />
+          <script src="https://cdn.usefathom.com/script.js" data-site="WPTDNOAK" data-included-domains="new-docs--qri-website.netlify.app" defer></script>
         </body>
       </html>
     )

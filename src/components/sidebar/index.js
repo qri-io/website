@@ -1,99 +1,23 @@
-import React from 'react'
-import Tree from './tree'
+import React, { useState, useEffect } from 'react'
 import { StaticQuery, Link, graphql } from 'gatsby'
-import styled from '@emotion/styled'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome } from '@fortawesome/free-solid-svg-icons'
+import classNames from 'classnames'
 
-// eslint-disable-next-line no-unused-vars
-const ListItem = styled(({ className, active, level, ...props }) => {
-  return (
-    <li className={className}>
-      <a href={props.to} {...props} />
-    </li>
-  )
-})`
-  list-style: none;
+import config from '../../../config.js'
 
-  a {
-    color: #5C6975;
-    text-decoration: none;
-    font-weight: ${({ level }) => (level === 0 ? 700 : 400)};
-    padding: 0.45rem 0 0.45rem ${props => 2 + (props.level || 0) * 1}rem;
-    display: block;
-    position: relative;
+import Tree from './tree'
+import Icon from '../Icon'
 
-    &:hover {
-      color: rgb(116, 76, 188) !important;
-    }
-
-    ${props =>
-      props.active &&
-      `
-      color: #663399;
-      border-color: rgb(230,236,241) !important;
-      border-style: solid none solid solid;
-      border-width: 1px 0px 1px 1px;
-      background-color: #fff;
-    `} // external link icon
-    svg {
-      float: right;
-      margin-right: 1rem;
-    }
-  }
-`
-
-const Sidebar = styled('aside')`
-  width: 100%;
-  top: 0;
-  padding-right: 0;
-  background-color: #FFF;
-  padding-top: 15px;
-
-  @media only screen and (max-width: 1023px) {
-    width: 100%;
-    /* position: relative; */
-    height: 100vh;
-  }
-  @media (min-width: 767px) and (max-width:1023px)
-  {
-    padding-left: 0;
-  }
-  @media only screen and (max-width: 767px) {
-    padding-left: 0px;
-    background-color: #F0F0F0;
-    background: #F0F0F0;
-    height: auto;
-  }
-`
-
-// const Divider = styled(props => (
-//   <li {...props}>
-//     <hr />
-//   </li>
-// ))`
-//   list-style: none;
-//   padding: 0.5rem 0;
-//
-//   hr {
-//     margin: 0;
-//     padding: 0;
-//     border: 0;
-//     border-bottom: 1px solid #ede7f3;
-//   }
-// `
-
-const SidebarLayout = ({ location }) => (
+const Sidebar = ({ location, mobile = false }) => (
   <StaticQuery
     query={graphql`
       query {
-        allMdx {
+        allMdx(filter: {fileAbsolutePath: {regex: "\\/docs/"}}) {
           edges {
             node {
               fields {
                 slug
                 title
-                weight
+                description
               }
             }
           }
@@ -101,38 +25,53 @@ const SidebarLayout = ({ location }) => (
       }
     `}
     render={({ allMdx }) => {
-      return (
-        <Sidebar>
+      const edges = allMdx.edges
+      let title = 'DOCS'
+      let colorClass = 'text-gray'
 
-          <ul className={'sideBarUL'}>
-            <li className='hideFrontLine firstLevel item'>
-              <Link to='/docs'>
-                <FontAwesomeIcon icon={faHome} style={{
-                  position: 'relative',
-                  top: '-2px'
-                }}/> &nbsp;
-                DOCS HOME
-              </Link>
-            </li>
-            <Tree
-              edges={allMdx.edges}
-            />
-            {/* <Divider /> */}
-            {/* config.sidebar.links.map((link, key) => {
-              if (link.link !== '' && link.text !== '') {
-                return (
-                  <ListItem key={key} to={link.link}>
-                    {link.text}
-                    <ExternalLink size={14} />
-                  </ListItem>
-                );
-              }
-            }) */}
-          </ul>
-        </Sidebar>
-      )
+      const findMatchingDocsSection = (pathname) => {
+        return config.docsSections.find(d => pathname.includes(d.path))
+      }
+
+      const [currentSection, setCurrentSection] = useState(findMatchingDocsSection(location.pathname))
+
+      useEffect(() => {
+        setCurrentSection(findMatchingDocsSection(location.pathname))
+      }, [location.pathname])
+
+      // filter edges, set title, color based on current section
+      if (currentSection) {
+        title = currentSection.title.toUpperCase()
+        colorClass = currentSection.colorClass
+
+        return (
+          <div className={classNames('hide-scrollbars bg-qrigray-100 py-5 md:py-10 px-5 md:pr-0 md:pl-10  text-qrigray-600 border-r qrigray-200 sticky overflow-y-scroll', {
+            'text-sm': !mobile,
+            'text-base': mobile
+          })} style={{
+            width: !mobile && 250,
+            top: 75,
+            height: 'calc(100vh - 75px)'
+          }}>
+            <ul>
+              <li className='mb-4 tracking-wide'>
+                <Link to={currentSection.path} className='flex items-center font-bold text-black' style={{ fontSize: 13 }}>
+                  <Icon icon='docsRing' size='2xs' className={classNames('mr-2', colorClass)}/>
+                  {title}
+                </Link>
+              </li>
+              <Tree
+                items={currentSection.items}
+                edges={edges}
+              />
+            </ul>
+          </div>
+        )
+      }
+
+      return null
     }}
   />
 )
 
-export default SidebarLayout
+export default Sidebar

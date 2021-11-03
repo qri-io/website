@@ -3,8 +3,6 @@ metaTitle: "Qri Terms of Use"
 metaDescription: "Terms of Use for software and services provided by Qri, Inc."
 ---
 
-# QRI TERMS OF USE
-
 Qri, Inc. (“Qri,” “we,” “us,” or “our”) welcomes you.  We provide you access to our free to use, peer-to-peer network, that allows users to share and collaborate on datasets (the “Network”) via our website at qri.io (the “Website”), subject to the following terms of use (the “Terms of Use”), which may be updated by us from time to time without notice to you.
 
 BY ACCESSING THE WEBSITE AND USING THE NETWORK, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE LEGALLY BOUND BY THESE TERMS OF USE AND OUR [PRIVACY POLICY](/legal/privacy-policy), WHICH IS HEREBY INCORPORATED BY REFERENCE (COLLECTIVELY, THIS “AGREEMENT”).  IF YOU DO NOT AGREE TO ANY TERMS OF THE AGREEMENT, PLEASE DO NOT USE THE NETWORK OR THE WEBSITE.
