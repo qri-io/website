@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import SearchModal from '../components/search/SearchModal'
 
-import DocsLayout from './docs'
+import DocsContentLayout from './DocsContentLayout'
 import DocsLandingPageLayout from './DocsLandingPageLayout'
-import StandardLayout from './standard'
-import DataStoryLayout from './data-story'
+import StandardLayout from './StandardLayout'
 import Head from '../components/Head'
 
 import '../../static/css/highlight.default.min.css'
@@ -15,14 +14,7 @@ import '../scss/style.scss'
 // docs pages have context.layout === 'docs' and will use the docs layout with sidebars
 
 const IndexLayout = (props) => {
-  const { children, location } = props
-
-  // data stories are special and need a fixed header
-  if (location.pathname.match(/data-stories/)) {
-    return (
-      <DataStoryLayout {...props}>{children}</DataStoryLayout>
-    )
-  }
+  const { children, location, pageContext } = props
 
   let style = { background: 'url("/img/new-docs/dot.svg")' }
   // dots background pattern is the default, don't show for legal pages
@@ -32,14 +24,14 @@ const IndexLayout = (props) => {
 
   let mainContent = <StandardLayout style={style} {...props}>{children}</StandardLayout>
 
-  // documentation layout
-  const isDocs = location.pathname.match(/docs/)
-  if (isDocs) {
-    mainContent = <DocsLayout onSearchClick={() => { setShowSearch(true) }} {...props}>{children}</DocsLayout>
+  // documentation article layout, fixed docs header
+  // used for both docs section pages and docs content
+  if (pageContext.layout === 'docs' || pageContext.layout === 'docsSectionLandingPage') {
+    mainContent = <DocsContentLayout onSearchClick={() => { setShowSearch(true) }} {...props}>{children}</DocsContentLayout>
   }
 
-  // special handling for docs landing page
-  if (location.pathname.match(/\/docs\/?$/)) {
+  // /docs  gets its own special layout that uses DocsHeader but is a long scroller
+  if (location.pathname.match(/^\/docs\/?$/)) {
     mainContent = (
       <DocsLandingPageLayout onSearchClick={() => { setShowSearch(true) }} {...props}>
         {children}

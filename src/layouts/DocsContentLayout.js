@@ -1,5 +1,4 @@
 import React from 'react'
-import { graphql } from 'gatsby'
 
 import DocsColumns from '../components/DocsColumns'
 import DocsContent from '../components/DocsContent'
@@ -25,7 +24,7 @@ const DocsLayout = (props) => {
   }
 
   // special handling for FAQ, a markdown docs page with no sidebar
-  if (props.path === '/docs/faq') {
+  if (props.pageContext.faqPage) {
     leftSidebar = false
   }
 
@@ -35,42 +34,13 @@ const DocsLayout = (props) => {
   }
 
   return (
-    <>
+    <div className='docs-content-layout'>
       <DocsHeader {...props} />
       <DocsColumns {...props} leftSidebar={leftSidebar} rightSidebar={rightSidebar}>
         {content}
       </DocsColumns>
-    </>
+    </div>
   )
 }
-
-export const pageQuery = graphql`
-  query($id: String!) {
-    site {
-      siteMetadata {
-        title
-        docsLocation
-      }
-    }
-    mdx(fields: { id: { eq: $id } }) {
-      fields {
-        id
-        title
-        slug
-      }
-      body
-      tableOfContents
-      parent {
-        ... on File {
-          relativePath
-        }
-      }
-      frontmatter {
-        metaTitle
-        metaDescription
-      }
-    }
-  }
-`
 
 export default DocsLayout
