@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react'
+import numeral from 'numeral'
 
 import Button from '../components/Button'
 import Link from '../components/Link'
@@ -7,6 +7,12 @@ import Link from '../components/Link'
 import SearchBox from '../components/SearchBox'
 import DatasetCard from '../components/DatasetCard'
 import { trackGoal } from '../utils/analytics'
+
+const hardCodedMetrics = {
+  datasets: 3447,
+  versions: 5120,
+  size: 49200000000
+}
 
 const IndexPage = () => {
   const features = [
@@ -64,15 +70,15 @@ const IndexPage = () => {
               </div>
               <div className='flex mb-10 md:mb-0'>
                 <div className='text-center px-3 mr-6'>
-                  <div className='text-qritile-600 font-bold block text-xl mb-1.5'>3,217</div>
+                  <div className='text-qritile-600 font-bold block text-xl mb-1.5'>{numeral(hardCodedMetrics.datasets).format('0,0')}</div>
                   <div className='text-sm block font-light'>Datasets</div>
                 </div>
                 <div className='text-center px-3 mr-6'>
-                  <div className='text-qritile-600 font-bold block text-xl mb-1.5'>10,203</div>
+                  <div className='text-qritile-600 font-bold block text-xl mb-1.5'>{numeral(hardCodedMetrics.versions).format('0,0')}</div>
                   <div className='text-sm block font-light'>Versions</div>
                 </div>
                 <div className='text-center px-3 mr-6'>
-                  <div className='text-qritile-600 font-bold block text-xl mb-1.5'>100Gb</div>
+                  <div className='text-qritile-600 font-bold block text-xl mb-1.5'>{numeral(hardCodedMetrics.size).format('0.0b')}</div>
                   <div className='text-sm block font-light'>Public Data</div>
                 </div>
               </div>
