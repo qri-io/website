@@ -21,12 +21,7 @@ const plugins = [
   'gatsby-plugin-netlify',
   'gatsby-plugin-sitemap',
   'gatsby-plugin-sharp',
-  {
-    resolve: 'gatsby-plugin-layout',
-    options: {
-      component: require.resolve('./src/layouts/index.js')
-    }
-  },
+  'gatsby-plugin-layout',
   'gatsby-plugin-emotion',
   'gatsby-plugin-remove-trailing-slashes',
   'gatsby-plugin-react-helmet',
@@ -48,7 +43,7 @@ const plugins = [
     resolve: 'gatsby-plugin-mdx',
     options: {
       defaultLayouts: {
-        pages: require.resolve('./src/layouts/markdown-page.js')
+        pages: require.resolve('./src/components/markdown-page.js')
       },
       gatsbyRemarkPlugins: [
         {
@@ -85,24 +80,24 @@ const plugins = [
     options: {
       useAutoGen: true
     }
+  },
+  {
+    resolve: 'gatsby-plugin-manifest',
+    options: {
+      name: 'Qri.io',
+      short_name: 'Qri.io',
+      icons: [{
+        src: 'google-touch-icon.png',
+        sizes: '512x512'
+      }],
+      background_color: '#ffffff',
+      theme_color: '#ffffff',
+      display: 'fullscreen'
+    }
+
   }
 ]
 
-// check and add pwa functionality
-if (config.pwa && config.pwa.enabled && config.pwa.manifest) {
-  plugins.push({
-    resolve: 'gatsby-plugin-manifest',
-    options: { ...config.pwa.manifest }
-  })
-  plugins.push({
-    resolve: 'gatsby-plugin-offline',
-    options: {
-      appendScript: require.resolve('./src/custom-sw-code.js')
-    }
-  })
-} else {
-  plugins.push('gatsby-plugin-remove-serviceworker')
-}
 module.exports = {
   pathPrefix: config.gatsby.pathPrefix,
   siteMetadata: {

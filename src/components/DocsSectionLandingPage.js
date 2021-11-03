@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import classNames from 'classnames'
 
 import DocsContentWide from './DocsContentWide'
@@ -6,7 +7,21 @@ import { calculateTreeData } from './sidebar/tree'
 import DocsCards from './DocsCards'
 import BreadCrumbs from '../components/BreadCrumbs'
 
-const DocsSectionLandingPage = ({ docsSectionInfo, allMdx, colorClass, crumbs }) => {
+const DocsSectionLandingPage = (props) => {
+  const { data, pageContext } = props
+  const { allMdx } = data
+
+  const { sectionInfo, colorClass, breadcrumb } = pageContext
+  const { crumbs } = breadcrumb
+  // traverse config.docsSections to locate the match
+  return (
+    <DocsSectionPage docsSectionInfo={sectionInfo} allMdx={allMdx} colorClass={colorClass} crumbs={crumbs} />
+  )
+}
+
+export default DocsSectionLandingPage
+
+const DocsSectionPage = ({ docsSectionInfo, allMdx, colorClass, crumbs }) => {
   const tree = calculateTreeData(docsSectionInfo.items, allMdx.edges)
 
   const topLevelItems = tree.filter(d => !d.items)
@@ -33,4 +48,19 @@ const DocsSectionLandingPage = ({ docsSectionInfo, allMdx, colorClass, crumbs })
   )
 }
 
-export default DocsSectionLandingPage
+// pagequery to get data for this section
+export const pageQuery = graphql`
+  query {
+    allMdx(filter: {fileAbsolutePath: {regex: "\\/docs/"}}) {
+      edges {
+        node {
+          fields {
+            slug
+            title
+            description
+          }
+        }
+      }
+    }
+  }
+`

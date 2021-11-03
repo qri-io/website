@@ -14,9 +14,8 @@ export default class HTML extends React.Component {
           />
           <noscript key="noscript"></noscript>
           {this.props.headComponents}
-          <link rel="icon" href="favicon.svg"/>
-          <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
-          <link rel="manifest" href="manifest.json"/>
+          <link rel="icon" href="/favicon.svg"/>
+          <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
           <meta name="theme-color" content="#ffffff"/>
         </head>
         <body className='overflow-x-hidden'{...this.props.bodyAttributes}>
@@ -42,7 +41,7 @@ export default class HTML extends React.Component {
             `
             }}
           />
-          <script src="https://cdn.usefathom.com/script.js" data-site="WPTDNOAK" data-included-domains="new-docs--qri-website.netlify.app" defer></script>
+          <script src="https://cdn.usefathom.com/script.js" data-site="WPTDNOAK" data-included-domains="qri.io" defer></script>
         </body>
       </html>
     )

@@ -1,6 +1,7 @@
 import React from 'react'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import { MDXProvider } from '@mdx-js/react'
+import { graphql } from 'gatsby'
 
 import mdxComponents from './mdxComponents'
 import DocsFooter from './DocsFooter'
@@ -51,5 +52,34 @@ const DocsContent = (props) => {
     </MDXProvider>
   )
 }
+
+export const pageQuery = graphql`
+  query($id: String!) {
+    site {
+      siteMetadata {
+        title
+        docsLocation
+      }
+    }
+    mdx(fields: { id: { eq: $id } }) {
+      fields {
+        id
+        title
+        slug
+      }
+      body
+      tableOfContents
+      parent {
+        ... on File {
+          relativePath
+        }
+      }
+      frontmatter {
+        metaTitle
+        metaDescription
+      }
+    }
+  }
+`
 
 export default DocsContent

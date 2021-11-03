@@ -74,10 +74,11 @@ exports.createPages = ({ graphql, actions }) => {
         result.data.allMdx.edges.forEach(({ node }) => {
           createPage({
             path: node.fields.slug ? node.fields.slug : '/',
-            component: path.resolve('./src/layouts/docs.js'),
+            component: path.resolve('./src/components/DocsContent.js'),
             context: {
               id: node.fields.id,
-              layout: 'docs'
+              layout: 'docs',
+              faqPage: node.fields.slug === '/docs/faq'
             }
           })
         })
@@ -93,10 +94,11 @@ exports.createPages = ({ graphql, actions }) => {
             if (d.items) {
               createPage({
                 path: d.path,
-                component: path.resolve('./src/layouts/DocsSectionLandingPageLayout.js'),
+                component: path.resolve('./src/components/DocsSectionLandingPage.js'),
                 context: {
                   sectionInfo: d,
-                  colorClass
+                  colorClass,
+                  layout: 'docsSectionLandingPage'
                 }
               })
 
