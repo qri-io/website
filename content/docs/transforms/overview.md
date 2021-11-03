@@ -6,7 +6,7 @@ weight: 1
 
 import InfoBlock from '../../../src/components/InfoBlock.js'
 
-The __transform__ component binds code to a dataset. A transform _script_ is executed whenever a dataset version is saved with a transform specified, before persisting the dataset itself. Transform scripts by default only execute once, "on the way in". The script itself is embedded within the dataset version it's saved with, and is versioned along with all of the other [components](http://localhost:8000/docs/dataset-components/overview) of the dataset.
+The __transform__ component binds code to a dataset. A transform _script_ is executed whenever a dataset version is saved with a transform specified, before persisting the dataset itself. Transform scripts by default only execute once, "on the way in". The script itself is embedded within the dataset version it's saved with, and is versioned along with all of the other [components](./dataset-components/overview) of the dataset.
 
 <InfoBlock>
   This documentation is for qri CLI (command line) only. Composing Transform scripts on Desktop is a work in progress.
@@ -40,7 +40,7 @@ def transform(ds, ctx):
   ds.set_meta("title", "My Great Dataset")
 ```
 
-There are many other methods available for mutating a dataset (most transforms will call `ds.set_body` to update the body). For more details check the [starlark dataset package docs](./dataset) or the [transform examples docs page](http://localhost:8000/docs/transforms/examples).
+There are many other methods available for mutating a dataset (most transforms will call `ds.set_body` to update the body). For more details check the [starlark dataset package docs](./dataset) or the [transform examples docs page](./transforms/examples).
 
 ## Context Argument `ctx`
 
