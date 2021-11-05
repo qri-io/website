@@ -1,25 +1,15 @@
 import React from 'react'
 
 import DocsColumns from '../components/DocsColumns'
-import DocsContent from '../components/DocsContent'
-
-import ApiDocs from '../components/ApiDocs'
-
 import DocsHeader from '../components/DocsHeader'
-// import NextPrevious from '../components/NextPrevious'
 
 const DocsLayout = (props) => {
-  let content = props.children
+  // let content = props.children
   let leftSidebar = true
   let rightSidebar = true
 
-  if (props.pageContext.layout === 'docs') {
-    content = <DocsContent {...props} />
-  }
-
-  // special handling for API docs (redoc)
-  if (props.path === '/docs/reference/qri-http-api/json-api-spec') {
-    content = <ApiDocs/>
+  // don't show the right sidebar if this is the api docs page
+  if (props.pageContext.apiDocsPage) {
     rightSidebar = false
   }
 
@@ -37,7 +27,7 @@ const DocsLayout = (props) => {
     <div className='docs-content-layout'>
       <DocsHeader {...props} />
       <DocsColumns {...props} leftSidebar={leftSidebar} rightSidebar={rightSidebar}>
-        {content}
+        {props.children}
       </DocsColumns>
     </div>
   )
