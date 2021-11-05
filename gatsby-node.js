@@ -72,6 +72,18 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create docs pages
         result.data.allMdx.edges.forEach(({ node }) => {
+          // special handling for api docs page
+          if (node.fields.slug === '/docs/reference/qri-http-api/json-api-spec') {
+            createPage({
+              path: node.fields.slug,
+              component: path.resolve('./src/components/ApiDocs.js'),
+              context: {
+                layout: 'docs',
+                apiDocsPage: true
+              }
+            })
+          }
+
           createPage({
             path: node.fields.slug ? node.fields.slug : '/',
             component: path.resolve('./src/components/DocsContent.js'),
