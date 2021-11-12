@@ -32,7 +32,9 @@ const DocsContent = (props) => {
           description: metaDescription
         }} />
         <div className='px-5 py-8 md:py-14 md:px-16 text-qrigray-600 font-light flex-grow w-full max-w-3xl mx-auto'>
-          <BreadCrumbs crumbs={crumbs} />
+          <div className='mb-8'>
+            <BreadCrumbs crumbs={crumbs} />
+          </div>
           <div className={''}>
             <h1 className={'text-qritile-600 font-bold text-2xl mb-6'}>
               {mdx.fields.title}

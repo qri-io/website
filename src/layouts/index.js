@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import SearchModal from '../components/search/SearchModal'
 
 import DocsContentLayout from './DocsContentLayout'
+import SnippetsLayout from './SnippetsLayout'
 import DocsLandingPageLayout from './DocsLandingPageLayout'
 import StandardLayout from './StandardLayout'
 import Head from '../components/Head'
@@ -37,6 +38,11 @@ const IndexLayout = (props) => {
         {children}
       </DocsLandingPageLayout>
     )
+  }
+
+  // transform snippets gets the docs header but with bottom border
+  if (location.pathname.includes('/transform-snippets')) {
+    mainContent = <SnippetsLayout onSearchClick={() => { setShowSearch(true) }} {...props}>{children}</SnippetsLayout>
   }
 
   const [showSearch, setShowSearch] = useState(false)

@@ -31,7 +31,9 @@ const DocsSectionPage = ({ docsSectionInfo, allMdx, colorClass, crumbs }) => {
     <DocsContentWide>
       { docsSectionInfo && (
         <div className='text-qrigray-600 font-light'>
-          <BreadCrumbs crumbs={crumbs} />
+          <div className='mb-8'>
+            <BreadCrumbs crumbs={crumbs} />
+          </div>
           <div className={classNames('font-black text-3xl mb-6 tracking-wide', colorClass)}>{docsSectionInfo.title}</div>
           <div className={classNames('mb-4 text-qrigray-700')}>{docsSectionInfo.description}</div>
           {

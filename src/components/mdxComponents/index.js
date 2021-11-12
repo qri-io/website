@@ -1,6 +1,8 @@
 import React from 'react'
-import CodeBlock from './codeBlock'
-import AnchorTag from './anchor'
+import classNames from 'classnames'
+
+import CodeBlock from './CodeBlock'
+import AnchorTag from './AnchorTag'
 
 function createCustomHeading (tag) {
   let className = ''
@@ -46,7 +48,7 @@ export default {
   h4: createCustomHeading('h4'),
   h5: createCustomHeading('h5'),
   h6: createCustomHeading('h6'),
-  code: CodeBlock,
+  code: props => <CodeBlock {...props} containerClassName='mb-4 rounded-md' className={classNames('px-3 py-2', props.className)} />,
   inlineCode: props => <code className='rounded px-1.5 py-0.5 bg-qrigray-100 text-sm' {...props} />,
   li: props => <li className='mb-3' {...props} />,
   p: props => <p className='mb-6 leading-6 last:mb-0' {...props} />,

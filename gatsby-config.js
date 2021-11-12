@@ -95,7 +95,8 @@ const plugins = [
       display: 'fullscreen'
     }
 
-  }
+  },
+  'gatsby-plugin-use-query-params'
 ]
 
 module.exports = {
