@@ -59,7 +59,9 @@ const DocsPage = ({ onSearchClick, location }) => (
       }} />
       <div className='flex-grow flex-shrink-0'>
         <img src='/img/new-docs/yellow-aura.svg' className='hidden sm:block absolute z-0 w-full'/>
-        <img src='/img/new-docs/yellow-aura-mobile.svg' className='w-full block sm:hidden absolute z-0'/>
+        <img src='/img/new-docs/yellow-aura-mobile.svg' className='block sm:hidden absolute z-0' style={{
+          transform: 'scale(3)'
+        }}/>
         <DocsHeader onSearchClick={onSearchClick} location={location} transparent sticky={false} border={false} />
         <div className='z-10 relative'>
           <div className='py-24 max-w-screen-lg mx-auto'>
