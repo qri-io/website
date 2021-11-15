@@ -33,7 +33,7 @@ const SnippetEditor = ({ snippet }) => {
         navigate(`/docs/transform-snippets/${id}`)
       }
     } else {
-      const res = createSnippet(body, token)
+      const res = await createSnippet(body, token)
 
       if (res.meta?.code === 200) {
         navigate(`/docs/transform-snippets/${id}`)

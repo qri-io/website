@@ -193,7 +193,8 @@ module.exports = {
       cursor: ['hover'],
       borderWidth: ['last'],
       margin: ['last'],
-      padding: ['first', 'last']
+      padding: ['first', 'last'],
+      visibility: ['group-hover']
     }
   },
   plugins: [

@@ -1,9 +1,12 @@
-import * as React from 'react'
+import React, { useState, useRef } from 'react'
 import classNames from 'classnames'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import prismTheme from 'prism-react-renderer/themes/github'
 import Loadable from 'react-loadable'
+import ReactTooltip from 'react-tooltip'
+
 import LoadingProvider from './loading'
+import Icon from '../Icon'
 
 // override background and default text color
 prismTheme.plain = {
@@ -30,9 +33,29 @@ const LoadableComponent = Loadable({
 })
 
 /* eslint-disable react/jsx-key */
-const CodeBlock = ({ children: exampleCode, className, containerClassName, ...props }) => {
+const CodeBlock = ({
+  children: exampleCode,
+  className,
+  containerClassName,
+  id = '',
+  copyable = false,
+  ...props
+}) => {
   const match = className.match(/language-(\w*)/)
   const language = match ? match[1] : 'text'
+
+  const tooltipEl = useRef(null)
+  const [copySuccess, setCopySuccess] = useState(false)
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text)
+    setCopySuccess(true)
+    ReactTooltip.show(tooltipEl.current)
+    setTimeout(() => {
+      setCopySuccess(false)
+      ReactTooltip.hide(tooltipEl.current)
+    }, 2000)
+  }
 
   let title = ''
   if (className?.includes('title=')) {
@@ -45,7 +68,7 @@ const CodeBlock = ({ children: exampleCode, className, containerClassName, ...pr
     )
   } else {
     return (
-      <div className={classNames(containerClassName, 'bg-qrigray-100')}>
+      <div className={classNames(containerClassName, 'bg-qrigray-100 group relative')}>
         {title && (
           <div className='border-b px-4 py-2 text-sm'>
             {title}
@@ -110,6 +133,33 @@ const CodeBlock = ({ children: exampleCode, className, containerClassName, ...pr
             )}
           </Highlight>
         </div>
+        {
+          copyable && (
+            <>
+              <div
+                className={classNames('group-hover:visible absolute bottom-4 right-4 rounded bg-white p-1.5 text-center text-black hover:cursor-pointer', {
+                  invisible: !copySuccess
+                })}
+                style={{ height: 34, width: 34 }}
+                onClick={() => { copyToClipboard(exampleCode) }}
+                data-tip='Copied!'
+                data-for={id}
+                data-event='noevent'
+                ref={tooltipEl}
+              >
+                {!copySuccess && <Icon icon='copy' size='sm' />}
+                {copySuccess && <Icon icon='check' size='sm' className='text-green-600' />}
+              </div>
+              <ReactTooltip
+                id={id}
+                effect='solid'
+                place='bottom'
+                padding='2px'
+                className='codeblock-tooltip'
+              />
+            </>
+          )
+        }
       </div>
     )
   }
