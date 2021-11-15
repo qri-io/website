@@ -144,15 +144,12 @@ const docsSections = [
         ]
       }
     ]
+  },
+  {
+    title: 'Transform Snippets',
+    path: '/docs/transform-snippets',
+    colorClass: 'text-qrinavy-700'
   }
-  // {
-  //   id: 'transform-snippets',
-  //   text: 'Transform Snippets',
-  //   link: '/docs/transform-snippets',
-  //   subtitle: 'Automate your Datasets',
-  //   description: 'These snippets of Starlark Code can help you learn the syntax and quickly use common patterns in your Qri workflows',
-  //   colorClass: 'text-qrinavy-300'
-  // }
 ]
 
 const processSection = ({ title, path, items }) => {

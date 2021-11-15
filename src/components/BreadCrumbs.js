@@ -9,7 +9,7 @@ const BreadCrumbs = ({ crumbs: rawCrumbs }) => {
   const crumbs = processCrumbs(rawCrumbs)
 
   return (
-    <div className='text-sm flex items-center mb-8'>
+    <div className='text-sm flex items-center'>
       {crumbs.map((d, i) => {
         if ((i > 0) && (i < crumbs.length - 1)) {
           return (

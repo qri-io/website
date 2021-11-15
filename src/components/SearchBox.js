@@ -12,7 +12,7 @@ const SearchBox = ({
   onChange,
   onSubmit,
   placeholder = 'Search',
-  value,
+  value = '',
   size = 'md',
   dark = false,
   shadow = false,
@@ -20,14 +20,14 @@ const SearchBox = ({
   transparent = false,
   disabled = false
 }) => {
-  const [stateValue, setStateValue] = React.useState('')
+  const [stateValue, setStateValue] = React.useState(value)
   const [debouncedValue] = useDebounce(stateValue, DEBOUNCE_TIMER)
 
   React.useEffect(() => {
     if (onChange) {
       onChange(stateValue)
     }
-  }, [debouncedValue, onChange, stateValue])
+  }, [debouncedValue])
 
   React.useEffect(() => {
     setStateValue(value)
@@ -60,7 +60,7 @@ const SearchBox = ({
       }}
     >
       <input
-        className={classNames('focus:ring-transparent border-0 bg-transparent block rounded-lg w-full placeholder-opacity-50 p-0', {
+        className={classNames('focus:ring-transparent border-0 bg-transparent block rounded-lg w-full p-0', {
           'placeholder-black': dark,
           'placeholder-qrigray-300': !dark,
           'text-sm': size === 'md',
