@@ -16,7 +16,11 @@ const SnippetEditor = ({ snippet }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const token = localStorage.getItem('snippet-token')
+    let token
+    if (typeof window !== 'undefined') {
+      token = localStorage.getItem('snippet-token')
+    }
+
     const id = e.target.elements.id.value
 
     const body = {
