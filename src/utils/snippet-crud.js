@@ -1,6 +1,9 @@
 
 const BASE_URL = 'https://rosebud-api.qri.cloud'
-const token = localStorage.getItem('snippet-token')
+let token
+if (typeof window !== 'undefined') {
+  token = localStorage.getItem('snippet-token')
+}
 
 // create
 export const createSnippet = async (body) => {

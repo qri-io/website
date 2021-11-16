@@ -13,7 +13,10 @@ import { fetchSnippet, deleteSnippet } from '../../../utils/snippet-crud'
 const SnippetView = ({ id }) => {
   const [snippet, setSnippet] = useState()
 
-  const showEdit = localStorage.getItem('snippet-token')
+  let showEdit = false
+  if (typeof window !== 'undefined') {
+    showEdit = !!localStorage.getItem('snippet-token')
+  }
 
   useEffect(() => {
     async function fetchData (id) {
@@ -24,8 +27,10 @@ const SnippetView = ({ id }) => {
   }, [])
 
   const handleDelete = async () => {
-    const token = localStorage.getItem('snippet-token')
-
+    let token
+    if (typeof window !== 'undefined') {
+      token = localStorage.getItem('snippet-token')
+    }
     const res = await deleteSnippet(id, token)
 
     if (res.meta?.code === 200) {

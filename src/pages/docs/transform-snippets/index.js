@@ -15,7 +15,10 @@ const SnippetsPage = () => {
   const [snippets, setSnippets] = useState([])
   const [q, setQ] = useQueryParam('q', StringParam)
 
-  const showEdit = !!localStorage.getItem('snippet-token')
+  let showEdit = false
+  if (typeof window !== 'undefined') {
+    showEdit = !!localStorage.getItem('snippet-token')
+  }
 
   async function fetchData () {
     if (q) {
