@@ -218,3 +218,9 @@ body {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+
+/* custom styles for codeblock tooltip, used in code snippets */
+.codeblock-tooltip {
+  padding: 2px 4px !important;
+  font-size: 12px !important;
+}

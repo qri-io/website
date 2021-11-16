@@ -15,7 +15,7 @@ const Snippet = ({ snippet }) => (
       <TagChips tags={snippet.tags} />
     </div>
     <div className='rounded-lg mb-10 overflow-hidden'>
-      <CodeBlock containerClassName='p-5' className='language-python text-sm'>{snippet.code}</CodeBlock>
+      <CodeBlock id={snippet.id} containerClassName='p-5' className='language-python text-sm' copyable>{snippet.code}</CodeBlock>
     </div>
   </>
 

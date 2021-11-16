@@ -19,7 +19,9 @@ const HeaderLink = ({
             <Icon icon='docsRing' size='2xs' className={classNames(colorClass, 'mr-2')}/>
           </div>
         )}
-        <Link colorClassName={'text-black'} to={link}>{text}</Link>
+        <div className='text-left'>
+          <Link colorClassName={'text-black'} to={link}>{text}</Link>
+        </div>
       </li>
     )
   }
