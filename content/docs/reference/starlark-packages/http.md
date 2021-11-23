@@ -157,7 +157,7 @@ the result of performing a http request
 
 **Methods**
 
-### body
+#### body
 
 ```
 body() string
@@ -166,7 +166,7 @@ body() string
 output response body as a string
 
 
-### json
+#### json
 
 ```
 json()

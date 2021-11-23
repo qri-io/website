@@ -35,7 +35,7 @@ an HTML document for querying
 
 **Methods**
 
-### attr
+#### attr
 
 ```
 attr(name) string
@@ -44,7 +44,7 @@ attr(name) string
 gets the specified attribute's value for the first element in the Selection.
 To get the value for each element individually, use a looping construct such as each or map method
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -52,7 +52,7 @@ To get the value for each element individually, use a looping construct such as 
 
 
 
-### children
+#### children
 
 ```
 children() selection
@@ -61,7 +61,7 @@ children() selection
 gets the child elements of each element in the Selection
 
 
-### children_filtered
+#### children_filtered
 
 ```
 children_filtered(selector) selection
@@ -69,7 +69,7 @@ children_filtered(selector) selection
 
 gets the child elements of each element in the Selection, filtered by the specified selector
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -77,7 +77,7 @@ gets the child elements of each element in the Selection, filtered by the specif
 
 
 
-### contents
+#### contents
 
 ```
 contents(selector) selection
@@ -85,7 +85,7 @@ contents(selector) selection
 
 gets the children of each element in the Selection, including text and comment nodes
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -93,7 +93,7 @@ gets the children of each element in the Selection, including text and comment n
 
 
 
-### find
+#### find
 
 ```
 find(selector) selection
@@ -101,7 +101,7 @@ find(selector) selection
 
 gets the descendants of each element in the current set of matched elements, filtered by a selector
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -109,7 +109,7 @@ gets the descendants of each element in the current set of matched elements, fil
 
 
 
-### filter
+#### filter
 
 ```
 filter(selector) selection
@@ -117,7 +117,7 @@ filter(selector) selection
 
 filter reduces the set of matched elements to those that match the selector string
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -125,7 +125,7 @@ filter reduces the set of matched elements to those that match the selector stri
 
 
 
-### get
+#### get
 
 ```
 get(i) selection
@@ -133,7 +133,7 @@ get(i) selection
 
 retrieves the underlying node at the specified index. alias: eq
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -141,7 +141,7 @@ retrieves the underlying node at the specified index. alias: eq
 
 
 
-### has
+#### has
 
 ```
 has(selector) selection
@@ -149,7 +149,7 @@ has(selector) selection
 
 reduces the set of matched elements to those that have a descendant that matches the selector
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -157,7 +157,7 @@ reduces the set of matched elements to those that have a descendant that matches
 
 
 
-### isSelector
+#### isSelector
 
 ```
 isSelector(selector) bool
@@ -165,7 +165,7 @@ isSelector(selector) bool
 
 checks the current matched set of elements against a selector and returns true if at least one of these elements matches
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -173,7 +173,7 @@ checks the current matched set of elements against a selector and returns true i
 
 
 
-### parent
+#### parent
 
 ```
 parent(selector) selection
@@ -181,7 +181,7 @@ parent(selector) selection
 
 gets the parent of each element in the Selection
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -189,7 +189,7 @@ gets the parent of each element in the Selection
 
 
 
-### parents_until
+#### parents_until
 
 ```
 parents_until(selector) selection
@@ -197,7 +197,7 @@ parents_until(selector) selection
 
 gets the ancestors of each element in the Selection, up to but not including the element matched by the selector
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -205,7 +205,7 @@ gets the ancestors of each element in the Selection, up to but not including the
 
 
 
-### siblings
+#### siblings
 
 ```
 siblings() selection
@@ -214,7 +214,7 @@ siblings() selection
 gets the siblings of each element in the Selection
 
 
-### text
+#### text
 
 ```
 text() string
@@ -223,7 +223,7 @@ text() string
 gets the combined text contents of each element in the set of matched elements, including descendants
 
 
-### first
+#### first
 
 ```
 first(selector) selection
@@ -231,7 +231,7 @@ first(selector) selection
 
 gets the first element of the selection
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -239,7 +239,7 @@ gets the first element of the selection
 
 
 
-### last
+#### last
 
 ```
 last() selection
@@ -247,7 +247,7 @@ last() selection
 
 gets the last element of the selection
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -255,7 +255,7 @@ gets the last element of the selection
 
 
 
-### len
+#### len
 
 ```
 len() int
@@ -264,7 +264,7 @@ len() int
 returns the number of the nodes in the selection
 
 
-### eq
+#### eq
 
 ```
 eq(i) selection
@@ -272,7 +272,7 @@ eq(i) selection
 
 gets the element at index i of the selection
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|

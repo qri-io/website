@@ -34,11 +34,24 @@ const RightSidebar = ({ location }) => (
                         {title}
                       </a>
                       <ul>
-                        {items && items.map(({ url, title, items }) => (
+                        {items && items.map(({ url, title: secondTierTitle, items }) => (
                           <li className='text-qrigray-400 hover:text-qripink transition-all duration-200 mb-2 ml-2 mt-1' key={title}>
                             <a href={url}>
-                              {title}
+                              {secondTierTitle}
                             </a>
+                            {/* Only show third tier if title is 'Types' */}
+                            {title === 'Types' && (
+                              <ul>
+                                {items && items.map(({ url, title: thirdTierTitle, items }) => (
+                                  <li className='text-qrigray-400 hover:text-qripink transition-all duration-200 mb-2 ml-2 mt-1 text-xs' key={title}>
+                                    <a href={url}>
+                                      {thirdTierTitle}
+                                    </a>
+                                  </li>
+                                ))
+                                }
+                              </ul>
+                            )}
                           </li>
                         ))
                         }

@@ -178,7 +178,7 @@ a two-dimensional point in space
 
 **Methods**
 
-### distance
+#### distance
 
 ```
 distance(p2) float
@@ -186,7 +186,7 @@ distance(p2) float
 
 Euclidean Distance to the other point
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -194,7 +194,7 @@ Euclidean Distance to the other point
 
 
 
-### distanceGeodesic
+#### distanceGeodesic
 
 ```
 distanceGeodesic(p2) float
@@ -202,7 +202,7 @@ distanceGeodesic(p2) float
 
 Distance on the surface of a sphere with the same radius as Earth
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -215,7 +215,7 @@ an ordered list of points that define a line
 
 **Methods**
 
-### length
+#### length
 
 ```
 length() float
@@ -224,7 +224,7 @@ length() float
 Euclidean Length
 
 
-### lengthGeodesic
+#### lengthGeodesic
 
 ```
 lengthGeodesic() float

@@ -115,7 +115,7 @@ a dataframe
 
 **Methods**
 
-### append
+#### append
 
 ```
 append(other) DataFrame
@@ -123,7 +123,7 @@ append(other) DataFrame
 
 appends data to the rows of this DataFrame, returned as a new DataFrame
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -131,7 +131,7 @@ appends data to the rows of this DataFrame, returned as a new DataFrame
 
 
 
-### apply
+#### apply
 
 ```
 apply(function, axis) Series
@@ -139,7 +139,7 @@ apply(function, axis) Series
 
 travel the given axis and apply the function to each slice. The result values of that function are collected into a Series, which is returned
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -148,7 +148,7 @@ travel the given axis and apply the function to each slice. The result values of
 
 
 
-### drop
+#### drop
 
 ```
 drop(labels, axis, index, columns)
@@ -156,7 +156,7 @@ drop(labels, axis, index, columns)
 
 drop columns or rows from the DataFrame
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -167,7 +167,7 @@ drop columns or rows from the DataFrame
 
 
 
-### drop_duplicates
+#### drop_duplicates
 
 ```
 drop_duplicates(subset)
@@ -175,7 +175,7 @@ drop_duplicates(subset)
 
 drop duplicate rows of the DataFrame
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -183,7 +183,7 @@ drop duplicate rows of the DataFrame
 
 
 
-### groupby
+#### groupby
 
 ```
 groupby(by) GroupByResult
@@ -191,13 +191,13 @@ groupby(by) GroupByResult
 
 group a set of row according to some given column value
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
 | `by` | `list(string)` | a list of column names to use for grouping the rows together |
 
-#### examples:
+##### examples:
 **groupby**
 
 group rows according to the values in the given column
@@ -216,7 +216,7 @@ num_breeds = df.groupby(['species'])['breed'].count()
 
 
 
-### head
+#### head
 
 ```
 head(n?) DataFrame
@@ -224,7 +224,7 @@ head(n?) DataFrame
 
 return the first n row of the DataFrame
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -232,7 +232,7 @@ return the first n row of the DataFrame
 
 
 
-### merge
+#### merge
 
 ```
 merge(right, left_on, right_on, how, suffixes) DataFrame
@@ -240,7 +240,7 @@ merge(right, left_on, right_on, how, suffixes) DataFrame
 
 merge this with the right DataFrame, returned as a new DataFrame
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -252,13 +252,46 @@ merge this with the right DataFrame, returned as a new DataFrame
 
 
 
-### reset_index
+#### reset_index
 
 ```
 reset_index()
 ```
 
 resets the index to be an empty index, turning the previous index into its own column
+
+
+#### sort_values
+
+```
+sort_values(by, ascending?) DataFrame
+```
+
+sort the values in the DataFrame
+
+##### parameters:
+
+| name | type | description |
+|------|------|-------------|
+| `by` | `list(string)` | the columns to use to sort the values |
+| `ascending` | `bool` | whether to use ascending order, default is True |
+
+##### examples:
+**sort_values**
+
+sort the values
+
+```
+load("dataframe.star", "dataframe")
+df = dataframe.DataFrame(columns=['id','animal','sound'],
+data=[[1,'cat','meow'],
+[2,'dog','bark'],
+[3,'eel','zap'],
+[4,'frog','ribbit']])
+sorted = df.sort_values(by=['sound'])
+```
+
+
 
 ### Index
 
@@ -276,7 +309,7 @@ a series of values of one type, which represents a column of a DataFrame
 
 **Methods**
 
-### astype
+#### astype
 
 ```
 astype(type) Series
@@ -284,7 +317,7 @@ astype(type) Series
 
 coerce the values in the Series to the given type
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -292,7 +325,7 @@ coerce the values in the Series to the given type
 
 
 
-### equals
+#### equals
 
 ```
 equals(value) Series
@@ -300,7 +333,7 @@ equals(value) Series
 
 return a Series of bools for whether each element is equal to the value
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -308,7 +341,7 @@ return a Series of bools for whether each element is equal to the value
 
 
 
-### get
+#### get
 
 ```
 get(index) any
@@ -316,7 +349,7 @@ get(index) any
 
 gets the cell at the given index
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -324,7 +357,7 @@ gets the cell at the given index
 
 
 
-### notequals
+#### notequals
 
 ```
 notequals(value) Series
@@ -332,7 +365,7 @@ notequals(value) Series
 
 return a Series of bools for whether each element is not equal to the parameter
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -340,7 +373,7 @@ return a Series of bools for whether each element is not equal to the parameter
 
 
 
-### notnull
+#### notnull
 
 ```
 notnull() Series
@@ -349,7 +382,7 @@ notnull() Series
 return a Series of bools for whether each element is not null
 
 
-### unique
+#### unique
 
 ```
 unique() Series
@@ -363,7 +396,7 @@ string functions that will be applied to all strings in the collection
 
 **Methods**
 
-### contains
+#### contains
 
 ```
 contains(text)
@@ -371,7 +404,7 @@ contains(text)
 
 whether each string contains the given text
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -379,7 +412,7 @@ whether each string contains the given text
 
 
 
-### endswith
+#### endswith
 
 ```
 endswith(text)
@@ -387,7 +420,7 @@ endswith(text)
 
 whether each string ends with the given text
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -395,7 +428,7 @@ whether each string ends with the given text
 
 
 
-### lower
+#### lower
 
 ```
 lower()
@@ -404,7 +437,7 @@ lower()
 convert the strings to lower case
 
 
-### replace
+#### replace
 
 ```
 replace(needle, new)
@@ -412,7 +445,7 @@ replace(needle, new)
 
 replace the needle in each string with the new text
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -421,7 +454,7 @@ replace the needle in each string with the new text
 
 
 
-### startswith
+#### startswith
 
 ```
 startswith(text)
@@ -429,7 +462,7 @@ startswith(text)
 
 whether each string starts with the given text
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
@@ -437,7 +470,7 @@ whether each string starts with the given text
 
 
 
-### strip
+#### strip
 
 ```
 strip()

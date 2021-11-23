@@ -117,7 +117,7 @@ methods.
 
 **Methods**
 
-### in_location
+#### in_location
 
 ```
 in_location(locstr) Time
@@ -126,7 +126,7 @@ in_location(locstr) Time
 get time representing the same instant but in a different location
 
 
-### format
+#### format
 
 ```
 format() string
@@ -135,7 +135,7 @@ format() string
 textual representation of time formatted according to the provided
 layout string: 01/02 03:04:05PM '06 -0700 (January 2, 15:04:05, 2006,
 in time zone seven hours west of GMT)
-#### examples:
+##### examples:
 **ISO timestamp**
 
 construct an ISO tiemstamp using the template string
