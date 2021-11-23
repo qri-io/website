@@ -28,7 +28,7 @@ an excel file
 
 **Methods**
 
-### get_sheets
+#### get_sheets
 
 ```
 get_sheets() dict
@@ -37,7 +37,7 @@ get_sheets() dict
 return a dict of sheets in this excel file
 
 
-### get_rows
+#### get_rows
 
 ```
 get_rows(sheetname) list

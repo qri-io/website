@@ -121,28 +121,28 @@ return a corresponding match string tuple. Return None if the string does not ma
 
 **Methods**
 
-### match
+#### match
 
 ```
 match(text, flags=0)
 ```
 
 
-### findall
+#### findall
 
 ```
 findall(text, flags=0)
 ```
 
 
-### split
+#### split
 
 ```
 split(text, maxsplit=0, flags=0)
 ```
 
 
-### sub
+#### sub
 
 ```
 sub(repl, text, count=0, flags=0)

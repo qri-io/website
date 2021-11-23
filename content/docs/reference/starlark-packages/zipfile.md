@@ -49,14 +49,14 @@ a zip archive object
 
 **Methods**
 
-### namelist
+#### namelist
 
 ```
 namelist() list
 ```
 
 return a list of files in the archive
-#### examples:
+##### examples:
 **basic**
 
 get list of filenames from ZipFile
@@ -71,7 +71,7 @@ print(files) # ["file1.txt", "file2.txt", etc ]
 
 
 
-### open
+#### open
 
 ```
 open(filename string) ZipInfo
@@ -79,13 +79,13 @@ open(filename string) ZipInfo
 
 open a file for reading
 
-#### parameters:
+##### parameters:
 
 | name | type | description |
 |------|------|-------------|
 | `filename` | `string` | name of the file in the archive to open |
 
-#### examples:
+##### examples:
 **basic**
 
 open file from ZipArchive as a ZipInfo
@@ -106,14 +106,14 @@ an information object for interacting with a Zip archive component
 
 **Methods**
 
-### read
+#### read
 
 ```
 read() string
 ```
 
 read the file, returning it's string representation
-#### examples:
+##### examples:
 **basic**
 
 read file
