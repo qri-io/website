@@ -43,6 +43,8 @@ const Header = ({
     setShowMobileNav(!showMobileNav)
   }
 
+  const isDocs = location.pathname.match(/\/docs\/?/)
+
   const Nav = ({ mobileMenu }) => (
     <nav className={classNames('flex px-5 md:px-10 py-4 items-center z-10 relative transition-all duration-100 z-20', {
       'border-b border-qrigray-200': border || mobileMenu,
@@ -58,7 +60,7 @@ const Header = ({
             <span className='font-extrabold'>Qri</span>
           </Link>
           {/* Show the "/docs" after the logo if this is the docs header */}
-          {location.pathname.match(/\/docs\/?/) && (
+          {isDocs && (
             <>
               <span className='text-xl'> /</span>
               <Link colorClassName={'text-qritile-600'} to='/docs'>
@@ -71,9 +73,12 @@ const Header = ({
 
       <div id="navbar" className={'flex-grow text-right'}>
         <div className={'justify-end flex md:hidden'}>
-          <Link colorClassName={'text-black'} onClick={onSearchClick}>
-            <Icon icon='search' className='mr-3'/>
-          </Link>
+          { isDocs && (
+            <Link colorClassName={'text-black'} onClick={onSearchClick}>
+              <Icon icon='search' className='mr-3'/>
+            </Link>
+          )
+          }
           <Link onClick={toggleMobileNav}>
             <IconButton icon={mobileMenu ? 'close' : 'bars'} />
           </Link>
