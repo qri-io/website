@@ -248,7 +248,7 @@ const IndexPage = () => {
               top: -300,
               left: -10
             }}/>
-            <div className='bg-qritile-600 pt-10 md:pt-24 px-6 pb-20 md:pb-48 w-full text-white text-center relative'>
+            <div className='bg-qritile-600 pt-10 md:pt-24 px-6 md:px-40 pb-20 md:pb-48 w-full text-white text-center relative'>
               <img src='/img/new-docs/homepage/donut-pink.svg' className='absolute -left-1.5 -top-1.5'/>
               <img src='/img/new-docs/homepage/donut-orange.svg' className='absolute -right-1.5 -top-1.5'/>
               <img src='/img/new-docs/homepage/donut-pink.svg' className='absolute -right-1.5 -bottom-1.5'/>
