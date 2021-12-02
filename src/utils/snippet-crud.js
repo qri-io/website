@@ -1,5 +1,6 @@
 
-const BASE_URL = 'https://rosebud-api.qri.cloud'
+const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://api.qri.cloud' : 'https://rosebud-api.qri.cloud'
+
 let token
 if (typeof window !== 'undefined') {
   token = localStorage.getItem('snippet-token')
