@@ -101,6 +101,13 @@ const Header = ({
 
   return (
     <>
+      {!location.pathname.match(/winding_down/) &&
+        (<div className='z-20 bg-qrinavy-900' style={{ padding: 10, paddingLeft: 18 }}>
+          <div style={{ margin: 'auto' }}>
+            <a href="/winding_down" style={{ color: '#efefef', fontWeight: 'bold' }}>Qri is winding down.</a>
+          </div>
+        </div>)
+      }
       <Nav/>
       {/* mobile nav animates in */}
       <div className={classNames('fixed top-0 bottom-0 h-screen w-full bg-white z-20 transition-all duration-300', {

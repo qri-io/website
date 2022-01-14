@@ -57,6 +57,7 @@
     "gatsby-plugin-use-query-params": "1.0.1",
     "gatsby-remark-autolink-headers": "2.3.11",
     "gatsby-remark-copy-linked-files": "2.1.33",
+    "gatsby-plugin-remove-trailing-slashes": "^4.5.0",
     "gatsby-remark-images": "3.1.37",
     "gatsby-source-filesystem": "3.9.0",
     "graphql": "14.5.8",
@@ -110,7 +111,6 @@
     "eslint-plugin-node": "11.0.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
-    "gatsby-plugin-remove-trailing-slashes": "3.9.0",
     "prism-react-renderer": "1.0.2"
   }
 }
