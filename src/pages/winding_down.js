@@ -13,7 +13,7 @@ const page = () => (
         <p className='py-3'>When startups wind down, I think it&apos;s important to share lessons learned. In the coming weeks I intend to write a series of posts that describe what worked and didn’t work at Qri. I’m planning to start by expanding on my two biggest lessons:
         </p>
         <div style={{ paddingLeft: 20 }}>
-          <ol>
+          <ol className='list-decimal'>
             <li>Data is not code.</li>
             <li>Competing with Web2 companies on a Web3 stack is hard.</li>
           </ol>
