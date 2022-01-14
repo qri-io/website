@@ -10491,12 +10491,12 @@ gatsby-plugin-remove-serviceworker@1.0.0:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-remove-serviceworker/-/gatsby-plugin-remove-serviceworker-1.0.0.tgz#9fb433bc8bd766e14e1d3711c4ac6f051e1dff7c"
   integrity sha1-n7QzvIvXZuFOHTcRxKxvBR4d/3w=
 
-gatsby-plugin-remove-trailing-slashes@3.9.0:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-remove-trailing-slashes/-/gatsby-plugin-remove-trailing-slashes-3.9.0.tgz#5f682fbee54173279967c1b8a9bcc6c92ee2ee44"
-  integrity sha512-4wJNgBz7FzwmlNk+Pe3FZdVmc9hT9aPoUKf6d7FZIr0vAftCj02aQn1M94kR4IWvVcdbC0t3p+JCLtTbSD2MhQ==
+gatsby-plugin-remove-trailing-slashes@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-remove-trailing-slashes/-/gatsby-plugin-remove-trailing-slashes-4.5.0.tgz#38dd050f6f8d5bad2c5616aaa58797eda944208a"
+  integrity sha512-hcnLJq/EdXPjGG0jzNrOZhk/m+W4yMpa1iwATjkyaIno+CDxTsG5M2rqTzJipcFcVnqgij6+/VVl0keaUKKmCg==
   dependencies:
-    "@babel/runtime" "^7.14.0"
+    "@babel/runtime" "^7.15.4"
 
 gatsby-plugin-sass@4.9.0:
   version "4.9.0"
