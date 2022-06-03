@@ -46,7 +46,7 @@
     "gatsby-plugin-eslint": "3.0.0",
     "gatsby-plugin-layout": "1.1.18",
     "gatsby-plugin-manifest": "2.2.33",
-    "gatsby-plugin-mdx": "^2.14.0",
+    "gatsby-plugin-mdx": "^2.14.1",
     "gatsby-plugin-netlify": "3.9.0",
     "gatsby-plugin-offline": "3.0.29",
     "gatsby-plugin-react-helmet": "4.9.0",
